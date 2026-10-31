@@ -381,8 +381,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 for (j in seq_along(dims)) {
                     items <- names(wc)[!is.na(membership) & membership == dims[j]]
                     values <- as.numeric(sc[, j])
-                    r_sum <- if (length(items) > 0)
-                        suppressWarnings(stats::cor(values, rowSums(prep$data[, items, drop = FALSE]),
+                    # Mean of the answered items, so dimensions with different
+                    # numbers of items stay on the same scale.
+                    # ES: Media de los ítems respondidos, para que dimensiones
+                    # con distinto número de ítems queden en la misma escala.
+                    r_mean <- if (length(items) > 0)
+                        suppressWarnings(stats::cor(values, rowMeans(prep$data[, items, drop = FALSE], na.rm = TRUE),
                                                     use = "pairwise.complete.obs"))
                     else NA
                     .el_add_row(table, j, list(
@@ -391,7 +395,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         n = sum(!is.na(values)),
                         mean = .el_clean_num(mean(values, na.rm = TRUE)),
                         sd = .el_clean_num(stats::sd(values, na.rm = TRUE)),
-                        rSum = .el_clean_num(r_sum)))
+                        rMean = .el_clean_num(r_mean)))
                 }
             }
 
@@ -795,7 +799,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("scores", "items", "Items", "Ítems"),
                 c("scores", "mean", "Mean", "Media"),
                 c("scores", "sd", "SD", "DE"),
-                c("scores", "rSum", "r with sum score", "r con la suma"),
+                c("scores", "rMean", "r with mean score", "r con el promedio"),
                 c("uvaPairs", "itemA", "Item", "Ítem"),
                 c("uvaPairs", "itemB", "Item", "Ítem"),
                 c("uvaPairs", "magnitude", "Redundancy", "Redundancia"),

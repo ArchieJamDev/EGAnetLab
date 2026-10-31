@@ -46,7 +46,7 @@ test_that("network scores summarize one score per dimension", {
     expect_equal(sum(scores$items), 12)
     expect_true(all(scores$n == 300))
     expect_true(all(scores$sd > 0))
-    expect_true(all(scores$rSum > 0.9))
+    expect_true(all(scores$rMean > 0.9))
 })
 
 test_that("network scores keep missing responses as missing", {

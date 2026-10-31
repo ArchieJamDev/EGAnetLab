@@ -587,7 +587,7 @@ msgid "White"
 msgstr ""
 
 #: ega/results/scores.columns.title
-msgid "r with sum score"
+msgid "r with mean score"
 msgstr ""
 
 #: ega/results/uvaPairs.columns.title

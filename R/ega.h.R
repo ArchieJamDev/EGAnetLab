@@ -635,8 +635,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `title`="SD", 
                         `type`="number"),
                     list(
-                        `name`="rSum", 
-                        `title`="r with sum score", 
+                        `name`="rMean", 
+                        `title`="r with mean score", 
                         `type`="number", 
                         `format`="zto"))))
             self$add(jmvcore::Output$new(

@@ -191,8 +191,8 @@ items:
       - name: sd
         title: SD
         type: number
-      - name: rSum
-        title: r with sum score
+      - name: rMean
+        title: r with mean score
         type: number
         format: zto
 

@@ -5,7 +5,7 @@
 * New **Network scores** box in the EGA analysis, wrapping
   `EGAnet::net.scores()` on the estimated network and memberships.
   **Network scores summary** shows, per dimension, the number of items,
-  N, mean, SD and the correlation with the unweighted sum score.
+  N, mean, SD and the correlation with the unweighted mean of the same items.
   **Save network scores** adds one column per dimension to the jamovi
   dataset, on the right rows even when the data are filtered.
 
