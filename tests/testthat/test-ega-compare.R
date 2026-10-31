@@ -142,5 +142,8 @@ test_that("the theoretical structure parser reads names, lavaan syntax and wildc
     expect_equal(r$unknown, "PX9")
     expect_equal(r$unassigned, c("PA2", "PC3", "PC4", "item one"))
 
+    r <- parse("A = PA?; B = PC?", items)
+    expect_equal(unname(r$wc), c("A", "A", "B", "B", NA))
+
     expect_true(parse("   ", items)$empty)
 })

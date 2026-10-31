@@ -38,8 +38,8 @@
 #   item (NA when the item was not assigned).
 # Syntax: one dimension per part, parts separated by ";" or new lines. Each
 #   part is "Name = item, item, ..."; lavaan's "=~" and "+" also work, and
-#   "*" matches any characters ("PA*" is every item whose name starts with
-#   PA). Item names are matched exactly, then ignoring case.
+#   "*" matches any characters and "?" one character ("PA*" is every item
+#   whose name starts with PA). Item names are matched exactly, then ignoring case.
 # ES: Sintaxis: una dimensión por parte, separadas por ";" o saltos de línea.
 #   Cada parte es "Nombre = ítem, ítem, ..."; también funcionan "=~" y "+"
 #   de lavaan, y "*" equivale a cualquier secuencia de caracteres ("PA*" son
@@ -86,7 +86,7 @@
         }))
         tokens <- tokens[nzchar(tokens)]
         for (token in tokens) {
-            if (grepl("*", token, fixed = TRUE)) {
+            if (grepl("[*?]", token)) {
                 hits <- items[grepl(utils::glob2rx(token), items)]
                 if (length(hits) == 0)
                     hits <- items[grepl(utils::glob2rx(tolower(token)), tolower(items))]
