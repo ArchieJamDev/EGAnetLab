@@ -81,8 +81,15 @@
                        color_of(opt("edgeNegColor", "red"))),
         edge.lty = c("solid", opt("edgeNegLty", "solid"))
     )
-    if (!is.null(palette))
-        args$color.palette <- palette
+    # EGAnet accepts a color vector only when its length equals 1, the number
+    # of communities or the number of nodes, so the palette is cut (or
+    # recycled) to one color per community.
+    # ES: EGAnet acepta un vector de colores solo si su longitud es 1, el
+    # número de comunidades o el número de nodos, así que la paleta se
+    # recorta (o recicla) a un color por comunidad.
+    n_communities <- length(unique(stats::na.omit(wc)))
+    if (!is.null(palette) && n_communities > 0)
+        args$color.palette <- rep_len(palette, n_communities)
 
     title <- trimws(as.character(opt("plotTitle", "")))
     if (nzchar(title))

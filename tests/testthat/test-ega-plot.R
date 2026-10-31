@@ -107,3 +107,13 @@ test_that("the legend can be hidden", {
     plot <- EGAnetLab:::.el_ega_plot(fit$network, fit$wc, opts = list(showLegend = FALSE))
     expect_equal(plot$theme$legend.position, "none")
 })
+
+test_that("palettes longer than the number of dimensions are accepted", {
+
+    fit <- edgeEgaFit()
+    for (choice in c("colorblind", "viridis")) {
+        plot <- EGAnetLab:::.el_ega_plot(fit$network, fit$wc, opts = list(),
+                                         palette = EGAnetLab:::.el_plot_series_palette(choice))
+        expect_true(renders(plot), info = choice)
+    }
+})
