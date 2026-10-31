@@ -448,8 +448,8 @@ bootegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 
 #' Bootstrap EGA
 #'
-#' Checks whether the dimensions found by Exploratory Graph Analysis 
-#' replicate across bootstrap samples, with the distribution of the number of 
+#' Checks whether the dimensions found by Exploratory Graph Analysis replicate 
+#' across bootstrap samples, with the distribution of the number of 
 #' dimensions, the structural consistency of each dimension and the stability 
 #' of each item's membership.
 #' 

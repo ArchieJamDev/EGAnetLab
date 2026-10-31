@@ -38,9 +38,9 @@ analyses:
     menuTitle: Bootstrap EGA (stability)
     description: >
       Checks whether the dimensions found by Exploratory Graph Analysis
-      replicate across bootstrap samples, with the distribution of the number
-      of dimensions, the structural consistency of each dimension and the
-      stability of each item's membership.
+      replicate across bootstrap samples, with the distribution of the number of
+      dimensions, the structural consistency of each dimension and the stability
+      of each item's membership.
     category: analyses
 datasets:
   - name: WMT-2 Matrices Test (n=1185)
