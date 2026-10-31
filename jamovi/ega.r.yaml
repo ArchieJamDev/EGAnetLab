@@ -31,6 +31,11 @@ items:
     title: Introduction
     type: Html
 
+  - name: choicesGuide
+    title: About your choices
+    type: Html
+    visible: (showChoicesGuide)
+
   - name: summaryGuide
     title: Dimensional structure
     type: Html
@@ -126,6 +131,24 @@ items:
       - algorithm
       - uniMethod
       - plotPalette
+      - layout
+      - plotTitle
+      - nodeSize
+      - nodeShape
+      - nodeAlpha
+      - labelSize
+      - labelColor
+      - edgeSize
+      - edgePosColor
+      - edgeNegColor
+      - edgeNegLty
+      - edgeMin
+      - showEdgeLabels
+      - edgeLabelSize
+      - edgeLabelDigits
+      - showLegend
+      - legendPosition
+      - legendTitle
 
   - name: notes
     title: Notes

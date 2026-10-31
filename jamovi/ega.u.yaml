@@ -63,8 +63,75 @@ children:
     collapsed: true
     children:
       - type: CheckBox
+        name: showChoicesGuide
+      - type: CheckBox
         name: showLoadings
       - type: CheckBox
         name: showNetworkPlot
       - type: ComboBox
         name: plotPalette
+  - type: CollapseBox
+    label: Plot Layout
+    collapsed: true
+    children:
+      - type: ComboBox
+        name: layout
+      - type: TextBox
+        name: plotTitle
+        format: string
+  - type: CollapseBox
+    label: Plot Nodes and Labels
+    collapsed: true
+    children:
+      - type: TextBox
+        name: nodeSize
+        format: number
+      - type: ComboBox
+        name: nodeShape
+      - type: TextBox
+        name: nodeAlpha
+        format: number
+      - type: TextBox
+        name: labelSize
+        format: number
+      - type: ComboBox
+        name: labelColor
+  - type: CollapseBox
+    label: Plot Edges
+    collapsed: true
+    children:
+      - type: TextBox
+        name: edgeSize
+        format: number
+      - type: ComboBox
+        name: edgePosColor
+      - type: ComboBox
+        name: edgeNegColor
+      - type: ComboBox
+        name: edgeNegLty
+      - type: TextBox
+        name: edgeMin
+        format: number
+      - type: CheckBox
+        name: showEdgeLabels
+      - type: TextBox
+        name: edgeLabelSize
+        format: number
+        enable: (showEdgeLabels)
+      - type: TextBox
+        name: edgeLabelDigits
+        format: number
+        enable: (showEdgeLabels)
+  - type: CollapseBox
+    label: Plot Legend
+    collapsed: true
+    children:
+      - type: CheckBox
+        name: showLegend
+      - type: ComboBox
+        name: legendPosition
+        enable: (showLegend)
+      - type: TextBox
+        name: legendTitle
+        format: string
+        enable: (showLegend)

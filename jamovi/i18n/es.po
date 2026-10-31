@@ -6,6 +6,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "Language: es\n"
 
+#: ega/results/choicesGuide.title
+msgid "About your choices"
+msgstr "Acerca de sus elecciones"
+
 #: ega/results/interpretation.title
 msgid "Applied interpretation"
 msgstr "Interpretación aplicada"
@@ -17,6 +21,24 @@ msgstr "Automática (Pearson / policórica)"
 #: ega/options/model/BGGM.title
 msgid "BGGM"
 msgstr "BGGM"
+
+#: ega/options/labelColor/black.title
+#: ega/options/edgePosColor/black.title
+msgid "Black"
+msgstr "Negro"
+
+#: ega/options/edgePosColor/blue.title
+msgid "Blue"
+msgstr "Azul"
+
+#: ega/options/legendPosition/bottom.title
+msgid "Bottom"
+msgstr "Abajo"
+
+#: ega/options/layout/circle.title
+#: ega/options/nodeShape/circle.title
+msgid "Circle"
+msgstr "Círculo"
 
 #: ega/options/plotPalette/colorblind.title
 msgid "Colorblind-safe (Okabe-Ito)"
@@ -33,6 +55,30 @@ msgstr "Correlación"
 #: ega/options/corr/cosine.title
 msgid "Cosine"
 msgstr "Coseno"
+
+#: ega/options/labelColor/grey30.title
+msgid "Dark gray"
+msgstr "Gris oscuro"
+
+#: ega/options/edgePosColor/darkgreen.title
+msgid "Dark green"
+msgstr "Verde oscuro"
+
+#: ega/options/edgeNegColor/darkred.title
+msgid "Dark red"
+msgstr "Rojo oscuro"
+
+#: ega/options/edgeNegLty/dashed.title
+msgid "Dashed"
+msgstr "Discontinua"
+
+#: ega/options/edgeLabelDigits.title
+msgid "Decimals"
+msgstr "Decimales"
+
+#: ega/options/nodeShape/diamond.title
+msgid "Diamond"
+msgstr "Rombo"
 
 #: ega/results/membership.columns.title
 msgid "Dimension"
@@ -52,6 +98,10 @@ msgstr "Estructura dimensional"
 msgid "Dimensionality"
 msgstr "Dimensionalidad"
 
+#: ega/options/edgeNegLty/dotted.title
+msgid "Dotted"
+msgstr "Punteada"
+
 #: package/title
 #: package/analyses/ega.menuGroup
 #: ega/options.menuGroup
@@ -65,6 +115,18 @@ msgstr "Por defecto de EGAnet"
 #: package/description
 msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis and, in later releases, adds bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and invariance extensions. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation."
 msgstr "EGAnetLab lleva a jamovi los métodos de psicometría de redes del paquete EGAnet y acompaña cada resultado con orientación metodológica basada en evidencia, interpretación y apoyo educativo. Estima el número y el contenido de las dimensiones con el Análisis Exploratorio de Grafos y, en versiones posteriores, agrega estabilidad por bootstrap, análisis de redundancia (UVA) y extensiones jerárquicas, dinámicas y de invarianza. Cada tabla basada en un método cita su propia fuente en el formato numerado nativo de jamovi, y la bibliografía completa en APA 7.ª edición vive en la documentación del módulo."
+
+#: ega/options/edgeLabelSize.title
+msgid "Edge weight size"
+msgstr "Tamaño de los pesos"
+
+#: ega/options/edgeSize.title
+msgid "Edge width"
+msgstr "Grosor de arista"
+
+#: ega/options/layout/eigen.title
+msgid "Eigenvector"
+msgstr "Autovector"
 
 #: package/datasets.description
 msgid "Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic variables, from the EGAnet package - see data/README.md"
@@ -87,9 +149,6 @@ msgid "Estimated network"
 msgstr "Red estimada"
 
 #: package/analyses/ega.description
-msgid "Estimates how many dimensions underlie a set of items, and which items belong to each, by modeling the items as a network of regularized partial correlations and grouping densely connected items with a community detection algorithm. Reports the number of dimensions, item memberships, network loadings and the Total Entropy Fit Index, with a network plot and plain-language interpretation. Use it as the first step in assessing the dimensional structure of a scale, before checking its stability with Bootstrap EGA."
-msgstr "Estima cuántas dimensiones subyacen a un conjunto de ítems, y qué ítems pertenecen a cada una, modelando los ítems como una red de correlaciones parciales regularizadas y agrupando los ítems densamente conectados con un algoritmo de detección de comunidades. Informa el número de dimensiones, la pertenencia de los ítems, las cargas de red y el Índice de Ajuste de Entropía Total, con un gráfico de la red e interpretación en lenguaje claro. Úselo como primer paso para evaluar la estructura dimensional de una escala, antes de revisar su estabilidad con Bootstrap EGA."
-
 #: ega/options.description.main
 msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit and plain-language interpretation."
 msgstr "Estima el número de dimensiones que subyacen a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnet), acompañado de cargas de red, ajuste por entropía e interpretación en lenguaje claro."
@@ -102,6 +161,10 @@ msgstr "Estimación"
 msgid "Expand"
 msgstr "Expandir"
 
+#: ega/options/showChoicesGuide.title
+msgid "Explain my choices"
+msgstr "Explicar mis elecciones"
+
 #: package/analyses/ega.title
 #: package/analyses/ega.menuTitle
 #: ega/options.title
@@ -111,6 +174,15 @@ msgstr "Análisis Exploratorio de Grafos"
 #: ega/options/model/glasso.title
 msgid "GLASSO (EBIC)"
 msgstr "GLASSO (EBIC)"
+
+#: ega/options/edgePosColor/grey50.title
+#: ega/options/edgeNegColor/grey50.title
+msgid "Gray"
+msgstr "Gris"
+
+#: ega/options/edgeMin.title
+msgid "Hide edges weaker than"
+msgstr "Ocultar aristas menores que"
 
 #: ega/results/intro.title
 msgid "Introduction"
@@ -130,9 +202,37 @@ msgstr "Pertenencia de los ítems"
 msgid "Items"
 msgstr "Ítems"
 
+#: ega/options/layout/kamadakawai.title
+msgid "Kamada-Kawai"
+msgstr "Kamada-Kawai"
+
+#: ega/options/labelColor.title
+msgid "Label color"
+msgstr "Color de etiqueta"
+
+#: ega/options/labelSize.title
+msgid "Label size"
+msgstr "Tamaño de etiqueta"
+
+#: ega/options/layout.title
+msgid "Layout"
+msgstr "Disposición"
+
 #: ega/options/uniMethod/LE.title
 msgid "Leading eigenvalue"
 msgstr "Autovalor principal"
+
+#: ega/options/legendPosition/left.title
+msgid "Left"
+msgstr "Izquierda"
+
+#: ega/options/legendPosition.title
+msgid "Legend position"
+msgstr "Posición de la leyenda"
+
+#: ega/options/legendTitle.title
+msgid "Legend title"
+msgstr "Título de la leyenda"
 
 #: ega/options/algorithm/leiden.title
 msgid "Leiden"
@@ -151,6 +251,22 @@ msgstr "Louvain"
 msgid "Missing Values"
 msgstr "Valores perdidos"
 
+#: ega/options/layout/mds.title
+msgid "Multidimensional scaling"
+msgstr "Escalamiento multidimensional"
+
+#: ega/options/labelColor/navy.title
+msgid "Navy"
+msgstr "Azul marino"
+
+#: ega/options/edgeNegLty.title
+msgid "Negative edge line"
+msgstr "Línea de aristas negativas"
+
+#: ega/options/edgeNegColor.title
+msgid "Negative edges"
+msgstr "Aristas negativas"
+
 #: ega/options/model.title
 msgid "Network Model"
 msgstr "Modelo de red"
@@ -168,9 +284,25 @@ msgstr "Cargas de red (estandarizadas)"
 msgid "Network plot"
 msgstr "Gráfico de red"
 
+#: ega/options/nodeAlpha.title
+msgid "Node fill opacity"
+msgstr "Opacidad del relleno"
+
+#: ega/options/nodeShape.title
+msgid "Node shape"
+msgstr "Forma de nodo"
+
+#: ega/options/nodeSize.title
+msgid "Node size"
+msgstr "Tamaño de nodo"
+
 #: ega/results/notes.title
 msgid "Notes"
 msgstr "Notas"
+
+#: ega/options/edgeNegColor/orange.title
+msgid "Orange"
+msgstr "Naranja"
 
 #: ega/ui[3].label
 msgid "Output"
@@ -184,18 +316,78 @@ msgstr "Por pares"
 msgid "Pearson"
 msgstr "Pearson"
 
+#: ega/ui[6].label
+msgid "Plot Edges"
+msgstr "Gráfico: aristas"
+
+#: ega/ui[4].label
+msgid "Plot Layout"
+msgstr "Gráfico: disposición"
+
+#: ega/ui[7].label
+msgid "Plot Legend"
+msgstr "Gráfico: leyenda"
+
+#: ega/ui[5].label
+msgid "Plot Nodes and Labels"
+msgstr "Gráfico: nodos y etiquetas"
+
+#: ega/options/plotTitle.title
+msgid "Plot title"
+msgstr "Título del gráfico"
+
+#: ega/options/edgePosColor.title
+msgid "Positive edges"
+msgstr "Aristas positivas"
+
+#: ega/options/edgeNegColor/red.title
+msgid "Red"
+msgstr "Rojo"
+
 #: ega/options/reportLang.title
 #: ega/ui[1].label
 msgid "Report Language"
 msgstr "Idioma del informe"
 
+#: ega/options/legendPosition/right.title
+msgid "Right"
+msgstr "Derecha"
+
+#: ega/options/showEdgeLabels.title
+msgid "Show edge weights"
+msgstr "Mostrar pesos de aristas"
+
+#: ega/options/showLegend.title
+msgid "Show legend"
+msgstr "Mostrar leyenda"
+
+#: ega/options/edgeNegLty/solid.title
+msgid "Solid"
+msgstr "Continua"
+
 #: ega/options/corr/spearman.title
 msgid "Spearman"
 msgstr "Spearman"
 
+#: ega/options/layout/qgraph.title
+msgid "Spring (Fruchterman-Reingold)"
+msgstr "Resorte (Fruchterman-Reingold)"
+
+#: ega/options/nodeShape/square.title
+msgid "Square"
+msgstr "Cuadrado"
+
 #: ega/options/model/TMFG.title
 msgid "TMFG"
 msgstr "TMFG"
+
+#: ega/options/legendPosition/top.title
+msgid "Top"
+msgstr "Arriba"
+
+#: ega/options/nodeShape/triangle.title
+msgid "Triangle"
+msgstr "Triángulo"
 
 #: ega/options/uniMethod.title
 msgid "Unidimensionality Check"
@@ -212,3 +404,7 @@ msgstr "Viridis"
 #: ega/options/algorithm/walktrap.title
 msgid "Walktrap"
 msgstr "Walktrap"
+
+#: ega/options/labelColor/white.title
+msgid "White"
+msgstr "Blanco"

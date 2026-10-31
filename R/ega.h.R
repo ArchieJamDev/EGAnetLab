@@ -13,9 +13,28 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             model = "glasso",
             algorithm = "walktrap",
             uniMethod = "louvain",
+            showChoicesGuide = TRUE,
             showLoadings = TRUE,
             showNetworkPlot = TRUE,
-            plotPalette = "default", ...) {
+            plotPalette = "default",
+            layout = "qgraph",
+            plotTitle = "",
+            nodeSize = 12,
+            nodeShape = "circle",
+            nodeAlpha = 0.5,
+            labelSize = 5,
+            labelColor = "black",
+            edgeSize = 8,
+            edgePosColor = "darkgreen",
+            edgeNegColor = "red",
+            edgeNegLty = "solid",
+            edgeMin = 0,
+            showEdgeLabels = FALSE,
+            edgeLabelSize = 3,
+            edgeLabelDigits = 2,
+            showLegend = TRUE,
+            legendPosition = "right",
+            legendTitle = "", ...) {
 
             super$initialize(
                 package="EGAnetLab",
@@ -94,6 +113,131 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "colorblind",
                     "viridis"),
                 default="default")
+            private$..showChoicesGuide <- jmvcore::OptionBool$new(
+                "showChoicesGuide",
+                showChoicesGuide,
+                default=TRUE)
+            private$..layout <- jmvcore::OptionList$new(
+                "layout",
+                layout,
+                options=list(
+                    "qgraph",
+                    "kamadakawai",
+                    "circle",
+                    "mds",
+                    "eigen"),
+                default="qgraph")
+            private$..plotTitle <- jmvcore::OptionString$new(
+                "plotTitle",
+                plotTitle,
+                default="")
+            private$..nodeSize <- jmvcore::OptionNumber$new(
+                "nodeSize",
+                nodeSize,
+                min=2,
+                max=30,
+                default=12)
+            private$..nodeShape <- jmvcore::OptionList$new(
+                "nodeShape",
+                nodeShape,
+                options=list(
+                    "circle",
+                    "square",
+                    "triangle",
+                    "diamond"),
+                default="circle")
+            private$..nodeAlpha <- jmvcore::OptionNumber$new(
+                "nodeAlpha",
+                nodeAlpha,
+                min=0,
+                max=1,
+                default=0.5)
+            private$..labelSize <- jmvcore::OptionNumber$new(
+                "labelSize",
+                labelSize,
+                min=1,
+                max=15,
+                default=5)
+            private$..labelColor <- jmvcore::OptionList$new(
+                "labelColor",
+                labelColor,
+                options=list(
+                    "black",
+                    "grey30",
+                    "navy",
+                    "white"),
+                default="black")
+            private$..edgeSize <- jmvcore::OptionNumber$new(
+                "edgeSize",
+                edgeSize,
+                min=1,
+                max=20,
+                default=8)
+            private$..edgePosColor <- jmvcore::OptionList$new(
+                "edgePosColor",
+                edgePosColor,
+                options=list(
+                    "darkgreen",
+                    "blue",
+                    "black",
+                    "grey50"),
+                default="darkgreen")
+            private$..edgeNegColor <- jmvcore::OptionList$new(
+                "edgeNegColor",
+                edgeNegColor,
+                options=list(
+                    "red",
+                    "orange",
+                    "darkred",
+                    "grey50"),
+                default="red")
+            private$..edgeNegLty <- jmvcore::OptionList$new(
+                "edgeNegLty",
+                edgeNegLty,
+                options=list(
+                    "solid",
+                    "dashed",
+                    "dotted"),
+                default="solid")
+            private$..edgeMin <- jmvcore::OptionNumber$new(
+                "edgeMin",
+                edgeMin,
+                min=0,
+                max=1,
+                default=0)
+            private$..showEdgeLabels <- jmvcore::OptionBool$new(
+                "showEdgeLabels",
+                showEdgeLabels,
+                default=FALSE)
+            private$..edgeLabelSize <- jmvcore::OptionNumber$new(
+                "edgeLabelSize",
+                edgeLabelSize,
+                min=1,
+                max=10,
+                default=3)
+            private$..edgeLabelDigits <- jmvcore::OptionInteger$new(
+                "edgeLabelDigits",
+                edgeLabelDigits,
+                min=1,
+                max=3,
+                default=2)
+            private$..showLegend <- jmvcore::OptionBool$new(
+                "showLegend",
+                showLegend,
+                default=TRUE)
+            private$..legendPosition <- jmvcore::OptionList$new(
+                "legendPosition",
+                legendPosition,
+                options=list(
+                    "right",
+                    "bottom",
+                    "left",
+                    "top"),
+                default="right")
+            private$..legendTitle <- jmvcore::OptionString$new(
+                "legendTitle",
+                legendTitle,
+                default="")
 
             self$.addOption(private$..vars)
             self$.addOption(private$..reportLang)
@@ -105,6 +249,25 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..showLoadings)
             self$.addOption(private$..showNetworkPlot)
             self$.addOption(private$..plotPalette)
+            self$.addOption(private$..showChoicesGuide)
+            self$.addOption(private$..layout)
+            self$.addOption(private$..plotTitle)
+            self$.addOption(private$..nodeSize)
+            self$.addOption(private$..nodeShape)
+            self$.addOption(private$..nodeAlpha)
+            self$.addOption(private$..labelSize)
+            self$.addOption(private$..labelColor)
+            self$.addOption(private$..edgeSize)
+            self$.addOption(private$..edgePosColor)
+            self$.addOption(private$..edgeNegColor)
+            self$.addOption(private$..edgeNegLty)
+            self$.addOption(private$..edgeMin)
+            self$.addOption(private$..showEdgeLabels)
+            self$.addOption(private$..edgeLabelSize)
+            self$.addOption(private$..edgeLabelDigits)
+            self$.addOption(private$..showLegend)
+            self$.addOption(private$..legendPosition)
+            self$.addOption(private$..legendTitle)
         }),
     active = list(
         vars = function() private$..vars$value,
@@ -116,7 +279,26 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         uniMethod = function() private$..uniMethod$value,
         showLoadings = function() private$..showLoadings$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
-        plotPalette = function() private$..plotPalette$value),
+        plotPalette = function() private$..plotPalette$value,
+        showChoicesGuide = function() private$..showChoicesGuide$value,
+        layout = function() private$..layout$value,
+        plotTitle = function() private$..plotTitle$value,
+        nodeSize = function() private$..nodeSize$value,
+        nodeShape = function() private$..nodeShape$value,
+        nodeAlpha = function() private$..nodeAlpha$value,
+        labelSize = function() private$..labelSize$value,
+        labelColor = function() private$..labelColor$value,
+        edgeSize = function() private$..edgeSize$value,
+        edgePosColor = function() private$..edgePosColor$value,
+        edgeNegColor = function() private$..edgeNegColor$value,
+        edgeNegLty = function() private$..edgeNegLty$value,
+        edgeMin = function() private$..edgeMin$value,
+        showEdgeLabels = function() private$..showEdgeLabels$value,
+        edgeLabelSize = function() private$..edgeLabelSize$value,
+        edgeLabelDigits = function() private$..edgeLabelDigits$value,
+        showLegend = function() private$..showLegend$value,
+        legendPosition = function() private$..legendPosition$value,
+        legendTitle = function() private$..legendTitle$value),
     private = list(
         ..vars = NA,
         ..reportLang = NA,
@@ -127,7 +309,26 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..uniMethod = NA,
         ..showLoadings = NA,
         ..showNetworkPlot = NA,
-        ..plotPalette = NA)
+        ..plotPalette = NA,
+        ..showChoicesGuide = NA,
+        ..layout = NA,
+        ..plotTitle = NA,
+        ..nodeSize = NA,
+        ..nodeShape = NA,
+        ..nodeAlpha = NA,
+        ..labelSize = NA,
+        ..labelColor = NA,
+        ..edgeSize = NA,
+        ..edgePosColor = NA,
+        ..edgeNegColor = NA,
+        ..edgeNegLty = NA,
+        ..edgeMin = NA,
+        ..showEdgeLabels = NA,
+        ..edgeLabelSize = NA,
+        ..edgeLabelDigits = NA,
+        ..showLegend = NA,
+        ..legendPosition = NA,
+        ..legendTitle = NA)
 )
 
 egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -135,6 +336,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
         intro = function() private$.items[["intro"]],
+        choicesGuide = function() private$.items[["choicesGuide"]],
         summaryGuide = function() private$.items[["summaryGuide"]],
         summary = function() private$.items[["summary"]],
         membership = function() private$.items[["membership"]],
@@ -154,6 +356,11 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="intro",
                 title="Introduction"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="choicesGuide",
+                title="About your choices",
+                visible="(showChoicesGuide)"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="summaryGuide",
@@ -254,7 +461,25 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "model",
                     "algorithm",
                     "uniMethod",
-                    "plotPalette")))
+                    "plotPalette",
+                    "layout",
+                    "plotTitle",
+                    "nodeSize",
+                    "nodeShape",
+                    "nodeAlpha",
+                    "labelSize",
+                    "labelColor",
+                    "edgeSize",
+                    "edgePosColor",
+                    "edgeNegColor",
+                    "edgeNegLty",
+                    "edgeMin",
+                    "showEdgeLabels",
+                    "edgeLabelSize",
+                    "edgeLabelDigits",
+                    "showLegend",
+                    "legendPosition",
+                    "legendTitle")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="notes",
@@ -299,9 +524,29 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showLoadings .
 #' @param showNetworkPlot .
 #' @param plotPalette .
+#' @param showChoicesGuide .
+#' @param layout .
+#' @param plotTitle .
+#' @param nodeSize .
+#' @param nodeShape .
+#' @param nodeAlpha .
+#' @param labelSize .
+#' @param labelColor .
+#' @param edgeSize .
+#' @param edgePosColor .
+#' @param edgeNegColor .
+#' @param edgeNegLty .
+#' @param edgeMin .
+#' @param showEdgeLabels .
+#' @param edgeLabelSize .
+#' @param edgeLabelDigits .
+#' @param showLegend .
+#' @param legendPosition .
+#' @param legendTitle .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$intro} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$choicesGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$summaryGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$summary} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$membership} \tab \tab \tab \tab \tab a table \cr
@@ -328,9 +573,28 @@ ega <- function(
     model = "glasso",
     algorithm = "walktrap",
     uniMethod = "louvain",
+    showChoicesGuide = TRUE,
     showLoadings = TRUE,
     showNetworkPlot = TRUE,
-    plotPalette = "default") {
+    plotPalette = "default",
+    layout = "qgraph",
+    plotTitle = "",
+    nodeSize = 12,
+    nodeShape = "circle",
+    nodeAlpha = 0.5,
+    labelSize = 5,
+    labelColor = "black",
+    edgeSize = 8,
+    edgePosColor = "darkgreen",
+    edgeNegColor = "red",
+    edgeNegLty = "solid",
+    edgeMin = 0,
+    showEdgeLabels = FALSE,
+    edgeLabelSize = 3,
+    edgeLabelDigits = 2,
+    showLegend = TRUE,
+    legendPosition = "right",
+    legendTitle = "") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("ega requires jmvcore to be installed (restart may be required)")
@@ -350,9 +614,28 @@ ega <- function(
         model = model,
         algorithm = algorithm,
         uniMethod = uniMethod,
+        showChoicesGuide = showChoicesGuide,
         showLoadings = showLoadings,
         showNetworkPlot = showNetworkPlot,
-        plotPalette = plotPalette)
+        plotPalette = plotPalette,
+        layout = layout,
+        plotTitle = plotTitle,
+        nodeSize = nodeSize,
+        nodeShape = nodeShape,
+        nodeAlpha = nodeAlpha,
+        labelSize = labelSize,
+        labelColor = labelColor,
+        edgeSize = edgeSize,
+        edgePosColor = edgePosColor,
+        edgeNegColor = edgeNegColor,
+        edgeNegLty = edgeNegLty,
+        edgeMin = edgeMin,
+        showEdgeLabels = showEdgeLabels,
+        edgeLabelSize = edgeLabelSize,
+        edgeLabelDigits = edgeLabelDigits,
+        showLegend = showLegend,
+        legendPosition = legendPosition,
+        legendTitle = legendTitle)
 
     analysis <- egaClass$new(
         options = options,

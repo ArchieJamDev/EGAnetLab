@@ -106,3 +106,37 @@ test_that("ega rejects a single-row data set", {
     data <- edgeSingleRowData()
     expect_error(EGAnetLab::ega(data = data, vars = names(data)))
 })
+
+test_that("ega explains the selected estimation choices in both languages", {
+
+    data <- edgeStructureData()
+
+    res <- EGAnetLab::ega(data = data, vars = names(data), model = "TMFG",
+                          algorithm = "louvain", showNetworkPlot = FALSE)
+    html <- res$choicesGuide$content
+    expect_match(html, "Network model: TMFG", fixed = TRUE)
+    expect_match(html, "Community detection: Louvain", fixed = TRUE)
+    expect_match(html, "3(p - 2)", fixed = TRUE)
+
+    res_es <- EGAnetLab::ega(data = data, vars = names(data), reportLang = "es",
+                             showNetworkPlot = FALSE)
+    expect_match(res_es$choicesGuide$content, "Modelo de red: GLASSO (EBIC)", fixed = TRUE)
+})
+
+test_that("every choice explanation exists in English and Spanish", {
+
+    texts <- EGAnetLab:::.el_texts
+    expect_setequal(names(texts$en$choices), names(texts$es$choices))
+
+    values <- list(
+        corr = c("auto", "pearson", "spearman", "cosine"),
+        naData = c("pairwise", "listwise"),
+        model = c("glasso", "TMFG", "BGGM"),
+        algorithm = c("walktrap", "louvain", "leiden"),
+        uniMethod = c("louvain", "expand", "LE")
+    )
+    for (option in names(values))
+        for (value in values[[option]])
+            expect_true(paste0(option, "_", value) %in% names(texts$es$choices),
+                        info = paste(option, value))
+})

@@ -6,6 +6,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "Language: c\n"
 
+#: ega/results/choicesGuide.title
+msgid "About your choices"
+msgstr ""
+
 #: ega/results/interpretation.title
 msgid "Applied interpretation"
 msgstr ""
@@ -16,6 +20,24 @@ msgstr ""
 
 #: ega/options/model/BGGM.title
 msgid "BGGM"
+msgstr ""
+
+#: ega/options/labelColor/black.title
+#: ega/options/edgePosColor/black.title
+msgid "Black"
+msgstr ""
+
+#: ega/options/edgePosColor/blue.title
+msgid "Blue"
+msgstr ""
+
+#: ega/options/legendPosition/bottom.title
+msgid "Bottom"
+msgstr ""
+
+#: ega/options/layout/circle.title
+#: ega/options/nodeShape/circle.title
+msgid "Circle"
 msgstr ""
 
 #: ega/options/plotPalette/colorblind.title
@@ -32,6 +54,30 @@ msgstr ""
 
 #: ega/options/corr/cosine.title
 msgid "Cosine"
+msgstr ""
+
+#: ega/options/labelColor/grey30.title
+msgid "Dark gray"
+msgstr ""
+
+#: ega/options/edgePosColor/darkgreen.title
+msgid "Dark green"
+msgstr ""
+
+#: ega/options/edgeNegColor/darkred.title
+msgid "Dark red"
+msgstr ""
+
+#: ega/options/edgeNegLty/dashed.title
+msgid "Dashed"
+msgstr ""
+
+#: ega/options/edgeLabelDigits.title
+msgid "Decimals"
+msgstr ""
+
+#: ega/options/nodeShape/diamond.title
+msgid "Diamond"
 msgstr ""
 
 #: ega/results/membership.columns.title
@@ -52,6 +98,10 @@ msgstr ""
 msgid "Dimensionality"
 msgstr ""
 
+#: ega/options/edgeNegLty/dotted.title
+msgid "Dotted"
+msgstr ""
+
 #: package/title
 #: package/analyses/ega.menuGroup
 #: ega/options.menuGroup
@@ -64,6 +114,18 @@ msgstr ""
 
 #: package/description
 msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis and, in later releases, adds bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and invariance extensions. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation."
+msgstr ""
+
+#: ega/options/edgeLabelSize.title
+msgid "Edge weight size"
+msgstr ""
+
+#: ega/options/edgeSize.title
+msgid "Edge width"
+msgstr ""
+
+#: ega/options/layout/eigen.title
+msgid "Eigenvector"
 msgstr ""
 
 #: package/datasets.description
@@ -87,9 +149,6 @@ msgid "Estimated network"
 msgstr ""
 
 #: package/analyses/ega.description
-msgid "Estimates how many dimensions underlie a set of items, and which items belong to each, by modeling the items as a network of regularized partial correlations and grouping densely connected items with a community detection algorithm. Reports the number of dimensions, item memberships, network loadings and the Total Entropy Fit Index, with a network plot and plain-language interpretation. Use it as the first step in assessing the dimensional structure of a scale, before checking its stability with Bootstrap EGA."
-msgstr ""
-
 #: ega/options.description.main
 msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit and plain-language interpretation."
 msgstr ""
@@ -102,6 +161,10 @@ msgstr ""
 msgid "Expand"
 msgstr ""
 
+#: ega/options/showChoicesGuide.title
+msgid "Explain my choices"
+msgstr ""
+
 #: package/analyses/ega.title
 #: package/analyses/ega.menuTitle
 #: ega/options.title
@@ -110,6 +173,15 @@ msgstr ""
 
 #: ega/options/model/glasso.title
 msgid "GLASSO (EBIC)"
+msgstr ""
+
+#: ega/options/edgePosColor/grey50.title
+#: ega/options/edgeNegColor/grey50.title
+msgid "Gray"
+msgstr ""
+
+#: ega/options/edgeMin.title
+msgid "Hide edges weaker than"
 msgstr ""
 
 #: ega/results/intro.title
@@ -130,8 +202,36 @@ msgstr ""
 msgid "Items"
 msgstr ""
 
+#: ega/options/layout/kamadakawai.title
+msgid "Kamada-Kawai"
+msgstr ""
+
+#: ega/options/labelColor.title
+msgid "Label color"
+msgstr ""
+
+#: ega/options/labelSize.title
+msgid "Label size"
+msgstr ""
+
+#: ega/options/layout.title
+msgid "Layout"
+msgstr ""
+
 #: ega/options/uniMethod/LE.title
 msgid "Leading eigenvalue"
+msgstr ""
+
+#: ega/options/legendPosition/left.title
+msgid "Left"
+msgstr ""
+
+#: ega/options/legendPosition.title
+msgid "Legend position"
+msgstr ""
+
+#: ega/options/legendTitle.title
+msgid "Legend title"
 msgstr ""
 
 #: ega/options/algorithm/leiden.title
@@ -151,6 +251,22 @@ msgstr ""
 msgid "Missing Values"
 msgstr ""
 
+#: ega/options/layout/mds.title
+msgid "Multidimensional scaling"
+msgstr ""
+
+#: ega/options/labelColor/navy.title
+msgid "Navy"
+msgstr ""
+
+#: ega/options/edgeNegLty.title
+msgid "Negative edge line"
+msgstr ""
+
+#: ega/options/edgeNegColor.title
+msgid "Negative edges"
+msgstr ""
+
 #: ega/options/model.title
 msgid "Network Model"
 msgstr ""
@@ -168,8 +284,24 @@ msgstr ""
 msgid "Network plot"
 msgstr ""
 
+#: ega/options/nodeAlpha.title
+msgid "Node fill opacity"
+msgstr ""
+
+#: ega/options/nodeShape.title
+msgid "Node shape"
+msgstr ""
+
+#: ega/options/nodeSize.title
+msgid "Node size"
+msgstr ""
+
 #: ega/results/notes.title
 msgid "Notes"
+msgstr ""
+
+#: ega/options/edgeNegColor/orange.title
+msgid "Orange"
 msgstr ""
 
 #: ega/ui[3].label
@@ -184,17 +316,77 @@ msgstr ""
 msgid "Pearson"
 msgstr ""
 
+#: ega/ui[6].label
+msgid "Plot Edges"
+msgstr ""
+
+#: ega/ui[4].label
+msgid "Plot Layout"
+msgstr ""
+
+#: ega/ui[7].label
+msgid "Plot Legend"
+msgstr ""
+
+#: ega/ui[5].label
+msgid "Plot Nodes and Labels"
+msgstr ""
+
+#: ega/options/plotTitle.title
+msgid "Plot title"
+msgstr ""
+
+#: ega/options/edgePosColor.title
+msgid "Positive edges"
+msgstr ""
+
+#: ega/options/edgeNegColor/red.title
+msgid "Red"
+msgstr ""
+
 #: ega/options/reportLang.title
 #: ega/ui[1].label
 msgid "Report Language"
+msgstr ""
+
+#: ega/options/legendPosition/right.title
+msgid "Right"
+msgstr ""
+
+#: ega/options/showEdgeLabels.title
+msgid "Show edge weights"
+msgstr ""
+
+#: ega/options/showLegend.title
+msgid "Show legend"
+msgstr ""
+
+#: ega/options/edgeNegLty/solid.title
+msgid "Solid"
 msgstr ""
 
 #: ega/options/corr/spearman.title
 msgid "Spearman"
 msgstr ""
 
+#: ega/options/layout/qgraph.title
+msgid "Spring (Fruchterman-Reingold)"
+msgstr ""
+
+#: ega/options/nodeShape/square.title
+msgid "Square"
+msgstr ""
+
 #: ega/options/model/TMFG.title
 msgid "TMFG"
+msgstr ""
+
+#: ega/options/legendPosition/top.title
+msgid "Top"
+msgstr ""
+
+#: ega/options/nodeShape/triangle.title
+msgid "Triangle"
 msgstr ""
 
 #: ega/options/uniMethod.title
@@ -211,4 +403,8 @@ msgstr ""
 
 #: ega/options/algorithm/walktrap.title
 msgid "Walktrap"
+msgstr ""
+
+#: ega/options/labelColor/white.title
+msgid "White"
 msgstr ""

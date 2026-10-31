@@ -7,6 +7,9 @@
                 "lang": "es",
                 "plural_forms": "nplurals=2; plural=(n!=1);"
             },
+            "About your choices": [
+                "Acerca de sus elecciones"
+            ],
             "Applied interpretation": [
                 "Interpretación aplicada"
             ],
@@ -15,6 +18,18 @@
             ],
             "BGGM": [
                 "BGGM"
+            ],
+            "Black": [
+                "Negro"
+            ],
+            "Blue": [
+                "Azul"
+            ],
+            "Bottom": [
+                "Abajo"
+            ],
+            "Circle": [
+                "Círculo"
             ],
             "Colorblind-safe (Okabe-Ito)": [
                 "Apta para daltonismo (Okabe-Ito)"
@@ -28,6 +43,24 @@
             "Cosine": [
                 "Coseno"
             ],
+            "Dark gray": [
+                "Gris oscuro"
+            ],
+            "Dark green": [
+                "Verde oscuro"
+            ],
+            "Dark red": [
+                "Rojo oscuro"
+            ],
+            "Dashed": [
+                "Discontinua"
+            ],
+            "Decimals": [
+                "Decimales"
+            ],
+            "Diamond": [
+                "Rombo"
+            ],
             "Dimension": [
                 "Dimensión"
             ],
@@ -40,6 +73,9 @@
             "Dimensionality": [
                 "Dimensionalidad"
             ],
+            "Dotted": [
+                "Punteada"
+            ],
             "EGAnet Lab": [
                 "EGAnet Lab"
             ],
@@ -48,6 +84,15 @@
             ],
             "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis and, in later releases, adds bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and invariance extensions. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation.": [
                 "EGAnetLab lleva a jamovi los métodos de psicometría de redes del paquete EGAnet y acompaña cada resultado con orientación metodológica basada en evidencia, interpretación y apoyo educativo. Estima el número y el contenido de las dimensiones con el Análisis Exploratorio de Grafos y, en versiones posteriores, agrega estabilidad por bootstrap, análisis de redundancia (UVA) y extensiones jerárquicas, dinámicas y de invarianza. Cada tabla basada en un método cita su propia fuente en el formato numerado nativo de jamovi, y la bibliografía completa en APA 7.ª edición vive en la documentación del módulo."
+            ],
+            "Edge weight size": [
+                "Tamaño de los pesos"
+            ],
+            "Edge width": [
+                "Grosor de arista"
+            ],
+            "Eigenvector": [
+                "Autovector"
             ],
             "Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic variables, from the EGAnet package - see data/README.md": [
                 "Dieciocho ítems dicotómicos del Wiener Matrizen-Test 2 más variables demográficas, del paquete EGAnet; ver data/README.md"
@@ -64,9 +109,6 @@
             "Estimated network": [
                 "Red estimada"
             ],
-            "Estimates how many dimensions underlie a set of items, and which items belong to each, by modeling the items as a network of regularized partial correlations and grouping densely connected items with a community detection algorithm. Reports the number of dimensions, item memberships, network loadings and the Total Entropy Fit Index, with a network plot and plain-language interpretation. Use it as the first step in assessing the dimensional structure of a scale, before checking its stability with Bootstrap EGA.": [
-                "Estima cuántas dimensiones subyacen a un conjunto de ítems, y qué ítems pertenecen a cada una, modelando los ítems como una red de correlaciones parciales regularizadas y agrupando los ítems densamente conectados con un algoritmo de detección de comunidades. Informa el número de dimensiones, la pertenencia de los ítems, las cargas de red y el Índice de Ajuste de Entropía Total, con un gráfico de la red e interpretación en lenguaje claro. Úselo como primer paso para evaluar la estructura dimensional de una escala, antes de revisar su estabilidad con Bootstrap EGA."
-            ],
             "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit and plain-language interpretation.": [
                 "Estima el número de dimensiones que subyacen a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnet), acompañado de cargas de red, ajuste por entropía e interpretación en lenguaje claro."
             ],
@@ -76,11 +118,20 @@
             "Expand": [
                 "Expandir"
             ],
+            "Explain my choices": [
+                "Explicar mis elecciones"
+            ],
             "Exploratory Graph Analysis": [
                 "Análisis Exploratorio de Grafos"
             ],
             "GLASSO (EBIC)": [
                 "GLASSO (EBIC)"
+            ],
+            "Gray": [
+                "Gris"
+            ],
+            "Hide edges weaker than": [
+                "Ocultar aristas menores que"
             ],
             "Introduction": [
                 "Introducción"
@@ -94,8 +145,29 @@
             "Items": [
                 "Ítems"
             ],
+            "Kamada-Kawai": [
+                "Kamada-Kawai"
+            ],
+            "Label color": [
+                "Color de etiqueta"
+            ],
+            "Label size": [
+                "Tamaño de etiqueta"
+            ],
+            "Layout": [
+                "Disposición"
+            ],
             "Leading eigenvalue": [
                 "Autovalor principal"
+            ],
+            "Left": [
+                "Izquierda"
+            ],
+            "Legend position": [
+                "Posición de la leyenda"
+            ],
+            "Legend title": [
+                "Título de la leyenda"
             ],
             "Leiden": [
                 "Leiden"
@@ -109,6 +181,18 @@
             "Missing Values": [
                 "Valores perdidos"
             ],
+            "Multidimensional scaling": [
+                "Escalamiento multidimensional"
+            ],
+            "Navy": [
+                "Azul marino"
+            ],
+            "Negative edge line": [
+                "Línea de aristas negativas"
+            ],
+            "Negative edges": [
+                "Aristas negativas"
+            ],
             "Network Model": [
                 "Modelo de red"
             ],
@@ -121,8 +205,20 @@
             "Network plot": [
                 "Gráfico de red"
             ],
+            "Node fill opacity": [
+                "Opacidad del relleno"
+            ],
+            "Node shape": [
+                "Forma de nodo"
+            ],
+            "Node size": [
+                "Tamaño de nodo"
+            ],
             "Notes": [
                 "Notas"
+            ],
+            "Orange": [
+                "Naranja"
             ],
             "Output": [
                 "Salida"
@@ -133,14 +229,59 @@
             "Pearson": [
                 "Pearson"
             ],
+            "Plot Edges": [
+                "Gráfico: aristas"
+            ],
+            "Plot Layout": [
+                "Gráfico: disposición"
+            ],
+            "Plot Legend": [
+                "Gráfico: leyenda"
+            ],
+            "Plot Nodes and Labels": [
+                "Gráfico: nodos y etiquetas"
+            ],
+            "Plot title": [
+                "Título del gráfico"
+            ],
+            "Positive edges": [
+                "Aristas positivas"
+            ],
+            "Red": [
+                "Rojo"
+            ],
             "Report Language": [
                 "Idioma del informe"
+            ],
+            "Right": [
+                "Derecha"
+            ],
+            "Show edge weights": [
+                "Mostrar pesos de aristas"
+            ],
+            "Show legend": [
+                "Mostrar leyenda"
+            ],
+            "Solid": [
+                "Continua"
             ],
             "Spearman": [
                 "Spearman"
             ],
+            "Spring (Fruchterman-Reingold)": [
+                "Resorte (Fruchterman-Reingold)"
+            ],
+            "Square": [
+                "Cuadrado"
+            ],
             "TMFG": [
                 "TMFG"
+            ],
+            "Top": [
+                "Arriba"
+            ],
+            "Triangle": [
+                "Triángulo"
             ],
             "Unidimensionality Check": [
                 "Verificación de unidimensionalidad"
@@ -153,6 +294,9 @@
             ],
             "Walktrap": [
                 "Walktrap"
+            ],
+            "White": [
+                "Blanco"
             ]
         }
     }
