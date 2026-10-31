@@ -1,0 +1,133 @@
+# -----------------------------------------------------------------------------
+# EGAnetLab
+# A jamovi module for Exploratory Graph Analysis and evidence-based
+# methodological decision support on dimensional structure.
+#
+# Copyright (C) 2026 Arquímedes De León Chacón Chacón
+#
+# This file is part of EGAnetLab.
+#
+# EGAnetLab is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License,
+# or (at your option) any later version.
+#
+# EGAnetLab is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with EGAnetLab.
+# If not, see https://www.gnu.org/licenses/.
+# -----------------------------------------------------------------------------
+
+name: ega
+title: Exploratory Graph Analysis
+jrs: '1.1'
+
+items:
+  - name: intro
+    title: Introduction
+    type: Html
+
+  - name: summaryGuide
+    title: Dimensional structure
+    type: Html
+
+  - name: summary
+    title: Dimensional structure
+    type: Table
+    rows: 0
+    refs:
+      - golino_2017
+      - golino_2020
+      - golino_2021
+      - eganet
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - reportLang
+    columns:
+      - name: element
+        title: Element
+        type: text
+      - name: value
+        title: Value
+        type: text
+
+  - name: membership
+    title: Item membership
+    type: Table
+    rows: 0
+    refs:
+      - golino_2017
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - reportLang
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: dimension
+        title: Dimension
+        type: text
+
+  - name: loadingsGuide
+    title: Network loadings
+    type: Html
+    visible: (showLoadings)
+
+  - name: loadings
+    title: Network loadings (standardized)
+    type: Table
+    rows: 0
+    visible: (showLoadings)
+    refs:
+      - christensen_2021_loadings
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - reportLang
+    columns:
+      - name: item
+        title: Item
+        type: text
+
+  - name: interpretation
+    title: Applied interpretation
+    type: Html
+
+  - name: networkPlot
+    title: Estimated network
+    type: Image
+    width: 600
+    height: 500
+    renderFun: .plotNetwork
+    visible: (showNetworkPlot)
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - plotPalette
+
+  - name: notes
+    title: Notes
+    type: Html
+...

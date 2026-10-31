@@ -1,0 +1,214 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Language: es\n"
+
+#: ega/results/interpretation.title
+msgid "Applied interpretation"
+msgstr "Interpretación aplicada"
+
+#: ega/options/corr/auto.title
+msgid "Automatic (Pearson / polychoric)"
+msgstr "Automática (Pearson / policórica)"
+
+#: ega/options/model/BGGM.title
+msgid "BGGM"
+msgstr "BGGM"
+
+#: ega/options/plotPalette/colorblind.title
+msgid "Colorblind-safe (Okabe-Ito)"
+msgstr "Apta para daltonismo (Okabe-Ito)"
+
+#: ega/options/algorithm.title
+msgid "Community Detection"
+msgstr "Detección de comunidades"
+
+#: ega/options/corr.title
+msgid "Correlation"
+msgstr "Correlación"
+
+#: ega/options/corr/cosine.title
+msgid "Cosine"
+msgstr "Coseno"
+
+#: ega/results/membership.columns.title
+msgid "Dimension"
+msgstr "Dimensión"
+
+#: ega/options/plotPalette.title
+msgid "Dimension Colors"
+msgstr "Colores de las dimensiones"
+
+#: ega/results/summaryGuide.title
+#: ega/results/summary.title
+msgid "Dimensional structure"
+msgstr "Estructura dimensional"
+
+#: package/analyses/ega.menuSubgroup
+#: ega/options.menuSubgroup
+msgid "Dimensionality"
+msgstr "Dimensionalidad"
+
+#: package/title
+#: package/analyses/ega.menuGroup
+#: ega/options.menuGroup
+msgid "EGAnet Lab"
+msgstr "EGAnet Lab"
+
+#: ega/options/plotPalette/default.title
+msgid "EGAnet default"
+msgstr "Por defecto de EGAnet"
+
+#: package/description
+msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis and, in later releases, adds bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and invariance extensions. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation."
+msgstr "EGAnetLab lleva a jamovi los métodos de psicometría de redes del paquete EGAnet y acompaña cada resultado con orientación metodológica basada en evidencia, interpretación y apoyo educativo. Estima el número y el contenido de las dimensiones con el Análisis Exploratorio de Grafos y, en versiones posteriores, agrega estabilidad por bootstrap, análisis de redundancia (UVA) y extensiones jerárquicas, dinámicas y de invarianza. Cada tabla basada en un método cita su propia fuente en el formato numerado nativo de jamovi, y la bibliografía completa en APA 7.ª edición vive en la documentación del módulo."
+
+#: package/datasets.description
+msgid "Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic variables, from the EGAnet package - see data/README.md"
+msgstr "Dieciocho ítems dicotómicos del Wiener Matrizen-Test 2 más variables demográficas, del paquete EGAnet; ver data/README.md"
+
+#: ega/results/summary.columns.title
+msgid "Element"
+msgstr "Elemento"
+
+#: ega/options/reportLang/en.title
+msgid "English"
+msgstr "English"
+
+#: ega/options/reportLang/es.title
+msgid "Español"
+msgstr "Español"
+
+#: ega/results/networkPlot.title
+msgid "Estimated network"
+msgstr "Red estimada"
+
+#: package/analyses/ega.description
+msgid "Estimates how many dimensions underlie a set of items, and which items belong to each, by modeling the items as a network of regularized partial correlations and grouping densely connected items with a community detection algorithm. Reports the number of dimensions, item memberships, network loadings and the Total Entropy Fit Index, with a network plot and plain-language interpretation. Use it as the first step in assessing the dimensional structure of a scale, before checking its stability with Bootstrap EGA."
+msgstr "Estima cuántas dimensiones subyacen a un conjunto de ítems, y qué ítems pertenecen a cada una, modelando los ítems como una red de correlaciones parciales regularizadas y agrupando los ítems densamente conectados con un algoritmo de detección de comunidades. Informa el número de dimensiones, la pertenencia de los ítems, las cargas de red y el Índice de Ajuste de Entropía Total, con un gráfico de la red e interpretación en lenguaje claro. Úselo como primer paso para evaluar la estructura dimensional de una escala, antes de revisar su estabilidad con Bootstrap EGA."
+
+#: ega/options.description.main
+msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit and plain-language interpretation."
+msgstr "Estima el número de dimensiones que subyacen a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnet), acompañado de cargas de red, ajuste por entropía e interpretación en lenguaje claro."
+
+#: ega/ui[2].label
+msgid "Estimation"
+msgstr "Estimación"
+
+#: ega/options/uniMethod/expand.title
+msgid "Expand"
+msgstr "Expandir"
+
+#: package/analyses/ega.title
+#: package/analyses/ega.menuTitle
+#: ega/options.title
+msgid "Exploratory Graph Analysis"
+msgstr "Análisis Exploratorio de Grafos"
+
+#: ega/options/model/glasso.title
+msgid "GLASSO (EBIC)"
+msgstr "GLASSO (EBIC)"
+
+#: ega/results/intro.title
+msgid "Introduction"
+msgstr "Introducción"
+
+#: ega/results/membership.columns.title
+#: ega/results/loadings.columns.title
+msgid "Item"
+msgstr "Ítem"
+
+#: ega/results/membership.title
+msgid "Item membership"
+msgstr "Pertenencia de los ítems"
+
+#: ega/options/vars.title
+#: ega/ui[0][0].label
+msgid "Items"
+msgstr "Ítems"
+
+#: ega/options/uniMethod/LE.title
+msgid "Leading eigenvalue"
+msgstr "Autovalor principal"
+
+#: ega/options/algorithm/leiden.title
+msgid "Leiden"
+msgstr "Leiden"
+
+#: ega/options/naData/listwise.title
+msgid "Listwise"
+msgstr "Por lista"
+
+#: ega/options/algorithm/louvain.title
+#: ega/options/uniMethod/louvain.title
+msgid "Louvain"
+msgstr "Louvain"
+
+#: ega/options/naData.title
+msgid "Missing Values"
+msgstr "Valores perdidos"
+
+#: ega/options/model.title
+msgid "Network Model"
+msgstr "Modelo de red"
+
+#: ega/options/showLoadings.title
+#: ega/results/loadingsGuide.title
+msgid "Network loadings"
+msgstr "Cargas de red"
+
+#: ega/results/loadings.title
+msgid "Network loadings (standardized)"
+msgstr "Cargas de red (estandarizadas)"
+
+#: ega/options/showNetworkPlot.title
+msgid "Network plot"
+msgstr "Gráfico de red"
+
+#: ega/results/notes.title
+msgid "Notes"
+msgstr "Notas"
+
+#: ega/ui[3].label
+msgid "Output"
+msgstr "Salida"
+
+#: ega/options/naData/pairwise.title
+msgid "Pairwise"
+msgstr "Por pares"
+
+#: ega/options/corr/pearson.title
+msgid "Pearson"
+msgstr "Pearson"
+
+#: ega/options/reportLang.title
+#: ega/ui[1].label
+msgid "Report Language"
+msgstr "Idioma del informe"
+
+#: ega/options/corr/spearman.title
+msgid "Spearman"
+msgstr "Spearman"
+
+#: ega/options/model/TMFG.title
+msgid "TMFG"
+msgstr "TMFG"
+
+#: ega/options/uniMethod.title
+msgid "Unidimensionality Check"
+msgstr "Verificación de unidimensionalidad"
+
+#: ega/results/summary.columns.title
+msgid "Value"
+msgstr "Valor"
+
+#: ega/options/plotPalette/viridis.title
+msgid "Viridis"
+msgstr "Viridis"
+
+#: ega/options/algorithm/walktrap.title
+msgid "Walktrap"
+msgstr "Walktrap"

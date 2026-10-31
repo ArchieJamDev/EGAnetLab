@@ -1,0 +1,43 @@
+---
+name: EGAnetLab
+title: EGAnet Lab
+version: 0.1.0
+jms: '1.0'
+authors:
+  - Arquímedes De León Chacón Chacón
+maintainer: Arquímedes De León Chacón Chacón <arquimedeschacon@gmail.com>
+description: >
+  EGAnetLab brings the network psychometrics methods of the EGAnet package to
+  jamovi and pairs every result with evidence-based methodological guidance,
+  interpretation and educational support. It estimates the number and content
+  of dimensions with Exploratory Graph Analysis and, in later releases, adds
+  bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and
+  invariance extensions. Every method-backed table cites its own source in
+  jamovi's native numbered format, and the complete APA 7th edition
+  bibliography lives in the module's documentation.
+usesNative: false
+minApp: 1.0.8
+analyses:
+  - title: Exploratory Graph Analysis
+    name: ega
+    ns: EGAnetLab
+    menuGroup: EGAnet Lab
+    menuSubgroup: Dimensionality
+    menuTitle: Exploratory Graph Analysis
+    description: >
+      Estimates how many dimensions underlie a set of items, and which items
+      belong to each, by modeling the items as a network of regularized
+      partial correlations and grouping densely connected items with a
+      community detection algorithm. Reports the number of dimensions, item
+      memberships, network loadings and the Total Entropy Fit Index, with a
+      network plot and plain-language interpretation. Use it as the first step
+      in assessing the dimensional structure of a scale, before checking its
+      stability with Bootstrap EGA.
+    category: analyses
+datasets:
+  - name: WMT-2 Matrices Test (n=1185)
+    path: eganetlab_wmt2.csv
+    description: >-
+      Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic
+      variables, from the EGAnet package - see data/README.md
+...

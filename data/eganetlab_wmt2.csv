@@ -1,0 +1,1186 @@
+"education","monthly_income","income_group","sex","age","age_group","wmt1","wmt2","wmt3","wmt4","wmt5","wmt6","wmt7","wmt8","wmt9","wmt10","wmt11","wmt12","wmt13","wmt14","wmt15","wmt16","wmt17","wmt18"
+"Secondary",,,"Female",11,"Children",0,0,1,1,1,1,1,0,1,1,1,0,1,0,0,0,0,0
+"Secondary",,,"Male",11,"Children",1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0
+"Secondary",,,"Female",12,"Children",1,1,1,0,1,1,1,0,1,1,1,0,1,1,0,0,1,0
+"Primary",,,"Male",12,"Children",0,1,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",12,"Children",1,1,1,1,1,0,0,0,1,1,0,1,0,0,0,0,0,0
+"Secondary",,,"Male",12,"Children",1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",12,"Children",0,0,0,1,0,1,1,1,0,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",13,"Adolescent",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Secondary",,,"Female",13,"Adolescent",1,1,1,1,0,1,0,1,1,1,0,0,0,1,0,0,0,0
+"Secondary",,,"Male",13,"Adolescent",1,1,1,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0
+"Secondary",,,"Female",13,"Adolescent",1,1,1,1,0,1,1,0,1,0,0,1,0,1,0,1,0,0
+"Secondary",,,"Male",13,"Adolescent",1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,1,1,0
+"Secondary",,,"Female",13,"Adolescent",0,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",13,"Adolescent",1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0
+"Secondary",,,"Male",13,"Adolescent",1,1,1,1,1,0,0,0,0,1,0,0,1,0,0,1,0,0
+"Primary",,,"Male",14,"Adolescent",0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+"Secondary",,,"Female",14,"Adolescent",1,1,1,1,1,0,1,0,0,0,0,0,1,1,0,0,0,0
+"Secondary",,,"Female",14,"Adolescent",0,1,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Male",14,"Adolescent",1,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",14,"Adolescent",1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0
+"Undergraduate Education",,,"Male",14,"Adolescent",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Secondary",,,"Female",14,"Adolescent",0,1,1,0,1,1,0,1,1,1,0,1,1,1,0,1,0,0
+"Secondary","Above 4501","High","Female",15,"Adolescent",1,1,1,1,1,1,1,0,1,1,1,0,0,1,1,0,1,0
+"Primary","from 1801 to 2250","Average","Male",15,"Adolescent",0,1,0,0,0,0,0,1,1,1,0,1,1,1,0,0,0,0
+"Secondary",,,"Female",15,"Adolescent",1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0
+"Secondary",,,"Female",15,"Adolescent",0,0,1,0,1,0,1,0,0,0,0,0,1,0,0,0,0,1
+"Secondary",,,"Female",15,"Adolescent",1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",15,"Adolescent",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",15,"Adolescent",1,1,1,0,0,1,1,0,0,1,0,0,0,0,1,0,0,1
+"Undergraduate Education",,,"Male",15,"Adolescent",1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1
+"Undergraduate Education",,,"Female",15,"Adolescent",1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0
+"Undergraduate Education",,,"Male",15,"Adolescent",0,1,1,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0
+"Undergraduate Education",,,"Female",15,"Adolescent",1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1
+"Undergraduate Education",,,"Female",15,"Adolescent",1,1,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",15,"Adolescent",1,1,1,1,1,1,1,1,1,0,0,0,1,0,1,1,0,0
+"Undergraduate Education",,,"Male",15,"Adolescent",1,1,0,1,1,1,0,1,0,1,0,0,1,0,0,1,0,0
+"Secondary","from 1351 to 1800","Average","Female",16,"Adolescent",1,1,1,0,1,1,1,0,0,1,1,0,1,0,0,1,0,0
+"Primary","from 1801 to 2250","Average","Male",16,"Adolescent",1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0
+"Secondary","from 1801 to 2250","Average","Female",16,"Adolescent",1,1,1,0,1,1,1,1,1,1,0,1,0,0,0,1,1,0
+"Primary","from 2251 to 4500","Average","Male",16,"Adolescent",0,0,0,0,0,1,1,0,1,1,0,0,0,1,0,1,0,0
+"Secondary","from 2251 to 4500","Average","Male",16,"Adolescent",1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,0
+"Primary","from 451 to 900","Low","Male",16,"Adolescent",1,1,0,0,0,0,1,0,0,1,1,0,0,1,0,0,0,0
+"Primary","from 451 to 900","Low","Female",16,"Adolescent",1,1,1,0,0,1,0,0,1,0,0,0,1,1,0,0,0,1
+"Secondary","from 901 to 1.350","Low","Female",16,"Adolescent",1,1,1,1,1,1,1,0,1,1,0,0,1,0,0,1,0,0
+"Primary",,,"Male",16,"Adolescent",1,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0
+"Primary",,,"Male",16,"Adolescent",1,1,1,1,1,1,1,0,1,1,0,1,0,1,1,0,1,0
+"Primary",,,"Female",16,"Adolescent",0,1,1,0,1,1,0,0,1,0,0,0,1,0,0,0,0,0
+"Secondary",,,"Male",16,"Adolescent",1,1,1,1,1,1,1,0,1,1,0,0,1,0,0,1,1,0
+"Secondary",,,"Male",16,"Adolescent",1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+"Secondary",,,"Female",16,"Adolescent",1,0,1,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",16,"Adolescent",1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,1
+"Secondary",,,"Female",16,"Adolescent",1,1,1,0,1,1,0,0,0,1,1,0,1,0,0,0,0,0
+"Secondary",,,"Female",16,"Adolescent",0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0
+"Secondary",,,"Female",16,"Adolescent",1,1,0,1,0,0,1,0,0,0,0,0,1,1,0,0,1,0
+"Secondary",,,"Male",16,"Adolescent",1,1,1,0,1,0,1,1,1,1,1,1,0,0,1,0,0,0
+"Secondary",,,"Male",16,"Adolescent",1,1,1,0,0,1,1,0,1,1,0,0,0,1,0,0,0,0
+"Secondary",,,"Male",16,"Adolescent",1,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Male",16,"Adolescent",1,1,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,1
+"Undergraduate Education",,,"Female",16,"Adolescent",1,1,1,1,1,0,1,0,0,1,0,1,1,1,1,0,1,1
+"Undergraduate Education",,,"Female",16,"Adolescent",1,1,1,1,1,0,0,1,1,1,0,1,0,1,0,1,0,0
+"Undergraduate Education",,,"Male",16,"Adolescent",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Undergraduate Education",,,"Male",16,"Adolescent",0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1
+"Undergraduate Education",,,"Male",16,"Adolescent",1,1,1,0,0,1,1,1,1,0,0,0,1,1,0,1,0,1
+"Secondary",,,"Female",16,"Adolescent",1,1,1,1,0,1,1,1,1,1,1,0,1,1,0,1,0,1
+"Secondary","Above 4501","High","Male",17,"Adolescent",0,1,1,1,1,1,1,1,0,0,1,1,1,0,1,0,0,1
+"Secondary","Above 4501","High","Female",17,"Adolescent",1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,0,0,1
+"Secondary","from 0 to 450","Low","Female",17,"Adolescent",0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+"Secondary","from 1801 to 2250","Average","Female",17,"Adolescent",1,1,1,0,1,1,1,1,1,1,1,1,0,1,0,1,1,1
+"Secondary","from 1801 to 2250","Average","Male",17,"Adolescent",1,1,1,0,1,1,1,0,1,1,0,0,1,0,0,1,0,0
+"Secondary","from 2251 to 4500","Average","Female",17,"Adolescent",0,1,1,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0
+"Secondary","from 2251 to 4500","Average","Male",17,"Adolescent",1,1,1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,0
+"Secondary","from 451 to 900","Low","Female",17,"Adolescent",1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1
+"Secondary","from 451 to 900","Low","Female",17,"Adolescent",1,1,1,0,0,1,0,1,0,0,0,0,1,0,0,0,1,0
+"Secondary","from 451 to 900","Low","Male",17,"Adolescent",1,1,1,1,1,1,1,0,0,1,1,0,0,1,0,0,0,0
+"Secondary","from 451 to 900","Low","Male",17,"Adolescent",1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Female",17,"Adolescent",1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0
+"Primary",,,"Male",17,"Adolescent",0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",17,"Adolescent",0,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0
+"Secondary",,,"Male",17,"Adolescent",1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,1,0,1
+"Secondary",,,"Male",17,"Adolescent",0,0,1,0,1,1,1,0,1,1,0,1,1,0,0,0,0,0
+"Secondary",,,"Male",17,"Adolescent",1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,1,0,0
+"Secondary",,,"Male",17,"Adolescent",1,1,1,1,1,0,1,1,0,0,1,0,1,0,0,0,0,1
+"Secondary",,,"Male",17,"Adolescent",1,1,0,1,1,1,1,0,0,0,0,0,0,1,1,0,0,1
+"Secondary",,,"Male",17,"Adolescent",0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",17,"Adolescent",0,1,1,1,1,1,0,1,1,1,0,0,0,0,0,1,0,1
+"Undergraduate Education",,,"Female",17,"Adolescent",1,1,1,0,1,1,1,0,0,0,0,1,0,0,0,0,1,0
+"Undergraduate Education",,,"Male",17,"Adolescent",0,0,1,1,1,1,0,1,1,0,0,0,0,1,0,1,1,0
+"Undergraduate Education",,,"Female",17,"Adolescent",1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1
+"Undergraduate Education",,,"Female",17,"Adolescent",1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,0,0
+"Undergraduate Education",,,"Female",17,"Adolescent",1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1
+"Undergraduate Education",,,"Male",17,"Adolescent",0,1,1,1,1,1,1,0,1,0,0,0,1,0,0,1,0,0
+"Undergraduate Education",,,"Male",17,"Adolescent",1,1,0,1,0,1,1,0,1,1,0,0,1,1,0,1,0,1
+"Undergraduate Education",,,"Male",17,"Adolescent",0,1,1,0,1,1,1,1,1,1,0,1,0,1,0,0,0,0
+"Undergraduate Education",,,"Male",17,"Adolescent",0,1,1,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Female",17,"Adolescent",1,1,1,1,1,1,0,1,1,1,0,0,0,1,0,1,0,1
+"Secondary","from 0 to 450","Low","Female",18,"Young Adult",1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0
+"Secondary","from 1801 to 2250","Average","Male",18,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,0,0
+"Secondary","from 1801 to 2250","Average","Male",18,"Young Adult",1,1,1,1,0,0,1,0,1,0,0,1,1,0,0,0,0,0
+"Secondary","from 1801 to 2250","Average","Female",18,"Young Adult",1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,0,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Male",18,"Young Adult",0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,0
+"Secondary","from 2251 to 4500","Average","Female",18,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,1,1
+"Secondary","from 2251 to 4500","Average","Female",18,"Young Adult",1,1,1,1,0,1,1,1,0,1,1,0,0,0,0,1,0,0
+"Secondary","from 451 to 900","Low","Male",18,"Young Adult",1,1,1,0,1,0,0,0,1,0,0,0,1,0,0,1,0,0
+"Primary",,,"Male",18,"Young Adult",1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,1,0,0
+"Secondary",,,"Female",18,"Young Adult",0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0
+"Undergraduate Education",,,"Female",18,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0
+"Undergraduate Education",,,"Male",18,"Young Adult",1,1,1,1,1,1,0,0,1,1,0,1,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",18,"Young Adult",1,0,1,1,0,1,1,1,0,1,1,1,1,1,0,1,1,0
+"Undergraduate Education",,,"Female",18,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1
+"Undergraduate Education",,,"Female",18,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0
+"Undergraduate Education",,,"Female",18,"Young Adult",1,1,1,1,0,1,1,1,0,1,0,1,1,0,0,1,0,1
+"Undergraduate Education",,,"Female",18,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1
+"Undergraduate Education",,,"Male",18,"Young Adult",1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1
+"Undergraduate Education",,,"Male",18,"Young Adult",0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,0
+"Secondary","from 1351 to 1800","Average","Female",19,"Young Adult",1,1,1,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0
+"Undergraduate Education","from 1351 to 1800","Average","Female",19,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Undergraduate Education","from 1351 to 1800","Average","Female",19,"Young Adult",1,1,1,0,1,1,1,1,1,1,0,0,0,1,1,0,0,1
+"Undergraduate Education","from 1801 to 2250","Average","Female",19,"Young Adult",1,1,0,1,1,1,1,1,1,1,0,0,1,1,0,0,0,1
+"Undergraduate Education","from 1801 to 2250","Average","Female",19,"Young Adult",0,0,0,0,0,0,1,0,1,0,0,0,1,1,0,0,1,0
+"Undergraduate Education","from 1801 to 2250","Average","Female",19,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,1
+"Undergraduate Education","from 2251 to 4500","Average","Male",19,"Young Adult",1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1,1
+"Undergraduate Education","from 2251 to 4500","Average","Female",19,"Young Adult",1,1,1,1,1,1,1,0,1,1,0,0,1,0,0,1,1,1
+"Undergraduate Education","from 2251 to 4500","Average","Male",19,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",19,"Young Adult",1,0,1,1,0,1,1,1,1,0,0,1,0,1,0,0,0,0
+"Undergraduate Education","from 451 to 900","Low","Female",19,"Young Adult",1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,1,0
+"Undergraduate Education","from 451 to 900","Low","Male",19,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,0
+"Secondary","from 901 to 1.350","Low","Female",19,"Young Adult",0,1,1,0,1,1,1,1,1,1,0,0,1,1,0,0,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Male",19,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1
+"Undergraduate Education","from 901 to 1.350","Low","Male",19,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Male",19,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1
+"Secondary",,,"Female",19,"Young Adult",1,1,1,0,1,1,1,0,0,0,1,0,0,0,0,0,0,0
+"Secondary",,,"Female",19,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+"Secondary",,,"Male",19,"Young Adult",1,1,0,1,1,1,0,1,1,1,1,1,0,0,0,0,1,0
+"Secondary",,,"Male",19,"Young Adult",0,1,1,0,0,1,1,0,0,0,0,0,1,0,1,1,0,0
+"Undergraduate Education",,,"Female",19,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,0,1,0
+"Undergraduate Education",,,"Female",19,"Young Adult",1,1,1,1,0,1,1,0,1,1,0,0,1,0,0,0,0,0
+"Undergraduate Education",,,"Male",19,"Young Adult",1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Female",19,"Young Adult",1,1,0,0,1,1,1,0,1,1,1,1,0,1,1,1,1,1
+"Undergraduate Education",,,"Male",19,"Young Adult",1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Male",19,"Young Adult",1,1,1,0,1,1,1,1,1,1,0,0,1,1,0,0,0,0
+"Secondary",,,"Male",19,"Young Adult",0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+"Undergraduate Education",,,"Female",19,"Young Adult",0,1,1,1,1,1,0,1,1,1,0,0,1,0,0,0,0,0
+"Undergraduate Education","Above 4501","High","Male",20,"Young Adult",1,1,1,1,0,1,1,0,1,0,0,1,1,1,0,0,0,0
+"Undergraduate Education","Above 4501","High","Male",20,"Young Adult",0,1,1,1,1,1,1,0,0,1,1,0,1,1,1,0,1,1
+"Undergraduate Education","from 0 to 450","Low","Female",20,"Young Adult",1,1,1,0,1,1,1,1,1,1,0,0,1,0,1,0,0,0
+"Secondary","from 1351 to 1800","Average","Female",20,"Young Adult",1,1,1,1,1,1,0,0,1,1,0,0,0,1,0,1,0,1
+"Secondary","from 1351 to 1800","Average","Male",20,"Young Adult",0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0
+"Secondary","from 1801 to 2250","Average","Female",20,"Young Adult",1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Female",20,"Young Adult",1,1,1,1,1,0,1,1,1,1,1,0,0,1,0,0,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Female",20,"Young Adult",0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+"Undergraduate Education","from 1801 to 2250","Average","Female",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,1
+"Undergraduate Education","from 1801 to 2250","Average","Male",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1
+"Secondary","from 2251 to 4500","Average","Male",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",20,"Young Adult",0,1,1,0,1,1,1,1,1,1,0,0,0,1,1,1,0,1
+"Undergraduate Education","from 2251 to 4500","Average","Male",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0
+"Undergraduate Education","from 451 to 900","Low","Female",20,"Young Adult",1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education","from 451 to 900","Low","Male",20,"Young Adult",1,1,1,0,1,0,1,1,0,0,0,0,1,0,0,1,0,0
+"Undergraduate Education","from 451 to 900","Low","Male",20,"Young Adult",1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,0,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Female",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Female",20,"Young Adult",0,1,1,1,0,1,1,0,0,1,1,0,0,0,0,0,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Female",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,1,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Male",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0
+"Secondary",,,"Male",20,"Young Adult",0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0
+"Secondary",,,"Male",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1
+"Secondary",,,"Male",20,"Young Adult",0,1,0,0,1,1,0,1,1,0,0,0,0,1,0,0,1,0
+"Undergraduate Education",,,"Male",20,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0
+"Undergraduate Education",,,"Male",20,"Young Adult",1,1,1,1,1,1,1,0,1,1,1,0,0,0,1,0,1,0
+"Undergraduate Education",,,"Male",20,"Young Adult",1,1,0,0,1,1,1,1,1,1,1,0,1,0,0,0,0,0
+"Secondary",,,"Female",20,"Young Adult",1,1,1,0,0,0,0,1,1,1,0,1,0,1,0,1,0,0
+"Undergraduate Education",,,"Male",20,"Young Adult",1,1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Male",20,"Young Adult",1,1,1,1,0,1,0,1,1,1,0,1,0,0,1,0,0,0
+"Undergraduate Education",,,"Male",20,"Young Adult",1,1,1,0,1,1,0,1,1,1,1,0,1,0,0,1,0,0
+"Undergraduate Education",,,"Male",20,"Young Adult",1,1,1,0,1,1,0,0,0,1,0,0,0,1,1,1,0,0
+"Secondary",,,"Female",20,"Young Adult",1,1,1,0,0,1,1,0,1,1,1,0,1,1,0,0,1,0
+"Undergraduate Education",,,"Female",20,"Young Adult",1,1,1,1,1,1,0,1,1,1,0,0,1,1,0,0,0,0
+"Undergraduate Education","Above 4501","High","Male",21,"Young Adult",1,1,1,1,1,0,1,1,0,0,1,0,1,1,1,0,1,0
+"Undergraduate Education","Above 4501","High","Female",21,"Young Adult",1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary","from 1351 to 1800","Average","Female",21,"Young Adult",0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education","from 1351 to 1800","Average","Female",21,"Young Adult",1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,0,0
+"Undergraduate Education","from 1351 to 1800","Average","Female",21,"Young Adult",1,1,1,0,1,0,0,1,1,1,1,1,1,1,0,1,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Male",21,"Young Adult",1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",21,"Young Adult",0,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",21,"Young Adult",0,1,1,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1
+"Secondary","from 451 to 900","Low","Female",21,"Young Adult",0,1,0,0,1,1,0,0,0,1,0,0,1,0,0,0,0,0
+"Secondary","from 451 to 900","Low","Male",21,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0
+"Undergraduate Education","from 451 to 900","Low","Female",21,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1
+"Undergraduate Education","from 901 to 1.350","Low","Male",21,"Young Adult",1,1,1,1,1,1,0,0,1,1,0,0,0,1,1,0,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Female",21,"Young Adult",0,1,1,1,1,1,1,0,1,0,0,0,1,1,0,0,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Male",21,"Young Adult",1,1,1,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0
+"Secondary",,,"Male",21,"Young Adult",1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0
+"Secondary",,,"Female",21,"Young Adult",0,1,1,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Male",21,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Undergraduate Education",,,"Female",21,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,0
+"Undergraduate Education",,,"Female",21,"Young Adult",1,1,1,0,1,1,1,1,1,1,0,0,1,0,1,0,1,0
+"Undergraduate Education",,,"Female",21,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+"Undergraduate Education",,,"Female",21,"Young Adult",0,1,1,1,1,0,1,1,0,0,1,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Female",21,"Young Adult",1,0,1,1,0,1,1,0,1,0,0,0,0,1,0,1,0,0
+"Undergraduate Education",,,"Male",21,"Young Adult",1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0
+"Undergraduate Education",,,"Female",21,"Young Adult",0,1,0,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0
+"Undergraduate Education",,,"Male",21,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+"Undergraduate Education",,,"Male",21,"Young Adult",0,1,1,1,1,1,1,0,1,0,0,1,0,0,1,0,1,0
+"Undergraduate Education",,,"Female",21,"Young Adult",0,1,0,0,1,0,1,0,1,0,0,0,1,1,1,0,0,0
+"Undergraduate Education",,,"Male",21,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0
+"Secondary",,,"Female",21,"Young Adult",0,1,1,0,0,1,0,1,1,0,1,1,0,1,0,1,0,1
+"Undergraduate Education","Above 4501","High","Female",22,"Young Adult",1,1,1,0,1,1,1,1,0,1,0,1,1,1,0,0,1,1
+"Undergraduate Education","from 1351 to 1800","Average","Female",22,"Young Adult",0,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0
+"Undergraduate Education","from 1351 to 1800","Average","Female",22,"Young Adult",1,1,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0
+"Undergraduate Education","from 1351 to 1800","Average","Male",22,"Young Adult",0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Female",22,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1
+"Undergraduate Education","from 1801 to 2250","Average","Female",22,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Male",22,"Young Adult",0,1,1,0,0,1,0,0,0,1,0,0,1,1,0,0,0,1
+"Undergraduate Education","from 2251 to 4500","Average","Female",22,"Young Adult",1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,0,0,0
+"Undergraduate Education","from 451 to 900","Low","Male",22,"Young Adult",1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,0
+"Undergraduate Education","from 451 to 900","Low","Female",22,"Young Adult",1,1,0,1,1,0,1,0,1,0,0,1,0,0,0,0,0,0
+"Undergraduate Education","from 451 to 900","Low","Male",22,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1
+"Undergraduate Education","from 451 to 900","Low","Male",22,"Young Adult",0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+"Undergraduate Education","from 451 to 900","Low","Female",22,"Young Adult",1,1,0,0,1,1,0,0,1,0,0,0,0,1,0,1,0,0
+"Graduate Degree","from 451 to 900","Low","Male",22,"Young Adult",1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,1,0,0
+"Secondary","from 901 to 1.350","Low","Female",22,"Young Adult",1,1,1,1,1,1,1,0,0,1,0,0,0,1,0,1,0,0
+"Secondary",,,"Female",22,"Young Adult",1,0,0,1,1,1,0,0,1,1,1,0,0,1,0,0,1,0
+"Undergraduate Education",,,"Male",22,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+"Undergraduate Education",,,"Female",22,"Young Adult",0,1,1,1,0,1,0,0,0,1,0,0,1,0,0,0,0,1
+"Undergraduate Education",,,"Female",22,"Young Adult",1,1,1,1,1,1,1,0,0,0,1,0,1,1,1,0,0,0
+"Undergraduate Education",,,"Male",22,"Young Adult",1,1,1,1,0,1,1,1,0,1,0,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Female",22,"Young Adult",1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",22,"Young Adult",1,1,0,0,0,0,1,0,1,0,0,0,1,1,0,0,1,0
+"Undergraduate Education","Above 4501","High","Female",23,"Young Adult",1,1,1,1,1,1,0,1,1,1,0,0,1,1,0,0,0,0
+"Undergraduate Education","Above 4501","High","Female",23,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+"Undergraduate Education","Above 4501","High","Male",23,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+"Undergraduate Education","from 0 to 450","Low","Female",23,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,1,0
+"Undergraduate Education","from 0 to 450","Low","Female",23,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,0,0,0
+"Undergraduate Education","from 1351 to 1800","Average","Male",23,"Young Adult",1,1,0,0,1,1,1,0,0,1,0,1,1,1,1,1,1,1
+"Undergraduate Education","from 1351 to 1800","Average","Male",23,"Young Adult",1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1
+"Undergraduate Education","from 1351 to 1800","Average","Female",23,"Young Adult",1,1,1,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Male",23,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1
+"Undergraduate Education","from 1801 to 2250","Average","Female",23,"Young Adult",0,1,1,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Male",23,"Young Adult",0,0,0,0,1,0,0,0,0,1,1,0,1,0,0,1,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Male",23,"Young Adult",1,1,1,1,1,1,0,1,0,1,0,0,0,1,0,1,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Male",23,"Young Adult",0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",23,"Young Adult",1,1,1,0,1,1,0,0,1,1,0,1,1,1,1,0,0,0
+"Undergraduate Education","from 451 to 900","Low","Female",23,"Young Adult",0,1,1,1,1,1,1,1,0,1,0,1,1,1,0,1,0,0
+"Undergraduate Education","from 451 to 900","Low","Female",23,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Female",23,"Young Adult",1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,1,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Female",23,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,1,0
+"Undergraduate Education",,,"Male",23,"Young Adult",1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1
+"Undergraduate Education",,,"Female",23,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1
+"Undergraduate Education",,,,23,"Young Adult",1,0,1,0,1,1,1,1,1,1,1,0,1,0,1,1,0,0
+"Undergraduate Education",,,"Female",23,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Undergraduate Education",,,"Female",23,"Young Adult",1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,1
+"Undergraduate Education",,,"Female",23,"Young Adult",1,1,1,0,1,0,0,1,0,1,0,0,0,0,0,1,0,0
+"Undergraduate Education",,,"Male",23,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+"Undergraduate Education",,,"Male",23,"Young Adult",1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0
+"Secondary",,,"Female",23,"Young Adult",0,1,0,1,1,0,1,1,1,1,0,1,1,0,0,0,0,0
+"Undergraduate Education","Above 4501","High","Female",24,"Young Adult",1,1,1,1,1,1,0,0,1,1,0,1,1,0,0,1,0,0
+"Undergraduate Education","Above 4501","High","Male",24,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+"Secondary","from 1351 to 1800","Average","Female",24,"Young Adult",1,1,1,0,1,0,1,1,1,1,0,1,1,1,0,0,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Male",24,"Young Adult",1,0,1,0,1,0,0,1,1,1,1,0,1,1,1,0,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Male",24,"Young Adult",0,1,0,0,1,1,0,1,1,1,1,0,1,1,1,0,0,1
+"Undergraduate Education","from 2251 to 4500","Average","Male",24,"Young Adult",1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,0
+"Secondary","from 451 to 900","Low","Male",24,"Young Adult",0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,0,1,0
+"Undergraduate Education","from 451 to 900","Low","Female",24,"Young Adult",1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education","from 451 to 900","Low","Female",24,"Young Adult",1,1,1,0,0,1,0,0,0,1,1,0,0,0,0,1,0,0
+"Undergraduate Education","from 451 to 900","Low","Female",24,"Young Adult",1,1,1,0,1,1,1,1,0,0,0,1,0,0,0,0,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Female",24,"Young Adult",1,1,1,0,1,0,1,0,1,1,1,1,0,0,1,1,0,1
+"Undergraduate Education",,,"Male",24,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+"Undergraduate Education",,,"Male",24,"Young Adult",0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,,24,"Young Adult",1,1,0,0,1,0,1,0,1,1,1,0,0,1,0,0,1,1
+"Undergraduate Education",,,"Female",24,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,0
+"Graduate Degree",,,"Female",24,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,0,1
+"Undergraduate Education","from 1351 to 1800","Average","Male",25,"Young Adult",1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0
+"Secondary","from 1801 to 2250","Average","Male",25,"Young Adult",1,1,1,0,0,1,0,1,0,1,0,0,0,0,0,1,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Male",25,"Young Adult",0,1,1,1,1,0,0,1,1,1,0,0,0,1,0,0,1,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",25,"Young Adult",0,1,0,0,1,1,1,1,1,0,1,1,1,0,1,0,0,1
+"Undergraduate Education","from 451 to 900","Low","Male",25,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,1
+"Undergraduate Education","from 451 to 900","Low","Female",25,"Young Adult",0,1,0,1,1,1,0,1,1,1,0,0,1,1,0,0,0,1
+"Secondary",,,"Female",25,"Young Adult",1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+"Undergraduate Education",,,"Female",25,"Young Adult",1,1,1,0,1,1,1,1,0,1,0,1,1,1,0,0,0,1
+"Undergraduate Education",,,"Male",25,"Young Adult",0,1,1,1,1,1,1,0,1,1,1,1,0,0,0,1,1,0
+"Undergraduate Education",,,"Female",25,"Young Adult",1,1,1,1,1,1,1,0,1,1,0,1,0,1,0,1,0,0
+"Graduate Degree",,,"Female",25,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+"Secondary","from 0 to 450","Low","Male",26,"Young Adult",0,1,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0
+"Undergraduate Education","from 1351 to 1800","Average","Male",26,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,1,1
+"Undergraduate Education","from 2251 to 4500","Average","Male",26,"Young Adult",1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Undergraduate Education","from 451 to 900","Low","Female",26,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,1,1
+"Secondary","from 901 to 1.350","Low","Female",26,"Young Adult",0,1,1,1,1,0,1,0,1,1,1,0,1,0,0,1,0,0
+"Secondary",,,"Female",26,"Young Adult",1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",26,"Young Adult",1,1,1,0,1,1,0,1,1,1,0,1,0,1,0,0,1,0
+"Undergraduate Education",,,"Male",26,"Young Adult",0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0
+"Undergraduate Education",,,"Female",26,"Young Adult",0,1,1,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0
+"Secondary",,,"Female",26,"Young Adult",0,1,1,0,0,1,1,1,0,1,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",26,"Young Adult",0,1,1,0,0,1,1,1,1,1,1,0,1,1,0,0,0,0
+"Undergraduate Education","Above 4501","High","Male",27,"Young Adult",0,0,1,1,0,1,1,0,0,0,1,1,0,0,0,0,0,0
+"Master","Above 4501","High","Female",27,"Young Adult",1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+"Secondary","from 1351 to 1800","Average","Female",27,"Young Adult",1,1,1,1,1,0,1,0,1,1,0,0,0,1,0,1,0,0
+"Undergraduate Education","from 451 to 900","Low","Female",27,"Young Adult",1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",27,"Young Adult",1,1,0,1,1,0,0,1,0,1,1,0,0,0,0,0,0,1
+"Undergraduate Education",,,"Female",27,"Young Adult",1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education","Above 4501","High","Male",28,"Young Adult",1,1,1,1,1,0,1,1,1,1,1,0,1,0,0,0,0,0
+"Undergraduate Education","from 1351 to 1800","Average","Male",28,"Young Adult",1,1,1,0,1,1,1,1,1,1,0,1,0,1,1,0,0,1
+"Undergraduate Education","from 2251 to 4500","Average",,28,"Young Adult",1,1,1,1,1,1,1,0,1,1,1,0,1,0,0,1,1,1
+"Secondary","from 451 to 900","Low","Male",28,"Young Adult",1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",28,"Young Adult",1,1,1,1,1,0,1,1,0,1,1,0,1,0,0,0,0,0
+"Undergraduate Education",,,"Male",28,"Young Adult",1,1,1,1,0,1,1,0,1,1,0,0,1,1,1,1,0,0
+"Undergraduate Education",,,"Male",28,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,0,0
+"Undergraduate Education",,,"Male",28,"Young Adult",0,1,1,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1
+"Undergraduate Education",,,"Male",28,"Young Adult",1,1,0,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0
+"Master","Above 4501","High","Female",29,"Young Adult",1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",29,"Young Adult",0,1,1,1,1,0,0,0,0,0,0,0,1,1,0,1,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Male",29,"Young Adult",1,1,1,1,1,1,0,1,1,1,1,0,0,1,0,1,0,1
+"Graduate Degree",,,"Female",29,"Young Adult",0,1,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0
+"Graduate Degree",,,"Female",29,"Young Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+"Undergraduate Education",,,"Female",29,"Young Adult",0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0
+"Undergraduate Education",,,"Female",29,"Young Adult",1,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Male",30,"Adult",1,1,1,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0
+"Graduate Degree",,,"Female",30,"Adult",0,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0,0,0
+"Graduate Degree",,,"Male",30,"Adult",1,1,1,0,1,1,1,1,1,1,0,1,0,0,0,0,0,0
+"Secondary",,,"Male",31,"Adult",0,1,1,1,0,0,0,1,1,0,1,0,0,0,1,0,0,1
+"Undergraduate Education",,,"Female",31,"Adult",1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1
+"Graduate Degree",,,"Female",31,"Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1
+"Undergraduate Education",,,"Female",31,"Adult",0,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0
+"Undergraduate Education","from 0 to 450","Low","Female",32,"Adult",1,1,1,1,1,0,1,1,1,1,0,1,0,1,1,0,0,0
+"Primary","from 1351 to 1800","Average","Female",32,"Adult",1,1,0,1,0,0,1,1,0,0,0,0,1,1,0,0,1,0
+"Undergraduate Education","Above 4501","High","Female",33,"Adult",1,1,1,1,1,1,0,0,1,1,0,1,1,0,0,1,0,0
+"Undergraduate Education","from 451 to 900","Low","Female",33,"Adult",0,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,0
+"Undergraduate Education","from 1801 to 2250","Average","Female",34,"Adult",0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1
+"Undergraduate Education","from 2251 to 4500","Average","Female",34,"Adult",1,1,1,1,1,1,0,0,0,1,0,0,1,0,0,0,0,0
+"Secondary","from 901 to 1.350","Low","Male",34,"Adult",1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,1,0,1
+"Secondary",,,"Female",34,"Adult",1,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Female",34,"Adult",1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+"Undergraduate Education",,,"Male",34,"Adult",0,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,1,0
+"Graduate Degree",,,"Female",34,"Adult",0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1
+"Graduate Degree","Above 4501","High","Female",35,"Adult",1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+"Secondary","from 1351 to 1800","Average","Male",35,"Adult",0,1,1,1,0,0,1,1,0,1,0,1,0,0,0,0,0,0
+"Secondary","from 2251 to 4500","Average","Female",35,"Adult",1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+"Undergraduate Education","from 451 to 900","Low","Female",35,"Adult",0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Male",35,"Adult",0,1,1,1,0,1,1,1,1,1,0,0,0,0,1,0,0,0
+"Primary",,,"Male",35,"Adult",1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",35,"Adult",0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0
+"Secondary","from 0 to 450","Low","Male",36,"Adult",1,1,1,1,1,1,1,0,1,1,0,0,0,1,0,0,1,0
+"Undergraduate Education","from 451 to 900","Low","Male",36,"Adult",1,1,1,0,1,0,0,0,0,1,0,0,0,1,0,1,0,1
+"Undergraduate Education",,,"Female",36,"Adult",1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,0
+"Graduate Degree",,,"Female",36,"Adult",1,1,1,0,1,1,1,1,1,1,0,1,1,0,0,1,0,0
+"Secondary","from 451 to 900","Low","Female",37,"Adult",0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Primary",,,"Female",37,"Adult",0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+"Undergraduate Education",,,"Male",37,"Adult",1,1,1,1,1,1,1,1,0,1,0,0,0,1,0,0,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Male",38,"Adult",1,1,1,1,1,1,1,0,0,1,1,0,1,1,1,0,1,1
+"Graduate Degree",,,"Female",38,"Adult",1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Graduate Degree",,,"Female",38,"Adult",1,1,0,1,1,1,0,1,1,0,0,0,0,0,0,0,1,0
+"Primary",,,"Male",39,"Adult",0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+"Secondary",,,"Female",39,"Adult",1,1,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",39,"Adult",0,0,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Female",40,"Adult",1,1,1,1,1,0,0,0,1,1,0,0,1,0,0,0,0,0
+"Undergraduate Education",,,"Female",40,"Adult",1,1,1,1,1,0,1,0,1,1,0,0,0,0,0,0,0,0
+"Master","Above 4501","High","Female",41,"Adult",1,1,1,1,1,1,0,0,0,1,0,1,0,0,0,0,0,0
+"Secondary","from 1351 to 1800","Average","Female",41,"Adult",0,0,1,1,0,0,0,0,0,0,1,0,1,0,1,0,0,0
+"Undergraduate Education",,,"Female",41,"Adult",1,1,1,1,1,1,0,0,1,0,0,0,1,0,1,1,1,1
+"Undergraduate Education",,,"Male",41,"Adult",1,1,0,1,1,1,1,1,1,1,0,0,1,0,1,1,0,0
+"Secondary",,,"Female",41,"Adult",0,1,0,0,0,1,1,0,0,0,0,1,0,1,0,1,0,1
+"Undergraduate Education",,,"Male",41,"Adult",0,1,0,0,1,1,1,0,1,1,0,0,1,1,1,1,0,0
+"Undergraduate Education",,,"Female",42,"Adult",0,1,1,1,1,1,0,1,1,0,1,0,0,0,0,1,0,1
+"Undergraduate Education",,,"Male",42,"Adult",1,1,1,0,1,1,0,0,1,0,0,1,0,1,1,0,0,0
+"Secondary",,,"Male",42,"Adult",1,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0
+"Secondary",,,"Male",42,"Adult",0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",42,"Adult",1,1,0,1,1,1,0,0,1,1,1,0,0,1,0,0,0,1
+"Secondary","from 1351 to 1800","Average","Female",43,"Adult",1,0,1,0,0,1,1,0,0,1,0,0,1,1,1,0,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",43,"Adult",0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1
+"Primary",,,"Male",43,"Adult",1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0
+"Secondary","from 1801 to 2250","Average","Male",44,"Adult",1,0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0
+"Primary","from 2251 to 4500","Average","Female",44,"Adult",0,1,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1
+"Undergraduate Education","from 2251 to 4500","Average","Female",44,"Adult",1,1,1,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0
+"Secondary","from 901 to 1.350","Low","Female",44,"Adult",0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",44,"Adult",1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,0,0,1
+"Secondary",,,"Female",44,"Adult",0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Primary",,,"Female",44,"Adult",1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Primary","from 1351 to 1800","Average","Male",45,"Adult",1,1,1,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0
+"Secondary","from 451 to 900","Low","Female",45,"Adult",0,1,1,0,1,1,0,0,1,0,0,0,0,0,1,0,0,0
+"Master","Above 4501","High","Female",46,"Adult",1,1,1,1,1,1,0,1,1,1,1,0,1,1,0,1,0,1
+"Secondary",,,"Female",46,"Adult",0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0
+"Secondary","from 2251 to 4500","Average","Male",47,"Adult",0,0,0,0,1,0,1,0,0,1,0,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Male",47,"Adult",0,1,1,0,1,1,1,0,0,0,0,1,0,1,0,0,0,0
+"Graduate Degree",,,"Female",47,"Adult",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",47,"Adult",0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0
+"Undergraduate Education",,,"Female",47,"Adult",1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",47,"Adult",1,1,1,1,0,1,1,0,0,0,0,0,1,0,0,0,0,0
+"Master","Above 4501","High","Female",48,"Adult",1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+"Primary","from 1351 to 1800","Average","Female",48,"Adult",0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1
+"Graduate Degree",,,"Female",48,"Adult",0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+"Secondary","from 2251 to 4500","Average","Male",49,"Adult",0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",49,"Adult",1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",49,"Adult",0,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,0
+"Graduate Degree",,,"Female",49,"Adult",1,1,1,1,0,1,0,0,0,1,0,0,0,0,1,0,0,0
+"Secondary","from 1351 to 1800","Average","Male",50,"Older Adult",1,1,1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+"Secondary","from 1801 to 2250","Average","Female",50,"Older Adult",0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Male",50,"Older Adult",1,1,1,0,0,1,1,0,0,1,0,1,0,1,1,0,0,1
+"Graduate Degree","from 2251 to 4500","Average","Female",50,"Older Adult",0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+"Secondary","from 1801 to 2250","Average","Female",51,"Older Adult",0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1
+"Graduate Degree","from 2251 to 4500","Average","Female",52,"Older Adult",1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,1,1,1
+"Secondary","from 901 to 1.350","Low","Female",52,"Older Adult",0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,1,1
+"Undergraduate Education",,,"Female",52,"Older Adult",1,1,1,1,0,1,1,0,0,1,0,0,0,0,1,0,0,1
+"Secondary","from 2251 to 4500","Average","Female",54,"Older Adult",1,1,0,1,1,0,0,1,0,0,0,0,1,0,1,1,0,0
+"Secondary","from 901 to 1.350","Low","Female",54,"Older Adult",0,0,0,1,0,0,1,0,1,0,0,0,0,1,0,0,0,0
+"Secondary",,,"Male",54,"Older Adult",1,1,1,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0
+"Primary","Above 4501","High","Female",55,"Older Adult",1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+"Secondary","from 1801 to 2250","Average","Female",55,"Older Adult",0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1
+"Secondary",,,"Female",55,"Older Adult",1,1,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0
+"Secondary","from 1351 to 1800","Average","Female",56,"Older Adult",1,1,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0
+"Secondary","from 2251 to 4500","Average","Female",56,"Older Adult",1,1,1,1,1,1,0,0,0,1,0,1,0,0,0,0,0,0
+"Secondary","from 1351 to 1800","Average","Female",58,"Older Adult",1,0,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0
+"Primary",,,"Female",58,"Older Adult",0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1
+"Secondary","from 2251 to 4500","Average","Female",59,"Older Adult",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Graduate Degree","Above 4501","High","Male",60,"Elderly",1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+"Primary",,,"Female",60,"Elderly",1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",60,"Elderly",1,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",60,"Elderly",0,1,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",60,"Elderly",1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0
+"Graduate Degree",,,"Female",60,"Elderly",0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary","from 1351 to 1800","Average","Male",61,"Elderly",0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1
+"Primary","from 901 to 1.350","Low","Female",61,"Elderly",0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0
+"Secondary",,,"Female",61,"Elderly",1,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0
+"Secondary","Above 4501","High","Male",62,"Elderly",0,0,1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0
+"Secondary","from 1351 to 1800","Average","Female",62,"Elderly",0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education","Above 4501","High","Female",63,"Elderly",0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0
+"Primary","from 1351 to 1800","Average","Female",63,"Elderly",0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Graduate Degree",,,"Female",64,"Elderly",1,1,1,1,1,1,0,0,1,0,0,1,1,0,0,0,1,0
+"Undergraduate Education","Above 4501","High","Female",65,"Elderly",0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+"Primary","from 451 to 900","Low","Female",65,"Elderly",1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,1
+"Primary",,,"Female",65,"Elderly",0,0,0,1,0,0,0,1,1,0,0,0,1,0,0,0,0,0
+"Secondary","from 2251 to 4500","Average","Male",66,"Elderly",0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0
+"Primary","from 451 to 900","Low","Female",66,"Elderly",0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0
+"Primary",,,"Female",66,"Elderly",0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+"Secondary","from 2251 to 4500","Average","Male",67,"Elderly",1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0
+"Primary",,,"Male",67,"Elderly",0,0,1,1,0,0,0,1,1,0,0,0,1,0,0,0,0,0
+"Undergraduate Education",,,"Female",67,"Elderly",0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Primary","from 1801 to 2250","Average","Female",68,"Elderly",0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0
+"Secondary","from 2251 to 4500","Average","Female",68,"Elderly",0,1,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Female",68,"Elderly",0,0,1,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0
+"Secondary","from 901 to 1.350","Low","Male",68,"Elderly",1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Primary",,,"Female",68,"Elderly",1,1,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0
+"Undergraduate Education",,,"Male",68,"Elderly",0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary","from 2251 to 4500","Average","Female",69,"Elderly",0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Primary","from 901 to 1.350","Low","Female",69,"Elderly",0,1,0,1,0,0,0,0,1,0,0,1,1,0,0,0,0,0
+"Primary",,,"Female",69,"Elderly",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+"Primary",,,"Female",71,"Elderly",1,1,1,0,1,1,0,0,0,1,0,0,0,0,0,0,0,1
+"Primary","from 1351 to 1800","Average","Female",73,"Elderly",0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+"Primary","from 451 to 900","Low","Female",73,"Elderly",1,0,0,1,1,0,0,1,0,0,0,0,0,0,1,1,0,0
+"Primary","from 901 to 1.350","Low","Female",73,"Elderly",0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0
+"Primary",,,"Female",73,"Elderly",1,0,0,0,0,1,1,1,0,0,0,0,1,0,0,1,0,0
+"Primary","from 1351 to 1800","Average","Female",75,"Elderly",1,1,1,0,1,1,0,1,1,1,0,1,0,0,0,0,0,1
+"Primary",,,"Male",76,"Elderly",0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0
+"Primary",,,"Male",76,"Elderly",1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0
+"Secondary","from 451 to 900","Low","Female",77,"Elderly",1,1,0,1,0,1,0,0,1,0,0,0,1,0,0,0,0,0
+"Primary","from 1351 to 1800","Average","Male",79,"Elderly",0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0
+"Secondary","from 1351 to 1800","Average","Female",,,1,1,1,1,0,1,1,0,0,1,1,0,0,0,0,0,0,0
+"Secondary","from 1351 to 1800","Average","Male",,,0,1,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0
+"Secondary","from 1351 to 1800","Average","Male",,,1,1,1,0,1,0,1,0,1,1,1,0,0,1,1,1,0,1
+"Undergraduate Education","from 1351 to 1800","Average","Female",,,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1
+"Secondary","from 1801 to 2250","Average","Female",,,1,1,1,0,0,1,0,0,1,1,1,0,0,0,0,1,0,0
+"Undergraduate Education","from 1801 to 2250","Average","Female",,,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+"Undergraduate Education","from 2251 to 4500","Average","Male",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1
+"Primary","from 451 to 900","Low","Female",,,0,0,1,0,0,1,0,0,0,0,0,1,1,0,0,1,0,0
+"Secondary","from 451 to 900","Low","Male",,,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Primary","from 901 to 1.350","Low","Female",,,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+"Secondary","from 901 to 1.350","Low","Male",,,1,1,1,0,0,0,1,0,1,0,1,0,1,0,0,0,0,0
+"Undergraduate Education","from 901 to 1.350","Low","Male",,,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,1,0,0
+"Undergraduate Education",,,"Male",,,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,1,0,1
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,0,1,1,0,1,1,0,1,1,0,0,0,0
+"Primary",,,"Male",,,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0
+"Graduate Degree",,,"Female",,,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,0,1,1,1,0,0,1,0,0,0,0,0,1,0,0
+"Secondary",,,"Female",,,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0
+"Secondary",,,"Female",,,0,1,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0
+"Secondary",,,"Female",,,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,1
+"Primary",,,"Male",,,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0
+"Secondary",,,"Female",,,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",,,1,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0
+"Secondary",,,"Female",,,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,0,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,0,0,0,1,1,0,0,1,0,1,0,0,0
+"Secondary",,,"Male",,,1,1,1,1,0,1,0,0,0,1,1,0,0,0,0,0,1,0
+"Secondary",,,"Female",,,1,1,1,1,0,1,1,1,0,1,0,1,0,0,0,0,1,1
+"Secondary",,,"Male",,,1,1,1,1,0,0,0,1,1,1,1,0,0,1,0,0,0,0
+"Primary",,,"Male",,,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,0,1,1,0,1,1,0,1,1,0,1,0,0,1,0,1,1,1
+"Graduate Degree",,,"Male",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+"Secondary",,,"Female",,,0,1,0,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0
+"Secondary",,,"Female",,,1,1,1,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0
+"Secondary",,,"Male",,,1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,1,0,0,1,1,0,0,0,1,0,0,1,1
+"Secondary",,,"Male",,,1,1,1,1,1,0,0,0,0,1,0,1,1,0,1,0,0,0
+"Primary",,,"Female",,,0,0,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,1
+"Secondary",,,"Male",,,1,0,1,1,0,0,1,0,0,0,0,0,1,0,1,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,0,1,1,0,0,0,1,1,0,1,1,0,0,0,0,0
+"Secondary",,,"Male",,,1,1,0,1,1,0,1,0,1,1,0,1,0,0,0,0,0,0
+"Secondary",,,"Male",,,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0
+"Secondary",,,"Female",,,0,0,0,0,0,1,1,0,0,1,0,0,1,0,1,0,0,0
+"Secondary",,,"Female",,,1,1,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,1,0,1,1,1,0,0,0,0,1,1,0,0,0,0
+"Secondary",,,"Female",,,1,1,1,1,0,0,1,1,1,0,1,0,1,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,0,1,1,1,1,1,1,1,1,0,1,0,1,1,0,0,0
+"Undergraduate Education",,,"Male",,,1,1,1,0,1,0,1,0,0,1,0,1,1,1,0,0,0,1
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,1,0,1
+"Undergraduate Education",,,"Male",,,0,1,1,0,1,1,1,0,1,1,0,1,1,1,1,1,0,1
+"Primary",,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+"Secondary",,,"Female",,,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,0,0,1
+"Graduate Degree",,,"Female",,,1,1,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0
+"Primary",,,"Female",,,1,1,1,1,0,1,0,0,1,1,0,0,1,1,0,0,1,1
+"Secondary",,,"Female",,,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0
+"Undergraduate Education",,,"Male",,,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,0,0
+"Secondary",,,"Female",,,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",,,1,1,1,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",,,1,1,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,1
+"Secondary",,,"Male",,,1,1,1,1,1,1,0,0,0,1,1,0,1,0,1,1,0,0
+"Undergraduate Education",,,"Male",,,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0
+"Secondary",,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",,,0,0,0,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",,,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1
+"Secondary",,,"Female",,,1,0,1,0,1,0,1,1,0,0,0,1,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+"Secondary",,,"Female",,,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1
+"Secondary",,,"Male",,,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,1
+"Primary",,,"Male",,,0,1,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0
+"Secondary",,,"Male",,,0,0,0,0,1,1,1,0,1,0,0,1,0,0,0,0,0,0
+"Secondary",,,"Female",,,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Male",,,0,0,0,0,0,1,1,0,1,1,1,0,1,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,0,0,1
+"Secondary",,,"Female",,,1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,0,1,1
+"Secondary",,,"Female",,,0,1,0,0,1,0,0,1,1,0,0,1,1,0,0,0,0,0
+"Undergraduate Education",,,"Male",,,0,0,0,1,0,1,0,0,0,0,1,0,0,0,1,1,0,1
+"Undergraduate Education",,,"Female",,,1,0,0,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0
+"Primary",,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,1,1
+"Undergraduate Education",,,"Male",,,0,1,1,0,1,1,1,0,1,1,1,0,0,0,0,1,1,0
+"Undergraduate Education",,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+"Undergraduate Education",,,"Male",,,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,1
+"Secondary",,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,1
+"Undergraduate Education",,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1
+"Secondary",,,"Female",,,1,1,1,1,1,1,1,1,0,0,0,1,1,0,0,0,1,0
+"Primary",,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1
+"Secondary",,,"Male",,,1,0,0,0,1,0,1,1,0,1,0,0,0,0,0,0,0,1
+"Secondary",,,"Female",,,1,1,1,0,1,1,1,0,0,1,0,0,1,1,1,1,0,1
+"Primary",,,"Male",,,0,0,0,0,1,1,1,0,1,0,0,1,1,1,1,0,0,0
+"Secondary",,,"Male",,,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",,,1,1,1,1,1,0,1,0,1,0,0,0,1,1,0,0,0,0
+"Secondary",,,"Male",,,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,0
+"Secondary",,,"Male",,,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",,,1,0,1,1,1,1,1,1,1,0,0,1,0,0,1,1,0,0
+"Secondary",,,"Male",,,0,0,1,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0
+"Secondary",,,"Male",,,0,1,1,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0
+"Secondary",,,"Female",,,1,1,1,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0
+"Secondary",,,"Female",,,0,1,1,0,1,0,0,0,1,0,1,0,0,0,1,1,0,0
+"Secondary",,,"Female",,,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",,,0,1,1,0,1,0,1,0,0,0,0,0,0,0,1,1,1,0
+"Secondary",,,"Female",,,0,1,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0
+"Undergraduate Education",,,"Male",,,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Primary",,,"Female",,,0,1,1,0,0,1,1,0,1,1,0,0,1,0,0,0,0,0
+"Primary",,,"Female",,,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+"Secondary",,,"Female",,,1,0,1,1,1,1,0,0,1,1,0,1,0,0,1,0,1,0
+"Secondary",,,"Male",,,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0
+"Secondary",,,"Female",,,1,0,1,1,1,1,0,0,0,0,0,1,0,0,1,0,1,0
+"Undergraduate Education",,,"Female",,,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,1,0,0,1,1,1,0,0,1,0,1,0,0
+"Secondary",,,"Female",,,1,1,1,1,1,0,1,0,0,0,0,1,0,0,1,0,1,0
+"Undergraduate Education",,,"Female",,,1,0,1,1,1,1,1,0,0,1,1,0,1,1,0,0,0,1
+"Undergraduate Education",,,"Male",,,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,1,0,0,1,0,0,1,0,0,0,0,1,0
+"Undergraduate Education",,,"Female",,,1,0,1,1,1,1,0,0,1,1,0,1,0,0,1,0,1,0
+"Secondary",,,,,,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,0,0
+"Undergraduate Education",,,,,,0,1,1,0,1,0,1,0,1,1,1,1,0,0,0,0,0,0
+"Undergraduate Education",,,,,,1,1,1,1,1,1,1,0,0,1,1,1,0,1,0,0,1,1
+"Secondary",,,,,,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1,0,0,0
+"Undergraduate Education",,,"Female",,,0,1,1,1,1,1,0,0,1,1,0,1,0,0,1,0,1,0
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,1,0,0,1,1,0,1,0,0,1,0,1,0
+"Secondary",,,,,,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+"Secondary",,,,,,1,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,0,1,1,1,1,1,0,1,1,0,0,0,0,0,1
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0
+"Secondary",,,"Male",,,1,1,1,1,1,0,0,1,0,0,0,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Male",,,1,1,1,1,1,0,0,0,1,1,1,0,1,0,0,1,0,0
+"Secondary",,,"Female",,,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,1
+"Secondary",,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0
+"Secondary",,,"Male",,,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0
+"Secondary",,,"Female",,,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Male",,,1,1,1,0,1,1,1,0,1,0,0,0,0,0,0,1,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,1,1,0,1,1,0,0,0,1,1,0,0,0
+"Undergraduate Education",,,"Female",,,1,0,1,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,1,0,0,1,1,1,0,0,1,1,0,1,1,0,0
+"Undergraduate Education",,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0
+"Undergraduate Education",,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",,,1,1,1,1,1,1,1,1,0,0,1,0,1,1,0,1,0,0
+"Undergraduate Education",,,"Female",,,0,1,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+,,,"Male",,,0,1,1,0,1,1,0,1,1,1,0,0,1,0,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0
+,,,"Female",,,1,0,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0
+,,,"Male",,,0,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+,,,"Male",,,0,1,1,0,1,1,0,0,1,0,0,0,1,1,1,0,0,0
+,,,"Male",,,1,1,1,1,1,1,0,0,1,1,0,0,0,0,1,1,0,1
+,,,"Female",,,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1
+,,,"Female",,,0,1,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0
+,,,"Female",,,0,1,1,0,1,0,1,1,1,1,1,1,1,0,0,0,0,1
+,,,"Male",,,1,1,1,1,1,0,1,0,1,0,0,1,1,0,0,1,0,0
+,,,"Female",,,1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0
+,,,"Female",,,0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,1,0,0
+,,,"Female",,,1,1,1,1,1,0,1,0,1,1,0,0,0,1,1,1,1,1
+,,,"Female",,,0,1,1,1,1,0,0,1,1,1,0,1,0,1,1,1,0,1
+,,,"Female",,,1,1,1,1,1,1,0,0,1,0,0,0,0,1,0,0,0,0
+,,,"Female",,,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+,,,,,,0,1,0,0,0,1,0,1,1,0,0,0,0,1,1,0,0,0
+,,,"Female",,,0,1,0,0,0,1,0,1,1,0,0,0,0,1,1,0,0,0
+,,,"Female",,,1,1,1,0,1,1,1,0,0,0,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0
+,,,"Female",,,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0
+,,,"Female",,,1,1,0,1,1,1,1,1,1,1,1,0,1,0,1,1,0,1
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0
+,,,"Female",,,1,1,1,0,1,1,1,1,0,1,0,1,1,1,1,0,0,0
+,,,"Female",,,1,1,1,0,1,1,0,0,0,1,0,1,0,1,1,0,0,0
+,,,"Female",,,0,1,0,1,1,0,1,0,1,1,0,1,0,1,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0,0,0
+,,,"Male",,,1,1,1,1,1,0,1,0,0,1,0,1,1,1,0,1,1,1
+,,,"Female",,,1,1,0,0,1,1,1,1,0,0,1,0,1,0,0,0,1,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+,,,"Male",,,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1
+,,,"Male",,,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,0,1,1,0,1,1,1,1,0,1,0,0,1,0,0,0,0,1
+,,,"Female",,,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1,1,0
+,,,"Female",,,1,1,1,1,1,1,0,0,0,1,1,0,0,0,0,1,0,0
+,,,"Female",,,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,1,1,1
+,,,"Female",,,0,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,0,1
+,,,"Female",,,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0
+,,,"Female",,,1,1,1,0,1,0,0,0,1,0,0,1,0,1,0,0,0,0
+,,,"Female",,,1,0,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,1
+,,,"Female",,,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,1,0,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1
+,,,"Male",,,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0
+,,,"Female",,,0,0,0,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0
+,,,"Female",,,1,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+,,,"Male",,,0,1,0,0,0,1,0,0,1,1,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,0,0,0,1,1,0,1,1,1,0,1,0,0
+,,,"Female",,,0,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0
+,,,"Female",,,0,0,0,0,0,1,0,1,1,0,0,0,0,0,1,0,0,0
+,,,"Female",,,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0
+,,,"Male",,,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+,,,"Male",,,0,1,1,0,1,0,1,1,1,1,0,0,1,1,0,1,1,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0
+,,,"Female",,,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0
+,,,"Male",,,1,1,1,0,1,1,1,1,1,1,0,0,0,1,0,0,0,0
+,,,"Male",,,0,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,0,1
+,,,"Male",,,0,1,1,0,0,1,0,0,0,0,1,0,1,0,0,0,1,1
+,,,"Female",,,1,1,0,0,1,0,1,1,1,0,1,0,1,1,0,0,0,1
+,,,"Male",,,0,1,1,1,0,1,1,1,0,0,0,0,1,0,0,0,0,1
+,,,"Female",,,1,1,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0
+,,,"Male",,,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0
+,,,"Female",,,0,0,0,0,0,1,0,0,1,0,0,0,1,1,0,0,0,0
+,,,"Female",,,1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1
+,,,"Male",,,0,0,1,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0
+,,,"Female",,,0,0,1,0,1,1,0,1,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,1,0,0,1,0,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,0,0,0
+,,,"Male",,,1,1,0,1,1,0,0,0,1,1,0,0,1,1,0,0,0,0
+,,,"Female",,,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,0,0
+,,,"Female",,,0,1,1,1,1,1,0,1,1,1,0,1,1,1,0,0,0,0
+,,,"Female",,,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0
+,,,"Female",,,0,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+,,,"Female",,,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,0,1
+,,,"Male",,,0,1,0,0,1,1,1,0,0,1,0,1,0,0,1,0,0,1
+,,,"Female",,,0,1,1,0,1,1,1,1,1,1,0,0,1,0,0,0,0,0
+,,,"Female",,,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,0,1,1,1,1,0,0,0,1,1,1,0,0
+,,,"Female",,,1,0,1,0,0,1,0,1,0,0,0,1,1,0,0,0,1,0
+,,,"Female",,,1,1,1,0,0,1,0,0,0,1,0,0,0,1,1,0,0,0
+,,,"Male",,,0,1,1,1,1,1,1,0,1,1,0,0,1,0,1,0,0,0
+,,,"Female",,,0,1,1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1
+,,,"Male",,,1,1,1,0,1,1,0,1,1,1,1,0,1,0,0,0,0,0
+,,,"Male",,,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,0,0,0
+,,,"Female",,,1,1,0,1,1,0,1,0,1,1,0,0,1,1,1,0,0,0
+,,,"Female",,,1,1,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+,,,"Male",,,1,0,0,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0
+,,,"Male",,,1,1,1,1,0,1,1,0,1,1,1,0,0,1,0,1,0,1
+,,,"Male",,,1,0,1,1,0,1,1,0,1,1,0,0,0,1,0,1,0,1
+,,,"Female",,,1,0,1,1,0,0,0,0,0,1,1,0,1,0,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,0,0,0,1,1,0,1,1,1,0,0,1
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,0
+,,,"Female",,,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1
+,,,"Female",,,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+,,,"Male",,,0,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,1
+,,,"Female",,,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,0,1,1,0,1,1,1,0,0,0
+,,,"Male",,,0,1,1,1,0,1,0,0,1,1,0,0,1,1,0,0,0,0
+,,,"Male",,,0,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,0,0,1,0,0,1,1,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0
+,,,"Female",,,0,1,1,1,0,1,1,0,1,1,0,0,1,1,1,1,0,0
+,,,"Male",,,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,0,0
+,,,"Female",,,0,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0
+,,,"Male",,,1,1,0,0,1,0,0,0,1,0,0,0,1,0,0,1,0,0
+,,,"Male",,,0,1,1,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,0,1,1,0,1,0,1,0,0,1,0,0,0,0,1,0,0,1
+,,,"Female",,,0,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0
+,,,"Female",,,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,0,1,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,"Male",,,0,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,0,0
+,,,"Female",,,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,0,0,1,0,0,0,1,0,0,0,1,0
+,,,"Male",,,0,1,1,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,0,0,1,1,0,0,0,1,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,0,0
+,,,"Male",,,1,1,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,0,1,1,1,1,0,0,0,1,0,1,0,0
+,,,"Female",,,1,1,0,1,1,0,0,1,0,1,0,1,0,0,0,0,0,0
+,,,"Female",,,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,0,1,1,1,1,1,1,1,0,0,1,0,0,0,0
+,,,"Female",,,1,1,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0
+,,,"Female",,,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,0,1,0,1,1,0,0,0,0,1,0,0,0,1,0,0,0,0
+,,,"Female",,,1,1,1,0,1,0,0,1,1,1,0,0,1,1,0,1,0,0
+,,,"Male",,,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+,,,"Male",,,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,0,0,1,0,1,1,1,0,1,0,0,1,1,0,0
+,,,,,,1,1,1,1,1,1,0,1,1,1,0,0,1,0,1,1,0,0
+,,,"Female",,,1,0,0,0,1,1,0,0,1,0,0,1,0,1,0,0,0,0
+,,,"Male",,,1,1,0,1,1,1,0,0,1,1,0,0,0,0,0,1,0,1
+,,,"Female",,,0,1,1,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0
+,,,,,,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1
+,,,"Female",,,0,1,1,1,1,0,1,1,0,0,0,0,0,0,1,1,0,0
+,,,"Female",,,1,0,1,0,0,1,1,0,1,0,0,0,0,0,1,0,0,0
+,,,"Male",,,1,1,0,0,0,1,1,0,0,1,0,0,0,1,0,0,0,0
+,,,"Female",,,0,0,1,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,1,1,0
+,,,"Female",,,0,1,1,1,1,0,0,1,0,1,0,0,1,0,0,1,0,0
+,,,"Male",,,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,1,1,0,1,1,0,1,0,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,0,1
+,,,"Female",,,1,1,0,0,1,0,1,0,1,1,0,0,1,1,0,0,0,0
+,,,"Female",,,0,1,0,0,1,1,0,0,1,1,0,0,0,1,0,0,1,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,0,0
+,,,"Female",,,1,1,1,1,0,1,0,0,0,1,0,0,0,0,0,0,1,0
+,,,"Female",,,0,1,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1
+,,,"Female",,,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,0,1,0
+,,,"Female",,,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,0,1,0,0,1,1,1,0,1,1,0,0,1,1,0,1,0,0
+,,,"Female",,,1,1,1,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,0,0,1,1,0,1,1,1,0,0,1,0,1,0,0
+,,,,,,1,1,1,0,0,1,1,0,1,0,1,0,0,0,0,0,1,0
+,,,"Female",,,1,1,1,0,1,1,1,0,0,1,0,0,0,0,0,0,1,0
+,,,,,,1,1,1,1,0,0,0,1,1,0,0,1,0,1,0,0,0,0
+,,,"Male",,,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,1,0
+,,,,,,1,1,1,0,1,1,0,0,1,0,0,1,0,1,0,0,0,0
+,,,"Female",,,1,1,1,1,0,0,1,0,0,1,1,0,0,0,0,0,1,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0
+,,,,,,1,0,1,0,1,1,0,0,0,1,1,0,1,0,0,0,1,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0
+,,,,,,1,1,0,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0
+,,,,,,1,0,1,0,1,0,1,0,0,0,1,1,0,0,0,0,0,0
+,,,,,,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,0,0,1,1,0,1,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1
+,,,"Female",,,0,0,0,0,1,0,0,0,0,0,1,0,1,0,1,1,0,0
+,,,"Female",,,1,1,1,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1
+,,,"Male",,,1,1,1,1,1,1,0,0,1,1,0,1,0,1,0,0,0,0
+,,,"Female",,,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0
+,,,"Male",,,1,1,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1
+,,,"Female",,,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0
+,,,"Female",,,1,1,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,0,0,1,0,0,0,0,0,1,0,1,0,0,0
+,,,"Female",,,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,1,0,1,1,0,0,1,0,0,1,0,0,0
+,,,"Female",,,1,1,0,1,1,0,0,0,1,0,0,0,1,1,0,0,0,0
+,,,"Female",,,1,1,1,1,1,0,1,1,1,0,0,0,1,1,0,1,0,0
+,,,"Female",,,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,0,1
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,"Male",,,1,1,1,0,1,0,0,0,1,1,1,0,0,1,1,0,1,1
+,,,"Female",,,1,1,1,0,0,1,1,1,0,0,1,0,0,1,0,0,1,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+,,,"Female",,,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1
+,,,"Male",,,0,1,1,0,1,1,0,1,1,0,0,1,1,1,1,1,1,1
+,,,"Female",,,0,1,1,0,1,1,1,1,0,1,0,1,1,1,1,0,1,0
+,,,"Female",,,1,1,1,0,1,1,0,1,1,1,0,1,0,0,0,0,0,1
+,,,"Female",,,1,1,1,0,1,1,0,0,0,1,1,0,0,0,0,0,1,0
+,,,"Female",,,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+,,,"Male",,,1,1,1,1,1,0,0,1,1,1,0,0,1,1,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1
+,,,"Male",,,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,1,1,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,1,0,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1
+,,,"Female",,,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,0,1,1,0,0,1,0,0,0,0
+,,,"Female",,,1,1,0,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0
+,,,"Male",,,1,1,0,1,1,1,1,0,0,1,0,1,0,1,1,1,1,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1
+,,,"Female",,,1,1,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,0,0,0,1,0,0,1,0,0,0,0,0
+,,,"Male",,,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1
+,,,"Female",,,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0
+,,,"Female",,,0,1,0,0,0,1,0,0,1,0,0,0,0,0,1,1,0,0
+,,,"Female",,,0,1,0,1,0,1,1,0,0,1,0,0,1,0,0,0,0,0
+,,,"Male",,,0,1,1,0,1,1,1,0,1,1,1,0,1,1,0,1,0,1
+,,,"Female",,,0,1,0,1,1,0,0,0,1,0,1,0,0,0,0,0,0,1
+,,,"Female",,,0,1,1,1,1,1,1,0,1,1,1,0,0,1,0,1,0,1
+,,,"Male",,,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,1,0
+,,,"Female",,,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,0,0
+,,,"Female",,,1,1,1,0,1,1,0,0,1,1,0,0,0,0,1,1,0,1
+,,,"Female",,,1,0,0,1,1,1,0,0,1,1,0,0,0,1,0,0,1,1
+,,,"Male",,,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,0,0,0,1,1,1,0,1,0,0,0,1,0,0,0,0
+,,,"Female",,,1,1,0,1,1,1,1,0,0,1,0,0,0,1,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,0,1,0,1,1,1,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,1,1,1
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,0,1,1,1,0,0,0,0
+,,,"Female",,,1,1,1,1,0,1,0,0,1,1,0,0,1,0,0,1,0,0
+,,,"Male",,,0,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,0,0,1,0,1,0,1,1,0,1,0,1,1,1,0,0
+,,,"Female",,,1,1,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1
+,,,"Female",,,1,1,0,1,1,0,1,0,1,1,0,0,0,0,1,0,1,0
+,,,"Female",,,1,1,0,1,1,1,1,0,0,1,0,0,0,1,0,0,0,0
+,,,"Male",,,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,1,1
+,,,"Female",,,1,1,1,1,0,1,1,1,1,1,0,0,0,1,1,1,0,0
+,,,"Female",,,0,1,0,1,0,0,1,1,1,0,0,0,0,1,0,0,0,0
+,,,"Male",,,1,1,1,1,0,1,1,1,1,1,0,1,0,1,0,0,1,1
+,,,"Female",,,1,1,0,1,1,1,1,0,0,1,0,0,0,1,0,0,1,1
+,,,"Female",,,1,1,0,1,1,1,1,0,0,0,0,0,0,1,0,0,1,1
+,,,"Female",,,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1
+,,,"Female",,,1,1,0,1,0,0,1,1,1,1,0,0,0,1,0,0,0,1
+,,,"Female",,,1,1,0,1,1,0,0,1,1,1,0,0,0,1,0,0,1,1
+,,,"Female",,,1,1,0,1,1,0,1,0,1,0,0,0,0,1,0,0,1,1
+,,,"Male",,,1,0,0,1,0,1,1,1,1,1,0,0,0,1,0,0,1,1
+,,,"Female",,,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0
+,,,"Male",,,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,1,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0
+,,,"Male",,,0,0,1,1,0,0,0,0,1,1,0,1,1,0,0,0,0,0
+,,,"Male",,,0,1,1,0,1,0,1,0,0,0,1,1,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,0,0,1,1,1,1,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,0,1
+,,,"Female",,,1,1,1,0,1,1,1,1,1,1,0,1,0,0,0,0,1,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0
+,,,"Male",,,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,0,1,0,1,1,0,0,0,0,0,0,0,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,0,1,1,0,1,0,0,1,1,0,0,0,0,1,0
+,,,"Female",,,1,1,1,0,1,1,0,1,1,0,0,0,1,1,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1
+,,,"Female",,,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0
+,,,"Female",,,0,1,1,0,1,1,1,0,0,0,0,1,1,0,0,0,0,0
+,,,"Female",,,1,0,1,1,1,1,1,0,1,0,0,1,0,0,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,0,0,1
+,,,"Female",,,1,1,1,0,0,1,1,0,1,1,1,0,1,1,0,0,0,1
+,,,"Female",,,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0
+,,,"Female",,,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1,0,0,0
+,,,"Male",,,1,1,1,0,1,1,1,0,1,0,0,0,0,1,0,0,0,0
+,,,"Female",,,1,1,1,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,1,0,1,0,1,1,1,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,1,0,0
+,,,"Male",,,1,1,1,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0
+,,,"Female",,,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0
+,,,"Male",,,0,0,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,0,1
+,,,"Male",,,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,0,0,0,1,0,0,1,1,0,0
+,,,"Female",,,0,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0
+,,,"Male",,,0,1,1,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0
+,,,"Female",,,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,1,0,1
+,,,"Female",,,0,1,1,0,0,1,1,0,1,1,0,0,1,1,0,1,0,0
+,,,"Female",,,0,0,0,1,1,1,1,0,1,1,0,0,1,0,0,1,0,0
+,,,"Female",,,1,0,1,1,0,1,1,1,1,1,1,0,0,0,0,1,0,1
+,,,"Female",,,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1
+,,,"Female",,,0,1,0,0,0,0,0,0,1,0,1,0,1,0,0,1,0,0
+,,,"Female",,,1,0,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0
+,,,"Male",,,0,1,1,1,0,1,1,1,1,1,1,0,0,0,0,1,0,0
+,,,"Male",,,1,1,1,1,1,0,0,0,0,1,0,1,1,1,0,1,1,0
+,,,"Female",,,0,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,1,0
+,,,"Female",,,0,1,1,0,0,1,1,0,1,1,0,1,1,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,0,0,0,1,1,0,0,1,0,0,0,0
+,,,"Male",,,1,1,1,0,1,0,1,0,0,1,1,0,0,0,0,1,0,0
+,,,"Female",,,1,1,1,1,0,1,0,0,1,0,0,0,0,0,1,1,0,0
+,,,"Male",,,0,1,1,1,1,0,1,0,1,1,0,0,1,0,1,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,0,0,0
+,,,"Female",,,0,1,1,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0
+,,,"Female",,,0,1,0,0,1,0,0,0,1,1,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,0,1,1,1,0,0,1,1,0,0,1,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1
+,,,"Female",,,1,1,1,1,0,0,1,1,1,1,0,1,0,1,1,1,0,1
+,,,"Male",,,1,1,1,0,1,1,1,0,0,1,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,1,0,0,1,0,1,1,0,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+,,,"Male",,,1,1,0,0,1,0,1,0,1,0,1,0,1,1,0,0,0,1
+,,,"Female",,,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+,,,"Female",,,1,1,1,1,1,0,1,0,1,0,0,0,0,1,0,1,0,0
+,,,"Male",,,0,1,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,0,1
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0
+,,,"Female",,,1,1,0,0,1,1,1,0,0,1,0,0,1,0,0,0,1,0
+,,,"Female",,,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+,,,"Female",,,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,0,0,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0
+,,,"Male",,,1,1,1,1,0,0,1,1,0,1,0,0,0,0,0,0,0,1
+,,,"Male",,,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,1,0,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,0,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,1,1
+,,,"Female",,,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0
+,,,"Female",,,1,1,1,1,1,1,0,0,0,0,0,0,1,0,1,0,0,1
+,,,"Female",,,1,1,1,0,1,1,0,0,0,1,1,0,1,0,0,0,0,1
+,,,"Male",,,1,1,0,1,1,0,1,0,1,1,0,0,0,0,1,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1
+,,,"Female",,,1,1,0,1,0,0,1,0,0,1,1,0,0,0,0,0,0,0
+,,,"Male",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,0,1,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,1
+,,,"Female",,,1,1,1,0,0,0,0,1,1,1,0,0,0,1,0,0,0,0
+,,,"Female",,,1,1,0,1,1,1,0,0,1,1,1,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,1,0,1,0,1,0,0,0,1,1,0,0,0
+,,,"Male",,,1,1,1,0,1,0,1,0,0,0,1,0,1,1,1,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,0,0
+,,,"Female",,,1,1,1,0,1,1,0,0,1,1,0,1,0,1,0,0,1,0
+,,,"Male",,,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,0,1,0,0,1,1,1,1
+,,,"Male",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,0,1,0,0,0,1,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,0,0,1,1,0,0,0,1,0,0,0,0
+,,,"Male",,,1,1,0,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,0,1,1,0,1,1,1,0,1,1,0,0,1,1,0,1,0,0
+,,,"Female",,,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,0,0,1,1,1,1,0,1,1,1,0,0,1,0,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1
+,,,"Female",,,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,1,1
+,,,"Female",,,0,1,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,1
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+,,,"Male",,,1,1,0,0,1,1,1,0,1,1,0,0,1,1,1,1,0,0
+,,,"Male",,,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,0,0,0
+,,,"Female",,,0,1,1,1,1,1,0,0,1,1,0,1,0,0,0,0,0,0
+,,,"Female",,,0,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,0,1,0,0,1,1,0,0,0,1,0,0,0,1
+,,,"Female",,,1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0
+,,,"Female",,,0,1,1,0,1,1,1,0,1,0,1,1,1,1,0,0,1,0
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1
+,,,"Male",,,0,1,1,1,0,1,0,0,0,1,0,1,0,0,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1
+,,,"Female",,,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,0,0,1,1,1,1,1,0,1,0,0,1
+,,,"Female",,,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,0
+,,,"Male",,,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+,,,"Male",,,0,1,1,0,1,0,1,1,1,1,1,0,0,0,0,0,0,0
+,,,"Female",,,0,1,1,0,1,1,1,1,1,1,0,0,0,1,1,1,0,0
+,,,"Male",,,1,1,0,1,1,1,1,1,1,0,0,0,0,0,1,1,0,0
+,,,"Male",,,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0
+,,,"Female",,,0,1,1,0,1,0,1,0,1,0,1,1,1,1,0,1,1,0
+,,,"Male",,,1,1,1,1,0,0,0,1,0,1,1,1,0,1,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0
+,,,"Female",,,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1
+,,,"Male",,,1,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,0,0,0,1,0,0,0,0
+,,,"Male",,,1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,1,1,1,1,1,0,0,0,1,0,1,0,1
+,,,"Male",,,1,1,1,1,0,1,0,0,1,1,1,1,0,0,1,0,0,0
+,,,"Female",,,1,1,1,1,0,0,1,0,1,1,1,0,1,0,1,1,0,0
+,,,"Male",,,1,1,1,0,0,0,0,1,0,1,0,0,0,0,1,1,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,1,1,0,1,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,1,0
+,,,"Male",,,1,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,0,1
+,,,"Male",,,1,1,1,0,1,1,0,0,1,1,0,0,1,1,0,1,0,1
+,,,"Male",,,1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,1,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1
+,,,"Male",,,0,1,1,0,1,0,1,0,0,0,0,1,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,1,1,0
+,,,"Female",,,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0
+,,,"Male",,,1,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0
+,,,"Female",,,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0
+,,,"Female",,,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1
+,,,"Male",,,0,1,1,1,0,0,1,0,1,1,0,0,0,1,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,1,0,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1
+,,,"Female",,,1,1,1,1,0,1,1,1,1,1,0,1,0,0,0,1,0,1
+,,,"Female",,,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,1,1,0,0,1,0,0,0,1,0,1,0,0
+,,,"Female",,,1,0,1,1,1,1,0,1,1,1,0,1,0,1,1,0,1,0
+,,,"Male",,,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0
+,,,"Female",,,1,1,1,0,1,0,0,0,1,1,0,1,1,1,0,0,0,0
+,,,"Male",,,0,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,1
+,,,"Female",,,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0
+,,,"Female",,,0,1,1,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,0,1,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,0,1,1,1,0,0,1,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1
+,,,"Female",,,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0
+,,,"Male",,,1,1,1,1,0,1,0,0,1,1,1,1,0,0,1,0,0,0
+,,,"Female",,,0,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+,,,"Female",,,1,1,1,1,0,1,1,1,1,1,0,0,1,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,0,1,0,1,0,0,0,0,0,1,0,0,1
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0
+,,,"Female",,,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1
+,,,"Male",,,1,1,1,0,1,1,1,0,1,1,0,0,1,0,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,0,0,0
+,,,"Female",,,1,1,1,0,0,0,0,1,1,1,0,0,0,1,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,0,1,1,1,0,1,0,1,1,0,0,1
+,,,"Female",,,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0
+,,,"Female",,,1,1,1,0,1,0,0,0,0,0,0,0,0,1,0,0,1,1
+,,,"Male",,,1,1,1,0,0,1,1,0,0,0,1,0,0,0,0,0,1,0
+,,,"Male",,,1,1,1,1,0,1,1,1,1,1,0,0,1,1,1,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,1
+,,,"Male",,,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,0,1
+,,,"Female",,,1,1,1,1,0,1,0,0,1,1,0,0,0,0,0,1,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,0,0,0
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,0
+,,,"Male",,,0,1,1,1,0,1,1,1,0,1,0,0,0,0,1,0,0,1
+,,,"Male",,,1,1,1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0
+,,,"Female",,,0,1,1,0,1,1,1,0,0,0,0,1,1,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,0,1,0,1,1,0,0,1,0,0,0,0,0
+,,,"Male",,,0,0,1,1,0,0,0,0,1,1,0,0,0,1,0,0,0,0
+,,,"Female",,,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,0,0
+,,,"Female",,,0,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,0,1,1,0,0,1,0,1
+,,,"Female",,,0,1,1,0,1,1,1,1,1,1,0,1,1,0,0,1,0,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+,,,"Female",,,0,0,1,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,0,1,1,0,1,1,1,0,1,1,0,0,0,0,1,1,0,0
+,,,"Female",,,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+,,,"Male",,,1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,1
+,,,"Female",,,0,1,1,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,0,1,1,1,1,1,1,1,0,0,0,1,0,0,1,1
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0
+,,,"Female",,,0,1,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0
+,,,"Female",,,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,0,1,1,0,0,1,0,0,0,0,0
+,,,"Female",,,0,1,1,0,0,1,0,1,0,0,0,0,0,1,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,1,1,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0,0
+,,,"Female",,,0,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,1
+,,,"Male",,,1,1,1,1,0,1,1,0,1,1,0,0,1,1,1,1,0,0
+,,,"Male",,,1,1,1,1,1,1,0,1,1,1,1,0,1,0,0,0,0,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1
+,,,"Female",,,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,1,1
+,,,"Male",,,0,1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1
+,,,"Male",,,0,1,1,1,1,1,1,0,0,0,0,0,1,0,1,1,1,1
+,,,"Male",,,1,1,0,1,0,1,1,0,1,1,1,0,0,1,0,0,0,0
+,,,"Female",,,1,1,1,0,1,1,1,1,0,0,1,0,0,0,1,0,0,0
+,,,"Female",,,0,1,1,1,1,1,1,1,0,0,1,1,0,0,1,1,1,1
+,,,"Female",,,1,1,1,1,1,1,0,1,0,1,0,0,0,0,0,1,0,1
+,,,"Female",,,1,1,0,1,0,0,0,1,1,1,0,1,0,1,1,0,0,1
+,,,"Female",,,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,1
+,,,"Male",,,1,1,1,0,1,1,0,0,1,1,1,0,1,0,0,0,0,0
+,,,"Female",,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+,,,"Male",,,0,1,1,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,"Female",,,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,1
+,,,"Male",,,1,1,0,1,0,1,1,1,1,1,0,0,0,1,1,1,0,1
+,,,"Male",,,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,0,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,"Male",,,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,,,"Male",,,1,1,1,1,1,0,1,0,1,1,0,0,0,1,1,1,0,0
+,,,"Female",,,1,1,1,1,0,0,1,1,0,1,0,1,0,1,1,0,0,1
+,,,"Female",,,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0
+,,,"Male",,,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0
+,,,"Male",,,1,0,1,1,0,0,0,0,0,1,1,0,0,0,0,1,0,0
+,,,"Male",,,0,0,1,0,0,1,0,0,0,1,1,0,1,0,1,0,0,0
+,,,"Male",,,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0
+,,,"Female",,,0,1,1,0,1,1,1,1,0,0,1,1,0,1,1,0,0,0
+,,,"Male",,,1,1,1,0,1,1,1,0,0,1,0,0,1,1,0,1,0,1
+,,,"Female",,,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0
+,,,"Male",,,1,1,1,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0
+,,,"Male",,,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+,,,"Female",,,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0
+,,,"Male",,,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0
+,,,"Female",,,0,1,1,0,1,1,1,1,0,0,1,1,0,1,1,0,0,0
+,,,"Female",,,1,1,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0
+,,,"Male",,,1,1,0,0,1,1,1,0,0,1,0,0,1,1,0,1,0,1
+,,,"Female",,,0,1,1,0,1,1,1,0,0,0,0,1,1,0,0,0,0,0
+,,,"Female",,,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",,,1,1,1,1,0,1,1,1,1,1,1,0,1,0,1,0,1,0
+"Undergraduate Education",,,"Male",,,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,0
+"Primary",,,"Female",,,1,1,0,0,1,1,1,0,1,1,0,0,1,1,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,1,0,1,1,0,1,1,1,0,0,0,1,0,0,1
+"Secondary",,,"Female",,,1,1,1,1,1,0,1,0,1,1,0,0,0,1,0,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0
+"Secondary",,,"Female",,,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0
+"Undergraduate Education",,,"Male",,,1,1,1,1,1,1,1,1,0,1,0,0,1,1,1,1,0,0
+"Secondary",,,"Male",,,0,1,1,0,1,0,1,1,1,1,0,0,1,1,0,1,0,0
+"Secondary",,,"Male",,,0,1,1,1,1,1,1,0,1,1,0,1,1,0,0,0,0,0
+"Secondary",,,"Male",,,1,1,1,0,1,1,1,0,1,1,0,0,0,1,0,1,1,0
+"Secondary",,,"Female",,,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1
+"Undergraduate Education",,,"Male",,,1,1,1,1,1,1,0,1,1,1,0,0,1,1,1,1,1,1
+"Undergraduate Education",,,"Female",,,0,1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,0,0
+"Undergraduate Education",,,"Female",,,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,1
+"Undergraduate Education",,,"Female",,,0,1,1,0,1,1,0,0,1,0,0,0,1,1,1,0,0,0
+"Undergraduate Education",,,"Female",,,1,1,0,1,0,1,1,1,1,0,1,1,1,1,1,0,0,0
+"Secondary",,,"Female",,,1,1,0,0,0,1,1,1,1,0,0,1,0,1,1,0,0,0
+"Secondary",,,"Male",,,1,1,0,0,0,1,1,1,1,0,0,1,0,1,1,0,0,0
+"Secondary",,,"Female",,,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+"Primary",,,"Male",,,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Secondary",,,"Male",,,0,1,1,1,1,1,1,1,1,1,0,0,1,0,0,1,0,0
+"Secondary",,,"Male",,,0,1,1,0,1,1,0,1,1,1,0,0,1,1,0,1,0,0

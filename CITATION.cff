@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: "EGAnetLab: A jamovi Module for Exploratory Graph Analysis"
+message: >
+  If you use EGAnetLab in your research, please cite the software using the
+  metadata below, and cite EGAnet and the methods it implements as listed in
+  docs/Bibliography.md.
+type: software
+authors:
+  - family-names: "Chacón Chacón"
+    given-names: "Arquímedes De León"
+    affiliation: "Universidad Católica Andrés Bello (UCAB), Caracas, Venezuela"
+    orcid: "https://orcid.org/0000-0002-7014-7513"
+repository-code: "https://github.com/ArchieJamDev/EGAnetLab"
+license: "GPL-3.0-only"
+version: "0.1.0"
+date-released: "2026-10-31"
+abstract: >
+  EGAnetLab is an open-source jamovi module that brings the network
+  psychometrics methods of the EGAnet R package to jamovi, pairing every
+  result with evidence-based methodological guidance, interpretation and
+  educational support.
+keywords:
+  - jamovi
+  - Exploratory Graph Analysis
+  - Network Psychometrics
+  - Dimensionality
+  - EGAnet
+  - Open Science
+language: en
