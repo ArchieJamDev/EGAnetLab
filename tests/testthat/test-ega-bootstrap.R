@@ -100,3 +100,13 @@ test_that("the bootstrap renders in Spanish", {
     expect_true("Dimensiones en la muestra original" %in% res$bootSummary$asDF$element)
     expect_match(res$choicesGuide$content, "Tipo de bootstrap: Remuestreo (casos)", fixed = TRUE)
 })
+
+test_that("the bootstrap warns when the most frequent solution is weak", {
+
+    data <- edgeStructureData()
+    res <- runBoot(data, stabilityCut = 0.95)
+    freq <- res$bootFrequency$asDF
+    weak <- max(freq$proportion) < 0.95
+
+    expect_equal(grepl("not firmly established", res$bootInterpretation$content, fixed = TRUE), weak)
+})

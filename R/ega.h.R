@@ -735,6 +735,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "iter",
                     "seed",
                     "stabilityCut",
+                    "reportLang",
                     "plotPalette")))
             self$add(jmvcore::Image$new(
                 options=options,
@@ -754,6 +755,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "bootType",
                     "iter",
                     "seed",
+                    "reportLang",
                     "plotPalette")))
             self$add(jmvcore::Html$new(
                 options=options,

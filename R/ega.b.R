@@ -456,6 +456,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         as.integer(cache$empirical_ndim),
                         num(cache$median), num(cache$q_low), num(cache$q_high)))
                 }
+                if (mode_row$proportion < cut)
+                    paragraphs <- c(paragraphs, sprintf(txt("bootega", "interp_mode_weak"),
+                        pct(mode_row$proportion), pct(cut)))
             }
 
             low_dims <- ds$dimension[!is.na(ds$consistency) & ds$consistency < cut & ds$dimension != "NA"]

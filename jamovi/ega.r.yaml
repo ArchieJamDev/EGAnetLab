@@ -326,6 +326,7 @@ items:
       - iter
       - seed
       - stabilityCut
+      - reportLang
       - plotPalette
 
   - name: bootFrequencyPlot
@@ -345,6 +346,7 @@ items:
       - bootType
       - iter
       - seed
+      - reportLang
       - plotPalette
 
   - name: notes
