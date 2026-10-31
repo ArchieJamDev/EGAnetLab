@@ -88,4 +88,13 @@
         `volume`="6", 
         `issue`="1", 
         `pages`="1-55", 
-        `url`="https://doi.org/10.1080/10705519909540118"))
+        `url`="https://doi.org/10.1080/10705519909540118"), 
+    `schermelleh_engel_2003`=list(
+        `type`="article", 
+        `author`="Schermelleh-Engel, K., Moosbrugger, H., & M\u00FCller, H.", 
+        `year`=2003, 
+        `title`="Evaluating the fit of structural equation models: Tests of significance and descriptive goodness-of-fit measures", 
+        `publisher`="Methods of Psychological Research Online", 
+        `volume`="8", 
+        `issue`="2", 
+        `pages`="23-74"))
