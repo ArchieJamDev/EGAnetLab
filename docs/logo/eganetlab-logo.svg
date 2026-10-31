@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 230" width="780" height="230" role="img" aria-label="EGAnetLab">
+  <title>EGAnetLab</title>
+  <line x1="93.1" y1="52.9" x2="140.6" y2="37.7" stroke="#0072B2" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="93.1" y1="52.9" x2="117.8" y2="90.9" stroke="#0072B2" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="140.6" y1="37.7" x2="117.8" y2="90.9" stroke="#0072B2" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="140.6" y1="37.7" x2="169.1" y2="77.6" stroke="#0072B2" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="117.8" y1="90.9" x2="169.1" y2="77.6" stroke="#0072B2" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="190.0" y1="127.0" x2="161.5" y2="168.8" stroke="#E69F00" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="190.0" y1="127.0" x2="205.2" y2="180.2" stroke="#E69F00" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="190.0" y1="127.0" x2="152.0" y2="125.1" stroke="#E69F00" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="161.5" y1="168.8" x2="205.2" y2="180.2" stroke="#E69F00" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="161.5" y1="168.8" x2="152.0" y2="125.1" stroke="#E69F00" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="55.1" y1="128.9" x2="91.2" y2="166.9" stroke="#009E73" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="55.1" y1="128.9" x2="43.7" y2="184.0" stroke="#009E73" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="55.1" y1="128.9" x2="93.1" y2="127.0" stroke="#009E73" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="91.2" y1="166.9" x2="43.7" y2="184.0" stroke="#009E73" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="91.2" y1="166.9" x2="93.1" y2="127.0" stroke="#009E73" stroke-width="4.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="117.8" y1="90.9" x2="93.1" y2="127.0" stroke="#8A94A6" stroke-width="2.8" stroke-dasharray="5.7 4.8" stroke-linecap="round"/>
+  <line x1="169.1" y1="77.6" x2="152.0" y2="125.1" stroke="#8A94A6" stroke-width="2.8" stroke-dasharray="5.7 4.8" stroke-linecap="round"/>
+  <line x1="91.2" y1="166.9" x2="161.5" y2="168.8" stroke="#8A94A6" stroke-width="2.8" stroke-dasharray="5.7 4.8" stroke-linecap="round"/>
+  <circle cx="93.1" cy="52.9" r="12.3" fill="#0072B2" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="140.6" cy="37.7" r="10.4" fill="#0072B2" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="117.8" cy="90.9" r="13.3" fill="#0072B2" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="169.1" cy="77.6" r="11.4" fill="#0072B2" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="190.0" cy="127.0" r="12.3" fill="#E69F00" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="161.5" cy="168.8" r="13.3" fill="#E69F00" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="205.2" cy="180.2" r="10.4" fill="#E69F00" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="152.0" cy="125.1" r="10.4" fill="#E69F00" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="55.1" cy="128.9" r="11.4" fill="#009E73" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="91.2" cy="166.9" r="13.3" fill="#009E73" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="43.7" cy="184.0" r="10.4" fill="#009E73" stroke="#FFFFFF" stroke-width="3.3"/>
+  <circle cx="93.1" cy="127.0" r="10.4" fill="#009E73" stroke="#FFFFFF" stroke-width="3.3"/>
+  <text x="250" y="128" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="94" font-weight="700" fill="#1F2A44" letter-spacing="-1">EGA<tspan fill="#0072B2">net</tspan>Lab</text>
+  <text x="254" y="172" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="25" fill="#5B6B85" letter-spacing="0.5">Exploratory Graph Analysis for jamovi</text>
+</svg>
