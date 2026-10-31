@@ -7,26 +7,22 @@ msgstr ""
 "Language: c\n"
 
 #: ega/results/choicesGuide.title
-#: bootega/results/choicesGuide.title
 msgid "About your choices"
 msgstr ""
 
 #: ega/results/interpretation.title
-#: bootega/results/interpretation.title
 msgid "Applied interpretation"
 msgstr ""
 
-#: bootega/results/itemStability.columns.title
+#: ega/results/bootItemStability.columns.title
 msgid "Assessment"
 msgstr ""
 
 #: ega/options/corr/auto.title
-#: bootega/options/corr/auto.title
 msgid "Automatic (Pearson / polychoric)"
 msgstr ""
 
 #: ega/options/model/BGGM.title
-#: bootega/options/model/BGGM.title
 msgid "BGGM"
 msgstr ""
 
@@ -39,38 +35,20 @@ msgstr ""
 msgid "Blue"
 msgstr ""
 
-#: bootega/ui[2].label
-msgid "Bootstrap"
-msgstr ""
-
-#: package/analyses/bootega.title
-#: bootega/options.title
-msgid "Bootstrap EGA"
-msgstr ""
-
-#: package/analyses/bootega.menuTitle
-msgid "Bootstrap EGA (stability)"
-msgstr ""
-
-#: bootega/options/iter.title
+#: ega/options/iter.title
 msgid "Bootstrap samples"
 msgstr ""
 
-#: bootega/results/status.title
+#: ega/results/bootStatus.title
 msgid "Bootstrap status"
 msgstr ""
 
-#: bootega/options/bootType.title
+#: ega/options/bootType.title
 msgid "Bootstrap type"
 msgstr ""
 
 #: ega/options/legendPosition/bottom.title
 msgid "Bottom"
-msgstr ""
-
-#: package/analyses/bootega.description
-#: bootega/options.description.main
-msgid "Checks whether the dimensions found by Exploratory Graph Analysis replicate across bootstrap samples, with the distribution of the number of dimensions, the structural consistency of each dimension and the stability of each item's membership."
 msgstr ""
 
 #: ega/options/layout/circle.title
@@ -79,22 +57,18 @@ msgid "Circle"
 msgstr ""
 
 #: ega/options/plotPalette/colorblind.title
-#: bootega/options/plotPalette/colorblind.title
 msgid "Colorblind-safe (Okabe-Ito)"
 msgstr ""
 
 #: ega/options/algorithm.title
-#: bootega/options/algorithm.title
 msgid "Community Detection"
 msgstr ""
 
 #: ega/options/corr.title
-#: bootega/options/corr.title
 msgid "Correlation"
 msgstr ""
 
 #: ega/options/corr/cosine.title
-#: bootega/options/corr/cosine.title
 msgid "Cosine"
 msgstr ""
 
@@ -123,21 +97,20 @@ msgid "Diamond"
 msgstr ""
 
 #: ega/results/membership.columns.title
-#: bootega/results/dimStability.columns.title
-#: bootega/results/itemStability.columns.title
+#: ega/results/bootDimStability.columns.title
+#: ega/results/bootItemStability.columns.title
 msgid "Dimension"
 msgstr ""
 
 #: ega/options/plotPalette.title
-#: bootega/options/plotPalette.title
 msgid "Dimension Colors"
 msgstr ""
 
-#: bootega/options/showFrequencyPlot.title
+#: ega/options/showFrequencyPlot.title
 msgid "Dimension frequency plot"
 msgstr ""
 
-#: bootega/results/dimStability.title
+#: ega/results/bootDimStability.title
 msgid "Dimension stability"
 msgstr ""
 
@@ -147,13 +120,11 @@ msgid "Dimensional structure"
 msgstr ""
 
 #: package/analyses/ega.menuSubgroup
-#: package/analyses/bootega.menuSubgroup
 #: ega/options.menuSubgroup
-#: bootega/options.menuSubgroup
 msgid "Dimensionality"
 msgstr ""
 
-#: bootega/results/frequency.columns.title
+#: ega/results/bootFrequency.columns.title
 msgid "Dimensions"
 msgstr ""
 
@@ -163,9 +134,7 @@ msgstr ""
 
 #: package/title
 #: package/analyses/ega.menuGroup
-#: package/analyses/bootega.menuGroup
 #: ega/options.menuGroup
-#: bootega/options.menuGroup
 msgid "EGAnet Lab"
 msgstr ""
 
@@ -194,17 +163,15 @@ msgid "Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic
 msgstr ""
 
 #: ega/results/summary.columns.title
-#: bootega/results/summary.columns.title
+#: ega/results/bootSummary.columns.title
 msgid "Element"
 msgstr ""
 
 #: ega/options/reportLang/en.title
-#: bootega/options/reportLang/en.title
 msgid "English"
 msgstr ""
 
 #: ega/options/reportLang/es.title
-#: bootega/options/reportLang/es.title
 msgid "Español"
 msgstr ""
 
@@ -214,21 +181,18 @@ msgstr ""
 
 #: package/analyses/ega.description
 #: ega/options.description.main
-msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit and plain-language interpretation."
+msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, and plain-language interpretation."
 msgstr ""
 
 #: ega/ui[2].label
-#: bootega/ui[3].label
 msgid "Estimation"
 msgstr ""
 
 #: ega/options/uniMethod/expand.title
-#: bootega/options/uniMethod/expand.title
 msgid "Expand"
 msgstr ""
 
 #: ega/options/showChoicesGuide.title
-#: bootega/options/showChoicesGuide.title
 msgid "Explain my choices"
 msgstr ""
 
@@ -238,13 +202,12 @@ msgstr ""
 msgid "Exploratory Graph Analysis"
 msgstr ""
 
-#: bootega/results/frequency.title
-#: bootega/results/frequencyPlot.title
+#: ega/results/bootFrequency.title
+#: ega/results/bootFrequencyPlot.title
 msgid "Frequency of the number of dimensions"
 msgstr ""
 
 #: ega/options/model/glasso.title
-#: bootega/options/model/glasso.title
 msgid "GLASSO (EBIC)"
 msgstr ""
 
@@ -258,13 +221,12 @@ msgid "Hide edges weaker than"
 msgstr ""
 
 #: ega/results/intro.title
-#: bootega/results/intro.title
 msgid "Introduction"
 msgstr ""
 
 #: ega/results/membership.columns.title
 #: ega/results/loadings.columns.title
-#: bootega/results/itemStability.columns.title
+#: ega/results/bootItemStability.columns.title
 msgid "Item"
 msgstr ""
 
@@ -272,24 +234,22 @@ msgstr ""
 msgid "Item membership"
 msgstr ""
 
-#: bootega/results/itemStability.title
-#: bootega/results/itemPlot.title
+#: ega/results/bootItemStability.title
+#: ega/results/bootItemPlot.title
 msgid "Item stability"
 msgstr ""
 
-#: bootega/options/stabilityCut.title
+#: ega/options/stabilityCut.title
 msgid "Item stability cutoff"
 msgstr ""
 
-#: bootega/options/showItemPlot.title
+#: ega/options/showItemPlot.title
 msgid "Item stability plot"
 msgstr ""
 
 #: ega/options/vars.title
+#: ega/results/bootDimStability.columns.title
 #: ega/ui[0][0].label
-#: bootega/options/vars.title
-#: bootega/results/dimStability.columns.title
-#: bootega/ui[0][0].label
 msgid "Items"
 msgstr ""
 
@@ -310,7 +270,6 @@ msgid "Layout"
 msgstr ""
 
 #: ega/options/uniMethod/LE.title
-#: bootega/options/uniMethod/LE.title
 msgid "Leading eigenvalue"
 msgstr ""
 
@@ -327,28 +286,23 @@ msgid "Legend title"
 msgstr ""
 
 #: ega/options/algorithm/leiden.title
-#: bootega/options/algorithm/leiden.title
 msgid "Leiden"
 msgstr ""
 
 #: ega/options/naData/listwise.title
-#: bootega/options/naData/listwise.title
 msgid "Listwise"
 msgstr ""
 
 #: ega/options/algorithm/louvain.title
 #: ega/options/uniMethod/louvain.title
-#: bootega/options/algorithm/louvain.title
-#: bootega/options/uniMethod/louvain.title
 msgid "Louvain"
 msgstr ""
 
-#: bootega/results/dimStability.columns.title
+#: ega/results/bootDimStability.columns.title
 msgid "Mean item stability"
 msgstr ""
 
 #: ega/options/naData.title
-#: bootega/options/naData.title
 msgid "Missing Values"
 msgstr ""
 
@@ -369,7 +323,6 @@ msgid "Negative edges"
 msgstr ""
 
 #: ega/options/model.title
-#: bootega/options/model.title
 msgid "Network Model"
 msgstr ""
 
@@ -399,12 +352,11 @@ msgid "Node size"
 msgstr ""
 
 #: ega/results/notes.title
-#: bootega/results/notes.title
 msgid "Notes"
 msgstr ""
 
-#: bootega/results/summaryGuide.title
-#: bootega/results/summary.title
+#: ega/results/bootSummaryGuide.title
+#: ega/results/bootSummary.title
 msgid "Number of dimensions across samples"
 msgstr ""
 
@@ -412,38 +364,35 @@ msgstr ""
 msgid "Orange"
 msgstr ""
 
-#: ega/ui[3].label
-#: bootega/ui[4].label
+#: ega/ui[4].label
 msgid "Output"
 msgstr ""
 
 #: ega/options/naData/pairwise.title
-#: bootega/options/naData/pairwise.title
 msgid "Pairwise"
 msgstr ""
 
-#: bootega/options/bootType/parametric.title
+#: ega/options/bootType/parametric.title
 msgid "Parametric"
 msgstr ""
 
 #: ega/options/corr/pearson.title
-#: bootega/options/corr/pearson.title
 msgid "Pearson"
 msgstr ""
 
-#: ega/ui[6].label
+#: ega/ui[7].label
 msgid "Plot Edges"
 msgstr ""
 
-#: ega/ui[4].label
+#: ega/ui[5].label
 msgid "Plot Layout"
 msgstr ""
 
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Plot Legend"
 msgstr ""
 
-#: ega/ui[5].label
+#: ega/ui[6].label
 msgid "Plot Nodes and Labels"
 msgstr ""
 
@@ -455,7 +404,7 @@ msgstr ""
 msgid "Positive edges"
 msgstr ""
 
-#: bootega/results/frequency.columns.title
+#: ega/results/bootFrequency.columns.title
 msgid "Proportion"
 msgstr ""
 
@@ -465,12 +414,10 @@ msgstr ""
 
 #: ega/options/reportLang.title
 #: ega/ui[1].label
-#: bootega/options/reportLang.title
-#: bootega/ui[1].label
 msgid "Report Language"
 msgstr ""
 
-#: bootega/options/bootType/resampling.title
+#: ega/options/bootType/resampling.title
 msgid "Resampling (cases)"
 msgstr ""
 
@@ -478,15 +425,15 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: bootega/options/runBoot.title
+#: ega/options/runBoot.title
 msgid "Run bootstrap"
 msgstr ""
 
-#: bootega/results/frequency.columns.title
+#: ega/results/bootFrequency.columns.title
 msgid "Samples"
 msgstr ""
 
-#: bootega/options/seed.title
+#: ega/options/seed.title
 msgid "Seed"
 msgstr ""
 
@@ -503,7 +450,6 @@ msgid "Solid"
 msgstr ""
 
 #: ega/options/corr/spearman.title
-#: bootega/options/corr/spearman.title
 msgid "Spearman"
 msgstr ""
 
@@ -515,16 +461,23 @@ msgstr ""
 msgid "Square"
 msgstr ""
 
-#: bootega/results/itemStability.columns.title
+#: ega/results/bootItemStability.columns.title
 msgid "Stability"
 msgstr ""
 
-#: bootega/results/dimStability.columns.title
+#: ega/ui[3].label
+msgid "Stability (bootstrap)"
+msgstr ""
+
+#: ega/results/bootInterpretation.title
+msgid "Stability interpretation"
+msgstr ""
+
+#: ega/results/bootDimStability.columns.title
 msgid "Structural consistency"
 msgstr ""
 
 #: ega/options/model/TMFG.title
-#: bootega/options/model/TMFG.title
 msgid "TMFG"
 msgstr ""
 
@@ -537,29 +490,22 @@ msgid "Triangle"
 msgstr ""
 
 #: ega/options/uniMethod.title
-#: bootega/options/uniMethod.title
 msgid "Unidimensionality Check"
 msgstr ""
 
 #: ega/results/summary.columns.title
-#: bootega/results/summary.columns.title
+#: ega/results/bootSummary.columns.title
 msgid "Value"
 msgstr ""
 
 #: ega/options/plotPalette/viridis.title
-#: bootega/options/plotPalette/viridis.title
 msgid "Viridis"
 msgstr ""
 
 #: ega/options/algorithm/walktrap.title
-#: bootega/options/algorithm/walktrap.title
 msgid "Walktrap"
 msgstr ""
 
 #: ega/options/labelColor/white.title
 msgid "White"
-msgstr ""
-
-#: bootega/options/plotPalette/jamovi.title
-msgid "jamovi theme"
 msgstr ""

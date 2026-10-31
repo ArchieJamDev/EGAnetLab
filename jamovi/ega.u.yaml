@@ -59,6 +59,33 @@ children:
       - type: ComboBox
         name: uniMethod
   - type: CollapseBox
+    label: Stability (bootstrap)
+    collapsed: true
+    children:
+      - type: CheckBox
+        name: runBoot
+      - type: ComboBox
+        name: bootType
+        enable: (runBoot)
+      - type: TextBox
+        name: iter
+        format: number
+        enable: (runBoot)
+      - type: TextBox
+        name: seed
+        format: number
+        enable: (runBoot)
+      - type: TextBox
+        name: stabilityCut
+        format: number
+        enable: (runBoot)
+      - type: CheckBox
+        name: showItemPlot
+        enable: (runBoot)
+      - type: CheckBox
+        name: showFrequencyPlot
+        enable: (runBoot)
+  - type: CollapseBox
     label: Output
     collapsed: true
     children:

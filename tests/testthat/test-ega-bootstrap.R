@@ -23,82 +23,80 @@
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
-# bootega tests. Few bootstrap samples keep the suite fast; stability values
-# are checked for range and reproducibility, not for exact numbers.
-# ES: Pruebas de bootega. Pocas muestras bootstrap mantienen la batería
-# rápida; los valores de estabilidad se verifican por rango y
-# reproducibilidad, no por números exactos.
+# Stability (bootstrap) section of the ega analysis. Few bootstrap samples
+# keep the suite fast; stability values are checked for range and
+# reproducibility, not for exact numbers.
+# ES: Sección Estabilidad (bootstrap) del análisis ega. Pocas muestras
+# bootstrap mantienen la batería rápida; los valores de estabilidad se
+# verifican por rango y reproducibilidad, no por números exactos.
 # -----------------------------------------------------------------------------
 
 runBoot <- function(data, ...) {
-    EGAnetLab::bootega(data = data, vars = names(data), runBoot = TRUE,
-                       iter = 20, seed = 11, ...)
+    EGAnetLab::ega(data = data, vars = names(data), runBoot = TRUE,
+                   iter = 20, seed = 11, ...)
 }
 
-test_that("bootega waits for the Run bootstrap checkbox", {
+test_that("ega runs no bootstrap until Run bootstrap is ticked", {
 
     data <- edgeStructureData()
-    res <- EGAnetLab::bootega(data = data, vars = names(data))
+    res <- EGAnetLab::ega(data = data, vars = names(data))
 
-    expect_match(res$status$content, "Run bootstrap", fixed = TRUE)
-    expect_equal(res$summary$rowCount, 0)
-    expect_match(res$choicesGuide$content, "Bootstrap type: Parametric", fixed = TRUE)
+    expect_false(res$bootStatus$visible)
+    expect_equal(res$bootSummary$rowCount, 0)
+    expect_match(res$interpretation$content, "Run bootstrap", fixed = TRUE)
+    expect_false(grepl("Bootstrap type", res$choicesGuide$content, fixed = TRUE))
 })
 
-test_that("bootega reports dimension and item stability", {
+test_that("the bootstrap resamples the same EGA shown above", {
 
     data <- edgeStructureData()
     res <- runBoot(data)
 
-    summary <- res$summary$asDF
-    original <- summary$value[summary$element == "Dimensions in the original sample"]
+    ega_dims <- res$summary$asDF
+    ega_dims <- ega_dims$value[ega_dims$element == "Number of dimensions"]
+    boot <- res$bootSummary$asDF
+    original <- boot$value[boot$element == "Dimensions in the original sample"]
+    expect_equal(original, ega_dims)
     expect_equal(original, "3")
 
-    freq <- res$frequency$asDF
+    freq <- res$bootFrequency$asDF
     expect_equal(sum(freq$count), 20)
     expect_equal(sum(freq$proportion), 1, tolerance = 1e-8)
 
-    items <- res$itemStability$asDF
+    items <- res$bootItemStability$asDF
     expect_equal(nrow(items), 12)
     expect_true(all(items$stability >= 0 & items$stability <= 1))
 
-    dims <- res$dimStability$asDF
+    dims <- res$bootDimStability$asDF
     expect_true(nrow(dims) >= 1)
     expect_true(all(dims$consistency >= 0 & dims$consistency <= 1))
 
-    expect_match(res$status$content, "seed 11", fixed = TRUE)
+    expect_match(res$bootStatus$content, "seed 11", fixed = TRUE)
+    expect_match(res$choicesGuide$content, "Bootstrap type: Parametric", fixed = TRUE)
+    expect_false(grepl("tick Run bootstrap", res$interpretation$content, fixed = TRUE))
 })
 
-test_that("bootega is reproducible with the same seed", {
+test_that("the bootstrap is reproducible with the same seed", {
 
     data <- edgeStructureData()
-    first <- runBoot(data)$itemStability$asDF
-    second <- runBoot(data)$itemStability$asDF
+    first <- runBoot(data)$bootItemStability$asDF
+    second <- runBoot(data)$bootItemStability$asDF
     expect_equal(first$stability, second$stability)
 })
 
-test_that("bootega flags items below the stability cutoff", {
+test_that("the bootstrap flags items below the stability cutoff", {
 
     data <- edgeStructureData()
-    items <- runBoot(data, stabilityCut = 0.95)$itemStability$asDF
+    items <- runBoot(data, stabilityCut = 0.95)$bootItemStability$asDF
 
     expect_equal(items$flag == "Below cutoff", items$stability < 0.95)
 })
 
-test_that("bootega renders the report in Spanish", {
+test_that("the bootstrap renders in Spanish", {
 
     data <- edgeStructureData()
     res <- runBoot(data, reportLang = "es", bootType = "resampling")
 
-    expect_true("Dimensiones en la muestra original" %in% res$summary$asDF$element)
+    expect_true("Dimensiones en la muestra original" %in% res$bootSummary$asDF$element)
     expect_match(res$choicesGuide$content, "Tipo de bootstrap: Remuestreo (casos)", fixed = TRUE)
-})
-
-test_that("bootega rejects fewer than three items", {
-
-    data <- edgeStructureData()[, 1:2]
-    expect_error(
-        EGAnetLab::bootega(data = data, vars = names(data), runBoot = TRUE, iter = 20),
-        "three"
-    )
 })

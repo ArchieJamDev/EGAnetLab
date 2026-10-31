@@ -89,8 +89,8 @@
             interp_dims_many = "EGA found %d dimensions. The items group into %d communities of densely connected nodes, which suggests %d related but distinct constructs.",
             interp_isolated = "%d item(s) are not connected to any other item and were left without a dimension: %s. Isolated items share little unique variance with the rest; review their wording and content.",
             interp_tefi = "TEFI = %s. Compare it with the TEFI of an alternative structure (for example, a theoretical one) estimated on the same data; the lower value indicates the better-fitting structure.",
-            interp_low_loadings = "%d item(s) have a dominant network loading below 0.15 (small): %s. Their assignment is weakly supported; the bootstrap stability analysis (Bootstrap EGA) will show whether they replicate.",
-            interp_next = "Next step: run Bootstrap EGA on the same items to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure.",
+            interp_low_loadings = "%d item(s) have a dominant network loading below 0.15 (small): %s. Their assignment is weakly supported; the Stability (bootstrap) section will show whether they replicate.",
+            interp_next = "Next step: tick Run bootstrap in the Stability (bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above.",
             loadings_failed = "Network loadings could not be computed for this structure: %s.",
             loadings_all_singleton = "Every item forms its own community, so network loadings are undefined."
         ),
@@ -131,13 +131,12 @@
 
         bootega = list(
             intro = c(
-                "Bootstrap EGA checks whether the dimensions found by Exploratory Graph Analysis are a stable property of the items or an accident of this particular sample (Christensen & Golino, 2021; see references).",
-                "The analysis draws many new samples from your data, runs EGA on each one and records how many dimensions appear and where each item ends up. A solid structure appears again and again; an unstable one changes from sample to sample.",
-                "Read the results in this order: the distribution of the number of dimensions, the stability of each dimension, the stability of each item, and the interpretation."
+                "The bootstrap checks whether the dimensions found above are a stable property of the items or an accident of this particular sample (Christensen & Golino, 2021; see references).",
+                "It draws many new samples from your data, runs EGA with the same estimation options on each one and records how many dimensions appear and where each item ends up. A solid structure appears again and again; an unstable one changes from sample to sample.",
+                "Read the results in this order: the distribution of the number of dimensions, the stability of each dimension, the stability of each item, and the stability interpretation."
             ),
-            not_run = "Bootstrap EGA re-estimates the network in %d new samples, which can take several minutes. Review the options, then tick Run bootstrap in the Bootstrap box to start.",
             done = "Bootstrap complete: %d samples (%s), seed %d. Changing only the report language, the stability cutoff or the plot options reuses these results without running the bootstrap again.",
-            failed = "EGAnet could not complete the bootstrap: %s. Check that EGA runs on the same items and options first; if it does, try the resampling bootstrap or fewer items with very few categories.",
+            failed = "EGAnet could not complete the bootstrap: %s. The EGA above was estimated, so the problem lies in some bootstrap samples: try the resampling bootstrap, or fewer items with very few categories.",
             guide_summary = c(
                 "Median and interval: the typical number of dimensions across samples, and the range that contains the middle 95% of samples.",
                 "Frequency: how often each number of dimensions appeared. A dominant value that matches the original sample supports the structure.",
@@ -153,7 +152,7 @@
             interp_dims_ok = "Every dimension reappears with exactly the same items in at least %s of samples.",
             interp_items_low = "%d item(s) stay in their original dimension in fewer than %s of samples: %s. Low stability usually means an item relates to more than one dimension, overlaps heavily with another item, or is ambiguously worded. A commonly used cutoff is .70.",
             interp_items_ok = "Every item stays in its original dimension in at least %s of samples, which supports the stability of the structure.",
-            interp_next = "Next step: if some items are unstable, check them for redundancy (Unique Variable Analysis) and for content before deciding to remove or rewrite them, then run EGA and Bootstrap EGA again on the revised item set. Report the number of samples, the bootstrap type and the seed.",
+            interp_next = "Next step: if some items are unstable, check them for redundancy (Unique Variable Analysis) and for content before deciding to remove or rewrite them, then run the analysis again, with the bootstrap, on the revised item set. Report the number of samples, the bootstrap type and the seed.",
             plot_stability = "Proportion of samples in the original dimension",
             plot_dims = "Number of dimensions",
             plot_prop = "Proportion of samples",
@@ -194,8 +193,8 @@
             interp_dims_many = "EGA encontró %d dimensiones. Los ítems se agrupan en %d comunidades de nodos densamente conectados, lo que sugiere %d constructos relacionados pero distintos.",
             interp_isolated = "%d ítem(s) no están conectados con ningún otro y quedaron sin dimensión: %s. Los ítems aislados comparten poca varianza única con el resto; revise su redacción y contenido.",
             interp_tefi = "TEFI = %s. Compárelo con el TEFI de una estructura alternativa (por ejemplo, la teórica) estimada con los mismos datos; el valor más bajo indica la estructura con mejor ajuste.",
-            interp_low_loadings = "%d ítem(s) tienen una carga de red dominante menor que 0.15 (pequeña): %s. Su asignación tiene poco respaldo; el análisis de estabilidad por bootstrap (Bootstrap EGA) mostrará si se replica.",
-            interp_next = "Siguiente paso: ejecute Bootstrap EGA con los mismos ítems para verificar si el número de dimensiones y la pertenencia de cada ítem son estables entre remuestreos antes de interpretar la estructura.",
+            interp_low_loadings = "%d ítem(s) tienen una carga de red dominante menor que 0.15 (pequeña): %s. Su asignación tiene poco respaldo; la sección Stability (bootstrap) mostrará si se replica.",
+            interp_next = "Siguiente paso: marque Run bootstrap en la caja Stability (bootstrap) para verificar si el número de dimensiones y la pertenencia de cada ítem son estables entre remuestreos antes de interpretar la estructura. Usa exactamente las opciones de estimación de arriba.",
             loadings_failed = "No se pudieron calcular las cargas de red para esta estructura: %s.",
             loadings_all_singleton = "Cada ítem forma su propia comunidad, así que las cargas de red no están definidas."
         ),
@@ -230,13 +229,12 @@
 
         bootega = list(
             intro = c(
-                "Bootstrap EGA verifica si las dimensiones halladas por el Análisis Exploratorio de Grafos son una propiedad estable de los ítems o un accidente de esta muestra en particular (Christensen y Golino, 2021; ver referencias).",
-                "El análisis extrae muchas muestras nuevas de sus datos, ejecuta EGA en cada una y registra cuántas dimensiones aparecen y dónde queda cada ítem. Una estructura sólida aparece una y otra vez; una inestable cambia de una muestra a otra.",
-                "Lea los resultados en este orden: la distribución del número de dimensiones, la estabilidad de cada dimensión, la estabilidad de cada ítem y la interpretación."
+                "El bootstrap verifica si las dimensiones halladas arriba son una propiedad estable de los ítems o un accidente de esta muestra en particular (Christensen y Golino, 2021; ver referencias).",
+                "Extrae muchas muestras nuevas de sus datos, ejecuta EGA con las mismas opciones de estimación en cada una y registra cuántas dimensiones aparecen y dónde queda cada ítem. Una estructura sólida aparece una y otra vez; una inestable cambia de una muestra a otra.",
+                "Lea los resultados en este orden: la distribución del número de dimensiones, la estabilidad de cada dimensión, la estabilidad de cada ítem y la interpretación de la estabilidad."
             ),
-            not_run = "Bootstrap EGA vuelve a estimar la red en %d muestras nuevas, lo que puede tardar varios minutos. Revise las opciones y luego marque Run bootstrap en la caja Bootstrap para comenzar.",
             done = "Bootstrap completado: %d muestras (%s), semilla %d. Si cambia solo el idioma del informe, el punto de corte de estabilidad o las opciones de gráfico, se reutilizan estos resultados sin volver a ejecutar el bootstrap.",
-            failed = "EGAnet no pudo completar el bootstrap: %s. Verifique primero que EGA funcione con los mismos ítems y opciones; si funciona, pruebe el bootstrap por remuestreo o menos ítems con muy pocas categorías.",
+            failed = "EGAnet no pudo completar el bootstrap: %s. El EGA de arriba sí se estimó, así que el problema está en algunas muestras bootstrap: pruebe el bootstrap por remuestreo, o menos ítems con muy pocas categorías.",
             guide_summary = c(
                 "Mediana e intervalo: el número típico de dimensiones entre muestras y el rango que contiene el 95% central de las muestras.",
                 "Frecuencia: cuántas veces apareció cada número de dimensiones. Un valor dominante que coincide con la muestra original respalda la estructura.",
@@ -252,7 +250,7 @@
             interp_dims_ok = "Cada dimensión reaparece con exactamente los mismos ítems en al menos %s de las muestras.",
             interp_items_low = "%d ítem(s) permanecen en su dimensión original en menos de %s de las muestras: %s. Una estabilidad baja suele indicar que el ítem se relaciona con más de una dimensión, se superpone mucho con otro ítem o tiene una redacción ambigua. Un punto de corte de uso común es .70.",
             interp_items_ok = "Cada ítem permanece en su dimensión original en al menos %s de las muestras, lo que respalda la estabilidad de la estructura.",
-            interp_next = "Siguiente paso: si hay ítems inestables, revise su redundancia (Análisis de Variables Únicas) y su contenido antes de decidir eliminarlos o reescribirlos; luego vuelva a ejecutar EGA y Bootstrap EGA con el conjunto revisado. Informe el número de muestras, el tipo de bootstrap y la semilla.",
+            interp_next = "Siguiente paso: si hay ítems inestables, revise su redundancia (Análisis de Variables Únicas) y su contenido antes de decidir eliminarlos o reescribirlos; luego vuelva a ejecutar el análisis, con el bootstrap, sobre el conjunto revisado. Informe el número de muestras, el tipo de bootstrap y la semilla.",
             plot_stability = "Proporción de muestras en la dimensión original",
             plot_dims = "Número de dimensiones",
             plot_prop = "Proporción de muestras",

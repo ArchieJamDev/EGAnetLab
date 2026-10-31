@@ -28,15 +28,6 @@
             "Blue": [
                 "Azul"
             ],
-            "Bootstrap": [
-                "Bootstrap"
-            ],
-            "Bootstrap EGA": [
-                "Bootstrap EGA"
-            ],
-            "Bootstrap EGA (stability)": [
-                "Bootstrap EGA (estabilidad)"
-            ],
             "Bootstrap samples": [
                 "Muestras bootstrap"
             ],
@@ -48,9 +39,6 @@
             ],
             "Bottom": [
                 "Abajo"
-            ],
-            "Checks whether the dimensions found by Exploratory Graph Analysis replicate across bootstrap samples, with the distribution of the number of dimensions, the structural consistency of each dimension and the stability of each item's membership.": [
-                "Verifica si las dimensiones halladas por el Análisis Exploratorio de Grafos se replican entre muestras bootstrap, con la distribución del número de dimensiones, la consistencia estructural de cada dimensión y la estabilidad de la pertenencia de cada ítem."
             ],
             "Circle": [
                 "Círculo"
@@ -142,8 +130,8 @@
             "Estimated network": [
                 "Red estimada"
             ],
-            "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit and plain-language interpretation.": [
-                "Estima el número de dimensiones que subyacen a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnet), acompañado de cargas de red, ajuste por entropía e interpretación en lenguaje claro."
+            "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, and plain-language interpretation.": [
+                "Estima el número de dimensiones subyacentes a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnet), junto con cargas de red, ajuste por entropía, estabilidad bootstrap opcional de dimensiones e ítems, e interpretación en lenguaje claro."
             ],
             "Estimation": [
                 "Estimación"
@@ -346,6 +334,12 @@
             "Stability": [
                 "Estabilidad"
             ],
+            "Stability (bootstrap)": [
+                "Estabilidad (bootstrap)"
+            ],
+            "Stability interpretation": [
+                "Interpretación de la estabilidad"
+            ],
             "Structural consistency": [
                 "Consistencia estructural"
             ],
@@ -372,9 +366,6 @@
             ],
             "White": [
                 "Blanco"
-            ],
-            "jamovi theme": [
-                "Tema de jamovi"
             ]
         }
     }

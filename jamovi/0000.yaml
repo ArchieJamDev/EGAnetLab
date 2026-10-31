@@ -27,20 +27,8 @@ analyses:
     description: >
       Estimates the number of dimensions underlying a set of items, and which
       items belong to each dimension, with Exploratory Graph Analysis (EGAnet),
-      paired with network loadings, entropy fit and plain-language
-      interpretation.
-    category: analyses
-  - title: Bootstrap EGA
-    name: bootega
-    ns: EGAnetLab
-    menuGroup: EGAnet Lab
-    menuSubgroup: Dimensionality
-    menuTitle: Bootstrap EGA (stability)
-    description: >
-      Checks whether the dimensions found by Exploratory Graph Analysis
-      replicate across bootstrap samples, with the distribution of the number of
-      dimensions, the structural consistency of each dimension and the stability
-      of each item's membership.
+      paired with network loadings, entropy fit, optional bootstrap stability
+      of dimensions and items, and plain-language interpretation.
     category: analyses
 datasets:
   - name: WMT-2 Matrices Test (n=1185)

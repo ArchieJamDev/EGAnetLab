@@ -150,6 +150,203 @@ items:
       - legendPosition
       - legendTitle
 
+  # ---------------------------------------------------------------------------
+  # Stability (bootstrap): shown only when "Run bootstrap" is ticked.
+  # ES: Estabilidad (bootstrap): se muestra solo si se marca "Run bootstrap".
+  # ---------------------------------------------------------------------------
+
+  # Holds the cached bootstrap summary in its state; cleared only when an
+  # option that changes the computation changes (ARCHITECTURE.md §16).
+  # ES: Guarda en su estado el resumen del bootstrap; se limpia solo cuando
+  # cambia una opción que altera el cálculo (ARCHITECTURE.md §16).
+  - name: bootStatus
+    title: Bootstrap status
+    type: Html
+    visible: (runBoot)
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bootType
+      - iter
+      - seed
+
+  - name: bootSummaryGuide
+    title: Number of dimensions across samples
+    type: Html
+    visible: (runBoot)
+
+  - name: bootSummary
+    title: Number of dimensions across samples
+    type: Table
+    visible: (runBoot)
+    rows: 0
+    refs:
+      - christensen_2021_boot
+      - golino_2017
+      - eganet
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bootType
+      - iter
+      - seed
+      - reportLang
+    columns:
+      - name: element
+        title: Element
+        type: text
+      - name: value
+        title: Value
+        type: text
+
+  - name: bootFrequency
+    title: Frequency of the number of dimensions
+    type: Table
+    visible: (runBoot)
+    rows: 0
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bootType
+      - iter
+      - seed
+      - reportLang
+    columns:
+      - name: dims
+        title: Dimensions
+        type: integer
+      - name: count
+        title: Samples
+        type: integer
+      - name: proportion
+        title: Proportion
+        type: number
+        format: zto
+
+  - name: bootDimStability
+    title: Dimension stability
+    type: Table
+    visible: (runBoot)
+    rows: 0
+    refs:
+      - christensen_2021_boot
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bootType
+      - iter
+      - seed
+      - reportLang
+    columns:
+      - name: dimension
+        title: Dimension
+        type: text
+      - name: items
+        title: Items
+        type: integer
+      - name: consistency
+        title: Structural consistency
+        type: number
+        format: zto
+      - name: meanItem
+        title: Mean item stability
+        type: number
+        format: zto
+
+  - name: bootItemStability
+    title: Item stability
+    type: Table
+    visible: (runBoot)
+    rows: 0
+    refs:
+      - christensen_2021_boot
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bootType
+      - iter
+      - seed
+      - reportLang
+      - stabilityCut
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: dimension
+        title: Dimension
+        type: text
+      - name: stability
+        title: Stability
+        type: number
+        format: zto
+      - name: flag
+        title: Assessment
+        type: text
+
+  - name: bootInterpretation
+    title: Stability interpretation
+    type: Html
+    visible: (runBoot)
+
+  - name: bootItemPlot
+    title: Item stability
+    type: Image
+    width: 600
+    height: 450
+    renderFun: .plotBootItems
+    visible: (runBoot && showItemPlot)
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bootType
+      - iter
+      - seed
+      - stabilityCut
+      - plotPalette
+
+  - name: bootFrequencyPlot
+    title: Frequency of the number of dimensions
+    type: Image
+    width: 550
+    height: 400
+    renderFun: .plotBootFrequency
+    visible: (runBoot && showFrequencyPlot)
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bootType
+      - iter
+      - seed
+      - plotPalette
+
   - name: notes
     title: Notes
     type: Html

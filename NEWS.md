@@ -1,13 +1,15 @@
 # EGAnetLab 0.1.0 (development)
 
-## Bootstrap EGA (phase 1)
+## EGA: stability by bootstrap (phase 1)
 
-* New analysis **Bootstrap EGA (stability)** (`bootega`), wrapping
-  `EGAnet::bootEGA()`: median and 95% interval of the number of dimensions,
-  frequency of each solution, structural consistency and mean item
-  stability per dimension, item stability with a user-chosen cutoff,
-  applied interpretation, an item stability plot and a dimension frequency
-  plot.
+* New optional section **Stability (bootstrap)** inside the EGA analysis,
+  wrapping `EGAnet::bootEGA()`. It lives in the same analysis, not in a
+  separate menu entry, so the bootstrap always resamples exactly the
+  estimation shown above it. It reports the median and 95% interval of the
+  number of dimensions, the frequency of each solution, structural
+  consistency and mean item stability per dimension, item stability with a
+  user-chosen cutoff, a stability interpretation, an item stability plot
+  and a dimension frequency plot.
 * Nothing runs until **Run bootstrap** is ticked; parametric or resampling
   bootstrap, number of samples and seed are visible options. The bootstrap
   summary is cached, so changing the language, cutoff or plot options does
@@ -15,6 +17,8 @@
 * "About your choices" explains the bootstrap type, the number of samples
   and the seed as well as the five estimation decisions, now shared by
   every EGA-based analysis (`.el_choices_guide()`).
+* A failed bootstrap leaves the EGA results intact and explains the failure
+  in the stability section.
 
 ## EGA: explained choices and network plot customization
 

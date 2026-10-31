@@ -34,8 +34,8 @@ description:
     main: >
       Estimates the number of dimensions underlying a set of items, and which
       items belong to each dimension, with Exploratory Graph Analysis (EGAnet),
-      paired with network loadings, entropy fit and plain-language
-      interpretation.
+      paired with network loadings, entropy fit, optional bootstrap stability
+      of dimensions and items, and plain-language interpretation.
 
 options:
   - name: data
@@ -129,6 +129,69 @@ options:
       - title: Leading eigenvalue
         name: LE
     default: louvain
+
+  # ---------------------------------------------------------------------------
+  # Stability (bootstrap): an optional section of this analysis, so it always
+  # resamples the same estimation the user sees above (EGAnet::bootEGA()).
+  # Resampling takes minutes, so nothing runs until the user ticks "Run
+  # bootstrap" (ARCHITECTURE.md §16). The seed is visible and fixed by
+  # default so every result can be reproduced.
+  # ES: Estabilidad (bootstrap): una sección opcional de este análisis, para
+  # que siempre remuestree la misma estimación que el usuario ve arriba
+  # (EGAnet::bootEGA()). El remuestreo tarda minutos, así que nada se ejecuta
+  # hasta que el usuario marca "Run bootstrap" (ARCHITECTURE.md §16). La
+  # semilla es visible y fija por defecto para que todo resultado sea
+  # reproducible.
+  # ---------------------------------------------------------------------------
+  - name: runBoot
+    title: Run bootstrap
+    type: Bool
+    default: false
+
+  - name: bootType
+    title: Bootstrap type
+    type: List
+    options:
+      - title: Parametric
+        name: parametric
+      - title: Resampling (cases)
+        name: resampling
+    default: parametric
+
+  - name: iter
+    title: Bootstrap samples
+    type: Integer
+    min: 10
+    max: 10000
+    default: 500
+
+  - name: seed
+    title: Seed
+    type: Integer
+    min: 1
+    max: 999999999
+    default: 2026
+
+  # Item stability below this proportion is flagged in the item table, the
+  # plot and the interpretation.
+  # ES: La estabilidad de ítem menor a esta proporción se señala en la tabla
+  # de ítems, el gráfico y la interpretación.
+  - name: stabilityCut
+    title: Item stability cutoff
+    type: Number
+    min: 0.5
+    max: 0.95
+    default: 0.7
+
+  - name: showItemPlot
+    title: Item stability plot
+    type: Bool
+    default: true
+
+  - name: showFrequencyPlot
+    title: Dimension frequency plot
+    type: Bool
+    default: true
 
   # Explanatory paragraph for each estimation choice currently selected
   # (Archie's design rule: every menu decision carries its explanation).

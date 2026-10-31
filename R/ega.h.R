@@ -13,6 +13,13 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             model = "glasso",
             algorithm = "walktrap",
             uniMethod = "louvain",
+            runBoot = FALSE,
+            bootType = "parametric",
+            iter = 500,
+            seed = 2026,
+            stabilityCut = 0.7,
+            showItemPlot = TRUE,
+            showFrequencyPlot = TRUE,
             showChoicesGuide = TRUE,
             showLoadings = TRUE,
             showNetworkPlot = TRUE,
@@ -97,6 +104,43 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "expand",
                     "LE"),
                 default="louvain")
+            private$..runBoot <- jmvcore::OptionBool$new(
+                "runBoot",
+                runBoot,
+                default=FALSE)
+            private$..bootType <- jmvcore::OptionList$new(
+                "bootType",
+                bootType,
+                options=list(
+                    "parametric",
+                    "resampling"),
+                default="parametric")
+            private$..iter <- jmvcore::OptionInteger$new(
+                "iter",
+                iter,
+                min=10,
+                max=10000,
+                default=500)
+            private$..seed <- jmvcore::OptionInteger$new(
+                "seed",
+                seed,
+                min=1,
+                max=999999999,
+                default=2026)
+            private$..stabilityCut <- jmvcore::OptionNumber$new(
+                "stabilityCut",
+                stabilityCut,
+                min=0.5,
+                max=0.95,
+                default=0.7)
+            private$..showItemPlot <- jmvcore::OptionBool$new(
+                "showItemPlot",
+                showItemPlot,
+                default=TRUE)
+            private$..showFrequencyPlot <- jmvcore::OptionBool$new(
+                "showFrequencyPlot",
+                showFrequencyPlot,
+                default=TRUE)
             private$..showChoicesGuide <- jmvcore::OptionBool$new(
                 "showChoicesGuide",
                 showChoicesGuide,
@@ -246,6 +290,13 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..model)
             self$.addOption(private$..algorithm)
             self$.addOption(private$..uniMethod)
+            self$.addOption(private$..runBoot)
+            self$.addOption(private$..bootType)
+            self$.addOption(private$..iter)
+            self$.addOption(private$..seed)
+            self$.addOption(private$..stabilityCut)
+            self$.addOption(private$..showItemPlot)
+            self$.addOption(private$..showFrequencyPlot)
             self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showLoadings)
             self$.addOption(private$..showNetworkPlot)
@@ -277,6 +328,13 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         model = function() private$..model$value,
         algorithm = function() private$..algorithm$value,
         uniMethod = function() private$..uniMethod$value,
+        runBoot = function() private$..runBoot$value,
+        bootType = function() private$..bootType$value,
+        iter = function() private$..iter$value,
+        seed = function() private$..seed$value,
+        stabilityCut = function() private$..stabilityCut$value,
+        showItemPlot = function() private$..showItemPlot$value,
+        showFrequencyPlot = function() private$..showFrequencyPlot$value,
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showLoadings = function() private$..showLoadings$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
@@ -307,6 +365,13 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..model = NA,
         ..algorithm = NA,
         ..uniMethod = NA,
+        ..runBoot = NA,
+        ..bootType = NA,
+        ..iter = NA,
+        ..seed = NA,
+        ..stabilityCut = NA,
+        ..showItemPlot = NA,
+        ..showFrequencyPlot = NA,
         ..showChoicesGuide = NA,
         ..showLoadings = NA,
         ..showNetworkPlot = NA,
@@ -344,6 +409,15 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         loadings = function() private$.items[["loadings"]],
         interpretation = function() private$.items[["interpretation"]],
         networkPlot = function() private$.items[["networkPlot"]],
+        bootStatus = function() private$.items[["bootStatus"]],
+        bootSummaryGuide = function() private$.items[["bootSummaryGuide"]],
+        bootSummary = function() private$.items[["bootSummary"]],
+        bootFrequency = function() private$.items[["bootFrequency"]],
+        bootDimStability = function() private$.items[["bootDimStability"]],
+        bootItemStability = function() private$.items[["bootItemStability"]],
+        bootInterpretation = function() private$.items[["bootInterpretation"]],
+        bootItemPlot = function() private$.items[["bootItemPlot"]],
+        bootFrequencyPlot = function() private$.items[["bootFrequencyPlot"]],
         notes = function() private$.items[["notes"]]),
     private = list(),
     public=list(
@@ -482,6 +556,207 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "legendTitle")))
             self$add(jmvcore::Html$new(
                 options=options,
+                name="bootStatus",
+                title="Bootstrap status",
+                visible="(runBoot)",
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bootType",
+                    "iter",
+                    "seed")))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="bootSummaryGuide",
+                title="Number of dimensions across samples",
+                visible="(runBoot)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="bootSummary",
+                title="Number of dimensions across samples",
+                rows=0,
+                visible="(runBoot)",
+                refs=list(
+                    "christensen_2021_boot",
+                    "golino_2017",
+                    "eganet"),
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bootType",
+                    "iter",
+                    "seed",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="element", 
+                        `title`="Element", 
+                        `type`="text"),
+                    list(
+                        `name`="value", 
+                        `title`="Value", 
+                        `type`="text"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="bootFrequency",
+                title="Frequency of the number of dimensions",
+                rows=0,
+                visible="(runBoot)",
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bootType",
+                    "iter",
+                    "seed",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="dims", 
+                        `title`="Dimensions", 
+                        `type`="integer"),
+                    list(
+                        `name`="count", 
+                        `title`="Samples", 
+                        `type`="integer"),
+                    list(
+                        `name`="proportion", 
+                        `title`="Proportion", 
+                        `type`="number", 
+                        `format`="zto"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="bootDimStability",
+                title="Dimension stability",
+                rows=0,
+                visible="(runBoot)",
+                refs=list(
+                    "christensen_2021_boot"),
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bootType",
+                    "iter",
+                    "seed",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="dimension", 
+                        `title`="Dimension", 
+                        `type`="text"),
+                    list(
+                        `name`="items", 
+                        `title`="Items", 
+                        `type`="integer"),
+                    list(
+                        `name`="consistency", 
+                        `title`="Structural consistency", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="meanItem", 
+                        `title`="Mean item stability", 
+                        `type`="number", 
+                        `format`="zto"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="bootItemStability",
+                title="Item stability",
+                rows=0,
+                visible="(runBoot)",
+                refs=list(
+                    "christensen_2021_boot"),
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bootType",
+                    "iter",
+                    "seed",
+                    "reportLang",
+                    "stabilityCut"),
+                columns=list(
+                    list(
+                        `name`="item", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="dimension", 
+                        `title`="Dimension", 
+                        `type`="text"),
+                    list(
+                        `name`="stability", 
+                        `title`="Stability", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="flag", 
+                        `title`="Assessment", 
+                        `type`="text"))))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="bootInterpretation",
+                title="Stability interpretation",
+                visible="(runBoot)"))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="bootItemPlot",
+                title="Item stability",
+                width=600,
+                height=450,
+                renderFun=".plotBootItems",
+                visible="(runBoot && showItemPlot)",
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bootType",
+                    "iter",
+                    "seed",
+                    "stabilityCut",
+                    "plotPalette")))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="bootFrequencyPlot",
+                title="Frequency of the number of dimensions",
+                width=550,
+                height=400,
+                renderFun=".plotBootFrequency",
+                visible="(runBoot && showFrequencyPlot)",
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bootType",
+                    "iter",
+                    "seed",
+                    "plotPalette")))
+            self$add(jmvcore::Html$new(
+                options=options,
                 name="notes",
                 title="Notes"))}))
 
@@ -510,8 +785,8 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' Estimates the number of dimensions underlying a set of items, and which 
 #' items belong to each dimension, with Exploratory Graph Analysis (EGAnet), 
-#' paired with network loadings, entropy fit and plain-language 
-#' interpretation.
+#' paired with network loadings, entropy fit, optional bootstrap stability of 
+#' dimensions and items, and plain-language interpretation.
 #' 
 #' @param data .
 #' @param vars .
@@ -521,6 +796,13 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param model .
 #' @param algorithm .
 #' @param uniMethod .
+#' @param runBoot .
+#' @param bootType .
+#' @param iter .
+#' @param seed .
+#' @param stabilityCut .
+#' @param showItemPlot .
+#' @param showFrequencyPlot .
 #' @param showChoicesGuide .
 #' @param showLoadings .
 #' @param showNetworkPlot .
@@ -554,6 +836,15 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$loadings} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$interpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$networkPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$bootStatus} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$bootSummaryGuide} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$bootSummary} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$bootFrequency} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$bootDimStability} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$bootItemStability} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$bootInterpretation} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$bootItemPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$bootFrequencyPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$notes} \tab \tab \tab \tab \tab a html \cr
 #' }
 #'
@@ -573,6 +864,13 @@ ega <- function(
     model = "glasso",
     algorithm = "walktrap",
     uniMethod = "louvain",
+    runBoot = FALSE,
+    bootType = "parametric",
+    iter = 500,
+    seed = 2026,
+    stabilityCut = 0.7,
+    showItemPlot = TRUE,
+    showFrequencyPlot = TRUE,
     showChoicesGuide = TRUE,
     showLoadings = TRUE,
     showNetworkPlot = TRUE,
@@ -614,6 +912,13 @@ ega <- function(
         model = model,
         algorithm = algorithm,
         uniMethod = uniMethod,
+        runBoot = runBoot,
+        bootType = bootType,
+        iter = iter,
+        seed = seed,
+        stabilityCut = stabilityCut,
+        showItemPlot = showItemPlot,
+        showFrequencyPlot = showFrequencyPlot,
         showChoicesGuide = showChoicesGuide,
         showLoadings = showLoadings,
         showNetworkPlot = showNetworkPlot,
