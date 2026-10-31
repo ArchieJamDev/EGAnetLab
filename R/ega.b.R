@@ -333,6 +333,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             iter <- as.integer(self$options$iter)
             seed <- as.integer(self$options$seed)
             intro <- txt("bootega", "intro")
+            # jamovi does not print Html titles, so the section heading goes
+            # inside the block to separate it from the EGA results above.
+            # ES: jamovi no muestra los títulos de Html, así que el
+            # encabezado de la sección va dentro del bloque para separarla de
+            # los resultados de EGA de arriba.
+            heading <- tr("Stability (bootstrap)", "Estabilidad (bootstrap)")
             cache <- self$results$bootStatus$state
 
             if (is.null(cache)) {
@@ -358,7 +364,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
                 if (is.null(fit$value)) {
                     self$results$bootStatus$setContent(.el_html_block(
-                        NULL, c(intro, sprintf(txt("bootega", "failed"), fit$error))))
+                        heading, c(intro, sprintf(txt("bootega", "failed"), fit$error))))
                     private$.hideBoot()
                     return(fit$warnings)
                 }
@@ -372,7 +378,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             type_label <- if (identical(self$options$bootType, "parametric"))
                 tr("parametric", "paramétrico") else tr("resampling", "remuestreo")
             self$results$bootStatus$setContent(.el_html_block(
-                NULL, c(intro, sprintf(txt("bootega", "done"), cache$iter, type_label, seed))))
+                heading, c(intro, sprintf(txt("bootega", "done"), cache$iter, type_label, seed))))
 
             private$.fillBoot(cache, tr, txt, type_label, seed)
             cache$warnings
