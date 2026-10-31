@@ -135,7 +135,7 @@ explanation.
 
 | Analysis | Question it answers | Status |
 |---|---|---|
-| **TEFI** | Which of several competing structures fits the data best? | ✅ 0.1.0 (in EGA) · comparison 🗓 Planned |
+| **TEFI** | Which of several competing structures fits the data best? | ✅ 0.1.0 (in EGA, Compare structures section: EGA vs. other algorithms and your theoretical structure) |
 
 ### 4. Network topology and graphics
 
@@ -253,8 +253,8 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 |---|---|---|
 | 0 | Platform, EGA analysis, CI, documentation | ✅ Done |
 | 1 | Bootstrap EGA, item and dimension stability | ✅ Done |
-| 2 | UVA, network scores, CFA with random split | ✅ In review |
-| 3 | TEFI comparison of competing structures | 🗓 |
+| 2 | UVA, network scores, CFA with random split | ✅ Done |
+| 3 | TEFI comparison of competing structures | 🚧 In review |
 | 4 | Hierarchical EGA and random-intercept EGA | 🗓 |
 | 5 | Invariance and NetworkComparisonTest (independent and paired groups) | 🗓 |
 | 6 | Centrality, edge accuracy and network comparison plots | 🗓 |

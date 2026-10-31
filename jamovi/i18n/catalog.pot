@@ -10,6 +10,10 @@ msgstr ""
 msgid "About your choices"
 msgstr ""
 
+#: ega/options/compareCFA.title
+msgid "Add CFA fit for each structure"
+msgstr ""
+
 #: ega/results/interpretation.title
 msgid "Applied interpretation"
 msgstr ""
@@ -67,6 +71,10 @@ msgstr ""
 msgid "CFA standardized loadings"
 msgstr ""
 
+#: ega/results/compareTable.columns.title
+msgid "CFI"
+msgstr ""
+
 #: ega/options/runUVA.title
 msgid "Check redundancy (UVA)"
 msgstr ""
@@ -84,12 +92,21 @@ msgstr ""
 msgid "Community Detection"
 msgstr ""
 
+#: ega/results/compareStatus.title
+#: ega/ui[4].label
+msgid "Compare structures (TEFI)"
+msgstr ""
+
+#: ega/options/runCompare.title
+msgid "Compare structures with TEFI"
+msgstr ""
+
 #: ega/options/runCFA.title
 msgid "Confirm with CFA"
 msgstr ""
 
 #: ega/results/cfaStatus.title
-#: ega/ui[6].label
+#: ega/ui[7].label
 msgid "Confirmatory factor analysis"
 msgstr ""
 
@@ -125,6 +142,10 @@ msgstr ""
 msgid "Diamond"
 msgstr ""
 
+#: ega/results/compareTable.columns.title
+msgid "Difference from lowest"
+msgstr ""
+
 #: ega/results/membership.columns.title
 #: ega/results/scores.columns.title
 #: ega/results/bootDimStability.columns.title
@@ -154,12 +175,17 @@ msgstr ""
 msgid "Dimensionality"
 msgstr ""
 
+#: ega/results/compareTable.columns.title
 #: ega/results/bootFrequency.columns.title
 msgid "Dimensions"
 msgstr ""
 
 #: ega/options/edgeNegLty/dotted.title
 msgid "Dotted"
+msgstr ""
+
+#: ega/results/compareMembership.columns.title
+msgid "EGA"
 msgstr ""
 
 #: package/title
@@ -255,12 +281,17 @@ msgstr ""
 msgid "Hide edges weaker than"
 msgstr ""
 
+#: ega/options/compareAlgorithms.title
+msgid "Include the other community algorithms"
+msgstr ""
+
 #: ega/results/intro.title
 msgid "Introduction"
 msgstr ""
 
 #: ega/results/membership.columns.title
 #: ega/results/loadings.columns.title
+#: ega/results/compareMembership.columns.title
 #: ega/results/uvaPairs.columns.title
 #: ega/results/bootItemStability.columns.title
 #: ega/results/cfaMembership.columns.title
@@ -278,6 +309,10 @@ msgstr ""
 
 #: ega/results/cfaMembership.title
 msgid "Item membership by sample"
+msgstr ""
+
+#: ega/results/compareMembership.title
+msgid "Item membership by structure"
 msgstr ""
 
 #: ega/results/uvaPairs.title
@@ -303,6 +338,10 @@ msgstr ""
 #: ega/results/bootDimStability.columns.title
 #: ega/ui[0][0].label
 msgid "Items"
+msgstr ""
+
+#: ega/results/compareTable.columns.title
+msgid "Items placed as in EGA"
 msgstr ""
 
 #: ega/options/layout/kamadakawai.title
@@ -447,7 +486,7 @@ msgstr ""
 msgid "Orange"
 msgstr ""
 
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Output"
 msgstr ""
 
@@ -479,19 +518,19 @@ msgstr ""
 msgid "Pearson"
 msgstr ""
 
-#: ega/ui[10].label
+#: ega/ui[11].label
 msgid "Plot Edges"
 msgstr ""
 
-#: ega/ui[8].label
+#: ega/ui[9].label
 msgid "Plot Layout"
 msgstr ""
 
-#: ega/ui[11].label
+#: ega/ui[12].label
 msgid "Plot Legend"
 msgstr ""
 
-#: ega/ui[9].label
+#: ega/ui[10].label
 msgid "Plot Nodes and Labels"
 msgstr ""
 
@@ -511,6 +550,10 @@ msgstr ""
 msgid "Proportion for EGA (derivation)"
 msgstr ""
 
+#: ega/results/compareTable.columns.title
+msgid "RMSEA"
+msgstr ""
+
 #: ega/options/edgeNegColor/red.title
 msgid "Red"
 msgstr ""
@@ -520,7 +563,7 @@ msgid "Redundancy"
 msgstr ""
 
 #: ega/results/uvaStatus.title
-#: ega/ui[4].label
+#: ega/ui[5].label
 msgid "Redundancy (UVA)"
 msgstr ""
 
@@ -559,6 +602,10 @@ msgstr ""
 
 #: ega/results/cfaLoadings.columns.title
 msgid "SE"
+msgstr ""
+
+#: ega/results/compareTable.columns.title
+msgid "SRMR"
 msgstr ""
 
 #: ega/results/uvaPairs.columns.title
@@ -633,7 +680,7 @@ msgstr ""
 msgid "Stability"
 msgstr ""
 
-#: ega/ui[5].label
+#: ega/ui[6].label
 msgid "Stability (bootstrap)"
 msgstr ""
 
@@ -645,6 +692,18 @@ msgstr ""
 msgid "Structural consistency"
 msgstr ""
 
+#: ega/results/compareTable.columns.title
+msgid "Structure"
+msgstr ""
+
+#: ega/results/compareInterpretation.title
+msgid "Structure comparison interpretation"
+msgstr ""
+
+#: ega/results/compareTable.title
+msgid "Structures compared"
+msgstr ""
+
 #: ega/results/uvaSets.columns.title
 msgid "Suggested to keep"
 msgstr ""
@@ -653,8 +712,16 @@ msgstr ""
 msgid "Suggested to remove"
 msgstr ""
 
+#: ega/results/compareTable.columns.title
+msgid "TEFI"
+msgstr ""
+
 #: ega/options/model/TMFG.title
 msgid "TMFG"
+msgstr ""
+
+#: ega/options/theoryStructure.title
+msgid "Theoretical structure"
 msgstr ""
 
 #: ega/options/legendPosition/top.title

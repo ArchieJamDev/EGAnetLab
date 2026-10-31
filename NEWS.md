@@ -1,5 +1,21 @@
 # EGAnetLab 0.1.0 (development)
 
+## EGA: compare structures with TEFI (phase 3)
+
+* New **Compare structures (TEFI)** box in the EGA analysis. It scores the
+  EGA solution, the solutions of the other community algorithms (Walktrap,
+  Louvain, Leiden; seed 2026 for the random ones) and a theoretical
+  structure typed by the user with `EGAnet::tefi()` on the same correlation
+  matrix, so the values are comparable (Golino et al., 2021).
+* The theoretical structure is written as `Name = item, item; Name = ...`;
+  lavaan's `=~` and `+` also work, and `*` matches any characters (`PA*`).
+  Unknown or duplicated items are explained without stopping the analysis.
+* The table reports dimensions, TEFI, the difference from the lowest TEFI
+  and how many items each structure places as EGA does; a second table
+  shows every item's dimension in each structure. One-dimensional
+  structures are flagged (their TEFI is always 0) instead of compared.
+* Optional CFA fit (CFI, RMSEA, SRMR) for each structure.
+
 ## EGA: confirmatory factor analysis with an optional random split (phase 2)
 
 * New **Confirmatory factor analysis** box in the EGA analysis. It fits the

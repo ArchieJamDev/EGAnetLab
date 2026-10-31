@@ -187,6 +187,43 @@
             interp_next = "Next step: report the validation fit (part B) as the main evidence for the structure, and the total-sample fit as a reference. If the fit is poor, look at the items with low loadings or that change dimension."
         ),
 
+        compare = list(
+            intro = c(
+                "This section compares the structure found by EGA with alternative structures for the same items, using the Total Entropy Fit Index (TEFI; Golino et al., 2021; see references). Every structure is evaluated on the same correlation matrix as the EGA above, so their TEFI values can be compared directly.",
+                "Lower TEFI means a better fit: the items within each dimension share more information with each other than with the rest of the items."
+            ),
+            guide = c(
+                "Other community algorithms: EGA is run again with the same network and each of the other algorithms (Walktrap, Louvain, Leiden). Louvain and Leiden start from random values, so they use the fixed seed 2026 and always give the same result with the same data.",
+                "Theoretical structure: write one dimension per part, separated by semicolons, as Name = item, item, ... For example: Affect = PA1, PA2, PA6; Cognition = PC3, PC4. A * matches any characters, so PA* is every item whose name starts with PA. The lavaan syntax (Affect =~ PA1 + PA2) also works.",
+                "Items placed as in EGA: how many items fall in the same dimension as in the EGA solution, after matching each dimension with the EGA dimension it shares most items with.",
+                "Difference from lowest: how far each structure is from the lowest TEFI among the structures that use the same items. There is no established cutoff for a meaningful difference.",
+                "One dimension: TEFI is always 0 for a single dimension, so it cannot compare a unidimensional structure with multidimensional ones. EGA judges unidimensionality with its own check (see the choices above)."
+            ),
+            cfa_guide = "CFA fit for each structure: confirmatory factor analysis of each structure with lavaan (automatic estimator: WLSMV for items with fewer than 6 categories, otherwise MLR), with CFI, RMSEA and SRMR. It is estimated on the same data that produced the EGA solution, which favors that solution; for an independent test use the random split in the Confirmatory factor analysis box.",
+            ega_label = "EGA solution (%s)",
+            alt_label = "EGA with %s",
+            theory_label = "Theoretical",
+            agree = "%d of %d (%s%%)",
+            alt_failed = "EGAnet could not estimate this structure: %s.",
+            single = "One dimension: TEFI is always 0, so it is not compared.",
+            unassigned = "Not in any dimension: %s. They are left out of TEFI, so this value is not compared with the others.",
+            cfa_failed = "The CFA could not be estimated: %s.",
+            theory_unknown = "The theoretical structure names items that are not in the analysis: %s. Check the spelling (names are matched exactly, then ignoring case).",
+            theory_duplicated = "These items are assigned to more than one theoretical dimension: %s. Each item can belong to one dimension only.",
+            theory_dup_dims = "These dimension names are used more than once: %s.",
+            theory_none = "The theoretical structure assigns no item to a dimension. Write it as Name = item, item; Name = item, item.",
+            interp_best_ega = "The EGA solution has the lowest TEFI (%s) among the structures compared, so by entropy fit it is the structure that best separates the items into dimensions.",
+            interp_best_other = "%s has the lowest TEFI (%s), %s below the EGA solution (%s). By entropy fit it separates the items into dimensions better than the EGA solution.",
+            interp_same = "%s groups the items exactly as the EGA solution, so it has the same TEFI. Different algorithms reaching the same dimensions support the solution.",
+            interp_differs = "%s places %d of %d items as EGA (TEFI %s; %s from the lowest). Items that change dimension: %s.",
+            interp_theory_vs_ega = "The theoretical structure places %d of %d items as EGA. The items EGA places elsewhere (%s) are the ones to examine: read their content and check whether they are also unstable in the bootstrap or redundant in UVA.",
+            interp_theory_match = "The theoretical structure and the EGA solution group the items in the same way, which supports the intended structure.",
+            interp_no_theory = "To compare the theoretical structure as well, write it in the Theoretical structure box (for example: Affect = PA*; Cognition = PC*).",
+            interp_single = "%s has a single dimension. TEFI is always 0 for one dimension, so it is not compared with the multidimensional structures; use the unidimensionality check of EGA for that question.",
+            interp_cfa = "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory factor analysis box.",
+            interp_no_cutoff = "There is no established cutoff for a meaningful TEFI difference. Read the differences together with the bootstrap stability, the CFA fit and the content of the items that move, and report the TEFI of every structure compared."
+        ),
+
         uva = list(
             intro = c(
                 "Unique Variable Analysis (UVA) looks for redundant items: pairs that share so many of their connections in the network that they behave almost like the same item (Christensen, Garrido & Golino, 2023; see references).",
@@ -369,6 +406,43 @@
             interp_changes = "Ítems que cambian de dimensión entre las partes A y B: %s. Compárelos con la estabilidad bootstrap de los ítems y con los resultados de redundancia.",
             interp_seed = "División: %d casos en la parte A y %d en la parte B (semilla %d). Informe la semilla para poder reproducir la división; otra semilla da otra división.",
             interp_next = "Siguiente paso: informe el ajuste de validación (parte B) como evidencia principal de la estructura, y el de la muestra total como referencia. Si el ajuste es pobre, revise los ítems con cargas bajas o que cambian de dimensión."
+        ),
+
+        compare = list(
+            intro = c(
+                "Esta sección compara la estructura hallada por EGA con estructuras alternativas para los mismos ítems, mediante el Índice de Ajuste de Entropía Total (TEFI; Golino et al., 2021; ver referencias). Todas las estructuras se evalúan sobre la misma matriz de correlaciones del EGA de arriba, así que sus valores de TEFI se pueden comparar directamente.",
+                "Un TEFI más bajo indica mejor ajuste: los ítems de cada dimensión comparten más información entre sí que con el resto de los ítems."
+            ),
+            guide = c(
+                "Otros algoritmos de comunidades: EGA se ejecuta de nuevo con la misma red y cada uno de los otros algoritmos (Walktrap, Louvain, Leiden). Louvain y Leiden parten de valores aleatorios, así que usan la semilla fija 2026 y siempre dan el mismo resultado con los mismos datos.",
+                "Estructura teórica: escriba una dimensión por parte, separadas por punto y coma, como Nombre = ítem, ítem, ... Por ejemplo: Afectivo = PA1, PA2, PA6; Cognitivo = PC3, PC4. Un * equivale a cualquier secuencia de caracteres, así que PA* son todos los ítems cuyo nombre empieza por PA. También funciona la sintaxis de lavaan (Afectivo =~ PA1 + PA2).",
+                "Ítems ubicados como en EGA: cuántos ítems quedan en la misma dimensión que en la solución de EGA, tras emparejar cada dimensión con la dimensión de EGA con la que comparte más ítems.",
+                "Diferencia con el más bajo: cuánto se aleja cada estructura del TEFI más bajo entre las estructuras que usan los mismos ítems. No hay un punto de corte establecido para una diferencia importante.",
+                "Una dimensión: el TEFI vale siempre 0 con una sola dimensión, así que no sirve para comparar una estructura unidimensional con otras multidimensionales. EGA evalúa la unidimensionalidad con su propia verificación (ver las elecciones de arriba)."
+            ),
+            cfa_guide = "Ajuste CFA de cada estructura: análisis factorial confirmatorio de cada estructura con lavaan (estimador automático: WLSMV con ítems de menos de 6 categorías, si no MLR), con CFI, RMSEA y SRMR. Se estima con los mismos datos que produjeron la solución de EGA, lo que favorece a esa solución; para una prueba independiente use la división aleatoria de la caja Confirmatory factor analysis.",
+            ega_label = "Solución de EGA (%s)",
+            alt_label = "EGA con %s",
+            theory_label = "Teórica",
+            agree = "%d de %d (%s%%)",
+            alt_failed = "EGAnet no pudo estimar esta estructura: %s.",
+            single = "Una dimensión: el TEFI vale siempre 0, así que no se compara.",
+            unassigned = "Sin dimensión: %s. Quedan fuera del TEFI, así que este valor no se compara con los demás.",
+            cfa_failed = "No se pudo estimar el CFA: %s.",
+            theory_unknown = "La estructura teórica nombra ítems que no están en el análisis: %s. Revise cómo están escritos (los nombres se comparan exactos y, si no, sin distinguir mayúsculas).",
+            theory_duplicated = "Estos ítems están asignados a más de una dimensión teórica: %s. Cada ítem puede pertenecer a una sola dimensión.",
+            theory_dup_dims = "Estos nombres de dimensión se usan más de una vez: %s.",
+            theory_none = "La estructura teórica no asigna ningún ítem a una dimensión. Escríbala como Nombre = ítem, ítem; Nombre = ítem, ítem.",
+            interp_best_ega = "La solución de EGA tiene el TEFI más bajo (%s) entre las estructuras comparadas, así que según el ajuste de entropía es la que mejor separa los ítems en dimensiones.",
+            interp_best_other = "%s tiene el TEFI más bajo (%s), %s por debajo de la solución de EGA (%s). Según el ajuste de entropía separa los ítems en dimensiones mejor que la solución de EGA.",
+            interp_same = "%s agrupa los ítems exactamente como la solución de EGA, así que tiene el mismo TEFI. Que algoritmos distintos lleguen a las mismas dimensiones respalda la solución.",
+            interp_differs = "%s ubica %d de %d ítems como EGA (TEFI %s; %s por encima del más bajo). Ítems que cambian de dimensión: %s.",
+            interp_theory_vs_ega = "La estructura teórica ubica %d de %d ítems como EGA. Los ítems que EGA ubica en otra dimensión (%s) son los que hay que examinar: lea su contenido y revise si también son inestables en el bootstrap o redundantes en UVA.",
+            interp_theory_match = "La estructura teórica y la solución de EGA agrupan los ítems de la misma manera, lo que respalda la estructura prevista.",
+            interp_no_theory = "Para comparar también la estructura teórica, escríbala en la casilla Theoretical structure (por ejemplo: Afectivo = PA*; Cognitivo = PC*).",
+            interp_single = "%s tiene una sola dimensión. El TEFI vale siempre 0 con una dimensión, así que no se compara con las estructuras multidimensionales; para esa pregunta use la verificación de unidimensionalidad de EGA.",
+            interp_cfa = "Los índices del CFA salen de los mismos datos que produjeron la solución de EGA, así que la favorecen. Úselos como una segunda mirada y confirme con la división aleatoria de la caja Confirmatory factor analysis.",
+            interp_no_cutoff = "No hay un punto de corte establecido para una diferencia de TEFI importante. Lea las diferencias junto con la estabilidad bootstrap, el ajuste CFA y el contenido de los ítems que cambian, e informe el TEFI de cada estructura comparada."
         ),
 
         uva = list(

@@ -240,6 +240,36 @@ options:
     type: Output
 
   # ---------------------------------------------------------------------------
+  # Compare structures with TEFI (Golino et al., 2021): the EGA solution
+  # against the solutions of the other community algorithms and a
+  # theoretical structure written by the user, all on the same correlation
+  # matrix. Optional CFA fit for each structure.
+  # ES: Comparar estructuras con TEFI (Golino et al., 2021): la solución de
+  # EGA frente a las de los otros algoritmos de comunidades y una estructura
+  # teórica escrita por el usuario, todas sobre la misma matriz de
+  # correlaciones. Ajuste CFA opcional para cada estructura.
+  # ---------------------------------------------------------------------------
+  - name: runCompare
+    title: Compare structures with TEFI
+    type: Bool
+    default: false
+
+  - name: compareAlgorithms
+    title: Include the other community algorithms
+    type: Bool
+    default: true
+
+  - name: theoryStructure
+    title: Theoretical structure
+    type: String
+    default: ''
+
+  - name: compareCFA
+    title: Add CFA fit for each structure
+    type: Bool
+    default: false
+
+  # ---------------------------------------------------------------------------
   # Confirmatory factor analysis (lavaan::cfa()) of the EGA structure, with
   # an optional random split: EGA on one part (derivation), CFA on the other
   # (validation), and every result shown side by side for the total sample

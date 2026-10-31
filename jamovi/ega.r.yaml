@@ -223,6 +223,97 @@ items:
       - uniMethod
 
   # ---------------------------------------------------------------------------
+  # Compare structures (TEFI): shown only when "Compare structures with
+  # TEFI" is ticked.
+  # ES: Comparar estructuras (TEFI): se muestra solo si se marca "Compare
+  # structures with TEFI".
+  # ---------------------------------------------------------------------------
+
+  - name: compareStatus
+    title: Compare structures (TEFI)
+    type: Html
+    visible: (runCompare)
+
+  - name: compareTable
+    title: Structures compared
+    type: Table
+    rows: 0
+    visible: (runCompare)
+    refs:
+      - golino_2021
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - compareAlgorithms
+      - theoryStructure
+      - compareCFA
+      - reportLang
+    columns:
+      - name: structure
+        title: Structure
+        type: text
+      - name: dims
+        title: Dimensions
+        type: integer
+      - name: tefi
+        title: TEFI
+        type: number
+      - name: delta
+        title: Difference from lowest
+        type: number
+      - name: agree
+        title: Items placed as in EGA
+        type: text
+      - name: cfi
+        title: CFI
+        type: number
+        format: zto
+        visible: (compareCFA)
+      - name: rmsea
+        title: RMSEA
+        type: number
+        format: zto
+        visible: (compareCFA)
+      - name: srmr
+        title: SRMR
+        type: number
+        format: zto
+        visible: (compareCFA)
+
+  - name: compareMembership
+    title: Item membership by structure
+    type: Table
+    rows: 0
+    visible: (runCompare)
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - compareAlgorithms
+      - theoryStructure
+      - compareCFA
+      - reportLang
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: ega
+        title: EGA
+        type: text
+
+  - name: compareInterpretation
+    title: Structure comparison interpretation
+    type: Html
+    visible: (runCompare)
+
+  # ---------------------------------------------------------------------------
   # Redundancy (UVA): shown only when "Check redundancy (UVA)" is ticked.
   # ES: Redundancia (UVA): se muestra solo si se marca "Check redundancy
   # (UVA)".

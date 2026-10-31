@@ -69,6 +69,23 @@ children:
       - type: Output
         name: meanScoresOV
   - type: CollapseBox
+    label: Compare structures (TEFI)
+    collapsed: true
+    children:
+      - type: CheckBox
+        name: runCompare
+      - type: CheckBox
+        name: compareAlgorithms
+        enable: (runCompare)
+      - type: TextBox
+        name: theoryStructure
+        format: string
+        width: largest
+        enable: (runCompare)
+      - type: CheckBox
+        name: compareCFA
+        enable: (runCompare)
+  - type: CollapseBox
     label: Redundancy (UVA)
     collapsed: true
     children:

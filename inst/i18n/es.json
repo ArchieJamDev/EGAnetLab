@@ -8,6 +8,9 @@
             "About your choices": [
                 "Acerca de sus elecciones"
             ],
+            "Add CFA fit for each structure": [
+                "Añadir el ajuste CFA de cada estructura"
+            ],
             "Applied interpretation": [
                 "Interpretación aplicada"
             ],
@@ -50,6 +53,9 @@
             "CFA standardized loadings": [
                 "Cargas estandarizadas del CFA"
             ],
+            "CFI": [
+                "CFI"
+            ],
             "Check redundancy (UVA)": [
                 "Revisar redundancia (UVA)"
             ],
@@ -61,6 +67,12 @@
             ],
             "Community Detection": [
                 "Detección de comunidades"
+            ],
+            "Compare structures (TEFI)": [
+                "Comparar estructuras (TEFI)"
+            ],
+            "Compare structures with TEFI": [
+                "Comparar estructuras con TEFI"
             ],
             "Confirm with CFA": [
                 "Confirmar con CFA"
@@ -92,6 +104,9 @@
             "Diamond": [
                 "Rombo"
             ],
+            "Difference from lowest": [
+                "Diferencia con el más bajo"
+            ],
             "Dimension": [
                 "Dimensión"
             ],
@@ -115,6 +130,9 @@
             ],
             "Dotted": [
                 "Punteada"
+            ],
+            "EGA": [
+                "EGA"
             ],
             "EGAnet Lab": [
                 "EGAnet Lab"
@@ -179,6 +197,9 @@
             "Hide edges weaker than": [
                 "Ocultar aristas menores que"
             ],
+            "Include the other community algorithms": [
+                "Incluir los otros algoritmos de comunidades"
+            ],
             "Introduction": [
                 "Introducción"
             ],
@@ -194,6 +215,9 @@
             "Item membership by sample": [
                 "Pertenencia de los ítems por muestra"
             ],
+            "Item membership by structure": [
+                "Pertenencia de los ítems por estructura"
+            ],
             "Item pairs by weighted topological overlap": [
                 "Pares de ítems por solapamiento topológico ponderado"
             ],
@@ -208,6 +232,9 @@
             ],
             "Items": [
                 "Ítems"
+            ],
+            "Items placed as in EGA": [
+                "Ítems ubicados como en EGA"
             ],
             "Kamada-Kawai": [
                 "Kamada-Kawai"
@@ -359,6 +386,9 @@
             "Proportion for EGA (derivation)": [
                 "Proporción para EGA (derivación)"
             ],
+            "RMSEA": [
+                "RMSEA"
+            ],
             "Red": [
                 "Rojo"
             ],
@@ -394,6 +424,9 @@
             ],
             "SE": [
                 "EE"
+            ],
+            "SRMR": [
+                "SRMR"
             ],
             "Same dimension": [
                 "Misma dimensión"
@@ -458,14 +491,29 @@
             "Structural consistency": [
                 "Consistencia estructural"
             ],
+            "Structure": [
+                "Estructura"
+            ],
+            "Structure comparison interpretation": [
+                "Interpretación de la comparación de estructuras"
+            ],
+            "Structures compared": [
+                "Estructuras comparadas"
+            ],
             "Suggested to keep": [
                 "Se sugiere conservar"
             ],
             "Suggested to remove": [
                 "Se sugiere eliminar"
             ],
+            "TEFI": [
+                "TEFI"
+            ],
             "TMFG": [
                 "TMFG"
+            ],
+            "Theoretical structure": [
+                "Estructura teórica"
             ],
             "Top": [
                 "Arriba"

@@ -259,6 +259,14 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 score_warnings <- private$.computeScores(prep, ega, wc, tr, txt)
 
             # -----------------------------------------------------------------
+            # Compare structures with TEFI, only when requested.
+            # ES: Comparar estructuras con TEFI, solo si se pide.
+            # -----------------------------------------------------------------
+            compare_warnings <- character(0)
+            if (isTRUE(self$options$runCompare))
+                compare_warnings <- private$.runCompare(prep, ega, tr, txt)
+
+            # -----------------------------------------------------------------
             # Interpretation and recommendations.
             # ES: Interpretación y recomendaciones.
             # -----------------------------------------------------------------
@@ -326,7 +334,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Notas: cada advertencia de EGAnet se muestra, nunca se
             # suprime.
             # -----------------------------------------------------------------
-            warnings <- unique(c(fit$warnings, score_warnings, boot_warnings, uva_warnings, cfa_warnings))
+            warnings <- unique(c(fit$warnings, score_warnings, compare_warnings, boot_warnings, uva_warnings, cfa_warnings))
             if (length(warnings) > 0) {
                 self$results$notes$setContent(.el_html_block(
                     txt("common", "warnings_title"),
@@ -676,6 +684,235 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             self$results$cfaInterpretation$setContent(.el_html_block(NULL, paragraphs))
 
             unique(warnings)
+        },
+
+        # ---------------------------------------------------------------------
+        # Structure comparison with TEFI (Golino et al., 2021). Every
+        # structure is scored with EGAnet::tefi() on the correlation matrix
+        # of the EGA above, so the values are comparable: the EGA solution,
+        # the solutions of the other community algorithms (same network
+        # options, seed 2026 for Louvain and Leiden) and the theoretical
+        # structure the user wrote. Optionally, a CFA of each structure.
+        # A failure in one structure is reported in its row and leaves the
+        # rest intact. Returns the EGAnet and lavaan messages captured.
+        # ES: Comparación de estructuras con TEFI (Golino et al., 2021).
+        # Cada estructura se evalúa con EGAnet::tefi() sobre la matriz de
+        # correlaciones del EGA de arriba, así que los valores son
+        # comparables: la solución de EGA, las de los otros algoritmos de
+        # comunidades (mismas opciones de red, semilla 2026 para Louvain y
+        # Leiden) y la estructura teórica escrita por el usuario. Opcional:
+        # un CFA de cada estructura. Un fallo en una estructura se informa
+        # en su fila y deja intacto el resto. Devuelve los mensajes de
+        # EGAnet y lavaan capturados.
+        # ---------------------------------------------------------------------
+        .runCompare = function(prep, ega, tr, txt) {
+
+            heading <- tr("Compare structures (TEFI)", "Comparar estructuras (TEFI)")
+            table <- self$results$compareTable
+            members <- self$results$compareMembership
+            table$deleteRows()
+            members$deleteRows()
+            warnings <- character(0)
+            fmt <- function(x) .el_fmt_num(x, 3, "—")
+            use_cfa <- isTRUE(self$options$compareCFA)
+            algo_names <- c(walktrap = "Walktrap", louvain = "Louvain", leiden = "Leiden")
+
+            ref <- as.character(ega$wc)
+            names(ref) <- names(ega$wc)
+            items <- names(ref)
+
+            # Structures to compare.
+            # ES: Estructuras a comparar.
+            structures <- list(list(
+                key = "ega", kind = "ega", wc = ref, error = NULL,
+                label = sprintf(txt("compare", "ega_label"), algo_names[[self$options$algorithm]])))
+
+            if (isTRUE(self$options$compareAlgorithms)) {
+                for (alg in setdiff(names(algo_names), self$options$algorithm)) {
+                    alt <- .el_capture(.el_with_seed(2026, EGAnet::EGA(
+                        data = prep$data,
+                        corr = self$options$corr,
+                        na.data = self$options$naData,
+                        model = self$options$model,
+                        algorithm = alg,
+                        uni.method = self$options$uniMethod,
+                        plot.EGA = FALSE,
+                        verbose = FALSE)))
+                    warnings <- c(warnings, alt$warnings)
+                    wc <- NULL
+                    if (!is.null(alt$value)) {
+                        wc <- as.character(alt$value$wc[items])
+                        names(wc) <- items
+                    }
+                    structures[[length(structures) + 1]] <- list(
+                        key = alg, kind = "algorithm", wc = wc, error = alt$error,
+                        label = sprintf(txt("compare", "alt_label"), algo_names[[alg]]))
+                }
+            }
+
+            parsed <- .el_parse_structure(self$options$theoryStructure, items)
+            theory_errors <- character(0)
+            if (!parsed$empty) {
+                if (length(parsed$unknown) > 0)
+                    theory_errors <- c(theory_errors, sprintf(txt("compare", "theory_unknown"),
+                                                              paste(parsed$unknown, collapse = ", ")))
+                if (length(parsed$duplicated) > 0)
+                    theory_errors <- c(theory_errors, sprintf(txt("compare", "theory_duplicated"),
+                                                              paste(parsed$duplicated, collapse = ", ")))
+                if (!is.null(parsed$duplicated_dims))
+                    theory_errors <- c(theory_errors, sprintf(txt("compare", "theory_dup_dims"),
+                                                              paste(parsed$duplicated_dims, collapse = ", ")))
+                if (all(is.na(parsed$wc)))
+                    theory_errors <- c(theory_errors, txt("compare", "theory_none"))
+                if (length(theory_errors) == 0)
+                    structures[[length(structures) + 1]] <- list(
+                        key = "theory", kind = "theory", wc = parsed$wc, error = NULL,
+                        label = txt("compare", "theory_label"))
+            }
+
+            # Section heading, guide and any problem with the theoretical
+            # structure.
+            # ES: Encabezado, guía y cualquier problema con la estructura
+            # teórica.
+            guide <- txt("compare", "guide")
+            if (use_cfa)
+                guide <- c(guide, txt("compare", "cfa_guide"))
+            status <- paste0(
+                .el_html_block(heading, txt("compare", "intro")),
+                .el_html_block(NULL, .el_html_list(guide), raw = TRUE))
+            if (length(theory_errors) > 0)
+                status <- paste0(status, .el_html_block(NULL, theory_errors))
+            self$results$compareStatus$setContent(status)
+
+            # Scores for every structure.
+            # ES: Valores de cada estructura.
+            ega_items <- items[!is.na(ref)]
+            for (k in seq_along(structures)) {
+                st <- structures[[k]]
+                st$dims <- NA_integer_
+                st$tefi <- NA_real_
+                st$single <- FALSE
+                st$comparable <- FALSE
+                st$agree <- NULL
+                st$cfa <- NULL
+                if (!is.null(st$wc)) {
+                    st$dims <- length(unique(stats::na.omit(st$wc)))
+                    st$single <- st$dims == 1
+                    st$unassigned <- items[is.na(st$wc)]
+                    if (st$dims >= 2)
+                        st$tefi <- .el_tefi(ega, st$wc)
+                    st$comparable <- !is.na(st$tefi) && setequal(items[!is.na(st$wc)], ega_items)
+                    st$agree <- .el_agreement(st$wc, ref)
+                    if (use_cfa) {
+                        st$cfa <- .el_cfa_fit(prep$data, st$wc, "auto")
+                        warnings <- c(warnings, st$cfa$warnings)
+                    }
+                }
+                structures[[k]] <- st
+            }
+
+            tefis <- vapply(structures, function(st) if (st$comparable) st$tefi else NA_real_, numeric(1))
+            lowest <- if (any(!is.na(tefis))) min(tefis, na.rm = TRUE) else NA_real_
+
+            # Comparison table.
+            # ES: Tabla de comparación.
+            for (k in seq_along(structures)) {
+                st <- structures[[k]]
+                values <- list(structure = st$label)
+                if (!is.null(st$wc)) {
+                    values$dims <- st$dims
+                    values$tefi <- .el_clean_num(st$tefi)
+                    values$delta <- if (st$comparable) .el_clean_num(st$tefi - lowest) else NA_real_
+                    a <- st$agree
+                    values$agree <- if (a$total > 0)
+                        sprintf(txt("compare", "agree"), a$same, a$total, round(100 * a$same / a$total))
+                    else "—"
+                    if (use_cfa && isTRUE(st$cfa$ok)) {
+                        values$cfi <- .el_clean_num(st$cfa$fit[["cfi"]])
+                        values$rmsea <- .el_clean_num(st$cfa$fit[["rmsea"]])
+                        values$srmr <- .el_clean_num(st$cfa$fit[["srmr"]])
+                    }
+                }
+                .el_add_row(table, k, values)
+                if (!is.null(st$error) && is.null(st$wc))
+                    table$addFootnote(rowNo = k, col = "structure", sprintf(txt("compare", "alt_failed"), st$error))
+                if (isTRUE(st$single))
+                    table$addFootnote(rowNo = k, col = "tefi", txt("compare", "single"))
+                else if (!is.null(st$wc) && length(st$unassigned) > 0)
+                    table$addFootnote(rowNo = k, col = "tefi", sprintf(txt("compare", "unassigned"),
+                                                                        paste(st$unassigned, collapse = ", ")))
+                if (use_cfa && !is.null(st$cfa) && !isTRUE(st$cfa$ok))
+                    table$addFootnote(rowNo = k, col = "cfi", sprintf(txt("compare", "cfa_failed"), st$cfa$error))
+            }
+
+            # Item membership by structure: algorithm solutions are
+            # relabelled to the EGA numbers; the theoretical structure keeps
+            # the names the user wrote.
+            # ES: Pertenencia de los ítems por estructura: las soluciones de
+            # los algoritmos se reetiquetan con los números de EGA; la
+            # estructura teórica conserva los nombres que escribió el
+            # usuario.
+            shown <- Filter(function(st) st$kind != "ega" && !is.null(st$wc), structures)
+            for (st in shown)
+                members$addColumn(name = st$key, title = st$label, type = "text")
+            for (i in seq_along(items)) {
+                item <- items[i]
+                values <- list(item = item, ega = if (is.na(ref[[item]])) "—" else ref[[item]])
+                for (st in shown) {
+                    label <- if (st$kind == "theory") st$wc[[item]] else st$agree$aligned[[item]]
+                    values[[st$key]] <- if (is.na(label)) "—" else label
+                }
+                .el_add_row(members, i, values)
+            }
+
+            # Interpretation.
+            # ES: Interpretación.
+            paragraphs <- character(0)
+            ega_st <- structures[[1]]
+            if (!is.na(lowest)) {
+                best <- structures[[which(tefis == lowest)[1]]]
+                if (isTRUE(ega_st$comparable) && isTRUE(all.equal(ega_st$tefi, lowest)))
+                    paragraphs <- c(paragraphs, sprintf(txt("compare", "interp_best_ega"), fmt(lowest)))
+                else if (isTRUE(ega_st$comparable))
+                    paragraphs <- c(paragraphs, sprintf(txt("compare", "interp_best_other"),
+                                                        best$label, fmt(lowest),
+                                                        fmt(ega_st$tefi - lowest), fmt(ega_st$tefi)))
+            }
+
+            for (st in structures[-1]) {
+                if (is.null(st$wc))
+                    next
+                if (isTRUE(st$single)) {
+                    paragraphs <- c(paragraphs, sprintf(txt("compare", "interp_single"), st$label))
+                    next
+                }
+                a <- st$agree
+                if (st$kind == "theory") {
+                    if (length(a$moved) == 0 && a$total == length(ega_items) && st$dims == length(unique(stats::na.omit(ref))))
+                        paragraphs <- c(paragraphs, txt("compare", "interp_theory_match"))
+                    else
+                        paragraphs <- c(paragraphs, sprintf(txt("compare", "interp_theory_vs_ega"),
+                                                            a$same, a$total,
+                                                            if (length(a$moved) > 0) paste(a$moved, collapse = ", ") else "—"))
+                } else if (length(a$moved) == 0 && st$dims == length(unique(stats::na.omit(ref)))) {
+                    paragraphs <- c(paragraphs, sprintf(txt("compare", "interp_same"), st$label))
+                } else {
+                    paragraphs <- c(paragraphs, sprintf(txt("compare", "interp_differs"),
+                                                        st$label, a$same, a$total, fmt(st$tefi),
+                                                        if (st$comparable) fmt(st$tefi - lowest) else "—",
+                                                        if (length(a$moved) > 0) paste(a$moved, collapse = ", ") else "—"))
+                }
+            }
+
+            if (parsed$empty)
+                paragraphs <- c(paragraphs, txt("compare", "interp_no_theory"))
+            if (use_cfa)
+                paragraphs <- c(paragraphs, txt("compare", "interp_cfa"))
+            paragraphs <- c(paragraphs, txt("compare", "interp_no_cutoff"))
+
+            self$results$compareInterpretation$setContent(.el_html_block(NULL, paragraphs))
+
+            warnings
         },
 
         # ---------------------------------------------------------------------
@@ -1039,6 +1276,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("uvaSets", "Redundant sets", "Conjuntos redundantes"),
                 c("uvaInterpretation", "Redundancy interpretation", "Interpretación de la redundancia"),
                 c("bootStatus", "Stability (bootstrap)", "Estabilidad (bootstrap)"),
+                c("compareStatus", "Compare structures (TEFI)", "Comparar estructuras (TEFI)"),
+                c("compareTable", "Structures compared", "Estructuras comparadas"),
+                c("compareMembership", "Item membership by structure", "Pertenencia de los ítems por estructura"),
+                c("compareInterpretation", "Structure comparison interpretation", "Interpretación de la comparación de estructuras"),
                 c("cfaStatus", "Confirmatory factor analysis", "Análisis factorial confirmatorio"),
                 c("cfaCompare", "Total sample and random parts", "Muestra total y partes aleatorias"),
                 c("cfaMembership", "Item membership by sample", "Pertenencia de los ítems por muestra"),
@@ -1075,6 +1316,11 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("uvaSets", "items", "Items", "Ítems"),
                 c("uvaSets", "keep", "Suggested to keep", "Se sugiere conservar"),
                 c("uvaSets", "remove", "Suggested to remove", "Se sugiere eliminar"),
+                c("compareTable", "structure", "Structure", "Estructura"),
+                c("compareTable", "dims", "Dimensions", "Dimensiones"),
+                c("compareTable", "delta", "Difference from lowest", "Diferencia con el más bajo"),
+                c("compareTable", "agree", "Items placed as in EGA", "Ítems ubicados como en EGA"),
+                c("compareMembership", "item", "Item", "Ítem"),
                 c("cfaCompare", "element", "Element", "Elemento"),
                 c("cfaCompare", "total", "Total sample", "Muestra total"),
                 c("cfaCompare", "partA", "Part A (derivation)", "Parte A (derivación)"),
