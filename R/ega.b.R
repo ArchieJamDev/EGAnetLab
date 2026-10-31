@@ -293,8 +293,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("membership", "dimension", "Dimension", "Dimensión"),
                 c("loadings", "item", "Item", "Ítem")
             )
-            for (c in cols)
-                tryCatch(self$results[[c[1]]]$getColumn(c[2])$setTitle(tr(c[3], c[4])), error = function(e) NULL)
+            for (col in cols)
+                tryCatch(self$results[[col[1]]]$getColumn(col[2])$setTitle(tr(col[3], col[4])), error = function(e) NULL)
         },
 
         # ---------------------------------------------------------------------
