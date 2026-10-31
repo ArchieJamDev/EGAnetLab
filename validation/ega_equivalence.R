@@ -62,9 +62,16 @@ results <- lapply(seq_len(nrow(grid)), function(i) {
     direct <- EGAnet::EGA(data[, items], model = model, algorithm = algorithm,
                           plot.EGA = FALSE, verbose = FALSE)
 
+    # The jamovi wrapper captures `vars` by non-standard evaluation, so a bare
+    # symbol such as `items` would be read as the column name "items".
+    # do.call() passes the character vector itself.
+    # ES: El contenedor de jamovi captura `vars` por evaluación no estándar, así
+    # que un símbolo como `items` se leería como la columna "items". do.call()
+    # pasa el vector de caracteres en sí.
     set.seed(20261031)
-    lab <- EGAnetLab::ega(data = data, vars = items, model = model, algorithm = algorithm,
-                          showNetworkPlot = FALSE)
+    lab <- do.call(EGAnetLab::ega,
+                   list(data = data, vars = items, model = model,
+                        algorithm = algorithm, showNetworkPlot = FALSE))
 
     summary <- lab$summary$asDF
     lab_dims <- summary$value[summary$element == "Number of dimensions"]
