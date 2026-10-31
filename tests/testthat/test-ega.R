@@ -61,10 +61,26 @@ test_that("ega tolerates accented and symbol item names", {
     expect_true("café ± más" %in% res$membership$asDF$item)
 })
 
-test_that("ega shows only the introduction when no items are selected", {
+# An empty item selection cannot be exercised through the R wrapper: in that
+# path jmvcore::Analysis always calls jmvcore::select(data, varsRequired),
+# which fails on zero columns ("invalid 'row.names' length") before .run()
+# is reached. Inside jamovi the data is read through readDataset() instead,
+# and .run() returns early showing only the introduction. What can be tested
+# here is the validation helper's verdict on an empty selection.
+# ES: Una selección vacía de ítems no puede probarse a través de la función
+# envoltorio de R: en esa vía jmvcore::Analysis siempre llama a
+# jmvcore::select(data, varsRequired), que falla con cero columnas
+# ("invalid 'row.names' length") antes de llegar a .run(). Dentro de jamovi
+# los datos se leen con readDataset() y .run() retorna temprano mostrando
+# solo la introducción. Lo que sí puede probarse aquí es el veredicto del
+# helper de validación ante una selección vacía.
+test_that("item preparation flags an empty selection as too few items", {
 
     data <- edgeStructureData()
-    expect_no_error(EGAnetLab::ega(data = data, vars = character(0)))
+    prep <- EGAnetLab:::.el_prepare_items(data, character(0))
+
+    expect_false(prep$ok)
+    expect_identical(prep$reason, "too_few_items")
 })
 
 test_that("ega rejects fewer than three items", {
