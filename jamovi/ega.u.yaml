@@ -59,6 +59,16 @@ children:
       - type: ComboBox
         name: uniMethod
   - type: CollapseBox
+    label: Redundancy (UVA)
+    collapsed: true
+    children:
+      - type: CheckBox
+        name: runUVA
+      - type: TextBox
+        name: uvaCut
+        format: number
+        enable: (runUVA)
+  - type: CollapseBox
     label: Stability (bootstrap)
     collapsed: true
     children:

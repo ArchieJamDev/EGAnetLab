@@ -20,6 +20,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             stabilityCut = 0.7,
             showItemPlot = TRUE,
             showFrequencyPlot = TRUE,
+            runUVA = FALSE,
+            uvaCut = 0.25,
             showChoicesGuide = TRUE,
             showLoadings = TRUE,
             showNetworkPlot = TRUE,
@@ -141,6 +143,16 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showFrequencyPlot",
                 showFrequencyPlot,
                 default=TRUE)
+            private$..runUVA <- jmvcore::OptionBool$new(
+                "runUVA",
+                runUVA,
+                default=FALSE)
+            private$..uvaCut <- jmvcore::OptionNumber$new(
+                "uvaCut",
+                uvaCut,
+                min=0.15,
+                max=0.4,
+                default=0.25)
             private$..showChoicesGuide <- jmvcore::OptionBool$new(
                 "showChoicesGuide",
                 showChoicesGuide,
@@ -297,6 +309,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..stabilityCut)
             self$.addOption(private$..showItemPlot)
             self$.addOption(private$..showFrequencyPlot)
+            self$.addOption(private$..runUVA)
+            self$.addOption(private$..uvaCut)
             self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showLoadings)
             self$.addOption(private$..showNetworkPlot)
@@ -335,6 +349,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         stabilityCut = function() private$..stabilityCut$value,
         showItemPlot = function() private$..showItemPlot$value,
         showFrequencyPlot = function() private$..showFrequencyPlot$value,
+        runUVA = function() private$..runUVA$value,
+        uvaCut = function() private$..uvaCut$value,
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showLoadings = function() private$..showLoadings$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
@@ -372,6 +388,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..stabilityCut = NA,
         ..showItemPlot = NA,
         ..showFrequencyPlot = NA,
+        ..runUVA = NA,
+        ..uvaCut = NA,
         ..showChoicesGuide = NA,
         ..showLoadings = NA,
         ..showNetworkPlot = NA,
@@ -409,6 +427,10 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         loadings = function() private$.items[["loadings"]],
         interpretation = function() private$.items[["interpretation"]],
         networkPlot = function() private$.items[["networkPlot"]],
+        uvaStatus = function() private$.items[["uvaStatus"]],
+        uvaPairs = function() private$.items[["uvaPairs"]],
+        uvaSets = function() private$.items[["uvaSets"]],
+        uvaInterpretation = function() private$.items[["uvaInterpretation"]],
         bootStatus = function() private$.items[["bootStatus"]],
         bootSummaryGuide = function() private$.items[["bootSummaryGuide"]],
         bootSummary = function() private$.items[["bootSummary"]],
@@ -554,6 +576,89 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "showLegend",
                     "legendPosition",
                     "legendTitle")))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="uvaStatus",
+                title="Redundancy (UVA)",
+                visible="(runUVA)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="uvaPairs",
+                title="Item pairs by weighted topological overlap",
+                rows=0,
+                visible="(runUVA)",
+                refs=list(
+                    "christensen_2023_uva"),
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "uvaCut",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="itemA", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="itemB", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="wto", 
+                        `title`="wTO", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="magnitude", 
+                        `title`="Redundancy", 
+                        `type`="text"),
+                    list(
+                        `name`="sameDim", 
+                        `title`="Same dimension", 
+                        `type`="text"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="uvaSets",
+                title="Redundant sets",
+                rows=0,
+                visible="(runUVA)",
+                refs=list(
+                    "christensen_2023_uva"),
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "uvaCut",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="set", 
+                        `title`="Set", 
+                        `type`="integer"),
+                    list(
+                        `name`="items", 
+                        `title`="Items", 
+                        `type`="text"),
+                    list(
+                        `name`="keep", 
+                        `title`="Suggested to keep", 
+                        `type`="text"),
+                    list(
+                        `name`="remove", 
+                        `title`="Suggested to remove", 
+                        `type`="text"))))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="uvaInterpretation",
+                title="Redundancy interpretation",
+                visible="(runUVA)"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="bootStatus",
@@ -788,7 +893,8 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' Estimates the number of dimensions underlying a set of items, and which 
 #' items belong to each dimension, with Exploratory Graph Analysis (EGAnet), 
 #' paired with network loadings, entropy fit, optional bootstrap stability of 
-#' dimensions and items, and plain-language interpretation.
+#' dimensions and items, optional redundancy analysis (UVA), and plain- 
+#' language interpretation.
 #' 
 #' @param data .
 #' @param vars .
@@ -805,6 +911,8 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param stabilityCut .
 #' @param showItemPlot .
 #' @param showFrequencyPlot .
+#' @param runUVA .
+#' @param uvaCut .
 #' @param showChoicesGuide .
 #' @param showLoadings .
 #' @param showNetworkPlot .
@@ -838,6 +946,10 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$loadings} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$interpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$networkPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$uvaStatus} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$uvaPairs} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$uvaSets} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$uvaInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$bootStatus} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$bootSummaryGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$bootSummary} \tab \tab \tab \tab \tab a table \cr
@@ -873,6 +985,8 @@ ega <- function(
     stabilityCut = 0.7,
     showItemPlot = TRUE,
     showFrequencyPlot = TRUE,
+    runUVA = FALSE,
+    uvaCut = 0.25,
     showChoicesGuide = TRUE,
     showLoadings = TRUE,
     showNetworkPlot = TRUE,
@@ -921,6 +1035,8 @@ ega <- function(
         stabilityCut = stabilityCut,
         showItemPlot = showItemPlot,
         showFrequencyPlot = showFrequencyPlot,
+        runUVA = runUVA,
+        uvaCut = uvaCut,
         showChoicesGuide = showChoicesGuide,
         showLoadings = showLoadings,
         showNetworkPlot = showNetworkPlot,

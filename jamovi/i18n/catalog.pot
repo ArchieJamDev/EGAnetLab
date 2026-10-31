@@ -51,6 +51,10 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+#: ega/options/runUVA.title
+msgid "Check redundancy (UVA)"
+msgstr ""
+
 #: ega/options/layout/circle.title
 #: ega/options/nodeShape/circle.title
 msgid "Circle"
@@ -181,7 +185,7 @@ msgstr ""
 
 #: package/analyses/ega.description
 #: ega/options.description.main
-msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, and plain-language interpretation."
+msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation."
 msgstr ""
 
 #: ega/ui[2].label
@@ -226,12 +230,17 @@ msgstr ""
 
 #: ega/results/membership.columns.title
 #: ega/results/loadings.columns.title
+#: ega/results/uvaPairs.columns.title
 #: ega/results/bootItemStability.columns.title
 msgid "Item"
 msgstr ""
 
 #: ega/results/membership.title
 msgid "Item membership"
+msgstr ""
+
+#: ega/results/uvaPairs.title
+msgid "Item pairs by weighted topological overlap"
 msgstr ""
 
 #: ega/results/bootItemStability.title
@@ -248,6 +257,7 @@ msgid "Item stability plot"
 msgstr ""
 
 #: ega/options/vars.title
+#: ega/results/uvaSets.columns.title
 #: ega/results/bootDimStability.columns.title
 #: ega/ui[0][0].label
 msgid "Items"
@@ -364,7 +374,7 @@ msgstr ""
 msgid "Orange"
 msgstr ""
 
-#: ega/ui[4].label
+#: ega/ui[5].label
 msgid "Output"
 msgstr ""
 
@@ -380,19 +390,19 @@ msgstr ""
 msgid "Pearson"
 msgstr ""
 
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Plot Edges"
 msgstr ""
 
-#: ega/ui[5].label
+#: ega/ui[6].label
 msgid "Plot Layout"
 msgstr ""
 
-#: ega/ui[8].label
+#: ega/ui[9].label
 msgid "Plot Legend"
 msgstr ""
 
-#: ega/ui[6].label
+#: ega/ui[7].label
 msgid "Plot Nodes and Labels"
 msgstr ""
 
@@ -412,6 +422,27 @@ msgstr ""
 msgid "Red"
 msgstr ""
 
+#: ega/results/uvaPairs.columns.title
+msgid "Redundancy"
+msgstr ""
+
+#: ega/results/uvaStatus.title
+#: ega/ui[3].label
+msgid "Redundancy (UVA)"
+msgstr ""
+
+#: ega/options/uvaCut.title
+msgid "Redundancy cutoff (wTO)"
+msgstr ""
+
+#: ega/results/uvaInterpretation.title
+msgid "Redundancy interpretation"
+msgstr ""
+
+#: ega/results/uvaSets.title
+msgid "Redundant sets"
+msgstr ""
+
 #: ega/options/reportLang.title
 #: ega/ui[1].label
 msgid "Report Language"
@@ -429,12 +460,20 @@ msgstr ""
 msgid "Run bootstrap"
 msgstr ""
 
+#: ega/results/uvaPairs.columns.title
+msgid "Same dimension"
+msgstr ""
+
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
 msgstr ""
 
 #: ega/options/seed.title
 msgid "Seed"
+msgstr ""
+
+#: ega/results/uvaSets.columns.title
+msgid "Set"
 msgstr ""
 
 #: ega/options/showEdgeLabels.title
@@ -465,7 +504,7 @@ msgstr ""
 msgid "Stability"
 msgstr ""
 
-#: ega/ui[3].label
+#: ega/ui[4].label
 msgid "Stability (bootstrap)"
 msgstr ""
 
@@ -475,6 +514,14 @@ msgstr ""
 
 #: ega/results/bootDimStability.columns.title
 msgid "Structural consistency"
+msgstr ""
+
+#: ega/results/uvaSets.columns.title
+msgid "Suggested to keep"
+msgstr ""
+
+#: ega/results/uvaSets.columns.title
+msgid "Suggested to remove"
 msgstr ""
 
 #: ega/options/model/TMFG.title
@@ -508,4 +555,8 @@ msgstr ""
 
 #: ega/options/labelColor/white.title
 msgid "White"
+msgstr ""
+
+#: ega/results/uvaPairs.columns.title
+msgid "wTO"
 msgstr ""

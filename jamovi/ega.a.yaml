@@ -35,7 +35,8 @@ description:
       Estimates the number of dimensions underlying a set of items, and which
       items belong to each dimension, with Exploratory Graph Analysis (EGAnet),
       paired with network loadings, entropy fit, optional bootstrap stability
-      of dimensions and items, and plain-language interpretation.
+      of dimensions and items, optional redundancy analysis (UVA), and
+      plain-language interpretation.
 
 options:
   - name: data
@@ -192,6 +193,29 @@ options:
     title: Dimension frequency plot
     type: Bool
     default: true
+
+  # ---------------------------------------------------------------------------
+  # Redundancy (UVA): optional section that runs EGAnet::UVA() with the same
+  # estimation options. Pairs of items whose weighted topological overlap
+  # (wTO) reaches the cutoff are flagged as locally dependent; .25 is the
+  # value recommended by Christensen, Garrido and Golino (2023).
+  # ES: Redundancia (UVA): sección opcional que ejecuta EGAnet::UVA() con las
+  # mismas opciones de estimación. Los pares de ítems cuyo solapamiento
+  # topológico ponderado (wTO) alcanza el punto de corte se señalan como
+  # localmente dependientes; .25 es el valor recomendado por Christensen,
+  # Garrido y Golino (2023).
+  # ---------------------------------------------------------------------------
+  - name: runUVA
+    title: Check redundancy (UVA)
+    type: Bool
+    default: false
+
+  - name: uvaCut
+    title: Redundancy cutoff (wTO)
+    type: Number
+    min: 0.15
+    max: 0.40
+    default: 0.25
 
   # Explanatory paragraph for each estimation choice currently selected
   # (Archie's design rule: every menu decision carries its explanation).

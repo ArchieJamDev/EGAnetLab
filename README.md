@@ -126,7 +126,7 @@ explanation.
 |---|---|---|
 | **Network loadings** (`net.loads`) | How strongly does each item load on its dimension, and on the others? | ✅ 0.1.0 (in EGA) |
 | **Item & dimension stability** | What percentage of resamples place each item in the same dimension? | ✅ 0.1.0 (in EGA, Stability section) |
-| **Unique Variable Analysis** (`UVA`) | Which items are redundant and should be removed or combined? | 🗓 Planned |
+| **Unique Variable Analysis** (`UVA`) | Which items are redundant and should be removed or combined? | ✅ 0.1.0 (in EGA, Redundancy section) |
 | **Network scores** (`net.scores`) | What is each person's score per dimension, saved back to the data? | 🗓 Planned |
 | **Invariance** (`invariance` + NetworkComparisonTest) | Is the structure equivalent across groups, or before and after an intervention? | 🗓 Planned |
 | **Confirmatory test** (`CFA`) | Does the EGA structure hold as a confirmatory factor model? | 🗓 Planned |
@@ -251,9 +251,9 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 
 | Phase | Content | Status |
 |---|---|---|
-| 0 | Platform, EGA analysis, CI, documentation | ✅ In review |
-| 1 | Bootstrap EGA, item and dimension stability | ✅ In review |
-| 2 | UVA, network scores, CFA | 🗓 |
+| 0 | Platform, EGA analysis, CI, documentation | ✅ Done |
+| 1 | Bootstrap EGA, item and dimension stability | ✅ Done |
+| 2 | UVA, network scores, CFA | 🚧 UVA in review |
 | 3 | TEFI comparison of competing structures | 🗓 |
 | 4 | Hierarchical EGA and random-intercept EGA | 🗓 |
 | 5 | Invariance and NetworkComparisonTest (independent and paired groups) | 🗓 |

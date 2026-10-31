@@ -151,6 +151,86 @@ items:
       - legendTitle
 
   # ---------------------------------------------------------------------------
+  # Redundancy (UVA): shown only when "Check redundancy (UVA)" is ticked.
+  # ES: Redundancia (UVA): se muestra solo si se marca "Check redundancy
+  # (UVA)".
+  # ---------------------------------------------------------------------------
+
+  - name: uvaStatus
+    title: Redundancy (UVA)
+    type: Html
+    visible: (runUVA)
+
+  - name: uvaPairs
+    title: Item pairs by weighted topological overlap
+    type: Table
+    rows: 0
+    visible: (runUVA)
+    refs:
+      - christensen_2023_uva
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - uvaCut
+      - reportLang
+    columns:
+      - name: itemA
+        title: Item
+        type: text
+      - name: itemB
+        title: Item
+        type: text
+      - name: wto
+        title: wTO
+        type: number
+        format: zto
+      - name: magnitude
+        title: Redundancy
+        type: text
+      - name: sameDim
+        title: Same dimension
+        type: text
+
+  - name: uvaSets
+    title: Redundant sets
+    type: Table
+    rows: 0
+    visible: (runUVA)
+    refs:
+      - christensen_2023_uva
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - uvaCut
+      - reportLang
+    columns:
+      - name: set
+        title: Set
+        type: integer
+      - name: items
+        title: Items
+        type: text
+      - name: keep
+        title: Suggested to keep
+        type: text
+      - name: remove
+        title: Suggested to remove
+        type: text
+
+  - name: uvaInterpretation
+    title: Redundancy interpretation
+    type: Html
+    visible: (runUVA)
+
+  # ---------------------------------------------------------------------------
   # Stability (bootstrap): shown only when "Run bootstrap" is ticked.
   # ES: Estabilidad (bootstrap): se muestra solo si se marca "Run bootstrap".
   # ---------------------------------------------------------------------------

@@ -28,7 +28,8 @@ analyses:
       Estimates the number of dimensions underlying a set of items, and which
       items belong to each dimension, with Exploratory Graph Analysis (EGAnet),
       paired with network loadings, entropy fit, optional bootstrap stability
-      of dimensions and items, and plain-language interpretation.
+      of dimensions and items, optional redundancy analysis (UVA), and
+      plain-language interpretation.
     category: analyses
 datasets:
   - name: WMT-2 Matrices Test (n=1185)

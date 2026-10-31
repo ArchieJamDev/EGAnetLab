@@ -1,5 +1,20 @@
 # EGAnetLab 0.1.0 (development)
 
+## EGA: redundancy by Unique Variable Analysis (phase 2)
+
+* New optional section **Redundancy (UVA)** inside the EGA analysis,
+  wrapping `EGAnet::UVA()` with the same estimation options. It lists every
+  item pair with weighted topological overlap (wTO) of .20 or more, graded
+  as EGAnet does (small-to-moderate, moderate-to-large, large-to-very
+  large) and marked by whether both items share a dimension; the redundant
+  sets at the cutoff (default .25, Christensen, Garrido & Golino, 2023);
+  and EGAnet's automatic keep/remove suggestion, presented as a starting
+  point for a content-based decision.
+* The interpretation names redundant pairs split across dimensions and,
+  when the bootstrap also runs, items that are both redundant and
+  unstable.
+* "About your choices" explains the wTO cutoff when the section is on.
+
 ## EGA: stability by bootstrap (phase 1)
 
 * New optional section **Stability (bootstrap)** inside the EGA analysis,

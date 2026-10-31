@@ -59,6 +59,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
     inherit = egaBase,
     private = list(
 
+        # Items below the stability cutoff in this run's bootstrap, read by
+        # the redundancy interpretation.
+        # ES: Ítems bajo el punto de corte de estabilidad en el bootstrap de
+        # esta ejecución, leídos por la interpretación de redundancia.
+        .bootUnstable = character(0),
+
         .run = function() {
 
             # -----------------------------------------------------------------
@@ -99,6 +105,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     extra <- sprintf(txt("choices", "iter_seed"),
                                      as.integer(self$options$iter), as.integer(self$options$seed))
                 }
+                if (isTRUE(self$options$runUVA))
+                    extra <- c(extra, sprintf(txt("choices", "uva_cut"),
+                                              .el_fmt_num(as.numeric(self$options$uvaCut), 2)))
                 self$results$choicesGuide$setContent(
                     .el_choices_guide(lang, self$options, labels, extra = extra))
             }
@@ -278,15 +287,28 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # este mismo EGA en cada muestra, con las opciones de arriba.
             # -----------------------------------------------------------------
             boot_warnings <- character(0)
+            private$.bootUnstable <- character(0)
             if (isTRUE(self$options$runBoot))
                 boot_warnings <- private$.runBootstrap(prep, tr, txt)
+
+            # -----------------------------------------------------------------
+            # Redundancy (UVA), only when requested. Runs after the bootstrap
+            # so its interpretation can name items that are both redundant
+            # and unstable.
+            # ES: Redundancia (UVA), solo si se pide. Se ejecuta después del
+            # bootstrap para que su interpretación pueda nombrar los ítems
+            # que son a la vez redundantes e inestables.
+            # -----------------------------------------------------------------
+            uva_warnings <- character(0)
+            if (isTRUE(self$options$runUVA))
+                uva_warnings <- private$.runUVA(prep, wc, tr, txt)
 
             # -----------------------------------------------------------------
             # Notes: every EGAnet warning is shown, never suppressed.
             # ES: Notas: cada advertencia de EGAnet se muestra, nunca se
             # suprime.
             # -----------------------------------------------------------------
-            warnings <- unique(c(fit$warnings, boot_warnings))
+            warnings <- unique(c(fit$warnings, boot_warnings, uva_warnings))
             if (length(warnings) > 0) {
                 self$results$notes$setContent(.el_html_block(
                     txt("common", "warnings_title"),
@@ -304,6 +326,131 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # -----------------------------------------------------------------
             if (isTRUE(self$options$showNetworkPlot))
                 self$results$networkPlot$setState(list(network = ega$network, wc = wc))
+        },
+
+        # ---------------------------------------------------------------------
+        # Redundancy with EGAnet::UVA() (Christensen, Garrido & Golino, 2023),
+        # estimated with the same options as the EGA above. UVA is fast, so
+        # it runs on every update without a cache. A failure (Category B)
+        # leaves the EGA results intact and is explained in this section.
+        # Returns the EGAnet messages captured while it ran.
+        # ES: Redundancia con EGAnet::UVA() (Christensen, Garrido y Golino,
+        # 2023), estimada con las mismas opciones del EGA de arriba. UVA es
+        # rápido, así que se ejecuta en cada actualización sin caché. Un
+        # fallo (Categoría B) deja intactos los resultados de EGA y se
+        # explica en esta sección. Devuelve los mensajes de EGAnet capturados.
+        # ---------------------------------------------------------------------
+        .runUVA = function(prep, wc, tr, txt) {
+
+            cut <- as.numeric(self$options$uvaCut)
+            fmt <- function(x) .el_fmt_num(x, 2)
+            heading <- tr("Redundancy (UVA)", "Redundancia (UVA)")
+            intro <- txt("uva", "intro")
+
+            for (name in c("uvaPairs", "uvaSets"))
+                self$results[[name]]$deleteRows()
+
+            fit <- .el_capture(EGAnet::UVA(
+                data = prep$data,
+                cut.off = cut,
+                reduce = TRUE,
+                reduce.method = "remove",
+                corr = self$options$corr,
+                na.data = self$options$naData,
+                model = self$options$model,
+                algorithm = self$options$algorithm,
+                uni.method = self$options$uniMethod,
+                verbose = FALSE
+            ))
+
+            if (is.null(fit$value)) {
+                self$results$uvaStatus$setContent(.el_html_block(
+                    heading, c(intro, sprintf(txt("uva", "failed"), fit$error))))
+                for (name in c("uvaPairs", "uvaSets", "uvaInterpretation"))
+                    self$results[[name]]$setVisible(FALSE)
+                return(fit$warnings)
+            }
+
+            summary <- .el_uva_summary(fit$value, cut)
+
+            self$results$uvaStatus$setContent(paste0(
+                .el_html_block(heading, intro),
+                .el_html_block(NULL, .el_html_list(txt("uva", "guide")), raw = TRUE)))
+
+            # Pairs with wTO >= .20 (or the cutoff, if lower), as EGAnet's
+            # own print() shows them.
+            # ES: Pares con wTO >= .20 (o el punto de corte, si es menor),
+            # como los muestra el print() de EGAnet.
+            pairs <- summary$pairs
+            dim_of <- function(item) { d <- wc[[item]]; if (is.null(d) || is.na(d)) NA else d }
+            if (nrow(pairs) == 0) {
+                .el_add_row(self$results$uvaPairs, 1, list(itemA = txt("uva", "no_pairs")))
+            } else {
+                for (i in seq_len(nrow(pairs))) {
+                    w <- pairs$wto[i]
+                    magnitude <- if (w > 0.30) txt("uva", "mag_large")
+                                 else if (w > 0.25) txt("uva", "mag_moderate")
+                                 else txt("uva", "mag_small")
+                    da <- dim_of(pairs$node_i[i]); db <- dim_of(pairs$node_j[i])
+                    same <- if (is.na(da) || is.na(db)) "" else if (da == db) txt("uva", "yes") else txt("uva", "no")
+                    .el_add_row(self$results$uvaPairs, i, list(
+                        itemA = pairs$node_i[i], itemB = pairs$node_j[i], wto = w,
+                        magnitude = magnitude, sameDim = same))
+                }
+            }
+
+            # Redundant sets and EGAnet's automatic keep/remove suggestion.
+            # ES: Conjuntos redundantes y la sugerencia automática de EGAnet
+            # de conservar/eliminar.
+            sets <- summary$sets
+            for (i in seq_along(sets))
+                .el_add_row(self$results$uvaSets, i, list(
+                    set = i,
+                    items = paste(sets[[i]]$items, collapse = ", "),
+                    keep = paste(sets[[i]]$keep, collapse = ", "),
+                    remove = paste(sets[[i]]$remove, collapse = ", ")))
+            if (length(sets) == 0)
+                self$results$uvaSets$setVisible(FALSE)
+
+            # Interpretation.
+            # ES: Interpretación.
+            paragraphs <- character(0)
+            above <- pairs[pairs$wto >= cut, , drop = FALSE]
+            borderline <- pairs[pairs$wto < cut & pairs$wto >= 0.20, , drop = FALSE]
+
+            if (length(sets) == 0) {
+                paragraphs <- c(paragraphs, sprintf(txt("uva", "interp_none"), fmt(cut)))
+            } else {
+                set_text <- vapply(sets, function(s) paste0("(", paste(s$items, collapse = ", "), ")"), character(1))
+                paragraphs <- c(paragraphs,
+                    sprintf(txt("uva", "interp_sets"), length(sets), fmt(cut), paste(set_text, collapse = "; ")),
+                    sprintf(txt("uva", "interp_suggest"),
+                            paste(unique(unlist(lapply(sets, `[[`, "keep"))), collapse = ", "),
+                            paste(unique(unlist(lapply(sets, `[[`, "remove"))), collapse = ", ")))
+            }
+
+            if (nrow(borderline) > 0)
+                paragraphs <- c(paragraphs, sprintf(txt("uva", "interp_borderline"), nrow(borderline), fmt(cut)))
+
+            if (nrow(above) > 0) {
+                split <- vapply(seq_len(nrow(above)), function(i) {
+                    da <- dim_of(above$node_i[i]); db <- dim_of(above$node_j[i])
+                    !is.na(da) && !is.na(db) && da != db
+                }, logical(1))
+                if (any(split))
+                    paragraphs <- c(paragraphs, sprintf(txt("uva", "interp_split"),
+                        paste(paste0(above$node_i[split], "-", above$node_j[split]), collapse = ", ")))
+            }
+
+            redundant_items <- unique(unlist(lapply(sets, `[[`, "items")))
+            both <- intersect(redundant_items, private$.bootUnstable)
+            if (length(both) > 0)
+                paragraphs <- c(paragraphs, sprintf(txt("uva", "interp_unstable"), paste(both, collapse = ", ")))
+
+            paragraphs <- c(paragraphs, txt("uva", "interp_next"))
+            self$results$uvaInterpretation$setContent(.el_html_block(NULL, paragraphs))
+
+            fit$warnings
         },
 
         # ---------------------------------------------------------------------
@@ -473,6 +620,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 else sprintf(txt("bootega", "interp_dims_ok"), pct(cut)))
 
             low_items <- it$item[!is.na(it$stability) & it$stability < cut]
+            private$.bootUnstable <- low_items
             paragraphs <- c(paragraphs, if (length(low_items) > 0)
                 sprintf(txt("bootega", "interp_items_low"), length(low_items), pct(cut), paste(low_items, collapse = ", "))
                 else sprintf(txt("bootega", "interp_items_ok"), pct(cut)))
@@ -518,6 +666,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("loadings", "Network loadings (standardized)", "Cargas de red (estandarizadas)"),
                 c("interpretation", "Applied interpretation", "Interpretación aplicada"),
                 c("networkPlot", "Estimated network", "Red estimada"),
+                c("uvaStatus", "Redundancy (UVA)", "Redundancia (UVA)"),
+                c("uvaPairs", "Item pairs by weighted topological overlap", "Pares de ítems por solapamiento topológico ponderado"),
+                c("uvaSets", "Redundant sets", "Conjuntos redundantes"),
+                c("uvaInterpretation", "Redundancy interpretation", "Interpretación de la redundancia"),
                 c("bootStatus", "Stability (bootstrap)", "Estabilidad (bootstrap)"),
                 c("bootSummaryGuide", "Number of dimensions across samples", "Número de dimensiones entre muestras"),
                 c("bootSummary", "Number of dimensions across samples", "Número de dimensiones entre muestras"),
@@ -538,6 +690,14 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("membership", "item", "Item", "Ítem"),
                 c("membership", "dimension", "Dimension", "Dimensión"),
                 c("loadings", "item", "Item", "Ítem"),
+                c("uvaPairs", "itemA", "Item", "Ítem"),
+                c("uvaPairs", "itemB", "Item", "Ítem"),
+                c("uvaPairs", "magnitude", "Redundancy", "Redundancia"),
+                c("uvaPairs", "sameDim", "Same dimension", "Misma dimensión"),
+                c("uvaSets", "set", "Set", "Conjunto"),
+                c("uvaSets", "items", "Items", "Ítems"),
+                c("uvaSets", "keep", "Suggested to keep", "Se sugiere conservar"),
+                c("uvaSets", "remove", "Suggested to remove", "Se sugiere eliminar"),
                 c("bootSummary", "element", "Element", "Elemento"),
                 c("bootSummary", "value", "Value", "Valor"),
                 c("bootFrequency", "dims", "Dimensions", "Dimensiones"),
@@ -717,4 +877,46 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
         item_table = item_table,
         warnings = unique(as.character(warnings))
     )
+}
+
+# -----------------------------------------------------------------------------
+# .el_uva_summary()
+#
+# Input: uva - an EGAnet::UVA() result (reduce.method = "remove"); cut - the
+#   wTO cutoff used.
+# Output: list(pairs = data frame node_i, node_j, wto with every pair at or
+#   above min(.20, cut), sorted from highest wTO; sets = one entry per
+#   redundant set with $items, $keep and $remove).
+# ES: Salida: list(pairs = data frame con todo par igual o mayor que
+#   min(.20, cut), ordenado de mayor a menor wTO; sets = una entrada por
+#   conjunto redundante con $items, $keep y $remove).
+# -----------------------------------------------------------------------------
+.el_uva_summary <- function(uva, cut) {
+
+    pw <- uva$wto$pairwise
+    floor_value <- min(0.20, cut)
+    pairs <- if (is.null(pw) || nrow(pw) == 0)
+        data.frame(node_i = character(0), node_j = character(0), wto = numeric(0))
+    else
+        data.frame(node_i = as.character(pw$node_i), node_j = as.character(pw$node_j),
+                   wto = as.numeric(pw$wto), stringsAsFactors = FALSE)
+    pairs <- pairs[!is.na(pairs$wto) & pairs$wto >= floor_value, , drop = FALSE]
+    pairs <- pairs[order(-pairs$wto), , drop = FALSE]
+    rownames(pairs) <- NULL
+
+    sets <- list()
+    redundant <- uva$redundant
+    if (length(redundant) > 0) {
+        removed <- if (!is.null(uva$keep_remove)) as.character(uva$keep_remove$remove) else character(0)
+        for (target in names(redundant)) {
+            items <- unique(c(target, as.character(redundant[[target]])))
+            sets[[length(sets) + 1]] <- list(
+                items = items,
+                keep = setdiff(items, removed),
+                remove = intersect(items, removed)
+            )
+        }
+    }
+
+    list(pairs = pairs, sets = sets)
 }

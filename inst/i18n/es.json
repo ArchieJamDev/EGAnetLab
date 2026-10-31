@@ -40,6 +40,9 @@
             "Bottom": [
                 "Abajo"
             ],
+            "Check redundancy (UVA)": [
+                "Revisar redundancia (UVA)"
+            ],
             "Circle": [
                 "Círculo"
             ],
@@ -130,8 +133,8 @@
             "Estimated network": [
                 "Red estimada"
             ],
-            "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, and plain-language interpretation.": [
-                "Estima el número de dimensiones subyacentes a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnet), junto con cargas de red, ajuste por entropía, estabilidad bootstrap opcional de dimensiones e ítems, e interpretación en lenguaje claro."
+            "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation.": [
+                "Estima el número de dimensiones subyacentes a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnet), junto con cargas de red, ajuste por entropía, estabilidad bootstrap opcional de dimensiones e ítems, análisis opcional de redundancia (UVA), e interpretación en lenguaje claro."
             ],
             "Estimation": [
                 "Estimación"
@@ -165,6 +168,9 @@
             ],
             "Item membership": [
                 "Pertenencia de los ítems"
+            ],
+            "Item pairs by weighted topological overlap": [
+                "Pares de ítems por solapamiento topológico ponderado"
             ],
             "Item stability": [
                 "Estabilidad de los ítems"
@@ -295,6 +301,21 @@
             "Red": [
                 "Rojo"
             ],
+            "Redundancy": [
+                "Redundancia"
+            ],
+            "Redundancy (UVA)": [
+                "Redundancia (UVA)"
+            ],
+            "Redundancy cutoff (wTO)": [
+                "Punto de corte de redundancia (wTO)"
+            ],
+            "Redundancy interpretation": [
+                "Interpretación de la redundancia"
+            ],
+            "Redundant sets": [
+                "Conjuntos redundantes"
+            ],
             "Report Language": [
                 "Idioma del informe"
             ],
@@ -307,11 +328,17 @@
             "Run bootstrap": [
                 "Ejecutar bootstrap"
             ],
+            "Same dimension": [
+                "Misma dimensión"
+            ],
             "Samples": [
                 "Muestras"
             ],
             "Seed": [
                 "Semilla"
+            ],
+            "Set": [
+                "Conjunto"
             ],
             "Show edge weights": [
                 "Mostrar pesos de aristas"
@@ -343,6 +370,12 @@
             "Structural consistency": [
                 "Consistencia estructural"
             ],
+            "Suggested to keep": [
+                "Se sugiere conservar"
+            ],
+            "Suggested to remove": [
+                "Se sugiere eliminar"
+            ],
             "TMFG": [
                 "TMFG"
             ],
@@ -366,6 +399,9 @@
             ],
             "White": [
                 "Blanco"
+            ],
+            "wTO": [
+                "wTO"
             ]
         }
     }
