@@ -25,7 +25,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             netScores = FALSE,
             runCompare = FALSE,
             compareAlgorithms = TRUE,
-            theoryStructure = "",
+            theoryFactors = list(
+                list(label="Factor 1", vars=list())),
             compareCFA = FALSE,
             runCFA = FALSE,
             cfaEstimator = "auto",
@@ -179,10 +180,26 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "compareAlgorithms",
                 compareAlgorithms,
                 default=TRUE)
-            private$..theoryStructure <- jmvcore::OptionString$new(
-                "theoryStructure",
-                theoryStructure,
-                default="")
+            private$..theoryFactors <- jmvcore::OptionArray$new(
+                "theoryFactors",
+                theoryFactors,
+                default=list(
+                    list(label="Factor 1", vars=list())),
+                template=jmvcore::OptionGroup$new(
+                    "theoryFactors",
+                    NULL,
+                    elements=list(
+                        jmvcore::OptionString$new(
+                            "label",
+                            NULL),
+                        jmvcore::OptionVariables$new(
+                            "vars",
+                            NULL,
+                            suggested=list(
+                                "continuous",
+                                "ordinal"),
+                            permitted=list(
+                                "numeric")))))
             private$..compareCFA <- jmvcore::OptionBool$new(
                 "compareCFA",
                 compareCFA,
@@ -381,7 +398,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..meanScoresOV)
             self$.addOption(private$..runCompare)
             self$.addOption(private$..compareAlgorithms)
-            self$.addOption(private$..theoryStructure)
+            self$.addOption(private$..theoryFactors)
             self$.addOption(private$..compareCFA)
             self$.addOption(private$..runCFA)
             self$.addOption(private$..cfaEstimator)
@@ -434,7 +451,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         meanScoresOV = function() private$..meanScoresOV$value,
         runCompare = function() private$..runCompare$value,
         compareAlgorithms = function() private$..compareAlgorithms$value,
-        theoryStructure = function() private$..theoryStructure$value,
+        theoryFactors = function() private$..theoryFactors$value,
         compareCFA = function() private$..compareCFA$value,
         runCFA = function() private$..runCFA$value,
         cfaEstimator = function() private$..cfaEstimator$value,
@@ -486,7 +503,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..meanScoresOV = NA,
         ..runCompare = NA,
         ..compareAlgorithms = NA,
-        ..theoryStructure = NA,
+        ..theoryFactors = NA,
         ..compareCFA = NA,
         ..runCFA = NA,
         ..cfaEstimator = NA,
@@ -788,7 +805,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "algorithm",
                     "uniMethod",
                     "compareAlgorithms",
-                    "theoryStructure",
+                    "theoryFactors",
                     "compareCFA",
                     "reportLang"),
                 columns=list(
@@ -844,7 +861,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "algorithm",
                     "uniMethod",
                     "compareAlgorithms",
-                    "theoryStructure",
+                    "theoryFactors",
                     "compareCFA",
                     "reportLang"),
                 columns=list(
@@ -1155,12 +1172,13 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Table$new(
                 options=options,
                 name="cfaCompare",
-                title="Total sample and random parts",
+                title="Total sample and random subsamples",
                 rows=0,
                 visible="(runCFA)",
                 refs=list(
                     "rosseel_2012",
-                    "hu_bentler_1999"),
+                    "hu_bentler_1999",
+                    "schermelleh_engel_2003"),
                 clearWith=list(
                     "vars",
                     "corr",
@@ -1184,12 +1202,12 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="text"),
                     list(
                         `name`="partA", 
-                        `title`="Part A (derivation)", 
+                        `title`="Subsample A (exploration)", 
                         `type`="text", 
                         `visible`="(splitSample)"),
                     list(
                         `name`="partB", 
-                        `title`="Part B (validation)", 
+                        `title`="Subsample B (confirmation)", 
                         `type`="text", 
                         `visible`="(splitSample)"))))
             self$add(jmvcore::Table$new(
@@ -1221,11 +1239,11 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="text"),
                     list(
                         `name`="partA", 
-                        `title`="Part A", 
+                        `title`="Subsample A", 
                         `type`="text"),
                     list(
                         `name`="partB", 
-                        `title`="Part B", 
+                        `title`="Subsample B", 
                         `type`="text"),
                     list(
                         `name`="agree", 
@@ -1276,7 +1294,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Output$new(
                 options=options,
                 name="splitOV",
-                title="Sample part",
+                title="Subsample",
+                initInRun=TRUE,
                 measureType="nominal",
                 clearWith=list(
                     "vars",
@@ -1341,7 +1360,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param netScores .
 #' @param runCompare .
 #' @param compareAlgorithms .
-#' @param theoryStructure .
+#' @param theoryFactors .
 #' @param compareCFA .
 #' @param runCFA .
 #' @param cfaEstimator .
@@ -1439,7 +1458,8 @@ ega <- function(
     netScores = FALSE,
     runCompare = FALSE,
     compareAlgorithms = TRUE,
-    theoryStructure = "",
+    theoryFactors = list(
+                list(label="Factor 1", vars=list())),
     compareCFA = FALSE,
     runCFA = FALSE,
     cfaEstimator = "auto",
@@ -1499,7 +1519,7 @@ ega <- function(
         netScores = netScores,
         runCompare = runCompare,
         compareAlgorithms = compareAlgorithms,
-        theoryStructure = theoryStructure,
+        theoryFactors = theoryFactors,
         compareCFA = compareCFA,
         runCFA = runCFA,
         cfaEstimator = cfaEstimator,

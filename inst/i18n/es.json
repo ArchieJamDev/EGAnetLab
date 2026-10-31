@@ -347,18 +347,6 @@
             "Parametric": [
                 "Paramétrico"
             ],
-            "Part A": [
-                "Parte A"
-            ],
-            "Part A (derivation)": [
-                "Parte A (derivación)"
-            ],
-            "Part B": [
-                "Parte B"
-            ],
-            "Part B (validation)": [
-                "Parte B (validación)"
-            ],
             "Pearson": [
                 "Pearson"
             ],
@@ -383,8 +371,8 @@
             "Proportion": [
                 "Proporción"
             ],
-            "Proportion for EGA (derivation)": [
-                "Proporción para EGA (derivación)"
+            "Proportion for EGA (exploration)": [
+                "Proporción para EGA (exploración)"
             ],
             "RMSEA": [
                 "RMSEA"
@@ -434,9 +422,6 @@
             "Same in A and B": [
                 "Igual en A y B"
             ],
-            "Sample part": [
-                "Parte de la muestra"
-            ],
             "Samples": [
                 "Muestras"
             ],
@@ -446,8 +431,8 @@
             "Save network scores": [
                 "Guardar puntuaciones de red"
             ],
-            "Save sample part": [
-                "Guardar la parte de la muestra"
+            "Save subsample": [
+                "Guardar SubMuestra"
             ],
             "Seed": [
                 "Semilla"
@@ -470,8 +455,8 @@
             "Split seed": [
                 "Semilla de la división"
             ],
-            "Split the sample at random (EGA in one part, CFA in the other)": [
-                "Dividir la muestra al azar (EGA en una parte, CFA en la otra)"
+            "Split the sample at random (EGA in one subsample, CFA in the other)": [
+                "Dividir la muestra al azar (EGA en una submuestra, CFA en la otra)"
             ],
             "Spring (Fruchterman-Reingold)": [
                 "Resorte (Fruchterman-Reingold)"
@@ -500,6 +485,21 @@
             "Structures compared": [
                 "Estructuras comparadas"
             ],
+            "Subsample": [
+                "SubMuestra"
+            ],
+            "Subsample A": [
+                "SubMuestra A"
+            ],
+            "Subsample A (exploration)": [
+                "SubMuestra A (exploración)"
+            ],
+            "Subsample B": [
+                "SubMuestra B"
+            ],
+            "Subsample B (confirmation)": [
+                "SubMuestra B (confirmación)"
+            ],
             "Suggested to keep": [
                 "Se sugiere conservar"
             ],
@@ -521,8 +521,8 @@
             "Total sample": [
                 "Muestra total"
             ],
-            "Total sample and random parts": [
-                "Muestra total y partes aleatorias"
+            "Total sample and random subsamples": [
+                "Muestra total y submuestras aleatorias"
             ],
             "Triangle": [
                 "Triángulo"

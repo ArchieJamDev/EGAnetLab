@@ -557,8 +557,15 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
                 output <- self$results$splitOV
                 if (isTRUE(output$enabled) && output$isNotFilled()) {
+                    output$set(
+                        keys = 1,
+                        titles = tr("Subsample", "SubMuestra"),
+                        descriptions = sprintf(tr("Random subsample (A = exploration, B = confirmation; seed %d)",
+                                                  "Submuestra aleatoria (A = exploración, B = confirmación; semilla %d)"),
+                                               as.integer(self$options$splitSeed)),
+                        measureTypes = "nominal")
                     output$setRowNums(rownames(data))
-                    output$setValues(factor(part, levels = c("A", "B")))
+                    output$setValues(index = 1, factor(part, levels = c("A", "B")))
                 }
             }
 
@@ -575,12 +582,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             for (p in names(fits))
                 if (!isTRUE(fits[[p]]$ok))
                     status <- c(status, sprintf(txt("cfa", "failed"),
-                        if (p == "total") "" else paste0(" (", tr("part ", "parte "), p, ")"),
+                        if (p == "total") "" else paste0(" (", tr("subsample ", "SubMuestra "), p, ")"),
                         fits[[p]]$error))
             if (split) for (p in c("A", "B"))
                 if (is.null(samples[[p]]$ega))
                     status <- c(status, sprintf(txt("common", "estimation_failed"), samples[[p]]$error))
-            status <- c(status, txt("cfa", "fit_guide"))
+            status <- c(status, txt("cfa", "fit_guide"), txt("cfa", "fit_guide_more"))
             self$results$cfaStatus$setContent(.el_html_block(heading, status))
 
             # Side-by-side table.
@@ -608,6 +615,14 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 list(txt("cfa", "row_rmsea"), function(p) cell(p, function(f)
                     paste0(num(f[["rmsea"]]), " [", num(f[["rmsea_low"]]), ", ", num(f[["rmsea_high"]]), "]"))),
                 list(txt("cfa", "row_srmr"), function(p) cell(p, function(f) num(f[["srmr"]]))),
+                list(txt("cfa", "row_chisq_df"), function(p) cell(p, function(f)
+                    if (is.na(f[["df"]]) || f[["df"]] <= 0) "—" else num(f[["chisq"]] / f[["df"]], 2))),
+                list("GFI", function(p) cell(p, function(f) num(f[["gfi"]]))),
+                list("AGFI", function(p) cell(p, function(f) num(f[["agfi"]]))),
+                list("NFI", function(p) cell(p, function(f) num(f[["nfi"]]))),
+                list("IFI", function(p) cell(p, function(f) num(f[["ifi"]]))),
+                list("AIC", function(p) cell(p, function(f) num(f[["aic"]], 1))),
+                list("BIC", function(p) cell(p, function(f) num(f[["bic"]], 1))),
                 list(txt("cfa", "row_converged"), function(p) cell(p, function(f)
                     if (isTRUE(f[["converged"]] == 1)) txt("cfa", "yes") else txt("cfa", "no")))
             )
@@ -652,7 +667,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         loading = .el_clean_num(ld$loading[i]), se = .el_clean_num(ld$se[i])))
             }
             self$results$cfaLoadings$setTitle(if (split)
-                tr("CFA standardized loadings (part B, validation)", "Cargas estandarizadas del CFA (parte B, validación)")
+                tr("CFA standardized loadings (subsample B, confirmation)", "Cargas estandarizadas del CFA (SubMuestra B, confirmación)")
                 else tr("CFA standardized loadings (total sample)", "Cargas estandarizadas del CFA (muestra total)"))
 
             # Interpretation.
@@ -750,7 +765,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 }
             }
 
-            parsed <- .el_parse_structure(self$options$theoryStructure, items)
+            parsed <- .el_factors_structure(self$options$theoryFactors, items)
             theory_errors <- character(0)
             if (!parsed$empty) {
                 if (length(parsed$unknown) > 0)
@@ -759,7 +774,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 if (length(parsed$duplicated) > 0)
                     theory_errors <- c(theory_errors, sprintf(txt("compare", "theory_duplicated"),
                                                               paste(parsed$duplicated, collapse = ", ")))
-                if (!is.null(parsed$duplicated_dims))
+                if (length(parsed$duplicated_dims) > 0)
                     theory_errors <- c(theory_errors, sprintf(txt("compare", "theory_dup_dims"),
                                                               paste(parsed$duplicated_dims, collapse = ", ")))
                 if (all(is.na(parsed$wc)))
@@ -1281,7 +1296,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("compareMembership", "Item membership by structure", "Pertenencia de los ítems por estructura"),
                 c("compareInterpretation", "Structure comparison interpretation", "Interpretación de la comparación de estructuras"),
                 c("cfaStatus", "Confirmatory factor analysis", "Análisis factorial confirmatorio"),
-                c("cfaCompare", "Total sample and random parts", "Muestra total y partes aleatorias"),
+                c("cfaCompare", "Total sample and random subsamples", "Muestra total y submuestras aleatorias"),
                 c("cfaMembership", "Item membership by sample", "Pertenencia de los ítems por muestra"),
                 c("cfaInterpretation", "CFA interpretation", "Interpretación del CFA"),
                 c("bootSummaryGuide", "Number of dimensions across samples", "Número de dimensiones entre muestras"),
@@ -1323,12 +1338,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("compareMembership", "item", "Item", "Ítem"),
                 c("cfaCompare", "element", "Element", "Elemento"),
                 c("cfaCompare", "total", "Total sample", "Muestra total"),
-                c("cfaCompare", "partA", "Part A (derivation)", "Parte A (derivación)"),
-                c("cfaCompare", "partB", "Part B (validation)", "Parte B (validación)"),
+                c("cfaCompare", "partA", "Subsample A (exploration)", "SubMuestra A (exploración)"),
+                c("cfaCompare", "partB", "Subsample B (confirmation)", "SubMuestra B (confirmación)"),
                 c("cfaMembership", "item", "Item", "Ítem"),
                 c("cfaMembership", "total", "Total sample", "Muestra total"),
-                c("cfaMembership", "partA", "Part A", "Parte A"),
-                c("cfaMembership", "partB", "Part B", "Parte B"),
+                c("cfaMembership", "partA", "Subsample A", "SubMuestra A"),
+                c("cfaMembership", "partB", "Subsample B", "SubMuestra B"),
                 c("cfaMembership", "agree", "Same in A and B", "Igual en A y B"),
                 c("cfaLoadings", "item", "Item", "Ítem"),
                 c("cfaLoadings", "factor", "Factor", "Factor"),

@@ -29,94 +29,54 @@
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
-# .el_parse_structure()
+# .el_factors_structure()
 #
-# Input: text - the theoretical structure as the user typed it; items - the
-#   item names of the analysis.
-# Output: list(empty, ok, wc, unknown, duplicated, unassigned, single):
-#   wc is a character vector named by item with the dimension name of each
-#   item (NA when the item was not assigned).
-# Syntax: one dimension per part, parts separated by ";" or new lines. Each
-#   part is "Name = item, item, ..."; lavaan's "=~" and "+" also work, and
-#   "*" matches any characters and "?" one character ("PA*" is every item
-#   whose name starts with PA). Item names are matched exactly, then ignoring case.
-# ES: Sintaxis: una dimensión por parte, separadas por ";" o saltos de línea.
-#   Cada parte es "Nombre = ítem, ítem, ..."; también funcionan "=~" y "+"
-#   de lavaan, y "*" equivale a cualquier secuencia de caracteres ("PA*" son
-#   todos los ítems cuyo nombre empieza por PA). Los nombres se comparan
-#   exactos y, si no, sin distinguir mayúsculas.
+# Input: factors - the "Theoretical structure" option: a list of factors,
+#   each list(label, vars), as jamovi's own CFA builds it; items - the item
+#   names of the analysis.
+# Output: list(empty, wc, unknown, duplicated, duplicated_dims, unassigned,
+#   single): wc is a character vector named by item with the factor name of
+#   each item (NA when the item is in no factor). A factor without a name is
+#   called "Factor k".
+# ES: Salida: wc es un vector de caracteres con nombre de ítem y el nombre
+#   del factor de cada ítem (NA si el ítem no está en ningún factor). Un
+#   factor sin nombre se llama "Factor k".
 # -----------------------------------------------------------------------------
-.el_parse_structure <- function(text, items) {
+.el_factors_structure <- function(factors, items) {
 
-    out <- list(empty = TRUE, ok = FALSE, wc = NULL, unknown = character(0),
-                duplicated = character(0), unassigned = character(0), single = FALSE)
-
-    text <- trimws(paste(as.character(text), collapse = "\n"))
-    if (length(text) == 0 || is.na(text) || !nzchar(text))
-        return(out)
-    out$empty <- FALSE
+    out <- list(empty = TRUE, wc = NULL, unknown = character(0), duplicated = character(0),
+                duplicated_dims = character(0), unassigned = character(0), single = FALSE)
 
     wc <- stats::setNames(rep(NA_character_, length(items)), items)
-    parts <- trimws(unlist(strsplit(text, "[;\n\r]+")))
-    parts <- parts[nzchar(parts)]
-    dims <- character(0)
+    labels <- character(0)
 
-    for (k in seq_along(parts)) {
-        part <- parts[k]
-        if (grepl("=~|=|:", part)) {
-            name <- trimws(sub("\\s*(=~|=|:).*$", "", part))
-            rhs <- sub("^[^=:]*(=~|=|:)", "", part)
-        } else {
-            name <- ""
-            rhs <- part
-        }
-        if (!nzchar(name))
-            name <- paste0("D", k)
-        dims <- c(dims, name)
-
-        # Commas and "+" separate items; spaces too, unless the whole chunk
-        # is an item name that contains spaces.
-        # ES: Comas y "+" separan ítems; los espacios también, salvo que el
-        # trozo completo sea un nombre de ítem con espacios.
-        chunks <- trimws(unlist(strsplit(rhs, "[,+]+")))
-        chunks <- chunks[nzchar(chunks)]
-        tokens <- unlist(lapply(chunks, function(chunk) {
-            if (chunk %in% items || tolower(chunk) %in% tolower(items)) chunk
-            else unlist(strsplit(chunk, "[[:space:]]+"))
-        }))
-        tokens <- tokens[nzchar(tokens)]
-        for (token in tokens) {
-            if (grepl("[*?]", token)) {
-                hits <- items[grepl(utils::glob2rx(token), items)]
-                if (length(hits) == 0)
-                    hits <- items[grepl(utils::glob2rx(tolower(token)), tolower(items))]
-            } else {
-                hits <- items[items == token]
-                if (length(hits) == 0)
-                    hits <- items[tolower(items) == tolower(token)]
-            }
-            if (length(hits) == 0) {
-                out$unknown <- c(out$unknown, token)
-                next
-            }
-            for (item in hits) {
-                if (!is.na(wc[[item]]) && wc[[item]] != name)
-                    out$duplicated <- c(out$duplicated, item)
-                else
-                    wc[[item]] <- name
-            }
+    for (k in seq_along(factors)) {
+        f <- factors[[k]]
+        vars <- unique(as.character(unlist(f$vars)))
+        vars <- vars[!is.na(vars) & nzchar(vars)]
+        if (length(vars) == 0)
+            next
+        label <- trimws(paste(as.character(unlist(f$label)), collapse = " "))
+        if (length(label) == 0 || is.na(label) || !nzchar(label))
+            label <- paste("Factor", k)
+        labels <- c(labels, label)
+        for (v in vars) {
+            if (!(v %in% items))
+                out$unknown <- c(out$unknown, v)
+            else if (!is.na(wc[[v]]) && wc[[v]] != label)
+                out$duplicated <- c(out$duplicated, v)
+            else
+                wc[[v]] <- label
         }
     }
 
+    out$empty <- length(labels) == 0
     out$unknown <- unique(out$unknown)
     out$duplicated <- unique(out$duplicated)
+    out$duplicated_dims <- unique(labels[duplicated(labels)])
     out$unassigned <- names(wc)[is.na(wc)]
     out$wc <- wc
     out$single <- length(unique(stats::na.omit(wc))) == 1
-    out$ok <- length(out$unknown) == 0 && length(out$duplicated) == 0 &&
-              any(!is.na(wc)) && length(unique(dims)) == length(dims)
-    if (length(unique(dims)) != length(dims))
-        out$duplicated_dims <- unique(dims[duplicated(dims)])
     out
 }
 

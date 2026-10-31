@@ -259,10 +259,24 @@ options:
     type: Bool
     default: true
 
-  - name: theoryStructure
+  - name: theoryFactors
     title: Theoretical structure
-    type: String
-    default: ''
+    type: Array
+    default:
+      - label: Factor 1
+        vars: []
+    template:
+      type: Group
+      elements:
+        - name: label
+          type: String
+        - name: vars
+          type: Variables
+          suggested:
+            - continuous
+            - ordinal
+          permitted:
+            - numeric
 
   - name: compareCFA
     title: Add CFA fit for each structure
@@ -271,13 +285,13 @@ options:
 
   # ---------------------------------------------------------------------------
   # Confirmatory factor analysis (lavaan::cfa()) of the EGA structure, with
-  # an optional random split: EGA on one part (derivation), CFA on the other
-  # (validation), and every result shown side by side for the total sample
-  # and both parts.
+  # an optional random split: EGA on one subsample (exploration), CFA on the
+  # other (confirmation), and every result shown side by side for the total
+  # sample and both subsamples.
   # ES: Análisis factorial confirmatorio (lavaan::cfa()) de la estructura de
-  # EGA, con división aleatoria opcional: EGA en una parte (derivación), CFA
-  # en la otra (validación), y cada resultado lado a lado para la muestra
-  # total y ambas partes.
+  # EGA, con división aleatoria opcional: EGA en una submuestra (exploración),
+  # CFA en la otra (confirmación), y cada resultado lado a lado para la
+  # muestra total y ambas submuestras.
   # ---------------------------------------------------------------------------
   - name: runCFA
     title: Confirm with CFA
@@ -299,12 +313,12 @@ options:
     default: auto
 
   - name: splitSample
-    title: Split the sample at random (EGA in one part, CFA in the other)
+    title: Split the sample at random (EGA in one subsample, CFA in the other)
     type: Bool
     default: false
 
   - name: splitProp
-    title: Proportion for EGA (derivation)
+    title: Proportion for EGA (exploration)
     type: Number
     min: 0.3
     max: 0.7
@@ -318,7 +332,7 @@ options:
     default: 2026
 
   - name: splitOV
-    title: Save sample part
+    title: Save subsample
     type: Output
 
   # Explanatory paragraph for each estimation choice currently selected

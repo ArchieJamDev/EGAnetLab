@@ -37,7 +37,8 @@ test_that("CFA tests the EGA structure in the total sample", {
     res <- runCFA()
     compare <- res$cfaCompare$asDF
 
-    expect_equal(nrow(compare), 10)
+    expect_equal(nrow(compare), 17)
+    expect_false(compare$total[compare$element == "GFI"] == "\u2014")
     expect_equal(compare$total[compare$element == "Cases"], "300")
     expect_equal(compare$total[compare$element == "Dimensions found by EGA"], "3")
     cfi <- as.numeric(compare$total[compare$element == "CFI"])
@@ -60,7 +61,7 @@ test_that("the random split reports total, part A and part B side by side", {
     expect_equal(nrow(membership), 12)
     expect_true(all(membership$agree %in% c("Yes", "Changes")))
     expect_match(res$cfaInterpretation$content, "seed 5", fixed = TRUE)
-    expect_match(res$cfaLoadings$title, "validation", fixed = TRUE)
+    expect_match(res$cfaLoadings$title, "confirmation", fixed = TRUE)
 })
 
 test_that("the random split is reproducible and follows the proportion", {

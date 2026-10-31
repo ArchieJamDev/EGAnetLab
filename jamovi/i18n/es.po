@@ -498,22 +498,6 @@ msgstr "Por pares"
 msgid "Parametric"
 msgstr "Paramétrico"
 
-#: ega/results/cfaMembership.columns.title
-msgid "Part A"
-msgstr "Parte A"
-
-#: ega/results/cfaCompare.columns.title
-msgid "Part A (derivation)"
-msgstr "Parte A (derivación)"
-
-#: ega/results/cfaMembership.columns.title
-msgid "Part B"
-msgstr "Parte B"
-
-#: ega/results/cfaCompare.columns.title
-msgid "Part B (validation)"
-msgstr "Parte B (validación)"
-
 #: ega/options/corr/pearson.title
 msgid "Pearson"
 msgstr "Pearson"
@@ -547,8 +531,8 @@ msgid "Proportion"
 msgstr "Proporción"
 
 #: ega/options/splitProp.title
-msgid "Proportion for EGA (derivation)"
-msgstr "Proporción para EGA (derivación)"
+msgid "Proportion for EGA (exploration)"
+msgstr "Proporción para EGA (exploración)"
 
 #: ega/results/compareTable.columns.title
 msgid "RMSEA"
@@ -616,10 +600,6 @@ msgstr "Misma dimensión"
 msgid "Same in A and B"
 msgstr "Igual en A y B"
 
-#: ega/results/splitOV.title
-msgid "Sample part"
-msgstr "Parte de la muestra"
-
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
 msgstr "Muestras"
@@ -633,8 +613,8 @@ msgid "Save network scores"
 msgstr "Guardar puntuaciones de red"
 
 #: ega/options/splitOV.title
-msgid "Save sample part"
-msgstr "Guardar la parte de la muestra"
+msgid "Save subsample"
+msgstr "Guardar SubMuestra"
 
 #: ega/options/seed.title
 msgid "Seed"
@@ -665,8 +645,8 @@ msgid "Split seed"
 msgstr "Semilla de la división"
 
 #: ega/options/splitSample.title
-msgid "Split the sample at random (EGA in one part, CFA in the other)"
-msgstr "Dividir la muestra al azar (EGA en una parte, CFA en la otra)"
+msgid "Split the sample at random (EGA in one subsample, CFA in the other)"
+msgstr "Dividir la muestra al azar (EGA en una submuestra, CFA en la otra)"
 
 #: ega/options/layout/qgraph.title
 msgid "Spring (Fruchterman-Reingold)"
@@ -704,6 +684,26 @@ msgstr "Interpretación de la comparación de estructuras"
 msgid "Structures compared"
 msgstr "Estructuras comparadas"
 
+#: ega/results/splitOV.title
+msgid "Subsample"
+msgstr "SubMuestra"
+
+#: ega/results/cfaMembership.columns.title
+msgid "Subsample A"
+msgstr "SubMuestra A"
+
+#: ega/results/cfaCompare.columns.title
+msgid "Subsample A (exploration)"
+msgstr "SubMuestra A (exploración)"
+
+#: ega/results/cfaMembership.columns.title
+msgid "Subsample B"
+msgstr "SubMuestra B"
+
+#: ega/results/cfaCompare.columns.title
+msgid "Subsample B (confirmation)"
+msgstr "SubMuestra B (confirmación)"
+
 #: ega/results/uvaSets.columns.title
 msgid "Suggested to keep"
 msgstr "Se sugiere conservar"
@@ -720,7 +720,8 @@ msgstr "TEFI"
 msgid "TMFG"
 msgstr "TMFG"
 
-#: ega/options/theoryStructure.title
+#: ega/options/theoryFactors.title
+#: ega/ui[4][2][0].label
 msgid "Theoretical structure"
 msgstr "Estructura teórica"
 
@@ -734,8 +735,8 @@ msgid "Total sample"
 msgstr "Muestra total"
 
 #: ega/results/cfaCompare.title
-msgid "Total sample and random parts"
-msgstr "Muestra total y partes aleatorias"
+msgid "Total sample and random subsamples"
+msgstr "Muestra total y submuestras aleatorias"
 
 #: ega/options/nodeShape/triangle.title
 msgid "Triangle"

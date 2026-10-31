@@ -498,22 +498,6 @@ msgstr ""
 msgid "Parametric"
 msgstr ""
 
-#: ega/results/cfaMembership.columns.title
-msgid "Part A"
-msgstr ""
-
-#: ega/results/cfaCompare.columns.title
-msgid "Part A (derivation)"
-msgstr ""
-
-#: ega/results/cfaMembership.columns.title
-msgid "Part B"
-msgstr ""
-
-#: ega/results/cfaCompare.columns.title
-msgid "Part B (validation)"
-msgstr ""
-
 #: ega/options/corr/pearson.title
 msgid "Pearson"
 msgstr ""
@@ -547,7 +531,7 @@ msgid "Proportion"
 msgstr ""
 
 #: ega/options/splitProp.title
-msgid "Proportion for EGA (derivation)"
+msgid "Proportion for EGA (exploration)"
 msgstr ""
 
 #: ega/results/compareTable.columns.title
@@ -616,10 +600,6 @@ msgstr ""
 msgid "Same in A and B"
 msgstr ""
 
-#: ega/results/splitOV.title
-msgid "Sample part"
-msgstr ""
-
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
 msgstr ""
@@ -633,7 +613,7 @@ msgid "Save network scores"
 msgstr ""
 
 #: ega/options/splitOV.title
-msgid "Save sample part"
+msgid "Save subsample"
 msgstr ""
 
 #: ega/options/seed.title
@@ -665,7 +645,7 @@ msgid "Split seed"
 msgstr ""
 
 #: ega/options/splitSample.title
-msgid "Split the sample at random (EGA in one part, CFA in the other)"
+msgid "Split the sample at random (EGA in one subsample, CFA in the other)"
 msgstr ""
 
 #: ega/options/layout/qgraph.title
@@ -704,6 +684,26 @@ msgstr ""
 msgid "Structures compared"
 msgstr ""
 
+#: ega/results/splitOV.title
+msgid "Subsample"
+msgstr ""
+
+#: ega/results/cfaMembership.columns.title
+msgid "Subsample A"
+msgstr ""
+
+#: ega/results/cfaCompare.columns.title
+msgid "Subsample A (exploration)"
+msgstr ""
+
+#: ega/results/cfaMembership.columns.title
+msgid "Subsample B"
+msgstr ""
+
+#: ega/results/cfaCompare.columns.title
+msgid "Subsample B (confirmation)"
+msgstr ""
+
 #: ega/results/uvaSets.columns.title
 msgid "Suggested to keep"
 msgstr ""
@@ -720,7 +720,8 @@ msgstr ""
 msgid "TMFG"
 msgstr ""
 
-#: ega/options/theoryStructure.title
+#: ega/options/theoryFactors.title
+#: ega/ui[4][2][0].label
 msgid "Theoretical structure"
 msgstr ""
 
@@ -734,7 +735,7 @@ msgid "Total sample"
 msgstr ""
 
 #: ega/results/cfaCompare.title
-msgid "Total sample and random parts"
+msgid "Total sample and random subsamples"
 msgstr ""
 
 #: ega/options/nodeShape/triangle.title

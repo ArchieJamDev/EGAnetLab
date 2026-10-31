@@ -181,6 +181,12 @@
         rmsea_low = if (robust) pick(c("rmsea.ci.lower.robust", "rmsea.ci.lower.scaled", "rmsea.ci.lower")) else pick("rmsea.ci.lower"),
         rmsea_high = if (robust) pick(c("rmsea.ci.upper.robust", "rmsea.ci.upper.scaled", "rmsea.ci.upper")) else pick("rmsea.ci.upper"),
         srmr = pick(c("srmr", "srmr_bentler")),
+        gfi = pick("gfi"),
+        agfi = pick("agfi"),
+        nfi = if (robust) pick(c("nfi.scaled", "nfi")) else pick("nfi"),
+        ifi = if (robust) pick(c("ifi.scaled", "ifi")) else pick("ifi"),
+        aic = pick("aic"),
+        bic = pick("bic"),
         converged = as.numeric(isTRUE(tryCatch(lavaan::lavInspect(model_fit, "converged"), error = function(e) FALSE)))
     )
     out$n <- tryCatch(as.integer(lavaan::lavInspect(model_fit, "nobs")), error = function(e) nrow(d))

@@ -249,7 +249,7 @@ items:
       - algorithm
       - uniMethod
       - compareAlgorithms
-      - theoryStructure
+      - theoryFactors
       - compareCFA
       - reportLang
     columns:
@@ -297,7 +297,7 @@ items:
       - algorithm
       - uniMethod
       - compareAlgorithms
-      - theoryStructure
+      - theoryFactors
       - compareCFA
       - reportLang
     columns:
@@ -604,13 +604,14 @@ items:
     visible: (runCFA)
 
   - name: cfaCompare
-    title: Total sample and random parts
+    title: Total sample and random subsamples
     type: Table
     rows: 0
     visible: (runCFA)
     refs:
       - rosseel_2012
       - hu_bentler_1999
+      - schermelleh_engel_2003
     clearWith:
       - vars
       - corr
@@ -631,11 +632,11 @@ items:
         title: Total sample
         type: text
       - name: partA
-        title: Part A (derivation)
+        title: Subsample A (exploration)
         type: text
         visible: (splitSample)
       - name: partB
-        title: Part B (validation)
+        title: Subsample B (confirmation)
         type: text
         visible: (splitSample)
 
@@ -664,10 +665,10 @@ items:
         title: Total sample
         type: text
       - name: partA
-        title: Part A
+        title: Subsample A
         type: text
       - name: partB
-        title: Part B
+        title: Subsample B
         type: text
       - name: agree
         title: Same in A and B
@@ -712,8 +713,9 @@ items:
     visible: (runCFA)
 
   - name: splitOV
-    title: Sample part
+    title: Subsample
     type: Output
+    initInRun: true
     measureType: nominal
     clearWith:
       - vars

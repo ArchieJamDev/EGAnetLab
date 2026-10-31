@@ -7,14 +7,24 @@
   Louvain, Leiden; seed 2026 for the random ones) and a theoretical
   structure typed by the user with `EGAnet::tefi()` on the same correlation
   matrix, so the values are comparable (Golino et al., 2021).
-* The theoretical structure is written as `Name = item, item; Name = ...`;
-  lavaan's `=~` and `+` also work, and `*` matches any characters (`PA*`).
-  Unknown or duplicated items are explained without stopping the analysis.
+* The theoretical structure is built as in jamovi's own CFA: drag items into
+  factors and add as many factors as needed. Items that are not among the
+  analysis items, or that sit in two factors, are explained without stopping
+  the analysis.
 * The table reports dimensions, TEFI, the difference from the lowest TEFI
   and how many items each structure places as EGA does; a second table
   shows every item's dimension in each structure. One-dimensional
   structures are flagged (their TEFI is always 0) instead of compared.
 * Optional CFA fit (CFI, RMSEA, SRMR) for each structure.
+
+## CFA: more fit indices and clearer names
+
+* The CFA table adds χ²/df, GFI, AGFI, NFI, IFI, AIC and BIC (AIC and BIC
+  only with ML or MLR), with guidelines from Schermelleh-Engel, Moosbrugger
+  and Müller (2003).
+* The random parts are now called subsamples: subsample A (exploration) and
+  subsample B (confirmation). The saved column is titled SubMuestra in
+  Spanish and Subsample in English.
 
 ## EGA: confirmatory factor analysis with an optional random split (phase 2)
 
