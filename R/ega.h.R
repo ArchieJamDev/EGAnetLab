@@ -683,8 +683,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="bootSummary",
                 title="Number of dimensions across samples",
-                rows=0,
                 visible="(runBoot)",
+                rows=0,
                 refs=list(
                     "christensen_2021_boot",
                     "golino_2017",
@@ -713,8 +713,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="bootFrequency",
                 title="Frequency of the number of dimensions",
-                rows=0,
                 visible="(runBoot)",
+                rows=0,
                 clearWith=list(
                     "vars",
                     "corr",
@@ -744,8 +744,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="bootDimStability",
                 title="Dimension stability",
-                rows=0,
                 visible="(runBoot)",
+                rows=0,
                 refs=list(
                     "christensen_2021_boot"),
                 clearWith=list(
@@ -782,8 +782,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="bootItemStability",
                 title="Item stability",
-                rows=0,
                 visible="(runBoot)",
+                rows=0,
                 refs=list(
                     "christensen_2021_boot"),
                 clearWith=list(
@@ -893,8 +893,8 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' Estimates the number of dimensions underlying a set of items, and which 
 #' items belong to each dimension, with Exploratory Graph Analysis (EGAnet), 
 #' paired with network loadings, entropy fit, optional bootstrap stability of 
-#' dimensions and items, optional redundancy analysis (UVA), and plain- 
-#' language interpretation.
+#' dimensions and items, optional redundancy analysis (UVA), and 
+#' plain-language interpretation.
 #' 
 #' @param data .
 #' @param vars .
