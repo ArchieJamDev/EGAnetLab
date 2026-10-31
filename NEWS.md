@@ -1,5 +1,14 @@
 # EGAnetLab 0.1.0 (development)
 
+## EGA: network scores (phase 2)
+
+* New **Network scores** box in the EGA analysis, wrapping
+  `EGAnet::net.scores()` on the estimated network and memberships.
+  **Network scores summary** shows, per dimension, the number of items,
+  N, mean, SD and the correlation with the unweighted sum score.
+  **Save network scores** adds one column per dimension to the jamovi
+  dataset, on the right rows even when the data are filtered.
+
 ## EGA: redundancy by Unique Variable Analysis (phase 2)
 
 * New optional section **Redundancy (UVA)** inside the EGA analysis,

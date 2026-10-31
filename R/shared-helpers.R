@@ -248,6 +248,12 @@
         stringsAsFactors = FALSE
     )
     names(items) <- vars
+    # Keep jamovi's row numbers (they skip filtered rows) so scores saved
+    # back to the dataset land on the right rows.
+    # ES: Se conservan los números de fila de jamovi (omiten las filas
+    # filtradas) para que las puntuaciones guardadas en el conjunto de datos
+    # caigan en las filas correctas.
+    rownames(items) <- rownames(data)
 
     out$n_total <- nrow(items)
     complete <- stats::complete.cases(items)

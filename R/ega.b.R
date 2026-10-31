@@ -249,6 +249,15 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             }
 
             # -----------------------------------------------------------------
+            # Network scores: summary table and/or new dataset columns.
+            # ES: Puntuaciones de red: tabla resumen y/o columnas nuevas en
+            # el conjunto de datos.
+            # -----------------------------------------------------------------
+            score_warnings <- character(0)
+            if (isTRUE(self$options$netScores) || isTRUE(self$results$netScoresOV$enabled))
+                score_warnings <- private$.computeScores(prep, ega, wc, tr, txt)
+
+            # -----------------------------------------------------------------
             # Interpretation and recommendations.
             # ES: Interpretación y recomendaciones.
             # -----------------------------------------------------------------
@@ -308,7 +317,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Notas: cada advertencia de EGAnet se muestra, nunca se
             # suprime.
             # -----------------------------------------------------------------
-            warnings <- unique(c(fit$warnings, boot_warnings, uva_warnings))
+            warnings <- unique(c(fit$warnings, score_warnings, boot_warnings, uva_warnings))
             if (length(warnings) > 0) {
                 self$results$notes$setContent(.el_html_block(
                     txt("common", "warnings_title"),
@@ -326,6 +335,80 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # -----------------------------------------------------------------
             if (isTRUE(self$options$showNetworkPlot))
                 self$results$networkPlot$setState(list(network = ega$network, wc = wc))
+        },
+
+        # ---------------------------------------------------------------------
+        # Network scores with EGAnet::net.scores() on the network and
+        # memberships above. Fills the summary table when it is shown and the
+        # Output columns when the user asked to save them. A failure
+        # (Category B) is reported in the table and leaves the rest intact.
+        # Returns the EGAnet messages captured while it ran.
+        # ES: Puntuaciones de red con EGAnet::net.scores() sobre la red y
+        # las pertenencias de arriba. Llena la tabla resumen cuando se
+        # muestra y las columnas Output cuando el usuario pidió guardarlas.
+        # Un fallo (Categoría B) se informa en la tabla y deja intacto el
+        # resto. Devuelve los mensajes de EGAnet capturados.
+        # ---------------------------------------------------------------------
+        .computeScores = function(prep, ega, wc, tr, txt) {
+
+            show <- isTRUE(self$options$netScores)
+            table <- self$results$scores
+            if (show) {
+                table$deleteRows()
+                self$results$scoresGuide$setContent(
+                    .el_html_block(NULL, .el_html_list(txt("scores", "guide")), raw = TRUE))
+            }
+
+            fit <- .el_capture(EGAnet::net.scores(data = prep$data, A = ega$network, wc = wc))
+            sc <- if (!is.null(fit$value)) fit$value$scores$std.scores else NULL
+
+            if (is.null(sc)) {
+                if (show) {
+                    .el_add_row(table, 1, list(dimension = txt("common", "not_computable")))
+                    table$addFootnote(rowNo = 1, col = "dimension",
+                                      sprintf(txt("scores", "failed"), fit$error))
+                }
+                return(fit$warnings)
+            }
+
+            sc <- as.matrix(sc)
+            dims <- colnames(sc)
+            if (is.null(dims))
+                dims <- as.character(seq_len(ncol(sc)))
+            membership <- as.character(wc)
+
+            if (show) {
+                for (j in seq_along(dims)) {
+                    items <- names(wc)[!is.na(membership) & membership == dims[j]]
+                    values <- as.numeric(sc[, j])
+                    r_sum <- if (length(items) > 0)
+                        suppressWarnings(stats::cor(values, rowSums(prep$data[, items, drop = FALSE]),
+                                                    use = "pairwise.complete.obs"))
+                    else NA
+                    .el_add_row(table, j, list(
+                        dimension = dims[j],
+                        items = length(items),
+                        n = sum(!is.na(values)),
+                        mean = .el_clean_num(mean(values, na.rm = TRUE)),
+                        sd = .el_clean_num(stats::sd(values, na.rm = TRUE)),
+                        rSum = .el_clean_num(r_sum)))
+                }
+            }
+
+            output <- self$results$netScoresOV
+            if (isTRUE(output$enabled) && output$isNotFilled()) {
+                keys <- seq_along(dims)
+                output$set(
+                    keys = keys,
+                    titles = sprintf(txt("scores", "saved_title"), dims),
+                    descriptions = sprintf(txt("scores", "saved_desc"), dims),
+                    measureTypes = rep("continuous", length(keys)))
+                output$setRowNums(rownames(prep$data))
+                for (j in keys)
+                    output$setValues(index = j, as.numeric(sc[, j]))
+            }
+
+            fit$warnings
         },
 
         # ---------------------------------------------------------------------
@@ -682,6 +765,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("loadings", "Network loadings (standardized)", "Cargas de red (estandarizadas)"),
                 c("interpretation", "Applied interpretation", "Interpretación aplicada"),
                 c("networkPlot", "Estimated network", "Red estimada"),
+                c("scoresGuide", "Network scores", "Puntuaciones de red"),
+                c("scores", "Network scores", "Puntuaciones de red"),
                 c("uvaStatus", "Redundancy (UVA)", "Redundancia (UVA)"),
                 c("uvaPairs", "Item pairs by weighted topological overlap", "Pares de ítems por solapamiento topológico ponderado"),
                 c("uvaSets", "Redundant sets", "Conjuntos redundantes"),
@@ -706,6 +791,11 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("membership", "item", "Item", "Ítem"),
                 c("membership", "dimension", "Dimension", "Dimensión"),
                 c("loadings", "item", "Item", "Ítem"),
+                c("scores", "dimension", "Dimension", "Dimensión"),
+                c("scores", "items", "Items", "Ítems"),
+                c("scores", "mean", "Mean", "Media"),
+                c("scores", "sd", "SD", "DE"),
+                c("scores", "rSum", "r with sum score", "r con la suma"),
                 c("uvaPairs", "itemA", "Item", "Ítem"),
                 c("uvaPairs", "itemB", "Item", "Ítem"),
                 c("uvaPairs", "magnitude", "Redundancy", "Redundancia"),

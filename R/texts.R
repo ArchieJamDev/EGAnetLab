@@ -130,6 +130,17 @@
             iter_seed = "The analysis uses %d bootstrap samples with seed %d. More samples give more precise stability estimates; 500 is the usual minimum for reporting. The same seed with the same data and options always reproduces the same results; report it with your findings."
         ),
 
+        scores = list(
+            guide = c(
+                "Network scores weight each item by its network loading on its own dimension (Christensen & Golino, 2021; see references), so items more central to a dimension count more. They are the network counterpart of factor scores and an alternative to the simple sum score.",
+                "r with sum score: correlation between the network score and the unweighted sum of the same items. Values near 1 mean the weighting changes little; lower values mean the items contribute very unequally to the dimension.",
+                "Save network scores (in the Network scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it."
+            ),
+            failed = "EGAnet could not compute network scores: %s.",
+            saved_title = "Network score %s",
+            saved_desc = "Network score for dimension %s (EGAnetLab, EGAnet::net.scores)"
+        ),
+
         uva = list(
             intro = c(
                 "Unique Variable Analysis (UVA) looks for redundant items: pairs that share so many of their connections in the network that they behave almost like the same item (Christensen, Garrido & Golino, 2023; see references).",
@@ -255,6 +266,17 @@
             bootType_resampling = "El bootstrap por remuestreo extrae casos de sus datos con reemplazo. Conserva las distribuciones reales de respuesta (asimetría, número de categorías, valores atípicos) en lugar de suponer normalidad, así que prefiéralo cuando los ítems sean claramente no normales o cuando quiera que la estabilidad refleje las respuestas observadas.",
             uva_cut = "La redundancia se señala cuando dos ítems alcanzan un solapamiento topológico ponderado (wTO) de %s o más. El valor .25 es el punto de corte recomendado por Christensen, Garrido y Golino (2023; ver referencias) tras una amplia simulación; bájelo solo para explorar pares limítrofes, no para decidir qué ítems eliminar.",
             iter_seed = "El análisis usa %d muestras bootstrap con semilla %d. Más muestras dan estimaciones de estabilidad más precisas; 500 es el mínimo habitual para informar. La misma semilla con los mismos datos y opciones reproduce siempre los mismos resultados; infórmela junto con sus hallazgos."
+        ),
+
+        scores = list(
+            guide = c(
+                "Las puntuaciones de red ponderan cada ítem por su carga de red en su propia dimensión (Christensen y Golino, 2021; ver referencias), así que los ítems más centrales de una dimensión pesan más. Son el equivalente en redes de las puntuaciones factoriales y una alternativa a la suma simple.",
+                "r con la suma: correlación entre la puntuación de red y la suma sin ponderar de los mismos ítems. Valores cercanos a 1 indican que la ponderación cambia poco; valores menores indican que los ítems aportan de forma muy desigual a la dimensión.",
+                "Guardar puntuaciones de red (en la caja Network scores) añade una columna por dimensión al conjunto de datos, para usar las puntuaciones en otros análisis. Quien tenga una respuesta perdida en algún ítem de una dimensión queda sin puntuación en ella."
+            ),
+            failed = "EGAnet no pudo calcular las puntuaciones de red: %s.",
+            saved_title = "Puntuación de red %s",
+            saved_desc = "Puntuación de red de la dimensión %s (EGAnetLab, EGAnet::net.scores)"
         ),
 
         uva = list(

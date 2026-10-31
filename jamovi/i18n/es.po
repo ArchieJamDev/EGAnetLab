@@ -101,6 +101,7 @@ msgid "Diamond"
 msgstr "Rombo"
 
 #: ega/results/membership.columns.title
+#: ega/results/scores.columns.title
 #: ega/results/bootDimStability.columns.title
 #: ega/results/bootItemStability.columns.title
 msgid "Dimension"
@@ -257,6 +258,7 @@ msgid "Item stability plot"
 msgstr "Gráfico de estabilidad de ítems"
 
 #: ega/options/vars.title
+#: ega/results/scores.columns.title
 #: ega/results/uvaSets.columns.title
 #: ega/results/bootDimStability.columns.title
 #: ega/ui[0][0].label
@@ -308,6 +310,10 @@ msgstr "Por lista"
 msgid "Louvain"
 msgstr "Louvain"
 
+#: ega/results/scores.columns.title
+msgid "Mean"
+msgstr "Media"
+
 #: ega/results/bootDimStability.columns.title
 msgid "Mean item stability"
 msgstr "Estabilidad media de ítems"
@@ -319,6 +325,10 @@ msgstr "Valores perdidos"
 #: ega/options/layout/mds.title
 msgid "Multidimensional scaling"
 msgstr "Escalamiento multidimensional"
+
+#: ega/results/scores.columns.title
+msgid "N"
+msgstr "N"
 
 #: ega/options/labelColor/navy.title
 msgid "Navy"
@@ -349,6 +359,17 @@ msgstr "Cargas de red (estandarizadas)"
 msgid "Network plot"
 msgstr "Gráfico de red"
 
+#: ega/results/scoresGuide.title
+#: ega/results/scores.title
+#: ega/results/netScoresOV.title
+#: ega/ui[3].label
+msgid "Network scores"
+msgstr "Puntuaciones de red"
+
+#: ega/options/netScores.title
+msgid "Network scores summary"
+msgstr "Resumen de puntuaciones de red"
+
 #: ega/options/nodeAlpha.title
 msgid "Node fill opacity"
 msgstr "Opacidad del relleno"
@@ -374,7 +395,7 @@ msgstr "Número de dimensiones entre muestras"
 msgid "Orange"
 msgstr "Naranja"
 
-#: ega/ui[5].label
+#: ega/ui[6].label
 msgid "Output"
 msgstr "Salida"
 
@@ -390,19 +411,19 @@ msgstr "Paramétrico"
 msgid "Pearson"
 msgstr "Pearson"
 
-#: ega/ui[8].label
+#: ega/ui[9].label
 msgid "Plot Edges"
 msgstr "Gráfico: aristas"
 
-#: ega/ui[6].label
+#: ega/ui[7].label
 msgid "Plot Layout"
 msgstr "Gráfico: disposición"
 
-#: ega/ui[9].label
+#: ega/ui[10].label
 msgid "Plot Legend"
 msgstr "Gráfico: leyenda"
 
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Plot Nodes and Labels"
 msgstr "Gráfico: nodos y etiquetas"
 
@@ -427,7 +448,7 @@ msgid "Redundancy"
 msgstr "Redundancia"
 
 #: ega/results/uvaStatus.title
-#: ega/ui[3].label
+#: ega/ui[4].label
 msgid "Redundancy (UVA)"
 msgstr "Redundancia (UVA)"
 
@@ -460,6 +481,10 @@ msgstr "Derecha"
 msgid "Run bootstrap"
 msgstr "Ejecutar bootstrap"
 
+#: ega/results/scores.columns.title
+msgid "SD"
+msgstr "DE"
+
 #: ega/results/uvaPairs.columns.title
 msgid "Same dimension"
 msgstr "Misma dimensión"
@@ -467,6 +492,10 @@ msgstr "Misma dimensión"
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
 msgstr "Muestras"
+
+#: ega/options/netScoresOV.title
+msgid "Save network scores"
+msgstr "Guardar puntuaciones de red"
 
 #: ega/options/seed.title
 msgid "Seed"
@@ -504,7 +533,7 @@ msgstr "Cuadrado"
 msgid "Stability"
 msgstr "Estabilidad"
 
-#: ega/ui[4].label
+#: ega/ui[5].label
 msgid "Stability (bootstrap)"
 msgstr "Estabilidad (bootstrap)"
 
@@ -556,6 +585,10 @@ msgstr "Walktrap"
 #: ega/options/labelColor/white.title
 msgid "White"
 msgstr "Blanco"
+
+#: ega/results/scores.columns.title
+msgid "r with sum score"
+msgstr "r con la suma"
 
 #: ega/results/uvaPairs.columns.title
 msgid "wTO"

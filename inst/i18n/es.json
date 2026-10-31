@@ -217,6 +217,9 @@
             "Louvain": [
                 "Louvain"
             ],
+            "Mean": [
+                "Media"
+            ],
             "Mean item stability": [
                 "Estabilidad media de ítems"
             ],
@@ -225,6 +228,9 @@
             ],
             "Multidimensional scaling": [
                 "Escalamiento multidimensional"
+            ],
+            "N": [
+                "N"
             ],
             "Navy": [
                 "Azul marino"
@@ -246,6 +252,12 @@
             ],
             "Network plot": [
                 "Gráfico de red"
+            ],
+            "Network scores": [
+                "Puntuaciones de red"
+            ],
+            "Network scores summary": [
+                "Resumen de puntuaciones de red"
             ],
             "Node fill opacity": [
                 "Opacidad del relleno"
@@ -328,11 +340,17 @@
             "Run bootstrap": [
                 "Ejecutar bootstrap"
             ],
+            "SD": [
+                "DE"
+            ],
             "Same dimension": [
                 "Misma dimensión"
             ],
             "Samples": [
                 "Muestras"
+            ],
+            "Save network scores": [
+                "Guardar puntuaciones de red"
             ],
             "Seed": [
                 "Semilla"
@@ -399,6 +417,9 @@
             ],
             "White": [
                 "Blanco"
+            ],
+            "r with sum score": [
+                "r con la suma"
             ],
             "wTO": [
                 "wTO"

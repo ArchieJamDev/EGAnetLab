@@ -22,6 +22,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showFrequencyPlot = TRUE,
             runUVA = FALSE,
             uvaCut = 0.25,
+            netScores = FALSE,
             showChoicesGuide = TRUE,
             showLoadings = TRUE,
             showNetworkPlot = TRUE,
@@ -153,6 +154,12 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 min=0.15,
                 max=0.4,
                 default=0.25)
+            private$..netScores <- jmvcore::OptionBool$new(
+                "netScores",
+                netScores,
+                default=FALSE)
+            private$..netScoresOV <- jmvcore::OptionOutput$new(
+                "netScoresOV")
             private$..showChoicesGuide <- jmvcore::OptionBool$new(
                 "showChoicesGuide",
                 showChoicesGuide,
@@ -311,6 +318,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..showFrequencyPlot)
             self$.addOption(private$..runUVA)
             self$.addOption(private$..uvaCut)
+            self$.addOption(private$..netScores)
+            self$.addOption(private$..netScoresOV)
             self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showLoadings)
             self$.addOption(private$..showNetworkPlot)
@@ -351,6 +360,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         showFrequencyPlot = function() private$..showFrequencyPlot$value,
         runUVA = function() private$..runUVA$value,
         uvaCut = function() private$..uvaCut$value,
+        netScores = function() private$..netScores$value,
+        netScoresOV = function() private$..netScoresOV$value,
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showLoadings = function() private$..showLoadings$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
@@ -390,6 +401,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..showFrequencyPlot = NA,
         ..runUVA = NA,
         ..uvaCut = NA,
+        ..netScores = NA,
+        ..netScoresOV = NA,
         ..showChoicesGuide = NA,
         ..showLoadings = NA,
         ..showNetworkPlot = NA,
@@ -427,6 +440,9 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         loadings = function() private$.items[["loadings"]],
         interpretation = function() private$.items[["interpretation"]],
         networkPlot = function() private$.items[["networkPlot"]],
+        scoresGuide = function() private$.items[["scoresGuide"]],
+        scores = function() private$.items[["scores"]],
+        netScoresOV = function() private$.items[["netScoresOV"]],
         uvaStatus = function() private$.items[["uvaStatus"]],
         uvaPairs = function() private$.items[["uvaPairs"]],
         uvaSets = function() private$.items[["uvaSets"]],
@@ -576,6 +592,66 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "showLegend",
                     "legendPosition",
                     "legendTitle")))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="scoresGuide",
+                title="Network scores",
+                visible="(netScores)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="scores",
+                title="Network scores",
+                rows=0,
+                visible="(netScores)",
+                refs=list(
+                    "christensen_2021_loadings"),
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="dimension", 
+                        `title`="Dimension", 
+                        `type`="text"),
+                    list(
+                        `name`="items", 
+                        `title`="Items", 
+                        `type`="integer"),
+                    list(
+                        `name`="n", 
+                        `title`="N", 
+                        `type`="integer"),
+                    list(
+                        `name`="mean", 
+                        `title`="Mean", 
+                        `type`="number"),
+                    list(
+                        `name`="sd", 
+                        `title`="SD", 
+                        `type`="number"),
+                    list(
+                        `name`="rSum", 
+                        `title`="r with sum score", 
+                        `type`="number", 
+                        `format`="zto"))))
+            self$add(jmvcore::Output$new(
+                options=options,
+                name="netScoresOV",
+                title="Network scores",
+                initInRun=TRUE,
+                measureType="continuous",
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="uvaStatus",
@@ -913,6 +989,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showFrequencyPlot .
 #' @param runUVA .
 #' @param uvaCut .
+#' @param netScores .
 #' @param showChoicesGuide .
 #' @param showLoadings .
 #' @param showNetworkPlot .
@@ -946,6 +1023,9 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$loadings} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$interpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$networkPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$scoresGuide} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$scores} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$netScoresOV} \tab \tab \tab \tab \tab an output \cr
 #'   \code{results$uvaStatus} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$uvaPairs} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$uvaSets} \tab \tab \tab \tab \tab a table \cr
@@ -987,6 +1067,7 @@ ega <- function(
     showFrequencyPlot = TRUE,
     runUVA = FALSE,
     uvaCut = 0.25,
+    netScores = FALSE,
     showChoicesGuide = TRUE,
     showLoadings = TRUE,
     showNetworkPlot = TRUE,
@@ -1037,6 +1118,7 @@ ega <- function(
         showFrequencyPlot = showFrequencyPlot,
         runUVA = runUVA,
         uvaCut = uvaCut,
+        netScores = netScores,
         showChoicesGuide = showChoicesGuide,
         showLoadings = showLoadings,
         showNetworkPlot = showNetworkPlot,

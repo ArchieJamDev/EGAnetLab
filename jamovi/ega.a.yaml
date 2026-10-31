@@ -217,6 +217,24 @@ options:
     max: 0.40
     default: 0.25
 
+  # ---------------------------------------------------------------------------
+  # Network scores (EGAnet::net.scores()): one score per person and
+  # dimension, weighted by the network loadings. The table summarizes them;
+  # the Output option saves them as new columns of the dataset.
+  # ES: Puntuaciones de red (EGAnet::net.scores()): una puntuación por
+  # persona y dimensión, ponderada por las cargas de red. La tabla las
+  # resume; la opción Output las guarda como columnas nuevas del conjunto de
+  # datos.
+  # ---------------------------------------------------------------------------
+  - name: netScores
+    title: Network scores summary
+    type: Bool
+    default: false
+
+  - name: netScoresOV
+    title: Save network scores
+    type: Output
+
   # Explanatory paragraph for each estimation choice currently selected
   # (Archie's design rule: every menu decision carries its explanation).
   # ES: Párrafo explicativo para cada elección de estimación seleccionada

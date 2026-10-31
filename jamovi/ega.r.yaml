@@ -151,6 +151,65 @@ items:
       - legendTitle
 
   # ---------------------------------------------------------------------------
+  # Network scores.
+  # ES: Puntuaciones de red.
+  # ---------------------------------------------------------------------------
+
+  - name: scoresGuide
+    title: Network scores
+    type: Html
+    visible: (netScores)
+
+  - name: scores
+    title: Network scores
+    type: Table
+    rows: 0
+    visible: (netScores)
+    refs:
+      - christensen_2021_loadings
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - reportLang
+    columns:
+      - name: dimension
+        title: Dimension
+        type: text
+      - name: items
+        title: Items
+        type: integer
+      - name: n
+        title: N
+        type: integer
+      - name: mean
+        title: Mean
+        type: number
+      - name: sd
+        title: SD
+        type: number
+      - name: rSum
+        title: r with sum score
+        type: number
+        format: zto
+
+  - name: netScoresOV
+    title: Network scores
+    type: Output
+    initInRun: true
+    measureType: continuous
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+
+  # ---------------------------------------------------------------------------
   # Redundancy (UVA): shown only when "Check redundancy (UVA)" is ticked.
   # ES: Redundancia (UVA): se muestra solo si se marca "Check redundancy
   # (UVA)".

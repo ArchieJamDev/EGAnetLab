@@ -59,6 +59,14 @@ children:
       - type: ComboBox
         name: uniMethod
   - type: CollapseBox
+    label: Network scores
+    collapsed: true
+    children:
+      - type: CheckBox
+        name: netScores
+      - type: Output
+        name: netScoresOV
+  - type: CollapseBox
     label: Redundancy (UVA)
     collapsed: true
     children:
