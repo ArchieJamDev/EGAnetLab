@@ -2,11 +2,9 @@
     "domain": "messages",
     "locale_data": {
         "messages": {
-            "": {
-                "domain": "messages",
-                "lang": "es",
-                "plural_forms": "nplurals=2; plural=(n!=1);"
-            },
+            "": [
+                ""
+            ],
             "About your choices": [
                 "Acerca de sus elecciones"
             ],
@@ -15,6 +13,9 @@
             ],
             "Assessment": [
                 "Valoración"
+            ],
+            "Automatic": [
+                "Automático"
             ],
             "Automatic (Pearson / polychoric)": [
                 "Automática (Pearson / policórica)"
@@ -40,6 +41,15 @@
             "Bottom": [
                 "Abajo"
             ],
+            "CFA estimator": [
+                "Estimador del CFA"
+            ],
+            "CFA interpretation": [
+                "Interpretación del CFA"
+            ],
+            "CFA standardized loadings": [
+                "Cargas estandarizadas del CFA"
+            ],
             "Check redundancy (UVA)": [
                 "Revisar redundancia (UVA)"
             ],
@@ -51,6 +61,12 @@
             ],
             "Community Detection": [
                 "Detección de comunidades"
+            ],
+            "Confirm with CFA": [
+                "Confirmar con CFA"
+            ],
+            "Confirmatory factor analysis": [
+                "Análisis factorial confirmatorio"
             ],
             "Correlation": [
                 "Correlación"
@@ -148,6 +164,9 @@
             "Exploratory Graph Analysis": [
                 "Análisis Exploratorio de Grafos"
             ],
+            "Factor": [
+                "Factor"
+            ],
             "Frequency of the number of dimensions": [
                 "Frecuencia del número de dimensiones"
             ],
@@ -168,6 +187,9 @@
             ],
             "Item membership": [
                 "Pertenencia de los ítems"
+            ],
+            "Item membership by sample": [
+                "Pertenencia de los ítems por muestra"
             ],
             "Item pairs by weighted topological overlap": [
                 "Pares de ítems por solapamiento topológico ponderado"
@@ -214,8 +236,17 @@
             "Listwise": [
                 "Por lista"
             ],
+            "Loading": [
+                "Carga"
+            ],
             "Louvain": [
                 "Louvain"
+            ],
+            "ML": [
+                "ML"
+            ],
+            "MLR (robust)": [
+                "MLR (robusto)"
             ],
             "Mean": [
                 "Media"
@@ -286,6 +317,18 @@
             "Parametric": [
                 "Paramétrico"
             ],
+            "Part A": [
+                "Parte A"
+            ],
+            "Part A (derivation)": [
+                "Parte A (derivación)"
+            ],
+            "Part B": [
+                "Parte B"
+            ],
+            "Part B (validation)": [
+                "Parte B (validación)"
+            ],
             "Pearson": [
                 "Pearson"
             ],
@@ -309,6 +352,9 @@
             ],
             "Proportion": [
                 "Proporción"
+            ],
+            "Proportion for EGA (derivation)": [
+                "Proporción para EGA (derivación)"
             ],
             "Red": [
                 "Rojo"
@@ -343,14 +389,26 @@
             "SD": [
                 "DE"
             ],
+            "SE": [
+                "EE"
+            ],
             "Same dimension": [
                 "Misma dimensión"
+            ],
+            "Same in A and B": [
+                "Igual en A y B"
+            ],
+            "Sample part": [
+                "Parte de la muestra"
             ],
             "Samples": [
                 "Muestras"
             ],
             "Save network scores": [
                 "Guardar puntuaciones de red"
+            ],
+            "Save sample part": [
+                "Guardar la parte de la muestra"
             ],
             "Seed": [
                 "Semilla"
@@ -369,6 +427,12 @@
             ],
             "Spearman": [
                 "Spearman"
+            ],
+            "Split seed": [
+                "Semilla de la división"
+            ],
+            "Split the sample at random (EGA in one part, CFA in the other)": [
+                "Dividir la muestra al azar (EGA en una parte, CFA en la otra)"
             ],
             "Spring (Fruchterman-Reingold)": [
                 "Resorte (Fruchterman-Reingold)"
@@ -400,6 +464,12 @@
             "Top": [
                 "Arriba"
             ],
+            "Total sample": [
+                "Muestra total"
+            ],
+            "Total sample and random parts": [
+                "Muestra total y partes aleatorias"
+            ],
             "Triangle": [
                 "Triángulo"
             ],
@@ -411,6 +481,9 @@
             ],
             "Viridis": [
                 "Viridis"
+            ],
+            "WLSMV (ordinal)": [
+                "WLSMV (ordinal)"
             ],
             "Walktrap": [
                 "Walktrap"

@@ -18,6 +18,10 @@ msgstr "Interpretación aplicada"
 msgid "Assessment"
 msgstr "Valoración"
 
+#: ega/options/cfaEstimator/auto.title
+msgid "Automatic"
+msgstr "Automático"
+
 #: ega/options/corr/auto.title
 msgid "Automatic (Pearson / polychoric)"
 msgstr "Automática (Pearson / policórica)"
@@ -51,6 +55,18 @@ msgstr "Tipo de bootstrap"
 msgid "Bottom"
 msgstr "Abajo"
 
+#: ega/options/cfaEstimator.title
+msgid "CFA estimator"
+msgstr "Estimador del CFA"
+
+#: ega/results/cfaInterpretation.title
+msgid "CFA interpretation"
+msgstr "Interpretación del CFA"
+
+#: ega/results/cfaLoadings.title
+msgid "CFA standardized loadings"
+msgstr "Cargas estandarizadas del CFA"
+
 #: ega/options/runUVA.title
 msgid "Check redundancy (UVA)"
 msgstr "Revisar redundancia (UVA)"
@@ -67,6 +83,15 @@ msgstr "Apta para daltonismo (Okabe-Ito)"
 #: ega/options/algorithm.title
 msgid "Community Detection"
 msgstr "Detección de comunidades"
+
+#: ega/options/runCFA.title
+msgid "Confirm with CFA"
+msgstr "Confirmar con CFA"
+
+#: ega/results/cfaStatus.title
+#: ega/ui[6].label
+msgid "Confirmatory factor analysis"
+msgstr "Análisis factorial confirmatorio"
 
 #: ega/options/corr.title
 msgid "Correlation"
@@ -169,6 +194,7 @@ msgstr "Dieciocho ítems dicotómicos del Wiener Matrizen-Test 2 más variables 
 
 #: ega/results/summary.columns.title
 #: ega/results/bootSummary.columns.title
+#: ega/results/cfaCompare.columns.title
 msgid "Element"
 msgstr "Elemento"
 
@@ -207,6 +233,10 @@ msgstr "Explicar mis elecciones"
 msgid "Exploratory Graph Analysis"
 msgstr "Análisis Exploratorio de Grafos"
 
+#: ega/results/cfaLoadings.columns.title
+msgid "Factor"
+msgstr "Factor"
+
 #: ega/results/bootFrequency.title
 #: ega/results/bootFrequencyPlot.title
 msgid "Frequency of the number of dimensions"
@@ -233,12 +263,18 @@ msgstr "Introducción"
 #: ega/results/loadings.columns.title
 #: ega/results/uvaPairs.columns.title
 #: ega/results/bootItemStability.columns.title
+#: ega/results/cfaMembership.columns.title
+#: ega/results/cfaLoadings.columns.title
 msgid "Item"
 msgstr "Ítem"
 
 #: ega/results/membership.title
 msgid "Item membership"
 msgstr "Pertenencia de los ítems"
+
+#: ega/results/cfaMembership.title
+msgid "Item membership by sample"
+msgstr "Pertenencia de los ítems por muestra"
 
 #: ega/results/uvaPairs.title
 msgid "Item pairs by weighted topological overlap"
@@ -305,10 +341,22 @@ msgstr "Leiden"
 msgid "Listwise"
 msgstr "Por lista"
 
+#: ega/results/cfaLoadings.columns.title
+msgid "Loading"
+msgstr "Carga"
+
 #: ega/options/algorithm/louvain.title
 #: ega/options/uniMethod/louvain.title
 msgid "Louvain"
 msgstr "Louvain"
+
+#: ega/options/cfaEstimator/ML.title
+msgid "ML"
+msgstr "ML"
+
+#: ega/options/cfaEstimator/MLR.title
+msgid "MLR (robust)"
+msgstr "MLR (robusto)"
 
 #: ega/results/scores.columns.title
 msgid "Mean"
@@ -395,7 +443,7 @@ msgstr "Número de dimensiones entre muestras"
 msgid "Orange"
 msgstr "Naranja"
 
-#: ega/ui[6].label
+#: ega/ui[7].label
 msgid "Output"
 msgstr "Salida"
 
@@ -407,23 +455,39 @@ msgstr "Por pares"
 msgid "Parametric"
 msgstr "Paramétrico"
 
+#: ega/results/cfaMembership.columns.title
+msgid "Part A"
+msgstr "Parte A"
+
+#: ega/results/cfaCompare.columns.title
+msgid "Part A (derivation)"
+msgstr "Parte A (derivación)"
+
+#: ega/results/cfaMembership.columns.title
+msgid "Part B"
+msgstr "Parte B"
+
+#: ega/results/cfaCompare.columns.title
+msgid "Part B (validation)"
+msgstr "Parte B (validación)"
+
 #: ega/options/corr/pearson.title
 msgid "Pearson"
 msgstr "Pearson"
 
-#: ega/ui[9].label
+#: ega/ui[10].label
 msgid "Plot Edges"
 msgstr "Gráfico: aristas"
 
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Plot Layout"
 msgstr "Gráfico: disposición"
 
-#: ega/ui[10].label
+#: ega/ui[11].label
 msgid "Plot Legend"
 msgstr "Gráfico: leyenda"
 
-#: ega/ui[8].label
+#: ega/ui[9].label
 msgid "Plot Nodes and Labels"
 msgstr "Gráfico: nodos y etiquetas"
 
@@ -438,6 +502,10 @@ msgstr "Aristas positivas"
 #: ega/results/bootFrequency.columns.title
 msgid "Proportion"
 msgstr "Proporción"
+
+#: ega/options/splitProp.title
+msgid "Proportion for EGA (derivation)"
+msgstr "Proporción para EGA (derivación)"
 
 #: ega/options/edgeNegColor/red.title
 msgid "Red"
@@ -485,9 +553,21 @@ msgstr "Ejecutar bootstrap"
 msgid "SD"
 msgstr "DE"
 
+#: ega/results/cfaLoadings.columns.title
+msgid "SE"
+msgstr "EE"
+
 #: ega/results/uvaPairs.columns.title
 msgid "Same dimension"
 msgstr "Misma dimensión"
+
+#: ega/results/cfaMembership.columns.title
+msgid "Same in A and B"
+msgstr "Igual en A y B"
+
+#: ega/results/splitOV.title
+msgid "Sample part"
+msgstr "Parte de la muestra"
 
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
@@ -496,6 +576,10 @@ msgstr "Muestras"
 #: ega/options/netScoresOV.title
 msgid "Save network scores"
 msgstr "Guardar puntuaciones de red"
+
+#: ega/options/splitOV.title
+msgid "Save sample part"
+msgstr "Guardar la parte de la muestra"
 
 #: ega/options/seed.title
 msgid "Seed"
@@ -520,6 +604,14 @@ msgstr "Continua"
 #: ega/options/corr/spearman.title
 msgid "Spearman"
 msgstr "Spearman"
+
+#: ega/options/splitSeed.title
+msgid "Split seed"
+msgstr "Semilla de la división"
+
+#: ega/options/splitSample.title
+msgid "Split the sample at random (EGA in one part, CFA in the other)"
+msgstr "Dividir la muestra al azar (EGA en una parte, CFA en la otra)"
 
 #: ega/options/layout/qgraph.title
 msgid "Spring (Fruchterman-Reingold)"
@@ -561,6 +653,15 @@ msgstr "TMFG"
 msgid "Top"
 msgstr "Arriba"
 
+#: ega/results/cfaCompare.columns.title
+#: ega/results/cfaMembership.columns.title
+msgid "Total sample"
+msgstr "Muestra total"
+
+#: ega/results/cfaCompare.title
+msgid "Total sample and random parts"
+msgstr "Muestra total y partes aleatorias"
+
 #: ega/options/nodeShape/triangle.title
 msgid "Triangle"
 msgstr "Triángulo"
@@ -577,6 +678,10 @@ msgstr "Valor"
 #: ega/options/plotPalette/viridis.title
 msgid "Viridis"
 msgstr "Viridis"
+
+#: ega/options/cfaEstimator/WLSMV.title
+msgid "WLSMV (ordinal)"
+msgstr "WLSMV (ordinal)"
 
 #: ega/options/algorithm/walktrap.title
 msgid "Walktrap"

@@ -488,6 +488,139 @@ items:
       - reportLang
       - plotPalette
 
+  # ---------------------------------------------------------------------------
+  # Confirmatory factor analysis (CFA), with the optional random split.
+  # ES: Análisis factorial confirmatorio (CFA), con la división aleatoria
+  # opcional.
+  # ---------------------------------------------------------------------------
+
+  - name: cfaStatus
+    title: Confirmatory factor analysis
+    type: Html
+    visible: (runCFA)
+
+  - name: cfaCompare
+    title: Total sample and random parts
+    type: Table
+    rows: 0
+    visible: (runCFA)
+    refs:
+      - rosseel_2012
+      - hu_bentler_1999
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - cfaEstimator
+      - splitSample
+      - splitProp
+      - splitSeed
+      - reportLang
+    columns:
+      - name: element
+        title: Element
+        type: text
+      - name: total
+        title: Total sample
+        type: text
+      - name: partA
+        title: Part A (derivation)
+        type: text
+        visible: (splitSample)
+      - name: partB
+        title: Part B (validation)
+        type: text
+        visible: (splitSample)
+
+  - name: cfaMembership
+    title: Item membership by sample
+    type: Table
+    rows: 0
+    visible: (runCFA && splitSample)
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - cfaEstimator
+      - splitSample
+      - splitProp
+      - splitSeed
+      - reportLang
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: total
+        title: Total sample
+        type: text
+      - name: partA
+        title: Part A
+        type: text
+      - name: partB
+        title: Part B
+        type: text
+      - name: agree
+        title: Same in A and B
+        type: text
+
+  - name: cfaLoadings
+    title: CFA standardized loadings
+    type: Table
+    rows: 0
+    visible: (runCFA)
+    refs:
+      - rosseel_2012
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - cfaEstimator
+      - splitSample
+      - splitProp
+      - splitSeed
+      - reportLang
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: factor
+        title: Factor
+        type: text
+      - name: loading
+        title: Loading
+        type: number
+      - name: se
+        title: SE
+        type: number
+
+  - name: cfaInterpretation
+    title: CFA interpretation
+    type: Html
+    visible: (runCFA)
+
+  - name: splitOV
+    title: Sample part
+    type: Output
+    measureType: nominal
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - splitProp
+      - splitSeed
+
   - name: notes
     title: Notes
     type: Html

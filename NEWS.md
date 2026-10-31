@@ -1,5 +1,22 @@
 # EGAnetLab 0.1.0 (development)
 
+## EGA: confirmatory factor analysis with an optional random split (phase 2)
+
+* New **Confirmatory factor analysis** box in the EGA analysis. It fits the
+  EGA structure as a CFA with lavaan (estimator automatic as in EGAnet's
+  `CFA()`: WLSMV for items with fewer than 6 categories, MLR otherwise; or
+  ML, MLR, WLSMV by choice), and reports χ², CFI, TLI, RMSEA with its 90%
+  interval, SRMR and standardized loadings, read against Hu and Bentler's
+  (1999) guidelines.
+* **Split the sample at random**: EGA in part A (derivation, default 50%),
+  CFA of that structure in part B (validation), with a visible seed. A
+  side-by-side table shows the total sample, part A and part B (cases,
+  dimensions, TEFI and fit), and an item table shows each item's dimension
+  in the three samples, with labels aligned to the total sample and items
+  that change dimension marked. **Save sample part** adds an A/B column to
+  the dataset. The split never alters the global random stream.
+* `lavaan` is now a direct dependency (it already came with EGAnet).
+
 ## EGA: network scores (phase 2)
 
 * New **Network scores** box in the EGA analysis, wrapping

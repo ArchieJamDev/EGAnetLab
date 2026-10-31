@@ -105,4 +105,26 @@ refs:
         issue: '6'
         pages: '1165-1182'
         url: https://doi.org/10.1080/00273171.2023.2194606
+
+    rosseel_2012:
+        type: 'article'
+        author: 'Rosseel, Y.'
+        year: 2012
+        title: 'lavaan: An R package for structural equation modeling'
+        publisher: 'Journal of Statistical Software'
+        volume: '48'
+        issue: '2'
+        pages: '1-36'
+        url: https://doi.org/10.18637/jss.v048.i02
+
+    hu_bentler_1999:
+        type: 'article'
+        author: 'Hu, L., & Bentler, P. M.'
+        year: 1999
+        title: 'Cutoff criteria for fit indexes in covariance structure analysis: Conventional criteria versus new alternatives'
+        publisher: 'Structural Equation Modeling'
+        volume: '6'
+        issue: '1'
+        pages: '1-55'
+        url: https://doi.org/10.1080/10705519909540118
 ...

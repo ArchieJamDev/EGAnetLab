@@ -129,7 +129,7 @@ explanation.
 | **Unique Variable Analysis** (`UVA`) | Which items are redundant and should be removed or combined? | ✅ 0.1.0 (in EGA, Redundancy section) |
 | **Network scores** (`net.scores`) | What is each person's score per dimension, saved back to the data? | ✅ 0.1.0 (in EGA, Network scores section) |
 | **Invariance** (`invariance` + NetworkComparisonTest) | Is the structure equivalent across groups, or before and after an intervention? | 🗓 Planned |
-| **Confirmatory test** (`CFA`) | Does the EGA structure hold as a confirmatory factor model? | 🗓 Planned |
+| **Confirmatory test** (`CFA`) | Does the EGA structure hold as a confirmatory factor model, also in a random half of the sample? | ✅ 0.1.0 (in EGA, CFA section) |
 
 ### 3. Information theory and fit
 
@@ -253,7 +253,7 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 |---|---|---|
 | 0 | Platform, EGA analysis, CI, documentation | ✅ Done |
 | 1 | Bootstrap EGA, item and dimension stability | ✅ Done |
-| 2 | UVA, network scores, CFA | 🚧 UVA and network scores done, CFA next |
+| 2 | UVA, network scores, CFA with random split | ✅ In review |
 | 3 | TEFI comparison of competing structures | 🗓 |
 | 4 | Hierarchical EGA and random-intercept EGA | 🗓 |
 | 5 | Invariance and NetworkComparisonTest (independent and paired groups) | 🗓 |

@@ -141,6 +141,48 @@
             saved_desc = "Network score for dimension %s (EGAnetLab, EGAnet::net.scores)"
         ),
 
+        cfa = list(
+            intro = c(
+                "Confirmatory factor analysis (CFA) tests the structure found by EGA as a factor model: each dimension becomes a factor and each item loads only on its own factor (lavaan; Rosseel, 2012; see references).",
+                "Fitting the CFA on the same data that produced the structure gives an optimistic fit. Splitting the sample at random gives an honest check: EGA finds the structure in part A (derivation) and the CFA tests it in part B (validation). The table shows the total sample and both parts side by side."
+            ),
+            estimator_auto_ordinal = "Estimator: WLSMV with items treated as ordinal (some items have fewer than 6 categories), as EGAnet's CFA() does.",
+            estimator_auto_cont = "Estimator: MLR (robust maximum likelihood) with full-information handling of missing values, as EGAnet's CFA() does for items with 6 or more categories.",
+            estimator_fixed = "Estimator: %s, as chosen in the options.",
+            no_split_note = "The CFA uses the same sample as EGA, so its fit is optimistic. Tick Split the sample at random for a cross-validated check.",
+            row_n = "Cases",
+            row_dims = "Dimensions found by EGA",
+            row_tefi = "TEFI",
+            row_structure = "Structure tested by the CFA",
+            row_structure_total = "EGA in the total sample",
+            row_structure_A = "EGA in part A",
+            row_chisq = "χ² (df), p",
+            row_cfi = "CFI",
+            row_tli = "TLI",
+            row_rmsea = "RMSEA [90% CI]",
+            row_srmr = "SRMR",
+            row_converged = "Converged",
+            yes = "Yes",
+            no = "No",
+            changed = "Changes",
+            new_dim = "new",
+            dropped_factor = "Dimension(s) with a single item cannot form a factor and were left out of the CFA: %s.",
+            failed = "lavaan could not fit the CFA%s: %s.",
+            fit_guide = "Conventional guidelines (Hu & Bentler, 1999; see references): CFI and TLI of .95 or more, RMSEA of .06 or less and SRMR of .08 or less suggest good fit; CFI/TLI of .90 and RMSEA of .08 are often taken as acceptable. With WLSMV these cutoffs are only approximate.",
+            interp_fit = "In %s, the CFA of the EGA structure gives CFI = %s, TLI = %s, RMSEA = %s and SRMR = %s, which suggests %s fit.",
+            fit_good = "good",
+            fit_acceptable = "acceptable",
+            fit_poor = "poor",
+            sample_total = "the total sample",
+            sample_B = "part B (validation)",
+            interp_dims_same = "EGA finds %s dimensions in the total sample, %s in part A and %s in part B: the number of dimensions replicates across random halves.",
+            interp_dims_diff = "EGA finds %s dimensions in the total sample, %s in part A and %s in part B: the number of dimensions does not fully replicate across random halves, so interpret the structure with caution.",
+            interp_agree = "%s of the items fall in the same dimension in parts A and B.",
+            interp_changes = "Items that change dimension between parts A and B: %s. Compare them with the bootstrap item stability and the redundancy results.",
+            interp_seed = "Split: %d cases in part A and %d in part B (seed %d). Report the seed so the split can be reproduced; a different seed gives a different split.",
+            interp_next = "Next step: report the validation fit (part B) as the main evidence for the structure, and the total-sample fit as a reference. If the fit is poor, look at the items with low loadings or that change dimension."
+        ),
+
         uva = list(
             intro = c(
                 "Unique Variable Analysis (UVA) looks for redundant items: pairs that share so many of their connections in the network that they behave almost like the same item (Christensen, Garrido & Golino, 2023; see references).",
@@ -277,6 +319,48 @@
             failed = "EGAnet no pudo calcular las puntuaciones de red: %s.",
             saved_title = "Puntuación de red %s",
             saved_desc = "Puntuación de red de la dimensión %s (EGAnetLab, EGAnet::net.scores)"
+        ),
+
+        cfa = list(
+            intro = c(
+                "El análisis factorial confirmatorio (AFC/CFA) pone a prueba la estructura hallada por EGA como un modelo factorial: cada dimensión es un factor y cada ítem carga solo en su propio factor (lavaan; Rosseel, 2012; ver referencias).",
+                "Ajustar el CFA con los mismos datos que produjeron la estructura da un ajuste optimista. Dividir la muestra al azar da una prueba honesta: EGA encuentra la estructura en la parte A (derivación) y el CFA la prueba en la parte B (validación). La tabla muestra la muestra total y ambas partes lado a lado."
+            ),
+            estimator_auto_ordinal = "Estimador: WLSMV con los ítems tratados como ordinales (algunos ítems tienen menos de 6 categorías), como hace CFA() de EGAnet.",
+            estimator_auto_cont = "Estimador: MLR (máxima verosimilitud robusta) con manejo de información completa de los valores perdidos, como hace CFA() de EGAnet con ítems de 6 o más categorías.",
+            estimator_fixed = "Estimador: %s, según lo elegido en las opciones.",
+            no_split_note = "El CFA usa la misma muestra que EGA, así que su ajuste es optimista. Marque Split the sample at random para una prueba con validación cruzada.",
+            row_n = "Casos",
+            row_dims = "Dimensiones halladas por EGA",
+            row_tefi = "TEFI",
+            row_structure = "Estructura probada por el CFA",
+            row_structure_total = "EGA en la muestra total",
+            row_structure_A = "EGA en la parte A",
+            row_chisq = "χ² (gl), p",
+            row_cfi = "CFI",
+            row_tli = "TLI",
+            row_rmsea = "RMSEA [IC 90%]",
+            row_srmr = "SRMR",
+            row_converged = "Convergió",
+            yes = "Sí",
+            no = "No",
+            changed = "Cambia",
+            new_dim = "nueva",
+            dropped_factor = "Las dimensiones con un solo ítem no pueden formar un factor y quedaron fuera del CFA: %s.",
+            failed = "lavaan no pudo ajustar el CFA%s: %s.",
+            fit_guide = "Guías convencionales (Hu y Bentler, 1999; ver referencias): CFI y TLI de .95 o más, RMSEA de .06 o menos y SRMR de .08 o menos sugieren buen ajuste; CFI/TLI de .90 y RMSEA de .08 suelen tomarse como aceptables. Con WLSMV estos puntos de corte son solo aproximados.",
+            interp_fit = "En %s, el CFA de la estructura de EGA da CFI = %s, TLI = %s, RMSEA = %s y SRMR = %s, lo que sugiere un ajuste %s.",
+            fit_good = "bueno",
+            fit_acceptable = "aceptable",
+            fit_poor = "pobre",
+            sample_total = "la muestra total",
+            sample_B = "la parte B (validación)",
+            interp_dims_same = "EGA encuentra %s dimensiones en la muestra total, %s en la parte A y %s en la parte B: el número de dimensiones se replica entre mitades aleatorias.",
+            interp_dims_diff = "EGA encuentra %s dimensiones en la muestra total, %s en la parte A y %s en la parte B: el número de dimensiones no se replica del todo entre mitades aleatorias, así que interprete la estructura con cautela.",
+            interp_agree = "El %s de los ítems queda en la misma dimensión en las partes A y B.",
+            interp_changes = "Ítems que cambian de dimensión entre las partes A y B: %s. Compárelos con la estabilidad bootstrap de los ítems y con los resultados de redundancia.",
+            interp_seed = "División: %d casos en la parte A y %d en la parte B (semilla %d). Informe la semilla para poder reproducir la división; otra semilla da otra división.",
+            interp_next = "Siguiente paso: informe el ajuste de validación (parte B) como evidencia principal de la estructura, y el de la muestra total como referencia. Si el ajuste es pobre, revise los ítems con cargas bajas o que cambian de dimensión."
         ),
 
         uva = list(

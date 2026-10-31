@@ -104,6 +104,29 @@ children:
         name: showFrequencyPlot
         enable: (runBoot)
   - type: CollapseBox
+    label: Confirmatory factor analysis
+    collapsed: true
+    children:
+      - type: CheckBox
+        name: runCFA
+      - type: ComboBox
+        name: cfaEstimator
+        enable: (runCFA)
+      - type: CheckBox
+        name: splitSample
+        enable: (runCFA)
+      - type: TextBox
+        name: splitProp
+        format: number
+        enable: (runCFA && splitSample)
+      - type: TextBox
+        name: splitSeed
+        format: number
+        enable: (runCFA && splitSample)
+      - type: Output
+        name: splitOV
+        enable: (runCFA && splitSample)
+  - type: CollapseBox
     label: Output
     collapsed: true
     children:

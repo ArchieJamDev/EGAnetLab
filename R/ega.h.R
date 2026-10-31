@@ -23,6 +23,11 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             runUVA = FALSE,
             uvaCut = 0.25,
             netScores = FALSE,
+            runCFA = FALSE,
+            cfaEstimator = "auto",
+            splitSample = FALSE,
+            splitProp = 0.5,
+            splitSeed = 2026,
             showChoicesGuide = TRUE,
             showLoadings = TRUE,
             showNetworkPlot = TRUE,
@@ -160,6 +165,37 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 default=FALSE)
             private$..netScoresOV <- jmvcore::OptionOutput$new(
                 "netScoresOV")
+            private$..runCFA <- jmvcore::OptionBool$new(
+                "runCFA",
+                runCFA,
+                default=FALSE)
+            private$..cfaEstimator <- jmvcore::OptionList$new(
+                "cfaEstimator",
+                cfaEstimator,
+                options=list(
+                    "auto",
+                    "ML",
+                    "MLR",
+                    "WLSMV"),
+                default="auto")
+            private$..splitSample <- jmvcore::OptionBool$new(
+                "splitSample",
+                splitSample,
+                default=FALSE)
+            private$..splitProp <- jmvcore::OptionNumber$new(
+                "splitProp",
+                splitProp,
+                min=0.3,
+                max=0.7,
+                default=0.5)
+            private$..splitSeed <- jmvcore::OptionInteger$new(
+                "splitSeed",
+                splitSeed,
+                min=1,
+                max=999999999,
+                default=2026)
+            private$..splitOV <- jmvcore::OptionOutput$new(
+                "splitOV")
             private$..showChoicesGuide <- jmvcore::OptionBool$new(
                 "showChoicesGuide",
                 showChoicesGuide,
@@ -320,6 +356,12 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..uvaCut)
             self$.addOption(private$..netScores)
             self$.addOption(private$..netScoresOV)
+            self$.addOption(private$..runCFA)
+            self$.addOption(private$..cfaEstimator)
+            self$.addOption(private$..splitSample)
+            self$.addOption(private$..splitProp)
+            self$.addOption(private$..splitSeed)
+            self$.addOption(private$..splitOV)
             self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showLoadings)
             self$.addOption(private$..showNetworkPlot)
@@ -362,6 +404,12 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         uvaCut = function() private$..uvaCut$value,
         netScores = function() private$..netScores$value,
         netScoresOV = function() private$..netScoresOV$value,
+        runCFA = function() private$..runCFA$value,
+        cfaEstimator = function() private$..cfaEstimator$value,
+        splitSample = function() private$..splitSample$value,
+        splitProp = function() private$..splitProp$value,
+        splitSeed = function() private$..splitSeed$value,
+        splitOV = function() private$..splitOV$value,
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showLoadings = function() private$..showLoadings$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
@@ -403,6 +451,12 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..uvaCut = NA,
         ..netScores = NA,
         ..netScoresOV = NA,
+        ..runCFA = NA,
+        ..cfaEstimator = NA,
+        ..splitSample = NA,
+        ..splitProp = NA,
+        ..splitSeed = NA,
+        ..splitOV = NA,
         ..showChoicesGuide = NA,
         ..showLoadings = NA,
         ..showNetworkPlot = NA,
@@ -456,6 +510,12 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         bootInterpretation = function() private$.items[["bootInterpretation"]],
         bootItemPlot = function() private$.items[["bootItemPlot"]],
         bootFrequencyPlot = function() private$.items[["bootFrequencyPlot"]],
+        cfaStatus = function() private$.items[["cfaStatus"]],
+        cfaCompare = function() private$.items[["cfaCompare"]],
+        cfaMembership = function() private$.items[["cfaMembership"]],
+        cfaLoadings = function() private$.items[["cfaLoadings"]],
+        cfaInterpretation = function() private$.items[["cfaInterpretation"]],
+        splitOV = function() private$.items[["splitOV"]],
         notes = function() private$.items[["notes"]]),
     private = list(),
     public=list(
@@ -940,6 +1000,146 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "plotPalette")))
             self$add(jmvcore::Html$new(
                 options=options,
+                name="cfaStatus",
+                title="Confirmatory factor analysis",
+                visible="(runCFA)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="cfaCompare",
+                title="Total sample and random parts",
+                rows=0,
+                visible="(runCFA)",
+                refs=list(
+                    "rosseel_2012",
+                    "hu_bentler_1999"),
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "cfaEstimator",
+                    "splitSample",
+                    "splitProp",
+                    "splitSeed",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="element", 
+                        `title`="Element", 
+                        `type`="text"),
+                    list(
+                        `name`="total", 
+                        `title`="Total sample", 
+                        `type`="text"),
+                    list(
+                        `name`="partA", 
+                        `title`="Part A (derivation)", 
+                        `type`="text", 
+                        `visible`="(splitSample)"),
+                    list(
+                        `name`="partB", 
+                        `title`="Part B (validation)", 
+                        `type`="text", 
+                        `visible`="(splitSample)"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="cfaMembership",
+                title="Item membership by sample",
+                rows=0,
+                visible="(runCFA && splitSample)",
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "cfaEstimator",
+                    "splitSample",
+                    "splitProp",
+                    "splitSeed",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="item", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="total", 
+                        `title`="Total sample", 
+                        `type`="text"),
+                    list(
+                        `name`="partA", 
+                        `title`="Part A", 
+                        `type`="text"),
+                    list(
+                        `name`="partB", 
+                        `title`="Part B", 
+                        `type`="text"),
+                    list(
+                        `name`="agree", 
+                        `title`="Same in A and B", 
+                        `type`="text"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="cfaLoadings",
+                title="CFA standardized loadings",
+                rows=0,
+                visible="(runCFA)",
+                refs=list(
+                    "rosseel_2012"),
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "cfaEstimator",
+                    "splitSample",
+                    "splitProp",
+                    "splitSeed",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="item", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="factor", 
+                        `title`="Factor", 
+                        `type`="text"),
+                    list(
+                        `name`="loading", 
+                        `title`="Loading", 
+                        `type`="number"),
+                    list(
+                        `name`="se", 
+                        `title`="SE", 
+                        `type`="number"))))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="cfaInterpretation",
+                title="CFA interpretation",
+                visible="(runCFA)"))
+            self$add(jmvcore::Output$new(
+                options=options,
+                name="splitOV",
+                title="Sample part",
+                measureType="nominal",
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "splitProp",
+                    "splitSeed")))
+            self$add(jmvcore::Html$new(
+                options=options,
                 name="notes",
                 title="Notes"))}))
 
@@ -990,6 +1190,11 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param runUVA .
 #' @param uvaCut .
 #' @param netScores .
+#' @param runCFA .
+#' @param cfaEstimator .
+#' @param splitSample .
+#' @param splitProp .
+#' @param splitSeed .
 #' @param showChoicesGuide .
 #' @param showLoadings .
 #' @param showNetworkPlot .
@@ -1039,6 +1244,12 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$bootInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$bootItemPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$bootFrequencyPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$cfaStatus} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$cfaCompare} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$cfaMembership} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$cfaLoadings} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$cfaInterpretation} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$splitOV} \tab \tab \tab \tab \tab an output \cr
 #'   \code{results$notes} \tab \tab \tab \tab \tab a html \cr
 #' }
 #'
@@ -1068,6 +1279,11 @@ ega <- function(
     runUVA = FALSE,
     uvaCut = 0.25,
     netScores = FALSE,
+    runCFA = FALSE,
+    cfaEstimator = "auto",
+    splitSample = FALSE,
+    splitProp = 0.5,
+    splitSeed = 2026,
     showChoicesGuide = TRUE,
     showLoadings = TRUE,
     showNetworkPlot = TRUE,
@@ -1119,6 +1335,11 @@ ega <- function(
         runUVA = runUVA,
         uvaCut = uvaCut,
         netScores = netScores,
+        runCFA = runCFA,
+        cfaEstimator = cfaEstimator,
+        splitSample = splitSample,
+        splitProp = splitProp,
+        splitSeed = splitSeed,
         showChoicesGuide = showChoicesGuide,
         showLoadings = showLoadings,
         showNetworkPlot = showNetworkPlot,

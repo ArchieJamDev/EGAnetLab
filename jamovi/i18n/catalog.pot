@@ -18,6 +18,10 @@ msgstr ""
 msgid "Assessment"
 msgstr ""
 
+#: ega/options/cfaEstimator/auto.title
+msgid "Automatic"
+msgstr ""
+
 #: ega/options/corr/auto.title
 msgid "Automatic (Pearson / polychoric)"
 msgstr ""
@@ -51,6 +55,18 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+#: ega/options/cfaEstimator.title
+msgid "CFA estimator"
+msgstr ""
+
+#: ega/results/cfaInterpretation.title
+msgid "CFA interpretation"
+msgstr ""
+
+#: ega/results/cfaLoadings.title
+msgid "CFA standardized loadings"
+msgstr ""
+
 #: ega/options/runUVA.title
 msgid "Check redundancy (UVA)"
 msgstr ""
@@ -66,6 +82,15 @@ msgstr ""
 
 #: ega/options/algorithm.title
 msgid "Community Detection"
+msgstr ""
+
+#: ega/options/runCFA.title
+msgid "Confirm with CFA"
+msgstr ""
+
+#: ega/results/cfaStatus.title
+#: ega/ui[6].label
+msgid "Confirmatory factor analysis"
 msgstr ""
 
 #: ega/options/corr.title
@@ -169,6 +194,7 @@ msgstr ""
 
 #: ega/results/summary.columns.title
 #: ega/results/bootSummary.columns.title
+#: ega/results/cfaCompare.columns.title
 msgid "Element"
 msgstr ""
 
@@ -207,6 +233,10 @@ msgstr ""
 msgid "Exploratory Graph Analysis"
 msgstr ""
 
+#: ega/results/cfaLoadings.columns.title
+msgid "Factor"
+msgstr ""
+
 #: ega/results/bootFrequency.title
 #: ega/results/bootFrequencyPlot.title
 msgid "Frequency of the number of dimensions"
@@ -233,11 +263,17 @@ msgstr ""
 #: ega/results/loadings.columns.title
 #: ega/results/uvaPairs.columns.title
 #: ega/results/bootItemStability.columns.title
+#: ega/results/cfaMembership.columns.title
+#: ega/results/cfaLoadings.columns.title
 msgid "Item"
 msgstr ""
 
 #: ega/results/membership.title
 msgid "Item membership"
+msgstr ""
+
+#: ega/results/cfaMembership.title
+msgid "Item membership by sample"
 msgstr ""
 
 #: ega/results/uvaPairs.title
@@ -305,9 +341,21 @@ msgstr ""
 msgid "Listwise"
 msgstr ""
 
+#: ega/results/cfaLoadings.columns.title
+msgid "Loading"
+msgstr ""
+
 #: ega/options/algorithm/louvain.title
 #: ega/options/uniMethod/louvain.title
 msgid "Louvain"
+msgstr ""
+
+#: ega/options/cfaEstimator/ML.title
+msgid "ML"
+msgstr ""
+
+#: ega/options/cfaEstimator/MLR.title
+msgid "MLR (robust)"
 msgstr ""
 
 #: ega/results/scores.columns.title
@@ -395,7 +443,7 @@ msgstr ""
 msgid "Orange"
 msgstr ""
 
-#: ega/ui[6].label
+#: ega/ui[7].label
 msgid "Output"
 msgstr ""
 
@@ -407,23 +455,39 @@ msgstr ""
 msgid "Parametric"
 msgstr ""
 
+#: ega/results/cfaMembership.columns.title
+msgid "Part A"
+msgstr ""
+
+#: ega/results/cfaCompare.columns.title
+msgid "Part A (derivation)"
+msgstr ""
+
+#: ega/results/cfaMembership.columns.title
+msgid "Part B"
+msgstr ""
+
+#: ega/results/cfaCompare.columns.title
+msgid "Part B (validation)"
+msgstr ""
+
 #: ega/options/corr/pearson.title
 msgid "Pearson"
 msgstr ""
 
-#: ega/ui[9].label
+#: ega/ui[10].label
 msgid "Plot Edges"
 msgstr ""
 
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Plot Layout"
 msgstr ""
 
-#: ega/ui[10].label
+#: ega/ui[11].label
 msgid "Plot Legend"
 msgstr ""
 
-#: ega/ui[8].label
+#: ega/ui[9].label
 msgid "Plot Nodes and Labels"
 msgstr ""
 
@@ -437,6 +501,10 @@ msgstr ""
 
 #: ega/results/bootFrequency.columns.title
 msgid "Proportion"
+msgstr ""
+
+#: ega/options/splitProp.title
+msgid "Proportion for EGA (derivation)"
 msgstr ""
 
 #: ega/options/edgeNegColor/red.title
@@ -485,8 +553,20 @@ msgstr ""
 msgid "SD"
 msgstr ""
 
+#: ega/results/cfaLoadings.columns.title
+msgid "SE"
+msgstr ""
+
 #: ega/results/uvaPairs.columns.title
 msgid "Same dimension"
+msgstr ""
+
+#: ega/results/cfaMembership.columns.title
+msgid "Same in A and B"
+msgstr ""
+
+#: ega/results/splitOV.title
+msgid "Sample part"
 msgstr ""
 
 #: ega/results/bootFrequency.columns.title
@@ -495,6 +575,10 @@ msgstr ""
 
 #: ega/options/netScoresOV.title
 msgid "Save network scores"
+msgstr ""
+
+#: ega/options/splitOV.title
+msgid "Save sample part"
 msgstr ""
 
 #: ega/options/seed.title
@@ -519,6 +603,14 @@ msgstr ""
 
 #: ega/options/corr/spearman.title
 msgid "Spearman"
+msgstr ""
+
+#: ega/options/splitSeed.title
+msgid "Split seed"
+msgstr ""
+
+#: ega/options/splitSample.title
+msgid "Split the sample at random (EGA in one part, CFA in the other)"
 msgstr ""
 
 #: ega/options/layout/qgraph.title
@@ -561,6 +653,15 @@ msgstr ""
 msgid "Top"
 msgstr ""
 
+#: ega/results/cfaCompare.columns.title
+#: ega/results/cfaMembership.columns.title
+msgid "Total sample"
+msgstr ""
+
+#: ega/results/cfaCompare.title
+msgid "Total sample and random parts"
+msgstr ""
+
 #: ega/options/nodeShape/triangle.title
 msgid "Triangle"
 msgstr ""
@@ -576,6 +677,10 @@ msgstr ""
 
 #: ega/options/plotPalette/viridis.title
 msgid "Viridis"
+msgstr ""
+
+#: ega/options/cfaEstimator/WLSMV.title
+msgid "WLSMV (ordinal)"
 msgstr ""
 
 #: ega/options/algorithm/walktrap.title

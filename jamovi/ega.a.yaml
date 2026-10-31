@@ -235,6 +235,58 @@ options:
     title: Save network scores
     type: Output
 
+  # ---------------------------------------------------------------------------
+  # Confirmatory factor analysis (lavaan::cfa()) of the EGA structure, with
+  # an optional random split: EGA on one part (derivation), CFA on the other
+  # (validation), and every result shown side by side for the total sample
+  # and both parts.
+  # ES: Análisis factorial confirmatorio (lavaan::cfa()) de la estructura de
+  # EGA, con división aleatoria opcional: EGA en una parte (derivación), CFA
+  # en la otra (validación), y cada resultado lado a lado para la muestra
+  # total y ambas partes.
+  # ---------------------------------------------------------------------------
+  - name: runCFA
+    title: Confirm with CFA
+    type: Bool
+    default: false
+
+  - name: cfaEstimator
+    title: CFA estimator
+    type: List
+    options:
+      - title: Automatic
+        name: auto
+      - title: ML
+        name: ML
+      - title: MLR (robust)
+        name: MLR
+      - title: WLSMV (ordinal)
+        name: WLSMV
+    default: auto
+
+  - name: splitSample
+    title: Split the sample at random (EGA in one part, CFA in the other)
+    type: Bool
+    default: false
+
+  - name: splitProp
+    title: Proportion for EGA (derivation)
+    type: Number
+    min: 0.3
+    max: 0.7
+    default: 0.5
+
+  - name: splitSeed
+    title: Split seed
+    type: Integer
+    min: 1
+    max: 999999999
+    default: 2026
+
+  - name: splitOV
+    title: Save sample part
+    type: Output
+
   # Explanatory paragraph for each estimation choice currently selected
   # (Archie's design rule: every menu decision carries its explanation).
   # ES: Párrafo explicativo para cada elección de estimación seleccionada

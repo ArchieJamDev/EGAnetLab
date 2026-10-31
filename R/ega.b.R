@@ -313,11 +313,19 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 uva_warnings <- private$.runUVA(prep, wc, tr, txt)
 
             # -----------------------------------------------------------------
+            # Confirmatory factor analysis, only when requested.
+            # ES: Análisis factorial confirmatorio, solo si se pide.
+            # -----------------------------------------------------------------
+            cfa_warnings <- character(0)
+            if (isTRUE(self$options$runCFA))
+                cfa_warnings <- private$.runCFA(prep, ega, tr, txt)
+
+            # -----------------------------------------------------------------
             # Notes: every EGAnet warning is shown, never suppressed.
             # ES: Notas: cada advertencia de EGAnet se muestra, nunca se
             # suprime.
             # -----------------------------------------------------------------
-            warnings <- unique(c(fit$warnings, score_warnings, boot_warnings, uva_warnings))
+            warnings <- unique(c(fit$warnings, score_warnings, boot_warnings, uva_warnings, cfa_warnings))
             if (length(warnings) > 0) {
                 self$results$notes$setContent(.el_html_block(
                     txt("common", "warnings_title"),
@@ -413,6 +421,202 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             }
 
             fit$warnings
+        },
+
+        # ---------------------------------------------------------------------
+        # Confirmatory factor analysis of the EGA structure (lavaan), with the
+        # optional random split: EGA in part A, CFA of that structure in part
+        # B, and the total sample and both parts reported side by side. The
+        # split leaves the global random stream untouched. Failures are
+        # Category B: reported in this section, EGA results intact.
+        # Returns the messages captured from EGAnet and lavaan.
+        # ES: Análisis factorial confirmatorio de la estructura de EGA
+        # (lavaan), con la división aleatoria opcional: EGA en la parte A, CFA
+        # de esa estructura en la parte B, y la muestra total y ambas partes
+        # lado a lado. La división no altera el flujo aleatorio global. Los
+        # fallos son Categoría B: se informan en esta sección y los
+        # resultados de EGA quedan intactos.
+        # ---------------------------------------------------------------------
+        .runCFA = function(prep, ega, tr, txt) {
+
+            split <- isTRUE(self$options$splitSample)
+            estimator <- self$options$cfaEstimator
+            warnings <- character(0)
+            num <- function(x, d = 3) .el_fmt_num(x, d, "—")
+            heading <- tr("Confirmatory factor analysis", "Análisis factorial confirmatorio")
+
+            for (name in c("cfaCompare", "cfaMembership", "cfaLoadings"))
+                self$results[[name]]$deleteRows()
+
+            wc_total <- ega$wc
+            items <- names(wc_total)
+            data <- prep$data
+
+            # Samples: total, and parts A and B when the split is on.
+            # ES: Muestras: total, y partes A y B cuando hay división.
+            samples <- list(total = list(data = data, ega = ega, wc = wc_total))
+            fit_total <- .el_cfa_fit(data, wc_total, estimator)
+            warnings <- c(warnings, fit_total$warnings)
+            fits <- list(total = fit_total)
+
+            if (split) {
+                index_a <- .el_split_index(nrow(data), as.numeric(self$options$splitProp),
+                                           self$options$splitSeed)
+                part <- rep("B", nrow(data)); part[index_a] <- "A"
+
+                for (p in c("A", "B")) {
+                    d <- data[part == p, , drop = FALSE]
+                    ega_p <- .el_capture(EGAnet::EGA(
+                        data = d, corr = self$options$corr, na.data = self$options$naData,
+                        model = self$options$model, algorithm = self$options$algorithm,
+                        uni.method = self$options$uniMethod, plot.EGA = FALSE, verbose = FALSE))
+                    warnings <- c(warnings, ega_p$warnings)
+                    samples[[p]] <- list(
+                        data = d, ega = ega_p$value, error = ega_p$error,
+                        wc = if (!is.null(ega_p$value)) .el_align_wc(ega_p$value$wc, wc_total) else NULL)
+                }
+
+                # Part A: CFA of its own structure (in-sample, optimistic).
+                # Part B: CFA of part A's structure (the cross-validated test).
+                # ES: Parte A: CFA de su propia estructura (en la misma
+                # muestra, optimista). Parte B: CFA de la estructura de la
+                # parte A (la prueba con validación cruzada).
+                wc_a <- samples$A$wc
+                if (!is.null(wc_a)) {
+                    fits$A <- .el_cfa_fit(samples$A$data, wc_a, estimator)
+                    fits$B <- .el_cfa_fit(samples$B$data, wc_a, estimator)
+                    warnings <- c(warnings, fits$A$warnings, fits$B$warnings)
+                }
+
+                output <- self$results$splitOV
+                if (isTRUE(output$enabled) && output$isNotFilled()) {
+                    output$setRowNums(rownames(data))
+                    output$setValues(factor(part, levels = c("A", "B")))
+                }
+            }
+
+            # Status: introduction, estimator, notes.
+            # ES: Estado: introducción, estimador, notas.
+            est_text <- if (identical(estimator, "auto")) {
+                if (isTRUE(fit_total$ordinal)) txt("cfa", "estimator_auto_ordinal") else txt("cfa", "estimator_auto_cont")
+            } else sprintf(txt("cfa", "estimator_fixed"), estimator)
+            status <- c(txt("cfa", "intro"), est_text)
+            if (!split)
+                status <- c(status, txt("cfa", "no_split_note"))
+            if (length(fit_total$dropped) > 0)
+                status <- c(status, sprintf(txt("cfa", "dropped_factor"), paste(fit_total$dropped, collapse = ", ")))
+            for (p in names(fits))
+                if (!isTRUE(fits[[p]]$ok))
+                    status <- c(status, sprintf(txt("cfa", "failed"),
+                        if (p == "total") "" else paste0(" (", tr("part ", "parte "), p, ")"),
+                        fits[[p]]$error))
+            if (split) for (p in c("A", "B"))
+                if (is.null(samples[[p]]$ega))
+                    status <- c(status, sprintf(txt("common", "estimation_failed"), samples[[p]]$error))
+            status <- c(status, txt("cfa", "fit_guide"))
+            self$results$cfaStatus$setContent(.el_html_block(heading, status))
+
+            # Side-by-side table.
+            # ES: Tabla lado a lado.
+            cell <- function(p, f) {
+                if (is.null(fits[[p]]) || !isTRUE(fits[[p]]$ok)) return("—")
+                f(fits[[p]]$fit)
+            }
+            ega_of <- function(p) samples[[p]]$ega
+            n_dim_of <- function(p) { e <- ega_of(p); if (is.null(e)) "—" else as.character(.el_clean_num(e$n.dim)) }
+            tefi_of <- function(p) { e <- ega_of(p); if (is.null(e)) "—" else num(.el_clean_num(e$TEFI)) }
+            n_of <- function(p) as.character(nrow(samples[[p]]$data))
+            cols <- if (split) c("total", "A", "B") else "total"
+            key <- c(total = "total", A = "partA", B = "partB")
+            rows <- list(
+                list(txt("cfa", "row_n"), n_of),
+                list(txt("cfa", "row_dims"), n_dim_of),
+                list(txt("cfa", "row_tefi"), tefi_of),
+                list(txt("cfa", "row_structure"), function(p)
+                    if (p == "total") txt("cfa", "row_structure_total") else txt("cfa", "row_structure_A")),
+                list(txt("cfa", "row_chisq"), function(p) cell(p, function(f)
+                    paste0(num(f[["chisq"]], 2), " (", num(f[["df"]], 0), "), ", .el_fmt_p(f[["pvalue"]])))),
+                list(txt("cfa", "row_cfi"), function(p) cell(p, function(f) num(f[["cfi"]]))),
+                list(txt("cfa", "row_tli"), function(p) cell(p, function(f) num(f[["tli"]]))),
+                list(txt("cfa", "row_rmsea"), function(p) cell(p, function(f)
+                    paste0(num(f[["rmsea"]]), " [", num(f[["rmsea_low"]]), ", ", num(f[["rmsea_high"]]), "]"))),
+                list(txt("cfa", "row_srmr"), function(p) cell(p, function(f) num(f[["srmr"]]))),
+                list(txt("cfa", "row_converged"), function(p) cell(p, function(f)
+                    if (isTRUE(f[["converged"]] == 1)) txt("cfa", "yes") else txt("cfa", "no")))
+            )
+            for (i in seq_along(rows)) {
+                values <- list(element = rows[[i]][[1]])
+                for (p in cols) values[[key[[p]]]] <- rows[[i]][[2]](p)
+                .el_add_row(self$results$cfaCompare, i, values)
+            }
+
+            # Membership by sample (split only), labels aligned to the total.
+            # ES: Pertenencia por muestra (solo con división), etiquetas
+            # alineadas con la total.
+            changes <- character(0)
+            agree_share <- NA
+            if (split && !is.null(samples$A$wc) && !is.null(samples$B$wc)) {
+                label <- function(x) if (is.na(x)) tr("Isolated", "Aislado") else
+                    if (startsWith(x, "new")) paste0(txt("cfa", "new_dim"), sub("^new", " ", x)) else x
+                same <- logical(0)
+                for (i in seq_along(items)) {
+                    it <- items[i]
+                    a <- samples$A$wc[[it]]; b <- samples$B$wc[[it]]
+                    s <- !is.na(a) && !is.na(b) && a == b
+                    same <- c(same, s)
+                    if (!s) changes <- c(changes, it)
+                    .el_add_row(self$results$cfaMembership, i, list(
+                        item = it, total = label(as.character(wc_total[[it]])),
+                        partA = label(a), partB = label(b),
+                        agree = if (s) txt("cfa", "yes") else txt("cfa", "changed")))
+                }
+                agree_share <- mean(same)
+            }
+
+            # Loadings: from the validation fit when split, else the total.
+            # ES: Cargas: del ajuste de validación con división, si no de la
+            # muestra total.
+            main <- if (split && !is.null(fits$B) && isTRUE(fits$B$ok)) fits$B else fit_total
+            if (isTRUE(main$ok) && !is.null(main$loadings)) {
+                ld <- main$loadings
+                for (i in seq_len(nrow(ld)))
+                    .el_add_row(self$results$cfaLoadings, i, list(
+                        item = ld$item[i], factor = ld$factor[i],
+                        loading = .el_clean_num(ld$loading[i]), se = .el_clean_num(ld$se[i])))
+            }
+            self$results$cfaLoadings$setTitle(if (split)
+                tr("CFA standardized loadings (part B, validation)", "Cargas estandarizadas del CFA (parte B, validación)")
+                else tr("CFA standardized loadings (total sample)", "Cargas estandarizadas del CFA (muestra total)"))
+
+            # Interpretation.
+            # ES: Interpretación.
+            paragraphs <- character(0)
+            if (split) {
+                paragraphs <- c(paragraphs, sprintf(txt("cfa", "interp_seed"),
+                    sum(part == "A"), sum(part == "B"), as.integer(self$options$splitSeed)))
+                d_all <- c(n_dim_of("total"), n_dim_of("A"), n_dim_of("B"))
+                paragraphs <- c(paragraphs, sprintf(
+                    txt("cfa", if (length(unique(d_all)) == 1) "interp_dims_same" else "interp_dims_diff"),
+                    d_all[1], d_all[2], d_all[3]))
+                if (!is.na(agree_share))
+                    paragraphs <- c(paragraphs, sprintf(txt("cfa", "interp_agree"),
+                        paste0(formatC(100 * agree_share, format = "f", digits = 0), "%")))
+                if (length(changes) > 0)
+                    paragraphs <- c(paragraphs, sprintf(txt("cfa", "interp_changes"), paste(changes, collapse = ", ")))
+            }
+            fit_line <- function(f, where) {
+                lab <- .el_fit_label(f$fit)
+                if (!isTRUE(f$ok) || is.na(lab)) return(character(0))
+                sprintf(txt("cfa", "interp_fit"), where, num(f$fit[["cfi"]]), num(f$fit[["tli"]]),
+                        num(f$fit[["rmsea"]]), num(f$fit[["srmr"]]), txt("cfa", paste0("fit_", lab)))
+            }
+            if (split && !is.null(fits$B))
+                paragraphs <- c(paragraphs, fit_line(fits$B, txt("cfa", "sample_B")))
+            paragraphs <- c(paragraphs, fit_line(fit_total, txt("cfa", "sample_total")))
+            paragraphs <- c(paragraphs, txt("cfa", "interp_next"))
+            self$results$cfaInterpretation$setContent(.el_html_block(NULL, paragraphs))
+
+            unique(warnings)
         },
 
         # ---------------------------------------------------------------------
@@ -776,6 +980,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("uvaSets", "Redundant sets", "Conjuntos redundantes"),
                 c("uvaInterpretation", "Redundancy interpretation", "Interpretación de la redundancia"),
                 c("bootStatus", "Stability (bootstrap)", "Estabilidad (bootstrap)"),
+                c("cfaStatus", "Confirmatory factor analysis", "Análisis factorial confirmatorio"),
+                c("cfaCompare", "Total sample and random parts", "Muestra total y partes aleatorias"),
+                c("cfaMembership", "Item membership by sample", "Pertenencia de los ítems por muestra"),
+                c("cfaInterpretation", "CFA interpretation", "Interpretación del CFA"),
                 c("bootSummaryGuide", "Number of dimensions across samples", "Número de dimensiones entre muestras"),
                 c("bootSummary", "Number of dimensions across samples", "Número de dimensiones entre muestras"),
                 c("bootFrequency", "Frequency of the number of dimensions", "Frecuencia del número de dimensiones"),
@@ -808,6 +1016,19 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("uvaSets", "items", "Items", "Ítems"),
                 c("uvaSets", "keep", "Suggested to keep", "Se sugiere conservar"),
                 c("uvaSets", "remove", "Suggested to remove", "Se sugiere eliminar"),
+                c("cfaCompare", "element", "Element", "Elemento"),
+                c("cfaCompare", "total", "Total sample", "Muestra total"),
+                c("cfaCompare", "partA", "Part A (derivation)", "Parte A (derivación)"),
+                c("cfaCompare", "partB", "Part B (validation)", "Parte B (validación)"),
+                c("cfaMembership", "item", "Item", "Ítem"),
+                c("cfaMembership", "total", "Total sample", "Muestra total"),
+                c("cfaMembership", "partA", "Part A", "Parte A"),
+                c("cfaMembership", "partB", "Part B", "Parte B"),
+                c("cfaMembership", "agree", "Same in A and B", "Igual en A y B"),
+                c("cfaLoadings", "item", "Item", "Ítem"),
+                c("cfaLoadings", "factor", "Factor", "Factor"),
+                c("cfaLoadings", "loading", "Loading", "Carga"),
+                c("cfaLoadings", "se", "SE", "EE"),
                 c("bootSummary", "element", "Element", "Elemento"),
                 c("bootSummary", "value", "Value", "Valor"),
                 c("bootFrequency", "dims", "Dimensions", "Dimensiones"),
