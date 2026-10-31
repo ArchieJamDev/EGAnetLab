@@ -6,7 +6,7 @@
         `type`="software", 
         `author`="Golino, H., & Christensen, A. P.", 
         `year`=2026, 
-        `title`="EGAnet: Exploratory Graph Analysis – A framework for estimating the number of dimensions in multivariate data using network psychometrics", 
+        `title`="EGAnet: Exploratory Graph Analysis \u2013 A framework for estimating the number of dimensions in multivariate data using network psychometrics", 
         `publisher`="[R package]. Retrieved from https://CRAN.R-project.org/package=EGAnet", 
         `url`="https://r-ega.net"), 
     `golino_2017`=list(

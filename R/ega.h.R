@@ -283,25 +283,22 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 
 #' Exploratory Graph Analysis
 #'
-#' Estimates the number of dimensions underlying a set of items, and which
-#' items belong to each dimension, with Exploratory Graph Analysis (EGAnet),
-#' paired with network loadings, entropy fit and plain-language
+#' Estimates the number of dimensions underlying a set of items, and which 
+#' items belong to each dimension, with Exploratory Graph Analysis (EGAnet), 
+#' paired with network loadings, entropy fit and plain-language 
 #' interpretation.
-#'
-#' @param data the data as a data frame
-#' @param vars a vector of strings naming the items
-#' @param reportLang \code{"en"} (default) or \code{"es"}
-#' @param corr \code{"auto"} (default), \code{"pearson"}, \code{"spearman"} or
-#'   \code{"cosine"}
-#' @param naData \code{"pairwise"} (default) or \code{"listwise"}
-#' @param model \code{"glasso"} (default), \code{"TMFG"} or \code{"BGGM"}
-#' @param algorithm \code{"walktrap"} (default), \code{"louvain"} or
-#'   \code{"leiden"}
-#' @param uniMethod \code{"louvain"} (default), \code{"expand"} or \code{"LE"}
-#' @param showLoadings \code{TRUE} (default) or \code{FALSE}
-#' @param showNetworkPlot \code{TRUE} (default) or \code{FALSE}
-#' @param plotPalette \code{"default"}, \code{"colorblind"} or
-#'   \code{"viridis"}
+#' 
+#' @param data .
+#' @param vars .
+#' @param reportLang .
+#' @param corr .
+#' @param naData .
+#' @param model .
+#' @param algorithm .
+#' @param uniMethod .
+#' @param showLoadings .
+#' @param showNetworkPlot .
+#' @param plotPalette .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$intro} \tab \tab \tab \tab \tab a html \cr
@@ -314,6 +311,12 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$networkPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$notes} \tab \tab \tab \tab \tab a html \cr
 #' }
+#'
+#' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
+#'
+#' \code{results$summary$asDF}
+#'
+#' \code{as.data.frame(results$summary)}
 #'
 #' @export
 ega <- function(
@@ -359,3 +362,4 @@ ega <- function(
 
     analysis$results
 }
+

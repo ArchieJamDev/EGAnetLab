@@ -9,12 +9,12 @@ maintainer: Arquímedes De León Chacón Chacón <arquimedeschacon@gmail.com>
 description: >
   EGAnetLab brings the network psychometrics methods of the EGAnet package to
   jamovi and pairs every result with evidence-based methodological guidance,
-  interpretation and educational support. It estimates the number and content
-  of dimensions with Exploratory Graph Analysis and, in later releases, adds
+  interpretation and educational support. It estimates the number and content of
+  dimensions with Exploratory Graph Analysis and, in later releases, adds
   bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and
   invariance extensions. Every method-backed table cites its own source in
-  jamovi's native numbered format, and the complete APA 7th edition
-  bibliography lives in the module's documentation.
+  jamovi's native numbered format, and the complete APA 7th edition bibliography
+  lives in the module's documentation.
 usesNative: false
 minApp: 1.0.8
 analyses:
@@ -25,14 +25,10 @@ analyses:
     menuSubgroup: Dimensionality
     menuTitle: Exploratory Graph Analysis
     description: >
-      Estimates how many dimensions underlie a set of items, and which items
-      belong to each, by modeling the items as a network of regularized
-      partial correlations and grouping densely connected items with a
-      community detection algorithm. Reports the number of dimensions, item
-      memberships, network loadings and the Total Entropy Fit Index, with a
-      network plot and plain-language interpretation. Use it as the first step
-      in assessing the dimensional structure of a scale, before checking its
-      stability with Bootstrap EGA.
+      Estimates the number of dimensions underlying a set of items, and which
+      items belong to each dimension, with Exploratory Graph Analysis (EGAnet),
+      paired with network loadings, entropy fit and plain-language
+      interpretation.
     category: analyses
 datasets:
   - name: WMT-2 Matrices Test (n=1185)
@@ -40,4 +36,5 @@ datasets:
     description: >-
       Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic
       variables, from the EGAnet package - see data/README.md
+
 ...
