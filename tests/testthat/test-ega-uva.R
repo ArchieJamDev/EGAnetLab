@@ -61,11 +61,18 @@ test_that("UVA flags a near-duplicate item and suggests one to remove", {
     expect_true(all(diff(pairs$wto) <= 0))
     expect_equal(top$sameDim, "Yes")
 
+    # Other moderately overlapping items may form sets too; check the one
+    # that holds the duplicate.
+    # ES: Otros ítems con solapamiento moderado también pueden formar
+    # conjuntos; se revisa el que contiene el duplicado.
     sets <- res$uvaSets$asDF
     expect_true(nrow(sets) >= 1)
-    first <- strsplit(sets$items[1], ", ")[[1]]
-    expect_true(all(c("item1", "item1b") %in% first))
-    expect_true(sets$remove[1] %in% c("item1", "item1b"))
+    members <- lapply(sets$items, function(x) strsplit(x, ", ")[[1]])
+    hit <- which(vapply(members, function(m) "item1b" %in% m, logical(1)))
+    expect_length(hit, 1)
+    expect_true("item1" %in% members[[hit]])
+    removed <- strsplit(sets$remove[hit], ", ")[[1]]
+    expect_true(any(c("item1", "item1b") %in% removed))
 
     expect_match(res$uvaInterpretation$content, "redundant set", fixed = TRUE)
     expect_match(res$choicesGuide$content, "wTO", fixed = TRUE)
