@@ -385,6 +385,29 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 dims <- as.character(seq_len(ncol(sc)))
             membership <- as.character(wc)
 
+            # EGAnet computes scale(data) %*% loadings with every other
+            # dimension's loadings set to zero, so one missing answer
+            # anywhere leaves the person without any score (NA * 0 is NA).
+            # The same product restricted to each dimension's own items gives
+            # identical scores for complete cases and keeps the scores of the
+            # dimensions a person did answer.
+            # ES: EGAnet calcula scale(data) %*% cargas con las cargas de las
+            # demás dimensiones en cero, así que una sola respuesta perdida
+            # deja a la persona sin ninguna puntuación (NA * 0 es NA). El
+            # mismo producto restringido a los ítems de cada dimensión da
+            # puntuaciones idénticas en casos completos y conserva las de las
+            # dimensiones que la persona sí respondió.
+            std <- fit$value$loadings$std
+            if (anyNA(prep$data) && !is.null(std) && all(dims %in% colnames(std))) {
+                z <- scale(as.matrix(prep$data))
+                for (j in seq_along(dims)) {
+                    own <- names(wc)[!is.na(membership) & membership == dims[j]]
+                    own <- intersect(own, rownames(std))
+                    if (length(own) > 0)
+                        sc[, j] <- as.numeric(z[, own, drop = FALSE] %*% std[own, dims[j]])
+                }
+            }
+
             if (show) {
                 for (j in seq_along(dims)) {
                     items <- names(wc)[!is.na(membership) & membership == dims[j]]
