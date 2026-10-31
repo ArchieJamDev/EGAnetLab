@@ -66,3 +66,14 @@ test_that("network scores render in Spanish", {
     res <- EGAnetLab::ega(data = data, vars = names(data), netScores = TRUE, reportLang = "es")
     expect_match(res$scoresGuide$content, "puntuaciones de red", fixed = TRUE)
 })
+
+test_that("network score means are reported as exactly 0", {
+
+    data <- edgeStructureData()
+    res <- EGAnetLab::ega(data = data, vars = names(data), netScores = TRUE)
+    scores <- res$scores$asDF
+
+    expect_true(all(scores$mean == 0))
+    expect_match(res$scoresGuide$content, "centered at 0", fixed = TRUE)
+    expect_match(res$scoresGuide$content, "Save item means", fixed = TRUE)
+})

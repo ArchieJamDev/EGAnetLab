@@ -254,7 +254,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # el conjunto de datos.
             # -----------------------------------------------------------------
             score_warnings <- character(0)
-            if (isTRUE(self$options$netScores) || isTRUE(self$results$netScoresOV$enabled))
+            if (isTRUE(self$options$netScores) || isTRUE(self$results$netScoresOV$enabled) ||
+                isTRUE(self$results$meanScoresOV$enabled))
                 score_warnings <- private$.computeScores(prep, ega, wc, tr, txt)
 
             # -----------------------------------------------------------------
@@ -367,6 +368,37 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     .el_html_block(NULL, .el_html_list(txt("scores", "guide")), raw = TRUE))
             }
 
+            # Item means per dimension, on the original response scale: the
+            # mean of the items each person answered in that dimension. They
+            # need no network estimate, so they are saved even if net.scores()
+            # fails.
+            # ES: Promedios de los ítems por dimensión, en la escala original
+            # de respuesta: la media de los ítems que cada persona respondió
+            # en esa dimensión. No necesitan la red, así que se guardan aunque
+            # net.scores() falle.
+            means_out <- self$results$meanScoresOV
+            if (isTRUE(means_out$enabled) && means_out$isNotFilled()) {
+                labels <- sort(unique(as.character(stats::na.omit(wc))))
+                if (length(labels) > 0) {
+                    keys <- seq_along(labels)
+                    means_out$set(
+                        keys = keys,
+                        titles = sprintf(txt("scores", "mean_title"), labels),
+                        descriptions = sprintf(txt("scores", "mean_desc"), labels),
+                        measureTypes = rep("continuous", length(keys)))
+                    means_out$setRowNums(rownames(prep$data))
+                    for (j in keys) {
+                        own <- names(wc)[!is.na(wc) & as.character(wc) == labels[j]]
+                        values <- rowMeans(as.matrix(prep$data[, own, drop = FALSE]), na.rm = TRUE)
+                        values[is.nan(values)] <- NA
+                        means_out$setValues(index = j, as.numeric(values))
+                    }
+                }
+            }
+
+            if (!show && !isTRUE(self$results$netScoresOV$enabled))
+                return(character(0))
+
             fit <- .el_capture(EGAnet::net.scores(data = prep$data, A = ega$network, wc = wc))
             sc <- if (!is.null(fit$value)) fit$value$scores$std.scores else NULL
 
@@ -424,7 +456,11 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         dimension = dims[j],
                         items = length(items),
                         n = sum(!is.na(values)),
-                        mean = .el_clean_num(mean(values, na.rm = TRUE)),
+                        # Standardized scores have mean 0; drop rounding
+                        # residue such as -9.6e-17.
+                        # ES: Las puntuaciones estandarizadas tienen media 0;
+                        # se elimina el residuo de redondeo como -9.6e-17.
+                        mean = .el_clean_num(round(mean(values, na.rm = TRUE), 10)),
                         sd = .el_clean_num(stats::sd(values, na.rm = TRUE)),
                         rMean = .el_clean_num(r_mean)))
                 }

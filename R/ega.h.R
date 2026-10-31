@@ -165,6 +165,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 default=FALSE)
             private$..netScoresOV <- jmvcore::OptionOutput$new(
                 "netScoresOV")
+            private$..meanScoresOV <- jmvcore::OptionOutput$new(
+                "meanScoresOV")
             private$..runCFA <- jmvcore::OptionBool$new(
                 "runCFA",
                 runCFA,
@@ -356,6 +358,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..uvaCut)
             self$.addOption(private$..netScores)
             self$.addOption(private$..netScoresOV)
+            self$.addOption(private$..meanScoresOV)
             self$.addOption(private$..runCFA)
             self$.addOption(private$..cfaEstimator)
             self$.addOption(private$..splitSample)
@@ -404,6 +407,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         uvaCut = function() private$..uvaCut$value,
         netScores = function() private$..netScores$value,
         netScoresOV = function() private$..netScoresOV$value,
+        meanScoresOV = function() private$..meanScoresOV$value,
         runCFA = function() private$..runCFA$value,
         cfaEstimator = function() private$..cfaEstimator$value,
         splitSample = function() private$..splitSample$value,
@@ -451,6 +455,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..uvaCut = NA,
         ..netScores = NA,
         ..netScoresOV = NA,
+        ..meanScoresOV = NA,
         ..runCFA = NA,
         ..cfaEstimator = NA,
         ..splitSample = NA,
@@ -497,6 +502,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         scoresGuide = function() private$.items[["scoresGuide"]],
         scores = function() private$.items[["scores"]],
         netScoresOV = function() private$.items[["netScoresOV"]],
+        meanScoresOV = function() private$.items[["meanScoresOV"]],
         uvaStatus = function() private$.items[["uvaStatus"]],
         uvaPairs = function() private$.items[["uvaPairs"]],
         uvaSets = function() private$.items[["uvaSets"]],
@@ -703,6 +709,19 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="netScoresOV",
                 title="Network scores",
+                initInRun=TRUE,
+                measureType="continuous",
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod")))
+            self$add(jmvcore::Output$new(
+                options=options,
+                name="meanScoresOV",
+                title="Item means",
                 initInRun=TRUE,
                 measureType="continuous",
                 clearWith=list(
@@ -1231,6 +1250,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$scoresGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$scores} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$netScoresOV} \tab \tab \tab \tab \tab an output \cr
+#'   \code{results$meanScoresOV} \tab \tab \tab \tab \tab an output \cr
 #'   \code{results$uvaStatus} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$uvaPairs} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$uvaSets} \tab \tab \tab \tab \tab a table \cr

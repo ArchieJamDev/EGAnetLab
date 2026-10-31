@@ -235,6 +235,10 @@ options:
     title: Save network scores
     type: Output
 
+  - name: meanScoresOV
+    title: Save item means
+    type: Output
+
   # ---------------------------------------------------------------------------
   # Confirmatory factor analysis (lavaan::cfa()) of the EGA structure, with
   # an optional random split: EGA on one part (derivation), CFA on the other

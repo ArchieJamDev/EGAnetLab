@@ -25,6 +25,11 @@
   N, mean, SD and the correlation with the unweighted mean of the same items.
   **Save network scores** adds one column per dimension to the jamovi
   dataset, on the right rows even when the data are filtered.
+  The guide explains that network scores are loading-weighted sums of
+  z-standardized items, centered at 0 (negative values are below the sample
+  average), and the table reports their mean as exactly 0.
+  **Save item means** adds one column per dimension with the mean of the
+  items each person answered, on the original response scale.
 
 ## EGA: redundancy by Unique Variable Analysis (phase 2)
 

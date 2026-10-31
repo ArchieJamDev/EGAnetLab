@@ -66,6 +66,8 @@ children:
         name: netScores
       - type: Output
         name: netScoresOV
+      - type: Output
+        name: meanScoresOV
   - type: CollapseBox
     label: Redundancy (UVA)
     collapsed: true
