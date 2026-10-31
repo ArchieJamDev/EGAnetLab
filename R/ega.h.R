@@ -97,6 +97,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "expand",
                     "LE"),
                 default="louvain")
+            private$..showChoicesGuide <- jmvcore::OptionBool$new(
+                "showChoicesGuide",
+                showChoicesGuide,
+                default=TRUE)
             private$..showLoadings <- jmvcore::OptionBool$new(
                 "showLoadings",
                 showLoadings,
@@ -113,10 +117,6 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "colorblind",
                     "viridis"),
                 default="default")
-            private$..showChoicesGuide <- jmvcore::OptionBool$new(
-                "showChoicesGuide",
-                showChoicesGuide,
-                default=TRUE)
             private$..layout <- jmvcore::OptionList$new(
                 "layout",
                 layout,
@@ -246,10 +246,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..model)
             self$.addOption(private$..algorithm)
             self$.addOption(private$..uniMethod)
+            self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showLoadings)
             self$.addOption(private$..showNetworkPlot)
             self$.addOption(private$..plotPalette)
-            self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..layout)
             self$.addOption(private$..plotTitle)
             self$.addOption(private$..nodeSize)
@@ -277,10 +277,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         model = function() private$..model$value,
         algorithm = function() private$..algorithm$value,
         uniMethod = function() private$..uniMethod$value,
+        showChoicesGuide = function() private$..showChoicesGuide$value,
         showLoadings = function() private$..showLoadings$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
         plotPalette = function() private$..plotPalette$value,
-        showChoicesGuide = function() private$..showChoicesGuide$value,
         layout = function() private$..layout$value,
         plotTitle = function() private$..plotTitle$value,
         nodeSize = function() private$..nodeSize$value,
@@ -307,10 +307,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..model = NA,
         ..algorithm = NA,
         ..uniMethod = NA,
+        ..showChoicesGuide = NA,
         ..showLoadings = NA,
         ..showNetworkPlot = NA,
         ..plotPalette = NA,
-        ..showChoicesGuide = NA,
         ..layout = NA,
         ..plotTitle = NA,
         ..nodeSize = NA,
@@ -521,10 +521,10 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param model .
 #' @param algorithm .
 #' @param uniMethod .
+#' @param showChoicesGuide .
 #' @param showLoadings .
 #' @param showNetworkPlot .
 #' @param plotPalette .
-#' @param showChoicesGuide .
 #' @param layout .
 #' @param plotTitle .
 #' @param nodeSize .
