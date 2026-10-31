@@ -1,0 +1,234 @@
+# -----------------------------------------------------------------------------
+# EGAnetLab
+# A jamovi module for Exploratory Graph Analysis and evidence-based
+# methodological decision support on dimensional structure.
+#
+# Copyright (C) 2026 Arquímedes De León Chacón Chacón
+#
+# This file is part of EGAnetLab.
+#
+# EGAnetLab is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License,
+# or (at your option) any later version.
+#
+# EGAnetLab is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with EGAnetLab.
+# If not, see https://www.gnu.org/licenses/.
+# -----------------------------------------------------------------------------
+---
+name: bootega
+title: Bootstrap EGA
+jrs: '1.1'
+
+items:
+  - name: intro
+    title: Introduction
+    type: Html
+
+  - name: choicesGuide
+    title: About your choices
+    type: Html
+    visible: (showChoicesGuide)
+
+  # Holds the cached bootstrap summary in its state; cleared only when an
+  # option that changes the computation changes (ARCHITECTURE.md §16).
+  # ES: Guarda en su estado el resumen del bootstrap; se limpia solo cuando
+  # cambia una opción que altera el cálculo (ARCHITECTURE.md §16).
+  - name: status
+    title: Bootstrap status
+    type: Html
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - runBoot
+      - bootType
+      - iter
+      - seed
+
+  - name: summaryGuide
+    title: Number of dimensions across samples
+    type: Html
+
+  - name: summary
+    title: Number of dimensions across samples
+    type: Table
+    rows: 0
+    refs:
+      - christensen_2021_boot
+      - golino_2017
+      - eganet
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - runBoot
+      - bootType
+      - iter
+      - seed
+      - reportLang
+    columns:
+      - name: element
+        title: Element
+        type: text
+      - name: value
+        title: Value
+        type: text
+
+  - name: frequency
+    title: Frequency of the number of dimensions
+    type: Table
+    rows: 0
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - runBoot
+      - bootType
+      - iter
+      - seed
+      - reportLang
+    columns:
+      - name: dims
+        title: Dimensions
+        type: integer
+      - name: count
+        title: Samples
+        type: integer
+      - name: proportion
+        title: Proportion
+        type: number
+        format: zto
+
+  - name: dimStability
+    title: Dimension stability
+    type: Table
+    rows: 0
+    refs:
+      - christensen_2021_boot
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - runBoot
+      - bootType
+      - iter
+      - seed
+      - reportLang
+    columns:
+      - name: dimension
+        title: Dimension
+        type: text
+      - name: items
+        title: Items
+        type: integer
+      - name: consistency
+        title: Structural consistency
+        type: number
+        format: zto
+      - name: meanItem
+        title: Mean item stability
+        type: number
+        format: zto
+
+  - name: itemStability
+    title: Item stability
+    type: Table
+    rows: 0
+    refs:
+      - christensen_2021_boot
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - runBoot
+      - bootType
+      - iter
+      - seed
+      - reportLang
+      - stabilityCut
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: dimension
+        title: Dimension
+        type: text
+      - name: stability
+        title: Stability
+        type: number
+        format: zto
+      - name: flag
+        title: Assessment
+        type: text
+
+  - name: interpretation
+    title: Applied interpretation
+    type: Html
+
+  - name: itemPlot
+    title: Item stability
+    type: Image
+    width: 600
+    height: 450
+    renderFun: .plotItems
+    visible: (showItemPlot)
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - runBoot
+      - bootType
+      - iter
+      - seed
+      - stabilityCut
+      - plotPalette
+
+  - name: frequencyPlot
+    title: Frequency of the number of dimensions
+    type: Image
+    width: 550
+    height: 400
+    renderFun: .plotFrequency
+    visible: (showFrequencyPlot)
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - runBoot
+      - bootType
+      - iter
+      - seed
+      - plotPalette
+
+  - name: notes
+    title: Notes
+    type: Html
+...

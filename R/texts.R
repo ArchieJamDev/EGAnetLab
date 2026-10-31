@@ -122,7 +122,43 @@
             algorithm_leiden = "Leiden refines Louvain and guarantees that every community it returns is internally connected, which Louvain does not. It is stochastic as well. Choose it as a modern alternative to Louvain, and compare its solution with Walktrap's.",
             uniMethod_louvain = "Before the multidimensional solution is accepted, EGA checks whether the items could be unidimensional. The Louvain check applies the Louvain algorithm to the zero-order correlation matrix: if it finds a single community, the structure is reported as one dimension. It is EGAnet's current default.",
             uniMethod_expand = "The Expand check is EGA's original unidimensionality test: it adds simulated variables that form a separate dimension and estimates the network again. If every real item ends up in one community, the items are treated as unidimensional. Use it to reproduce results from studies that used the original EGA procedure.",
-            uniMethod_LE = "The Leading eigenvalue check applies the leading eigenvalue community algorithm to the zero-order correlation matrix: a single community means one dimension (Golino et al., 2020; see references). It is an established alternative to the Louvain check."
+            uniMethod_LE = "The Leading eigenvalue check applies the leading eigenvalue community algorithm to the zero-order correlation matrix: a single community means one dimension (Golino et al., 2020; see references). It is an established alternative to the Louvain check.",
+            h_bootType = "Bootstrap type",
+            bootType_parametric = "Parametric bootstrap draws each new sample from a multivariate normal distribution with the correlation matrix of your data and the same number of cases. It reproduces the estimated correlation structure exactly in expectation and is EGAnet's default (Christensen & Golino, 2021; see references).",
+            bootType_resampling = "Resampling bootstrap draws cases from your data with replacement. It keeps the real response distributions (skewness, number of categories, outliers) instead of assuming normality, so prefer it when items are markedly non-normal or when you want the stability estimate to reflect the observed responses.",
+            iter_seed = "The analysis uses %d bootstrap samples with seed %d. More samples give more precise stability estimates; 500 is the usual minimum for reporting. The same seed with the same data and options always reproduces the same results; report it with your findings."
+        ),
+
+        bootega = list(
+            intro = c(
+                "Bootstrap EGA checks whether the dimensions found by Exploratory Graph Analysis are a stable property of the items or an accident of this particular sample (Christensen & Golino, 2021; see references).",
+                "The analysis draws many new samples from your data, runs EGA on each one and records how many dimensions appear and where each item ends up. A solid structure appears again and again; an unstable one changes from sample to sample.",
+                "Read the results in this order: the distribution of the number of dimensions, the stability of each dimension, the stability of each item, and the interpretation."
+            ),
+            not_run = "Bootstrap EGA re-estimates the network in %d new samples, which can take several minutes. Review the options, then tick Run bootstrap in the Bootstrap box to start.",
+            done = "Bootstrap complete: %d samples (%s), seed %d. Changing only the report language, the stability cutoff or the plot options reuses these results without running the bootstrap again.",
+            failed = "EGAnet could not complete the bootstrap: %s. Check that EGA runs on the same items and options first; if it does, try the resampling bootstrap or fewer items with very few categories.",
+            guide_summary = c(
+                "Median and interval: the typical number of dimensions across samples, and the range that contains the middle 95% of samples.",
+                "Frequency: how often each number of dimensions appeared. A dominant value that matches the original sample supports the structure.",
+                "Structural consistency: the proportion of samples in which a dimension reappears with exactly the same items.",
+                "Item stability: the proportion of samples in which an item is placed in its original dimension."
+            ),
+            stable = "Stable",
+            unstable = "Below cutoff",
+            isolated = "Isolated (no edges)",
+            interp_mode_match = "Across %d samples, the most frequent solution has %d dimensions (%s of samples), the same number found in the original sample. The median is %s, with 95%% of samples between %s and %s dimensions.",
+            interp_mode_mismatch = "Across %d samples, the most frequent solution has %d dimensions (%s of samples), while the original sample showed %d. The original structure is not the typical one across samples; interpret it with caution and look at which items are unstable. The median is %s, with 95%% of samples between %s and %s dimensions.",
+            interp_dims_low = "Dimension(s) with structural consistency below %s: %s. These dimensions are often not reproduced with exactly the same items; usually one or more of their items move to another dimension in some samples (see item stability).",
+            interp_dims_ok = "Every dimension reappears with exactly the same items in at least %s of samples.",
+            interp_items_low = "%d item(s) stay in their original dimension in fewer than %s of samples: %s. Low stability usually means an item relates to more than one dimension, overlaps heavily with another item, or is ambiguously worded. A commonly used cutoff is .70.",
+            interp_items_ok = "Every item stays in its original dimension in at least %s of samples, which supports the stability of the structure.",
+            interp_next = "Next step: if some items are unstable, check them for redundancy (Unique Variable Analysis) and for content before deciding to remove or rewrite them, then run EGA and Bootstrap EGA again on the revised item set. Report the number of samples, the bootstrap type and the seed.",
+            plot_stability = "Proportion of samples in the original dimension",
+            plot_dims = "Number of dimensions",
+            plot_prop = "Proportion of samples",
+            plot_original = "Original sample",
+            plot_other = "Other"
         )
     ),
 
@@ -185,7 +221,43 @@
             algorithm_leiden = "Leiden refina Louvain y garantiza que cada comunidad que devuelve esté conectada internamente, algo que Louvain no asegura. También es estocástico. Elíjalo como alternativa moderna a Louvain y compare su solución con la de Walktrap.",
             uniMethod_louvain = "Antes de aceptar la solución multidimensional, EGA verifica si los ítems podrían ser unidimensionales. La verificación Louvain aplica el algoritmo Louvain a la matriz de correlaciones de orden cero: si encuentra una sola comunidad, la estructura se informa como una dimensión. Es el valor por defecto actual de EGAnet.",
             uniMethod_expand = "La verificación Expandir es la prueba de unidimensionalidad original de EGA: agrega variables simuladas que forman una dimensión aparte y vuelve a estimar la red. Si todos los ítems reales quedan en una sola comunidad, se consideran unidimensionales. Úsela para reproducir resultados de estudios que emplearon el procedimiento EGA original.",
-            uniMethod_LE = "La verificación de autovalor principal aplica el algoritmo de comunidades leading eigenvalue a la matriz de correlaciones de orden cero: una sola comunidad significa una dimensión (Golino et al., 2020; ver referencias). Es una alternativa establecida a la verificación Louvain."
+            uniMethod_LE = "La verificación de autovalor principal aplica el algoritmo de comunidades leading eigenvalue a la matriz de correlaciones de orden cero: una sola comunidad significa una dimensión (Golino et al., 2020; ver referencias). Es una alternativa establecida a la verificación Louvain.",
+            h_bootType = "Tipo de bootstrap",
+            bootType_parametric = "El bootstrap paramétrico extrae cada muestra nueva de una distribución normal multivariada con la matriz de correlaciones de sus datos y el mismo número de casos. Reproduce en promedio exactamente la estructura de correlaciones estimada y es el valor por defecto de EGAnet (Christensen y Golino, 2021; ver referencias).",
+            bootType_resampling = "El bootstrap por remuestreo extrae casos de sus datos con reemplazo. Conserva las distribuciones reales de respuesta (asimetría, número de categorías, valores atípicos) en lugar de suponer normalidad, así que prefiéralo cuando los ítems sean claramente no normales o cuando quiera que la estabilidad refleje las respuestas observadas.",
+            iter_seed = "El análisis usa %d muestras bootstrap con semilla %d. Más muestras dan estimaciones de estabilidad más precisas; 500 es el mínimo habitual para informar. La misma semilla con los mismos datos y opciones reproduce siempre los mismos resultados; infórmela junto con sus hallazgos."
+        ),
+
+        bootega = list(
+            intro = c(
+                "Bootstrap EGA verifica si las dimensiones halladas por el Análisis Exploratorio de Grafos son una propiedad estable de los ítems o un accidente de esta muestra en particular (Christensen y Golino, 2021; ver referencias).",
+                "El análisis extrae muchas muestras nuevas de sus datos, ejecuta EGA en cada una y registra cuántas dimensiones aparecen y dónde queda cada ítem. Una estructura sólida aparece una y otra vez; una inestable cambia de una muestra a otra.",
+                "Lea los resultados en este orden: la distribución del número de dimensiones, la estabilidad de cada dimensión, la estabilidad de cada ítem y la interpretación."
+            ),
+            not_run = "Bootstrap EGA vuelve a estimar la red en %d muestras nuevas, lo que puede tardar varios minutos. Revise las opciones y luego marque Run bootstrap en la caja Bootstrap para comenzar.",
+            done = "Bootstrap completado: %d muestras (%s), semilla %d. Si cambia solo el idioma del informe, el punto de corte de estabilidad o las opciones de gráfico, se reutilizan estos resultados sin volver a ejecutar el bootstrap.",
+            failed = "EGAnet no pudo completar el bootstrap: %s. Verifique primero que EGA funcione con los mismos ítems y opciones; si funciona, pruebe el bootstrap por remuestreo o menos ítems con muy pocas categorías.",
+            guide_summary = c(
+                "Mediana e intervalo: el número típico de dimensiones entre muestras y el rango que contiene el 95% central de las muestras.",
+                "Frecuencia: cuántas veces apareció cada número de dimensiones. Un valor dominante que coincide con la muestra original respalda la estructura.",
+                "Consistencia estructural: la proporción de muestras en que una dimensión reaparece exactamente con los mismos ítems.",
+                "Estabilidad del ítem: la proporción de muestras en que un ítem queda en su dimensión original."
+            ),
+            stable = "Estable",
+            unstable = "Bajo el punto de corte",
+            isolated = "Aislado (sin aristas)",
+            interp_mode_match = "En %d muestras, la solución más frecuente tiene %d dimensiones (%s de las muestras), el mismo número hallado en la muestra original. La mediana es %s, y el 95%% de las muestras está entre %s y %s dimensiones.",
+            interp_mode_mismatch = "En %d muestras, la solución más frecuente tiene %d dimensiones (%s de las muestras), mientras que la muestra original mostró %d. La estructura original no es la típica entre muestras; interprétela con cautela y revise qué ítems son inestables. La mediana es %s, y el 95%% de las muestras está entre %s y %s dimensiones.",
+            interp_dims_low = "Dimensión(es) con consistencia estructural menor que %s: %s. Estas dimensiones a menudo no se reproducen con exactamente los mismos ítems; por lo general uno o más de sus ítems pasan a otra dimensión en algunas muestras (ver estabilidad de los ítems).",
+            interp_dims_ok = "Cada dimensión reaparece con exactamente los mismos ítems en al menos %s de las muestras.",
+            interp_items_low = "%d ítem(s) permanecen en su dimensión original en menos de %s de las muestras: %s. Una estabilidad baja suele indicar que el ítem se relaciona con más de una dimensión, se superpone mucho con otro ítem o tiene una redacción ambigua. Un punto de corte de uso común es .70.",
+            interp_items_ok = "Cada ítem permanece en su dimensión original en al menos %s de las muestras, lo que respalda la estabilidad de la estructura.",
+            interp_next = "Siguiente paso: si hay ítems inestables, revise su redundancia (Análisis de Variables Únicas) y su contenido antes de decidir eliminarlos o reescribirlos; luego vuelva a ejecutar EGA y Bootstrap EGA con el conjunto revisado. Informe el número de muestras, el tipo de bootstrap y la semilla.",
+            plot_stability = "Proporción de muestras en la dimensión original",
+            plot_dims = "Número de dimensiones",
+            plot_prop = "Proporción de muestras",
+            plot_original = "Muestra original",
+            plot_other = "Otro"
         )
     )
 )

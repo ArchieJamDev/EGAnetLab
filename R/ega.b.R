@@ -87,7 +87,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # decisión de estimación, para la opción seleccionada.
             # -----------------------------------------------------------------
             if (isTRUE(self$options$showChoicesGuide))
-                self$results$choicesGuide$setContent(private$.choicesGuide(lang, tr))
+                self$results$choicesGuide$setContent(
+                    .el_choices_guide(lang, self$options, .el_estimation_choice_labels(tr)))
 
             # -----------------------------------------------------------------
             # Validation and preparation (Category A).
@@ -331,46 +332,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
             print(plot)
             TRUE
-        },
-
-        # ---------------------------------------------------------------------
-        # "About your choices" block: heading "Decision: selected option"
-        # followed by its explanation from texts.R (section "choices").
-        # ES: Bloque "Acerca de sus elecciones": encabezado "Decisión: opción
-        # seleccionada" seguido de su explicación de texts.R (sección
-        # "choices").
-        # ---------------------------------------------------------------------
-        .choicesGuide = function(lang, tr) {
-            labels <- list(
-                corr = list(
-                    auto = tr("Automatic", "Automática"), pearson = "Pearson",
-                    spearman = "Spearman", cosine = tr("Cosine", "Coseno")),
-                naData = list(
-                    pairwise = tr("Pairwise", "Por pares"), listwise = tr("Listwise", "Por lista")),
-                model = list(glasso = "GLASSO (EBIC)", TMFG = "TMFG", BGGM = "BGGM"),
-                algorithm = list(walktrap = "Walktrap", louvain = "Louvain", leiden = "Leiden"),
-                uniMethod = list(
-                    louvain = "Louvain", expand = tr("Expand", "Expandir"),
-                    LE = tr("Leading eigenvalue", "Autovalor principal"))
-            )
-
-            p_style <- "margin: 0.15em 0 0.65em 0; line-height: 1.40;"
-            parts <- paste0("<p style=\"", p_style, "\">",
-                            .el_html_escape(.el_text(lang, "choices", "intro")), "</p>")
-
-            for (option in names(labels)) {
-                value <- as.character(self$options[[option]])
-                label <- labels[[option]][[value]]
-                if (is.null(label))
-                    next
-                heading <- paste0(.el_text(lang, "choices", paste0("h_", option)), ": ", label, ".")
-                body <- .el_text(lang, "choices", paste0(option, "_", value))
-                parts <- c(parts, paste0(
-                    "<p style=\"", p_style, "\"><strong>", .el_html_escape(heading), "</strong> ",
-                    .el_html_escape(body), "</p>"))
-            }
-
-            .el_html_block(NULL, parts, raw = TRUE)
         }
     )
 )

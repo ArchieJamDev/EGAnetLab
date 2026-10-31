@@ -320,3 +320,58 @@
 
     list(value = value, error = NULL, warnings = unique(warnings))
 }
+
+# -----------------------------------------------------------------------------
+# .el_estimation_choice_labels() / .el_choices_guide()
+#
+# Input: tr - the analysis' translator (en, es); lang - report language;
+#   options - self$options; labels - named list option -> (value -> label),
+#   usually .el_estimation_choice_labels(tr) plus analysis-specific entries;
+#   extra - further plain paragraphs appended at the end.
+# Output: the HTML of the "About your choices" block: an introduction, then
+#   one paragraph per option in `labels`, headed "Decision: selected value."
+#   and explained by texts.R section "choices", key "<option>_<value>".
+#
+# Shared by every analysis that estimates an EGA network, so the five
+# estimation decisions are explained with the same words everywhere.
+# ES: Compartido por todo análisis que estima una red EGA, para que las cinco
+# decisiones de estimación se expliquen con las mismas palabras en todos.
+# -----------------------------------------------------------------------------
+.el_estimation_choice_labels <- function(tr) {
+    list(
+        corr = list(
+            auto = tr("Automatic", "Automática"), pearson = "Pearson",
+            spearman = "Spearman", cosine = tr("Cosine", "Coseno")),
+        naData = list(
+            pairwise = tr("Pairwise", "Por pares"), listwise = tr("Listwise", "Por lista")),
+        model = list(glasso = "GLASSO (EBIC)", TMFG = "TMFG", BGGM = "BGGM"),
+        algorithm = list(walktrap = "Walktrap", louvain = "Louvain", leiden = "Leiden"),
+        uniMethod = list(
+            louvain = "Louvain", expand = tr("Expand", "Expandir"),
+            LE = tr("Leading eigenvalue", "Autovalor principal"))
+    )
+}
+
+.el_choices_guide <- function(lang, options, labels, extra = character(0)) {
+
+    p_style <- "margin: 0.15em 0 0.65em 0; line-height: 1.40;"
+    parts <- paste0("<p style=\"", p_style, "\">",
+                    .el_html_escape(.el_text(lang, "choices", "intro")), "</p>")
+
+    for (option in names(labels)) {
+        value <- as.character(options[[option]])
+        label <- labels[[option]][[value]]
+        if (length(value) == 0 || is.null(label))
+            next
+        heading <- paste0(.el_text(lang, "choices", paste0("h_", option)), ": ", label, ".")
+        body <- .el_text(lang, "choices", paste0(option, "_", value))
+        parts <- c(parts, paste0(
+            "<p style=\"", p_style, "\"><strong>", .el_html_escape(heading), "</strong> ",
+            .el_html_escape(body), "</p>"))
+    }
+
+    for (paragraph in extra)
+        parts <- c(parts, paste0("<p style=\"", p_style, "\">", .el_html_escape(paragraph), "</p>"))
+
+    .el_html_block(NULL, parts, raw = TRUE)
+}

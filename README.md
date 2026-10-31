@@ -115,7 +115,7 @@ explanation.
 | Analysis | Question it answers | Status |
 |---|---|---|
 | **EGA** | How many dimensions are there, and which items belong to each? | ✅ 0.1.0 |
-| **Bootstrap EGA** (`bootEGA`) | Would the same dimensions appear in hundreds of resamples, or are they sample noise? | 🗓 Planned |
+| **Bootstrap EGA** (`bootEGA`) | Would the same dimensions appear in hundreds of resamples, or are they sample noise? | ✅ 0.1.0 |
 | **Hierarchical EGA** (`hierEGA`) | Do the specific dimensions sit under one or more higher-order factors? | 🗓 Planned |
 | **Random-intercept EGA** (`riEGA`) | Are positively and negatively worded items splitting into method dimensions? | 🗓 Planned |
 | **Dynamic EGA** (`dynEGA`) | How does the structure unfold over time, per person, per group or for the population? | 🗓 Planned |
@@ -125,7 +125,7 @@ explanation.
 | Analysis | Question it answers | Status |
 |---|---|---|
 | **Network loadings** (`net.loads`) | How strongly does each item load on its dimension, and on the others? | ✅ 0.1.0 (in EGA) |
-| **Item & dimension stability** | What percentage of resamples place each item in the same dimension? | 🗓 Planned |
+| **Item & dimension stability** | What percentage of resamples place each item in the same dimension? | ✅ 0.1.0 (in Bootstrap EGA) |
 | **Unique Variable Analysis** (`UVA`) | Which items are redundant and should be removed or combined? | 🗓 Planned |
 | **Network scores** (`net.scores`) | What is each person's score per dimension, saved back to the data? | 🗓 Planned |
 | **Invariance** (`invariance` + NetworkComparisonTest) | Is the structure equivalent across groups, or before and after an intervention? | 🗓 Planned |
@@ -252,7 +252,7 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 | Phase | Content | Status |
 |---|---|---|
 | 0 | Platform, EGA analysis, CI, documentation | ✅ In review |
-| 1 | Bootstrap EGA, item and dimension stability | 🗓 |
+| 1 | Bootstrap EGA, item and dimension stability | ✅ In review |
 | 2 | UVA, network scores, CFA | 🗓 |
 | 3 | TEFI comparison of competing structures | 🗓 |
 | 4 | Hierarchical EGA and random-intercept EGA | 🗓 |

@@ -13,6 +13,9 @@
             "Applied interpretation": [
                 "Interpretación aplicada"
             ],
+            "Assessment": [
+                "Valoración"
+            ],
             "Automatic (Pearson / polychoric)": [
                 "Automática (Pearson / policórica)"
             ],
@@ -25,8 +28,29 @@
             "Blue": [
                 "Azul"
             ],
+            "Bootstrap": [
+                "Bootstrap"
+            ],
+            "Bootstrap EGA": [
+                "Bootstrap EGA"
+            ],
+            "Bootstrap EGA (stability)": [
+                "Bootstrap EGA (estabilidad)"
+            ],
+            "Bootstrap samples": [
+                "Muestras bootstrap"
+            ],
+            "Bootstrap status": [
+                "Estado del bootstrap"
+            ],
+            "Bootstrap type": [
+                "Tipo de bootstrap"
+            ],
             "Bottom": [
                 "Abajo"
+            ],
+            "Checks whether the dimensions found by Exploratory Graph Analysis replicate across bootstrap samples, with the distribution of the number of dimensions, the structural consistency of each dimension and the stability of each item's membership.": [
+                "Verifica si las dimensiones halladas por el Análisis Exploratorio de Grafos se replican entre muestras bootstrap, con la distribución del número de dimensiones, la consistencia estructural de cada dimensión y la estabilidad de la pertenencia de cada ítem."
             ],
             "Circle": [
                 "Círculo"
@@ -67,11 +91,20 @@
             "Dimension Colors": [
                 "Colores de las dimensiones"
             ],
+            "Dimension frequency plot": [
+                "Gráfico de frecuencia de dimensiones"
+            ],
+            "Dimension stability": [
+                "Estabilidad de las dimensiones"
+            ],
             "Dimensional structure": [
                 "Estructura dimensional"
             ],
             "Dimensionality": [
                 "Dimensionalidad"
+            ],
+            "Dimensions": [
+                "Dimensiones"
             ],
             "Dotted": [
                 "Punteada"
@@ -124,6 +157,9 @@
             "Exploratory Graph Analysis": [
                 "Análisis Exploratorio de Grafos"
             ],
+            "Frequency of the number of dimensions": [
+                "Frecuencia del número de dimensiones"
+            ],
             "GLASSO (EBIC)": [
                 "GLASSO (EBIC)"
             ],
@@ -141,6 +177,15 @@
             ],
             "Item membership": [
                 "Pertenencia de los ítems"
+            ],
+            "Item stability": [
+                "Estabilidad de los ítems"
+            ],
+            "Item stability cutoff": [
+                "Punto de corte de estabilidad"
+            ],
+            "Item stability plot": [
+                "Gráfico de estabilidad de ítems"
             ],
             "Items": [
                 "Ítems"
@@ -177,6 +222,9 @@
             ],
             "Louvain": [
                 "Louvain"
+            ],
+            "Mean item stability": [
+                "Estabilidad media de ítems"
             ],
             "Missing Values": [
                 "Valores perdidos"
@@ -217,6 +265,9 @@
             "Notes": [
                 "Notas"
             ],
+            "Number of dimensions across samples": [
+                "Número de dimensiones entre muestras"
+            ],
             "Orange": [
                 "Naranja"
             ],
@@ -225,6 +276,9 @@
             ],
             "Pairwise": [
                 "Por pares"
+            ],
+            "Parametric": [
+                "Paramétrico"
             ],
             "Pearson": [
                 "Pearson"
@@ -247,14 +301,29 @@
             "Positive edges": [
                 "Aristas positivas"
             ],
+            "Proportion": [
+                "Proporción"
+            ],
             "Red": [
                 "Rojo"
             ],
             "Report Language": [
                 "Idioma del informe"
             ],
+            "Resampling (cases)": [
+                "Remuestreo (casos)"
+            ],
             "Right": [
                 "Derecha"
+            ],
+            "Run bootstrap": [
+                "Ejecutar bootstrap"
+            ],
+            "Samples": [
+                "Muestras"
+            ],
+            "Seed": [
+                "Semilla"
             ],
             "Show edge weights": [
                 "Mostrar pesos de aristas"
@@ -273,6 +342,12 @@
             ],
             "Square": [
                 "Cuadrado"
+            ],
+            "Stability": [
+                "Estabilidad"
+            ],
+            "Structural consistency": [
+                "Consistencia estructural"
             ],
             "TMFG": [
                 "TMFG"
@@ -297,6 +372,9 @@
             ],
             "White": [
                 "Blanco"
+            ],
+            "jamovi theme": [
+                "Tema de jamovi"
             ]
         }
     }
