@@ -124,7 +124,12 @@ bootegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     iter = iter,
                     type = self$options$bootType,
                     ncores = 1,
-                    seed = seed,
+                    # EGAnet's C seed generator reads the seed as a double;
+                    # jamovi's Integer option arrives as an R integer.
+                    # ES: El generador de semillas en C de EGAnet lee la
+                    # semilla como double; la opción Integer de jamovi llega
+                    # como entero de R.
+                    seed = as.numeric(seed),
                     plot.itemStability = FALSE,
                     verbose = FALSE
                 ))
