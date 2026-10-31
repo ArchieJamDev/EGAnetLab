@@ -447,6 +447,22 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (length(both) > 0)
                 paragraphs <- c(paragraphs, sprintf(txt("uva", "interp_unstable"), paste(both, collapse = ", ")))
 
+            # Unstable items whose only overlap is borderline (.20 to the
+            # cutoff): not redundant by the rule, but worth naming together.
+            # ES: Ítems inestables cuyo solapamiento es solo limítrofe (.20
+            # hasta el punto de corte): no son redundantes según la regla,
+            # pero conviene nombrarlos juntos.
+            if (nrow(borderline) > 0 && length(private$.bootUnstable) > 0) {
+                hits <- vapply(seq_len(nrow(borderline)), function(i)
+                    any(c(borderline$node_i[i], borderline$node_j[i]) %in% private$.bootUnstable), logical(1))
+                if (any(hits)) {
+                    pairs_text <- paste0(borderline$node_i[hits], "-", borderline$node_j[hits],
+                                         " (", .el_fmt_num(borderline$wto[hits], 3), ")")
+                    paragraphs <- c(paragraphs, sprintf(txt("uva", "interp_unstable_borderline"),
+                        paste(pairs_text, collapse = ", ")))
+                }
+            }
+
             paragraphs <- c(paragraphs, txt("uva", "interp_next"))
             self$results$uvaInterpretation$setContent(.el_html_block(NULL, paragraphs))
 
