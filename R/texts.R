@@ -132,13 +132,17 @@
 
         scores = list(
             guide = c(
-                "Network scores weight each item by its network loading on its own dimension (Christensen & Golino, 2021; see references), so items more central to a dimension count more. They are the network counterpart of factor scores and an alternative to the simple mean of the items.",
+                "Network scores weight each item by its network loading on its own dimension (Christensen & Golino, 2021; see references), so items more central to a dimension count more. They are the network counterpart of factor scores.",
+                "Scale: EGAnet first standardizes each item (z score: mean 0, SD 1 in this sample) and then adds the items weighted by their loadings. The scores are therefore centered at 0: negative values are below the sample average and positive values above it. They are not on the response scale of the items, and their mean is 0 by construction.",
                 "r with mean score: correlation between the network score and the unweighted mean of the same items (the mean keeps dimensions with different numbers of items on the same scale). Values near 1 mean the weighting changes little; lower values mean the items contribute very unequally to the dimension.",
-                "Save network scores (in the Network scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it."
+                "Save network scores (in the Network scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it.",
+                "Save item means adds one column per dimension with the mean of the items each person answered, on the original response scale (for example, 1 to 5). Use them when you need scores that are easy to read in the units of the questionnaire."
             ),
             failed = "EGAnet could not compute network scores: %s.",
             saved_title = "Network score %s",
-            saved_desc = "Network score for dimension %s (EGAnetLab, EGAnet::net.scores)"
+            saved_desc = "Network score for dimension %s (EGAnetLab, EGAnet::net.scores)",
+            mean_title = "Item mean %s",
+            mean_desc = "Mean of the answered items of dimension %s (EGAnetLab)"
         ),
 
         uva = list(
@@ -270,13 +274,17 @@
 
         scores = list(
             guide = c(
-                "Las puntuaciones de red ponderan cada ítem por su carga de red en su propia dimensión (Christensen y Golino, 2021; ver referencias), así que los ítems más centrales de una dimensión pesan más. Son el equivalente en redes de las puntuaciones factoriales y una alternativa al promedio simple de los ítems.",
+                "Las puntuaciones de red ponderan cada ítem por su carga de red en su propia dimensión (Christensen y Golino, 2021; ver referencias), así que los ítems más centrales de una dimensión pesan más. Son el equivalente en redes de las puntuaciones factoriales.",
+                "Escala: EGAnet primero estandariza cada ítem (puntuación z: media 0 y DE 1 en esta muestra) y luego suma los ítems ponderados por sus cargas. Por eso las puntuaciones están centradas en 0: los valores negativos están por debajo del promedio de la muestra y los positivos por encima. No están en la escala de respuesta de los ítems, y su media es 0 por construcción.",
                 "r con el promedio: correlación entre la puntuación de red y el promedio sin ponderar de los mismos ítems (el promedio mantiene en la misma escala dimensiones con distinto número de ítems). Valores cercanos a 1 indican que la ponderación cambia poco; valores menores indican que los ítems aportan de forma muy desigual a la dimensión.",
-                "Guardar puntuaciones de red (en la caja Network scores) añade una columna por dimensión al conjunto de datos, para usar las puntuaciones en otros análisis. Quien tenga una respuesta perdida en algún ítem de una dimensión queda sin puntuación en ella."
+                "Guardar puntuaciones de red (en la caja Network scores) añade una columna por dimensión al conjunto de datos, para usar las puntuaciones en otros análisis. Quien tenga una respuesta perdida en algún ítem de una dimensión queda sin puntuación en ella.",
+                "Guardar promedios de los ítems añade una columna por dimensión con el promedio de los ítems que cada persona respondió, en la escala original de respuesta (por ejemplo, de 1 a 5). Úselos cuando necesite puntuaciones fáciles de leer en las unidades del cuestionario."
             ),
             failed = "EGAnet no pudo calcular las puntuaciones de red: %s.",
             saved_title = "Puntuación de red %s",
-            saved_desc = "Puntuación de red de la dimensión %s (EGAnetLab, EGAnet::net.scores)"
+            saved_desc = "Puntuación de red de la dimensión %s (EGAnetLab, EGAnet::net.scores)",
+            mean_title = "Promedio de ítems %s",
+            mean_desc = "Promedio de los ítems respondidos de la dimensión %s (EGAnetLab)"
         ),
 
         uva = list(

@@ -236,6 +236,10 @@ msgstr "Introducción"
 msgid "Item"
 msgstr "Ítem"
 
+#: ega/results/meanScoresOV.title
+msgid "Item means"
+msgstr "Promedios de los ítems"
+
 #: ega/results/membership.title
 msgid "Item membership"
 msgstr "Pertenencia de los ítems"
@@ -492,6 +496,10 @@ msgstr "Misma dimensión"
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
 msgstr "Muestras"
+
+#: ega/options/meanScoresOV.title
+msgid "Save item means"
+msgstr "Guardar promedios de los ítems"
 
 #: ega/options/netScoresOV.title
 msgid "Save network scores"

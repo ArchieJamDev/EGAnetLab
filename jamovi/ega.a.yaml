@@ -235,6 +235,10 @@ options:
     title: Save network scores
     type: Output
 
+  - name: meanScoresOV
+    title: Save item means
+    type: Output
+
   # Explanatory paragraph for each estimation choice currently selected
   # (Archie's design rule: every menu decision carries its explanation).
   # ES: Párrafo explicativo para cada elección de estimación seleccionada

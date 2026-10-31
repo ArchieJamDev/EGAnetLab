@@ -236,6 +236,10 @@ msgstr ""
 msgid "Item"
 msgstr ""
 
+#: ega/results/meanScoresOV.title
+msgid "Item means"
+msgstr ""
+
 #: ega/results/membership.title
 msgid "Item membership"
 msgstr ""
@@ -491,6 +495,10 @@ msgstr ""
 
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
+msgstr ""
+
+#: ega/options/meanScoresOV.title
+msgid "Save item means"
 msgstr ""
 
 #: ega/options/netScoresOV.title

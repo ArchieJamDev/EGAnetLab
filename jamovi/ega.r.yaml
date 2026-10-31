@@ -209,6 +209,19 @@ items:
       - algorithm
       - uniMethod
 
+  - name: meanScoresOV
+    title: Item means
+    type: Output
+    initInRun: true
+    measureType: continuous
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+
   # ---------------------------------------------------------------------------
   # Redundancy (UVA): shown only when "Check redundancy (UVA)" is ticked.
   # ES: Redundancia (UVA): se muestra solo si se marca "Check redundancy

@@ -166,6 +166,9 @@
             "Item": [
                 "Ítem"
             ],
+            "Item means": [
+                "Promedios de los ítems"
+            ],
             "Item membership": [
                 "Pertenencia de los ítems"
             ],
@@ -348,6 +351,9 @@
             ],
             "Samples": [
                 "Muestras"
+            ],
+            "Save item means": [
+                "Guardar promedios de los ítems"
             ],
             "Save network scores": [
                 "Guardar puntuaciones de red"
