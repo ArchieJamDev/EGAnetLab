@@ -863,9 +863,16 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     paragraphs <- c(paragraphs, sprintf(txt("cfa_hier", "interp_best_cfi"),
                                                         b_cfi$label, num(value(b_cfi, "cfi"))))
                 b_bic <- best_of("bic", TRUE)
-                if (!is.null(b_bic))
+                if (!is.null(b_bic)) {
+                    bics <- sort(stats::na.omit(vapply(fitted, value, numeric(1), k = "bic")))
+                    gap <- if (length(bics) > 1) bics[2] - bics[1] else NA_real_
                     paragraphs <- c(paragraphs, sprintf(txt("cfa_hier", "interp_best_bic"),
                                                         b_bic$label, num(value(b_bic, "bic"), 1)))
+                    if (!is.na(gap))
+                        paragraphs <- c(paragraphs, sprintf(
+                            txt("cfa_hier", if (gap >= 10) "interp_bic_gap_strong" else "interp_bic_gap_weak"),
+                            num(gap, 1)))
+                }
                 else
                     paragraphs <- c(paragraphs, txt("cfa_hier", "interp_no_ic"))
                 keys <- vapply(fitted, function(m) m$key, character(1))

@@ -316,13 +316,18 @@
     value <- withCallingHandlers(
         tryCatch(expr, error = function(e) structure(list(message = conditionMessage(e)), class = "el_error")),
         warning = function(w) {
-            warnings <<- c(warnings, conditionMessage(w))
+            # EGAnet styles some messages with terminal color codes; they
+            # are removed so the report shows plain text.
+            # ES: EGAnet da formato a algunos mensajes con códigos de color
+            # de terminal; se quitan para que el informe muestre texto plano.
+            warnings <<- c(warnings, gsub("\033?\\[[0-9;]*m", "", conditionMessage(w)))
             invokeRestart("muffleWarning")
         }
     )
 
     if (inherits(value, "el_error"))
-        return(list(value = NULL, error = value$message, warnings = unique(warnings)))
+        return(list(value = NULL, error = gsub("\033?\\[[0-9;]*m", "", value$message),
+                    warnings = unique(warnings)))
 
     list(value = value, error = NULL, warnings = unique(warnings))
 }
