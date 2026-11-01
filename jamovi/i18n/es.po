@@ -160,6 +160,10 @@ msgstr "Controlar efectos de redacción (EGA con intercepto aleatorio)"
 msgid "Correlation"
 msgstr "Correlación"
 
+#: ega/options/nctCorr.title
+msgid "Correlations (NCT)"
+msgstr "Correlaciones (NCT)"
+
 #: ega/options/corr/cosine.title
 msgid "Cosine"
 msgstr "Coseno"
@@ -791,6 +795,10 @@ msgstr "Paramétrico"
 msgid "Pearson"
 msgstr "Pearson"
 
+#: ega/options/nctCorr/pearson.title
+msgid "Pearson (fast)"
+msgstr "Pearson (rápida)"
+
 #: ega/options/nctIter.title
 msgid "Permutations (NCT)"
 msgstr "Permutaciones (NCT)"
@@ -883,6 +891,10 @@ msgstr "EE"
 #: ega/results/cfaHierModels.columns.title
 msgid "SRMR"
 msgstr "SRMR"
+
+#: ega/options/nctCorr/ega.title
+msgid "Same as EGA (polychoric with ordinal items, slow)"
+msgstr "Igual que EGA (policóricas con ítems ordinales, lenta)"
 
 #: ega/results/uvaPairs.columns.title
 msgid "Same dimension"

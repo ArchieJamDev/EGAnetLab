@@ -1043,6 +1043,20 @@ items:
     title: Metric invariance
     type: Html
     visible: (runInvariance)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - group
+      - groupSeed
+      - invStructure
+      - invConfigCut
+      - invIter
 
   - name: invTable
     title: Network loadings by group
@@ -1135,6 +1149,23 @@ items:
     title: Network Comparison Test
     type: Html
     visible: (runNCT)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - group
+      - groupSeed
+      - pairedVars
+      - nctIter
+      - nctCorr
+      - nctEdges
+      - nctCentrality
+      - nctAdjust
 
   - name: nctGlobal
     title: Global network comparison
@@ -1157,6 +1188,7 @@ items:
       - groupSeed
       - reportLang
       - nctIter
+      - nctCorr
       - nctEdges
       - nctCentrality
       - nctAdjust
@@ -1203,6 +1235,7 @@ items:
       - groupSeed
       - reportLang
       - nctIter
+      - nctCorr
       - nctEdges
       - nctCentrality
       - nctAdjust
@@ -1249,6 +1282,7 @@ items:
       - groupSeed
       - reportLang
       - nctIter
+      - nctCorr
       - nctEdges
       - nctCentrality
       - nctAdjust

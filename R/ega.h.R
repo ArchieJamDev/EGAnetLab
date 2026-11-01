@@ -47,6 +47,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             nctIter = 1000,
             nctEdges = FALSE,
             nctCentrality = FALSE,
+            nctCorr = "pearson",
             nctAdjust = "holm",
             groupSeed = 2026,
             showInvPlot = TRUE,
@@ -344,6 +345,13 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "nctCentrality",
                 nctCentrality,
                 default=FALSE)
+            private$..nctCorr <- jmvcore::OptionList$new(
+                "nctCorr",
+                nctCorr,
+                options=list(
+                    "pearson",
+                    "ega"),
+                default="pearson")
             private$..nctAdjust <- jmvcore::OptionList$new(
                 "nctAdjust",
                 nctAdjust,
@@ -595,6 +603,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..nctIter)
             self$.addOption(private$..nctEdges)
             self$.addOption(private$..nctCentrality)
+            self$.addOption(private$..nctCorr)
             self$.addOption(private$..nctAdjust)
             self$.addOption(private$..groupSeed)
             self$.addOption(private$..showInvPlot)
@@ -674,6 +683,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         nctIter = function() private$..nctIter$value,
         nctEdges = function() private$..nctEdges$value,
         nctCentrality = function() private$..nctCentrality$value,
+        nctCorr = function() private$..nctCorr$value,
         nctAdjust = function() private$..nctAdjust$value,
         groupSeed = function() private$..groupSeed$value,
         showInvPlot = function() private$..showInvPlot$value,
@@ -752,6 +762,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..nctIter = NA,
         ..nctEdges = NA,
         ..nctCentrality = NA,
+        ..nctCorr = NA,
         ..nctAdjust = NA,
         ..groupSeed = NA,
         ..showInvPlot = NA,
@@ -1915,7 +1926,21 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="invStatus",
                 title="Metric invariance",
-                visible="(runInvariance)"))
+                visible="(runInvariance)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "group",
+                    "groupSeed",
+                    "invStructure",
+                    "invConfigCut",
+                    "invIter")))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="invTable",
@@ -2016,7 +2041,24 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="nctStatus",
                 title="Network Comparison Test",
-                visible="(runNCT)"))
+                visible="(runNCT)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "group",
+                    "groupSeed",
+                    "pairedVars",
+                    "nctIter",
+                    "nctCorr",
+                    "nctEdges",
+                    "nctCentrality",
+                    "nctAdjust")))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="nctGlobal",
@@ -2039,6 +2081,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "groupSeed",
                     "reportLang",
                     "nctIter",
+                    "nctCorr",
                     "nctEdges",
                     "nctCentrality",
                     "nctAdjust"),
@@ -2091,6 +2134,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "groupSeed",
                     "reportLang",
                     "nctIter",
+                    "nctCorr",
                     "nctEdges",
                     "nctCentrality",
                     "nctAdjust"),
@@ -2143,6 +2187,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "groupSeed",
                     "reportLang",
                     "nctIter",
+                    "nctCorr",
                     "nctEdges",
                     "nctCentrality",
                     "nctAdjust"),
@@ -2266,6 +2311,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param nctIter .
 #' @param nctEdges .
 #' @param nctCentrality .
+#' @param nctCorr .
 #' @param nctAdjust .
 #' @param groupSeed .
 #' @param showInvPlot .
@@ -2414,6 +2460,7 @@ ega <- function(
     nctIter = 1000,
     nctEdges = FALSE,
     nctCentrality = FALSE,
+    nctCorr = "pearson",
     nctAdjust = "holm",
     groupSeed = 2026,
     showInvPlot = TRUE,
@@ -2507,6 +2554,7 @@ ega <- function(
         nctIter = nctIter,
         nctEdges = nctEdges,
         nctCentrality = nctCentrality,
+        nctCorr = nctCorr,
         nctAdjust = nctAdjust,
         groupSeed = groupSeed,
         showInvPlot = showInvPlot,

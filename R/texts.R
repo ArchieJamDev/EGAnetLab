@@ -432,8 +432,9 @@
                 "The Network Comparison Test (NCT) compares two whole networks: whether their connections differ, and whether the total strength of their connections differs (van Borkulo et al., 2023; see references).",
                 "It estimates the network of each group, records the differences, and then shuffles people between the groups many times (for the same people measured twice, it shuffles the two measurements within each person) to see how large the differences would be by chance."
             ),
-            estimator_ordinal = "Each network is estimated with the graphical lasso (EBIC, gamma .50) on polychoric correlations, because the items have few categories and the analysis uses automatic correlations.",
+            estimator_ordinal = "Each network is estimated with the graphical lasso (EBIC, gamma .50) on polychoric correlations, because the items have few categories and Same as EGA was chosen in Correlations (NCT). They are recomputed in every permutation, so the test is slow.",
             estimator_pearson = "Each network is estimated with the graphical lasso (EBIC, gamma .50) on Pearson correlations.",
+            estimator_pearson_ordinal = "Each network is estimated with the graphical lasso (EBIC, gamma .50) on Pearson correlations, the default of the NCT. With ordinal items Pearson slightly underestimates the associations, but both networks are estimated the same way, so the comparison stays fair. Choose Same as EGA in Correlations (NCT) for polychoric correlations; they are recomputed in every permutation, so the test takes several times longer.",
             iter_seed = "Permutations: %d, seed %d.",
             model_note = "The network above was estimated with the %s model, but the NCT always uses the graphical lasso. The networks compared here may therefore differ slightly from the one above.",
             complete_cases = "The NCT needs complete data, so each comparison uses only the cases with every item answered.",
@@ -832,8 +833,9 @@
                 "El Network Comparison Test (NCT) compara dos redes completas: si sus conexiones difieren y si la fuerza total de sus conexiones difiere (van Borkulo et al., 2023; ver referencias).",
                 "Estima la red de cada grupo, registra las diferencias y luego reparte a las personas entre los grupos al azar muchas veces (con las mismas personas medidas dos veces, intercambia las dos mediciones dentro de cada persona) para ver qué tan grandes serían las diferencias por azar."
             ),
-            estimator_ordinal = "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones policóricas, porque los ítems tienen pocas categorías y el análisis usa correlaciones automáticas.",
+            estimator_ordinal = "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones policóricas, porque los ítems tienen pocas categorías y se eligió Same as EGA en Correlations (NCT). Se recalculan en cada permutación, así que la prueba es lenta.",
             estimator_pearson = "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones de Pearson.",
+            estimator_pearson_ordinal = "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones de Pearson, el valor por defecto del NCT. Con ítems ordinales, Pearson subestima un poco las asociaciones, pero ambas redes se estiman de la misma forma, así que la comparación sigue siendo justa. Elija Same as EGA en Correlations (NCT) para usar correlaciones policóricas; se recalculan en cada permutación, así que la prueba tarda varias veces más.",
             iter_seed = "Permutaciones: %d, semilla %d.",
             model_note = "La red de arriba se estimó con el modelo %s, pero el NCT siempre usa el lasso gráfico. Por eso las redes comparadas aquí pueden diferir un poco de la de arriba.",
             complete_cases = "El NCT necesita datos completos, así que cada comparación usa solo los casos con todos los ítems respondidos.",

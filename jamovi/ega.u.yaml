@@ -218,6 +218,9 @@ children:
             name: nctIter
             format: number
             enable: (runNCT)
+          - type: ComboBox
+            name: nctCorr
+            enable: (runNCT)
           - type: CheckBox
             name: nctEdges
             enable: (runNCT)

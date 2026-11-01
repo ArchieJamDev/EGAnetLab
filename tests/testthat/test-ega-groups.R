@@ -158,3 +158,17 @@ test_that("group comparison texts switch to Spanish", {
     expect_match(res$invStatus$content, "Invarianza métrica", fixed = TRUE)
     expect_match(res$invInterpretation$content, "Siguiente paso", fixed = TRUE)
 })
+
+test_that("NCT uses Pearson by default and polychoric correlations only when asked", {
+
+    skip_if_not_installed("NetworkComparisonTest")
+    data <- groupData()
+    data[1:12] <- lapply(data[1:12], function(x) as.integer(cut(x, 5)))
+    fast <- EGAnetLab::ega(data = data, vars = paste0("item", 1:12), group = "grp",
+                           runNCT = TRUE, nctIter = 100)
+    expect_match(fast$nctStatus$content, "the default of the NCT", fixed = TRUE)
+    expect_equal(nrow(fast$nctGlobal$asDF), 2)
+    slow <- EGAnetLab::ega(data = data, vars = paste0("item", 1:12), group = "grp",
+                           runNCT = TRUE, nctIter = 100, nctCorr = "ega")
+    expect_match(slow$nctStatus$content, "polychoric", fixed = TRUE)
+})

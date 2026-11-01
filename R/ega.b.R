@@ -1096,15 +1096,34 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             groups <- g[rows]
             configural <- identical(o$invStructure, "configural")
 
-            fit <- .el_capture(suppressMessages(EGAnet::invariance(
-                data = d, groups = groups,
-                structure = if (configural) NULL else as.numeric(wc[keep]),
-                iter = as.integer(o$invIter),
-                configural.threshold = as.numeric(o$invConfigCut),
-                configural.type = "parametric",
-                corr = if (identical(o$corr, "cosine")) "auto" else o$corr,
-                na.data = o$naData, model = o$model, algorithm = o$algorithm,
-                uni.method = o$uniMethod, ncores = 1, seed = as.numeric(seed), verbose = FALSE)))
+            # The permutations are slow, so a compact copy of the result is
+            # kept in the state of invStatus, which is cleared only when an
+            # option that changes the computation changes (not with the
+            # report language or the plot).
+            # ES: Las permutaciones son lentas, así que una copia compacta del
+            # resultado se guarda en el estado de invStatus, que solo se
+            # borra cuando cambia una opción que altera el cálculo (no con el
+            # idioma del informe ni con el gráfico).
+            fit <- self$results$invStatus$state
+            if (is.null(fit)) {
+                fit <- .el_capture(suppressMessages(EGAnet::invariance(
+                    data = d, groups = groups,
+                    structure = if (configural) NULL else as.numeric(wc[keep]),
+                    iter = as.integer(o$invIter),
+                    configural.threshold = as.numeric(o$invConfigCut),
+                    configural.type = "parametric",
+                    corr = if (identical(o$corr, "cosine")) "auto" else o$corr,
+                    na.data = o$naData, model = o$model, algorithm = o$algorithm,
+                    uni.method = o$uniMethod, ncores = 1, seed = as.numeric(seed), verbose = FALSE)))
+                if (!is.null(fit$value))
+                    fit$value <- list(
+                        results = fit$value$results, data = fit$value$data,
+                        configural.results = list(data = fit$value$configural.results$data),
+                        groups = list(unique_groups = fit$value$groups$unique_groups,
+                                      loadings = fit$value$groups$loadings),
+                        memberships = fit$value$memberships)
+                self$results$invStatus$setState(fit)
+            }
 
             status <- c(txt("inv", "intro"),
                         txt("inv", if (configural) "structure_configural" else "structure_ega"),
@@ -1224,10 +1243,11 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             hide <- function() for (name in c("nctGlobal", "nctEdgeTable", "nctCentralityTable", "nctInterpretation"))
                 self$results[[name]]$setVisible(FALSE)
             items <- names(ega$wc)
-            ordinal <- identical(o$corr, "auto") && isTRUE(prep$ordinal_like)
+            ordinal <- identical(o$nctCorr, "ega") && identical(o$corr, "auto") && isTRUE(prep$ordinal_like)
 
             status <- c(txt("nct", "intro"),
-                        txt("nct", if (ordinal) "estimator_ordinal" else "estimator_pearson"),
+                        txt("nct", if (ordinal) "estimator_ordinal" else if (isTRUE(prep$ordinal_like))
+                            "estimator_pearson_ordinal" else "estimator_pearson"),
                         sprintf(txt("nct", "iter_seed"), as.integer(o$nctIter), seed))
             if (!identical(o$model, "glasso"))
                 status <- c(status, sprintf(txt("nct", "model_note"), o$model))
@@ -1268,10 +1288,28 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             warnings <- character(0)
             k <- 0; ke <- 0; kc <- 0
             paragraphs <- character(0)
-            for (cmp in comps) {
-                fit <- .el_nct(cmp$d1, cmp$d2, paired = cmp$paired, iter = o$nctIter,
-                               edges = isTRUE(o$nctEdges), centrality = isTRUE(o$nctCentrality),
-                               adjust = o$nctAdjust, ordinal = ordinal, seed = seed)
+            # Each comparison is cached in the state of nctStatus (cleared
+            # only by options that change the computation), so changing the
+            # report language or another section does not repeat the
+            # permutations.
+            # ES: Cada comparación se guarda en el estado de nctStatus (que
+            # solo borran las opciones que cambian el cálculo), así que
+            # cambiar el idioma del informe u otra sección no repite las
+            # permutaciones.
+            cache <- self$results$nctStatus$state
+            if (is.null(cache)) cache <- list()
+            for (ci in seq_along(comps)) {
+                cmp <- comps[[ci]]
+                key <- paste0("c", ci)
+                fit <- cache[[key]]
+                if (is.null(fit)) {
+                    private$.checkpoint()
+                    fit <- .el_nct(cmp$d1, cmp$d2, paired = cmp$paired, iter = o$nctIter,
+                                   edges = isTRUE(o$nctEdges), centrality = isTRUE(o$nctCentrality),
+                                   adjust = o$nctAdjust, ordinal = ordinal, seed = seed)
+                    cache[[key]] <- fit
+                    self$results$nctStatus$setState(cache)
+                }
                 warnings <- c(warnings, fit$warnings)
                 if (is.null(fit$value)) {
                     paragraphs <- c(paragraphs, sprintf(txt("nct", "failed"), cmp$label,

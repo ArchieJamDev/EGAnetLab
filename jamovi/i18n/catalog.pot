@@ -160,6 +160,10 @@ msgstr ""
 msgid "Correlation"
 msgstr ""
 
+#: ega/options/nctCorr.title
+msgid "Correlations (NCT)"
+msgstr ""
+
 #: ega/options/corr/cosine.title
 msgid "Cosine"
 msgstr ""
@@ -791,6 +795,10 @@ msgstr ""
 msgid "Pearson"
 msgstr ""
 
+#: ega/options/nctCorr/pearson.title
+msgid "Pearson (fast)"
+msgstr ""
+
 #: ega/options/nctIter.title
 msgid "Permutations (NCT)"
 msgstr ""
@@ -882,6 +890,10 @@ msgstr ""
 #: ega/results/compareTable.columns.title
 #: ega/results/cfaHierModels.columns.title
 msgid "SRMR"
+msgstr ""
+
+#: ega/options/nctCorr/ega.title
+msgid "Same as EGA (polychoric with ordinal items, slow)"
 msgstr ""
 
 #: ega/results/uvaPairs.columns.title

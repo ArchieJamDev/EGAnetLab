@@ -464,6 +464,16 @@ options:
     type: Bool
     default: false
 
+  - name: nctCorr
+    title: Correlations (NCT)
+    type: List
+    options:
+      - title: Pearson (fast)
+        name: pearson
+      - title: Same as EGA (polychoric with ordinal items, slow)
+        name: ega
+    default: pearson
+
   - name: nctAdjust
     title: p-value correction
     type: List

@@ -113,6 +113,9 @@
             "Correlation": [
                 "Correlación"
             ],
+            "Correlations (NCT)": [
+                "Correlaciones (NCT)"
+            ],
             "Cosine": [
                 "Coseno"
             ],
@@ -542,6 +545,9 @@
             "Pearson": [
                 "Pearson"
             ],
+            "Pearson (fast)": [
+                "Pearson (rápida)"
+            ],
             "Permutations (NCT)": [
                 "Permutaciones (NCT)"
             ],
@@ -607,6 +613,9 @@
             ],
             "SRMR": [
                 "SRMR"
+            ],
+            "Same as EGA (polychoric with ordinal items, slow)": [
+                "Igual que EGA (policóricas con ítems ordinales, lenta)"
             ],
             "Same dimension": [
                 "Misma dimensión"
