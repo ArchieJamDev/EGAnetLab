@@ -110,6 +110,8 @@ children:
     collapsed: true
     children:
       - type: CheckBox
+        name: showKeySummary
+      - type: CheckBox
         name: showChoicesGuide
       - type: CheckBox
         name: showNetworkPlot

@@ -31,6 +31,11 @@ items:
     title: Introduction
     type: Html
 
+  - name: keySummary
+    title: Key findings
+    type: Html
+    visible: (showKeySummary)
+
   - name: choicesGuide
     title: About your choices
     type: Html

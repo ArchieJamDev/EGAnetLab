@@ -1,5 +1,14 @@
 # EGAnetLab 0.1.0 (development)
 
+## Key findings summary (phase 8)
+
+* EGA and Dynamic EGA reports open with a **Key findings** summary right
+  after the introduction, in three lists: main findings, uncertainties and
+  warnings. Each line is one sentence that names the section explaining it.
+  It gathers only the sections that ran, says when the stability of the
+  structure was not checked, and can be turned off with "Key findings
+  summary" in Output.
+
 ## Dynamic EGA (phase 7)
 
 * New analysis **EGAnet Lab › Dynamic EGA** for intensive longitudinal data

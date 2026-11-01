@@ -61,6 +61,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             bnSeed = 2026,
             showEdgeCIPlot = TRUE,
             showCasePlot = TRUE,
+            showKeySummary = TRUE,
             showChoicesGuide = TRUE,
             showLoadings = TRUE,
             showEdgeTable = FALSE,
@@ -423,6 +424,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showCasePlot",
                 showCasePlot,
                 default=TRUE)
+            private$..showKeySummary <- jmvcore::OptionBool$new(
+                "showKeySummary",
+                showKeySummary,
+                default=TRUE)
             private$..showChoicesGuide <- jmvcore::OptionBool$new(
                 "showChoicesGuide",
                 showChoicesGuide,
@@ -671,6 +676,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..bnSeed)
             self$.addOption(private$..showEdgeCIPlot)
             self$.addOption(private$..showCasePlot)
+            self$.addOption(private$..showKeySummary)
             self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showLoadings)
             self$.addOption(private$..showEdgeTable)
@@ -761,6 +767,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         bnSeed = function() private$..bnSeed$value,
         showEdgeCIPlot = function() private$..showEdgeCIPlot$value,
         showCasePlot = function() private$..showCasePlot$value,
+        showKeySummary = function() private$..showKeySummary$value,
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showLoadings = function() private$..showLoadings$value,
         showEdgeTable = function() private$..showEdgeTable$value,
@@ -850,6 +857,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..bnSeed = NA,
         ..showEdgeCIPlot = NA,
         ..showCasePlot = NA,
+        ..showKeySummary = NA,
         ..showChoicesGuide = NA,
         ..showLoadings = NA,
         ..showEdgeTable = NA,
@@ -888,6 +896,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
         intro = function() private$.items[["intro"]],
+        keySummary = function() private$.items[["keySummary"]],
         choicesGuide = function() private$.items[["choicesGuide"]],
         summaryGuide = function() private$.items[["summaryGuide"]],
         summary = function() private$.items[["summary"]],
@@ -971,6 +980,11 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="intro",
                 title="Introduction"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="keySummary",
+                title="Key findings",
+                visible="(showKeySummary)"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="choicesGuide",
@@ -2712,6 +2726,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param bnSeed .
 #' @param showEdgeCIPlot .
 #' @param showCasePlot .
+#' @param showKeySummary .
 #' @param showChoicesGuide .
 #' @param showLoadings .
 #' @param showEdgeTable .
@@ -2746,6 +2761,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$intro} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$keySummary} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$choicesGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$summaryGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$summary} \tab \tab \tab \tab \tab a table \cr
@@ -2884,6 +2900,7 @@ ega <- function(
     bnSeed = 2026,
     showEdgeCIPlot = TRUE,
     showCasePlot = TRUE,
+    showKeySummary = TRUE,
     showChoicesGuide = TRUE,
     showLoadings = TRUE,
     showEdgeTable = FALSE,
@@ -2988,6 +3005,7 @@ ega <- function(
         bnSeed = bnSeed,
         showEdgeCIPlot = showEdgeCIPlot,
         showCasePlot = showCasePlot,
+        showKeySummary = showKeySummary,
         showChoicesGuide = showChoicesGuide,
         showLoadings = showLoadings,
         showEdgeTable = showEdgeTable,

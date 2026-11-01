@@ -23,6 +23,7 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             levelGroup = TRUE,
             levelIndividual = FALSE,
             showIndTable = FALSE,
+            showKeySummary = TRUE,
             showChoicesGuide = TRUE,
             showNetworkPlot = TRUE,
             showIndPlot = TRUE,
@@ -62,8 +63,7 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "numeric"))
             private$..id <- jmvcore::OptionVariable$new(
                 "id",
-                id,
-                default=NULL)
+                id)
             private$..time <- jmvcore::OptionVariable$new(
                 "time",
                 time,
@@ -71,8 +71,7 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "continuous",
                     "ordinal"),
                 permitted=list(
-                    "numeric"),
-                default=NULL)
+                    "numeric"))
             private$..group <- jmvcore::OptionVariable$new(
                 "group",
                 group,
@@ -80,8 +79,7 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "nominal",
                     "ordinal"),
                 permitted=list(
-                    "factor"),
-                default=NULL)
+                    "factor"))
             private$..reportLang <- jmvcore::OptionList$new(
                 "reportLang",
                 reportLang,
@@ -164,6 +162,10 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showIndTable",
                 showIndTable,
                 default=FALSE)
+            private$..showKeySummary <- jmvcore::OptionBool$new(
+                "showKeySummary",
+                showKeySummary,
+                default=TRUE)
             private$..showChoicesGuide <- jmvcore::OptionBool$new(
                 "showChoicesGuide",
                 showChoicesGuide,
@@ -323,6 +325,7 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..levelGroup)
             self$.addOption(private$..levelIndividual)
             self$.addOption(private$..showIndTable)
+            self$.addOption(private$..showKeySummary)
             self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showNetworkPlot)
             self$.addOption(private$..showIndPlot)
@@ -364,6 +367,7 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         levelGroup = function() private$..levelGroup$value,
         levelIndividual = function() private$..levelIndividual$value,
         showIndTable = function() private$..showIndTable$value,
+        showKeySummary = function() private$..showKeySummary$value,
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
         showIndPlot = function() private$..showIndPlot$value,
@@ -404,6 +408,7 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..levelGroup = NA,
         ..levelIndividual = NA,
         ..showIndTable = NA,
+        ..showKeySummary = NA,
         ..showChoicesGuide = NA,
         ..showNetworkPlot = NA,
         ..showIndPlot = NA,
@@ -433,6 +438,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
         intro = function() private$.items[["intro"]],
+        keySummary = function() private$.items[["keySummary"]],
         choicesGuide = function() private$.items[["choicesGuide"]],
         status = function() private$.items[["status"]],
         summary = function() private$.items[["summary"]],
@@ -458,6 +464,11 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="intro",
                 title="Introduction"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="keySummary",
+                title="Key findings",
+                visible="(showKeySummary)"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="choicesGuide",
@@ -819,8 +830,8 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' Estimates the dimensional structure of intensive longitudinal data (many 
 #' measurements per person) with dynamic Exploratory Graph Analysis: 
-#' derivatives of each person's time series, and their structure for the whole 
-#' sample, for each group and for each person, with plain-language 
+#' derivatives of each person's time series, and their structure for the 
+#' whole sample, for each group and for each person, with plain-language 
 #' interpretation.
 #' 
 #' @param data .
@@ -841,6 +852,7 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param levelGroup .
 #' @param levelIndividual .
 #' @param showIndTable .
+#' @param showKeySummary .
 #' @param showChoicesGuide .
 #' @param showNetworkPlot .
 #' @param showIndPlot .
@@ -866,6 +878,7 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$intro} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$keySummary} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$choicesGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$status} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$summary} \tab \tab \tab \tab \tab a table \cr
@@ -908,6 +921,7 @@ dynega <- function(
     levelGroup = TRUE,
     levelIndividual = FALSE,
     showIndTable = FALSE,
+    showKeySummary = TRUE,
     showChoicesGuide = TRUE,
     showNetworkPlot = TRUE,
     showIndPlot = TRUE,
@@ -966,6 +980,7 @@ dynega <- function(
         levelGroup = levelGroup,
         levelIndividual = levelIndividual,
         showIndTable = showIndTable,
+        showKeySummary = showKeySummary,
         showChoicesGuide = showChoicesGuide,
         showNetworkPlot = showNetworkPlot,
         showIndPlot = showIndPlot,

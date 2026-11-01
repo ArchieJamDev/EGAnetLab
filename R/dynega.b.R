@@ -39,6 +39,14 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
     inherit = dynegaBase,
     private = list(
 
+        # Lines of the key findings summary of this run.
+        # ES: Líneas del resumen de hallazgos de esta ejecución.
+        .key = NULL,
+        .addKey = function(type, text) {
+            if (!is.null(private$.key) && length(text) > 0)
+                private$.key[[type]] <- c(private$.key[[type]], text)
+        },
+
         .run = function() {
 
             lang <- .el_normalize_lang(self$options$reportLang)
@@ -226,6 +234,20 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 self$results$groupTable$setVisible(FALSE)
             }
 
+            # Key findings: population, groups and data notes.
+            # ES: Hallazgos clave: población, grupos y notas de los datos.
+            private$.key <- list(findings = character(0), uncertain = character(0), warnings = character(0))
+            if (is.na(pop$n_dim))
+                private$.addKey("warnings", .el_text(lang, "key", "dims_none"))
+            else
+                private$.addKey("findings", sprintf(txt("key", "pop_dims"), as.integer(pop$n_dim)))
+            if (length(prep$schedule) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "schedule"), paste(prep$schedule, collapse = ", ")))
+            if (length(prep$dropped) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "dropped"), length(prep$dropped)))
+            if (!isTRUE(o$levelIndividual))
+                private$.addKey("uncertain", txt("key", "no_ind"))
+
             # Interpretation.
             # ES: Interpretación.
             paragraphs <- character(0)
@@ -237,6 +259,8 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (length(isolated) > 0)
                 paragraphs <- c(paragraphs, sprintf(txt("dyn", "interp_isolated"), length(isolated),
                                                     paste(isolated, collapse = ", ")))
+            if (length(isolated) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "isolated_dyn"), paste(isolated, collapse = ", ")))
             paragraphs <- c(paragraphs, txt("dyn", paste0("interp_deriv_", deriv)))
             if (use_groups) {
                 dims_word <- function(n) if (is.na(n)) txt("common", "not_computable")
@@ -247,6 +271,8 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 paragraphs <- c(paragraphs, sprintf(txt("dyn", "interp_groups_detail"), detail))
                 matches <- vapply(groups, function(g) isTRUE(.el_ari(g$wc, pop$wc) == 1), logical(1))
                 same_n <- all(vapply(groups, function(g) isTRUE(g$n_dim == pop$n_dim), logical(1)))
+                private$.addKey("findings", if (all(matches)) txt("key", "groups_same")
+                                else sprintf(txt("key", "groups_differ"), detail))
                 paragraphs <- c(paragraphs,
                     if (!any(matches) && !is.na(pop$n_dim)) sprintf(txt("dyn", "interp_pooled"), pop$n_dim)
                     else txt("dyn", if (same_n) "interp_groups_same" else "interp_groups_diff"))
@@ -268,6 +294,11 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             warnings <- warnings[!grepl("did not belong to a dimension", warnings, fixed = TRUE)]
             warnings <- .el_translate_notices(.el_drop_notices(unique(warnings)), lang)
             notes <- c(notes, warnings)
+            if (length(warnings) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "notes"), length(warnings)))
+            self$results$keySummary$setTitle(txt("key", "title"))
+            if (isTRUE(o$showKeySummary))
+                self$results$keySummary$setContent(.el_key_summary(lang, private$.key))
             if (length(notes) > 0)
                 self$results$notes$setContent(.el_html_block(
                     txt("common", "warnings_title"), .el_html_list(notes), raw = TRUE))
@@ -288,6 +319,11 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 if (length(cache$failed) > 0)
                     sprintf(txt("dyn", "ind_failed"), length(cache$failed),
                             paste(utils::head(cache$failed, 20), collapse = ", ")))))
+
+            if (few > 0)
+                private$.addKey("warnings", sprintf(txt("key", "ind_few"), few))
+            if (length(cache$failed) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "ind_failed"), length(cache$failed)))
 
             if (nrow(est) == 0) {
                 for (r in c("indFreq", "indAgree", "indTable", "indPlot", "indInterpretation"))
@@ -369,6 +405,10 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     paragraphs <- c(paragraphs, sprintf(txt("dyn", "interp_ind_group_low"), .el_fmt_num(group_median, 2)))
             }
             paragraphs <- c(paragraphs, txt("dyn", "interp_ind_next"))
+            private$.addKey(if (median_ari >= 0.50) "findings" else "uncertain",
+                sprintf(txt("key", if (median_ari >= 0.50) "ind_agree" else "ind_low"), .el_fmt_num(median_ari, 2)))
+            if (has_group)
+                private$.addKey("findings", sprintf(txt("key", "ind_own_group"), .el_fmt_num(group_median, 2)))
             self$results$indInterpretation$setContent(.el_html_block(NULL, paragraphs))
             invisible(NULL)
         },

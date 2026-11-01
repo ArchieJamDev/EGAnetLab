@@ -749,6 +749,16 @@ msgstr "Ítems ubicados como en EGA"
 msgid "Kamada-Kawai"
 msgstr "Kamada-Kawai"
 
+#: ega/results/keySummary.title
+#: dynega/results/keySummary.title
+msgid "Key findings"
+msgstr "Resumen de hallazgos"
+
+#: ega/options/showKeySummary.title
+#: dynega/options/showKeySummary.title
+msgid "Key findings summary"
+msgstr "Resumen de hallazgos"
+
 #: ega/options/labelColor.title
 #: dynega/options/labelColor.title
 msgid "Label color"

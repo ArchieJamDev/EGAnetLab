@@ -65,6 +65,17 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
         # esta ejecución, leídos por la interpretación de redundancia.
         .bootUnstable = character(0),
 
+        # Lines of the key findings summary of this run: findings,
+        # uncertainties and warnings, each one sentence naming its section.
+        # ES: Líneas del resumen de hallazgos de esta ejecución: hallazgos,
+        # incertidumbres y advertencias, cada una de una oración que nombra
+        # su sección.
+        .key = NULL,
+        .addKey = function(type, text) {
+            if (!is.null(private$.key) && length(text) > 0)
+                private$.key[[type]] <- c(private$.key[[type]], text)
+        },
+
         # Hierarchical EGA structure of this run (lower-order and
         # higher-order labels of each item), read by the CFA section to fit
         # the hierarchical models.
@@ -96,6 +107,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # análisis vacío.
             if (length(self$options$vars) == 0)
                 return()
+            private$.key <- list(findings = character(0), uncertain = character(0), warnings = character(0))
 
             # -----------------------------------------------------------------
             # About your choices: one explanatory paragraph per estimation
@@ -368,6 +380,28 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
             self$results$interpretation$setContent(.el_html_block(NULL, paragraphs))
 
+            # Key findings: structure, isolated items and small loadings.
+            # ES: Hallazgos clave: estructura, ítems aislados y cargas
+            # pequeñas.
+            # The structure goes first among the findings, ahead of the
+            # sections that ran before this point.
+            # ES: La estructura va primero entre los hallazgos, antes que las
+            # secciones que se ejecutaron antes de este punto.
+            if (is.na(n_dim)) {
+                private$.addKey("warnings", txt("key", "dims_none"))
+            } else {
+                sizes <- table(stats::na.omit(wc))
+                line <- if (n_dim == 1) txt("key", "dims_one") else sprintf(txt("key", "dims_many"), as.integer(n_dim),
+                    paste(sprintf(txt("key", "dim_part"), names(sizes), as.integer(sizes)), collapse = "; "))
+                private$.key$findings <- c(line, private$.key$findings)
+            }
+            if (length(isolated) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "isolated"), paste(isolated, collapse = ", ")))
+            if (length(low_loading_items) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "low_loadings"), paste(low_loading_items, collapse = ", ")))
+            if (!isTRUE(self$options$runBoot))
+                private$.addKey("uncertain", txt("key", "no_boot"))
+
             # -----------------------------------------------------------------
             # Stability (bootstrap), only when requested. It re-estimates
             # this same EGA in every sample, with the options above.
@@ -431,6 +465,11 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Se omiten los avisos puramente informativos de los
             # paquetes (pedido de Archie): el informe ya dice lo que indican.
             warnings <- .el_translate_notices(.el_drop_notices(warnings), lang)
+            if (length(warnings) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "notes"), length(warnings)))
+            self$results$keySummary$setTitle(txt("key", "title"))
+            if (isTRUE(self$options$showKeySummary))
+                self$results$keySummary$setContent(.el_key_summary(lang, private$.key))
             if (length(warnings) > 0) {
                 self$results$notes$setContent(.el_html_block(
                     txt("common", "warnings_title"),
@@ -833,6 +872,21 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             paragraphs <- c(paragraphs, fit_line(fit_total, txt("cfa", "sample_total")))
             paragraphs <- c(paragraphs, txt("cfa", "interp_next"))
             self$results$cfaInterpretation$setContent(.el_html_block(NULL, paragraphs))
+
+            # Key findings: the confirmation sample when the sample was split.
+            # ES: Hallazgos clave: la muestra de confirmación si se dividió.
+            key_fit <- if (split && !is.null(fits$B)) fits$B else fit_total
+            key_where <- txt("cfa", if (split && !is.null(fits$B)) "sample_B" else "sample_total")
+            if (isTRUE(key_fit$ok) && length(key_fit$problems) > 0) {
+                private$.addKey("warnings", sprintf(txt("key", "cfa_inadmissible"), key_where,
+                    .el_describe_problems(key_fit$problems, self$options$reportLang)))
+            } else if (isTRUE(key_fit$ok)) {
+                lab <- .el_fit_label(key_fit$fit)
+                if (!is.na(lab))
+                    private$.addKey(if (lab == "poor") "uncertain" else "findings",
+                        sprintf(txt("key", "cfa_fit"), txt("cfa", paste0("fit_", lab)), key_where,
+                                num(key_fit$fit[["cfi"]]), num(key_fit$fit[["rmsea"]])))
+            }
 
             # Hierarchical models, when the hierarchical EGA was requested.
             # ES: Modelos jerárquicos, cuando se pidió el EGA jerárquico.
@@ -1246,6 +1300,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (configural && length(removed) > 0)
                 paragraphs <- c(paragraphs, txt("inv", "interp_partial"))
             paragraphs <- c(paragraphs, txt("inv", "interp_next"))
+            private$.addKey("findings", if (length(sig_items) == 0) txt("key", "inv_ok")
+                            else sprintf(txt("key", "inv_diff"), length(sig_items)))
             self$results$invInterpretation$setContent(.el_html_block(NULL, paragraphs))
 
             fit$warnings
@@ -1380,6 +1436,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     txt("nct", if (isTRUE(v$S_p <= 0.05)) "interp_S_sig" else "interp_S_ns"),
                     .el_fmt_num(v$strength[1], 2), cmp$names[1], .el_fmt_num(v$strength[2], 2), cmp$names[2],
                     .el_fmt_p(v$S_p)))
+                m_sig <- isTRUE(v$M_p <= 0.05)
+                s_sig <- isTRUE(v$S_p <= 0.05)
+                pair_label <- paste(cmp$names, collapse = " / ")
+                private$.addKey("findings", if (!m_sig && !s_sig) sprintf(txt("key", "nct_same"), pair_label)
+                    else sprintf(txt("key", "nct_diff"), pair_label,
+                                 txt("key", if (m_sig && s_sig) "nct_both" else if (m_sig) "nct_structure" else "nct_strength")))
                 if (isTRUE(o$nctEdges))
                     paragraphs <- c(paragraphs, if (n_edges == 0) txt("nct", "interp_edges_none") else
                         sprintf(txt("nct", "interp_edges_some"), n_edges))
@@ -1709,6 +1771,13 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (use_cfa)
                 paragraphs <- c(paragraphs, txt("compare", "interp_cfa"))
             paragraphs <- c(paragraphs, txt("compare", "interp_no_cutoff"))
+            if (!is.na(lowest) && isTRUE(ega_st$comparable)) {
+                if (isTRUE(all.equal(ega_st$tefi, lowest)))
+                    private$.addKey("findings", txt("key", "compare_best_ega"))
+                else
+                    private$.addKey("uncertain", sprintf(txt("key", "compare_best_other"),
+                        structures[[which(tefis == lowest)[1]]]$label))
+            }
 
             self$results$compareInterpretation$setContent(.el_html_block(NULL, paragraphs))
 
@@ -1857,6 +1926,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (hierarchical || (!is.na(n_lower) && n_lower > 1))
                 paragraphs <- c(paragraphs, txt("hier", if (isTRUE(self$options$runCFA)) "interp_cfa_below" else "interp_cfa_hint"))
             paragraphs <- c(paragraphs, txt("hier", "interp_experimental"))
+            if (!is.na(n_lower) && n_lower > 1)
+                private$.addKey("findings", if (!hierarchical) txt("key", "hier_none")
+                    else if (n_higher == 1) sprintf(txt("key", "hier_general"), as.integer(n_lower))
+                    else sprintf(txt("key", "hier_several"), as.integer(n_higher), as.integer(n_lower)))
             self$results$hierInterpretation$setContent(.el_html_block(NULL, paragraphs))
 
             fit$warnings
@@ -1985,6 +2058,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # Interpretation.
             # ES: Interpretación.
             paragraphs <- character(0)
+            if (!converged)
+                private$.addKey("warnings", txt("key", "ri_not_converged"))
+            else if (!is.na(n_ri) && n_ri != n_ega)
+                private$.addKey("findings", sprintf(txt("key", "ri_changed"), as.integer(n_ri), as.integer(n_ega)))
+            else if (!is.na(n_ri))
+                private$.addKey("findings", txt("key", "ri_same"))
             if (!converged) {
                 paragraphs <- c(paragraphs, txt("ri", "interp_not_converged"))
             } else {
@@ -2158,6 +2237,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
             paragraphs <- c(paragraphs, txt("uva", "interp_next"))
             self$results$uvaInterpretation$setContent(.el_html_block(NULL, paragraphs))
+            if (length(sets) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "uva_sets"), paste(vapply(sets, function(st)
+                    paste0("(", paste(st$items, collapse = ", "), ")"), character(1)), collapse = "; ")))
 
             fit$warnings
         },
@@ -2337,6 +2419,24 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             paragraphs <- c(paragraphs, txt("bootega", "interp_next"))
             self$results$bootInterpretation$setContent(.el_html_block(NULL, paragraphs))
 
+            # Key findings.
+            # ES: Hallazgos clave.
+            if (nrow(freq) > 0) {
+                if (!is.na(cache$empirical_ndim) && mode_row$dims == cache$empirical_ndim) {
+                    private$.addKey(if (mode_row$proportion >= cut) "findings" else "uncertain",
+                                    sprintf(txt("key", "boot_match"), pct(mode_row$proportion)))
+                } else {
+                    private$.addKey("uncertain", sprintf(txt("key", "boot_mismatch"), as.integer(mode_row$dims),
+                        pct(mode_row$proportion), as.integer(cache$empirical_ndim)))
+                }
+                if (mode_row$proportion < cut)
+                    private$.addKey("uncertain", sprintf(txt("key", "boot_weak"), pct(mode_row$proportion), pct(cut)))
+            }
+            if (length(low_dims) > 0)
+                private$.addKey("uncertain", sprintf(txt("key", "boot_dims_low"), pct(cut), paste(low_dims, collapse = ", ")))
+            if (length(low_items) > 0)
+                private$.addKey("uncertain", sprintf(txt("key", "boot_items_low"), pct(cut), paste(low_items, collapse = ", ")))
+
             # Plot states.
             # ES: Estados de los gráficos.
             if (isTRUE(self$options$showItemPlot))
@@ -2450,6 +2550,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             top_n <- min(3, nrow(raw))
             top <- raw$item[ord][seq_len(top_n)]
             paragraphs <- c(paragraphs, sprintf(txt("cen", "interp_top"), paste(top, collapse = ", ")))
+            private$.addKey("findings", sprintf(txt("key", "cen_top"), paste(top, collapse = ", ")))
             low <- raw$item[rev(ord)][seq_len(min(2, nrow(raw) - top_n))]
             if (length(low) > 0)
                 paragraphs <- c(paragraphs, sprintf(txt("cen", "interp_low"), paste(low, collapse = ", ")))
@@ -2534,6 +2635,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                            else if (value >= 0.5) txt("bn", "cs_good")
                            else if (value >= 0.25) txt("bn", "cs_mid") else txt("bn", "cs_bad")
                 .el_add_row(cs_table, i, list(measure = measure_labels[[m]], cs = value, reading = reading))
+                if (!is.na(value))
+                    private$.addKey(if (value >= 0.5) "findings" else "uncertain",
+                        sprintf(txt("key", if (value >= 0.5) "cs_good" else "cs_low"),
+                                tolower(measure_labels[[m]]), .el_fmt_num(value, 2)))
                 if (!is.na(value)) {
                     key <- if (value >= 0.5) "interp_cs_good" else if (value >= 0.25) "interp_cs_mid" else "interp_cs_bad"
                     args <- list(txt("bn", key), tolower(measure_labels[[m]]), .el_fmt_num(value, 2))

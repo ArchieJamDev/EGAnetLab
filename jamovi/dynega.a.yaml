@@ -203,6 +203,15 @@ options:
     type: Bool
     default: false
 
+  # Key findings summary at the top of the report (findings, uncertainties
+  # and warnings gathered from every section that ran).
+  # ES: Resumen de hallazgos al inicio del informe (hallazgos,
+  # incertidumbres y advertencias reunidos de cada sección ejecutada).
+  - name: showKeySummary
+    title: Key findings summary
+    type: Bool
+    default: true
+
   - name: showChoicesGuide
     title: About your choices
     type: Bool

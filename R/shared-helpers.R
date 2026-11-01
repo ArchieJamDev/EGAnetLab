@@ -494,3 +494,35 @@
     }
     unique(out)
 }
+
+# -----------------------------------------------------------------------------
+# .el_key_summary()
+#
+# Input: lang; key - list with character vectors findings, uncertain and
+#   warnings, each a one-sentence line that names its section.
+# Output: the HTML of the key findings summary shown at the top of the
+#   report: a short introduction and three headed lists. Empty lists say so,
+#   so the reader knows they were checked.
+# ES: Entrada: lang; key - lista con los vectores findings, uncertain y
+#   warnings, cada uno con líneas de una oración que nombran su sección.
+#   Salida: el HTML del resumen de hallazgos que se muestra al inicio del
+#   informe: una introducción breve y tres listas con encabezado. Las listas
+#   vacías lo dicen, para que el lector sepa que se revisaron.
+# -----------------------------------------------------------------------------
+.el_key_summary <- function(lang, key) {
+    txt <- function(k) .el_text(lang, "key", k)
+    p_style <- "margin: 0.15em 0 0.65em 0; line-height: 1.40;"
+    h_style <- "margin: 0.65em 0 0.20em 0; font-weight: bold;"
+    section <- function(heading, lines, empty) {
+        lines <- unique(lines)
+        body <- if (length(lines) > 0) .el_html_list(lines)
+                else paste0("<p style=\"", p_style, "\">", .el_html_escape(empty), "</p>")
+        paste0("<p style=\"", h_style, "\">", .el_html_escape(heading), "</p>\n", body)
+    }
+    parts <- c(
+        paste0("<p style=\"", p_style, "\">", .el_html_escape(txt("intro")), "</p>"),
+        section(txt("h_findings"), key$findings, txt("dims_none")),
+        section(txt("h_uncertain"), key$uncertain, txt("none_uncertain")),
+        section(txt("h_warnings"), key$warnings, txt("none_warnings")))
+    .el_html_block(NULL, parts, raw = TRUE)
+}
