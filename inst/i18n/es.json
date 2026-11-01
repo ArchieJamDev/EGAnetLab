@@ -365,6 +365,9 @@
             "Number of dimensions across samples": [
                 "Número de dimensiones entre muestras"
             ],
+            "Only for scales that mix positively and negatively worded items, with the negative items in their original direction (not recoded).": [
+                "Solo para escalas que mezclan ítems redactados en positivo y en negativo, con los negativos en su dirección original (sin recodificar)."
+            ],
             "Orange": [
                 "Naranja"
             ],

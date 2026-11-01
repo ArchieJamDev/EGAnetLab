@@ -130,6 +130,10 @@ children:
         name: runHier
       - type: CheckBox
         name: runRI
+      - type: Label
+        label: >-
+          Only for scales that mix positively and negatively worded items,
+          with the negative items in their original direction (not recoded).
   - type: CollapseBox
     label: Redundancy (UVA)
     collapsed: true

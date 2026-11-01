@@ -528,6 +528,10 @@ msgstr ""
 msgid "Number of dimensions across samples"
 msgstr ""
 
+#: ega/ui[5][2].label
+msgid "Only for scales that mix positively and negatively worded items, with the negative items in their original direction (not recoded)."
+msgstr ""
+
 #: ega/options/edgeNegColor/orange.title
 msgid "Orange"
 msgstr ""

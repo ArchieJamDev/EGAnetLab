@@ -528,6 +528,10 @@ msgstr "Notas"
 msgid "Number of dimensions across samples"
 msgstr "Número de dimensiones entre muestras"
 
+#: ega/ui[5][2].label
+msgid "Only for scales that mix positively and negatively worded items, with the negative items in their original direction (not recoded)."
+msgstr "Solo para escalas que mezclan ítems redactados en positivo y en negativo, con los negativos en su dirección original (sin recodificar)."
+
 #: ega/options/edgeNegColor/orange.title
 msgid "Orange"
 msgstr "Naranja"
