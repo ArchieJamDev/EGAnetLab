@@ -119,27 +119,27 @@ test_that("CFA compares models with and without hierarchy when both are asked", 
 test_that("negatively worded items are reversed only when they are as answered", {
 
     data <- edgeStructureData()
-    neg <- names(data)[1:2]
+    neg <- c("item1", "item2")
     flipped <- data
     for (v in neg) flipped[[v]] <- min(data[[v]]) + max(data[[v]]) - data[[v]]
 
     original <- EGAnetLab::ega(data = data, vars = names(data))$membership$asDF
-    raw <- EGAnetLab::ega(data = flipped, vars = names(data), negItems = neg, negCoding = "raw")
+    raw <- EGAnetLab::ega(data = flipped, vars = names(data), negItems = c("item1", "item2"), negCoding = "raw")
     expect_equal(raw$membership$asDF, original)
     expect_true(any(grepl("reversed for the analysis", raw$summary$asDF$value, fixed = TRUE)))
 
-    recoded <- EGAnetLab::ega(data = data, vars = names(data), negItems = neg, negCoding = "recoded")
+    recoded <- EGAnetLab::ega(data = data, vars = names(data), negItems = c("item1", "item2"), negCoding = "recoded")
     expect_equal(recoded$membership$asDF, original)
 })
 
 test_that("random-intercept EGA marks the negatively worded items", {
 
     data <- edgeStructureData()
-    neg <- names(data)[1:2]
-    res <- EGAnetLab::ega(data = data, vars = names(data), runRI = TRUE, negItems = neg)
+    neg <- c("item1", "item2")
+    res <- EGAnetLab::ega(data = data, vars = names(data), runRI = TRUE, negItems = c("item1", "item2"))
     members <- res$riMembership$asDF
 
-    expect_equal(sum(members$negative == "Yes"), 2)
+    expect_equal(sum(members$negative == "Yes", na.rm = TRUE), 2)
     expect_match(res$riStatus$content, "already reversed in the data", fixed = TRUE)
 
     none <- EGAnetLab::ega(data = data, vars = names(data), runRI = TRUE)
