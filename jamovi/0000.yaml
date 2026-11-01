@@ -38,8 +38,8 @@ analyses:
     menuSubgroup: Dimensionality
     menuTitle: Dynamic EGA (intensive longitudinal data)
     description: >
-      Estimates the dimensional structure of intensive longitudinal data
-      (many measurements per person) with dynamic Exploratory Graph Analysis:
+      Estimates the dimensional structure of intensive longitudinal data (many
+      measurements per person) with dynamic Exploratory Graph Analysis:
       derivatives of each person's time series, and their structure for the
       whole sample, for each group and for each person, with plain-language
       interpretation.
@@ -53,8 +53,8 @@ datasets:
   - name: Simulated intensive longitudinal data (100 persons x 50 time points)
     path: eganetlab_dynamic_sim.csv
     description: >-
-      Twenty-four items measured 50 times in 100 simulated persons in two
-      groups (long format, with ID, Group and Time), from the EGAnet package
-      - see data/README.md
+      Twenty-four items measured 50 times in 100 simulated persons in two groups
+      (long format, with ID, Group and Time), from the EGAnet package - see
+      data/README.md
 
 ...
