@@ -1994,15 +1994,22 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                                         shape = 22, size = 12, fill = "grey88", colour = "grey25") +
                     ggplot2::geom_text(data = top_nodes, ggplot2::aes(x = x, y = level, label = label),
                                        size = 4, fontface = "bold")
+            # No axes: the level names are drawn as text on the left.
+            # ES: Sin ejes: los nombres de los niveles se dibujan como texto
+            # a la izquierda.
+            levels_df <- data.frame(
+                y = 0:top,
+                label = c(state$labels$items, state$labels$lower, state$labels$higher)[seq_len(top + 1)])
             plot <- plot +
-                ggplot2::scale_y_continuous(breaks = 0:top,
-                                            labels = c(state$labels$items, state$labels$lower, state$labels$higher)[seq_len(top + 1)],
-                                            limits = c(-(0.2 + 0.045 * max(nchar(item_nodes$label), 4)), top + 0.25)) +
-                ggplot2::scale_x_continuous(expand = ggplot2::expansion(add = 0.8)) +
+                ggplot2::geom_text(data = levels_df, ggplot2::aes(x = 0, y = y, label = label),
+                                   hjust = 1, size = 3.6, colour = "grey30") +
+                ggplot2::scale_y_continuous(limits = c(-(0.2 + 0.045 * max(nchar(item_nodes$label), 4)), top + 0.25)) +
+                ggplot2::scale_x_continuous(limits = c(-0.25 * max(nchar(levels_df$label)) / 2, NA),
+                                            expand = ggplot2::expansion(add = c(0.4, 0.8))) +
+                ggplot2::labs(x = NULL, y = NULL) +
                 ggtheme +
-                ggplot2::theme(legend.position = "none", axis.title = ggplot2::element_blank(),
-                               axis.text.x = ggplot2::element_blank(), axis.ticks = ggplot2::element_blank(),
-                               axis.line = ggplot2::element_blank(), panel.grid = ggplot2::element_blank())
+                ggplot2::theme_void() +
+                ggplot2::theme(legend.position = "none")
 
             palette <- .el_plot_series_palette(self$options$plotPalette)
             if (!is.null(palette))
