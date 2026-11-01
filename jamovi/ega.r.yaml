@@ -130,6 +130,7 @@ items:
     renderFun: .plotNetwork
     visible: (showNetworkPlot)
     clearWith:
+      - runHier
       - vars
       - negItems
       - negCoding

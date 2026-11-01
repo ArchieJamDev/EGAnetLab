@@ -393,8 +393,28 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Estado del gráfico: solo lo que plot.EGA() necesita (red +
             # pertenencias).
             # -----------------------------------------------------------------
+            # With the hierarchical EGA, nodes are colored by lower-order
+            # dimension and the legend groups them under their higher-order
+            # dimension ("Higher 1 · 2"), as plot.hierEGA() does in EGAnet.
+            # ES: Con el EGA jerárquico, los nodos se colorean por dimensión
+            # de orden inferior y la leyenda los agrupa bajo su dimensión de
+            # orden superior ("Superior 1 · 2"), como hace plot.hierEGA() en
+            # EGAnet.
+            plot_wc <- wc
+            hs <- private$.hierStructure
+            hier_plot <- isTRUE(self$options$runHier) && !is.null(hs) && isTRUE(hs$hierarchical)
+            if (hier_plot) {
+                plot_wc <- ifelse(is.na(hs$aligned[items]) | is.na(hs$higher[items]), NA_character_,
+                                  sprintf(tr("Higher %s \u00b7 %s", "Superior %s \u00b7 %s"),
+                                          hs$higher[items], hs$aligned[items]))
+                names(plot_wc) <- items
+            }
+            self$results$networkPlot$setTitle(if (hier_plot)
+                tr("Estimated network (hierarchical: higher · lower order)",
+                   "Red estimada (jerárquica: orden superior · inferior)")
+                else tr("Estimated network", "Red estimada"))
             if (isTRUE(self$options$showNetworkPlot))
-                self$results$networkPlot$setState(list(network = ega$network, wc = wc))
+                self$results$networkPlot$setState(list(network = ega$network, wc = plot_wc))
         },
 
         # ---------------------------------------------------------------------
@@ -1192,7 +1212,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     item = items[i], ega = dash(ref[[items[i]]]),
                     lower = dash(aligned[[items[i]]]), higher = dash(higher_wc[[items[i]]])))
 
-            private$.hierStructure <- list(lower = lower_wc, higher = higher_wc,
+            private$.hierStructure <- list(lower = lower_wc, higher = higher_wc, aligned = aligned,
                                            hierarchical = hierarchical, n_higher = n_higher)
 
             # Plot state: items at the bottom, lower-order dimensions in the

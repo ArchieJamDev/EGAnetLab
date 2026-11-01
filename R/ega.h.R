@@ -742,6 +742,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 renderFun=".plotNetwork",
                 visible="(showNetworkPlot)",
                 clearWith=list(
+                    "runHier",
                     "vars",
                     "negItems",
                     "negCoding",

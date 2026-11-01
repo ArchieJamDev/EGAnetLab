@@ -17,6 +17,9 @@
 * **Hierarchical structure plot**: items at the bottom, lower-order
   dimensions in the middle and higher-order dimensions on top, with edge
   width following the network loadings.
+* With the hierarchical EGA on, the **Estimated network** colors the items
+  by lower-order dimension and its legend groups them under their
+  higher-order dimension ("Higher 1 · 2"), as EGAnet's `plot.hierEGA()`.
 * With **Confirm with CFA** ticked, a new table compares models with and
   without hierarchy on the total sample and the same items: one factor,
   correlated factors (EGA and, if different, the hierEGA lower order),

@@ -153,3 +153,13 @@ test_that("reversing items keeps the observed range", {
     expect_equal(out$a, c(5, 4, 1, NA))
     expect_equal(out$b, data$b)
 })
+
+test_that("the network plot keeps every item when the hierarchical EGA is on", {
+
+    data <- edgeStructureData()
+    res <- EGAnetLab::ega(data = data, vars = names(data), runHier = TRUE)
+    state <- res$networkPlot$state
+
+    expect_false(is.null(state))
+    expect_equal(length(state$wc), 12)
+})
