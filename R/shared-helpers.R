@@ -434,3 +434,29 @@
                     logical(1))
     unname(warnings[keep])
 }
+
+# -----------------------------------------------------------------------------
+# .el_edge_list()
+#
+# Input: network - the estimated network (partial correlations); wc - the
+#   dimension of each item (NA for isolated items).
+# Output: data frame with a, b (items), w (weight), da, db (their
+#   dimensions) and same (TRUE within one dimension), one row per non-zero
+#   edge, from the strongest absolute weight to the weakest.
+# ES: Salida: un data frame con una fila por arista distinta de cero, de la
+#   más fuerte (en valor absoluto) a la más débil.
+# -----------------------------------------------------------------------------
+.el_edge_list <- function(network, wc) {
+    m <- as.matrix(network)
+    items <- colnames(m)
+    if (is.null(items)) items <- names(wc)
+    idx <- which(upper.tri(m) & abs(m) > 1e-12, arr.ind = TRUE)
+    if (nrow(idx) == 0)
+        return(data.frame(a = character(0), b = character(0), w = numeric(0),
+                          da = character(0), db = character(0), same = logical(0)))
+    dim_of <- as.character(wc[items])
+    out <- data.frame(a = items[idx[, 1]], b = items[idx[, 2]], w = m[idx],
+                      da = dim_of[idx[, 1]], db = dim_of[idx[, 2]], stringsAsFactors = FALSE)
+    out$same <- ifelse(is.na(out$da) | is.na(out$db), NA, out$da == out$db)
+    out[order(-abs(out$w)), , drop = FALSE]
+}

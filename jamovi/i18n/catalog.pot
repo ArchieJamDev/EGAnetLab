@@ -207,6 +207,7 @@ msgstr ""
 msgid "Dimensionality"
 msgstr ""
 
+#: ega/results/edgeTable.columns.title
 #: ega/results/compareTable.columns.title
 #: ega/results/bootFrequency.columns.title
 msgid "Dimensions"
@@ -378,6 +379,7 @@ msgstr ""
 
 #: ega/results/membership.columns.title
 #: ega/results/loadings.columns.title
+#: ega/results/edgeTable.columns.title
 #: ega/results/compareMembership.columns.title
 #: ega/results/hierMembership.columns.title
 #: ega/results/riMembership.columns.title
@@ -568,6 +570,10 @@ msgstr ""
 
 #: ega/options/model.title
 msgid "Network Model"
+msgstr ""
+
+#: ega/results/edgeTable.title
+msgid "Network connections"
 msgstr ""
 
 #: ega/options/showLoadings.title
@@ -873,6 +879,10 @@ msgstr ""
 msgid "TMFG"
 msgstr ""
 
+#: ega/options/showEdgeTable.title
+msgid "Table of network connections"
+msgstr ""
+
 #: ega/ui[12][1][0].label
 msgid "Text"
 msgstr ""
@@ -920,6 +930,10 @@ msgstr ""
 
 #: ega/options/algorithm/walktrap.title
 msgid "Walktrap"
+msgstr ""
+
+#: ega/results/edgeTable.columns.title
+msgid "Weight"
 msgstr ""
 
 #: ega/options/labelColor/white.title

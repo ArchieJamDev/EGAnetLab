@@ -280,6 +280,29 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             }
 
             # -----------------------------------------------------------------
+            # Network connections: every non-zero edge, strongest first, so
+            # the weights can be read without labels crowding the plot.
+            # ES: Conexiones de la red: cada arista distinta de cero, de la
+            # más fuerte a la más débil, para leer los pesos sin que las
+            # etiquetas saturen el gráfico.
+            # -----------------------------------------------------------------
+            if (isTRUE(self$options$showEdgeTable)) {
+                edge_table <- self$results$edgeTable
+                edges <- .el_edge_list(ega$network, wc)
+                if (nrow(edges) == 0) {
+                    edge_table$setNote("none", txt("ega", "edges_none"))
+                } else {
+                    for (i in seq_len(nrow(edges)))
+                        .el_add_row(edge_table, i, list(
+                            item1 = edges$a[i], item2 = edges$b[i], weight = edges$w[i],
+                            relation = if (is.na(edges$same[i])) "—" else if (edges$same[i])
+                                sprintf(tr("Within dimension %s", "Dentro de la dimensión %s"), edges$da[i]) else
+                                sprintf(tr("Between %s and %s", "Entre %s y %s"), edges$da[i], edges$db[i])))
+                    edge_table$setNote("weights", txt("ega", "edges_note"))
+                }
+            }
+
+            # -----------------------------------------------------------------
             # Network scores: summary table and/or new dataset columns.
             # ES: Puntuaciones de red: tabla resumen y/o columnas nuevas en
             # el conjunto de datos.
@@ -643,6 +666,14 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 if (isTRUE(fit_total$ordinal)) txt("cfa", "estimator_auto_ordinal") else txt("cfa", "estimator_auto_cont")
             } else sprintf(txt("cfa", "estimator_fixed"), estimator)
             status <- c(txt("cfa", "intro"), est_text)
+            # EGA read some items as ordinal (7 or fewer categories) while
+            # the CFA used maximum likelihood (6 or more): say why.
+            # ES: EGA trató algunos ítems como ordinales (7 categorías o
+            # menos) mientras el CFA usó máxima verosimilitud (6 o más):
+            # explicar por qué.
+            if (identical(estimator, "auto") && identical(self$options$corr, "auto") &&
+                isTRUE(prep$ordinal_like) && !isTRUE(fit_total$ordinal))
+                status <- c(status, txt("cfa", "estimator_rule"))
             if (!split)
                 status <- c(status, txt("cfa", "no_split_note"))
             if (length(fit_total$dropped) > 0)
@@ -692,13 +723,25 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 list("AIC", function(p) cell(p, function(f) num(f[["aic"]], 1))),
                 list("BIC", function(p) cell(p, function(f) num(f[["bic"]], 1))),
                 list(txt("cfa", "row_converged"), function(p) cell(p, function(f)
-                    if (isTRUE(f[["converged"]] == 1)) txt("cfa", "yes") else txt("cfa", "no")))
+                    if (isTRUE(f[["converged"]] == 1)) txt("cfa", "yes") else txt("cfa", "no"))),
+                list(txt("cfa", "row_admissible"), function(p) {
+                    if (is.null(fits[[p]]) || !isTRUE(fits[[p]]$ok)) return("—")
+                    if (length(fits[[p]]$problems) == 0) txt("cfa", "yes") else txt("cfa", "no")
+                })
             )
             for (i in seq_along(rows)) {
                 values <- list(element = rows[[i]][[1]])
                 for (p in cols) values[[key[[p]]]] <- rows[[i]][[2]](p)
                 .el_add_row(self$results$cfaCompare, i, values)
             }
+            # Name the exact problem of each inadmissible solution.
+            # ES: Nombrar el problema exacto de cada solución inadmisible.
+            sample_name <- c(total = tr("Total sample", "Muestra total"), A = "SubMuestra A", B = "SubMuestra B")
+            for (p in cols)
+                if (!is.null(fits[[p]]) && isTRUE(fits[[p]]$ok) && length(fits[[p]]$problems) > 0)
+                    self$results$cfaCompare$setNote(paste0("adm_", p), paste0(sample_name[[p]], ": ",
+                        sprintf(txt("cfa_hier", "inadmissible_note"),
+                                .el_describe_problems(fits[[p]]$problems, self$options$reportLang))))
 
             # Membership by sample (split only), labels aligned to the total.
             # ES: Pertenencia por muestra (solo con división), etiquetas
@@ -846,19 +889,27 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                                       sprintf(txt("cfa_hier", "failed"), if (is.null(f$error)) "—" else f$error))
                 else if (!isTRUE(v[["converged"]] == 1))
                     table$addFootnote(rowNo = i, col = "model", txt("cfa_hier", "not_converged"))
+                else if (length(f$problems) > 0)
+                    # An inadmissible solution names its exact problem and is
+                    # left out of the choice of the best model.
+                    # ES: Una solución inadmisible nombra su problema exacto y
+                    # queda fuera de la elección del mejor modelo.
+                    table$addFootnote(rowNo = i, col = "model", sprintf(txt("cfa_hier", "inadmissible_note"),
+                        .el_describe_problems(f$problems, self$options$reportLang)))
                 else if (length(f$warnings) > 0)
-                    # lavaan's technical warnings become one plain note on
-                    # the row of the model that produced them.
-                    # ES: Las advertencias técnicas de lavaan se convierten
-                    # en una nota simple en la fila del modelo que las dio.
-                    table$addFootnote(rowNo = i, col = "model", txt("cfa_hier", "lavaan_note"))
+                    table$addFootnote(rowNo = i, col = "model", sprintf(txt("cfa_hier", "warning_note"),
+                        .el_describe_warnings(f$warnings, self$options$reportLang)))
             }
 
             # Interpretation.
             # ES: Interpretación.
             paragraphs <- c(txt("cfa_hier", "intro"))
             ok <- vapply(models, function(m) isTRUE(m$fit$ok) && isTRUE(m$fit$fit[["converged"]] == 1), logical(1))
-            fitted <- models[ok]
+            admissible <- vapply(models, function(m) length(m$fit$problems) == 0, logical(1))
+            for (m in models[ok & !admissible])
+                paragraphs <- c(paragraphs, sprintf(txt("cfa_hier", "interp_excluded"), m$label,
+                                                    .el_describe_problems(m$fit$problems, self$options$reportLang)))
+            fitted <- models[ok & admissible]
             if (length(fitted) == 0) {
                 paragraphs <- c(paragraphs, txt("cfa_hier", "interp_none"))
             } else {
@@ -1225,6 +1276,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 .el_add_row(summary, i, list(element = rows[[i]][[1]], value = rows[[i]][[2]]))
 
             dash <- function(x) if (is.na(x)) "—" else x
+            labels <- sort(unique(stats::na.omit(as.character(aligned))))
+            if (length(labels) > 0 && !identical(labels, as.character(seq_along(labels))))
+                members$setNote("labels", txt("ri", "labels_note"))
             for (i in seq_along(items))
                 .el_add_row(members, i, list(
                     item = items[i], ega = dash(ref[[items[i]]]),
@@ -1393,6 +1447,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 .el_add_row(summary, i, list(element = rows[[i]][[1]], value = rows[[i]][[2]]))
 
             dash <- function(x) if (is.na(x)) "—" else x
+            labels <- sort(unique(stats::na.omit(as.character(aligned))))
+            if (length(labels) > 0 && !identical(labels, as.character(seq_along(labels))))
+                members$setNote("labels", txt("ri", "labels_note"))
             for (i in seq_along(items))
                 .el_add_row(members, i, list(
                     item = items[i], ega = dash(ref[[items[i]]]), riega = dash(aligned[[items[i]]]),
@@ -1406,6 +1463,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 paragraphs <- c(paragraphs, txt("ri", "interp_not_converged"))
             } else {
                 paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_converged"), range_text))
+                if (length(neg) == 0)
+                    paragraphs <- c(paragraphs, txt("ri", "interp_no_neg"))
                 if (!is.na(n_ri) && n_ri == n_ega && length(agree$moved) == 0)
                     paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_same"), n_ega))
                 else if (!is.na(n_ri) && n_ri < n_ega)

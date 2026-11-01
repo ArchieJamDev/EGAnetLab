@@ -39,6 +39,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             splitSeed = 2026,
             showChoicesGuide = TRUE,
             showLoadings = TRUE,
+            showEdgeTable = FALSE,
             showNetworkPlot = TRUE,
             plotPalette = "default",
             layout = "qgraph",
@@ -279,6 +280,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showLoadings",
                 showLoadings,
                 default=TRUE)
+            private$..showEdgeTable <- jmvcore::OptionBool$new(
+                "showEdgeTable",
+                showEdgeTable,
+                default=FALSE)
             private$..showNetworkPlot <- jmvcore::OptionBool$new(
                 "showNetworkPlot",
                 showNetworkPlot,
@@ -493,6 +498,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..splitOV)
             self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showLoadings)
+            self$.addOption(private$..showEdgeTable)
             self$.addOption(private$..showNetworkPlot)
             self$.addOption(private$..plotPalette)
             self$.addOption(private$..layout)
@@ -558,6 +564,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         splitOV = function() private$..splitOV$value,
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showLoadings = function() private$..showLoadings$value,
+        showEdgeTable = function() private$..showEdgeTable$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
         plotPalette = function() private$..plotPalette$value,
         layout = function() private$..layout$value,
@@ -622,6 +629,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..splitOV = NA,
         ..showChoicesGuide = NA,
         ..showLoadings = NA,
+        ..showEdgeTable = NA,
         ..showNetworkPlot = NA,
         ..plotPalette = NA,
         ..layout = NA,
@@ -664,6 +672,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         loadingsGuide = function() private$.items[["loadingsGuide"]],
         loadings = function() private$.items[["loadings"]],
         interpretation = function() private$.items[["interpretation"]],
+        edgeTable = function() private$.items[["edgeTable"]],
         networkPlot = function() private$.items[["networkPlot"]],
         scoresGuide = function() private$.items[["scoresGuide"]],
         scores = function() private$.items[["scores"]],
@@ -811,6 +820,40 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="interpretation",
                 title="Applied interpretation"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="edgeTable",
+                title="Network connections",
+                rows=0,
+                visible="(showEdgeTable)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="item1", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="item2", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="weight", 
+                        `title`="Weight", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="relation", 
+                        `title`="Dimensions", 
+                        `type`="text"))))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="networkPlot",
@@ -1514,6 +1557,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 refs=list(
                     "rosseel_2012",
                     "hu_bentler_1999",
+                    "rhemtulla_2012",
                     "schermelleh_engel_2003"),
                 clearWith=list(
                     "vars",
@@ -1779,6 +1823,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param splitSeed .
 #' @param showChoicesGuide .
 #' @param showLoadings .
+#' @param showEdgeTable .
 #' @param showNetworkPlot .
 #' @param plotPalette .
 #' @param layout .
@@ -1817,6 +1862,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$loadingsGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$loadings} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$interpretation} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$edgeTable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$networkPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$scoresGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$scores} \tab \tab \tab \tab \tab a table \cr
@@ -1901,6 +1947,7 @@ ega <- function(
     splitSeed = 2026,
     showChoicesGuide = TRUE,
     showLoadings = TRUE,
+    showEdgeTable = FALSE,
     showNetworkPlot = TRUE,
     plotPalette = "default",
     layout = "qgraph",
@@ -1975,6 +2022,7 @@ ega <- function(
         splitSeed = splitSeed,
         showChoicesGuide = showChoicesGuide,
         showLoadings = showLoadings,
+        showEdgeTable = showEdgeTable,
         showNetworkPlot = showNetworkPlot,
         plotPalette = plotPalette,
         layout = layout,

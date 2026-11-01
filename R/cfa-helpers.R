@@ -209,7 +209,13 @@
     }
     model_fit <- fit$value
 
-    fm <- tryCatch(lavaan::fitMeasures(model_fit), error = function(e) NULL)
+    # fitMeasures() can warn too (for example, a robust CFI that cannot be
+    # computed); those warnings join the ones of the fit.
+    # ES: fitMeasures() también puede advertir (por ejemplo, un CFI robusto
+    # que no se puede calcular); esas advertencias se suman a las del ajuste.
+    fm_capture <- .el_capture(lavaan::fitMeasures(model_fit))
+    fm <- fm_capture$value
+    out$warnings <- unique(c(out$warnings, fm_capture$warnings))
     pick <- function(candidates) {
         for (nm in candidates)
             if (!is.null(fm) && nm %in% names(fm) && is.finite(fm[[nm]]))
@@ -237,7 +243,7 @@
     )
     out$n <- tryCatch(as.integer(lavaan::lavInspect(model_fit, "nobs")), error = function(e) nrow(d))
 
-    std <- tryCatch(lavaan::standardizedSolution(model_fit), error = function(e) NULL)
+    std <- suppressWarnings(tryCatch(lavaan::standardizedSolution(model_fit), error = function(e) NULL))
     if (!is.null(std)) {
         std <- std[std$op == "=~" & std$rhs %in% safe, , drop = FALSE]
         out$loadings <- data.frame(
@@ -248,8 +254,130 @@
             stringsAsFactors = FALSE)
     }
 
+    out$problems <- .el_cfa_problems(model_fit, item_of, out$warnings)
+
     out$ok <- TRUE
     out
+}
+
+# -----------------------------------------------------------------------------
+# .el_cfa_problems()
+#
+# Input: model_fit - a fitted lavaan model; item_of - item name of each safe
+#   variable name; warnings - lavaan warnings captured while fitting.
+# Output: a named list of the problems that make the solution inadmissible
+#   or doubtful (empty when there are none): neg_resid / neg_lv (items or
+#   factors with a negative variance), std_load (standardized loadings above
+#   1), lv_npd (factor covariance matrix not positive definite), theta_npd
+#   (residual covariance matrix not positive definite) and vcov (covariance
+#   matrix of the estimates not positive definite: possible identification
+#   problem). Each element holds the names involved, or TRUE.
+# ES: Salida: una lista con nombre de los problemas que hacen la solución
+#   inadmisible o dudosa (vacía si no hay): varianzas negativas de ítems o
+#   factores, cargas estandarizadas mayores que 1, matriz de covarianzas de
+#   los factores o de los residuos no definida positiva y matriz de
+#   covarianzas de las estimaciones no definida positiva (posible problema de
+#   identificación).
+# -----------------------------------------------------------------------------
+.el_cfa_problems <- function(model_fit, item_of, warnings = character(0)) {
+
+    problems <- list()
+    name_of <- function(x) ifelse(x %in% names(item_of), item_of[x], x)
+
+    pe <- suppressWarnings(tryCatch(lavaan::parameterEstimates(model_fit), error = function(e) NULL))
+    if (!is.null(pe)) {
+        var_rows <- pe$op == "~~" & pe$lhs == pe$rhs & is.finite(pe$est) & pe$est < 0
+        ov <- unique(pe$lhs[var_rows & pe$lhs %in% names(item_of)])
+        lv <- unique(pe$lhs[var_rows & !(pe$lhs %in% names(item_of))])
+        if (length(ov) > 0) problems$neg_resid <- unname(name_of(ov))
+        if (length(lv) > 0) problems$neg_lv <- lv
+    }
+    std <- suppressWarnings(tryCatch(lavaan::standardizedSolution(model_fit), error = function(e) NULL))
+    if (!is.null(std)) {
+        big <- std$op == "=~" & is.finite(std$est.std) & abs(std$est.std) > 1
+        if (any(big)) problems$std_load <- unique(unname(name_of(std$rhs[big])))
+    }
+    cov_lv <- suppressWarnings(tryCatch(lavaan::lavInspect(model_fit, "cov.lv"), error = function(e) NULL))
+    if (!is.null(cov_lv) && length(cov_lv) > 1) {
+        ev <- tryCatch(eigen(as.matrix(cov_lv), symmetric = TRUE, only.values = TRUE)$values,
+                       error = function(e) NULL)
+        if (!is.null(ev) && min(ev) < -1e-8) problems$lv_npd <- TRUE
+    }
+
+    w <- tolower(paste(warnings, collapse = " "))
+    if (grepl("covariance matrix of latent variables", w, fixed = TRUE) ||
+        grepl("(psi) is not positive definite", w, fixed = TRUE))
+        problems$lv_npd <- TRUE
+    if (grepl("(theta) is not positive definite", w, fixed = TRUE))
+        problems$theta_npd <- TRUE
+    if ((grepl("vcov", w, fixed = TRUE) && grepl("positive definite", w, fixed = TRUE)) ||
+        grepl("could not compute standard errors", w, fixed = TRUE))
+        problems$vcov <- TRUE
+    if (is.null(problems$neg_resid) && grepl("ov variances are negative", w, fixed = TRUE))
+        problems$neg_resid <- TRUE
+    if (is.null(problems$neg_lv) && grepl("lv variances are negative", w, fixed = TRUE))
+        problems$neg_lv <- TRUE
+
+    problems
+}
+
+# -----------------------------------------------------------------------------
+# .el_factor_label()
+#
+# Input: f - lavaan factor names (F<n>, H<n>, G); lang. Output: readable
+#   names ("factor 3", "higher-order factor 1", "general factor").
+# -----------------------------------------------------------------------------
+.el_factor_label <- function(f, lang) {
+    es <- identical(.el_normalize_lang(lang), "es")
+    vapply(f, function(x) {
+        if (identical(x, "G")) return(if (es) "factor general" else "general factor")
+        if (grepl("^H", x)) return(paste(if (es) "factor de orden superior" else "higher-order factor", sub("^H", "", x)))
+        if (grepl("^F", x)) return(paste(if (es) "factor" else "factor", sub("^F", "", x)))
+        x
+    }, character(1), USE.NAMES = FALSE)
+}
+
+# -----------------------------------------------------------------------------
+# .el_describe_problems() / .el_describe_warnings()
+#
+# Input: problems - from .el_cfa_problems(); warnings - lavaan warnings;
+#   lang. Output: one plain sentence fragment naming each exact problem.
+#   Warnings without a known meaning are quoted as lavaan wrote them.
+# ES: Salida: un fragmento de oración que nombra cada problema exacto. Las
+#   advertencias sin un significado conocido se citan como las escribió
+#   lavaan.
+# -----------------------------------------------------------------------------
+.el_describe_problems <- function(problems, lang) {
+    es <- identical(.el_normalize_lang(lang), "es")
+    list_of <- function(x) if (isTRUE(x)) "" else paste0(" (", paste(x, collapse = ", "), ")")
+    parts <- character(0)
+    if (!is.null(problems$neg_resid))
+        parts <- c(parts, paste0(if (es) "varianza residual negativa (caso Heywood)" else
+            "negative residual variance (Heywood case)", list_of(problems$neg_resid)))
+    if (!is.null(problems$neg_lv))
+        parts <- c(parts, paste0(if (es) "varianza negativa de un factor" else "negative factor variance",
+            if (isTRUE(problems$neg_lv)) "" else paste0(" (", paste(.el_factor_label(problems$neg_lv, lang), collapse = ", "), ")")))
+    if (!is.null(problems$std_load))
+        parts <- c(parts, paste0(if (es) "carga estandarizada mayor que 1" else "standardized loading above 1",
+            list_of(ifelse(grepl("^(F|H)[0-9]+$|^G$", problems$std_load),
+                           .el_factor_label(problems$std_load, lang), problems$std_load))))
+    if (!is.null(problems$lv_npd))
+        parts <- c(parts, if (es) "la matriz de covarianzas de los factores no es definida positiva" else
+            "the factor covariance matrix is not positive definite")
+    if (!is.null(problems$theta_npd))
+        parts <- c(parts, if (es) "la matriz de covarianzas de los residuos de los ítems no es definida positiva" else
+            "the residual covariance matrix of the items is not positive definite")
+    if (!is.null(problems$vcov))
+        parts <- c(parts, if (es) "la matriz de covarianzas de las estimaciones no es definida positiva, lo que puede indicar que el modelo no está identificado" else
+            "the covariance matrix of the estimates is not positive definite, which may mean that the model is not identified")
+    paste(parts, collapse = "; ")
+}
+
+.el_describe_warnings <- function(warnings, lang) {
+    w <- unique(.el_clean_text(warnings))
+    w <- trimws(sub("^lavaan (WARNING|warning):?", "", w))
+    w <- gsub("\\s+", " ", w)
+    paste0("\u201C", paste(w, collapse = "\u201D; \u201C"), "\u201D")
 }
 
 # -----------------------------------------------------------------------------

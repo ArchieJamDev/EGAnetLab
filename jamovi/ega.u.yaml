@@ -231,6 +231,8 @@ children:
       - type: CheckBox
         name: showLoadings
       - type: CheckBox
+        name: showEdgeTable
+      - type: CheckBox
         name: showNetworkPlot
       - type: ComboBox
         name: plotPalette

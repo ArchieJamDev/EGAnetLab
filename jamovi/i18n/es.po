@@ -207,6 +207,7 @@ msgstr "Estructura dimensional"
 msgid "Dimensionality"
 msgstr "Dimensionalidad"
 
+#: ega/results/edgeTable.columns.title
 #: ega/results/compareTable.columns.title
 #: ega/results/bootFrequency.columns.title
 msgid "Dimensions"
@@ -378,6 +379,7 @@ msgstr "Introducción"
 
 #: ega/results/membership.columns.title
 #: ega/results/loadings.columns.title
+#: ega/results/edgeTable.columns.title
 #: ega/results/compareMembership.columns.title
 #: ega/results/hierMembership.columns.title
 #: ega/results/riMembership.columns.title
@@ -569,6 +571,10 @@ msgstr "Ítems redactados en negativo"
 #: ega/options/model.title
 msgid "Network Model"
 msgstr "Modelo de red"
+
+#: ega/results/edgeTable.title
+msgid "Network connections"
+msgstr "Conexiones de la red"
 
 #: ega/options/showLoadings.title
 #: ega/results/loadingsGuide.title
@@ -873,6 +879,10 @@ msgstr "TLI"
 msgid "TMFG"
 msgstr "TMFG"
 
+#: ega/options/showEdgeTable.title
+msgid "Table of network connections"
+msgstr "Tabla de conexiones de la red"
+
 #: ega/ui[12][1][0].label
 msgid "Text"
 msgstr "Texto"
@@ -921,6 +931,10 @@ msgstr "WLSMV (ordinal)"
 #: ega/options/algorithm/walktrap.title
 msgid "Walktrap"
 msgstr "Walktrap"
+
+#: ega/results/edgeTable.columns.title
+msgid "Weight"
+msgstr "Peso"
 
 #: ega/options/labelColor/white.title
 msgid "White"

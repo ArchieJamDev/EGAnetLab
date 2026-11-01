@@ -89,6 +89,16 @@
         `issue`="1", 
         `pages`="1-55", 
         `url`="https://doi.org/10.1080/10705519909540118"), 
+    `rhemtulla_2012`=list(
+        `type`="article", 
+        `author`="Rhemtulla, M., Brosseau-Liard, P. \u00C9., & Savalei, V.", 
+        `year`=2012, 
+        `title`="When can categorical variables be treated as continuous? A comparison of robust continuous and categorical SEM estimation methods under suboptimal conditions", 
+        `publisher`="Psychological Methods", 
+        `volume`="17", 
+        `issue`="3", 
+        `pages`="354-373", 
+        `url`="https://doi.org/10.1037/a0029315"), 
     `schermelleh_engel_2003`=list(
         `type`="article", 
         `author`="Schermelleh-Engel, K., Moosbrugger, H., & M\u00FCller, H.", 

@@ -395,6 +395,11 @@ options:
     type: Bool
     default: true
 
+  - name: showEdgeTable
+    title: Table of network connections
+    type: Bool
+    default: false
+
   - name: showNetworkPlot
     title: Network plot
     type: Bool

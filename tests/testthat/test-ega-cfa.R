@@ -37,7 +37,8 @@ test_that("CFA tests the EGA structure in the total sample", {
     res <- runCFA()
     compare <- res$cfaCompare$asDF
 
-    expect_equal(nrow(compare), 17)
+    expect_equal(nrow(compare), 18)
+    expect_equal(compare$total[compare$element == "Admissible solution"], "Yes")
     expect_false(compare$total[compare$element == "GFI"] == "\u2014")
     expect_equal(compare$total[compare$element == "Cases"], "300")
     expect_equal(compare$total[compare$element == "Dimensions found by EGA"], "3")

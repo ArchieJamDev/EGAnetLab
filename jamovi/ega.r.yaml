@@ -122,6 +122,36 @@ items:
     title: Applied interpretation
     type: Html
 
+  - name: edgeTable
+    title: Network connections
+    type: Table
+    rows: 0
+    visible: (showEdgeTable)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - reportLang
+    columns:
+      - name: item1
+        title: Item
+        type: text
+      - name: item2
+        title: Item
+        type: text
+      - name: weight
+        title: Weight
+        type: number
+        format: zto
+      - name: relation
+        title: Dimensions
+        type: text
+
   - name: networkPlot
     title: Estimated network
     type: Image
@@ -812,6 +842,7 @@ items:
     refs:
       - rosseel_2012
       - hu_bentler_1999
+      - rhemtulla_2012
       - schermelleh_engel_2003
     clearWith:
       - vars

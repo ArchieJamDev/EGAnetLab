@@ -392,6 +392,9 @@
             "Network Model": [
                 "Modelo de red"
             ],
+            "Network connections": [
+                "Conexiones de la red"
+            ],
             "Network loadings": [
                 "Cargas de red"
             ],
@@ -611,6 +614,9 @@
             "TMFG": [
                 "TMFG"
             ],
+            "Table of network connections": [
+                "Tabla de conexiones de la red"
+            ],
             "Text": [
                 "Texto"
             ],
@@ -643,6 +649,9 @@
             ],
             "Walktrap": [
                 "Walktrap"
+            ],
+            "Weight": [
+                "Peso"
             ],
             "White": [
                 "Blanco"

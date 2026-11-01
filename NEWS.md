@@ -1,5 +1,30 @@
 # EGAnetLab 0.1.0 (development)
 
+## EGA: consistency and cautious conclusions (external review)
+
+* CFA: every solution is checked for admissibility (negative variances,
+  standardized loadings above 1, factor or residual covariance matrices
+  that are not positive definite, estimates whose covariance matrix is not
+  positive definite). The main CFA table has a new **Admissible solution**
+  row, and the exact problem is named in a note. In the models with and
+  without hierarchy, an inadmissible model is named in its footnote and is
+  left out when picking the best fit.
+* riEGA: a converged random intercept is reported as a component whose
+  reading as acquiescence needs justification; non-convergence makes the
+  result not interpretable instead of meaning "no wording effect"; without
+  negatively worded items marked, the report says nothing supports a
+  wording reading. A note explains that riEGA dimension numbers are labels.
+* Higher-order CFA: a small CFI loss is read as a limited loss under a
+  descriptive criterion, not as support for the hierarchy.
+* UVA: the next step no longer suggests comparing TEFI across different
+  item sets.
+* CFA: when EGA treats items as ordinal (7 or fewer categories) and the CFA
+  uses robust maximum likelihood (6 or more), the report explains why
+  (Rhemtulla et al., 2012).
+* New **Table of network connections** option: every edge with its weight
+  and whether it links items within or between dimensions, strongest
+  first, so weights can be read without labels on the plot.
+
 ## EGA: plot options in two boxes
 
 * The four plot boxes (Plot Layout, Plot Nodes and Labels, Plot Edges, Plot
