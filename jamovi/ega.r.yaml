@@ -413,6 +413,14 @@ items:
       - model
       - uniMethod
       - plotPalette
+      - hierPlotTitle
+      - hierShowLevels
+      - hierItemLabels
+      - hierItemLabelSize
+      - hierItemSize
+      - hierDimSize
+      - hierEdgeWidth
+      - hierEdgeColor
       - reportLang
 
   - name: hierInterpretation

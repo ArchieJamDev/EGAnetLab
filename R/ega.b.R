@@ -1977,6 +1977,16 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (is.null(state) || is.null(state$nodes) || nrow(state$nodes) == 0)
                 return(FALSE)
 
+            o <- self$options
+            num <- function(x, default) { v <- suppressWarnings(as.numeric(x)); if (length(v) == 0 || is.na(v)) default else v }
+            item_size <- num(o$hierItemSize, 4)
+            dim_size <- num(o$hierDimSize, 11)
+            label_size <- num(o$hierItemLabelSize, 3.3)
+            width <- num(o$hierEdgeWidth, 1)
+            edge_color <- if (is.null(o$hierEdgeColor)) "grey55" else o$hierEdgeColor
+            show_items <- !isFALSE(o$hierItemLabels)
+            show_levels <- !isFALSE(o$hierShowLevels)
+
             nodes <- state$nodes
             edges <- state$edges
             if (nrow(edges) > 0) {
@@ -1994,41 +2004,54 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 plot <- plot +
                     ggplot2::geom_segment(data = edges, ggplot2::aes(x = x, y = y, xend = xend, yend = yend,
                                                                      linewidth = weight),
-                                          colour = "grey55", lineend = "round") +
-                    ggplot2::scale_linewidth_continuous(range = c(0.3, 2.2), guide = "none")
+                                          colour = edge_color, lineend = "round") +
+                    ggplot2::scale_linewidth_continuous(range = c(0.3, 2.2) * width, guide = "none")
             plot <- plot +
                 ggplot2::geom_point(data = item_nodes, ggplot2::aes(x = x, y = level, fill = group),
-                                    shape = 21, size = 4, colour = "grey25") +
-                ggplot2::geom_text(data = item_nodes, ggplot2::aes(x = x, y = level - 0.08, label = label),
-                                   angle = 90, hjust = 1, size = 3.3) +
+                                    shape = 21, size = item_size, colour = "grey25")
+            if (show_items)
+                plot <- plot +
+                    ggplot2::geom_text(data = item_nodes, ggplot2::aes(x = x, y = level - 0.08, label = label),
+                                       angle = 90, hjust = 1, size = label_size)
+            plot <- plot +
                 ggplot2::geom_point(data = dim_nodes, ggplot2::aes(x = x, y = level, fill = group),
-                                    shape = 21, size = 11, colour = "grey25") +
+                                    shape = 21, size = dim_size, colour = "grey25") +
                 ggplot2::geom_text(data = dim_nodes, ggplot2::aes(x = x, y = level, label = label),
-                                   size = 4, fontface = "bold")
+                                   size = dim_size * 0.36, fontface = "bold")
             if (nrow(top_nodes) > 0)
                 plot <- plot +
                     ggplot2::geom_point(data = top_nodes, ggplot2::aes(x = x, y = level),
-                                        shape = 22, size = 12, fill = "grey88", colour = "grey25") +
+                                        shape = 22, size = dim_size * 1.1, fill = "grey88", colour = "grey25") +
                     ggplot2::geom_text(data = top_nodes, ggplot2::aes(x = x, y = level, label = label),
-                                       size = 4, fontface = "bold")
+                                       size = dim_size * 0.36, fontface = "bold")
+
             # No axes: the level names are drawn as text on the left.
             # ES: Sin ejes: los nombres de los niveles se dibujan como texto
             # a la izquierda.
             levels_df <- data.frame(
                 y = 0:top,
                 label = c(state$labels$items, state$labels$lower, state$labels$higher)[seq_len(top + 1)])
+            if (show_levels)
+                plot <- plot +
+                    ggplot2::geom_text(data = levels_df, ggplot2::aes(x = 0, y = y, label = label),
+                                       hjust = 1, size = 3.6, colour = "grey30")
+            bottom <- if (show_items) -(0.2 + 0.045 * (label_size / 3.3) * max(nchar(item_nodes$label), 4)) else -0.2
+            left <- if (show_levels) -0.25 * max(nchar(levels_df$label)) / 2 else 0.5
             plot <- plot +
-                ggplot2::geom_text(data = levels_df, ggplot2::aes(x = 0, y = y, label = label),
-                                   hjust = 1, size = 3.6, colour = "grey30") +
-                ggplot2::scale_y_continuous(limits = c(-(0.2 + 0.045 * max(nchar(item_nodes$label), 4)), top + 0.25)) +
-                ggplot2::scale_x_continuous(limits = c(-0.25 * max(nchar(levels_df$label)) / 2, NA),
+                ggplot2::scale_y_continuous(limits = c(bottom, top + 0.25)) +
+                ggplot2::scale_x_continuous(limits = c(left, NA),
                                             expand = ggplot2::expansion(add = c(0.4, 0.8))) +
                 ggplot2::labs(x = NULL, y = NULL) +
                 ggtheme +
                 ggplot2::theme_void() +
                 ggplot2::theme(legend.position = "none")
 
-            palette <- .el_plot_series_palette(self$options$plotPalette)
+            title <- trimws(as.character(if (is.null(o$hierPlotTitle)) "" else o$hierPlotTitle))
+            if (nzchar(title))
+                plot <- plot + ggplot2::ggtitle(title) +
+                    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, face = "bold"))
+
+            palette <- .el_plot_series_palette(o$plotPalette)
             if (!is.null(palette))
                 plot <- plot + ggplot2::scale_fill_manual(
                     values = stats::setNames(rep_len(palette, length(groups)), groups))

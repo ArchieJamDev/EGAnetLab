@@ -602,4 +602,66 @@ options:
     title: Legend title
     type: String
     default: ''
+
+  # ---------------------------------------------------------------------------
+  # Hierarchical structure plot customization (hierEGA tree).
+  # ES: Personalización del gráfico de la estructura jerárquica (árbol de
+  # hierEGA).
+  # ---------------------------------------------------------------------------
+  - name: hierPlotTitle
+    title: Plot title
+    type: String
+    default: ''
+
+  - name: hierShowLevels
+    title: Show level names
+    type: Bool
+    default: true
+
+  - name: hierItemLabels
+    title: Show item names
+    type: Bool
+    default: true
+
+  - name: hierItemLabelSize
+    title: Item name size
+    type: Number
+    min: 1
+    max: 10
+    default: 3.3
+
+  - name: hierItemSize
+    title: Item node size
+    type: Number
+    min: 1
+    max: 15
+    default: 4
+
+  - name: hierDimSize
+    title: Dimension node size
+    type: Number
+    min: 4
+    max: 25
+    default: 11
+
+  - name: hierEdgeWidth
+    title: Edge width
+    type: Number
+    min: 0.2
+    max: 5
+    default: 1
+
+  - name: hierEdgeColor
+    title: Edge color
+    type: List
+    options:
+      - title: Gray
+        name: grey55
+      - title: Black
+        name: black
+      - title: Blue
+        name: blue
+      - title: Dark green
+        name: darkgreen
+    default: grey55
 ...

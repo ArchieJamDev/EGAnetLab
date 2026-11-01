@@ -32,6 +32,9 @@
             "Automatic (Pearson / polychoric)": [
                 "Automática (Pearson / policórica)"
             ],
+            "Available when Hierarchical EGA is ticked.": [
+                "Disponible cuando se marca EGA jerárquico."
+            ],
             "BGGM": [
                 "BGGM"
             ],
@@ -131,6 +134,9 @@
             "Dimension frequency plot": [
                 "Gráfico de frecuencia de dimensiones"
             ],
+            "Dimension node size": [
+                "Tamaño de los nodos de dimensiones"
+            ],
             "Dimension stability": [
                 "Estabilidad de las dimensiones"
             ],
@@ -158,11 +164,17 @@
             "EGAnetLab default": [
                 "Por defecto de EGAnetLab"
             ],
+            "Edge color": [
+                "Color de las aristas"
+            ],
             "Edge weight size": [
                 "Tamaño de los pesos"
             ],
             "Edge width": [
                 "Grosor de arista"
+            ],
+            "Edges": [
+                "Aristas"
             ],
             "Eigenvector": [
                 "Autovector"
@@ -269,6 +281,12 @@
             "Item membership with and without wording control": [
                 "Pertenencia de los ítems con y sin control de la redacción"
             ],
+            "Item name size": [
+                "Tamaño del nombre de los ítems"
+            ],
+            "Item node size": [
+                "Tamaño de los nodos de ítems"
+            ],
             "Item pairs by weighted topological overlap": [
                 "Pares de ítems por solapamiento topológico ponderado"
             ],
@@ -304,6 +322,9 @@
             ],
             "Left": [
                 "Izquierda"
+            ],
+            "Legend": [
+                "Leyenda"
             ],
             "Legend position": [
                 "Posición de la leyenda"
@@ -395,6 +416,12 @@
             "Node size": [
                 "Tamaño de nodo"
             ],
+            "Nodes and edges": [
+                "Nodos y aristas"
+            ],
+            "Nodes and labels": [
+                "Nodos y etiquetas"
+            ],
             "Notes": [
                 "Notas"
             ],
@@ -418,18 +445,6 @@
             ],
             "Pearson": [
                 "Pearson"
-            ],
-            "Plot Edges": [
-                "Gráfico: aristas"
-            ],
-            "Plot Layout": [
-                "Gráfico: disposición"
-            ],
-            "Plot Legend": [
-                "Gráfico: leyenda"
-            ],
-            "Plot Nodes and Labels": [
-                "Gráfico: nodos y etiquetas"
             ],
             "Plot title": [
                 "Título del gráfico"
@@ -518,8 +533,14 @@
             "Show edge weights": [
                 "Mostrar pesos de aristas"
             ],
+            "Show item names": [
+                "Mostrar nombres de los ítems"
+            ],
             "Show legend": [
                 "Mostrar leyenda"
+            ],
+            "Show level names": [
+                "Mostrar nombres de los niveles"
             ],
             "Solid": [
                 "Continua"
@@ -589,6 +610,9 @@
             ],
             "TMFG": [
                 "TMFG"
+            ],
+            "Text": [
+                "Texto"
             ],
             "Theoretical structure": [
                 "Estructura teórica"

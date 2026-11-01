@@ -58,7 +58,15 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             edgeLabelDigits = 2,
             showLegend = TRUE,
             legendPosition = "right",
-            legendTitle = "", ...) {
+            legendTitle = "",
+            hierPlotTitle = "",
+            hierShowLevels = TRUE,
+            hierItemLabels = TRUE,
+            hierItemLabelSize = 3.3,
+            hierItemSize = 4,
+            hierDimSize = 11,
+            hierEdgeWidth = 1,
+            hierEdgeColor = "grey55", ...) {
 
             super$initialize(
                 package="EGAnetLab",
@@ -404,6 +412,51 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "legendTitle",
                 legendTitle,
                 default="")
+            private$..hierPlotTitle <- jmvcore::OptionString$new(
+                "hierPlotTitle",
+                hierPlotTitle,
+                default="")
+            private$..hierShowLevels <- jmvcore::OptionBool$new(
+                "hierShowLevels",
+                hierShowLevels,
+                default=TRUE)
+            private$..hierItemLabels <- jmvcore::OptionBool$new(
+                "hierItemLabels",
+                hierItemLabels,
+                default=TRUE)
+            private$..hierItemLabelSize <- jmvcore::OptionNumber$new(
+                "hierItemLabelSize",
+                hierItemLabelSize,
+                min=1,
+                max=10,
+                default=3.3)
+            private$..hierItemSize <- jmvcore::OptionNumber$new(
+                "hierItemSize",
+                hierItemSize,
+                min=1,
+                max=15,
+                default=4)
+            private$..hierDimSize <- jmvcore::OptionNumber$new(
+                "hierDimSize",
+                hierDimSize,
+                min=4,
+                max=25,
+                default=11)
+            private$..hierEdgeWidth <- jmvcore::OptionNumber$new(
+                "hierEdgeWidth",
+                hierEdgeWidth,
+                min=0.2,
+                max=5,
+                default=1)
+            private$..hierEdgeColor <- jmvcore::OptionList$new(
+                "hierEdgeColor",
+                hierEdgeColor,
+                options=list(
+                    "grey55",
+                    "black",
+                    "blue",
+                    "darkgreen"),
+                default="grey55")
 
             self$.addOption(private$..vars)
             self$.addOption(private$..reportLang)
@@ -460,6 +513,14 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..showLegend)
             self$.addOption(private$..legendPosition)
             self$.addOption(private$..legendTitle)
+            self$.addOption(private$..hierPlotTitle)
+            self$.addOption(private$..hierShowLevels)
+            self$.addOption(private$..hierItemLabels)
+            self$.addOption(private$..hierItemLabelSize)
+            self$.addOption(private$..hierItemSize)
+            self$.addOption(private$..hierDimSize)
+            self$.addOption(private$..hierEdgeWidth)
+            self$.addOption(private$..hierEdgeColor)
         }),
     active = list(
         vars = function() private$..vars$value,
@@ -516,7 +577,15 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         edgeLabelDigits = function() private$..edgeLabelDigits$value,
         showLegend = function() private$..showLegend$value,
         legendPosition = function() private$..legendPosition$value,
-        legendTitle = function() private$..legendTitle$value),
+        legendTitle = function() private$..legendTitle$value,
+        hierPlotTitle = function() private$..hierPlotTitle$value,
+        hierShowLevels = function() private$..hierShowLevels$value,
+        hierItemLabels = function() private$..hierItemLabels$value,
+        hierItemLabelSize = function() private$..hierItemLabelSize$value,
+        hierItemSize = function() private$..hierItemSize$value,
+        hierDimSize = function() private$..hierDimSize$value,
+        hierEdgeWidth = function() private$..hierEdgeWidth$value,
+        hierEdgeColor = function() private$..hierEdgeColor$value),
     private = list(
         ..vars = NA,
         ..reportLang = NA,
@@ -572,7 +641,15 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..edgeLabelDigits = NA,
         ..showLegend = NA,
         ..legendPosition = NA,
-        ..legendTitle = NA)
+        ..legendTitle = NA,
+        ..hierPlotTitle = NA,
+        ..hierShowLevels = NA,
+        ..hierItemLabels = NA,
+        ..hierItemLabelSize = NA,
+        ..hierItemSize = NA,
+        ..hierDimSize = NA,
+        ..hierEdgeWidth = NA,
+        ..hierEdgeColor = NA)
 )
 
 egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -1030,6 +1107,14 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "model",
                     "uniMethod",
                     "plotPalette",
+                    "hierPlotTitle",
+                    "hierShowLevels",
+                    "hierItemLabels",
+                    "hierItemLabelSize",
+                    "hierItemSize",
+                    "hierDimSize",
+                    "hierEdgeWidth",
+                    "hierEdgeColor",
                     "reportLang")))
             self$add(jmvcore::Html$new(
                 options=options,
@@ -1714,6 +1799,14 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showLegend .
 #' @param legendPosition .
 #' @param legendTitle .
+#' @param hierPlotTitle .
+#' @param hierShowLevels .
+#' @param hierItemLabels .
+#' @param hierItemLabelSize .
+#' @param hierItemSize .
+#' @param hierDimSize .
+#' @param hierEdgeWidth .
+#' @param hierEdgeColor .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$intro} \tab \tab \tab \tab \tab a html \cr
@@ -1827,7 +1920,15 @@ ega <- function(
     edgeLabelDigits = 2,
     showLegend = TRUE,
     legendPosition = "right",
-    legendTitle = "") {
+    legendTitle = "",
+    hierPlotTitle = "",
+    hierShowLevels = TRUE,
+    hierItemLabels = TRUE,
+    hierItemLabelSize = 3.3,
+    hierItemSize = 4,
+    hierDimSize = 11,
+    hierEdgeWidth = 1,
+    hierEdgeColor = "grey55") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("ega requires jmvcore to be installed (restart may be required)")
@@ -1893,7 +1994,15 @@ ega <- function(
         edgeLabelDigits = edgeLabelDigits,
         showLegend = showLegend,
         legendPosition = legendPosition,
-        legendTitle = legendTitle)
+        legendTitle = legendTitle,
+        hierPlotTitle = hierPlotTitle,
+        hierShowLevels = hierShowLevels,
+        hierItemLabels = hierItemLabels,
+        hierItemLabelSize = hierItemLabelSize,
+        hierItemSize = hierItemSize,
+        hierDimSize = hierDimSize,
+        hierEdgeWidth = hierEdgeWidth,
+        hierEdgeColor = hierEdgeColor)
 
     analysis <- egaClass$new(
         options = options,

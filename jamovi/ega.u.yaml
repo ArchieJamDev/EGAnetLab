@@ -235,67 +235,156 @@ children:
       - type: ComboBox
         name: plotPalette
   - type: CollapseBox
-    label: Plot Layout
+    label: Network plot
     collapsed: true
     children:
-      - type: ComboBox
-        name: layout
-      - type: TextBox
-        name: plotTitle
-        format: string
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 0
+          row: 0
+        children:
+          - type: Label
+            label: Layout
+            children:
+              - type: ComboBox
+                name: layout
+              - type: TextBox
+                name: plotTitle
+                format: string
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 1
+          row: 0
+        children:
+          - type: Label
+            label: Nodes and labels
+            children:
+              - type: TextBox
+                name: nodeSize
+                format: number
+              - type: ComboBox
+                name: nodeShape
+              - type: TextBox
+                name: nodeAlpha
+                format: number
+              - type: TextBox
+                name: labelSize
+                format: number
+              - type: ComboBox
+                name: labelColor
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 0
+          row: 1
+        children:
+          - type: Label
+            label: Edges
+            children:
+              - type: TextBox
+                name: edgeSize
+                format: number
+              - type: ComboBox
+                name: edgePosColor
+              - type: ComboBox
+                name: edgeNegColor
+              - type: ComboBox
+                name: edgeNegLty
+              - type: TextBox
+                name: edgeMin
+                format: number
+              - type: CheckBox
+                name: showEdgeLabels
+              - type: TextBox
+                name: edgeLabelSize
+                format: number
+                enable: (showEdgeLabels)
+              - type: TextBox
+                name: edgeLabelDigits
+                format: number
+                enable: (showEdgeLabels)
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 1
+          row: 1
+        children:
+          - type: Label
+            label: Legend
+            children:
+              - type: CheckBox
+                name: showLegend
+              - type: ComboBox
+                name: legendPosition
+                enable: (showLegend)
+              - type: TextBox
+                name: legendTitle
+                format: string
+                enable: (showLegend)
   - type: CollapseBox
-    label: Plot Nodes and Labels
+    label: Hierarchical structure plot
     collapsed: true
     children:
-      - type: TextBox
-        name: nodeSize
-        format: number
-      - type: ComboBox
-        name: nodeShape
-      - type: TextBox
-        name: nodeAlpha
-        format: number
-      - type: TextBox
-        name: labelSize
-        format: number
-      - type: ComboBox
-        name: labelColor
-  - type: CollapseBox
-    label: Plot Edges
-    collapsed: true
-    children:
-      - type: TextBox
-        name: edgeSize
-        format: number
-      - type: ComboBox
-        name: edgePosColor
-      - type: ComboBox
-        name: edgeNegColor
-      - type: ComboBox
-        name: edgeNegLty
-      - type: TextBox
-        name: edgeMin
-        format: number
-      - type: CheckBox
-        name: showEdgeLabels
-      - type: TextBox
-        name: edgeLabelSize
-        format: number
-        enable: (showEdgeLabels)
-      - type: TextBox
-        name: edgeLabelDigits
-        format: number
-        enable: (showEdgeLabels)
-  - type: CollapseBox
-    label: Plot Legend
-    collapsed: true
-    children:
-      - type: CheckBox
-        name: showLegend
-      - type: ComboBox
-        name: legendPosition
-        enable: (showLegend)
-      - type: TextBox
-        name: legendTitle
-        format: string
-        enable: (showLegend)
+      - type: LayoutBox
+        margin: large
+        cell:
+          column: 0
+          row: 0
+        children:
+          - type: Label
+            label: Available when Hierarchical EGA is ticked.
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 0
+          row: 1
+        children:
+          - type: Label
+            label: Text
+            children:
+              - type: TextBox
+                name: hierPlotTitle
+                format: string
+                enable: (runHier)
+              - type: CheckBox
+                name: hierShowLevels
+                enable: (runHier)
+              - type: CheckBox
+                name: hierItemLabels
+                enable: (runHier)
+              - type: TextBox
+                name: hierItemLabelSize
+                format: number
+                enable: (runHier && hierItemLabels)
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 1
+          row: 1
+        children:
+          - type: Label
+            label: Nodes and edges
+            children:
+              - type: TextBox
+                name: hierItemSize
+                format: number
+                enable: (runHier)
+              - type: TextBox
+                name: hierDimSize
+                format: number
+                enable: (runHier)
+              - type: TextBox
+                name: hierEdgeWidth
+                format: number
+                enable: (runHier)
+              - type: ComboBox
+                name: hierEdgeColor
+                enable: (runHier)

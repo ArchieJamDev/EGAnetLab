@@ -255,7 +255,7 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 | 1 | Bootstrap EGA, item and dimension stability | ✅ Done |
 | 2 | UVA, network scores, CFA with random split | ✅ Done |
 | 3 | TEFI comparison of competing structures | ✅ Done |
-| 4 | Hierarchical EGA and random-intercept EGA | 🚧 In review |
+| 4 | Hierarchical EGA and random-intercept EGA | ✅ Done |
 | 5 | Invariance and NetworkComparisonTest (independent and paired groups) | 🗓 |
 | 6 | Centrality, edge accuracy and network comparison plots | 🗓 |
 | 7 | Dynamic EGA for longitudinal and intensive data | 🗓 |

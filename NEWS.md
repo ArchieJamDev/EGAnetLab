@@ -1,5 +1,13 @@
 # EGAnetLab 0.1.0 (development)
 
+## EGA: plot options in two boxes
+
+* The four plot boxes (Plot Layout, Plot Nodes and Labels, Plot Edges, Plot
+  Legend) are now one **Network plot** box, with Layout, Nodes and labels,
+  Edges and Legend as headings inside it.
+* New **Hierarchical structure plot** box: title, level names, item names
+  and their size, item and dimension node sizes, edge width and edge color.
+
 ## EGA: hierarchical EGA and wording effects (phase 4)
 
 * New **Hierarchical and wording structure** box in the EGA analysis.

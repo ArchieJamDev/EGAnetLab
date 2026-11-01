@@ -42,6 +42,10 @@ msgstr "Automático"
 msgid "Automatic (Pearson / polychoric)"
 msgstr "Automática (Pearson / policórica)"
 
+#: ega/ui[12][0][0].label
+msgid "Available when Hierarchical EGA is ticked."
+msgstr "Disponible cuando se marca EGA jerárquico."
+
 #: ega/options/model/BGGM.title
 msgid "BGGM"
 msgstr "BGGM"
@@ -52,10 +56,12 @@ msgstr "BIC"
 
 #: ega/options/labelColor/black.title
 #: ega/options/edgePosColor/black.title
+#: ega/options/hierEdgeColor/black.title
 msgid "Black"
 msgstr "Negro"
 
 #: ega/options/edgePosColor/blue.title
+#: ega/options/hierEdgeColor/blue.title
 msgid "Blue"
 msgstr "Azul"
 
@@ -144,6 +150,7 @@ msgid "Dark gray"
 msgstr "Gris oscuro"
 
 #: ega/options/edgePosColor/darkgreen.title
+#: ega/options/hierEdgeColor/darkgreen.title
 msgid "Dark green"
 msgstr "Verde oscuro"
 
@@ -181,6 +188,10 @@ msgstr "Colores de las dimensiones"
 #: ega/options/showFrequencyPlot.title
 msgid "Dimension frequency plot"
 msgstr "Gráfico de frecuencia de dimensiones"
+
+#: ega/options/hierDimSize.title
+msgid "Dimension node size"
+msgstr "Tamaño de los nodos de dimensiones"
 
 #: ega/results/bootDimStability.title
 msgid "Dimension stability"
@@ -225,13 +236,22 @@ msgstr "EGAnetLab lleva a jamovi los métodos de psicometría de redes del paque
 msgid "EGAnetLab default"
 msgstr "Por defecto de EGAnetLab"
 
+#: ega/options/hierEdgeColor.title
+msgid "Edge color"
+msgstr "Color de las aristas"
+
 #: ega/options/edgeLabelSize.title
 msgid "Edge weight size"
 msgstr "Tamaño de los pesos"
 
 #: ega/options/edgeSize.title
+#: ega/options/hierEdgeWidth.title
 msgid "Edge width"
 msgstr "Grosor de arista"
+
+#: ega/ui[11][2][0].label
+msgid "Edges"
+msgstr "Aristas"
 
 #: ega/options/layout/eigen.title
 msgid "Eigenvector"
@@ -299,6 +319,7 @@ msgstr "GLASSO (EBIC)"
 
 #: ega/options/edgePosColor/grey50.title
 #: ega/options/edgeNegColor/grey50.title
+#: ega/options/hierEdgeColor/grey55.title
 msgid "Gray"
 msgstr "Gris"
 
@@ -331,6 +352,7 @@ msgid "Hierarchical structure"
 msgstr "Estructura jerárquica"
 
 #: ega/results/hierPlot.title
+#: ega/ui[12].label
 msgid "Hierarchical structure plot"
 msgstr "Gráfico de la estructura jerárquica"
 
@@ -390,6 +412,14 @@ msgstr "Pertenencia de los ítems por estructura"
 msgid "Item membership with and without wording control"
 msgstr "Pertenencia de los ítems con y sin control de la redacción"
 
+#: ega/options/hierItemLabelSize.title
+msgid "Item name size"
+msgstr "Tamaño del nombre de los ítems"
+
+#: ega/options/hierItemSize.title
+msgid "Item node size"
+msgstr "Tamaño de los nodos de ítems"
+
 #: ega/results/uvaPairs.title
 msgid "Item pairs by weighted topological overlap"
 msgstr "Pares de ítems por solapamiento topológico ponderado"
@@ -433,6 +463,7 @@ msgid "Label size"
 msgstr "Tamaño de etiqueta"
 
 #: ega/options/layout.title
+#: ega/ui[11][0][0].label
 msgid "Layout"
 msgstr "Disposición"
 
@@ -443,6 +474,10 @@ msgstr "Autovalor principal"
 #: ega/options/legendPosition/left.title
 msgid "Left"
 msgstr "Izquierda"
+
+#: ega/ui[11][3][0].label
+msgid "Legend"
+msgstr "Leyenda"
 
 #: ega/options/legendPosition.title
 msgid "Legend position"
@@ -545,6 +580,7 @@ msgid "Network loadings (standardized)"
 msgstr "Cargas de red (estandarizadas)"
 
 #: ega/options/showNetworkPlot.title
+#: ega/ui[11].label
 msgid "Network plot"
 msgstr "Gráfico de red"
 
@@ -570,6 +606,14 @@ msgstr "Forma de nodo"
 #: ega/options/nodeSize.title
 msgid "Node size"
 msgstr "Tamaño de nodo"
+
+#: ega/ui[12][2][0].label
+msgid "Nodes and edges"
+msgstr "Nodos y aristas"
+
+#: ega/ui[11][1][0].label
+msgid "Nodes and labels"
+msgstr "Nodos y etiquetas"
 
 #: ega/results/notes.title
 msgid "Notes"
@@ -604,23 +648,8 @@ msgstr "Paramétrico"
 msgid "Pearson"
 msgstr "Pearson"
 
-#: ega/ui[13].label
-msgid "Plot Edges"
-msgstr "Gráfico: aristas"
-
-#: ega/ui[11].label
-msgid "Plot Layout"
-msgstr "Gráfico: disposición"
-
-#: ega/ui[14].label
-msgid "Plot Legend"
-msgstr "Gráfico: leyenda"
-
-#: ega/ui[12].label
-msgid "Plot Nodes and Labels"
-msgstr "Gráfico: nodos y etiquetas"
-
 #: ega/options/plotTitle.title
+#: ega/options/hierPlotTitle.title
 msgid "Plot title"
 msgstr "Título del gráfico"
 
@@ -740,9 +769,17 @@ msgstr "Conjunto"
 msgid "Show edge weights"
 msgstr "Mostrar pesos de aristas"
 
+#: ega/options/hierItemLabels.title
+msgid "Show item names"
+msgstr "Mostrar nombres de los ítems"
+
 #: ega/options/showLegend.title
 msgid "Show legend"
 msgstr "Mostrar leyenda"
+
+#: ega/options/hierShowLevels.title
+msgid "Show level names"
+msgstr "Mostrar nombres de los niveles"
 
 #: ega/options/edgeNegLty/solid.title
 msgid "Solid"
@@ -835,6 +872,10 @@ msgstr "TLI"
 #: ega/options/model/TMFG.title
 msgid "TMFG"
 msgstr "TMFG"
+
+#: ega/ui[12][1][0].label
+msgid "Text"
+msgstr "Texto"
 
 #: ega/options/theoryFactors.title
 #: ega/ui[5][2][0].label
