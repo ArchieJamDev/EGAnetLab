@@ -972,6 +972,279 @@ items:
     type: Html
     visible: (runCFA && runHier)
 
+  # ---------------------------------------------------------------------------
+  # Group comparison: metric invariance and NCT.
+  # ES: Comparación entre grupos: invarianza métrica y NCT.
+  # ---------------------------------------------------------------------------
+
+  - name: groupStatus
+    title: Group comparison
+    type: Html
+    visible: (runInvariance || runNCT)
+
+  - name: groupSizes
+    title: Groups compared
+    type: Table
+    rows: 0
+    visible: (runInvariance || runNCT)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - group
+      - pairedVars
+      - groupSeed
+      - reportLang
+    columns:
+      - name: group
+        title: "Group"
+        type: text
+      - name: n
+        title: "N"
+        type: integer
+
+  - name: invStatus
+    title: Metric invariance
+    type: Html
+    visible: (runInvariance)
+
+  - name: invTable
+    title: Network loadings by group
+    type: Table
+    rows: 0
+    visible: (runInvariance)
+    refs:
+      - jamison_2024
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - group
+      - pairedVars
+      - groupSeed
+      - reportLang
+      - invStructure
+      - invConfigCut
+      - invIter
+    columns:
+      - name: pair
+        title: "Comparison"
+        type: text
+      - name: item
+        title: "Item"
+        type: text
+      - name: dimension
+        title: "Dimension"
+        type: text
+      - name: load1
+        title: "Loading, first group"
+        type: number
+        format: zto
+      - name: load2
+        title: "Loading, second group"
+        type: number
+        format: zto
+      - name: diff
+        title: "Difference"
+        type: number
+        format: zto
+      - name: p
+        title: "p"
+        type: number
+        format: zto,pvalue
+      - name: padj
+        title: "p (BH)"
+        type: number
+        format: zto,pvalue
+      - name: direction
+        title: "Direction"
+        type: text
+
+  - name: invPlot
+    title: Network loadings by group
+    type: Image
+    width: 600
+    height: 450
+    renderFun: .plotInvariance
+    visible: (runInvariance && showInvPlot)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - group
+      - pairedVars
+      - groupSeed
+      - reportLang
+      - invStructure
+      - invConfigCut
+      - invIter
+      - plotPalette
+
+  - name: invInterpretation
+    title: Metric invariance interpretation
+    type: Html
+    visible: (runInvariance)
+
+  - name: nctStatus
+    title: Network Comparison Test
+    type: Html
+    visible: (runNCT)
+
+  - name: nctGlobal
+    title: Global network comparison
+    type: Table
+    rows: 0
+    visible: (runNCT)
+    refs:
+      - van_borkulo_2023
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - group
+      - pairedVars
+      - groupSeed
+      - reportLang
+      - nctIter
+      - nctEdges
+      - nctCentrality
+      - nctAdjust
+    columns:
+      - name: pair
+        title: "Comparison"
+        type: text
+      - name: test
+        title: "Test"
+        type: text
+      - name: value1
+        title: "First"
+        type: number
+        format: zto
+      - name: value2
+        title: "Second"
+        type: number
+        format: zto
+      - name: stat
+        title: "Statistic"
+        type: number
+        format: zto
+      - name: p
+        title: "p"
+        type: number
+        format: zto,pvalue
+
+  - name: nctEdgeTable
+    title: Edges that differ
+    type: Table
+    rows: 0
+    visible: (runNCT && nctEdges)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - group
+      - pairedVars
+      - groupSeed
+      - reportLang
+      - nctIter
+      - nctEdges
+      - nctCentrality
+      - nctAdjust
+    columns:
+      - name: pair
+        title: "Comparison"
+        type: text
+      - name: edge
+        title: "Edge"
+        type: text
+      - name: w1
+        title: "Weight, first"
+        type: number
+        format: zto
+      - name: w2
+        title: "Weight, second"
+        type: number
+        format: zto
+      - name: diff
+        title: "Difference"
+        type: number
+        format: zto
+      - name: p
+        title: "p (adjusted)"
+        type: number
+        format: zto,pvalue
+
+  - name: nctCentralityTable
+    title: Node strength and expected influence
+    type: Table
+    rows: 0
+    visible: (runNCT && nctCentrality)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - group
+      - pairedVars
+      - groupSeed
+      - reportLang
+      - nctIter
+      - nctEdges
+      - nctCentrality
+      - nctAdjust
+    columns:
+      - name: pair
+        title: "Comparison"
+        type: text
+      - name: item
+        title: "Item"
+        type: text
+      - name: measure
+        title: "Measure"
+        type: text
+      - name: diff
+        title: "Difference"
+        type: number
+        format: zto
+      - name: p
+        title: "p (adjusted)"
+        type: number
+        format: zto,pvalue
+
+  - name: nctInterpretation
+    title: Network Comparison Test interpretation
+    type: Html
+    visible: (runNCT)
+
   - name: splitOV
     title: Subsample
     type: Output

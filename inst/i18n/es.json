@@ -41,11 +41,17 @@
             "BIC": [
                 "BIC"
             ],
+            "Benjamini-Hochberg (FDR)": [
+                "Benjamini-Hochberg (FDR)"
+            ],
             "Black": [
                 "Negro"
             ],
             "Blue": [
                 "Azul"
+            ],
+            "Bonferroni": [
+                "Bonferroni"
             ],
             "Bootstrap samples": [
                 "Muestras bootstrap"
@@ -89,6 +95,12 @@
             "Compare structures with TEFI": [
                 "Comparar estructuras con TEFI"
             ],
+            "Comparison": [
+                "Comparación"
+            ],
+            "Configural stability cutoff": [
+                "Punto de corte de estabilidad configural"
+            ],
             "Confirm with CFA": [
                 "Confirmar con CFA"
             ],
@@ -122,6 +134,9 @@
             "Diamond": [
                 "Rombo"
             ],
+            "Difference": [
+                "Diferencia"
+            ],
             "Difference from lowest": [
                 "Diferencia con el más bajo"
             ],
@@ -149,11 +164,17 @@
             "Dimensions": [
                 "Dimensiones"
             ],
+            "Direction": [
+                "Dirección"
+            ],
             "Dotted": [
                 "Punteada"
             ],
             "EGA": [
                 "EGA"
+            ],
+            "EGA solution (configural invariance assumed)": [
+                "Solución del EGA (se asume invarianza configural)"
             ],
             "EGAnet Lab": [
                 "EGAnet Lab"
@@ -163,6 +184,9 @@
             ],
             "EGAnetLab default": [
                 "Por defecto de EGAnetLab"
+            ],
+            "Edge": [
+                "Arista"
             ],
             "Edge color": [
                 "Color de las aristas"
@@ -175,6 +199,9 @@
             ],
             "Edges": [
                 "Aristas"
+            ],
+            "Edges that differ": [
+                "Aristas que difieren"
             ],
             "Eigenvector": [
                 "Autovector"
@@ -212,14 +239,32 @@
             "Factor": [
                 "Factor"
             ],
+            "First": [
+                "Primero"
+            ],
             "Frequency of the number of dimensions": [
                 "Frecuencia del número de dimensiones"
             ],
             "GLASSO (EBIC)": [
                 "GLASSO (EBIC)"
             ],
+            "Global network comparison": [
+                "Comparación global de las redes"
+            ],
             "Gray": [
                 "Gris"
+            ],
+            "Group": [
+                "Grupo"
+            ],
+            "Group comparison": [
+                "Comparación entre grupos"
+            ],
+            "Grouping variable": [
+                "Variable de agrupación"
+            ],
+            "Groups compared": [
+                "Grupos comparados"
             ],
             "Hide edges weaker than": [
                 "Ocultar aristas menores que"
@@ -248,6 +293,9 @@
             "Higher order": [
                 "Orden superior"
             ],
+            "Holm": [
+                "Holm"
+            ],
             "If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction.": [
                 "Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
             ],
@@ -257,8 +305,14 @@
             "Include the other community algorithms": [
                 "Incluir los otros algoritmos de comunidades"
             ],
+            "Independent groups: put the grouping variable in the Grouping variable box. Same people measured twice: put the second measurement of the items below, in the same order as the items (NCT only).": [
+                "Grupos independientes: coloque la variable de agrupación en la caja Variable de agrupación. Mismas personas medidas dos veces: coloque abajo la segunda medición de los ítems, en el mismo orden de los ítems (solo NCT)."
+            ],
             "Introduction": [
                 "Introducción"
+            ],
+            "Invariance (independent groups)": [
+                "Invarianza (grupos independientes)"
             ],
             "Item": [
                 "Ítem"
@@ -341,6 +395,15 @@
             "Loading": [
                 "Carga"
             ],
+            "Loading, first group": [
+                "Carga, primer grupo"
+            ],
+            "Loading, second group": [
+                "Carga, segundo grupo"
+            ],
+            "Loadings by group plot": [
+                "Gráfico de cargas por grupo"
+            ],
             "Louvain": [
                 "Louvain"
             ],
@@ -358,6 +421,18 @@
             ],
             "Mean item stability": [
                 "Estabilidad media de ítems"
+            ],
+            "Measure": [
+                "Medida"
+            ],
+            "Metric invariance": [
+                "Invarianza métrica"
+            ],
+            "Metric invariance interpretation": [
+                "Interpretación de la invarianza métrica"
+            ],
+            "Metric invariance of network loadings": [
+                "Invarianza métrica de las cargas de red"
             ],
             "Missing Values": [
                 "Valores perdidos"
@@ -389,6 +464,15 @@
             "Negatively worded items": [
                 "Ítems redactados en negativo"
             ],
+            "Network Comparison Test": [
+                "Network Comparison Test"
+            ],
+            "Network Comparison Test (NCT)": [
+                "Network Comparison Test (NCT)"
+            ],
+            "Network Comparison Test interpretation": [
+                "Interpretación del Network Comparison Test"
+            ],
             "Network Model": [
                 "Modelo de red"
             ],
@@ -397,6 +481,9 @@
             ],
             "Network loadings (standardized)": [
                 "Cargas de red (estandarizadas)"
+            ],
+            "Network loadings by group": [
+                "Cargas de red por grupo"
             ],
             "Network plot": [
                 "Gráfico de red"
@@ -416,11 +503,17 @@
             "Node size": [
                 "Tamaño de nodo"
             ],
+            "Node strength and expected influence": [
+                "Fuerza e influencia esperada de los nodos"
+            ],
             "Nodes and edges": [
                 "Nodos y aristas"
             ],
             "Nodes and labels": [
                 "Nodos y etiquetas"
+            ],
+            "None": [
+                "Ninguna"
             ],
             "Notes": [
                 "Notas"
@@ -445,6 +538,12 @@
             ],
             "Pearson": [
                 "Pearson"
+            ],
+            "Permutations (NCT)": [
+                "Permutaciones (NCT)"
+            ],
+            "Permutations (invariance)": [
+                "Permutaciones (invarianza)"
             ],
             "Plot title": [
                 "Título del gráfico"
@@ -512,6 +611,9 @@
             "Same in A and B": [
                 "Igual en A y B"
             ],
+            "Same items, second measurement": [
+                "Mismos ítems, segunda medición"
+            ],
             "Samples": [
                 "Muestras"
             ],
@@ -523,6 +625,9 @@
             ],
             "Save subsample": [
                 "Guardar SubMuestra"
+            ],
+            "Second": [
+                "Segundo"
             ],
             "Seed": [
                 "Semilla"
@@ -569,6 +674,9 @@
             "Stability interpretation": [
                 "Interpretación de la estabilidad"
             ],
+            "Statistic": [
+                "Estadístico"
+            ],
             "Structural consistency": [
                 "Consistencia estructural"
             ],
@@ -577,6 +685,9 @@
             ],
             "Structure comparison interpretation": [
                 "Interpretación de la comparación de estructuras"
+            ],
+            "Structure to test": [
+                "Estructura a evaluar"
             ],
             "Structures compared": [
                 "Estructuras comparadas"
@@ -611,6 +722,18 @@
             "TMFG": [
                 "TMFG"
             ],
+            "Test": [
+                "Prueba"
+            ],
+            "Test configural invariance first (bootstrap)": [
+                "Evaluar antes la invarianza configural (bootstrap)"
+            ],
+            "Test every edge": [
+                "Evaluar cada arista"
+            ],
+            "Test node strength and expected influence": [
+                "Evaluar la fuerza y la influencia esperada de los nodos"
+            ],
             "Text": [
                 "Texto"
             ],
@@ -644,6 +767,12 @@
             "Walktrap": [
                 "Walktrap"
             ],
+            "Weight, first": [
+                "Peso, primero"
+            ],
+            "Weight, second": [
+                "Peso, segundo"
+            ],
             "White": [
                 "Blanco"
             ],
@@ -652,6 +781,18 @@
             ],
             "Wording effects interpretation": [
                 "Interpretación de los efectos de redacción"
+            ],
+            "p": [
+                "p"
+            ],
+            "p (BH)": [
+                "p (BH)"
+            ],
+            "p (adjusted)": [
+                "p (ajustado)"
+            ],
+            "p-value correction": [
+                "Corrección de valores p"
             ],
             "r with mean score": [
                 "r con el promedio"

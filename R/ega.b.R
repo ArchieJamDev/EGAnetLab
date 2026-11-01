@@ -373,11 +373,21 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 cfa_warnings <- private$.runCFA(prep, ega, tr, txt)
 
             # -----------------------------------------------------------------
+            # Group comparison (metric invariance and NCT), only when
+            # requested.
+            # ES: Comparación entre grupos (invarianza métrica y NCT), solo si
+            # se pide.
+            # -----------------------------------------------------------------
+            group_warnings <- character(0)
+            if (isTRUE(self$options$runInvariance) || isTRUE(self$options$runNCT))
+                group_warnings <- private$.runGroups(prep, ega, tr, txt)
+
+            # -----------------------------------------------------------------
             # Notes: every EGAnet warning is shown, never suppressed.
             # ES: Notas: cada advertencia de EGAnet se muestra, nunca se
             # suprime.
             # -----------------------------------------------------------------
-            warnings <- unique(c(fit$warnings, score_warnings, compare_warnings, hier_warnings, ri_warnings, boot_warnings, uva_warnings, cfa_warnings))
+            warnings <- unique(c(fit$warnings, score_warnings, compare_warnings, hier_warnings, ri_warnings, boot_warnings, uva_warnings, cfa_warnings, group_warnings))
             # Purely informative package notices are left out (Archie's
             # request): the report already states what they say.
             # ES: Se omiten los avisos puramente informativos de los
@@ -905,6 +915,384 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             paragraphs <- c(paragraphs, txt("cfa_hier", "interp_optimistic"))
             self$results$cfaHierInterpretation$setContent(.el_html_block(
                 tr("Models with and without hierarchy", "Modelos con y sin jerarquía"), paragraphs))
+
+            unique(warnings)
+        },
+
+        # ---------------------------------------------------------------------
+        # Group comparison. Independent groups come from the grouping
+        # variable; the same people measured twice come from the second set
+        # of items (paired, NCT only). Metric invariance (Jamison et al.,
+        # 2024) tests whether each item's network loading on its dimension
+        # differs between groups; the Network Comparison Test (van Borkulo
+        # et al., 2023) tests whether the networks differ in structure
+        # (largest edge difference), global strength and, if asked, each edge
+        # and each node's strength and expected influence. A failure is
+        # explained in its section and leaves the rest intact.
+        # ES: Comparación entre grupos. Los grupos independientes vienen de
+        # la variable de agrupación; las mismas personas medidas dos veces,
+        # del segundo conjunto de ítems (pareado, solo NCT). La invarianza
+        # métrica (Jamison et al., 2024) prueba si la carga de red de cada
+        # ítem en su dimensión difiere entre grupos; el Network Comparison
+        # Test (van Borkulo et al., 2023) prueba si las redes difieren en
+        # estructura (mayor diferencia de aristas), fuerza global y, si se
+        # pide, en cada arista y en la fuerza e influencia esperada de cada
+        # nodo. Un fallo se explica en su sección y deja intacto el resto.
+        # ---------------------------------------------------------------------
+        .runGroups = function(prep, ega, tr, txt) {
+
+            o <- self$options
+            heading <- tr("Group comparison", "Comparación entre grupos")
+            sizes <- self$results$groupSizes
+            sizes$deleteRows()
+            warnings <- character(0)
+            items <- names(ega$wc)
+            seed <- as.integer(o$groupSeed)
+
+            group_var <- o$group
+            has_group <- !is.null(group_var) && length(group_var) == 1 && nzchar(group_var)
+            paired_vars <- as.character(unlist(o$pairedVars))
+            has_paired <- length(paired_vars) > 0
+
+            intro <- txt("groups", "intro")
+            notes <- character(0)
+
+            # Independent groups.
+            # ES: Grupos independientes.
+            g <- NULL
+            if (has_group) {
+                g <- .el_group_vector(self$data, rownames(prep$data), group_var)
+                # Groups in order of appearance, as the invariance test lists them.
+                # ES: Grupos en orden de aparición, como los lista la prueba de
+                # invarianza.
+                group_order <- function(x) table(factor(x[!is.na(x)], levels = unique(x[!is.na(x)])))
+                counts <- group_order(g)
+                small <- names(counts)[counts < 10]
+                if (length(small) > 0) {
+                    notes <- c(notes, sprintf(txt("groups", "small_dropped"), paste(small, collapse = ", ")))
+                    g[g %in% small] <- NA
+                }
+                if (sum(is.na(g)) > 0)
+                    notes <- c(notes, sprintf(txt("groups", "missing_group"), sum(is.na(g))))
+                counts <- group_order(g)
+                for (i in seq_along(counts))
+                    .el_add_row(sizes, i, list(group = names(counts)[i], n = as.integer(counts[[i]])))
+                if (length(counts) < 2) {
+                    notes <- c(notes, txt("groups", "need_two"))
+                    g <- NULL
+                } else if (length(counts) > 2) {
+                    notes <- c(notes, sprintf(txt("groups", "pairwise"), length(counts)))
+                }
+            }
+
+            # Same people measured twice.
+            # ES: Las mismas personas medidas dos veces.
+            d2 <- NULL
+            if (has_paired) {
+                if (length(paired_vars) != length(items)) {
+                    notes <- c(notes, sprintf(txt("groups", "paired_count"), length(paired_vars), length(items)))
+                } else {
+                    index <- match(rownames(prep$data), rownames(self$data))
+                    d2 <- as.data.frame(lapply(paired_vars, function(v) jmvcore::toNumeric(self$data[[v]][index])))
+                    names(d2) <- items
+                    rownames(d2) <- rownames(prep$data)
+                    # The second measurement gets the same reversal as the first.
+                    # ES: La segunda medición recibe la misma inversión que la
+                    # primera.
+                    if (identical(o$negCoding, "raw") && length(prep$neg) > 0)
+                        d2 <- .el_reverse_items(d2, prep$neg)
+                    if (!is.null(g) || !has_group) {
+                        both <- stats::complete.cases(prep$data[, items, drop = FALSE]) & stats::complete.cases(d2)
+                        .el_add_row(sizes, sizes$rowCount + 1, list(
+                            group = tr("Same people, both measurements", "Mismas personas, ambas mediciones"),
+                            n = as.integer(sum(both))))
+                    }
+                }
+            }
+
+            if (is.null(g) && is.null(d2))
+                notes <- c(notes, txt("groups", "nothing"))
+
+            self$results$groupStatus$setContent(.el_html_block(heading, c(intro, notes)))
+
+            if (isTRUE(o$runInvariance))
+                warnings <- c(warnings, private$.runInvariance(prep, ega, g, seed, tr, txt))
+            if (isTRUE(o$runNCT))
+                warnings <- c(warnings, private$.runNCT(prep, ega, g, d2, seed, tr, txt))
+
+            unique(warnings)
+        },
+
+        .runInvariance = function(prep, ega, g, seed, tr, txt) {
+
+            o <- self$options
+            heading <- tr("Metric invariance", "Invarianza métrica")
+            table <- self$results$invTable
+            table$deleteRows()
+            hide <- function() for (name in c("invTable", "invPlot", "invInterpretation"))
+                self$results[[name]]$setVisible(FALSE)
+
+            if (is.null(g)) {
+                self$results$invStatus$setContent(.el_html_block(heading, c(txt("inv", "intro"), txt("inv", "no_groups"))))
+                hide()
+                return(character(0))
+            }
+
+            wc <- ega$wc
+            keep <- names(wc)[!is.na(wc)]
+            rows <- !is.na(g)
+            d <- prep$data[rows, keep, drop = FALSE]
+            groups <- g[rows]
+            configural <- identical(o$invStructure, "configural")
+
+            fit <- .el_capture(suppressMessages(EGAnet::invariance(
+                data = d, groups = groups,
+                structure = if (configural) NULL else as.numeric(wc[keep]),
+                iter = as.integer(o$invIter),
+                configural.threshold = as.numeric(o$invConfigCut),
+                configural.type = "parametric",
+                corr = if (identical(o$corr, "cosine")) "auto" else o$corr,
+                na.data = o$naData, model = o$model, algorithm = o$algorithm,
+                uni.method = o$uniMethod, ncores = 1, seed = as.numeric(seed), verbose = FALSE)))
+
+            status <- c(txt("inv", "intro"),
+                        txt("inv", if (configural) "structure_configural" else "structure_ega"),
+                        sprintf(txt("inv", "iter_seed"), as.integer(o$invIter), seed))
+            if (length(keep) < length(wc))
+                status <- c(status, sprintf(txt("inv", "isolated"), paste(setdiff(names(wc), keep), collapse = ", ")))
+
+            if (is.null(fit$value)) {
+                self$results$invStatus$setContent(.el_html_block(heading, c(status,
+                    sprintf(txt("inv", "failed"), if (is.null(fit$error)) "—" else fit$error))))
+                hide()
+                return(fit$warnings)
+            }
+            r <- fit$value
+            if (is.null(r$results)) {
+                stable <- if (!is.null(r$data)) colnames(r$data) else character(0)
+                self$results$invStatus$setContent(.el_html_block(heading, c(status,
+                    sprintf(txt("inv", "configural_failed"), as.numeric(o$invConfigCut)))))
+                hide()
+                return(fit$warnings)
+            }
+
+            removed <- character(0)
+            if (configural && !is.null(r$configural.results$data))
+                removed <- setdiff(keep, colnames(r$configural.results$data))
+            if (configural)
+                status <- c(status, if (length(removed) == 0) txt("inv", "configural_ok") else
+                    sprintf(txt("inv", "configural_partial"), length(removed), paste(removed, collapse = ", ")))
+            self$results$invStatus$setContent(paste0(
+                .el_html_block(heading, status),
+                .el_html_block(NULL, .el_html_list(txt("inv", "guide")), raw = TRUE)))
+
+            # Results by pair of groups.
+            # ES: Resultados por par de grupos.
+            group_names <- as.character(r$groups$unique_groups)
+            loads <- r$groups$loadings
+            pairs <- utils::combn(seq_along(group_names), 2, simplify = FALSE)
+            memb <- r$memberships
+            k <- 0
+            sig_items <- character(0); sig_fdr <- character(0); directions <- character(0)
+            plot_rows <- list()
+            for (i in seq_along(r$results)) {
+                df <- r$results[[i]]
+                pair <- pairs[[i]]
+                label <- paste(group_names[pair[1]], tr("vs.", "vs."), group_names[pair[2]])
+                for (it in rownames(df)) {
+                    dim <- as.character(df[it, "Membership"])
+                    l1 <- tryCatch(as.numeric(loads[[pair[1]]][it, dim]), error = function(e) NA_real_)
+                    l2 <- tryCatch(as.numeric(loads[[pair[2]]][it, dim]), error = function(e) NA_real_)
+                    p <- as.numeric(df[it, "p"]); padj <- as.numeric(df[it, "p_BH"])
+                    direction <- if (!is.na(p) && p <= 0.05) paste(
+                        if (isTRUE(df[it, "Difference"] > 0)) group_names[pair[1]] else group_names[pair[2]],
+                        ">", if (isTRUE(df[it, "Difference"] > 0)) group_names[pair[2]] else group_names[pair[1]]) else ""
+                    k <- k + 1
+                    .el_add_row(table, k, list(pair = label, item = it, dimension = dim,
+                        load1 = .el_clean_num(l1), load2 = .el_clean_num(l2),
+                        diff = .el_clean_num(as.numeric(df[it, "Difference"])),
+                        p = .el_clean_num(p), padj = .el_clean_num(padj), direction = direction))
+                    if (!is.na(p) && p <= 0.05) { sig_items <- c(sig_items, it); directions <- c(directions, paste0(it, " (", direction, ")")) }
+                    if (!is.na(padj) && padj <= 0.05) sig_fdr <- c(sig_fdr, it)
+                }
+            }
+            table$getColumn("load1")$setTitle(tr("Loading, first group", "Carga, primer grupo"))
+            table$getColumn("load2")$setTitle(tr("Loading, second group", "Carga, segundo grupo"))
+            if (length(group_names) == 2) {
+                table$getColumn("load1")$setTitle(sprintf(tr("Loading, %s", "Carga, %s"), group_names[1]))
+                table$getColumn("load2")$setTitle(sprintf(tr("Loading, %s", "Carga, %s"), group_names[2]))
+                table$getColumn("pair")$setVisible(FALSE)
+            }
+
+            # Plot state: assigned loading of each item in each group.
+            # ES: Estado del gráfico: carga asignada de cada ítem en cada
+            # grupo.
+            for (j in seq_along(group_names))
+                for (it in names(memb)) {
+                    dim <- as.character(memb[[it]])
+                    v <- tryCatch(as.numeric(loads[[j]][it, dim]), error = function(e) NA_real_)
+                    plot_rows[[length(plot_rows) + 1]] <- data.frame(item = it, dimension = dim, group = group_names[j],
+                        loading = v, sig = it %in% sig_items, stringsAsFactors = FALSE)
+                }
+            if (isTRUE(o$showInvPlot) && length(plot_rows) > 0)
+                self$results$invPlot$setState(list(
+                    data = do.call(rbind, plot_rows),
+                    labels = list(x = tr("Network loading on its dimension", "Carga de red en su dimensión"),
+                                  group = tr("Group", "Grupo"),
+                                  dimension = tr("Dimension", "Dimensión"),
+                                  note = tr("* p ≤ .05 (uncorrected)", "* p ≤ .05 (sin corregir)"))))
+
+            # Interpretation.
+            # ES: Interpretación.
+            sig_items <- unique(sig_items); sig_fdr <- unique(sig_fdr)
+            paragraphs <- character(0)
+            if (length(sig_items) == 0) {
+                paragraphs <- c(paragraphs, txt("inv", "interp_invariant"))
+            } else {
+                paragraphs <- c(paragraphs, sprintf(txt("inv", "interp_noninvariant"),
+                    length(sig_items), length(names(memb)), paste(unique(directions), collapse = "; ")))
+                paragraphs <- c(paragraphs, if (length(sig_fdr) == 0) txt("inv", "interp_fdr_none") else
+                    sprintf(txt("inv", "interp_fdr_some"), paste(sig_fdr, collapse = ", ")))
+            }
+            if (configural && length(removed) > 0)
+                paragraphs <- c(paragraphs, txt("inv", "interp_partial"))
+            paragraphs <- c(paragraphs, txt("inv", "interp_next"))
+            self$results$invInterpretation$setContent(.el_html_block(NULL, paragraphs))
+
+            fit$warnings
+        },
+
+        .runNCT = function(prep, ega, g, d2, seed, tr, txt) {
+
+            o <- self$options
+            heading <- tr("Network Comparison Test", "Network Comparison Test")
+            global <- self$results$nctGlobal
+            edge_table <- self$results$nctEdgeTable
+            cen_table <- self$results$nctCentralityTable
+            for (t in list(global, edge_table, cen_table)) t$deleteRows()
+            hide <- function() for (name in c("nctGlobal", "nctEdgeTable", "nctCentralityTable", "nctInterpretation"))
+                self$results[[name]]$setVisible(FALSE)
+            items <- names(ega$wc)
+            ordinal <- identical(o$corr, "auto") && isTRUE(prep$ordinal_like)
+
+            status <- c(txt("nct", "intro"),
+                        txt("nct", if (ordinal) "estimator_ordinal" else "estimator_pearson"),
+                        sprintf(txt("nct", "iter_seed"), as.integer(o$nctIter), seed))
+            if (!identical(o$model, "glasso"))
+                status <- c(status, sprintf(txt("nct", "model_note"), o$model))
+
+            # Comparisons: every pair of independent groups, and the paired
+            # comparison when a second measurement is given.
+            # ES: Comparaciones: cada par de grupos independientes, y la
+            # comparación pareada cuando hay una segunda medición.
+            comps <- list()
+            if (!is.null(g)) {
+                levels <- unique(g[!is.na(g)])
+                for (pr in utils::combn(levels, 2, simplify = FALSE)) {
+                    d1 <- prep$data[!is.na(g) & g == pr[1], items, drop = FALSE]
+                    dd <- prep$data[!is.na(g) & g == pr[2], items, drop = FALSE]
+                    comps[[length(comps) + 1]] <- list(label = paste(pr[1], "vs.", pr[2]), names = pr,
+                        d1 = d1[stats::complete.cases(d1), , drop = FALSE],
+                        d2 = dd[stats::complete.cases(dd), , drop = FALSE], paired = FALSE)
+                }
+            }
+            if (!is.null(d2)) {
+                d1 <- prep$data[, items, drop = FALSE]
+                both <- stats::complete.cases(d1) & stats::complete.cases(d2)
+                comps[[length(comps) + 1]] <- list(label = tr("Measurement 1 vs. 2", "Medición 1 vs. 2"),
+                    names = c(tr("Measurement 1", "Medición 1"), tr("Measurement 2", "Medición 2")),
+                    d1 = d1[both, , drop = FALSE], d2 = d2[both, , drop = FALSE], paired = TRUE)
+            }
+            if (length(comps) == 0) {
+                self$results$nctStatus$setContent(.el_html_block(heading, c(status, txt("nct", "nothing"))))
+                hide()
+                return(character(0))
+            }
+            if (any(vapply(comps, function(cmp) nrow(cmp$d1) < nrow(prep$data[, items, drop = FALSE]) && !cmp$paired && anyNA(prep$data), logical(1))))
+                status <- c(status, txt("nct", "complete_cases"))
+            self$results$nctStatus$setContent(paste0(
+                .el_html_block(heading, status),
+                .el_html_block(NULL, .el_html_list(txt("nct", "guide")), raw = TRUE)))
+
+            warnings <- character(0)
+            k <- 0; ke <- 0; kc <- 0
+            paragraphs <- character(0)
+            for (cmp in comps) {
+                fit <- .el_nct(cmp$d1, cmp$d2, paired = cmp$paired, iter = o$nctIter,
+                               edges = isTRUE(o$nctEdges), centrality = isTRUE(o$nctCentrality),
+                               adjust = o$nctAdjust, ordinal = ordinal, seed = seed)
+                warnings <- c(warnings, fit$warnings)
+                if (is.null(fit$value)) {
+                    paragraphs <- c(paragraphs, sprintf(txt("nct", "failed"), cmp$label,
+                                                        if (is.null(fit$error)) "—" else fit$error))
+                    next
+                }
+                v <- fit$value
+                k <- k + 1
+                .el_add_row(global, k, list(pair = cmp$label, test = txt("nct", "row_M"),
+                    value1 = NaN, value2 = NaN, stat = .el_clean_num(v$M), p = .el_clean_num(v$M_p)))
+                k <- k + 1
+                .el_add_row(global, k, list(pair = cmp$label, test = txt("nct", "row_S"),
+                    value1 = .el_clean_num(v$strength[1]), value2 = .el_clean_num(v$strength[2]),
+                    stat = .el_clean_num(v$S), p = .el_clean_num(v$S_p)))
+
+                n_edges <- 0
+                if (!is.null(v$edges)) {
+                    e <- v$edges[!is.na(v$edges$p) & v$edges$p <= 0.05, , drop = FALSE]
+                    n_edges <- nrow(e)
+                    for (i in seq_len(nrow(e))) {
+                        ke <- ke + 1
+                        .el_add_row(edge_table, ke, list(pair = cmp$label, edge = paste(e$a[i], "—", e$b[i]),
+                            w1 = .el_clean_num(e$w1[i]), w2 = .el_clean_num(e$w2[i]),
+                            diff = .el_clean_num(e$w1[i] - e$w2[i]), p = .el_clean_num(e$p[i])))
+                    }
+                }
+                n_cen <- 0
+                if (!is.null(v$centrality)) {
+                    cen <- v$centrality
+                    n_cen <- sum(!is.na(cen$p) & cen$p <= 0.05)
+                    for (i in seq_len(nrow(cen))) {
+                        kc <- kc + 1
+                        .el_add_row(cen_table, kc, list(pair = cmp$label, item = cen$item[i],
+                            measure = if (cen$measure[i] == "strength") tr("Strength", "Fuerza") else
+                                tr("Expected influence", "Influencia esperada"),
+                            diff = .el_clean_num(cen$diff[i]), p = .el_clean_num(cen$p[i])))
+                    }
+                }
+
+                # Interpretation of this comparison.
+                # ES: Interpretación de esta comparación.
+                paragraphs <- c(paragraphs, sprintf(txt("nct", "interp_n"), cmp$label,
+                    cmp$names[1], nrow(cmp$d1), cmp$names[2], nrow(cmp$d2),
+                    if (cmp$paired) txt("nct", "paired_word") else ""))
+                paragraphs <- c(paragraphs, sprintf(
+                    txt("nct", if (isTRUE(v$M_p <= 0.05)) "interp_M_sig" else "interp_M_ns"),
+                    .el_fmt_num(v$M, 3), .el_fmt_p(v$M_p)))
+                paragraphs <- c(paragraphs, sprintf(
+                    txt("nct", if (isTRUE(v$S_p <= 0.05)) "interp_S_sig" else "interp_S_ns"),
+                    .el_fmt_num(v$strength[1], 2), cmp$names[1], .el_fmt_num(v$strength[2], 2), cmp$names[2],
+                    .el_fmt_p(v$S_p)))
+                if (isTRUE(o$nctEdges))
+                    paragraphs <- c(paragraphs, if (n_edges == 0) txt("nct", "interp_edges_none") else
+                        sprintf(txt("nct", "interp_edges_some"), n_edges))
+                if (isTRUE(o$nctCentrality))
+                    paragraphs <- c(paragraphs, if (n_cen == 0) txt("nct", "interp_cen_none") else
+                        sprintf(txt("nct", "interp_cen_some"), n_cen))
+            }
+            if (isTRUE(o$nctEdges) && ke == 0)
+                edge_table$setNote("none", txt("nct", "no_edges_note"))
+            if (length(comps) == 1) {
+                global$getColumn("pair")$setVisible(FALSE)
+                edge_table$getColumn("pair")$setVisible(FALSE)
+                cen_table$getColumn("pair")$setVisible(FALSE)
+                global$getColumn("value1")$setTitle(comps[[1]]$names[1])
+                global$getColumn("value2")$setTitle(comps[[1]]$names[2])
+                edge_table$getColumn("w1")$setTitle(sprintf(tr("Weight, %s", "Peso, %s"), comps[[1]]$names[1]))
+                edge_table$getColumn("w2")$setTitle(sprintf(tr("Weight, %s", "Peso, %s"), comps[[1]]$names[2]))
+            }
+            global$setNote("M", txt("nct", "note_table"))
+            paragraphs <- c(paragraphs, txt("nct", "interp_next"))
+            self$results$nctInterpretation$setContent(.el_html_block(NULL, paragraphs))
 
             unique(warnings)
         },
@@ -1806,6 +2194,17 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("hierMembership", "Item membership by level", "Pertenencia de los ítems por nivel"),
                 c("hierInterpretation", "Hierarchical EGA interpretation", "Interpretación del EGA jerárquico"),
                 c("hierPlot", "Hierarchical structure plot", "Gráfico de la estructura jerárquica"),
+                c("groupStatus", "Group comparison", "Comparación entre grupos"),
+                c("groupSizes", "Groups compared", "Grupos comparados"),
+                c("invStatus", "Metric invariance", "Invarianza métrica"),
+                c("invTable", "Network loadings by group", "Cargas de red por grupo"),
+                c("invPlot", "Network loadings by group", "Cargas de red por grupo"),
+                c("invInterpretation", "Metric invariance interpretation", "Interpretación de la invarianza métrica"),
+                c("nctStatus", "Network Comparison Test", "Network Comparison Test"),
+                c("nctGlobal", "Global network comparison", "Comparación global de las redes"),
+                c("nctEdgeTable", "Edges that differ", "Aristas que difieren"),
+                c("nctCentralityTable", "Node strength and expected influence", "Fuerza e influencia esperada de los nodos"),
+                c("nctInterpretation", "Network Comparison Test interpretation", "Interpretación del Network Comparison Test"),
                 c("cfaHierModels", "Models with and without hierarchy (total sample)", "Modelos con y sin jerarquía (muestra total)"),
                 c("cfaHierInterpretation", "Hierarchical models interpretation", "Interpretación de los modelos jerárquicos"),
                 c("riStatus", "Wording effects (random-intercept EGA)", "Efectos de redacción (EGA con intercepto aleatorio)"),
@@ -1863,6 +2262,29 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("riMembership", "item", "Item", "Ítem"),
                 c("riMembership", "loading", "Random-intercept loading", "Carga del intercepto aleatorio"),
                 c("riMembership", "negative", "Negatively worded", "Redactado en negativo"),
+                c("groupSizes", "group", "Group", "Grupo"),
+                c("invTable", "pair", "Comparison", "Comparación"),
+                c("invTable", "item", "Item", "Ítem"),
+                c("invTable", "dimension", "Dimension", "Dimensión"),
+                c("invTable", "diff", "Difference", "Diferencia"),
+                c("invTable", "padj", "p (BH)", "p (BH)"),
+                c("invTable", "direction", "Direction", "Dirección"),
+                c("nctGlobal", "pair", "Comparison", "Comparación"),
+                c("nctGlobal", "test", "Test", "Prueba"),
+                c("nctGlobal", "value1", "First", "Primero"),
+                c("nctGlobal", "value2", "Second", "Segundo"),
+                c("nctGlobal", "stat", "Statistic", "Estadístico"),
+                c("nctEdgeTable", "pair", "Comparison", "Comparación"),
+                c("nctEdgeTable", "edge", "Edge", "Arista"),
+                c("nctEdgeTable", "w1", "Weight, first", "Peso, primero"),
+                c("nctEdgeTable", "w2", "Weight, second", "Peso, segundo"),
+                c("nctEdgeTable", "diff", "Difference", "Diferencia"),
+                c("nctEdgeTable", "p", "p (adjusted)", "p (ajustado)"),
+                c("nctCentralityTable", "pair", "Comparison", "Comparación"),
+                c("nctCentralityTable", "item", "Item", "Ítem"),
+                c("nctCentralityTable", "measure", "Measure", "Medida"),
+                c("nctCentralityTable", "diff", "Difference", "Diferencia"),
+                c("nctCentralityTable", "p", "p (adjusted)", "p (ajustado)"),
                 c("cfaHierModels", "model", "Model", "Modelo"),
                 c("cfaHierModels", "items", "Items", "Ítems"),
                 c("cfaHierModels", "chisq", "χ² (df)", "χ² (gl)"),
@@ -1957,6 +2379,45 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (!is.null(palette))
                 plot <- plot + ggplot2::scale_color_manual(
                     values = rep_len(palette, nlevels(df$dimension)))
+
+            print(plot)
+            TRUE
+        },
+
+        # ---------------------------------------------------------------------
+        # Network loading of each item on its dimension in each group, one
+        # row per item (grouped by dimension), items that differ marked *.
+        # ES: Carga de red de cada ítem en su dimensión en cada grupo, una
+        # fila por ítem (agrupados por dimensión), con * en los que difieren.
+        # ---------------------------------------------------------------------
+        .plotInvariance = function(image, ggtheme, theme, ...) {
+            state <- image$state
+            if (is.null(state) || is.null(state$data) || nrow(state$data) == 0)
+                return(FALSE)
+
+            df <- state$data
+            item_order <- unique(df$item)
+            df <- df[order(as.numeric(df$dimension), match(df$item, item_order)), , drop = FALSE]
+            dim_prefix <- if (is.null(state$labels$dimension)) "" else paste0(state$labels$dimension, " ")
+            df$dimension <- factor(paste0(dim_prefix, df$dimension),
+                                   levels = unique(paste0(dim_prefix, df$dimension)))
+            items <- unique(df$item)
+            df$label <- ifelse(df$sig, paste0(df$item, " *"), df$item)
+            labels <- unique(df$label[match(items, df$item)])
+            df$label <- factor(df$label, levels = rev(labels))
+            df$group <- factor(df$group, levels = unique(state$data$group))
+
+            plot <- ggplot2::ggplot(df, ggplot2::aes(x = loading, y = label, colour = group)) +
+                ggplot2::geom_line(ggplot2::aes(group = label), colour = "grey70", linewidth = 0.8) +
+                ggplot2::geom_point(size = 3) +
+                ggplot2::facet_grid(dimension ~ ., scales = "free_y", space = "free_y") +
+                ggplot2::labs(x = state$labels$x, y = NULL, colour = state$labels$group,
+                              caption = state$labels$note) +
+                ggtheme
+
+            palette <- .el_plot_series_palette(self$options$plotPalette)
+            if (!is.null(palette))
+                plot <- plot + ggplot2::scale_colour_manual(values = rep_len(palette, nlevels(df$group)))
 
             print(plot)
             TRUE

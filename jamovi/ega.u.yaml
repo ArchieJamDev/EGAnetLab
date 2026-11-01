@@ -38,6 +38,13 @@ children:
           - type: VariablesListBox
             name: vars
             isTarget: true
+      - type: TargetLayoutBox
+        label: Grouping variable
+        children:
+          - type: VariablesListBox
+            name: group
+            maxItemCount: 1
+            isTarget: true
   - type: CollapseBox
     label: Report Language
     collapsed: false
@@ -162,6 +169,95 @@ children:
           Only for scales that mix positively and negatively worded items.
           Mark the negative items in the Negatively worded items box; this analysis
           uses them in their original direction (not recoded).
+  - type: CollapseBox
+    label: Group comparison
+    collapsed: true
+    children:
+      - type: Label
+        label: >-
+          Independent groups: put the grouping variable in the Grouping
+          variable box. Same people measured twice: put the second
+          measurement of the items below, in the same order as the items
+          (NCT only).
+      - type: VariableSupplier
+        persistentItems: false
+        stretchFactor: 1
+        suggested:
+          - continuous
+          - ordinal
+        permitted:
+          - numeric
+        children:
+          - type: TargetLayoutBox
+            label: Same items, second measurement
+            children:
+              - type: VariablesListBox
+                name: pairedVars
+                isTarget: true
+                height: small
+      - type: LayoutBox
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            cell:
+              column: 0
+              row: 0
+            children:
+              - type: Label
+                label: Invariance (independent groups)
+                children:
+                  - type: CheckBox
+                    name: runInvariance
+                  - type: ComboBox
+                    name: invStructure
+                    enable: (runInvariance)
+                  - type: TextBox
+                    name: invConfigCut
+                    format: number
+                    enable: (runInvariance && invStructure:configural)
+                  - type: TextBox
+                    name: invIter
+                    format: number
+                    enable: (runInvariance)
+                  - type: CheckBox
+                    name: showInvPlot
+                    enable: (runInvariance)
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            cell:
+              column: 1
+              row: 0
+            children:
+              - type: Label
+                label: Network Comparison Test
+                children:
+                  - type: CheckBox
+                    name: runNCT
+                  - type: TextBox
+                    name: nctIter
+                    format: number
+                    enable: (runNCT)
+                  - type: CheckBox
+                    name: nctEdges
+                    enable: (runNCT)
+                  - type: CheckBox
+                    name: nctCentrality
+                    enable: (runNCT)
+                  - type: ComboBox
+                    name: nctAdjust
+                    enable: (runNCT && (nctEdges || nctCentrality))
+          - type: LayoutBox
+            margin: large
+            cell:
+              column: 0
+              row: 1
+            children:
+              - type: TextBox
+                name: groupSeed
+                format: number
+                enable: (runInvariance || runNCT)
   - type: CollapseBox
     label: Redundancy (UVA)
     collapsed: true

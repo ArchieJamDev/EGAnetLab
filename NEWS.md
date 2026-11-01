@@ -1,5 +1,26 @@
 # EGAnetLab 0.1.0 (development)
 
+## EGA: comparison between groups (phase 5)
+
+* New **Grouping variable** box and **Group comparison** box in the EGA
+  analysis. Groups with fewer than 10 cases are left out with a note; with
+  more than two groups every pair is compared.
+* **Metric invariance** wraps `EGAnet::invariance()` (Jamison, Christensen
+  & Golino, 2024): network loadings of each item in each group, their
+  difference, permutation p values with and without the Benjamini-Hochberg
+  correction, and the group with the larger loading. The structure tested
+  is the EGA solution or, optionally, the structure that is stable after a
+  configural bootstrap step. A plot shows each item's loading in each group.
+* **Network Comparison Test** wraps `NetworkComparisonTest::NCT()` (van
+  Borkulo et al., 2023) for independent groups and for the same people
+  measured twice (second measurement given as the same items, in order):
+  network structure (M), global strength (S), and optionally every edge
+  and the strength and expected influence of every item, with Holm,
+  Benjamini-Hochberg, Bonferroni or no correction. Polychoric correlations
+  are used when the items have few categories and correlations are
+  automatic.
+* New dependency: NetworkComparisonTest.
+
 ## EGA: plot options in two boxes
 
 * The four plot boxes (Plot Layout, Plot Nodes and Labels, Plot Edges, Plot

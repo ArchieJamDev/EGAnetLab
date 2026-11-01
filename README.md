@@ -128,7 +128,7 @@ explanation.
 | **Item & dimension stability** | What percentage of resamples place each item in the same dimension? | ✅ 0.1.0 (in EGA, Stability section) |
 | **Unique Variable Analysis** (`UVA`) | Which items are redundant and should be removed or combined? | ✅ 0.1.0 (in EGA, Redundancy section) |
 | **Network scores** (`net.scores`) | What is each person's score per dimension (network score or item mean), saved back to the data? | ✅ 0.1.0 (in EGA, Network scores section) |
-| **Invariance** (`invariance` + NetworkComparisonTest) | Is the structure equivalent across groups, or before and after an intervention? | 🗓 Planned |
+| **Invariance** (`invariance` + NetworkComparisonTest) | Is the structure equivalent across groups, or before and after an intervention? | 🧪 In review (in EGA, Group comparison section) |
 | **Confirmatory test** (`CFA`) | Does the EGA structure hold as a confirmatory factor model, also in a random confirmation subsample? | ✅ 0.1.0 (in EGA, CFA section) |
 
 ### 3. Information theory and fit
@@ -256,7 +256,7 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 | 2 | UVA, network scores, CFA with random split | ✅ Done |
 | 3 | TEFI comparison of competing structures | ✅ Done |
 | 4 | Hierarchical EGA and random-intercept EGA | ✅ Done |
-| 5 | Invariance and NetworkComparisonTest (independent and paired groups) | 🗓 |
+| 5 | Invariance and NetworkComparisonTest (independent and paired groups) | 🧪 In review |
 | 6 | Centrality, edge accuracy and network comparison plots | 🗓 |
 | 7 | Dynamic EGA for longitudinal and intensive data | 🗓 |
 

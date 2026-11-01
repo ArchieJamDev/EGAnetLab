@@ -381,6 +381,113 @@ options:
     title: Save subsample
     type: Output
 
+  # ---------------------------------------------------------------------------
+  # Group comparison (phase 5): metric invariance of the network loadings
+  # (EGAnet::invariance; Jamison et al., 2024) and the Network Comparison
+  # Test (NetworkComparisonTest::NCT; van Borkulo et al., 2023) for
+  # independent groups (grouping variable) or for the same people measured
+  # twice (second set of items, paired).
+  # ES: Comparación entre grupos (fase 5): invarianza métrica de las cargas
+  # de red (EGAnet::invariance; Jamison et al., 2024) y el Network
+  # Comparison Test (NetworkComparisonTest::NCT; van Borkulo et al., 2023)
+  # para grupos independientes (variable de agrupación) o para las mismas
+  # personas medidas dos veces (segundo conjunto de ítems, pareado).
+  # ---------------------------------------------------------------------------
+  - name: group
+    title: Grouping variable
+    type: Variable
+    suggested:
+      - nominal
+      - ordinal
+    permitted:
+      - factor
+    default: null
+
+  - name: pairedVars
+    title: Same items, second measurement
+    type: Variables
+    suggested:
+      - continuous
+      - ordinal
+    permitted:
+      - numeric
+    default: []
+
+  - name: runInvariance
+    title: Metric invariance of network loadings
+    type: Bool
+    default: false
+
+  - name: invStructure
+    title: Structure to test
+    type: List
+    options:
+      - title: EGA solution (configural invariance assumed)
+        name: ega
+      - title: Test configural invariance first (bootstrap)
+        name: configural
+    default: ega
+
+  - name: invConfigCut
+    title: Configural stability cutoff
+    type: Number
+    min: 0.5
+    max: 0.95
+    default: 0.70
+
+  - name: invIter
+    title: Permutations (invariance)
+    type: Integer
+    min: 100
+    max: 10000
+    default: 500
+
+  - name: runNCT
+    title: Network Comparison Test (NCT)
+    type: Bool
+    default: false
+
+  - name: nctIter
+    title: Permutations (NCT)
+    type: Integer
+    min: 100
+    max: 10000
+    default: 1000
+
+  - name: nctEdges
+    title: Test every edge
+    type: Bool
+    default: false
+
+  - name: nctCentrality
+    title: Test node strength and expected influence
+    type: Bool
+    default: false
+
+  - name: nctAdjust
+    title: p-value correction
+    type: List
+    options:
+      - title: Holm
+        name: holm
+      - title: Benjamini-Hochberg (FDR)
+        name: BH
+      - title: Bonferroni
+        name: bonferroni
+      - title: None
+        name: none
+    default: holm
+
+  - name: groupSeed
+    title: Seed
+    type: Integer
+    default: 2026
+
+  - name: showInvPlot
+    title: Loadings by group plot
+    type: Bool
+    default: true
+
   # Explanatory paragraph for each estimation choice currently selected
   # (Archie's design rule: every menu decision carries its explanation).
   # ES: Párrafo explicativo para cada elección de estimación seleccionada

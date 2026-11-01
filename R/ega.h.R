@@ -37,6 +37,19 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             splitSample = FALSE,
             splitProp = 0.5,
             splitSeed = 2026,
+            group = NULL,
+            pairedVars = list(),
+            runInvariance = FALSE,
+            invStructure = "ega",
+            invConfigCut = 0.7,
+            invIter = 500,
+            runNCT = FALSE,
+            nctIter = 1000,
+            nctEdges = FALSE,
+            nctCentrality = FALSE,
+            nctAdjust = "holm",
+            groupSeed = 2026,
+            showInvPlot = TRUE,
             showChoicesGuide = TRUE,
             showLoadings = TRUE,
             showNetworkPlot = TRUE,
@@ -271,6 +284,81 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 default=2026)
             private$..splitOV <- jmvcore::OptionOutput$new(
                 "splitOV")
+            private$..group <- jmvcore::OptionVariable$new(
+                "group",
+                group,
+                suggested=list(
+                    "nominal",
+                    "ordinal"),
+                permitted=list(
+                    "factor"))
+            private$..pairedVars <- jmvcore::OptionVariables$new(
+                "pairedVars",
+                pairedVars,
+                suggested=list(
+                    "continuous",
+                    "ordinal"),
+                permitted=list(
+                    "numeric"),
+                default=list())
+            private$..runInvariance <- jmvcore::OptionBool$new(
+                "runInvariance",
+                runInvariance,
+                default=FALSE)
+            private$..invStructure <- jmvcore::OptionList$new(
+                "invStructure",
+                invStructure,
+                options=list(
+                    "ega",
+                    "configural"),
+                default="ega")
+            private$..invConfigCut <- jmvcore::OptionNumber$new(
+                "invConfigCut",
+                invConfigCut,
+                min=0.5,
+                max=0.95,
+                default=0.7)
+            private$..invIter <- jmvcore::OptionInteger$new(
+                "invIter",
+                invIter,
+                min=100,
+                max=10000,
+                default=500)
+            private$..runNCT <- jmvcore::OptionBool$new(
+                "runNCT",
+                runNCT,
+                default=FALSE)
+            private$..nctIter <- jmvcore::OptionInteger$new(
+                "nctIter",
+                nctIter,
+                min=100,
+                max=10000,
+                default=1000)
+            private$..nctEdges <- jmvcore::OptionBool$new(
+                "nctEdges",
+                nctEdges,
+                default=FALSE)
+            private$..nctCentrality <- jmvcore::OptionBool$new(
+                "nctCentrality",
+                nctCentrality,
+                default=FALSE)
+            private$..nctAdjust <- jmvcore::OptionList$new(
+                "nctAdjust",
+                nctAdjust,
+                options=list(
+                    "holm",
+                    "BH",
+                    "bonferroni",
+                    "none"),
+                default="holm")
+            private$..groupSeed <- jmvcore::OptionInteger$new(
+                "groupSeed",
+                groupSeed,
+                default=2026)
+            private$..showInvPlot <- jmvcore::OptionBool$new(
+                "showInvPlot",
+                showInvPlot,
+                default=TRUE)
             private$..showChoicesGuide <- jmvcore::OptionBool$new(
                 "showChoicesGuide",
                 showChoicesGuide,
@@ -491,6 +579,19 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..splitProp)
             self$.addOption(private$..splitSeed)
             self$.addOption(private$..splitOV)
+            self$.addOption(private$..group)
+            self$.addOption(private$..pairedVars)
+            self$.addOption(private$..runInvariance)
+            self$.addOption(private$..invStructure)
+            self$.addOption(private$..invConfigCut)
+            self$.addOption(private$..invIter)
+            self$.addOption(private$..runNCT)
+            self$.addOption(private$..nctIter)
+            self$.addOption(private$..nctEdges)
+            self$.addOption(private$..nctCentrality)
+            self$.addOption(private$..nctAdjust)
+            self$.addOption(private$..groupSeed)
+            self$.addOption(private$..showInvPlot)
             self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showLoadings)
             self$.addOption(private$..showNetworkPlot)
@@ -556,6 +657,19 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         splitProp = function() private$..splitProp$value,
         splitSeed = function() private$..splitSeed$value,
         splitOV = function() private$..splitOV$value,
+        group = function() private$..group$value,
+        pairedVars = function() private$..pairedVars$value,
+        runInvariance = function() private$..runInvariance$value,
+        invStructure = function() private$..invStructure$value,
+        invConfigCut = function() private$..invConfigCut$value,
+        invIter = function() private$..invIter$value,
+        runNCT = function() private$..runNCT$value,
+        nctIter = function() private$..nctIter$value,
+        nctEdges = function() private$..nctEdges$value,
+        nctCentrality = function() private$..nctCentrality$value,
+        nctAdjust = function() private$..nctAdjust$value,
+        groupSeed = function() private$..groupSeed$value,
+        showInvPlot = function() private$..showInvPlot$value,
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showLoadings = function() private$..showLoadings$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
@@ -620,6 +734,19 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..splitProp = NA,
         ..splitSeed = NA,
         ..splitOV = NA,
+        ..group = NA,
+        ..pairedVars = NA,
+        ..runInvariance = NA,
+        ..invStructure = NA,
+        ..invConfigCut = NA,
+        ..invIter = NA,
+        ..runNCT = NA,
+        ..nctIter = NA,
+        ..nctEdges = NA,
+        ..nctCentrality = NA,
+        ..nctAdjust = NA,
+        ..groupSeed = NA,
+        ..showInvPlot = NA,
         ..showChoicesGuide = NA,
         ..showLoadings = NA,
         ..showNetworkPlot = NA,
@@ -702,6 +829,17 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         cfaInterpretation = function() private$.items[["cfaInterpretation"]],
         cfaHierModels = function() private$.items[["cfaHierModels"]],
         cfaHierInterpretation = function() private$.items[["cfaHierInterpretation"]],
+        groupStatus = function() private$.items[["groupStatus"]],
+        groupSizes = function() private$.items[["groupSizes"]],
+        invStatus = function() private$.items[["invStatus"]],
+        invTable = function() private$.items[["invTable"]],
+        invPlot = function() private$.items[["invPlot"]],
+        invInterpretation = function() private$.items[["invInterpretation"]],
+        nctStatus = function() private$.items[["nctStatus"]],
+        nctGlobal = function() private$.items[["nctGlobal"]],
+        nctEdgeTable = function() private$.items[["nctEdgeTable"]],
+        nctCentralityTable = function() private$.items[["nctCentralityTable"]],
+        nctInterpretation = function() private$.items[["nctInterpretation"]],
         splitOV = function() private$.items[["splitOV"]],
         notes = function() private$.items[["notes"]]),
     private = list(),
@@ -1695,6 +1833,302 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="cfaHierInterpretation",
                 title="Hierarchical models interpretation",
                 visible="(runCFA && runHier)"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="groupStatus",
+                title="Group comparison",
+                visible="(runInvariance || runNCT)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="groupSizes",
+                title="Groups compared",
+                rows=0,
+                visible="(runInvariance || runNCT)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "group",
+                    "pairedVars",
+                    "groupSeed",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="group", 
+                        `title`="Group", 
+                        `type`="text"),
+                    list(
+                        `name`="n", 
+                        `title`="N", 
+                        `type`="integer"))))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="invStatus",
+                title="Metric invariance",
+                visible="(runInvariance)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="invTable",
+                title="Network loadings by group",
+                rows=0,
+                visible="(runInvariance)",
+                refs=list(
+                    "jamison_2024"),
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "group",
+                    "pairedVars",
+                    "groupSeed",
+                    "reportLang",
+                    "invStructure",
+                    "invConfigCut",
+                    "invIter"),
+                columns=list(
+                    list(
+                        `name`="pair", 
+                        `title`="Comparison", 
+                        `type`="text"),
+                    list(
+                        `name`="item", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="dimension", 
+                        `title`="Dimension", 
+                        `type`="text"),
+                    list(
+                        `name`="load1", 
+                        `title`="Loading, first group", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="load2", 
+                        `title`="Loading, second group", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="diff", 
+                        `title`="Difference", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"),
+                    list(
+                        `name`="padj", 
+                        `title`="p (BH)", 
+                        `type`="number", 
+                        `format`="zto,pvalue"),
+                    list(
+                        `name`="direction", 
+                        `title`="Direction", 
+                        `type`="text"))))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="invPlot",
+                title="Network loadings by group",
+                width=600,
+                height=450,
+                renderFun=".plotInvariance",
+                visible="(runInvariance && showInvPlot)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "group",
+                    "pairedVars",
+                    "groupSeed",
+                    "reportLang",
+                    "invStructure",
+                    "invConfigCut",
+                    "invIter",
+                    "plotPalette")))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="invInterpretation",
+                title="Metric invariance interpretation",
+                visible="(runInvariance)"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="nctStatus",
+                title="Network Comparison Test",
+                visible="(runNCT)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="nctGlobal",
+                title="Global network comparison",
+                rows=0,
+                visible="(runNCT)",
+                refs=list(
+                    "van_borkulo_2023"),
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "group",
+                    "pairedVars",
+                    "groupSeed",
+                    "reportLang",
+                    "nctIter",
+                    "nctEdges",
+                    "nctCentrality",
+                    "nctAdjust"),
+                columns=list(
+                    list(
+                        `name`="pair", 
+                        `title`="Comparison", 
+                        `type`="text"),
+                    list(
+                        `name`="test", 
+                        `title`="Test", 
+                        `type`="text"),
+                    list(
+                        `name`="value1", 
+                        `title`="First", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="value2", 
+                        `title`="Second", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="stat", 
+                        `title`="Statistic", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="nctEdgeTable",
+                title="Edges that differ",
+                rows=0,
+                visible="(runNCT && nctEdges)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "group",
+                    "pairedVars",
+                    "groupSeed",
+                    "reportLang",
+                    "nctIter",
+                    "nctEdges",
+                    "nctCentrality",
+                    "nctAdjust"),
+                columns=list(
+                    list(
+                        `name`="pair", 
+                        `title`="Comparison", 
+                        `type`="text"),
+                    list(
+                        `name`="edge", 
+                        `title`="Edge", 
+                        `type`="text"),
+                    list(
+                        `name`="w1", 
+                        `title`="Weight, first", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="w2", 
+                        `title`="Weight, second", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="diff", 
+                        `title`="Difference", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="p", 
+                        `title`="p (adjusted)", 
+                        `type`="number", 
+                        `format`="zto,pvalue"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="nctCentralityTable",
+                title="Node strength and expected influence",
+                rows=0,
+                visible="(runNCT && nctCentrality)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "group",
+                    "pairedVars",
+                    "groupSeed",
+                    "reportLang",
+                    "nctIter",
+                    "nctEdges",
+                    "nctCentrality",
+                    "nctAdjust"),
+                columns=list(
+                    list(
+                        `name`="pair", 
+                        `title`="Comparison", 
+                        `type`="text"),
+                    list(
+                        `name`="item", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="measure", 
+                        `title`="Measure", 
+                        `type`="text"),
+                    list(
+                        `name`="diff", 
+                        `title`="Difference", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="p", 
+                        `title`="p (adjusted)", 
+                        `type`="number", 
+                        `format`="zto,pvalue"))))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="nctInterpretation",
+                title="Network Comparison Test interpretation",
+                visible="(runNCT)"))
             self$add(jmvcore::Output$new(
                 options=options,
                 name="splitOV",
@@ -1777,6 +2211,19 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param splitSample .
 #' @param splitProp .
 #' @param splitSeed .
+#' @param group .
+#' @param pairedVars .
+#' @param runInvariance .
+#' @param invStructure .
+#' @param invConfigCut .
+#' @param invIter .
+#' @param runNCT .
+#' @param nctIter .
+#' @param nctEdges .
+#' @param nctCentrality .
+#' @param nctAdjust .
+#' @param groupSeed .
+#' @param showInvPlot .
 #' @param showChoicesGuide .
 #' @param showLoadings .
 #' @param showNetworkPlot .
@@ -1855,6 +2302,17 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$cfaInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$cfaHierModels} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$cfaHierInterpretation} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$groupStatus} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$groupSizes} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$invStatus} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$invTable} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$invPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$invInterpretation} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$nctStatus} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$nctGlobal} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$nctEdgeTable} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$nctCentralityTable} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$nctInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$splitOV} \tab \tab \tab \tab \tab an output \cr
 #'   \code{results$notes} \tab \tab \tab \tab \tab a html \cr
 #' }
@@ -1899,6 +2357,19 @@ ega <- function(
     splitSample = FALSE,
     splitProp = 0.5,
     splitSeed = 2026,
+    group = NULL,
+    pairedVars = list(),
+    runInvariance = FALSE,
+    invStructure = "ega",
+    invConfigCut = 0.7,
+    invIter = 500,
+    runNCT = FALSE,
+    nctIter = 1000,
+    nctEdges = FALSE,
+    nctCentrality = FALSE,
+    nctAdjust = "holm",
+    groupSeed = 2026,
+    showInvPlot = TRUE,
     showChoicesGuide = TRUE,
     showLoadings = TRUE,
     showNetworkPlot = TRUE,
@@ -1935,12 +2406,17 @@ ega <- function(
 
     if ( ! missing(vars)) vars <- jmvcore::resolveQuo(jmvcore::enquo(vars))
     if ( ! missing(negItems)) negItems <- jmvcore::resolveQuo(jmvcore::enquo(negItems))
+    if ( ! missing(group)) group <- jmvcore::resolveQuo(jmvcore::enquo(group))
+    if ( ! missing(pairedVars)) pairedVars <- jmvcore::resolveQuo(jmvcore::enquo(pairedVars))
     if (missing(data))
         data <- jmvcore::marshalData(
             parent.frame(),
             `if`( ! missing(vars), vars, NULL),
-            `if`( ! missing(negItems), negItems, NULL))
+            `if`( ! missing(negItems), negItems, NULL),
+            `if`( ! missing(group), group, NULL),
+            `if`( ! missing(pairedVars), pairedVars, NULL))
 
+    for (v in group) if (v %in% names(data)) data[[v]] <- as.factor(data[[v]])
 
     options <- egaOptions$new(
         vars = vars,
@@ -1973,6 +2449,19 @@ ega <- function(
         splitSample = splitSample,
         splitProp = splitProp,
         splitSeed = splitSeed,
+        group = group,
+        pairedVars = pairedVars,
+        runInvariance = runInvariance,
+        invStructure = invStructure,
+        invConfigCut = invConfigCut,
+        invIter = invIter,
+        runNCT = runNCT,
+        nctIter = nctIter,
+        nctEdges = nctEdges,
+        nctCentrality = nctCentrality,
+        nctAdjust = nctAdjust,
+        groupSeed = groupSeed,
+        showInvPlot = showInvPlot,
         showChoicesGuide = showChoicesGuide,
         showLoadings = showLoadings,
         showNetworkPlot = showNetworkPlot,
