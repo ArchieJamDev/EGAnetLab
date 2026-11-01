@@ -460,3 +460,35 @@
     out$same <- ifelse(is.na(out$da) | is.na(out$db), NA, out$da == out$db)
     out[order(-abs(out$w)), , drop = FALSE]
 }
+
+# -----------------------------------------------------------------------------
+# .el_translate_notices()
+#
+# Input: warnings - messages left after .el_drop_notices(); lang.
+# Output: the same messages with the known EGAnet notices rewritten in the
+#   report language. Internal notices about temporary variable names (v1,
+#   v2, ...) or an empty network in a unidimensional subsample are left out,
+#   because the report already states their consequence.
+# ES: Salida: los mismos mensajes, con los avisos conocidos de EGAnet
+#   reescritos en el idioma del informe. Se omiten los avisos internos sobre
+#   nombres temporales de variables (v1, v2, ...) o sobre una red vacía en
+#   una submuestra unidimensional, porque el informe ya dice su consecuencia.
+# -----------------------------------------------------------------------------
+.el_translate_notices <- function(warnings, lang) {
+    es <- identical(.el_normalize_lang(lang), "es")
+    out <- character(0)
+    for (w in warnings) {
+        if (grepl("network input is empty", w, fixed = TRUE))
+            next
+        m <- regmatches(w, regexec("did not belong to a dimension: (.*?)\\s*Use caution", w))[[1]]
+        if (length(m) == 2) {
+            items <- trimws(strsplit(m[2], ",")[[1]])
+            if (all(grepl("^v[0-9]+$", items)))
+                next
+            w <- sprintf(if (es) "Ítems sin dimensión, excluidos del cálculo del TEFI: %s." else
+                "Items without a dimension, left out of the TEFI calculation: %s.", paste(items, collapse = ", "))
+        }
+        out <- c(out, w)
+    }
+    unique(out)
+}

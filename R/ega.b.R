@@ -415,7 +415,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # request): the report already states what they say.
             # ES: Se omiten los avisos puramente informativos de los
             # paquetes (pedido de Archie): el informe ya dice lo que indican.
-            warnings <- .el_drop_notices(warnings)
+            warnings <- .el_translate_notices(.el_drop_notices(warnings), lang)
             if (length(warnings) > 0) {
                 self$results$notes$setContent(.el_html_block(
                     txt("common", "warnings_title"),
@@ -1319,7 +1319,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 v <- fit$value
                 k <- k + 1
                 .el_add_row(global, k, list(pair = cmp$label, test = txt("nct", "row_M"),
-                    value1 = NaN, value2 = NaN, stat = .el_clean_num(v$M), p = .el_clean_num(v$M_p)))
+                    value1 = "", value2 = "", stat = .el_clean_num(v$M), p = .el_clean_num(v$M_p)))
                 k <- k + 1
                 .el_add_row(global, k, list(pair = cmp$label, test = txt("nct", "row_S"),
                     value1 = .el_clean_num(v$strength[1]), value2 = .el_clean_num(v$strength[2]),
@@ -1369,7 +1369,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         sprintf(txt("nct", "interp_cen_some"), n_cen))
             }
             if (isTRUE(o$nctEdges) && ke == 0)
-                edge_table$setNote("none", txt("nct", "no_edges_note"))
+                .el_add_row(edge_table, 1, list(edge = txt("nct", "no_edges_note"),
+                                                 w1 = "", w2 = "", diff = "", p = ""))
             if (length(comps) == 1) {
                 global$getColumn("pair")$setVisible(FALSE)
                 edge_table$getColumn("pair")$setVisible(FALSE)
