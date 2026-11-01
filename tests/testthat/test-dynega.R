@@ -113,3 +113,12 @@ test_that("dynega is reported in Spanish", {
     expect_match(res$interpretation$content, "Siguiente paso", fixed = TRUE)
     expect_false(grepl("EGAnet(?!Lab)", res$interpretation$content, perl = TRUE))
 })
+
+test_that("memberships are matched to the items even without names", {
+
+    fit <- list(dynEGA = list(population = list(wc = c(1, 1, 2), n.dim = 2, network = diag(3))))
+    out <- EGAnetLab:::.el_dyn_summary(fit, c("a", "b", "c"), c(P1 = 10))
+    expect_equal(unname(out$population$wc), c(1, 1, 2))
+    expect_equal(names(out$population$wc), c("a", "b", "c"))
+    expect_true(is.na(EGAnetLab:::.el_ari(c(NA, NA), c(NA, NA))))
+})

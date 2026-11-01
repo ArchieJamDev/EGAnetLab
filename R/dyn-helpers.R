@@ -112,6 +112,8 @@
 # Los ítems sin dimensión (NA) cuentan como un grupo propio.
 # -----------------------------------------------------------------------------
 .el_ari <- function(a, b) {
+    if (all(is.na(a)) || all(is.na(b)))
+        return(NA_real_)
     a <- as.character(a)
     b <- as.character(b)
     a[is.na(a)] <- paste0("na_", which(is.na(a)))
@@ -143,12 +145,24 @@
 # -----------------------------------------------------------------------------
 .el_dyn_summary <- function(fit, items, points, groups = NULL) {
 
+    # dynEGA keeps the items in their column order, so memberships are
+    # matched by position when they have one entry per item; names (with
+    # the ".DerivOrd1" suffix removed) are used otherwise. Matching only by
+    # name left every item without a dimension in Archie's jamovi
+    # (2026-11-01 report).
+    # ES: dynEGA conserva los ítems en el orden de sus columnas, así que las
+    # pertenencias se emparejan por posición cuando tienen una entrada por
+    # ítem; si no, por nombre (sin el sufijo ".DerivOrd1"). Emparejar solo
+    # por nombre dejó todos los ítems sin dimensión en el jamovi de Archie
+    # (informe del 2026-11-01).
     clean_wc <- function(wc) {
-        wc <- unlist(wc)
-        names(wc) <- sub("\\.DerivOrd[0-9]+$", "", names(wc))
+        values <- unlist(wc)
+        if (length(values) == length(items))
+            return(stats::setNames(as.numeric(values), items))
         out <- stats::setNames(rep(NA_real_, length(items)), items)
-        common <- intersect(items, names(wc))
-        out[common] <- as.numeric(wc[common])
+        keys <- sub("\\.(DerivOrd|Ord)[0-9]+$", "", names(values))
+        common <- intersect(items, keys)
+        out[common] <- as.numeric(values[match(common, keys)])
         out
     }
 

@@ -148,7 +148,8 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 list(txt("dyn", "summary_glla"), sprintf(txt("dyn", "summary_glla_value"), n_embed,
                                                          as.integer(o$tau), fmt_delta, deriv_label)),
                 list(tr("Correlation", "Correlación"), switch(o$corr,
-                    auto = tr("Automatic (Pearson / polychoric)", "Automática (Pearson / policórica)"),
+                    auto = tr("Automatic (Pearson, because the derivatives are continuous)",
+                              "Automática (Pearson, porque las derivadas son continuas)"),
                     pearson = "Pearson", spearman = "Spearman")),
                 list(tr("Network model", "Modelo de red"), o$model),
                 list(tr("Community detection", "Detección de comunidades"), o$algorithm),
@@ -265,8 +266,8 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                                                           proportion = freq$proportion[i]))
 
             same_n <- mean(est$dims == pop$n_dim)
-            identical_wc <- mean(est$ari >= 1 - 1e-12)
-            median_ari <- stats::median(est$ari)
+            identical_wc <- mean(est$ari >= 1 - 1e-12, na.rm = TRUE)
+            median_ari <- stats::median(est$ari, na.rm = TRUE)
             agree <- self$results$indAgree
             rows <- list(
                 list(txt("dyn", "agree_persons"), sprintf("%d / %d", nrow(est), nrow(ind))),
