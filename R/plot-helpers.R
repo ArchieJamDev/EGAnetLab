@@ -126,6 +126,19 @@
         }
     }
 
+    # Items without a dimension appear in EGAnet's legend as "NA"; they are
+    # labelled as isolated instead.
+    # ES: Los ítems sin dimensión aparecen en la leyenda de EGAnet como "NA";
+    # en su lugar se rotulan como aislados.
+    for (scale in plot$scales$scales) {
+        if (!"colour" %in% scale$aesthetics || !is.atomic(scale$labels) || !anyNA(scale$labels))
+            next
+        isolated <- if (identical(.el_normalize_lang(opt("reportLang", "en")), "es")) "Aislado" else "Isolated"
+        labels <- as.character(scale$labels)
+        labels[is.na(labels)] <- isolated
+        scale$labels <- labels
+    }
+
     if (isTRUE(opt("showEdgeLabels", FALSE)))
         plot <- .el_add_edge_labels(plot, network,
                                     size = as.numeric(opt("edgeLabelSize", 3)),

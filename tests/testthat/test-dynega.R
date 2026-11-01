@@ -177,3 +177,19 @@ test_that("the population network plot takes the plot options", {
     expect_false(19 %in% shapes)
     expect_equal(plot$labels$title, "T")
 })
+
+test_that("isolated items are labelled in the network legend", {
+
+    net <- matrix(0, 4, 4, dimnames = list(paste0("A", 1:4), paste0("A", 1:4)))
+    net[1, 2] <- net[2, 1] <- 0.4
+    net[2, 3] <- net[3, 2] <- 0.3
+    wc <- c(A1 = 1, A2 = 1, A3 = 2, A4 = NA)
+    labels_of <- function(lang) {
+        p <- EGAnetLab:::.el_ega_plot(net, wc, list(reportLang = lang))
+        scale <- Filter(function(s) "colour" %in% s$aesthetics, p$scales$scales)[[1]]
+        as.character(scale$labels)
+    }
+    expect_true("Aislado" %in% labels_of("es"))
+    expect_true("Isolated" %in% labels_of("en"))
+    expect_false(anyNA(labels_of("es")))
+})
