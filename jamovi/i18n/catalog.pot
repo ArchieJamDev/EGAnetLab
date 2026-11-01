@@ -217,12 +217,12 @@ msgstr ""
 msgid "EGAnet Lab"
 msgstr ""
 
-#: ega/options/plotPalette/default.title
-msgid "EGAnet default"
-msgstr ""
-
 #: package/description
 msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis and, in later releases, adds bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and invariance extensions. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation."
+msgstr ""
+
+#: ega/options/plotPalette/default.title
+msgid "EGAnetLab default"
 msgstr ""
 
 #: ega/options/edgeLabelSize.title
@@ -263,7 +263,7 @@ msgstr ""
 
 #: package/analyses/ega.description
 #: ega/options.description.main
-msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation."
+msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnetLab), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation."
 msgstr ""
 
 #: ega/ui[2].label

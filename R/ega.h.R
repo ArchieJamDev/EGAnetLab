@@ -1656,9 +1656,9 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' Exploratory Graph Analysis
 #'
 #' Estimates the number of dimensions underlying a set of items, and which 
-#' items belong to each dimension, with Exploratory Graph Analysis (EGAnet), 
-#' paired with network loadings, entropy fit, optional bootstrap stability of 
-#' dimensions and items, optional redundancy analysis (UVA), and 
+#' items belong to each dimension, with Exploratory Graph Analysis 
+#' (EGAnetLab), paired with network loadings, entropy fit, optional bootstrap 
+#' stability of dimensions and items, optional redundancy analysis (UVA), and 
 #' plain-language interpretation.
 #' 
 #' @param data .

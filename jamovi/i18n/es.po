@@ -217,13 +217,13 @@ msgstr "EGA"
 msgid "EGAnet Lab"
 msgstr "EGAnet Lab"
 
-#: ega/options/plotPalette/default.title
-msgid "EGAnet default"
-msgstr "Por defecto de EGAnet"
-
 #: package/description
 msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis and, in later releases, adds bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and invariance extensions. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation."
 msgstr "EGAnetLab lleva a jamovi los métodos de psicometría de redes del paquete EGAnet y acompaña cada resultado con orientación metodológica basada en evidencia, interpretación y apoyo educativo. Estima el número y el contenido de las dimensiones con el Análisis Exploratorio de Grafos y, en versiones posteriores, agrega estabilidad por bootstrap, análisis de redundancia (UVA) y extensiones jerárquicas, dinámicas y de invarianza. Cada tabla basada en un método cita su propia fuente en el formato numerado nativo de jamovi, y la bibliografía completa en APA 7.ª edición vive en la documentación del módulo."
+
+#: ega/options/plotPalette/default.title
+msgid "EGAnetLab default"
+msgstr "Por defecto de EGAnetLab"
 
 #: ega/options/edgeLabelSize.title
 msgid "Edge weight size"
@@ -263,8 +263,8 @@ msgstr "Red estimada"
 
 #: package/analyses/ega.description
 #: ega/options.description.main
-msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnet), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation."
-msgstr "Estima el número de dimensiones subyacentes a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnet), junto con cargas de red, ajuste por entropía, estabilidad bootstrap opcional de dimensiones e ítems, análisis opcional de redundancia (UVA), e interpretación en lenguaje claro."
+msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnetLab), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation."
+msgstr "Estima el número de dimensiones subyacentes a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnetLab), junto con cargas de red, ajuste por entropía, estabilidad bootstrap opcional de dimensiones e ítems, análisis opcional de redundancia (UVA), e interpretación en lenguaje claro."
 
 #: ega/ui[2].label
 msgid "Estimation"
