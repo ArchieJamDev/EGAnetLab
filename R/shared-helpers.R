@@ -524,5 +524,5 @@
         section(txt("h_findings"), key$findings, txt("dims_none")),
         section(txt("h_uncertain"), key$uncertain, txt("none_uncertain")),
         section(txt("h_warnings"), key$warnings, txt("none_warnings")))
-    .el_html_block(NULL, parts, raw = TRUE)
+    .el_html_block(txt("title"), parts, raw = TRUE)
 }
