@@ -21,6 +21,16 @@
 * CFA: when EGA treats items as ordinal (7 or fewer categories) and the CFA
   uses robust maximum likelihood (6 or more), the report explains why
   (Rhemtulla et al., 2012).
+* New **Bifactor model loadings** table under the models with and without
+  hierarchy: general and specific loading and residual variance of each
+  item, flags for Heywood cases, loadings above 1 and weak loadings, the
+  explained common variance (ECV; Rodriguez et al., 2016), specific factors
+  that collapse or have three items or fewer, and why modification indices
+  should not be used to rescue an inadmissible bifactor.
+* Report: the NCT M row leaves the group cells blank; a row says when no
+  edge differs; internal EGAnet notices are left out or translated.
+* NCT: new Correlations (NCT) option (Pearson by default, or the same as
+  EGA); invariance and NCT results are cached between updates.
 * New **Table of network connections** option: every edge with its weight
   and whether it links items within or between dimensions, strongest
   first, so weights can be read without labels on the plot.
