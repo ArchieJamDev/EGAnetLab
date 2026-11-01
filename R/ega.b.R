@@ -875,9 +875,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     hi <- fitted[[match("higher", keys)]]
                     equal <- isTRUE(abs(value(hi, "chisq") - value(base, "chisq")) < 1e-3 &&
                                     value(hi, "df") == value(base, "df"))
+                    drop <- value(base, "cfi") - value(hi, "cfi")
                     paragraphs <- c(paragraphs, if (equal) txt("cfa_hier", "interp_equivalent") else
-                        sprintf(txt("cfa_hier", "interp_higher_vs"), num(value(hi, "cfi")), num(value(base, "cfi")),
-                                num(value(hi, "bic"), 1), num(value(base, "bic"), 1)))
+                        sprintf(txt("cfa_hier", if (isTRUE(drop <= 0.01)) "interp_higher_close" else "interp_higher_worse"),
+                                num(value(hi, "cfi")), num(value(base, "cfi"))))
                 }
                 if (!isTRUE(hs$hierarchical))
                     paragraphs <- c(paragraphs, txt("cfa_hier", "interp_no_higher"))
@@ -1184,7 +1185,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 n_higher <- length(unique(stats::na.omit(higher_wc)))
             }
             ref <- as.character(ega$wc); names(ref) <- items
-            aligned <- .el_align_wc(lower_wc, ref)
+            aligned <- .el_number_new(.el_align_wc(lower_wc, ref), ref)
             agree <- .el_agreement(lower_wc, ref)
 
             tefi_lower <- .el_clean_num(lower$TEFI)
@@ -1250,9 +1251,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 else
                     paragraphs <- c(paragraphs, sprintf(txt("hier", "interp_several"), n_higher))
                 if (hierarchical && !is.na(tefi_lower) && !is.na(tefi_higher))
-                    paragraphs <- c(paragraphs, sprintf(
-                        txt("hier", if (tefi_lower < tefi_higher) "interp_tefi_lower" else "interp_tefi_higher"),
-                        fmt(tefi_lower), fmt(tefi_higher)))
+                    paragraphs <- c(paragraphs, if (tefi_lower < tefi_higher)
+                        sprintf(txt("hier", "interp_tefi_lower"), fmt(tefi_lower), fmt(tefi_higher))
+                        else sprintf(txt("hier", "interp_tefi_higher"), fmt(tefi_higher), fmt(tefi_lower)))
                 if (n_lower < 4)
                     paragraphs <- c(paragraphs, sprintf(txt("hier", "interp_few"), n_lower))
             }
@@ -1345,7 +1346,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             r <- fit$value
             ri_wc <- as.character(r$EGA$wc[safe]); names(ri_wc) <- items
             ref <- as.character(ega$wc); names(ref) <- items
-            aligned <- .el_align_wc(ri_wc, ref)
+            aligned <- .el_number_new(.el_align_wc(ri_wc, ref), ref)
             agree <- .el_agreement(ri_wc, ref)
             converged <- !is.null(r$RI$loadings)
             loads <- stats::setNames(rep(NA_real_, length(items)), items)

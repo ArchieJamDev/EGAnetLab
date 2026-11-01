@@ -101,3 +101,27 @@
     rownames(edges) <- NULL
     list(nodes = nodes, edges = edges, labels = labels)
 }
+
+# -----------------------------------------------------------------------------
+# .el_number_new()
+#
+# Input: aligned - labels from .el_align_wc() (communities with no match in
+#   the reference are "new1", "new2", ...); ref - the reference labels.
+# Output: the same labels, with each "newK" replaced by the next free number
+#   after the reference dimensions (with 3 EGA dimensions, "new1" becomes
+#   "4"), so tables and plots show plain dimension numbers.
+# ES: Salida: las mismas etiquetas, con cada "newK" reemplazado por el
+#   siguiente número libre después de las dimensiones de referencia (con 3
+#   dimensiones de EGA, "new1" pasa a "4"), para que tablas y gráficos
+#   muestren números de dimensión simples.
+# -----------------------------------------------------------------------------
+.el_number_new <- function(aligned, ref) {
+
+    numbers <- suppressWarnings(as.numeric(unique(stats::na.omit(as.character(ref)))))
+    start <- if (length(numbers) > 0 && all(!is.na(numbers))) max(numbers) else length(numbers)
+    out <- as.character(aligned)
+    names(out) <- names(aligned)
+    hit <- !is.na(out) & grepl("^new[0-9]+$", out)
+    out[hit] <- as.character(start + as.numeric(sub("^new", "", out[hit])))
+    out
+}
