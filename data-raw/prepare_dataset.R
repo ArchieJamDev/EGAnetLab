@@ -59,3 +59,22 @@ for (v in names(out))
         out[[v]] <- factor(trimws(as.character(out[[v]])))
 
 utils::write.csv(out, file.path("data", "eganetlab_wmt2.csv"), row.names = FALSE, na = "")
+
+# -----------------------------------------------------------------------------
+# Intensive longitudinal example for Dynamic EGA: EGAnet's sim.dynEGA (100
+# simulated persons, 50 time points each, 24 items, two groups), with a
+# time column added and values rounded to 4 decimals.
+# ES: Ejemplo longitudinal intensivo para el EGA dinámico: sim.dynEGA de
+# EGAnet (100 personas simuladas, 50 momentos cada una, 24 ítems, dos
+# grupos), con una columna de tiempo y valores redondeados a 4 decimales.
+# -----------------------------------------------------------------------------
+utils::data("sim.dynEGA", package = "EGAnet", envir = environment())
+
+dyn <- sim.dynEGA
+items <- grep("^V[0-9]+$", names(dyn), value = TRUE)
+dyn[items] <- lapply(dyn[items], round, 4)
+dyn$Time <- stats::ave(seq_len(nrow(dyn)), dyn$ID, FUN = seq_along)
+dyn$Group <- factor(dyn$Group)
+dyn <- dyn[c("ID", "Group", "Time", items)]
+
+utils::write.csv(dyn, file.path("data", "eganetlab_dynamic_sim.csv"), row.names = FALSE, na = "")

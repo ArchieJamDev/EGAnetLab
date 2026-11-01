@@ -11,8 +11,17 @@
             "About your choices": [
                 "Acerca de sus elecciones"
             ],
+            "Acceleration (2, second derivative)": [
+                "Aceleración (2, segunda derivada)"
+            ],
             "Add CFA fit for each structure": [
                 "Añadir el ajuste CFA de cada estructura"
+            ],
+            "Agreement (ARI)": [
+                "Acuerdo (ARI)"
+            ],
+            "Agreement with the population structure": [
+                "Acuerdo con la estructura de la población"
             ],
             "Already reversed": [
                 "Ya invertidos"
@@ -185,8 +194,17 @@
             "Dashed": [
                 "Discontinua"
             ],
+            "Data and estimation": [
+                "Datos y estimación"
+            ],
             "Decimals": [
                 "Decimales"
+            ],
+            "Derivative analysed": [
+                "Derivada analizada"
+            ],
+            "Derivatives (GLLA)": [
+                "Derivadas (GLLA)"
             ],
             "Diamond": [
                 "Rombo"
@@ -221,11 +239,20 @@
             "Dimensions": [
                 "Dimensiones"
             ],
+            "Dimensions across persons plot": [
+                "Gráfico de dimensiones entre personas"
+            ],
             "Direction": [
                 "Dirección"
             ],
             "Dotted": [
                 "Punteada"
+            ],
+            "Dynamic EGA": [
+                "EGA dinámico"
+            ],
+            "Dynamic EGA (intensive longitudinal data)": [
+                "EGA dinámico (datos longitudinales intensivos)"
             ],
             "EGA": [
                 "EGA"
@@ -275,6 +302,9 @@
             "Element": [
                 "Elemento"
             ],
+            "Embedding dimension (time points per window)": [
+                "Dimensión de inmersión (momentos por ventana)"
+            ],
             "English": [
                 "English"
             ],
@@ -284,11 +314,17 @@
             "Estimated network": [
                 "Red estimada"
             ],
+            "Estimates the dimensional structure of intensive longitudinal data (many measurements per person) with dynamic Exploratory Graph Analysis: derivatives of each person's time series, and their structure for the whole sample, for each group and for each person, with plain-language interpretation.": [
+                "Estima la estructura dimensional de datos longitudinales intensivos (muchas mediciones por persona) con el Análisis Exploratorio de Grafos dinámico: derivadas de la serie temporal de cada persona y su estructura para toda la muestra, para cada grupo y para cada persona, con interpretación en lenguaje claro."
+            ],
             "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnetLab), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation.": [
                 "Estima el número de dimensiones subyacentes a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnetLab), junto con cargas de red, ajuste por entropía, estabilidad bootstrap opcional de dimensiones e ítems, análisis opcional de redundancia (UVA), e interpretación en lenguaje claro."
             ],
             "Estimation": [
                 "Estimación"
+            ],
+            "Every person": [
+                "Cada persona"
             ],
             "Expand": [
                 "Expandir"
@@ -331,6 +367,9 @@
             ],
             "Grouping variable": [
                 "Variable de agrupación"
+            ],
+            "Grouping variable (optional)": [
+                "Variable de agrupación (opcional)"
             ],
             "Groups compared": [
                 "Grupos comparados"
@@ -376,6 +415,9 @@
             ],
             "Independent groups: the variable that defines them (e.g. sex).": [
                 "Grupos independientes: la variable que los define (p. ej., sexo)."
+            ],
+            "Individual structures interpretation": [
+                "Interpretación de las estructuras individuales"
             ],
             "Introduction": [
                 "Introducción"
@@ -437,6 +479,9 @@
             "Label size": [
                 "Tamaño de etiqueta"
             ],
+            "Lag between time points (tau)": [
+                "Retardo entre momentos (tau)"
+            ],
             "Layout": [
                 "Disposición"
             ],
@@ -457,6 +502,12 @@
             ],
             "Leiden": [
                 "Leiden"
+            ],
+            "Level (0, the values themselves)": [
+                "Nivel (0, los valores mismos)"
+            ],
+            "Levels": [
+                "Niveles"
             ],
             "Listwise": [
                 "Por lista"
@@ -599,6 +650,9 @@
             "Notes": [
                 "Notas"
             ],
+            "Number of dimensions across persons": [
+                "Número de dimensiones entre personas"
+            ],
             "Number of dimensions across samples": [
                 "Número de dimensiones entre muestras"
             ],
@@ -629,8 +683,26 @@
             "Permutations (invariance)": [
                 "Permutaciones (invarianza)"
             ],
+            "Person": [
+                "Persona"
+            ],
+            "Person ID": [
+                "ID de la persona"
+            ],
+            "Persons": [
+                "Personas"
+            ],
             "Plot title": [
                 "Título del gráfico"
+            ],
+            "Population": [
+                "Población"
+            ],
+            "Population network": [
+                "Red de la población"
+            ],
+            "Population network plot": [
+                "Gráfico de la red de la población"
             ],
             "Positive edges": [
                 "Aristas positivas"
@@ -649,6 +721,9 @@
             ],
             "Random-intercept loading": [
                 "Carga del intercepto aleatorio"
+            ],
+            "Rate of change (1, first derivative)": [
+                "Velocidad de cambio (1, primera derivada)"
             ],
             "Reading": [
                 "Lectura"
@@ -697,6 +772,9 @@
             ],
             "Same as EGA (polychoric with ordinal items, slow)": [
                 "Igual que EGA (policóricas con ítems ordinales, lenta)"
+            ],
+            "Same as population": [
+                "Igual que la población"
             ],
             "Same dimension": [
                 "Misma dimensión"
@@ -803,6 +881,12 @@
             "Structure comparison interpretation": [
                 "Interpretación de la comparación de estructuras"
             ],
+            "Structure of each group": [
+                "Estructura de cada grupo"
+            ],
+            "Structure of each person": [
+                "Estructura de cada persona"
+            ],
             "Structure to test": [
                 "Estructura a evaluar"
             ],
@@ -842,6 +926,9 @@
             "Table of network connections": [
                 "Tabla de conexiones de la red"
             ],
+            "Table with every person": [
+                "Tabla con cada persona"
+            ],
             "Test": [
                 "Prueba"
             ],
@@ -860,6 +947,18 @@
             "Theoretical structure": [
                 "Estructura teórica"
             ],
+            "Time (optional)": [
+                "Tiempo (opcional)"
+            ],
+            "Time (order of measurements)": [
+                "Tiempo (orden de las mediciones)"
+            ],
+            "Time between measurements (delta)": [
+                "Tiempo entre mediciones (delta)"
+            ],
+            "Time points": [
+                "Momentos"
+            ],
             "Top": [
                 "Arriba"
             ],
@@ -871,6 +970,9 @@
             ],
             "Triangle": [
                 "Triángulo"
+            ],
+            "Twenty-four items measured 50 times in 100 simulated persons in two groups (long format, with ID, Group and Time), from the EGAnet package - see data/README.md": [
+                "Veinticuatro ítems medidos 50 veces en 100 personas simuladas de dos grupos (formato largo, con ID, Group y Time), del paquete EGAnet; ver data/README.md"
             ],
             "Unidimensionality Check": [
                 "Verificación de unidimensionalidad"

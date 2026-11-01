@@ -118,7 +118,7 @@ explanation.
 | **Bootstrap EGA** (`bootEGA`) | Would the same dimensions appear in hundreds of resamples, or are they sample noise? | ✅ 0.1.0 (in EGA, Stability section) |
 | **Hierarchical EGA** (`hierEGA`) | Do the specific dimensions sit under one or more higher-order factors? | ✅ 0.1.0 (in EGA, Hierarchical and wording section) |
 | **Random-intercept EGA** (`riEGA`) | Are positively and negatively worded items splitting into method dimensions? | ✅ 0.1.0 (in EGA, Hierarchical and wording section) |
-| **Dynamic EGA** (`dynEGA`) | How does the structure unfold over time, per person, per group or for the population? | 🗓 Planned |
+| **Dynamic EGA** (`dynEGA`) | How does the structure unfold over time, per person, per group or for the population? | 🧪 In review (own analysis: EGAnet Lab › Dynamic EGA) |
 
 ### 2. Diagnosis and psychometric quality
 
@@ -142,8 +142,8 @@ explanation.
 | Analysis | Question it answers | Status |
 |---|---|---|
 | **Compare networks** (`compare.EGA.plots`) | How do two structures look side by side? | 🗓 Planned |
-| **Centrality** (qgraph + bootnet) | Which items are central, and are those indices stable (CS-coefficient)? | 🧪 In review (in EGA, Centrality and network stability section) |
-| **Edge accuracy** (bootnet) | How precise is each edge weight (bootstrap confidence intervals)? | 🧪 In review (in EGA, Centrality and network stability section) |
+| **Centrality** (qgraph + bootnet) | Which items are central, and are those indices stable (CS-coefficient)? | ✅ 0.1.0 (in EGA, Centrality and network stability section) |
+| **Edge accuracy** (bootnet) | How precise is each edge weight (bootstrap confidence intervals)? | ✅ 0.1.0 (in EGA, Centrality and network stability section) |
 
 ---
 
@@ -257,8 +257,8 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 | 3 | TEFI comparison of competing structures | ✅ Done |
 | 4 | Hierarchical EGA and random-intercept EGA | ✅ Done |
 | 5 | Invariance and NetworkComparisonTest (independent and paired groups) | ✅ Done |
-| 6 | Centrality and network stability (edge accuracy, CS-coefficient) | 🧪 In review |
-| 7 | Dynamic EGA for longitudinal and intensive data | 🗓 |
+| 6 | Centrality and network stability (edge accuracy, CS-coefficient) | ✅ Done |
+| 7 | Dynamic EGA for longitudinal and intensive data | 🧪 In review |
 
 See [NEWS.md](NEWS.md) for what changed in each version.
 

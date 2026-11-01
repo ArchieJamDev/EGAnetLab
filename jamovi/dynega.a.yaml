@@ -1,0 +1,232 @@
+# -----------------------------------------------------------------------------
+# EGAnetLab
+# A jamovi module for Exploratory Graph Analysis and evidence-based
+# methodological decision support on dimensional structure.
+#
+# Copyright (C) 2026 Arquímedes De León Chacón Chacón
+#
+# This file is part of EGAnetLab.
+#
+# EGAnetLab is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License,
+# or (at your option) any later version.
+#
+# EGAnetLab is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with EGAnetLab.
+# If not, see https://www.gnu.org/licenses/.
+# -----------------------------------------------------------------------------
+
+name: dynega
+title: Dynamic EGA
+menuGroup: EGAnet Lab
+menuSubgroup: Dimensionality
+menuTitle: Dynamic EGA (intensive longitudinal data)
+version: '0.1.0'
+jas: '1.2'
+
+description:
+    main: >
+      Estimates the dimensional structure of intensive longitudinal data
+      (many measurements per person) with dynamic Exploratory Graph Analysis:
+      derivatives of each person's time series, and their structure for the
+      whole sample, for each group and for each person, with plain-language
+      interpretation.
+
+options:
+  - name: data
+    type: Data
+
+  # Items measured repeatedly, one row per person and time point (long
+  # format).
+  # ES: Ítems medidos repetidamente, una fila por persona y momento (formato
+  # largo).
+  - name: vars
+    title: Items
+    type: Variables
+    suggested:
+      - continuous
+      - ordinal
+    permitted:
+      - numeric
+
+  - name: id
+    title: Person ID
+    type: Variable
+    default: null
+
+  # Optional: rows are ordered by this variable within each person; without
+  # it, the order of the rows in the data is used.
+  # ES: Opcional: las filas se ordenan por esta variable dentro de cada
+  # persona; sin ella, se usa el orden de las filas en los datos.
+  - name: time
+    title: Time (order of measurements)
+    type: Variable
+    suggested:
+      - continuous
+      - ordinal
+    permitted:
+      - numeric
+    default: null
+
+  - name: group
+    title: Grouping variable
+    type: Variable
+    suggested:
+      - nominal
+      - ordinal
+    permitted:
+      - factor
+    default: null
+
+  - name: reportLang
+    title: Report Language
+    type: List
+    options:
+      - title: English
+        name: en
+      - title: Español
+        name: es
+    default: en
+
+  # Generalized local linear approximation (GLLA) of the derivatives.
+  # ES: Aproximación lineal local generalizada (GLLA) de las derivadas.
+  - name: nEmbed
+    title: Embedding dimension (time points per window)
+    type: Integer
+    min: 3
+    max: 30
+    default: 5
+
+  - name: tau
+    title: Lag between time points (tau)
+    type: Integer
+    min: 1
+    max: 10
+    default: 1
+
+  - name: delta
+    title: Time between measurements (delta)
+    type: Number
+    min: 0.001
+    default: 1
+
+  - name: derivative
+    title: Derivative analysed
+    type: List
+    options:
+      - title: Level (0, the values themselves)
+        name: '0'
+      - title: Rate of change (1, first derivative)
+        name: '1'
+      - title: Acceleration (2, second derivative)
+        name: '2'
+    default: '1'
+
+  - name: corr
+    title: Correlation
+    type: List
+    options:
+      - title: Automatic (Pearson / polychoric)
+        name: auto
+      - title: Pearson
+        name: pearson
+      - title: Spearman
+        name: spearman
+    default: auto
+
+  - name: model
+    title: Network Model
+    type: List
+    options:
+      - title: GLASSO (EBIC)
+        name: glasso
+      - title: TMFG
+        name: TMFG
+      - title: BGGM
+        name: BGGM
+    default: glasso
+
+  - name: algorithm
+    title: Community Detection
+    type: List
+    options:
+      - title: Walktrap
+        name: walktrap
+      - title: Louvain
+        name: louvain
+      - title: Leiden
+        name: leiden
+    default: walktrap
+
+  - name: uniMethod
+    title: Unidimensionality Check
+    type: List
+    options:
+      - title: Louvain
+        name: louvain
+      - title: Expand
+        name: expand
+      - title: Leading eigenvalue
+        name: LE
+    default: louvain
+
+  - name: seed
+    title: Seed
+    type: Integer
+    min: 1
+    max: 999999999
+    default: 2026
+
+  # Levels. Population is always estimated; groups need a grouping variable;
+  # individual networks take longer and need many time points per person.
+  # ES: Niveles. La población siempre se estima; los grupos necesitan una
+  # variable de agrupación; las redes individuales tardan más y necesitan
+  # muchos momentos por persona.
+  - name: levelGroup
+    title: Structure of each group
+    type: Bool
+    default: true
+
+  - name: levelIndividual
+    title: Structure of each person
+    type: Bool
+    default: false
+
+  - name: showIndTable
+    title: Table with every person
+    type: Bool
+    default: false
+
+  - name: showChoicesGuide
+    title: About your choices
+    type: Bool
+    default: true
+
+  - name: showNetworkPlot
+    title: Population network plot
+    type: Bool
+    default: true
+
+  - name: showIndPlot
+    title: Dimensions across persons plot
+    type: Bool
+    default: true
+
+  - name: plotPalette
+    title: Dimension Colors
+    type: List
+    options:
+      - title: EGAnetLab default
+        name: default
+      - title: Colorblind-safe (Okabe-Ito)
+        name: colorblind
+      - title: Viridis
+        name: viridis
+    default: default
+...

@@ -244,4 +244,34 @@ refs:
         pages: '892-903'
         url: https://doi.org/10.1037/abn0000446
 
+    golino_2022:
+        type: 'article'
+        author: 'Golino, H., Christensen, A. P., Moulder, R., Kim, S., & Boker, S. M.'
+        year: 2022
+        title: 'Modeling latent topics in social media using dynamic exploratory graph analysis: The case of the right-wing and left-wing trolls in the 2016 US elections'
+        publisher: 'Psychometrika'
+        volume: '87'
+        issue: '1'
+        pages: '156-187'
+        url: https://doi.org/10.1007/s11336-021-09820-y
+
+    boker_2010:
+        type: 'article'
+        author: 'Boker, S. M., Deboeck, P. R., Edler, C., & Keel, P. K.'
+        year: 2010
+        title: 'Generalized local linear approximation of derivatives from time series'
+        publisher: 'In S.-M. Chow, E. Ferrer, & F. Hsieh (Eds.), Statistical methods for modeling human dynamics: An interdisciplinary dialogue. Routledge'
+        pages: '161-178'
+
+    hubert_1985:
+        type: 'article'
+        author: 'Hubert, L., & Arabie, P.'
+        year: 1985
+        title: 'Comparing partitions'
+        publisher: 'Journal of Classification'
+        volume: '2'
+        issue: '1'
+        pages: '193-218'
+        url: https://doi.org/10.1007/BF01908075
+
 ...

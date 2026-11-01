@@ -11,11 +11,25 @@ msgid "AIC"
 msgstr ""
 
 #: ega/results/choicesGuide.title
+#: dynega/options/showChoicesGuide.title
+#: dynega/results/choicesGuide.title
 msgid "About your choices"
+msgstr ""
+
+#: dynega/options/derivative/2.title
+msgid "Acceleration (2, second derivative)"
 msgstr ""
 
 #: ega/options/compareCFA.title
 msgid "Add CFA fit for each structure"
+msgstr ""
+
+#: dynega/results/indTable.columns.title
+msgid "Agreement (ARI)"
+msgstr ""
+
+#: dynega/results/indAgree.title
+msgid "Agreement with the population structure"
 msgstr ""
 
 #: ega/options/negCoding/recoded.title
@@ -27,6 +41,7 @@ msgid "Also closeness and betweenness"
 msgstr ""
 
 #: ega/results/interpretation.title
+#: dynega/results/interpretation.title
 msgid "Applied interpretation"
 msgstr ""
 
@@ -43,6 +58,7 @@ msgid "Automatic"
 msgstr ""
 
 #: ega/options/corr/auto.title
+#: dynega/options/corr/auto.title
 msgid "Automatic (Pearson / polychoric)"
 msgstr ""
 
@@ -51,6 +67,7 @@ msgid "Available when Hierarchical EGA is ticked."
 msgstr ""
 
 #: ega/options/model/BGGM.title
+#: dynega/options/model/BGGM.title
 msgid "BGGM"
 msgstr ""
 
@@ -191,10 +208,12 @@ msgid "Closeness"
 msgstr ""
 
 #: ega/options/plotPalette/colorblind.title
+#: dynega/options/plotPalette/colorblind.title
 msgid "Colorblind-safe (Okabe-Ito)"
 msgstr ""
 
 #: ega/options/algorithm.title
+#: dynega/options/algorithm.title
 msgid "Community Detection"
 msgstr ""
 
@@ -232,6 +251,7 @@ msgid "Control wording effects (random-intercept EGA)"
 msgstr ""
 
 #: ega/options/corr.title
+#: dynega/options/corr.title
 msgid "Correlation"
 msgstr ""
 
@@ -260,8 +280,20 @@ msgstr ""
 msgid "Dashed"
 msgstr ""
 
+#: dynega/results/summary.title
+msgid "Data and estimation"
+msgstr ""
+
 #: ega/options/edgeLabelDigits.title
 msgid "Decimals"
+msgstr ""
+
+#: dynega/options/derivative.title
+msgid "Derivative analysed"
+msgstr ""
+
+#: dynega/ui[2].label
+msgid "Derivatives (GLLA)"
 msgstr ""
 
 #: ega/options/nodeShape/diamond.title
@@ -288,6 +320,7 @@ msgid "Dimension"
 msgstr ""
 
 #: ega/options/plotPalette.title
+#: dynega/options/plotPalette.title
 msgid "Dimension Colors"
 msgstr ""
 
@@ -309,14 +342,23 @@ msgid "Dimensional structure"
 msgstr ""
 
 #: package/analyses/ega.menuSubgroup
+#: package/analyses/dynega.menuSubgroup
 #: ega/options.menuSubgroup
+#: dynega/options.menuSubgroup
 msgid "Dimensionality"
 msgstr ""
 
 #: ega/results/edgeTable.columns.title
 #: ega/results/compareTable.columns.title
 #: ega/results/bootFrequency.columns.title
+#: dynega/results/groupTable.columns.title
+#: dynega/results/indFreq.columns.title
+#: dynega/results/indTable.columns.title
 msgid "Dimensions"
+msgstr ""
+
+#: dynega/options/showIndPlot.title
+msgid "Dimensions across persons plot"
 msgstr ""
 
 #: ega/results/invTable.columns.title
@@ -325,6 +367,15 @@ msgstr ""
 
 #: ega/options/edgeNegLty/dotted.title
 msgid "Dotted"
+msgstr ""
+
+#: package/analyses/dynega.title
+#: dynega/options.title
+msgid "Dynamic EGA"
+msgstr ""
+
+#: package/analyses/dynega.menuTitle
+msgid "Dynamic EGA (intensive longitudinal data)"
 msgstr ""
 
 #: ega/results/compareMembership.columns.title
@@ -339,7 +390,9 @@ msgstr ""
 
 #: package/title
 #: package/analyses/ega.menuGroup
+#: package/analyses/dynega.menuGroup
 #: ega/options.menuGroup
+#: dynega/options.menuGroup
 msgid "EGAnet Lab"
 msgstr ""
 
@@ -348,6 +401,7 @@ msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package 
 msgstr ""
 
 #: ega/options/plotPalette/default.title
+#: dynega/options/plotPalette/default.title
 msgid "EGAnetLab default"
 msgstr ""
 
@@ -399,19 +453,32 @@ msgstr ""
 #: ega/results/riSummary.columns.title
 #: ega/results/bootSummary.columns.title
 #: ega/results/cfaCompare.columns.title
+#: dynega/results/summary.columns.title
+#: dynega/results/indAgree.columns.title
 msgid "Element"
 msgstr ""
 
+#: dynega/options/nEmbed.title
+msgid "Embedding dimension (time points per window)"
+msgstr ""
+
 #: ega/options/reportLang/en.title
+#: dynega/options/reportLang/en.title
 msgid "English"
 msgstr ""
 
 #: ega/options/reportLang/es.title
+#: dynega/options/reportLang/es.title
 msgid "Español"
 msgstr ""
 
 #: ega/results/networkPlot.title
 msgid "Estimated network"
+msgstr ""
+
+#: package/analyses/dynega.description
+#: dynega/options.description.main
+msgid "Estimates the dimensional structure of intensive longitudinal data (many measurements per person) with dynamic Exploratory Graph Analysis: derivatives of each person's time series, and their structure for the whole sample, for each group and for each person, with plain-language interpretation."
 msgstr ""
 
 #: package/analyses/ega.description
@@ -420,10 +487,17 @@ msgid "Estimates the number of dimensions underlying a set of items, and which i
 msgstr ""
 
 #: ega/ui[2].label
+#: dynega/results/status.title
+#: dynega/ui[3].label
 msgid "Estimation"
 msgstr ""
 
+#: dynega/results/indTable.title
+msgid "Every person"
+msgstr ""
+
 #: ega/options/uniMethod/expand.title
+#: dynega/options/uniMethod/expand.title
 msgid "Expand"
 msgstr ""
 
@@ -455,6 +529,7 @@ msgid "Frequency of the number of dimensions"
 msgstr ""
 
 #: ega/options/model/glasso.title
+#: dynega/options/model/glasso.title
 msgid "GLASSO (EBIC)"
 msgstr ""
 
@@ -473,6 +548,7 @@ msgid "Gray"
 msgstr ""
 
 #: ega/results/groupSizes.columns.title
+#: dynega/results/groupTable.columns.title
 msgid "Group"
 msgstr ""
 
@@ -483,7 +559,12 @@ msgstr ""
 
 #: ega/options/group.title
 #: ega/ui[8][3][0].label
+#: dynega/options/group.title
 msgid "Grouping variable"
+msgstr ""
+
+#: dynega/ui[0][3].label
+msgid "Grouping variable (optional)"
 msgstr ""
 
 #: ega/results/groupSizes.title
@@ -547,7 +628,12 @@ msgstr ""
 msgid "Independent groups: the variable that defines them (e.g. sex)."
 msgstr ""
 
+#: dynega/results/indInterpretation.title
+msgid "Individual structures interpretation"
+msgstr ""
+
 #: ega/results/intro.title
+#: dynega/results/intro.title
 msgid "Introduction"
 msgstr ""
 
@@ -569,6 +655,7 @@ msgstr ""
 #: ega/results/cenTable.columns.title
 #: ega/results/invTable.columns.title
 #: ega/results/nctCentralityTable.columns.title
+#: dynega/results/membership.columns.title
 msgid "Item"
 msgstr ""
 
@@ -577,6 +664,7 @@ msgid "Item means"
 msgstr ""
 
 #: ega/results/membership.title
+#: dynega/results/membership.title
 msgid "Item membership"
 msgstr ""
 
@@ -627,6 +715,8 @@ msgstr ""
 #: ega/results/bootDimStability.columns.title
 #: ega/results/cfaHierModels.columns.title
 #: ega/ui[0][0].label
+#: dynega/options/vars.title
+#: dynega/ui[0][0].label
 msgid "Items"
 msgstr ""
 
@@ -646,12 +736,17 @@ msgstr ""
 msgid "Label size"
 msgstr ""
 
+#: dynega/options/tau.title
+msgid "Lag between time points (tau)"
+msgstr ""
+
 #: ega/options/layout.title
 #: ega/ui[13][0][0].label
 msgid "Layout"
 msgstr ""
 
 #: ega/options/uniMethod/LE.title
+#: dynega/options/uniMethod/LE.title
 msgid "Leading eigenvalue"
 msgstr ""
 
@@ -672,7 +767,16 @@ msgid "Legend title"
 msgstr ""
 
 #: ega/options/algorithm/leiden.title
+#: dynega/options/algorithm/leiden.title
 msgid "Leiden"
+msgstr ""
+
+#: dynega/options/derivative/0.title
+msgid "Level (0, the values themselves)"
+msgstr ""
+
+#: dynega/ui[4].label
+msgid "Levels"
 msgstr ""
 
 #: ega/options/naData/listwise.title
@@ -697,6 +801,8 @@ msgstr ""
 
 #: ega/options/algorithm/louvain.title
 #: ega/options/uniMethod/louvain.title
+#: dynega/options/algorithm/louvain.title
+#: dynega/options/uniMethod/louvain.title
 msgid "Louvain"
 msgstr ""
 
@@ -798,6 +904,7 @@ msgid "Network Comparison Test interpretation"
 msgstr ""
 
 #: ega/options/model.title
+#: dynega/options/model.title
 msgid "Network Model"
 msgstr ""
 
@@ -872,7 +979,13 @@ msgid "None"
 msgstr ""
 
 #: ega/results/notes.title
+#: dynega/results/notes.title
 msgid "Notes"
+msgstr ""
+
+#: dynega/results/indFreq.title
+#: dynega/results/indPlot.title
+msgid "Number of dimensions across persons"
 msgstr ""
 
 #: ega/results/bootSummaryGuide.title
@@ -889,6 +1002,7 @@ msgid "Orange"
 msgstr ""
 
 #: ega/ui[12].label
+#: dynega/ui[5].label
 msgid "Output"
 msgstr ""
 
@@ -901,6 +1015,7 @@ msgid "Parametric"
 msgstr ""
 
 #: ega/options/corr/pearson.title
+#: dynega/options/corr/pearson.title
 msgid "Pearson"
 msgstr ""
 
@@ -916,9 +1031,35 @@ msgstr ""
 msgid "Permutations (invariance)"
 msgstr ""
 
+#: dynega/results/indTable.columns.title
+msgid "Person"
+msgstr ""
+
+#: dynega/options/id.title
+#: dynega/ui[0][1].label
+msgid "Person ID"
+msgstr ""
+
+#: dynega/results/groupTable.columns.title
+#: dynega/results/indFreq.columns.title
+msgid "Persons"
+msgstr ""
+
 #: ega/options/plotTitle.title
 #: ega/options/hierPlotTitle.title
 msgid "Plot title"
+msgstr ""
+
+#: dynega/results/membership.columns.title
+msgid "Population"
+msgstr ""
+
+#: dynega/results/networkPlot.title
+msgid "Population network"
+msgstr ""
+
+#: dynega/options/showNetworkPlot.title
+msgid "Population network plot"
 msgstr ""
 
 #: ega/options/edgePosColor.title
@@ -926,6 +1067,7 @@ msgid "Positive edges"
 msgstr ""
 
 #: ega/results/bootFrequency.columns.title
+#: dynega/results/indFreq.columns.title
 msgid "Proportion"
 msgstr ""
 
@@ -944,6 +1086,10 @@ msgstr ""
 
 #: ega/results/riMembership.columns.title
 msgid "Random-intercept loading"
+msgstr ""
+
+#: dynega/options/derivative/1.title
+msgid "Rate of change (1, first derivative)"
 msgstr ""
 
 #: ega/results/bnCS.columns.title
@@ -977,6 +1123,8 @@ msgstr ""
 
 #: ega/options/reportLang.title
 #: ega/ui[1].label
+#: dynega/options/reportLang.title
+#: dynega/ui[1].label
 msgid "Report Language"
 msgstr ""
 
@@ -1011,6 +1159,10 @@ msgstr ""
 
 #: ega/options/nctCorr/ega.title
 msgid "Same as EGA (polychoric with ordinal items, slow)"
+msgstr ""
+
+#: dynega/results/groupTable.columns.title
+msgid "Same as population"
 msgstr ""
 
 #: ega/results/uvaPairs.columns.title
@@ -1057,6 +1209,7 @@ msgstr ""
 #: ega/options/seed.title
 #: ega/options/groupSeed.title
 #: ega/options/bnSeed.title
+#: dynega/options/seed.title
 msgid "Seed"
 msgstr ""
 
@@ -1085,6 +1238,7 @@ msgid "Solid"
 msgstr ""
 
 #: ega/options/corr/spearman.title
+#: dynega/options/corr/spearman.title
 msgid "Spearman"
 msgstr ""
 
@@ -1156,6 +1310,16 @@ msgstr ""
 msgid "Structure comparison interpretation"
 msgstr ""
 
+#: dynega/options/levelGroup.title
+#: dynega/results/groupTable.title
+msgid "Structure of each group"
+msgstr ""
+
+#: dynega/options/levelIndividual.title
+#: dynega/results/indStatus.title
+msgid "Structure of each person"
+msgstr ""
+
 #: ega/options/invStructure.title
 msgid "Structure to test"
 msgstr ""
@@ -1201,11 +1365,16 @@ msgid "TLI"
 msgstr ""
 
 #: ega/options/model/TMFG.title
+#: dynega/options/model/TMFG.title
 msgid "TMFG"
 msgstr ""
 
 #: ega/options/showEdgeTable.title
 msgid "Table of network connections"
+msgstr ""
+
+#: dynega/options/showIndTable.title
+msgid "Table with every person"
 msgstr ""
 
 #: ega/results/nctGlobal.columns.title
@@ -1233,6 +1402,22 @@ msgstr ""
 msgid "Theoretical structure"
 msgstr ""
 
+#: dynega/ui[0][2].label
+msgid "Time (optional)"
+msgstr ""
+
+#: dynega/options/time.title
+msgid "Time (order of measurements)"
+msgstr ""
+
+#: dynega/options/delta.title
+msgid "Time between measurements (delta)"
+msgstr ""
+
+#: dynega/results/indTable.columns.title
+msgid "Time points"
+msgstr ""
+
 #: ega/options/legendPosition/top.title
 msgid "Top"
 msgstr ""
@@ -1250,7 +1435,12 @@ msgstr ""
 msgid "Triangle"
 msgstr ""
 
+#: package/datasets.description
+msgid "Twenty-four items measured 50 times in 100 simulated persons in two groups (long format, with ID, Group and Time), from the EGAnet package - see data/README.md"
+msgstr ""
+
 #: ega/options/uniMethod.title
+#: dynega/options/uniMethod.title
 msgid "Unidimensionality Check"
 msgstr ""
 
@@ -1262,10 +1452,13 @@ msgstr ""
 #: ega/results/hierSummary.columns.title
 #: ega/results/riSummary.columns.title
 #: ega/results/bootSummary.columns.title
+#: dynega/results/summary.columns.title
+#: dynega/results/indAgree.columns.title
 msgid "Value"
 msgstr ""
 
 #: ega/options/plotPalette/viridis.title
+#: dynega/options/plotPalette/viridis.title
 msgid "Viridis"
 msgstr ""
 
@@ -1274,6 +1467,7 @@ msgid "WLSMV (ordinal)"
 msgstr ""
 
 #: ega/options/algorithm/walktrap.title
+#: dynega/options/algorithm/walktrap.title
 msgid "Walktrap"
 msgstr ""
 

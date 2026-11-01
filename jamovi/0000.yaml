@@ -31,11 +31,30 @@ analyses:
       stability of dimensions and items, optional redundancy analysis (UVA), and
       plain-language interpretation.
     category: analyses
+  - title: Dynamic EGA
+    name: dynega
+    ns: EGAnetLab
+    menuGroup: EGAnet Lab
+    menuSubgroup: Dimensionality
+    menuTitle: Dynamic EGA (intensive longitudinal data)
+    description: >
+      Estimates the dimensional structure of intensive longitudinal data
+      (many measurements per person) with dynamic Exploratory Graph Analysis:
+      derivatives of each person's time series, and their structure for the
+      whole sample, for each group and for each person, with plain-language
+      interpretation.
+    category: analyses
 datasets:
   - name: WMT-2 Matrices Test (n=1185)
     path: eganetlab_wmt2.csv
     description: >-
       Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic
       variables, from the EGAnet package - see data/README.md
+  - name: Simulated intensive longitudinal data (100 persons x 50 time points)
+    path: eganetlab_dynamic_sim.csv
+    description: >-
+      Twenty-four items measured 50 times in 100 simulated persons in two
+      groups (long format, with ID, Group and Time), from the EGAnet package
+      - see data/README.md
 
 ...

@@ -1,0 +1,337 @@
+# -----------------------------------------------------------------------------
+# EGAnetLab
+# A jamovi module for Exploratory Graph Analysis and evidence-based
+# methodological decision support on dimensional structure.
+#
+# Copyright (C) 2026 Arquímedes De León Chacón Chacón
+#
+# This file is part of EGAnetLab.
+#
+# EGAnetLab is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License,
+# or (at your option) any later version.
+#
+# EGAnetLab is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with EGAnetLab.
+# If not, see https://www.gnu.org/licenses/.
+# -----------------------------------------------------------------------------
+
+name: dynega
+title: Dynamic EGA
+jrs: '1.1'
+
+items:
+  - name: intro
+    title: Introduction
+    type: Html
+
+  - name: choicesGuide
+    title: About your choices
+    type: Html
+    visible: (showChoicesGuide)
+
+  # Holds the cached dynEGA summary (state) and the line that says what was
+  # estimated. Language changes do not clear it.
+  # ES: Guarda el resumen de dynEGA en caché (state) y la línea que dice qué
+  # se estimó. Los cambios de idioma no lo borran.
+  - name: status
+    title: Estimation
+    type: Html
+    clearWith:
+      - vars
+      - id
+      - time
+      - group
+      - nEmbed
+      - tau
+      - delta
+      - derivative
+      - corr
+      - model
+      - algorithm
+      - uniMethod
+      - seed
+      - levelGroup
+      - levelIndividual
+
+  - name: summary
+    title: Data and estimation
+    type: Table
+    rows: 0
+    refs:
+      - golino_2022
+      - boker_2010
+      - eganet
+    clearWith:
+      - vars
+      - id
+      - time
+      - group
+      - nEmbed
+      - tau
+      - delta
+      - derivative
+      - corr
+      - model
+      - algorithm
+      - uniMethod
+      - seed
+      - levelGroup
+      - levelIndividual
+      - reportLang
+    columns:
+      - name: element
+        title: Element
+        type: text
+      - name: value
+        title: Value
+        type: text
+
+  - name: membership
+    title: Item membership
+    type: Table
+    rows: 0
+    refs:
+      - golino_2022
+    clearWith:
+      - vars
+      - id
+      - time
+      - group
+      - nEmbed
+      - tau
+      - delta
+      - derivative
+      - corr
+      - model
+      - algorithm
+      - uniMethod
+      - seed
+      - levelGroup
+      - levelIndividual
+      - reportLang
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: population
+        title: Population
+        type: text
+
+  - name: groupTable
+    title: Structure of each group
+    type: Table
+    rows: 0
+    visible: (levelGroup)
+    clearWith:
+      - vars
+      - id
+      - time
+      - group
+      - nEmbed
+      - tau
+      - delta
+      - derivative
+      - corr
+      - model
+      - algorithm
+      - uniMethod
+      - seed
+      - levelGroup
+      - levelIndividual
+      - reportLang
+    columns:
+      - name: group
+        title: Group
+        type: text
+      - name: persons
+        title: Persons
+        type: integer
+      - name: dims
+        title: Dimensions
+        type: text
+      - name: same
+        title: Same as population
+        type: text
+
+  - name: interpretation
+    title: Applied interpretation
+    type: Html
+
+  - name: networkPlot
+    title: Population network
+    type: Image
+    width: 600
+    height: 500
+    renderFun: .plotNetwork
+    visible: (showNetworkPlot)
+    clearWith:
+      - vars
+      - id
+      - time
+      - group
+      - nEmbed
+      - tau
+      - delta
+      - derivative
+      - corr
+      - model
+      - algorithm
+      - uniMethod
+      - seed
+      - levelGroup
+      - levelIndividual
+      - plotPalette
+      - reportLang
+
+  - name: indStatus
+    title: Structure of each person
+    type: Html
+    visible: (levelIndividual)
+
+  - name: indFreq
+    title: Number of dimensions across persons
+    type: Table
+    rows: 0
+    visible: (levelIndividual)
+    refs:
+      - golino_2022
+    clearWith:
+      - vars
+      - id
+      - time
+      - group
+      - nEmbed
+      - tau
+      - delta
+      - derivative
+      - corr
+      - model
+      - algorithm
+      - uniMethod
+      - seed
+      - levelGroup
+      - levelIndividual
+      - reportLang
+    columns:
+      - name: dims
+        title: Dimensions
+        type: text
+      - name: count
+        title: Persons
+        type: integer
+      - name: proportion
+        title: Proportion
+        type: number
+        format: pc
+
+  - name: indAgree
+    title: Agreement with the population structure
+    type: Table
+    rows: 0
+    visible: (levelIndividual)
+    refs:
+      - hubert_1985
+    clearWith:
+      - vars
+      - id
+      - time
+      - group
+      - nEmbed
+      - tau
+      - delta
+      - derivative
+      - corr
+      - model
+      - algorithm
+      - uniMethod
+      - seed
+      - levelGroup
+      - levelIndividual
+      - reportLang
+    columns:
+      - name: element
+        title: Element
+        type: text
+      - name: value
+        title: Value
+        type: text
+
+  - name: indTable
+    title: Every person
+    type: Table
+    rows: 0
+    visible: (levelIndividual && showIndTable)
+    clearWith:
+      - vars
+      - id
+      - time
+      - group
+      - nEmbed
+      - tau
+      - delta
+      - derivative
+      - corr
+      - model
+      - algorithm
+      - uniMethod
+      - seed
+      - levelGroup
+      - levelIndividual
+      - reportLang
+    columns:
+      - name: id
+        title: Person
+        type: text
+      - name: points
+        title: Time points
+        type: integer
+      - name: dims
+        title: Dimensions
+        type: text
+      - name: ari
+        title: Agreement (ARI)
+        type: number
+        format: zto
+
+  - name: indPlot
+    title: Number of dimensions across persons
+    type: Image
+    width: 500
+    height: 350
+    renderFun: .plotIndDims
+    visible: (levelIndividual && showIndPlot)
+    clearWith:
+      - vars
+      - id
+      - time
+      - group
+      - nEmbed
+      - tau
+      - delta
+      - derivative
+      - corr
+      - model
+      - algorithm
+      - uniMethod
+      - seed
+      - levelGroup
+      - levelIndividual
+      - plotPalette
+      - reportLang
+
+  - name: indInterpretation
+    title: Individual structures interpretation
+    type: Html
+    visible: (levelIndividual)
+
+  - name: notes
+    title: Notes
+    type: Html
+...

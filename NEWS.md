@@ -1,5 +1,25 @@
 # EGAnetLab 0.1.0 (development)
 
+## Dynamic EGA (phase 7)
+
+* New analysis **EGAnet Lab › Dynamic EGA** for intensive longitudinal data
+  in long format (one row per person and time point), with Person ID,
+  optional Time (to order the measurements) and optional grouping variable.
+  It runs EGAnet's dynEGA: derivatives of each person's series with
+  generalized local linear approximation (Boker et al., 2010; embedding
+  dimension, tau, delta and derivative analysed are options) and EGA on
+  them (Golino et al., 2022).
+* Population structure with its network plot; structure of each group;
+  optional structure of each person, summarized as the distribution of
+  the number of dimensions and the agreement of each person's membership
+  with the population (adjusted Rand index; Hubert & Arabie, 1985), with a
+  reading of how well the population structure describes individuals.
+* Persons with too few time points are left out with a note; a note warns
+  when individual series have fewer derivative estimates than items.
+  Results are cached with a visible seed.
+* New example dataset: simulated intensive longitudinal data (EGAnet's
+  sim.dynEGA, 100 persons x 50 time points).
+
 ## EGA: centrality and network stability (phase 6)
 
 * New **Centrality and network stability** box. **Centrality of each item**

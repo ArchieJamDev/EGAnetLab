@@ -1,0 +1,120 @@
+# -----------------------------------------------------------------------------
+# EGAnetLab
+# A jamovi module for Exploratory Graph Analysis and evidence-based
+# methodological decision support on dimensional structure.
+#
+# Copyright (C) 2026 Arquímedes De León Chacón Chacón
+#
+# This file is part of EGAnetLab.
+#
+# EGAnetLab is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License,
+# or (at your option) any later version.
+#
+# EGAnetLab is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with EGAnetLab.
+# If not, see https://www.gnu.org/licenses/.
+# -----------------------------------------------------------------------------
+title: Dynamic EGA
+name: dynega
+jus: '3.0'
+stage: 0
+compilerMode: tame
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        label: Items
+        children:
+          - type: VariablesListBox
+            name: vars
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Person ID
+        children:
+          - type: VariablesListBox
+            name: id
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Time (optional)
+        children:
+          - type: VariablesListBox
+            name: time
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Grouping variable (optional)
+        children:
+          - type: VariablesListBox
+            name: group
+            maxItemCount: 1
+            isTarget: true
+  - type: CollapseBox
+    label: Report Language
+    collapsed: false
+    children:
+      - type: ComboBox
+        name: reportLang
+  - type: CollapseBox
+    label: Derivatives (GLLA)
+    collapsed: true
+    children:
+      - type: TextBox
+        name: nEmbed
+        format: number
+      - type: TextBox
+        name: tau
+        format: number
+      - type: TextBox
+        name: delta
+        format: number
+      - type: ComboBox
+        name: derivative
+  - type: CollapseBox
+    label: Estimation
+    collapsed: true
+    children:
+      - type: ComboBox
+        name: corr
+      - type: ComboBox
+        name: model
+      - type: ComboBox
+        name: algorithm
+      - type: ComboBox
+        name: uniMethod
+      - type: TextBox
+        name: seed
+        format: number
+  - type: CollapseBox
+    label: Levels
+    collapsed: false
+    children:
+      - type: CheckBox
+        name: levelGroup
+      - type: CheckBox
+        name: levelIndividual
+      - type: CheckBox
+        name: showIndTable
+        enable: (levelIndividual)
+  - type: CollapseBox
+    label: Output
+    collapsed: true
+    children:
+      - type: CheckBox
+        name: showChoicesGuide
+      - type: CheckBox
+        name: showNetworkPlot
+      - type: CheckBox
+        name: showIndPlot
+        enable: (levelIndividual)
+      - type: ComboBox
+        name: plotPalette
