@@ -1087,6 +1087,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             summary$deleteRows()
             members$deleteRows()
             fmt <- function(x) .el_fmt_num(x, 3, "—")
+            # The validity warning goes first and in bold, before anything
+            # else in the section (Archie's request).
+            # ES: La advertencia de validez va primero y en negrita, antes
+            # de todo lo demás de la sección (pedido de Archie).
+            warning_html <- paste0("<p style=\"margin: 0.15em 0 0.65em 0; line-height: 1.40;\"><strong>",
+                                   .el_html_escape(txt("ri", "warning")), "</strong></p>")
             intro <- txt("ri", "intro")
 
             # lavaan needs syntactic names, so items are renamed v1..vk and
@@ -1113,15 +1119,17 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             }
 
             if (is.null(fit$value) || is.null(fit$value$EGA)) {
-                self$results$riStatus$setContent(.el_html_block(
-                    heading, c(intro, sprintf(txt("ri", "failed"), if (is.null(fit$error)) "—" else fit$error))))
+                self$results$riStatus$setContent(paste0(
+                    .el_html_block(heading, warning_html, raw = TRUE),
+                    .el_html_block(NULL, c(intro, sprintf(txt("ri", "failed"), if (is.null(fit$error)) "—" else fit$error)))))
                 for (name in c("riSummary", "riMembership", "riInterpretation"))
                     self$results[[name]]$setVisible(FALSE)
                 return(fit$warnings)
             }
 
             self$results$riStatus$setContent(paste0(
-                .el_html_block(heading, intro),
+                .el_html_block(heading, warning_html, raw = TRUE),
+                .el_html_block(NULL, intro),
                 .el_html_block(NULL, .el_html_list(txt("ri", "guide")), raw = TRUE)))
 
             r <- fit$value

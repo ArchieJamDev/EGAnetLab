@@ -68,7 +68,7 @@ test_that("random-intercept EGA compares dimensions with and without wording con
     expect_equal(nrow(summary), 5)
     expect_equal(summary$value[summary$element == "Dimensions without wording control (EGA)"], "3")
     expect_equal(nrow(res$riMembership$asDF), 12)
-    expect_match(res$riStatus$content, "not recoded", fixed = TRUE)
+    expect_match(res$riStatus$content, "<strong>Before reading this section", fixed = TRUE)
     expect_match(res$riInterpretation$content, "unrecoded", fixed = TRUE)
 })
 

@@ -264,8 +264,8 @@
                 "Random-intercept EGA (riEGA, in EGAnet; see references) checks whether some dimensions come from how the items are worded rather than from their content. Scales that mix positively and negatively worded items often produce an extra dimension made of the negative items, caused by acquiescence (the tendency to agree regardless of content).",
                 "riEGA first fits a random-intercept factor with the same loading for every item, which captures that wording effect, removes it, and then runs EGA on what is left."
             ),
+            warning = "Before reading this section: riEGA only makes sense when the scale mixes positively and negatively worded items, and the negatively worded items are in their original direction, not recoded. With recoded items, or with a scale whose items are all worded in the same direction, the random intercept absorbs shared variance that is part of the content and the result is not a wording effect.",
             guide = c(
-                "Important: negatively worded items must be in their original direction, not recoded. With recoded items, or with a scale whose items are all worded in the same direction, the random intercept absorbs shared variance that is part of the content and the result is not valid.",
                 "Random-intercept model: whether the wording factor could be estimated. EGAnet reads a model that does not converge as a sign that there is no substantial wording effect.",
                 "Dimensions with and without the wording control: if the number of dimensions drops after the control, some of the original dimensions probably reflected wording rather than content."
             ),
@@ -549,8 +549,8 @@
                 "El EGA con intercepto aleatorio (riEGA, de EGAnet; ver referencias) revisa si algunas dimensiones provienen de cómo están redactados los ítems y no de su contenido. Las escalas que mezclan ítems redactados en positivo y en negativo suelen producir una dimensión extra formada por los ítems negativos, causada por la aquiescencia (la tendencia a estar de acuerdo sin importar el contenido).",
                 "riEGA primero ajusta un factor de intercepto aleatorio con la misma carga para todos los ítems, que capta ese efecto de redacción, lo quita y luego aplica EGA a lo que queda."
             ),
+            warning = "Antes de leer esta sección: riEGA solo tiene sentido si la escala mezcla ítems redactados en positivo y en negativo, y los ítems negativos están en su dirección original, sin recodificar. Con ítems recodificados, o con una escala cuyos ítems están todos redactados en la misma dirección, el intercepto aleatorio absorbe varianza compartida que es parte del contenido y el resultado no indica un efecto de redacción.",
             guide = c(
-                "Importante: los ítems redactados en negativo deben estar en su dirección original, sin recodificar. Con ítems recodificados, o con una escala cuyos ítems están todos redactados en la misma dirección, el intercepto aleatorio absorbe varianza compartida que es parte del contenido y el resultado no es válido.",
                 "Modelo de intercepto aleatorio: si se pudo estimar el factor de redacción. EGAnet interpreta un modelo que no converge como señal de que no hay un efecto de redacción importante.",
                 "Dimensiones con y sin control de la redacción: si el número de dimensiones baja tras el control, algunas de las dimensiones originales probablemente reflejaban la redacción y no el contenido."
             ),
