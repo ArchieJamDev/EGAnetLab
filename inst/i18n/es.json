@@ -80,6 +80,9 @@
             "Confirmatory factor analysis": [
                 "Análisis factorial confirmatorio"
             ],
+            "Control wording effects (random-intercept EGA)": [
+                "Controlar efectos de redacción (EGA con intercepto aleatorio)"
+            ],
             "Correlation": [
                 "Correlación"
             ],
@@ -197,6 +200,24 @@
             "Hide edges weaker than": [
                 "Ocultar aristas menores que"
             ],
+            "Hierarchical EGA": [
+                "EGA jerárquico"
+            ],
+            "Hierarchical EGA (higher-order dimensions)": [
+                "EGA jerárquico (dimensiones de orden superior)"
+            ],
+            "Hierarchical EGA interpretation": [
+                "Interpretación del EGA jerárquico"
+            ],
+            "Hierarchical and wording structure": [
+                "Estructura jerárquica y de redacción"
+            ],
+            "Hierarchical structure": [
+                "Estructura jerárquica"
+            ],
+            "Higher order": [
+                "Orden superior"
+            ],
             "Include the other community algorithms": [
                 "Incluir los otros algoritmos de comunidades"
             ],
@@ -212,11 +233,17 @@
             "Item membership": [
                 "Pertenencia de los ítems"
             ],
+            "Item membership by level": [
+                "Pertenencia de los ítems por nivel"
+            ],
             "Item membership by sample": [
                 "Pertenencia de los ítems por muestra"
             ],
             "Item membership by structure": [
                 "Pertenencia de los ítems por estructura"
+            ],
+            "Item membership with and without wording control": [
+                "Pertenencia de los ítems con y sin control de la redacción"
             ],
             "Item pairs by weighted topological overlap": [
                 "Pares de ítems por solapamiento topológico ponderado"
@@ -271,6 +298,9 @@
             ],
             "Louvain": [
                 "Louvain"
+            ],
+            "Lower order": [
+                "Orden inferior"
             ],
             "ML": [
                 "ML"
@@ -376,6 +406,12 @@
             ],
             "RMSEA": [
                 "RMSEA"
+            ],
+            "Random-intercept EGA": [
+                "EGA con intercepto aleatorio"
+            ],
+            "Random-intercept loading": [
+                "Carga del intercepto aleatorio"
             ],
             "Red": [
                 "Rojo"
@@ -545,8 +581,17 @@
             "White": [
                 "Blanco"
             ],
+            "Wording effects (random-intercept EGA)": [
+                "Efectos de redacción (EGA con intercepto aleatorio)"
+            ],
+            "Wording effects interpretation": [
+                "Interpretación de los efectos de redacción"
+            ],
             "r with mean score": [
                 "r con el promedio"
+            ],
+            "riEGA": [
+                "riEGA"
             ],
             "wTO": [
                 "wTO"

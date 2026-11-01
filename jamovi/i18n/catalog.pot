@@ -106,8 +106,12 @@ msgid "Confirm with CFA"
 msgstr ""
 
 #: ega/results/cfaStatus.title
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Confirmatory factor analysis"
+msgstr ""
+
+#: ega/options/runRI.title
+msgid "Control wording effects (random-intercept EGA)"
 msgstr ""
 
 #: ega/options/corr.title
@@ -185,6 +189,8 @@ msgid "Dotted"
 msgstr ""
 
 #: ega/results/compareMembership.columns.title
+#: ega/results/hierMembership.columns.title
+#: ega/results/riMembership.columns.title
 msgid "EGA"
 msgstr ""
 
@@ -219,6 +225,8 @@ msgid "Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic
 msgstr ""
 
 #: ega/results/summary.columns.title
+#: ega/results/hierSummary.columns.title
+#: ega/results/riSummary.columns.title
 #: ega/results/bootSummary.columns.title
 #: ega/results/cfaCompare.columns.title
 msgid "Element"
@@ -281,6 +289,30 @@ msgstr ""
 msgid "Hide edges weaker than"
 msgstr ""
 
+#: ega/results/hierStatus.title
+msgid "Hierarchical EGA"
+msgstr ""
+
+#: ega/options/runHier.title
+msgid "Hierarchical EGA (higher-order dimensions)"
+msgstr ""
+
+#: ega/results/hierInterpretation.title
+msgid "Hierarchical EGA interpretation"
+msgstr ""
+
+#: ega/ui[5].label
+msgid "Hierarchical and wording structure"
+msgstr ""
+
+#: ega/results/hierSummary.title
+msgid "Hierarchical structure"
+msgstr ""
+
+#: ega/results/hierMembership.columns.title
+msgid "Higher order"
+msgstr ""
+
 #: ega/options/compareAlgorithms.title
 msgid "Include the other community algorithms"
 msgstr ""
@@ -292,6 +324,8 @@ msgstr ""
 #: ega/results/membership.columns.title
 #: ega/results/loadings.columns.title
 #: ega/results/compareMembership.columns.title
+#: ega/results/hierMembership.columns.title
+#: ega/results/riMembership.columns.title
 #: ega/results/uvaPairs.columns.title
 #: ega/results/bootItemStability.columns.title
 #: ega/results/cfaMembership.columns.title
@@ -307,12 +341,20 @@ msgstr ""
 msgid "Item membership"
 msgstr ""
 
+#: ega/results/hierMembership.title
+msgid "Item membership by level"
+msgstr ""
+
 #: ega/results/cfaMembership.title
 msgid "Item membership by sample"
 msgstr ""
 
 #: ega/results/compareMembership.title
 msgid "Item membership by structure"
+msgstr ""
+
+#: ega/results/riMembership.title
+msgid "Item membership with and without wording control"
 msgstr ""
 
 #: ega/results/uvaPairs.title
@@ -391,6 +433,10 @@ msgstr ""
 #: ega/options/algorithm/louvain.title
 #: ega/options/uniMethod/louvain.title
 msgid "Louvain"
+msgstr ""
+
+#: ega/results/hierMembership.columns.title
+msgid "Lower order"
 msgstr ""
 
 #: ega/options/cfaEstimator/ML.title
@@ -486,7 +532,7 @@ msgstr ""
 msgid "Orange"
 msgstr ""
 
-#: ega/ui[8].label
+#: ega/ui[9].label
 msgid "Output"
 msgstr ""
 
@@ -502,19 +548,19 @@ msgstr ""
 msgid "Pearson"
 msgstr ""
 
-#: ega/ui[11].label
+#: ega/ui[12].label
 msgid "Plot Edges"
 msgstr ""
 
-#: ega/ui[9].label
+#: ega/ui[10].label
 msgid "Plot Layout"
 msgstr ""
 
-#: ega/ui[12].label
+#: ega/ui[13].label
 msgid "Plot Legend"
 msgstr ""
 
-#: ega/ui[10].label
+#: ega/ui[11].label
 msgid "Plot Nodes and Labels"
 msgstr ""
 
@@ -538,6 +584,14 @@ msgstr ""
 msgid "RMSEA"
 msgstr ""
 
+#: ega/results/riSummary.title
+msgid "Random-intercept EGA"
+msgstr ""
+
+#: ega/results/riMembership.columns.title
+msgid "Random-intercept loading"
+msgstr ""
+
 #: ega/options/edgeNegColor/red.title
 msgid "Red"
 msgstr ""
@@ -547,7 +601,7 @@ msgid "Redundancy"
 msgstr ""
 
 #: ega/results/uvaStatus.title
-#: ega/ui[5].label
+#: ega/ui[6].label
 msgid "Redundancy (UVA)"
 msgstr ""
 
@@ -660,7 +714,7 @@ msgstr ""
 msgid "Stability"
 msgstr ""
 
-#: ega/ui[6].label
+#: ega/ui[7].label
 msgid "Stability (bootstrap)"
 msgstr ""
 
@@ -747,6 +801,8 @@ msgid "Unidimensionality Check"
 msgstr ""
 
 #: ega/results/summary.columns.title
+#: ega/results/hierSummary.columns.title
+#: ega/results/riSummary.columns.title
 #: ega/results/bootSummary.columns.title
 msgid "Value"
 msgstr ""
@@ -767,8 +823,20 @@ msgstr ""
 msgid "White"
 msgstr ""
 
+#: ega/results/riStatus.title
+msgid "Wording effects (random-intercept EGA)"
+msgstr ""
+
+#: ega/results/riInterpretation.title
+msgid "Wording effects interpretation"
+msgstr ""
+
 #: ega/results/scores.columns.title
 msgid "r with mean score"
+msgstr ""
+
+#: ega/results/riMembership.columns.title
+msgid "riEGA"
 msgstr ""
 
 #: ega/results/uvaPairs.columns.title

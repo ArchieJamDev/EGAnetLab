@@ -106,9 +106,13 @@ msgid "Confirm with CFA"
 msgstr "Confirmar con CFA"
 
 #: ega/results/cfaStatus.title
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Confirmatory factor analysis"
 msgstr "Análisis factorial confirmatorio"
+
+#: ega/options/runRI.title
+msgid "Control wording effects (random-intercept EGA)"
+msgstr "Controlar efectos de redacción (EGA con intercepto aleatorio)"
 
 #: ega/options/corr.title
 msgid "Correlation"
@@ -185,6 +189,8 @@ msgid "Dotted"
 msgstr "Punteada"
 
 #: ega/results/compareMembership.columns.title
+#: ega/results/hierMembership.columns.title
+#: ega/results/riMembership.columns.title
 msgid "EGA"
 msgstr "EGA"
 
@@ -219,6 +225,8 @@ msgid "Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic
 msgstr "Dieciocho ítems dicotómicos del Wiener Matrizen-Test 2 más variables demográficas, del paquete EGAnet; ver data/README.md"
 
 #: ega/results/summary.columns.title
+#: ega/results/hierSummary.columns.title
+#: ega/results/riSummary.columns.title
 #: ega/results/bootSummary.columns.title
 #: ega/results/cfaCompare.columns.title
 msgid "Element"
@@ -281,6 +289,30 @@ msgstr "Gris"
 msgid "Hide edges weaker than"
 msgstr "Ocultar aristas menores que"
 
+#: ega/results/hierStatus.title
+msgid "Hierarchical EGA"
+msgstr "EGA jerárquico"
+
+#: ega/options/runHier.title
+msgid "Hierarchical EGA (higher-order dimensions)"
+msgstr "EGA jerárquico (dimensiones de orden superior)"
+
+#: ega/results/hierInterpretation.title
+msgid "Hierarchical EGA interpretation"
+msgstr "Interpretación del EGA jerárquico"
+
+#: ega/ui[5].label
+msgid "Hierarchical and wording structure"
+msgstr "Estructura jerárquica y de redacción"
+
+#: ega/results/hierSummary.title
+msgid "Hierarchical structure"
+msgstr "Estructura jerárquica"
+
+#: ega/results/hierMembership.columns.title
+msgid "Higher order"
+msgstr "Orden superior"
+
 #: ega/options/compareAlgorithms.title
 msgid "Include the other community algorithms"
 msgstr "Incluir los otros algoritmos de comunidades"
@@ -292,6 +324,8 @@ msgstr "Introducción"
 #: ega/results/membership.columns.title
 #: ega/results/loadings.columns.title
 #: ega/results/compareMembership.columns.title
+#: ega/results/hierMembership.columns.title
+#: ega/results/riMembership.columns.title
 #: ega/results/uvaPairs.columns.title
 #: ega/results/bootItemStability.columns.title
 #: ega/results/cfaMembership.columns.title
@@ -307,6 +341,10 @@ msgstr "Promedios de los ítems"
 msgid "Item membership"
 msgstr "Pertenencia de los ítems"
 
+#: ega/results/hierMembership.title
+msgid "Item membership by level"
+msgstr "Pertenencia de los ítems por nivel"
+
 #: ega/results/cfaMembership.title
 msgid "Item membership by sample"
 msgstr "Pertenencia de los ítems por muestra"
@@ -314,6 +352,10 @@ msgstr "Pertenencia de los ítems por muestra"
 #: ega/results/compareMembership.title
 msgid "Item membership by structure"
 msgstr "Pertenencia de los ítems por estructura"
+
+#: ega/results/riMembership.title
+msgid "Item membership with and without wording control"
+msgstr "Pertenencia de los ítems con y sin control de la redacción"
 
 #: ega/results/uvaPairs.title
 msgid "Item pairs by weighted topological overlap"
@@ -392,6 +434,10 @@ msgstr "Carga"
 #: ega/options/uniMethod/louvain.title
 msgid "Louvain"
 msgstr "Louvain"
+
+#: ega/results/hierMembership.columns.title
+msgid "Lower order"
+msgstr "Orden inferior"
 
 #: ega/options/cfaEstimator/ML.title
 msgid "ML"
@@ -486,7 +532,7 @@ msgstr "Número de dimensiones entre muestras"
 msgid "Orange"
 msgstr "Naranja"
 
-#: ega/ui[8].label
+#: ega/ui[9].label
 msgid "Output"
 msgstr "Salida"
 
@@ -502,19 +548,19 @@ msgstr "Paramétrico"
 msgid "Pearson"
 msgstr "Pearson"
 
-#: ega/ui[11].label
+#: ega/ui[12].label
 msgid "Plot Edges"
 msgstr "Gráfico: aristas"
 
-#: ega/ui[9].label
+#: ega/ui[10].label
 msgid "Plot Layout"
 msgstr "Gráfico: disposición"
 
-#: ega/ui[12].label
+#: ega/ui[13].label
 msgid "Plot Legend"
 msgstr "Gráfico: leyenda"
 
-#: ega/ui[10].label
+#: ega/ui[11].label
 msgid "Plot Nodes and Labels"
 msgstr "Gráfico: nodos y etiquetas"
 
@@ -538,6 +584,14 @@ msgstr "Proporción para EGA (exploración)"
 msgid "RMSEA"
 msgstr "RMSEA"
 
+#: ega/results/riSummary.title
+msgid "Random-intercept EGA"
+msgstr "EGA con intercepto aleatorio"
+
+#: ega/results/riMembership.columns.title
+msgid "Random-intercept loading"
+msgstr "Carga del intercepto aleatorio"
+
 #: ega/options/edgeNegColor/red.title
 msgid "Red"
 msgstr "Rojo"
@@ -547,7 +601,7 @@ msgid "Redundancy"
 msgstr "Redundancia"
 
 #: ega/results/uvaStatus.title
-#: ega/ui[5].label
+#: ega/ui[6].label
 msgid "Redundancy (UVA)"
 msgstr "Redundancia (UVA)"
 
@@ -660,7 +714,7 @@ msgstr "Cuadrado"
 msgid "Stability"
 msgstr "Estabilidad"
 
-#: ega/ui[6].label
+#: ega/ui[7].label
 msgid "Stability (bootstrap)"
 msgstr "Estabilidad (bootstrap)"
 
@@ -747,6 +801,8 @@ msgid "Unidimensionality Check"
 msgstr "Verificación de unidimensionalidad"
 
 #: ega/results/summary.columns.title
+#: ega/results/hierSummary.columns.title
+#: ega/results/riSummary.columns.title
 #: ega/results/bootSummary.columns.title
 msgid "Value"
 msgstr "Valor"
@@ -767,9 +823,21 @@ msgstr "Walktrap"
 msgid "White"
 msgstr "Blanco"
 
+#: ega/results/riStatus.title
+msgid "Wording effects (random-intercept EGA)"
+msgstr "Efectos de redacción (EGA con intercepto aleatorio)"
+
+#: ega/results/riInterpretation.title
+msgid "Wording effects interpretation"
+msgstr "Interpretación de los efectos de redacción"
+
 #: ega/results/scores.columns.title
 msgid "r with mean score"
 msgstr "r con el promedio"
+
+#: ega/results/riMembership.columns.title
+msgid "riEGA"
+msgstr "riEGA"
 
 #: ega/results/uvaPairs.columns.title
 msgid "wTO"

@@ -267,6 +267,18 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 compare_warnings <- private$.runCompare(prep, ega, tr, txt)
 
             # -----------------------------------------------------------------
+            # Hierarchical EGA and random-intercept EGA, only when requested.
+            # ES: EGA jerárquico y EGA con intercepto aleatorio, solo si se
+            # piden.
+            # -----------------------------------------------------------------
+            hier_warnings <- character(0)
+            if (isTRUE(self$options$runHier))
+                hier_warnings <- private$.runHier(prep, ega, tr, txt)
+            ri_warnings <- character(0)
+            if (isTRUE(self$options$runRI))
+                ri_warnings <- private$.runRI(prep, ega, tr, txt)
+
+            # -----------------------------------------------------------------
             # Interpretation and recommendations.
             # ES: Interpretación y recomendaciones.
             # -----------------------------------------------------------------
@@ -334,7 +346,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Notas: cada advertencia de EGAnet se muestra, nunca se
             # suprime.
             # -----------------------------------------------------------------
-            warnings <- unique(c(fit$warnings, score_warnings, compare_warnings, boot_warnings, uva_warnings, cfa_warnings))
+            warnings <- unique(c(fit$warnings, score_warnings, compare_warnings, hier_warnings, ri_warnings, boot_warnings, uva_warnings, cfa_warnings))
             if (length(warnings) > 0) {
                 self$results$notes$setContent(.el_html_block(
                     txt("common", "warnings_title"),
@@ -931,6 +943,248 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
         },
 
         # ---------------------------------------------------------------------
+        # Hierarchical EGA with EGAnet::hierEGA() (Jiménez et al., 2023):
+        # lower-order dimensions from the lower level of Louvain, network
+        # scores of those dimensions, and EGA on the scores for the
+        # higher-order dimensions. Louvain uses seed 2026. A failure is
+        # explained in the section and leaves the rest intact. Returns the
+        # EGAnet messages captured.
+        # ES: EGA jerárquico con EGAnet::hierEGA() (Jiménez et al., 2023):
+        # dimensiones de orden inferior del nivel inferior de Louvain,
+        # puntuaciones de red de esas dimensiones y EGA sobre ellas para las
+        # dimensiones de orden superior. Louvain usa la semilla 2026. Un
+        # fallo se explica en la sección y deja intacto el resto. Devuelve
+        # los mensajes de EGAnet capturados.
+        # ---------------------------------------------------------------------
+        .runHier = function(prep, ega, tr, txt) {
+
+            heading <- tr("Hierarchical EGA", "EGA jerárquico")
+            summary <- self$results$hierSummary
+            members <- self$results$hierMembership
+            summary$deleteRows()
+            members$deleteRows()
+            fmt <- function(x) .el_fmt_num(x, 3, "—")
+            intro <- c(txt("hier", "intro"))
+
+            corr <- if (identical(self$options$corr, "cosine")) "auto" else self$options$corr
+            fit <- .el_capture(suppressMessages(.el_with_seed(2026, EGAnet::hierEGA(
+                data = prep$data,
+                corr = corr,
+                na.data = self$options$naData,
+                model = self$options$model,
+                uni.method = self$options$uniMethod,
+                plot.EGA = FALSE,
+                verbose = FALSE))))
+
+            if (is.null(fit$value) || is.null(fit$value$lower_order)) {
+                self$results$hierStatus$setContent(.el_html_block(
+                    heading, c(intro, sprintf(txt("hier", "failed"), if (is.null(fit$error)) "—" else fit$error))))
+                for (name in c("hierSummary", "hierMembership", "hierInterpretation"))
+                    self$results[[name]]$setVisible(FALSE)
+                return(fit$warnings)
+            }
+
+            status <- paste0(.el_html_block(heading, intro),
+                             .el_html_block(NULL, .el_html_list(txt("hier", "guide")), raw = TRUE))
+            if (identical(self$options$corr, "cosine"))
+                status <- paste0(status, .el_html_block(NULL, txt("hier", "cosine_note")))
+            self$results$hierStatus$setContent(status)
+
+            h <- fit$value
+            lower <- h$lower_order
+            items <- names(ega$wc)
+            lower_wc <- as.character(lower$wc[items]); names(lower_wc) <- items
+            n_lower <- .el_clean_num(lower$n.dim)
+            has_higher <- !is.null(h$dim.variables) && !is.na(n_lower) && n_lower > 1
+            higher_wc <- stats::setNames(rep(NA_character_, length(items)), items)
+            n_higher <- NA_real_
+            if (has_higher) {
+                dv <- h$dim.variables
+                higher_wc[as.character(dv$items)] <- as.character(dv$higher)
+                n_higher <- length(unique(stats::na.omit(higher_wc)))
+            }
+            ref <- as.character(ega$wc); names(ref) <- items
+            aligned <- .el_align_wc(lower_wc, ref)
+            agree <- .el_agreement(lower_wc, ref)
+
+            tefi_lower <- .el_clean_num(lower$TEFI)
+            tefi_higher <- if (has_higher) .el_clean_num(h$higher_order$TEFI) else NA_real_
+            tefi_general <- .el_clean_num(h$TEFI)
+            hierarchical <- has_higher && !is.na(n_higher) && n_higher < n_lower
+            better <- if (hierarchical && !is.na(tefi_lower) && !is.na(tefi_higher)) {
+                if (tefi_lower < tefi_higher) txt("hier", "better_lower") else txt("hier", "better_higher")
+            } else "—"
+
+            rows <- list(
+                list(tr("Items", "Ítems"), as.character(length(items))),
+                list(txt("hier", "row_lower"), if (is.na(n_lower)) "—" else as.character(n_lower)),
+                list(txt("hier", "row_higher"), if (is.na(n_higher)) "—" else as.character(n_higher)),
+                list(txt("hier", "row_tefi_lower"), fmt(tefi_lower)),
+                list(txt("hier", "row_tefi_higher"), fmt(tefi_higher)),
+                list(txt("hier", "row_tefi_general"), fmt(tefi_general)),
+                list(txt("hier", "row_better"), better))
+            for (i in seq_along(rows))
+                .el_add_row(summary, i, list(element = rows[[i]][[1]], value = rows[[i]][[2]]))
+
+            dash <- function(x) if (is.na(x)) "—" else x
+            for (i in seq_along(items))
+                .el_add_row(members, i, list(
+                    item = items[i], ega = dash(ref[[items[i]]]),
+                    lower = dash(aligned[[items[i]]]), higher = dash(higher_wc[[items[i]]])))
+
+            # Interpretation.
+            # ES: Interpretación.
+            paragraphs <- character(0)
+            if (!is.na(n_lower) && n_lower <= 1) {
+                paragraphs <- c(paragraphs, txt("hier", "interp_one_lower"))
+            } else {
+                paragraphs <- c(paragraphs, sprintf(txt("hier", "interp_dims"), n_lower, dash(as.character(n_higher))))
+                if (length(agree$moved) == 0 && n_lower == length(unique(stats::na.omit(ref))))
+                    paragraphs <- c(paragraphs, txt("hier", "interp_lower_same"))
+                else
+                    paragraphs <- c(paragraphs, sprintf(txt("hier", "interp_lower_diff"), n_lower,
+                        length(unique(stats::na.omit(ref))), agree$same, agree$total,
+                        if (length(agree$moved) > 0) paste(agree$moved, collapse = ", ") else "—"))
+                if (!hierarchical)
+                    paragraphs <- c(paragraphs, txt("hier", "interp_no_higher"))
+                else if (n_higher == 1)
+                    paragraphs <- c(paragraphs, txt("hier", "interp_general"))
+                else
+                    paragraphs <- c(paragraphs, sprintf(txt("hier", "interp_several"), n_higher))
+                if (hierarchical && !is.na(tefi_lower) && !is.na(tefi_higher))
+                    paragraphs <- c(paragraphs, sprintf(
+                        txt("hier", if (tefi_lower < tefi_higher) "interp_tefi_lower" else "interp_tefi_higher"),
+                        fmt(tefi_lower), fmt(tefi_higher)))
+                if (n_lower < 4)
+                    paragraphs <- c(paragraphs, sprintf(txt("hier", "interp_few"), n_lower))
+            }
+            paragraphs <- c(paragraphs, txt("hier", "interp_experimental"))
+            self$results$hierInterpretation$setContent(.el_html_block(NULL, paragraphs))
+
+            fit$warnings
+        },
+
+        # ---------------------------------------------------------------------
+        # Random-intercept EGA with EGAnet::riEGA(): a random-intercept factor
+        # with equal loadings for every item (the wording or acquiescence
+        # factor) is removed, and EGA is estimated on the residual
+        # correlations. Valid only with negatively worded items in their
+        # original (unrecoded) direction. A failure is explained in the
+        # section. Returns the EGAnet messages captured.
+        # ES: EGA con intercepto aleatorio con EGAnet::riEGA(): se quita un
+        # factor de intercepto aleatorio con cargas iguales para todos los
+        # ítems (el factor de redacción o aquiescencia) y se estima EGA sobre
+        # las correlaciones residuales. Solo es válido con los ítems
+        # redactados en negativo en su dirección original (sin recodificar).
+        # Un fallo se explica en la sección. Devuelve los mensajes de EGAnet
+        # capturados.
+        # ---------------------------------------------------------------------
+        .runRI = function(prep, ega, tr, txt) {
+
+            heading <- tr("Wording effects (random-intercept EGA)", "Efectos de redacción (EGA con intercepto aleatorio)")
+            summary <- self$results$riSummary
+            members <- self$results$riMembership
+            summary$deleteRows()
+            members$deleteRows()
+            fmt <- function(x) .el_fmt_num(x, 3, "—")
+            intro <- txt("ri", "intro")
+
+            # lavaan needs syntactic names, so items are renamed v1..vk and
+            # mapped back afterwards.
+            # ES: lavaan necesita nombres sintácticos, así que los ítems se
+            # renombran v1..vk y se devuelven a su nombre después.
+            items <- names(ega$wc)
+            safe <- paste0("v", seq_along(items))
+            d <- prep$data[, items, drop = FALSE]
+            names(d) <- safe
+
+            fit <- if (identical(self$options$model, "BGGM")) {
+                list(value = NULL, error = txt("ri", "bggm"), warnings = character(0))
+            } else {
+                .el_capture(suppressMessages(.el_with_seed(2026, EGAnet::riEGA(
+                    data = d,
+                    corr = self$options$corr,
+                    na.data = self$options$naData,
+                    model = self$options$model,
+                    algorithm = self$options$algorithm,
+                    uni.method = self$options$uniMethod,
+                    plot.EGA = FALSE,
+                    verbose = FALSE))))
+            }
+
+            if (is.null(fit$value) || is.null(fit$value$EGA)) {
+                self$results$riStatus$setContent(.el_html_block(
+                    heading, c(intro, sprintf(txt("ri", "failed"), if (is.null(fit$error)) "—" else fit$error))))
+                for (name in c("riSummary", "riMembership", "riInterpretation"))
+                    self$results[[name]]$setVisible(FALSE)
+                return(fit$warnings)
+            }
+
+            self$results$riStatus$setContent(paste0(
+                .el_html_block(heading, intro),
+                .el_html_block(NULL, .el_html_list(txt("ri", "guide")), raw = TRUE)))
+
+            r <- fit$value
+            ri_wc <- as.character(r$EGA$wc[safe]); names(ri_wc) <- items
+            ref <- as.character(ega$wc); names(ref) <- items
+            aligned <- .el_align_wc(ri_wc, ref)
+            agree <- .el_agreement(ri_wc, ref)
+            converged <- !is.null(r$RI$loadings)
+            loads <- stats::setNames(rep(NA_real_, length(items)), items)
+            if (converged) {
+                L <- as.matrix(r$RI$loadings)
+                nm <- rownames(L)
+                if (!is.null(nm)) {
+                    hit <- intersect(safe, nm)
+                    loads[items[match(hit, safe)]] <- as.numeric(L[hit, 1])
+                } else if (nrow(L) == length(items)) {
+                    loads[] <- as.numeric(L[, 1])
+                }
+            }
+            n_ega <- length(unique(stats::na.omit(ref)))
+            n_ri <- .el_clean_num(r$EGA$n.dim)
+            range_text <- if (converged && any(!is.na(loads)))
+                paste0(fmt(min(loads, na.rm = TRUE)), tr(" to ", " a "), fmt(max(loads, na.rm = TRUE)))
+            else "—"
+
+            rows <- list(
+                list(txt("ri", "row_model"), if (converged) txt("ri", "converged") else txt("ri", "not_converged")),
+                list(txt("ri", "row_dims_ega"), as.character(n_ega)),
+                list(txt("ri", "row_dims_ri"), if (is.na(n_ri)) "—" else as.character(n_ri)),
+                list(txt("ri", "row_loadings"), range_text),
+                list(txt("ri", "row_tefi"), fmt(r$TEFI)))
+            for (i in seq_along(rows))
+                .el_add_row(summary, i, list(element = rows[[i]][[1]], value = rows[[i]][[2]]))
+
+            dash <- function(x) if (is.na(x)) "—" else x
+            for (i in seq_along(items))
+                .el_add_row(members, i, list(
+                    item = items[i], ega = dash(ref[[items[i]]]), riega = dash(aligned[[items[i]]]),
+                    loading = .el_clean_num(loads[[items[i]]])))
+
+            # Interpretation.
+            # ES: Interpretación.
+            paragraphs <- character(0)
+            if (!converged) {
+                paragraphs <- c(paragraphs, txt("ri", "interp_not_converged"))
+            } else {
+                paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_converged"), range_text))
+                if (!is.na(n_ri) && n_ri == n_ega && length(agree$moved) == 0)
+                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_same"), n_ega))
+                else if (!is.na(n_ri) && n_ri < n_ega)
+                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_fewer"), n_ri, n_ega))
+                else if (!is.na(n_ri) && n_ri > n_ega)
+                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_more"), n_ri, n_ega))
+                if (length(agree$moved) > 0)
+                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_moved"), paste(agree$moved, collapse = ", ")))
+            }
+            paragraphs <- c(paragraphs, txt("ri", "interp_validity"), txt("ri", "interp_tefi"))
+            self$results$riInterpretation$setContent(.el_html_block(NULL, paragraphs))
+
+            fit$warnings
+        },
+
+        # ---------------------------------------------------------------------
         # Redundancy with EGAnet::UVA() (Christensen, Garrido & Golino, 2023),
         # estimated with the same options as the EGA above. UVA is fast, so
         # it runs on every update without a cache. A failure (Category B)
@@ -1295,6 +1549,14 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("compareTable", "Structures compared", "Estructuras comparadas"),
                 c("compareMembership", "Item membership by structure", "Pertenencia de los ítems por estructura"),
                 c("compareInterpretation", "Structure comparison interpretation", "Interpretación de la comparación de estructuras"),
+                c("hierStatus", "Hierarchical EGA", "EGA jerárquico"),
+                c("hierSummary", "Hierarchical structure", "Estructura jerárquica"),
+                c("hierMembership", "Item membership by level", "Pertenencia de los ítems por nivel"),
+                c("hierInterpretation", "Hierarchical EGA interpretation", "Interpretación del EGA jerárquico"),
+                c("riStatus", "Wording effects (random-intercept EGA)", "Efectos de redacción (EGA con intercepto aleatorio)"),
+                c("riSummary", "Random-intercept EGA", "EGA con intercepto aleatorio"),
+                c("riMembership", "Item membership with and without wording control", "Pertenencia de los ítems con y sin control de la redacción"),
+                c("riInterpretation", "Wording effects interpretation", "Interpretación de los efectos de redacción"),
                 c("cfaStatus", "Confirmatory factor analysis", "Análisis factorial confirmatorio"),
                 c("cfaCompare", "Total sample and random subsamples", "Muestra total y submuestras aleatorias"),
                 c("cfaMembership", "Item membership by sample", "Pertenencia de los ítems por muestra"),
@@ -1336,6 +1598,15 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("compareTable", "delta", "Difference from lowest", "Diferencia con el más bajo"),
                 c("compareTable", "agree", "Items placed as in EGA", "Ítems ubicados como en EGA"),
                 c("compareMembership", "item", "Item", "Ítem"),
+                c("hierSummary", "element", "Element", "Elemento"),
+                c("hierSummary", "value", "Value", "Valor"),
+                c("hierMembership", "item", "Item", "Ítem"),
+                c("hierMembership", "lower", "Lower order", "Orden inferior"),
+                c("hierMembership", "higher", "Higher order", "Orden superior"),
+                c("riSummary", "element", "Element", "Elemento"),
+                c("riSummary", "value", "Value", "Valor"),
+                c("riMembership", "item", "Item", "Ítem"),
+                c("riMembership", "loading", "Random-intercept loading", "Carga del intercepto aleatorio"),
                 c("cfaCompare", "element", "Element", "Elemento"),
                 c("cfaCompare", "total", "Total sample", "Muestra total"),
                 c("cfaCompare", "partA", "Subsample A (exploration)", "SubMuestra A (exploración)"),

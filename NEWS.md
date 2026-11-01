@@ -1,5 +1,20 @@
 # EGAnetLab 0.1.0 (development)
 
+## EGA: hierarchical EGA and wording effects (phase 4)
+
+* New **Hierarchical and wording structure** box in the EGA analysis.
+* **Hierarchical EGA** wraps `EGAnet::hierEGA()` (Jiménez et al., 2023):
+  lower- and higher-order dimensions, TEFI by level with EGAnet's reading
+  (correlated lower-order dimensions vs. hierarchical structure), and each
+  item's dimension at both levels next to the EGA solution. Louvain uses
+  seed 2026. EGAnet marks the function as experimental, and the report says
+  so.
+* **Control wording effects** wraps `EGAnet::riEGA()`: it removes a
+  random-intercept (acquiescence) factor and re-runs EGA on the residual
+  correlations, then compares the dimensions with and without that control
+  and shows the random-intercept loadings. The report insists that
+  negatively worded items must stay unrecoded.
+
 ## EGA: compare structures with TEFI (phase 3)
 
 * New **Compare structures (TEFI)** box in the EGA analysis. It scores the

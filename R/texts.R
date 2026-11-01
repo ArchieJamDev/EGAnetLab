@@ -226,6 +226,68 @@
             interp_no_cutoff = "There is no established cutoff for a meaningful TEFI difference. Read the differences together with the bootstrap stability, the CFA fit and the content of the items that move, and report the TEFI of every structure compared."
         ),
 
+        hier = list(
+            intro = c(
+                "Hierarchical EGA (hierEGA; Jiménez et al., 2023; see references) asks whether the dimensions are themselves grouped under broader, higher-order dimensions, such as a general factor.",
+                "It works in two steps: it finds the lower-order dimensions with the lower level of the Louvain algorithm, computes each person's network score on them, and then runs EGA on those scores to find the higher-order dimensions. Louvain starts from random values, so it uses the fixed seed 2026."
+            ),
+            guide = c(
+                "Lower and higher order: how many dimensions there are at each level. Higher-order dimensions group lower-order dimensions, not items.",
+                "Item membership by level: the EGA column is the solution above; the lower-order column uses the same numbers where the dimensions match; the higher-order column shows the broader dimension each item ends up in.",
+                "TEFI by level: EGAnet compares the entropy fit of the lower-order level with that of the higher-order level. A lower TEFI at the lower level favors correlated dimensions without a hierarchy; a lower TEFI at the higher level favors the hierarchical structure (EGAnet calls it bifactor)."
+            ),
+            cosine_note = "hierEGA does not accept the cosine similarity, so it uses the automatic correlation here.",
+            failed = "EGAnet could not estimate the hierarchical EGA: %s. The results above are not affected.",
+            row_lower = "Lower-order dimensions",
+            row_higher = "Higher-order dimensions",
+            row_tefi_lower = "TEFI, lower order",
+            row_tefi_higher = "TEFI, higher order",
+            row_tefi_general = "Generalized TEFI",
+            row_better = "Better fit by TEFI",
+            better_lower = "Correlated lower-order dimensions",
+            better_higher = "Hierarchical structure",
+            interp_one_lower = "hierEGA finds a single lower-order dimension, so there is no hierarchy to estimate.",
+            interp_dims = "hierEGA finds %s lower-order dimensions grouped into %s higher-order dimension(s).",
+            interp_lower_same = "The lower-order dimensions are the same as in the EGA solution above.",
+            interp_lower_diff = "The lower-order level has %s dimensions against %s in the EGA solution above, and places %d of %d items as EGA does. Items in a different dimension: %s. The lower level of Louvain tends to split broad dimensions, so this is expected.",
+            interp_no_higher = "Each lower-order dimension stays on its own at the higher level, so there is no evidence of broader dimensions grouping them.",
+            interp_general = "All lower-order dimensions group into one higher-order dimension, which is consistent with a general factor behind the specific dimensions.",
+            interp_several = "The lower-order dimensions group into %s higher-order dimensions, which suggests broader domains above the specific dimensions.",
+            interp_tefi_lower = "TEFI is lower at the lower-order level (%s) than at the higher-order level (%s), so by entropy fit the correlated lower-order dimensions describe the data better than the hierarchical structure.",
+            interp_tefi_higher = "TEFI is lower at the higher-order level (%s against %s at the lower level), so by entropy fit the hierarchical structure describes the data better than correlated lower-order dimensions.",
+            interp_few = "With only %s lower-order dimensions, the higher level rests on very few scores; read it as a hint and confirm it with a higher-order or bifactor CFA.",
+            interp_experimental = "EGAnet marks hierEGA as experimental. Report it as exploratory evidence together with the content of the dimensions."
+        ),
+
+        ri = list(
+            intro = c(
+                "Random-intercept EGA (riEGA, in EGAnet; see references) checks whether some dimensions come from how the items are worded rather than from their content. Scales that mix positively and negatively worded items often produce an extra dimension made of the negative items, caused by acquiescence (the tendency to agree regardless of content).",
+                "riEGA first fits a random-intercept factor with the same loading for every item, which captures that wording effect, removes it, and then runs EGA on what is left."
+            ),
+            guide = c(
+                "Important: negatively worded items must be in their original direction, not recoded. With recoded items, or with a scale whose items are all worded in the same direction, the random intercept absorbs shared variance that is part of the content and the result is not valid.",
+                "Random-intercept model: whether the wording factor could be estimated. EGAnet reads a model that does not converge as a sign that there is no substantial wording effect.",
+                "Dimensions with and without the wording control: if the number of dimensions drops after the control, some of the original dimensions probably reflected wording rather than content."
+            ),
+            bggm = "riEGA does not work with the BGGM network model; choose GLASSO or TMFG in Estimation",
+            failed = "EGAnet could not estimate the random-intercept EGA: %s. The results above are not affected.",
+            row_model = "Random-intercept model",
+            converged = "Converged",
+            not_converged = "Did not converge",
+            row_dims_ega = "Dimensions without wording control (EGA)",
+            row_dims_ri = "Dimensions after wording control (riEGA)",
+            row_loadings = "Standardized random-intercept loadings",
+            row_tefi = "TEFI (residual correlations)",
+            interp_not_converged = "The random-intercept model did not converge, which suggests that there is no substantial wording effect. riEGA then estimates EGA on the ordinary correlations, so its dimensions are read like those of the EGA solution above.",
+            interp_converged = "The random-intercept model converged (standardized loadings %s), so a wording or acquiescence factor could be separated from the content.",
+            interp_same = "After removing it, EGA still finds %s dimensions with the same items, so the dimensions are not an artifact of item wording.",
+            interp_fewer = "After removing it, EGA finds %s dimensions instead of %s. Some of the original dimensions probably reflected wording (for example, negative against positive items) rather than content.",
+            interp_more = "After removing it, EGA finds %s dimensions instead of %s. The wording factor was masking some distinctions in content; read the new dimensions with care.",
+            interp_moved = "Items that change dimension after the wording control: %s.",
+            interp_validity = "This result is valid only if the negatively worded items are in their original, unrecoded direction and the scale mixes both directions. If all items are worded in the same direction, do not read it as a wording effect.",
+            interp_tefi = "The riEGA TEFI is computed on the residual correlations, so it is not comparable with the TEFI of the EGA solution above."
+        ),
+
         uva = list(
             intro = c(
                 "Unique Variable Analysis (UVA) looks for redundant items: pairs that share so many of their connections in the network that they behave almost like the same item (Christensen, Garrido & Golino, 2023; see references).",
@@ -447,6 +509,68 @@
             interp_single = "%s tiene una sola dimensión. El TEFI vale siempre 0 con una dimensión, así que no se compara con las estructuras multidimensionales; para esa pregunta use la verificación de unidimensionalidad de EGA.",
             interp_cfa = "Los índices del CFA salen de los mismos datos que produjeron la solución de EGA, así que la favorecen. Úselos como una segunda mirada y confirme con la división aleatoria de la caja Confirmatory factor analysis.",
             interp_no_cutoff = "No hay un punto de corte establecido para una diferencia de TEFI importante. Lea las diferencias junto con la estabilidad bootstrap, el ajuste CFA y el contenido de los ítems que cambian, e informe el TEFI de cada estructura comparada."
+        ),
+
+        hier = list(
+            intro = c(
+                "El EGA jerárquico (hierEGA; Jiménez et al., 2023; ver referencias) pregunta si las dimensiones se agrupan a su vez bajo dimensiones más amplias, de orden superior, como un factor general.",
+                "Trabaja en dos pasos: encuentra las dimensiones de orden inferior con el nivel inferior del algoritmo Louvain, calcula la puntuación de red de cada persona en ellas y luego aplica EGA a esas puntuaciones para hallar las dimensiones de orden superior. Louvain parte de valores aleatorios, así que usa la semilla fija 2026."
+            ),
+            guide = c(
+                "Orden inferior y superior: cuántas dimensiones hay en cada nivel. Las dimensiones de orden superior agrupan dimensiones de orden inferior, no ítems.",
+                "Pertenencia de los ítems por nivel: la columna EGA es la solución de arriba; la de orden inferior usa los mismos números donde las dimensiones coinciden; la de orden superior muestra la dimensión amplia en la que queda cada ítem.",
+                "TEFI por nivel: EGAnet compara el ajuste de entropía del nivel inferior con el del nivel superior. Un TEFI más bajo en el nivel inferior favorece dimensiones correlacionadas sin jerarquía; un TEFI más bajo en el nivel superior favorece la estructura jerárquica (EGAnet la llama bifactor)."
+            ),
+            cosine_note = "hierEGA no acepta la similitud coseno, así que aquí usa la correlación automática.",
+            failed = "EGAnet no pudo estimar el EGA jerárquico: %s. Los resultados de arriba no se ven afectados.",
+            row_lower = "Dimensiones de orden inferior",
+            row_higher = "Dimensiones de orden superior",
+            row_tefi_lower = "TEFI, orden inferior",
+            row_tefi_higher = "TEFI, orden superior",
+            row_tefi_general = "TEFI generalizado",
+            row_better = "Mejor ajuste según TEFI",
+            better_lower = "Dimensiones de orden inferior correlacionadas",
+            better_higher = "Estructura jerárquica",
+            interp_one_lower = "hierEGA encuentra una sola dimensión de orden inferior, así que no hay jerarquía que estimar.",
+            interp_dims = "hierEGA encuentra %s dimensiones de orden inferior agrupadas en %s dimensión(es) de orden superior.",
+            interp_lower_same = "Las dimensiones de orden inferior son las mismas de la solución de EGA de arriba.",
+            interp_lower_diff = "El nivel inferior tiene %s dimensiones frente a %s en la solución de EGA de arriba, y ubica %d de %d ítems como EGA. Ítems en otra dimensión: %s. El nivel inferior de Louvain tiende a dividir las dimensiones amplias, así que es esperable.",
+            interp_no_higher = "Cada dimensión de orden inferior queda sola en el nivel superior, así que no hay evidencia de dimensiones más amplias que las agrupen.",
+            interp_general = "Todas las dimensiones de orden inferior se agrupan en una sola dimensión de orden superior, lo que es coherente con un factor general detrás de las dimensiones específicas.",
+            interp_several = "Las dimensiones de orden inferior se agrupan en %s dimensiones de orden superior, lo que sugiere dominios más amplios por encima de las dimensiones específicas.",
+            interp_tefi_lower = "El TEFI es más bajo en el nivel inferior (%s) que en el superior (%s), así que según el ajuste de entropía las dimensiones de orden inferior correlacionadas describen mejor los datos que la estructura jerárquica.",
+            interp_tefi_higher = "El TEFI es más bajo en el nivel superior (%s frente a %s en el inferior), así que según el ajuste de entropía la estructura jerárquica describe mejor los datos que las dimensiones de orden inferior correlacionadas.",
+            interp_few = "Con solo %s dimensiones de orden inferior, el nivel superior se apoya en muy pocas puntuaciones; tómelo como un indicio y confírmelo con un CFA de orden superior o bifactor.",
+            interp_experimental = "EGAnet marca hierEGA como experimental. Infórmelo como evidencia exploratoria junto con el contenido de las dimensiones."
+        ),
+
+        ri = list(
+            intro = c(
+                "El EGA con intercepto aleatorio (riEGA, de EGAnet; ver referencias) revisa si algunas dimensiones provienen de cómo están redactados los ítems y no de su contenido. Las escalas que mezclan ítems redactados en positivo y en negativo suelen producir una dimensión extra formada por los ítems negativos, causada por la aquiescencia (la tendencia a estar de acuerdo sin importar el contenido).",
+                "riEGA primero ajusta un factor de intercepto aleatorio con la misma carga para todos los ítems, que capta ese efecto de redacción, lo quita y luego aplica EGA a lo que queda."
+            ),
+            guide = c(
+                "Importante: los ítems redactados en negativo deben estar en su dirección original, sin recodificar. Con ítems recodificados, o con una escala cuyos ítems están todos redactados en la misma dirección, el intercepto aleatorio absorbe varianza compartida que es parte del contenido y el resultado no es válido.",
+                "Modelo de intercepto aleatorio: si se pudo estimar el factor de redacción. EGAnet interpreta un modelo que no converge como señal de que no hay un efecto de redacción importante.",
+                "Dimensiones con y sin control de la redacción: si el número de dimensiones baja tras el control, algunas de las dimensiones originales probablemente reflejaban la redacción y no el contenido."
+            ),
+            bggm = "riEGA no funciona con el modelo de red BGGM; elija GLASSO o TMFG en Estimation",
+            failed = "EGAnet no pudo estimar el EGA con intercepto aleatorio: %s. Los resultados de arriba no se ven afectados.",
+            row_model = "Modelo de intercepto aleatorio",
+            converged = "Convergió",
+            not_converged = "No convergió",
+            row_dims_ega = "Dimensiones sin control de la redacción (EGA)",
+            row_dims_ri = "Dimensiones tras controlar la redacción (riEGA)",
+            row_loadings = "Cargas estandarizadas del intercepto aleatorio",
+            row_tefi = "TEFI (correlaciones residuales)",
+            interp_not_converged = "El modelo de intercepto aleatorio no convergió, lo que sugiere que no hay un efecto de redacción importante. riEGA estima entonces EGA sobre las correlaciones habituales, así que sus dimensiones se leen como las de la solución de EGA de arriba.",
+            interp_converged = "El modelo de intercepto aleatorio convergió (cargas estandarizadas %s), así que se pudo separar un factor de redacción o aquiescencia del contenido.",
+            interp_same = "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que las dimensiones no son un artefacto de la redacción.",
+            interp_fewer = "Tras quitarlo, EGA encuentra %s dimensiones en lugar de %s. Algunas de las dimensiones originales probablemente reflejaban la redacción (por ejemplo, ítems negativos frente a positivos) y no el contenido.",
+            interp_more = "Tras quitarlo, EGA encuentra %s dimensiones en lugar de %s. El factor de redacción ocultaba algunas distinciones de contenido; lea las nuevas dimensiones con cuidado.",
+            interp_moved = "Ítems que cambian de dimensión tras controlar la redacción: %s.",
+            interp_validity = "Este resultado solo es válido si los ítems redactados en negativo están en su dirección original, sin recodificar, y la escala mezcla ambas direcciones. Si todos los ítems están redactados en la misma dirección, no lo interprete como un efecto de redacción.",
+            interp_tefi = "El TEFI de riEGA se calcula sobre las correlaciones residuales, así que no es comparable con el TEFI de la solución de EGA de arriba."
         ),
 
         uva = list(

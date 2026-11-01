@@ -28,6 +28,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             theoryFactors = list(
                 list(label="Factor 1", vars=list())),
             compareCFA = FALSE,
+            runHier = FALSE,
+            runRI = FALSE,
             runCFA = FALSE,
             cfaEstimator = "auto",
             splitSample = FALSE,
@@ -203,6 +205,14 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..compareCFA <- jmvcore::OptionBool$new(
                 "compareCFA",
                 compareCFA,
+                default=FALSE)
+            private$..runHier <- jmvcore::OptionBool$new(
+                "runHier",
+                runHier,
+                default=FALSE)
+            private$..runRI <- jmvcore::OptionBool$new(
+                "runRI",
+                runRI,
                 default=FALSE)
             private$..runCFA <- jmvcore::OptionBool$new(
                 "runCFA",
@@ -400,6 +410,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..compareAlgorithms)
             self$.addOption(private$..theoryFactors)
             self$.addOption(private$..compareCFA)
+            self$.addOption(private$..runHier)
+            self$.addOption(private$..runRI)
             self$.addOption(private$..runCFA)
             self$.addOption(private$..cfaEstimator)
             self$.addOption(private$..splitSample)
@@ -453,6 +465,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         compareAlgorithms = function() private$..compareAlgorithms$value,
         theoryFactors = function() private$..theoryFactors$value,
         compareCFA = function() private$..compareCFA$value,
+        runHier = function() private$..runHier$value,
+        runRI = function() private$..runRI$value,
         runCFA = function() private$..runCFA$value,
         cfaEstimator = function() private$..cfaEstimator$value,
         splitSample = function() private$..splitSample$value,
@@ -505,6 +519,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..compareAlgorithms = NA,
         ..theoryFactors = NA,
         ..compareCFA = NA,
+        ..runHier = NA,
+        ..runRI = NA,
         ..runCFA = NA,
         ..cfaEstimator = NA,
         ..splitSample = NA,
@@ -556,6 +572,14 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         compareTable = function() private$.items[["compareTable"]],
         compareMembership = function() private$.items[["compareMembership"]],
         compareInterpretation = function() private$.items[["compareInterpretation"]],
+        hierStatus = function() private$.items[["hierStatus"]],
+        hierSummary = function() private$.items[["hierSummary"]],
+        hierMembership = function() private$.items[["hierMembership"]],
+        hierInterpretation = function() private$.items[["hierInterpretation"]],
+        riStatus = function() private$.items[["riStatus"]],
+        riSummary = function() private$.items[["riSummary"]],
+        riMembership = function() private$.items[["riMembership"]],
+        riInterpretation = function() private$.items[["riInterpretation"]],
         uvaStatus = function() private$.items[["uvaStatus"]],
         uvaPairs = function() private$.items[["uvaPairs"]],
         uvaSets = function() private$.items[["uvaSets"]],
@@ -878,6 +902,139 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="compareInterpretation",
                 title="Structure comparison interpretation",
                 visible="(runCompare)"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="hierStatus",
+                title="Hierarchical EGA",
+                visible="(runHier)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="hierSummary",
+                title="Hierarchical structure",
+                rows=0,
+                visible="(runHier)",
+                refs=list(
+                    "jimenez_2023"),
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="element", 
+                        `title`="Element", 
+                        `type`="text"),
+                    list(
+                        `name`="value", 
+                        `title`="Value", 
+                        `type`="text"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="hierMembership",
+                title="Item membership by level",
+                rows=0,
+                visible="(runHier)",
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="item", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="ega", 
+                        `title`="EGA", 
+                        `type`="text"),
+                    list(
+                        `name`="lower", 
+                        `title`="Lower order", 
+                        `type`="text"),
+                    list(
+                        `name`="higher", 
+                        `title`="Higher order", 
+                        `type`="text"))))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="hierInterpretation",
+                title="Hierarchical EGA interpretation",
+                visible="(runHier)"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="riStatus",
+                title="Wording effects (random-intercept EGA)",
+                visible="(runRI)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="riSummary",
+                title="Random-intercept EGA",
+                rows=0,
+                visible="(runRI)",
+                refs=list(
+                    "eganet"),
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="element", 
+                        `title`="Element", 
+                        `type`="text"),
+                    list(
+                        `name`="value", 
+                        `title`="Value", 
+                        `type`="text"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="riMembership",
+                title="Item membership with and without wording control",
+                rows=0,
+                visible="(runRI)",
+                clearWith=list(
+                    "vars",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="item", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="ega", 
+                        `title`="EGA", 
+                        `type`="text"),
+                    list(
+                        `name`="riega", 
+                        `title`="riEGA", 
+                        `type`="text"),
+                    list(
+                        `name`="loading", 
+                        `title`="Random-intercept loading", 
+                        `type`="number", 
+                        `format`="zto"))))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="riInterpretation",
+                title="Wording effects interpretation",
+                visible="(runRI)"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="uvaStatus",
@@ -1362,6 +1519,8 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param compareAlgorithms .
 #' @param theoryFactors .
 #' @param compareCFA .
+#' @param runHier .
+#' @param runRI .
 #' @param runCFA .
 #' @param cfaEstimator .
 #' @param splitSample .
@@ -1408,6 +1567,14 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$compareTable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$compareMembership} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$compareInterpretation} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$hierStatus} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$hierSummary} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$hierMembership} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$hierInterpretation} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$riStatus} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$riSummary} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$riMembership} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$riInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$uvaStatus} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$uvaPairs} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$uvaSets} \tab \tab \tab \tab \tab a table \cr
@@ -1461,6 +1628,8 @@ ega <- function(
     theoryFactors = list(
                 list(label="Factor 1", vars=list())),
     compareCFA = FALSE,
+    runHier = FALSE,
+    runRI = FALSE,
     runCFA = FALSE,
     cfaEstimator = "auto",
     splitSample = FALSE,
@@ -1521,6 +1690,8 @@ ega <- function(
         compareAlgorithms = compareAlgorithms,
         theoryFactors = theoryFactors,
         compareCFA = compareCFA,
+        runHier = runHier,
+        runRI = runRI,
         runCFA = runCFA,
         cfaEstimator = cfaEstimator,
         splitSample = splitSample,

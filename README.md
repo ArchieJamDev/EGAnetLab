@@ -116,8 +116,8 @@ explanation.
 |---|---|---|
 | **EGA** | How many dimensions are there, and which items belong to each? | ✅ 0.1.0 |
 | **Bootstrap EGA** (`bootEGA`) | Would the same dimensions appear in hundreds of resamples, or are they sample noise? | ✅ 0.1.0 (in EGA, Stability section) |
-| **Hierarchical EGA** (`hierEGA`) | Do the specific dimensions sit under one or more higher-order factors? | 🗓 Planned |
-| **Random-intercept EGA** (`riEGA`) | Are positively and negatively worded items splitting into method dimensions? | 🗓 Planned |
+| **Hierarchical EGA** (`hierEGA`) | Do the specific dimensions sit under one or more higher-order factors? | ✅ 0.1.0 (in EGA, Hierarchical and wording section) |
+| **Random-intercept EGA** (`riEGA`) | Are positively and negatively worded items splitting into method dimensions? | ✅ 0.1.0 (in EGA, Hierarchical and wording section) |
 | **Dynamic EGA** (`dynEGA`) | How does the structure unfold over time, per person, per group or for the population? | 🗓 Planned |
 
 ### 2. Diagnosis and psychometric quality
@@ -254,8 +254,8 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 | 0 | Platform, EGA analysis, CI, documentation | ✅ Done |
 | 1 | Bootstrap EGA, item and dimension stability | ✅ Done |
 | 2 | UVA, network scores, CFA with random split | ✅ Done |
-| 3 | TEFI comparison of competing structures | 🚧 In review |
-| 4 | Hierarchical EGA and random-intercept EGA | 🗓 |
+| 3 | TEFI comparison of competing structures | ✅ Done |
+| 4 | Hierarchical EGA and random-intercept EGA | 🚧 In review |
 | 5 | Invariance and NetworkComparisonTest (independent and paired groups) | 🗓 |
 | 6 | Centrality, edge accuracy and network comparison plots | 🗓 |
 | 7 | Dynamic EGA for longitudinal and intensive data | 🗓 |

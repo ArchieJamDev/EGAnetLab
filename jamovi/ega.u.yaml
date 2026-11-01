@@ -123,6 +123,14 @@ children:
         name: compareCFA
         enable: (runCompare)
   - type: CollapseBox
+    label: Hierarchical and wording structure
+    collapsed: true
+    children:
+      - type: CheckBox
+        name: runHier
+      - type: CheckBox
+        name: runRI
+  - type: CollapseBox
     label: Redundancy (UVA)
     collapsed: true
     children:

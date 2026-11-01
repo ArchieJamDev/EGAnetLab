@@ -314,6 +314,133 @@ items:
     visible: (runCompare)
 
   # ---------------------------------------------------------------------------
+  # Hierarchical EGA and random-intercept EGA: shown only when ticked.
+  # ES: EGA jerárquico y EGA con intercepto aleatorio: se muestran solo si se
+  # marcan.
+  # ---------------------------------------------------------------------------
+
+  - name: hierStatus
+    title: Hierarchical EGA
+    type: Html
+    visible: (runHier)
+
+  - name: hierSummary
+    title: Hierarchical structure
+    type: Table
+    rows: 0
+    visible: (runHier)
+    refs:
+      - jimenez_2023
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - reportLang
+    columns:
+      - name: element
+        title: Element
+        type: text
+      - name: value
+        title: Value
+        type: text
+
+  - name: hierMembership
+    title: Item membership by level
+    type: Table
+    rows: 0
+    visible: (runHier)
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - reportLang
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: ega
+        title: EGA
+        type: text
+      - name: lower
+        title: Lower order
+        type: text
+      - name: higher
+        title: Higher order
+        type: text
+
+  - name: hierInterpretation
+    title: Hierarchical EGA interpretation
+    type: Html
+    visible: (runHier)
+
+  - name: riStatus
+    title: Wording effects (random-intercept EGA)
+    type: Html
+    visible: (runRI)
+
+  - name: riSummary
+    title: Random-intercept EGA
+    type: Table
+    rows: 0
+    visible: (runRI)
+    refs:
+      - eganet
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - reportLang
+    columns:
+      - name: element
+        title: Element
+        type: text
+      - name: value
+        title: Value
+        type: text
+
+  - name: riMembership
+    title: Item membership with and without wording control
+    type: Table
+    rows: 0
+    visible: (runRI)
+    clearWith:
+      - vars
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - reportLang
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: ega
+        title: EGA
+        type: text
+      - name: riega
+        title: riEGA
+        type: text
+      - name: loading
+        title: Random-intercept loading
+        type: number
+        format: zto
+
+  - name: riInterpretation
+    title: Wording effects interpretation
+    type: Html
+    visible: (runRI)
+
+  # ---------------------------------------------------------------------------
   # Redundancy (UVA): shown only when "Check redundancy (UVA)" is ticked.
   # ES: Redundancia (UVA): se muestra solo si se marca "Check redundancy
   # (UVA)".

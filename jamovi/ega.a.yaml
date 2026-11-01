@@ -284,6 +284,22 @@ options:
     default: false
 
   # ---------------------------------------------------------------------------
+  # Hierarchical EGA (EGAnet::hierEGA) and random-intercept EGA
+  # (EGAnet::riEGA): optional sections on the same items and options.
+  # ES: EGA jerárquico (EGAnet::hierEGA) y EGA con intercepto aleatorio
+  # (EGAnet::riEGA): secciones opcionales con los mismos ítems y opciones.
+  # ---------------------------------------------------------------------------
+  - name: runHier
+    title: Hierarchical EGA (higher-order dimensions)
+    type: Bool
+    default: false
+
+  - name: runRI
+    title: Control wording effects (random-intercept EGA)
+    type: Bool
+    default: false
+
+  # ---------------------------------------------------------------------------
   # Confirmatory factor analysis (lavaan::cfa()) of the EGA structure, with
   # an optional random split: EGA on one subsample (exploration), CFA on the
   # other (confirmation), and every result shown side by side for the total
