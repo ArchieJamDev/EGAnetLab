@@ -98,11 +98,14 @@ msgstr ""
 #: ega/options/labelColor/black.title
 #: ega/options/edgePosColor/black.title
 #: ega/options/hierEdgeColor/black.title
+#: dynega/options/labelColor/black.title
+#: dynega/options/edgePosColor/black.title
 msgid "Black"
 msgstr ""
 
 #: ega/options/edgePosColor/blue.title
 #: ega/options/hierEdgeColor/blue.title
+#: dynega/options/edgePosColor/blue.title
 msgid "Blue"
 msgstr ""
 
@@ -131,6 +134,7 @@ msgid "Bootstrap type"
 msgstr ""
 
 #: ega/options/legendPosition/bottom.title
+#: dynega/options/legendPosition/bottom.title
 msgid "Bottom"
 msgstr ""
 
@@ -200,6 +204,8 @@ msgstr ""
 
 #: ega/options/layout/circle.title
 #: ega/options/nodeShape/circle.title
+#: dynega/options/layout/circle.title
+#: dynega/options/nodeShape/circle.title
 msgid "Circle"
 msgstr ""
 
@@ -264,19 +270,23 @@ msgid "Cosine"
 msgstr ""
 
 #: ega/options/labelColor/grey30.title
+#: dynega/options/labelColor/grey30.title
 msgid "Dark gray"
 msgstr ""
 
 #: ega/options/edgePosColor/darkgreen.title
 #: ega/options/hierEdgeColor/darkgreen.title
+#: dynega/options/edgePosColor/darkgreen.title
 msgid "Dark green"
 msgstr ""
 
 #: ega/options/edgeNegColor/darkred.title
+#: dynega/options/edgeNegColor/darkred.title
 msgid "Dark red"
 msgstr ""
 
 #: ega/options/edgeNegLty/dashed.title
+#: dynega/options/edgeNegLty/dashed.title
 msgid "Dashed"
 msgstr ""
 
@@ -285,6 +295,7 @@ msgid "Data and estimation"
 msgstr ""
 
 #: ega/options/edgeLabelDigits.title
+#: dynega/options/edgeLabelDigits.title
 msgid "Decimals"
 msgstr ""
 
@@ -297,6 +308,7 @@ msgid "Derivatives (GLLA)"
 msgstr ""
 
 #: ega/options/nodeShape/diamond.title
+#: dynega/options/nodeShape/diamond.title
 msgid "Diamond"
 msgstr ""
 
@@ -366,6 +378,7 @@ msgid "Direction"
 msgstr ""
 
 #: ega/options/edgeNegLty/dotted.title
+#: dynega/options/edgeNegLty/dotted.title
 msgid "Dotted"
 msgstr ""
 
@@ -419,6 +432,7 @@ msgid "Edge intervals plot"
 msgstr ""
 
 #: ega/options/edgeLabelSize.title
+#: dynega/options/edgeLabelSize.title
 msgid "Edge weight size"
 msgstr ""
 
@@ -429,10 +443,12 @@ msgstr ""
 
 #: ega/options/edgeSize.title
 #: ega/options/hierEdgeWidth.title
+#: dynega/options/edgeSize.title
 msgid "Edge width"
 msgstr ""
 
 #: ega/ui[13][2][0].label
+#: dynega/ui[6][2][0].label
 msgid "Edges"
 msgstr ""
 
@@ -441,6 +457,7 @@ msgid "Edges that differ"
 msgstr ""
 
 #: ega/options/layout/eigen.title
+#: dynega/options/layout/eigen.title
 msgid "Eigenvector"
 msgstr ""
 
@@ -544,6 +561,8 @@ msgstr ""
 #: ega/options/edgePosColor/grey50.title
 #: ega/options/edgeNegColor/grey50.title
 #: ega/options/hierEdgeColor/grey55.title
+#: dynega/options/edgePosColor/grey50.title
+#: dynega/options/edgeNegColor/grey50.title
 msgid "Gray"
 msgstr ""
 
@@ -572,6 +591,7 @@ msgid "Groups compared"
 msgstr ""
 
 #: ega/options/edgeMin.title
+#: dynega/options/edgeMin.title
 msgid "Hide edges weaker than"
 msgstr ""
 
@@ -725,14 +745,17 @@ msgid "Items placed as in EGA"
 msgstr ""
 
 #: ega/options/layout/kamadakawai.title
+#: dynega/options/layout/kamadakawai.title
 msgid "Kamada-Kawai"
 msgstr ""
 
 #: ega/options/labelColor.title
+#: dynega/options/labelColor.title
 msgid "Label color"
 msgstr ""
 
 #: ega/options/labelSize.title
+#: dynega/options/labelSize.title
 msgid "Label size"
 msgstr ""
 
@@ -742,6 +765,8 @@ msgstr ""
 
 #: ega/options/layout.title
 #: ega/ui[13][0][0].label
+#: dynega/options/layout.title
+#: dynega/ui[6][0][0].label
 msgid "Layout"
 msgstr ""
 
@@ -751,18 +776,22 @@ msgid "Leading eigenvalue"
 msgstr ""
 
 #: ega/options/legendPosition/left.title
+#: dynega/options/legendPosition/left.title
 msgid "Left"
 msgstr ""
 
 #: ega/ui[13][3][0].label
+#: dynega/ui[6][3][0].label
 msgid "Legend"
 msgstr ""
 
 #: ega/options/legendPosition.title
+#: dynega/options/legendPosition.title
 msgid "Legend position"
 msgstr ""
 
 #: ega/options/legendTitle.title
+#: dynega/options/legendTitle.title
 msgid "Legend title"
 msgstr ""
 
@@ -860,6 +889,7 @@ msgid "Models with and without hierarchy (total sample)"
 msgstr ""
 
 #: ega/options/layout/mds.title
+#: dynega/options/layout/mds.title
 msgid "Multidimensional scaling"
 msgstr ""
 
@@ -869,14 +899,17 @@ msgid "N"
 msgstr ""
 
 #: ega/options/labelColor/navy.title
+#: dynega/options/labelColor/navy.title
 msgid "Navy"
 msgstr ""
 
 #: ega/options/edgeNegLty.title
+#: dynega/options/edgeNegLty.title
 msgid "Negative edge line"
 msgstr ""
 
 #: ega/options/edgeNegColor.title
+#: dynega/options/edgeNegColor.title
 msgid "Negative edges"
 msgstr ""
 
@@ -928,6 +961,7 @@ msgstr ""
 
 #: ega/options/showNetworkPlot.title
 #: ega/ui[13].label
+#: dynega/ui[6].label
 msgid "Network plot"
 msgstr ""
 
@@ -951,14 +985,17 @@ msgid "Network stability interpretation"
 msgstr ""
 
 #: ega/options/nodeAlpha.title
+#: dynega/options/nodeAlpha.title
 msgid "Node fill opacity"
 msgstr ""
 
 #: ega/options/nodeShape.title
+#: dynega/options/nodeShape.title
 msgid "Node shape"
 msgstr ""
 
 #: ega/options/nodeSize.title
+#: dynega/options/nodeSize.title
 msgid "Node size"
 msgstr ""
 
@@ -971,6 +1008,7 @@ msgid "Nodes and edges"
 msgstr ""
 
 #: ega/ui[13][1][0].label
+#: dynega/ui[6][1][0].label
 msgid "Nodes and labels"
 msgstr ""
 
@@ -998,6 +1036,7 @@ msgid "Only for scales that mix positively and negatively worded items. Mark the
 msgstr ""
 
 #: ega/options/edgeNegColor/orange.title
+#: dynega/options/edgeNegColor/orange.title
 msgid "Orange"
 msgstr ""
 
@@ -1047,6 +1086,7 @@ msgstr ""
 
 #: ega/options/plotTitle.title
 #: ega/options/hierPlotTitle.title
+#: dynega/options/plotTitle.title
 msgid "Plot title"
 msgstr ""
 
@@ -1063,6 +1103,7 @@ msgid "Population network plot"
 msgstr ""
 
 #: ega/options/edgePosColor.title
+#: dynega/options/edgePosColor.title
 msgid "Positive edges"
 msgstr ""
 
@@ -1097,6 +1138,7 @@ msgid "Reading"
 msgstr ""
 
 #: ega/options/edgeNegColor/red.title
+#: dynega/options/edgeNegColor/red.title
 msgid "Red"
 msgstr ""
 
@@ -1137,6 +1179,7 @@ msgid "Residual variance"
 msgstr ""
 
 #: ega/options/legendPosition/right.title
+#: dynega/options/legendPosition/right.title
 msgid "Right"
 msgstr ""
 
@@ -1218,6 +1261,7 @@ msgid "Set"
 msgstr ""
 
 #: ega/options/showEdgeLabels.title
+#: dynega/options/showEdgeLabels.title
 msgid "Show edge weights"
 msgstr ""
 
@@ -1226,6 +1270,7 @@ msgid "Show item names"
 msgstr ""
 
 #: ega/options/showLegend.title
+#: dynega/options/showLegend.title
 msgid "Show legend"
 msgstr ""
 
@@ -1234,6 +1279,7 @@ msgid "Show level names"
 msgstr ""
 
 #: ega/options/edgeNegLty/solid.title
+#: dynega/options/edgeNegLty/solid.title
 msgid "Solid"
 msgstr ""
 
@@ -1259,10 +1305,12 @@ msgid "Split the sample at random (EGA in one subsample, CFA in the other)"
 msgstr ""
 
 #: ega/options/layout/qgraph.title
+#: dynega/options/layout/qgraph.title
 msgid "Spring (Fruchterman-Reingold)"
 msgstr ""
 
 #: ega/options/nodeShape/square.title
+#: dynega/options/nodeShape/square.title
 msgid "Square"
 msgstr ""
 
@@ -1419,6 +1467,7 @@ msgid "Time points"
 msgstr ""
 
 #: ega/options/legendPosition/top.title
+#: dynega/options/legendPosition/top.title
 msgid "Top"
 msgstr ""
 
@@ -1432,6 +1481,7 @@ msgid "Total sample and random subsamples"
 msgstr ""
 
 #: ega/options/nodeShape/triangle.title
+#: dynega/options/nodeShape/triangle.title
 msgid "Triangle"
 msgstr ""
 
@@ -1485,6 +1535,7 @@ msgid "Weight, second"
 msgstr ""
 
 #: ega/options/labelColor/white.title
+#: dynega/options/labelColor/white.title
 msgid "White"
 msgstr ""
 

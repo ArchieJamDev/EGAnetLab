@@ -118,3 +118,96 @@ children:
         enable: (levelIndividual)
       - type: ComboBox
         name: plotPalette
+  - type: CollapseBox
+    label: Network plot
+    collapsed: true
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 0
+          row: 0
+        children:
+          - type: Label
+            label: Layout
+            children:
+              - type: ComboBox
+                name: layout
+              - type: TextBox
+                name: plotTitle
+                format: string
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 1
+          row: 0
+        children:
+          - type: Label
+            label: Nodes and labels
+            children:
+              - type: TextBox
+                name: nodeSize
+                format: number
+              - type: ComboBox
+                name: nodeShape
+              - type: TextBox
+                name: nodeAlpha
+                format: number
+              - type: TextBox
+                name: labelSize
+                format: number
+              - type: ComboBox
+                name: labelColor
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 0
+          row: 1
+        children:
+          - type: Label
+            label: Edges
+            children:
+              - type: TextBox
+                name: edgeSize
+                format: number
+              - type: ComboBox
+                name: edgePosColor
+              - type: ComboBox
+                name: edgeNegColor
+              - type: ComboBox
+                name: edgeNegLty
+              - type: TextBox
+                name: edgeMin
+                format: number
+              - type: CheckBox
+                name: showEdgeLabels
+              - type: TextBox
+                name: edgeLabelSize
+                format: number
+                enable: (showEdgeLabels)
+              - type: TextBox
+                name: edgeLabelDigits
+                format: number
+                enable: (showEdgeLabels)
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        cell:
+          column: 1
+          row: 1
+        children:
+          - type: Label
+            label: Legend
+            children:
+              - type: CheckBox
+                name: showLegend
+              - type: ComboBox
+                name: legendPosition
+                enable: (showLegend)
+              - type: TextBox
+                name: legendTitle
+                format: string
+                enable: (showLegend)

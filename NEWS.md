@@ -14,6 +14,10 @@
   the number of dimensions and the agreement of each person's membership
   with the population (adjusted Rand index; Hubert & Arabie, 1985), with a
   reading of how well the population structure describes individuals.
+* The population network plot has the same customization options as the
+  EGA network plot (layout, title, nodes, labels, edges and legend).
+* The node shape option now changes the drawn nodes in every network plot;
+  EGAnet draws fixed circles, so EGAnetLab sets the shape itself.
 * Persons with too few time points are left out with a note; a note warns
   when individual series have fewer derivative estimates than items.
   Results are cached with a visible seed.

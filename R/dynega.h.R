@@ -26,7 +26,25 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showChoicesGuide = TRUE,
             showNetworkPlot = TRUE,
             showIndPlot = TRUE,
-            plotPalette = "default", ...) {
+            plotPalette = "default",
+            layout = "qgraph",
+            plotTitle = "",
+            nodeSize = 12,
+            nodeShape = "circle",
+            nodeAlpha = 0.5,
+            labelSize = 5,
+            labelColor = "black",
+            edgeSize = 8,
+            edgePosColor = "darkgreen",
+            edgeNegColor = "red",
+            edgeNegLty = "solid",
+            edgeMin = 0,
+            showEdgeLabels = FALSE,
+            edgeLabelSize = 3,
+            edgeLabelDigits = 2,
+            showLegend = TRUE,
+            legendPosition = "right",
+            legendTitle = "", ...) {
 
             super$initialize(
                 package="EGAnetLab",
@@ -44,8 +62,7 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "numeric"))
             private$..id <- jmvcore::OptionVariable$new(
                 "id",
-                id,
-                default=NULL)
+                id)
             private$..time <- jmvcore::OptionVariable$new(
                 "time",
                 time,
@@ -53,8 +70,7 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "continuous",
                     "ordinal"),
                 permitted=list(
-                    "numeric"),
-                default=NULL)
+                    "numeric"))
             private$..group <- jmvcore::OptionVariable$new(
                 "group",
                 group,
@@ -62,8 +78,7 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "nominal",
                     "ordinal"),
                 permitted=list(
-                    "factor"),
-                default=NULL)
+                    "factor"))
             private$..reportLang <- jmvcore::OptionList$new(
                 "reportLang",
                 reportLang,
@@ -166,6 +181,127 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "colorblind",
                     "viridis"),
                 default="default")
+            private$..layout <- jmvcore::OptionList$new(
+                "layout",
+                layout,
+                options=list(
+                    "qgraph",
+                    "kamadakawai",
+                    "circle",
+                    "mds",
+                    "eigen"),
+                default="qgraph")
+            private$..plotTitle <- jmvcore::OptionString$new(
+                "plotTitle",
+                plotTitle,
+                default="")
+            private$..nodeSize <- jmvcore::OptionNumber$new(
+                "nodeSize",
+                nodeSize,
+                min=2,
+                max=30,
+                default=12)
+            private$..nodeShape <- jmvcore::OptionList$new(
+                "nodeShape",
+                nodeShape,
+                options=list(
+                    "circle",
+                    "square",
+                    "triangle",
+                    "diamond"),
+                default="circle")
+            private$..nodeAlpha <- jmvcore::OptionNumber$new(
+                "nodeAlpha",
+                nodeAlpha,
+                min=0,
+                max=1,
+                default=0.5)
+            private$..labelSize <- jmvcore::OptionNumber$new(
+                "labelSize",
+                labelSize,
+                min=1,
+                max=15,
+                default=5)
+            private$..labelColor <- jmvcore::OptionList$new(
+                "labelColor",
+                labelColor,
+                options=list(
+                    "black",
+                    "grey30",
+                    "navy",
+                    "white"),
+                default="black")
+            private$..edgeSize <- jmvcore::OptionNumber$new(
+                "edgeSize",
+                edgeSize,
+                min=1,
+                max=20,
+                default=8)
+            private$..edgePosColor <- jmvcore::OptionList$new(
+                "edgePosColor",
+                edgePosColor,
+                options=list(
+                    "darkgreen",
+                    "blue",
+                    "black",
+                    "grey50"),
+                default="darkgreen")
+            private$..edgeNegColor <- jmvcore::OptionList$new(
+                "edgeNegColor",
+                edgeNegColor,
+                options=list(
+                    "red",
+                    "orange",
+                    "darkred",
+                    "grey50"),
+                default="red")
+            private$..edgeNegLty <- jmvcore::OptionList$new(
+                "edgeNegLty",
+                edgeNegLty,
+                options=list(
+                    "solid",
+                    "dashed",
+                    "dotted"),
+                default="solid")
+            private$..edgeMin <- jmvcore::OptionNumber$new(
+                "edgeMin",
+                edgeMin,
+                min=0,
+                max=1,
+                default=0)
+            private$..showEdgeLabels <- jmvcore::OptionBool$new(
+                "showEdgeLabels",
+                showEdgeLabels,
+                default=FALSE)
+            private$..edgeLabelSize <- jmvcore::OptionNumber$new(
+                "edgeLabelSize",
+                edgeLabelSize,
+                min=1,
+                max=10,
+                default=3)
+            private$..edgeLabelDigits <- jmvcore::OptionInteger$new(
+                "edgeLabelDigits",
+                edgeLabelDigits,
+                min=1,
+                max=3,
+                default=2)
+            private$..showLegend <- jmvcore::OptionBool$new(
+                "showLegend",
+                showLegend,
+                default=TRUE)
+            private$..legendPosition <- jmvcore::OptionList$new(
+                "legendPosition",
+                legendPosition,
+                options=list(
+                    "right",
+                    "bottom",
+                    "left",
+                    "top"),
+                default="right")
+            private$..legendTitle <- jmvcore::OptionString$new(
+                "legendTitle",
+                legendTitle,
+                default="")
 
             self$.addOption(private$..vars)
             self$.addOption(private$..id)
@@ -188,6 +324,24 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..showNetworkPlot)
             self$.addOption(private$..showIndPlot)
             self$.addOption(private$..plotPalette)
+            self$.addOption(private$..layout)
+            self$.addOption(private$..plotTitle)
+            self$.addOption(private$..nodeSize)
+            self$.addOption(private$..nodeShape)
+            self$.addOption(private$..nodeAlpha)
+            self$.addOption(private$..labelSize)
+            self$.addOption(private$..labelColor)
+            self$.addOption(private$..edgeSize)
+            self$.addOption(private$..edgePosColor)
+            self$.addOption(private$..edgeNegColor)
+            self$.addOption(private$..edgeNegLty)
+            self$.addOption(private$..edgeMin)
+            self$.addOption(private$..showEdgeLabels)
+            self$.addOption(private$..edgeLabelSize)
+            self$.addOption(private$..edgeLabelDigits)
+            self$.addOption(private$..showLegend)
+            self$.addOption(private$..legendPosition)
+            self$.addOption(private$..legendTitle)
         }),
     active = list(
         vars = function() private$..vars$value,
@@ -210,7 +364,25 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
         showIndPlot = function() private$..showIndPlot$value,
-        plotPalette = function() private$..plotPalette$value),
+        plotPalette = function() private$..plotPalette$value,
+        layout = function() private$..layout$value,
+        plotTitle = function() private$..plotTitle$value,
+        nodeSize = function() private$..nodeSize$value,
+        nodeShape = function() private$..nodeShape$value,
+        nodeAlpha = function() private$..nodeAlpha$value,
+        labelSize = function() private$..labelSize$value,
+        labelColor = function() private$..labelColor$value,
+        edgeSize = function() private$..edgeSize$value,
+        edgePosColor = function() private$..edgePosColor$value,
+        edgeNegColor = function() private$..edgeNegColor$value,
+        edgeNegLty = function() private$..edgeNegLty$value,
+        edgeMin = function() private$..edgeMin$value,
+        showEdgeLabels = function() private$..showEdgeLabels$value,
+        edgeLabelSize = function() private$..edgeLabelSize$value,
+        edgeLabelDigits = function() private$..edgeLabelDigits$value,
+        showLegend = function() private$..showLegend$value,
+        legendPosition = function() private$..legendPosition$value,
+        legendTitle = function() private$..legendTitle$value),
     private = list(
         ..vars = NA,
         ..id = NA,
@@ -232,7 +404,25 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..showChoicesGuide = NA,
         ..showNetworkPlot = NA,
         ..showIndPlot = NA,
-        ..plotPalette = NA)
+        ..plotPalette = NA,
+        ..layout = NA,
+        ..plotTitle = NA,
+        ..nodeSize = NA,
+        ..nodeShape = NA,
+        ..nodeAlpha = NA,
+        ..labelSize = NA,
+        ..labelColor = NA,
+        ..edgeSize = NA,
+        ..edgePosColor = NA,
+        ..edgeNegColor = NA,
+        ..edgeNegLty = NA,
+        ..edgeMin = NA,
+        ..showEdgeLabels = NA,
+        ..edgeLabelSize = NA,
+        ..edgeLabelDigits = NA,
+        ..showLegend = NA,
+        ..legendPosition = NA,
+        ..legendTitle = NA)
 )
 
 dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -427,6 +617,24 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "levelGroup",
                     "levelIndividual",
                     "plotPalette",
+                    "layout",
+                    "plotTitle",
+                    "nodeSize",
+                    "nodeShape",
+                    "nodeAlpha",
+                    "labelSize",
+                    "labelColor",
+                    "edgeSize",
+                    "edgePosColor",
+                    "edgeNegColor",
+                    "edgeNegLty",
+                    "edgeMin",
+                    "showEdgeLabels",
+                    "edgeLabelSize",
+                    "edgeLabelDigits",
+                    "showLegend",
+                    "legendPosition",
+                    "legendTitle",
                     "reportLang")))
             self$add(jmvcore::Html$new(
                 options=options,
@@ -608,8 +816,8 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' Estimates the dimensional structure of intensive longitudinal data (many 
 #' measurements per person) with dynamic Exploratory Graph Analysis: 
-#' derivatives of each person's time series, and their structure for the whole 
-#' sample, for each group and for each person, with plain-language 
+#' derivatives of each person's time series, and their structure for the 
+#' whole sample, for each group and for each person, with plain-language 
 #' interpretation.
 #' 
 #' @param data .
@@ -634,6 +842,24 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showNetworkPlot .
 #' @param showIndPlot .
 #' @param plotPalette .
+#' @param layout .
+#' @param plotTitle .
+#' @param nodeSize .
+#' @param nodeShape .
+#' @param nodeAlpha .
+#' @param labelSize .
+#' @param labelColor .
+#' @param edgeSize .
+#' @param edgePosColor .
+#' @param edgeNegColor .
+#' @param edgeNegLty .
+#' @param edgeMin .
+#' @param showEdgeLabels .
+#' @param edgeLabelSize .
+#' @param edgeLabelDigits .
+#' @param showLegend .
+#' @param legendPosition .
+#' @param legendTitle .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$intro} \tab \tab \tab \tab \tab a html \cr
@@ -682,7 +908,25 @@ dynega <- function(
     showChoicesGuide = TRUE,
     showNetworkPlot = TRUE,
     showIndPlot = TRUE,
-    plotPalette = "default") {
+    plotPalette = "default",
+    layout = "qgraph",
+    plotTitle = "",
+    nodeSize = 12,
+    nodeShape = "circle",
+    nodeAlpha = 0.5,
+    labelSize = 5,
+    labelColor = "black",
+    edgeSize = 8,
+    edgePosColor = "darkgreen",
+    edgeNegColor = "red",
+    edgeNegLty = "solid",
+    edgeMin = 0,
+    showEdgeLabels = FALSE,
+    edgeLabelSize = 3,
+    edgeLabelDigits = 2,
+    showLegend = TRUE,
+    legendPosition = "right",
+    legendTitle = "") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("dynega requires jmvcore to be installed (restart may be required)")
@@ -722,7 +966,25 @@ dynega <- function(
         showChoicesGuide = showChoicesGuide,
         showNetworkPlot = showNetworkPlot,
         showIndPlot = showIndPlot,
-        plotPalette = plotPalette)
+        plotPalette = plotPalette,
+        layout = layout,
+        plotTitle = plotTitle,
+        nodeSize = nodeSize,
+        nodeShape = nodeShape,
+        nodeAlpha = nodeAlpha,
+        labelSize = labelSize,
+        labelColor = labelColor,
+        edgeSize = edgeSize,
+        edgePosColor = edgePosColor,
+        edgeNegColor = edgeNegColor,
+        edgeNegLty = edgeNegLty,
+        edgeMin = edgeMin,
+        showEdgeLabels = showEdgeLabels,
+        edgeLabelSize = edgeLabelSize,
+        edgeLabelDigits = edgeLabelDigits,
+        showLegend = showLegend,
+        legendPosition = legendPosition,
+        legendTitle = legendTitle)
 
     analysis <- dynegaClass$new(
         options = options,

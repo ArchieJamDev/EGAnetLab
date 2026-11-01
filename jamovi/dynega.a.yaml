@@ -229,4 +229,188 @@ options:
       - title: Viridis
         name: viridis
     default: default
+
+  # ---------------------------------------------------------------------------
+  # Network plot customization. Defaults equal EGAnet's own plot.EGA()
+  # defaults, so an untouched analysis draws the same plot as EGAnet. Every
+  # option maps to a GGally::ggnet2 argument that plot.EGA() forwards
+  # (ARCHITECTURE.md §10), except edgeMin and the edge labels, which
+  # EGAnetLab applies itself.
+  # ES: Personalización del gráfico de red. Los valores por defecto son los
+  # de plot.EGA() de EGAnet, así que un análisis sin tocar dibuja el mismo
+  # gráfico que EGAnet. Cada opción corresponde a un argumento de
+  # GGally::ggnet2 que plot.EGA() reenvía (ARCHITECTURE.md §10), salvo
+  # edgeMin y las etiquetas de aristas, que aplica EGAnetLab.
+  # ---------------------------------------------------------------------------
+  - name: layout
+    title: Layout
+    type: List
+    options:
+      - title: Spring (Fruchterman-Reingold)
+        name: qgraph
+      - title: Kamada-Kawai
+        name: kamadakawai
+      - title: Circle
+        name: circle
+      - title: Multidimensional scaling
+        name: mds
+      - title: Eigenvector
+        name: eigen
+    default: qgraph
+
+  - name: plotTitle
+    title: Plot title
+    type: String
+    default: ''
+
+  - name: nodeSize
+    title: Node size
+    type: Number
+    min: 2
+    max: 30
+    default: 12
+
+  - name: nodeShape
+    title: Node shape
+    type: List
+    options:
+      - title: Circle
+        name: circle
+      - title: Square
+        name: square
+      - title: Triangle
+        name: triangle
+      - title: Diamond
+        name: diamond
+    default: circle
+
+  - name: nodeAlpha
+    title: Node fill opacity
+    type: Number
+    min: 0
+    max: 1
+    default: 0.5
+
+  - name: labelSize
+    title: Label size
+    type: Number
+    min: 1
+    max: 15
+    default: 5
+
+  - name: labelColor
+    title: Label color
+    type: List
+    options:
+      - title: Black
+        name: black
+      - title: Dark gray
+        name: grey30
+      - title: Navy
+        name: navy
+      - title: White
+        name: white
+    default: black
+
+  - name: edgeSize
+    title: Edge width
+    type: Number
+    min: 1
+    max: 20
+    default: 8
+
+  - name: edgePosColor
+    title: Positive edges
+    type: List
+    options:
+      - title: Dark green
+        name: darkgreen
+      - title: Blue
+        name: blue
+      - title: Black
+        name: black
+      - title: Gray
+        name: grey50
+    default: darkgreen
+
+  - name: edgeNegColor
+    title: Negative edges
+    type: List
+    options:
+      - title: Red
+        name: red
+      - title: Orange
+        name: orange
+      - title: Dark red
+        name: darkred
+      - title: Gray
+        name: grey50
+    default: red
+
+  - name: edgeNegLty
+    title: Negative edge line
+    type: List
+    options:
+      - title: Solid
+        name: solid
+      - title: Dashed
+        name: dashed
+      - title: Dotted
+        name: dotted
+    default: solid
+
+  # Edges whose absolute weight is below this value are hidden from the
+  # plot only; the estimated network, memberships and loadings are not
+  # changed.
+  # ES: Las aristas con peso absoluto menor a este valor se ocultan solo en
+  # el gráfico; la red estimada, las pertenencias y las cargas no cambian.
+  - name: edgeMin
+    title: Hide edges weaker than
+    type: Number
+    min: 0
+    max: 1
+    default: 0
+
+  - name: showEdgeLabels
+    title: Show edge weights
+    type: Bool
+    default: false
+
+  - name: edgeLabelSize
+    title: Edge weight size
+    type: Number
+    min: 1
+    max: 10
+    default: 3
+
+  - name: edgeLabelDigits
+    title: Decimals
+    type: Integer
+    min: 1
+    max: 3
+    default: 2
+
+  - name: showLegend
+    title: Show legend
+    type: Bool
+    default: true
+
+  - name: legendPosition
+    title: Legend position
+    type: List
+    options:
+      - title: Right
+        name: right
+      - title: Bottom
+        name: bottom
+      - title: Left
+        name: left
+      - title: Top
+        name: top
+    default: right
+
+  - name: legendTitle
+    title: Legend title
+    type: String
+    default: ''
 ...

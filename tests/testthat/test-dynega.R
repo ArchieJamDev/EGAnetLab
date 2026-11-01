@@ -161,3 +161,19 @@ test_that("schedule variables entered as items are flagged", {
     expect_match(res$notes$content, "Beep, Day", fixed = TRUE)
     expect_false(grepl("V1", res$notes$content, fixed = TRUE))
 })
+
+test_that("the population network plot takes the plot options", {
+
+    d <- dynData()
+    opts <- EGAnetLab:::dynegaOptions$new(vars = paste0("V", 1:24), id = "ID", time = "Time",
+                                          layout = "circle", nodeShape = "square", plotTitle = "T")
+    mod <- EGAnetLab:::dynegaClass$new(options = opts, data = d)
+    mod$init()
+    mod$run()
+    state <- mod$results$networkPlot$state
+    plot <- EGAnetLab:::.el_ega_plot(state$network, state$wc, list(nodeShape = "square", plotTitle = "T"))
+    shapes <- unlist(lapply(plot$layers, function(l) l$aes_params$shape))
+    expect_true(15 %in% shapes)
+    expect_false(19 %in% shapes)
+    expect_equal(plot$labels$title, "T")
+})

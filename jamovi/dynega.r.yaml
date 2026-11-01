@@ -188,6 +188,24 @@ items:
       - levelGroup
       - levelIndividual
       - plotPalette
+      - layout
+      - plotTitle
+      - nodeSize
+      - nodeShape
+      - nodeAlpha
+      - labelSize
+      - labelColor
+      - edgeSize
+      - edgePosColor
+      - edgeNegColor
+      - edgeNegLty
+      - edgeMin
+      - showEdgeLabels
+      - edgeLabelSize
+      - edgeLabelDigits
+      - showLegend
+      - legendPosition
+      - legendTitle
       - reportLang
 
   - name: indStatus

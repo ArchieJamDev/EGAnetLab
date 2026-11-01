@@ -106,6 +106,26 @@
     requireNamespace("EGAnet", quietly = TRUE)
     plot <- do.call(graphics::plot, args)
 
+    # EGAnet draws the nodes with fixed shapes (a filled circle plus a
+    # hollow circle as border) and ignores node.shape, so the chosen shape is
+    # set on those point layers here.
+    # ES: EGAnet dibuja los nodos con formas fijas (un círculo relleno y un
+    # círculo hueco como borde) e ignora node.shape, así que aquí se asigna
+    # la forma elegida a esas capas de puntos.
+    shape <- opt("nodeShape", "circle")
+    if (!identical(shape, "circle") && shape %in% names(shapes)) {
+        hollow <- c(square = 0, triangle = 2, diamond = 5)
+        for (i in seq_along(plot$layers)) {
+            layer <- plot$layers[[i]]
+            if (!inherits(layer$geom, "GeomPoint") || is.null(layer$aes_params$shape))
+                next
+            if (identical(as.numeric(layer$aes_params$shape), 19))
+                layer$aes_params$shape <- shapes[[shape]]
+            else if (identical(as.numeric(layer$aes_params$shape), 1))
+                layer$aes_params$shape <- hollow[[shape]]
+        }
+    }
+
     if (isTRUE(opt("showEdgeLabels", FALSE)))
         plot <- .el_add_edge_labels(plot, network,
                                     size = as.numeric(opt("edgeLabelSize", 3)),
