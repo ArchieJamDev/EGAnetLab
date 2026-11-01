@@ -63,7 +63,8 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "numeric"))
             private$..id <- jmvcore::OptionVariable$new(
                 "id",
-                id)
+                id,
+                default=NULL)
             private$..time <- jmvcore::OptionVariable$new(
                 "time",
                 time,
@@ -71,7 +72,8 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "continuous",
                     "ordinal"),
                 permitted=list(
-                    "numeric"))
+                    "numeric"),
+                default=NULL)
             private$..group <- jmvcore::OptionVariable$new(
                 "group",
                 group,
@@ -79,7 +81,8 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "nominal",
                     "ordinal"),
                 permitted=list(
-                    "factor"))
+                    "factor"),
+                default=NULL)
             private$..reportLang <- jmvcore::OptionList$new(
                 "reportLang",
                 reportLang,
@@ -830,8 +833,8 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' Estimates the dimensional structure of intensive longitudinal data (many 
 #' measurements per person) with dynamic Exploratory Graph Analysis: 
-#' derivatives of each person's time series, and their structure for the 
-#' whole sample, for each group and for each person, with plain-language 
+#' derivatives of each person's time series, and their structure for the whole 
+#' sample, for each group and for each person, with plain-language 
 #' interpretation.
 #' 
 #' @param data .
