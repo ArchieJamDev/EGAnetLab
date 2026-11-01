@@ -101,15 +101,15 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             warnings <- character(0)
             if (is.null(cache)) {
                 private$.checkpoint()
-                fit <- .el_capture(EGAnet::dynEGA(
-                    data = prep$data,
+                run_dyn <- function(data, lv) .el_capture(EGAnet::dynEGA(
+                    data = data,
                     id = "ID",
                     group = if (use_groups) "Group" else NULL,
                     n.embed = n_embed,
                     tau = as.integer(o$tau),
                     delta = as.numeric(o$delta),
                     use.derivatives = deriv,
-                    level = levels,
+                    level = lv,
                     corr = o$corr,
                     model = o$model,
                     algorithm = o$algorithm,
@@ -118,8 +118,32 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     seed = as.numeric(o$seed),
                     verbose = FALSE
                 ))
+
+                # Each person's own structure is estimated separately: a
+                # person whose network cannot be estimated (an item that never
+                # changes, or too many missing answers) would otherwise stop
+                # EGAnet for everyone. Those persons stay in the population
+                # and group levels, and only their own structure is reported
+                # as not estimable.
+                # ES: La estructura propia de cada persona se estima por
+                # separado: una persona cuya red no puede estimarse (un ítem
+                # que nunca cambia o demasiadas respuestas faltantes) detendría
+                # EGAnet para todos. Esas personas siguen en los niveles de
+                # población y grupo, y solo su estructura propia se informa
+                # como no estimable.
+                fit <- run_dyn(prep$data, setdiff(levels, "individual"))
                 if (is.null(fit$value))
                     jmvcore::reject(sprintf(txt("dyn", "failed"), fit$error))
+                if ("individual" %in% levels) {
+                    ind <- list()
+                    for (pid in names(prep$points)) {
+                        private$.checkpoint()
+                        one <- run_dyn(prep$data[prep$data$ID == pid, , drop = FALSE], "individual")
+                        if (!is.null(one$value) && length(one$value$dynEGA$individual) > 0)
+                            ind[[pid]] <- one$value$dynEGA$individual[[1]]
+                    }
+                    fit$value$dynEGA$individual <- ind
+                }
 
                 person_group <- if (use_groups)
                     tapply(prep$data$Group, factor(prep$data$ID, levels = names(prep$points)), `[`, 1) else NULL

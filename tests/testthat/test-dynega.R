@@ -139,3 +139,15 @@ test_that("items read as text factors are converted to numbers", {
     expect_equal(EGAnetLab:::.el_dyn_numeric(g), c(2, 1))
     expect_equal(EGAnetLab:::.el_dyn_numeric(c(1L, 2L)), c(1, 2))
 })
+
+test_that("a person whose network cannot be estimated does not stop the others", {
+
+    d <- dynData()
+    d[d$ID == "P1", paste0("V", 1:24)] <- 1
+    res <- EGAnetLab::dynega(data = d, vars = paste0("V", 1:24), id = "ID", time = "Time",
+                             levelIndividual = TRUE, showIndTable = TRUE)
+
+    expect_equal(nrow(res$membership$asDF), 24)
+    ind <- res$indTable$asDF
+    expect_true(sum(!is.na(ind$dims)) >= 29)
+})
