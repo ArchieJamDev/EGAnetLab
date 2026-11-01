@@ -130,3 +130,12 @@ test_that("memberships are matched to the items even without names", {
     expect_equal(names(out$population$wc), c("a", "b", "c"))
     expect_true(is.na(EGAnetLab:::.el_ari(c(NA, NA), c(NA, NA))))
 })
+
+test_that("items read as text factors are converted to numbers", {
+
+    f <- factor(c("3", "1", "2", NA), levels = c("1", "2", "3"))
+    expect_equal(EGAnetLab:::.el_dyn_numeric(f), c(3, 1, 2, NA))
+    g <- factor(c("high", "low"), levels = c("low", "high"))
+    expect_equal(EGAnetLab:::.el_dyn_numeric(g), c(2, 1))
+    expect_equal(EGAnetLab:::.el_dyn_numeric(c(1L, 2L)), c(1, 2))
+})

@@ -27,6 +27,31 @@
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
+# .el_dyn_numeric()
+#
+# Input: x - a column from jamovi. Output: a numeric vector. jamovi passes
+#   ordinal and nominal columns as factors; integer ones carry their values
+#   (used by jmvcore::toNumeric), but columns read as text do not, and
+#   EGAnet::dynEGA() rejects factors. Numeric labels are kept as numbers;
+#   otherwise the level order is used.
+# ES: Entrada: x - una columna de jamovi. Salida: un vector numérico. jamovi
+#   pasa las columnas ordinales y nominales como factores; las enteras traen
+#   sus valores, pero las leídas como texto no, y EGAnet::dynEGA() rechaza
+#   factores. Las etiquetas numéricas se conservan como números; si no, se
+#   usa el orden de los niveles.
+# -----------------------------------------------------------------------------
+.el_dyn_numeric <- function(x) {
+    x <- jmvcore::toNumeric(x)
+    if (is.numeric(x)) return(as.numeric(x))
+    if (is.logical(x)) return(as.numeric(x))
+    chr <- as.character(x)
+    num <- suppressWarnings(as.numeric(chr))
+    if (all(is.na(num) == is.na(chr))) return(num)
+    if (is.factor(x)) return(as.numeric(as.integer(x)))
+    num
+}
+
+# -----------------------------------------------------------------------------
 # .el_dyn_prepare()
 #
 # Input: data - jamovi data; vars - items; id, time, group - variable names
@@ -47,7 +72,7 @@
                 group_varies = 0L)
     ids <- data[[id]]
     keep <- !is.na(ids) & nzchar(trimws(as.character(ids)))
-    items <- as.data.frame(lapply(vars, function(v) jmvcore::toNumeric(data[[v]][keep])))
+    items <- as.data.frame(lapply(vars, function(v) .el_dyn_numeric(data[[v]][keep])))
     names(items) <- vars
     ids <- as.character(ids[keep])
 
@@ -67,7 +92,7 @@
     # cada persona siguen la variable de tiempo, o el orden de los datos sin
     # ella.
     person_order <- match(ids, unique(ids))
-    time_key <- if (!is.null(time)) jmvcore::toNumeric(data[[time]][keep]) else seq_along(ids)
+    time_key <- if (!is.null(time)) .el_dyn_numeric(data[[time]][keep]) else seq_along(ids)
     ord <- order(person_order, time_key, seq_along(ids))
     items <- items[ord, , drop = FALSE]
     ids <- ids[ord]
