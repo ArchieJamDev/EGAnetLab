@@ -1077,6 +1077,7 @@ items:
     refs:
       - opsahl_2010
       - robinaugh_2016
+      - bringmann_2019
     clearWith:
       - vars
       - negItems

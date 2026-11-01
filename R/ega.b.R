@@ -2578,12 +2578,15 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (isTRUE(self$options$showCasePlot)) {
                 cases <- cache$cases
                 cases$measure <- unname(measure_labels[cases$measure])
+                self$results$bnCasePlot$setSize(600, if (length(unique(cases$measure)) > 2) 560 else 320)
                 self$results$bnCasePlot$setState(list(
                     cases = cases,
                     labels = list(x = tr("Cases dropped", "Casos eliminados"),
                                   y = tr("Correlation with the original order",
                                          "Correlación con el orden original"),
-                                  measure = tr("Measure", "Medida"))))
+                                  measure = tr("Measure", "Medida"),
+                                  note = tr("Line: mean correlation. Band: 95% of the samples. Dashed line: .70.",
+                                            "Línea: correlación media. Banda: 95% de las muestras. Línea discontinua: .70."))))
             }
 
             cache$warnings
@@ -3100,16 +3103,22 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             df <- state$cases
             df$measure <- factor(df$measure, levels = unique(df$measure))
 
+            # One panel per measure: the bands of several measures overlap
+            # and hide each other in a single panel (Archie's report).
+            # ES: Un panel por medida: las bandas de varias medidas se
+            # solapan y se ocultan entre sí en un solo panel (informe de
+            # Archie).
             plot <- ggplot2::ggplot(df, ggplot2::aes(x = drop, y = mean, colour = measure, fill = measure)) +
                 ggplot2::geom_hline(yintercept = 0.7, linetype = "dashed", colour = "grey50") +
-                ggplot2::geom_ribbon(ggplot2::aes(ymin = low, ymax = high), alpha = 0.10, colour = NA) +
+                ggplot2::geom_ribbon(ggplot2::aes(ymin = low, ymax = high), alpha = 0.20, colour = NA) +
                 ggplot2::geom_line(linewidth = 0.9) +
                 ggplot2::geom_point(size = 2) +
+                ggplot2::facet_wrap(~ measure, ncol = 2) +
                 ggplot2::scale_x_continuous(labels = function(x) paste0(round(100 * x), "%")) +
                 ggplot2::coord_cartesian(ylim = c(min(0, min(df$low, na.rm = TRUE)), 1)) +
-                ggplot2::labs(x = state$labels$x, y = state$labels$y,
-                              colour = state$labels$measure, fill = state$labels$measure) +
-                ggtheme
+                ggplot2::labs(x = state$labels$x, y = state$labels$y, caption = state$labels$note) +
+                ggtheme +
+                ggplot2::theme(legend.position = "none")
 
             palette <- .el_plot_series_palette(self$options$plotPalette)
             if (!is.null(palette))

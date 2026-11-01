@@ -2057,7 +2057,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible="(runCentrality)",
                 refs=list(
                     "opsahl_2010",
-                    "robinaugh_2016"),
+                    "robinaugh_2016",
+                    "bringmann_2019"),
                 clearWith=list(
                     "vars",
                     "negItems",
