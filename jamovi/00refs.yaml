@@ -144,4 +144,16 @@ refs:
         year: 2023
         title: 'Dimensionality assessment in bifactor structures with multiple general factors: A network psychometrics approach'
         publisher: 'Psychological Methods'
+
+    reise_2012:
+        type: 'article'
+        author: 'Reise, S. P.'
+        year: 2012
+        title: 'The rediscovery of bifactor measurement models'
+        publisher: 'Multivariate Behavioral Research'
+        volume: '47'
+        issue: '5'
+        pages: '667-696'
+        url: https://doi.org/10.1080/00273171.2012.715555
+
 ...

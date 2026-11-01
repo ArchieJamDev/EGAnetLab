@@ -65,6 +65,14 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
         # esta ejecución, leídos por la interpretación de redundancia.
         .bootUnstable = character(0),
 
+        # Hierarchical EGA structure of this run (lower-order and
+        # higher-order labels of each item), read by the CFA section to fit
+        # the hierarchical models.
+        # ES: Estructura del EGA jerárquico de esta ejecución (etiquetas de
+        # orden inferior y superior de cada ítem), leída por la sección CFA
+        # para ajustar los modelos jerárquicos.
+        .hierStructure = NULL,
+
         .run = function() {
 
             # -----------------------------------------------------------------
@@ -129,6 +137,22 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             }
 
             # -----------------------------------------------------------------
+            # Negatively worded items. When they are as answered, every
+            # analysis uses them reversed; prep$raw keeps them in their
+            # original direction for riEGA.
+            # ES: Ítems redactados en negativo. Si están tal como se
+            # respondieron, todos los análisis los usan invertidos; prep$raw
+            # los conserva en su dirección original para riEGA.
+            # -----------------------------------------------------------------
+            prep$neg <- intersect(as.character(unlist(self$options$negItems)), names(prep$data))
+            if (identical(self$options$negCoding, "raw")) {
+                prep$raw <- prep$data
+                prep$data <- .el_reverse_items(prep$data, prep$neg)
+            } else {
+                prep$raw <- .el_reverse_items(prep$data, prep$neg)
+            }
+
+            # -----------------------------------------------------------------
             # Analysis.
             # ES: Análisis.
             # -----------------------------------------------------------------
@@ -184,6 +208,13 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                      if (is.na(n_dim)) txt("common", "not_computable") else as.character(n_dim)),
                 list("TEFI", .el_fmt_num(tefi, 3, txt("common", "not_computable")))
             )
+            if (length(prep$neg) > 0)
+                summary_rows[[length(summary_rows) + 1]] <- list(
+                    tr("Negatively worded items", "Ítems redactados en negativo"),
+                    sprintf(if (identical(self$options$negCoding, "raw"))
+                                tr("%s (reversed for the analysis)", "%s (invertidos para el análisis)")
+                            else tr("%s (already reversed in the data)", "%s (ya invertidos en los datos)"),
+                            paste(prep$neg, collapse = ", ")))
 
             for (i in seq_along(summary_rows))
                 .el_add_row(self$results$summary, i,
@@ -710,6 +741,133 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             paragraphs <- c(paragraphs, txt("cfa", "interp_next"))
             self$results$cfaInterpretation$setContent(.el_html_block(NULL, paragraphs))
 
+            # Hierarchical models, when the hierarchical EGA was requested.
+            # ES: Modelos jerárquicos, cuando se pidió el EGA jerárquico.
+            if (isTRUE(self$options$runHier))
+                warnings <- c(warnings, private$.runCFAHier(prep, ega, estimator, tr, txt))
+
+            unique(warnings)
+        },
+
+        # ---------------------------------------------------------------------
+        # Models with and without hierarchy, all on the total sample and the
+        # same items: one factor, correlated factors (EGA and, when it
+        # differs, the hierEGA lower order), higher-order factors (from the
+        # hierEGA higher order) and bifactor (a general factor plus the
+        # lower-order dimensions as specific factors). A model that fails is
+        # reported in its row; the others are kept. Returns lavaan messages.
+        # ES: Modelos con y sin jerarquía, todos en la muestra total y con los
+        # mismos ítems: un factor, factores correlacionados (EGA y, si
+        # difiere, el orden inferior de hierEGA), factores de orden superior
+        # (del orden superior de hierEGA) y bifactor (un factor general más
+        # las dimensiones de orden inferior como factores específicos). Un
+        # modelo que falla se informa en su fila; los demás se conservan.
+        # Devuelve los mensajes de lavaan.
+        # ---------------------------------------------------------------------
+        .runCFAHier = function(prep, ega, estimator, tr, txt) {
+
+            table <- self$results$cfaHierModels
+            table$deleteRows()
+            num <- function(x, d = 3) .el_fmt_num(x, d, "—")
+            hs <- private$.hierStructure
+            if (is.null(hs)) {
+                table$setVisible(FALSE)
+                self$results$cfaHierInterpretation$setContent(
+                    .el_html_block(NULL, txt("cfa_hier", "unavailable")))
+                return(character(0))
+            }
+
+            items <- names(ega$wc)
+            ega_wc <- as.character(ega$wc); names(ega_wc) <- items
+            lower <- hs$lower[items]
+            common <- items[!is.na(ega_wc) & !is.na(lower)]
+            data <- prep$data
+            agree <- .el_agreement(lower[common], ega_wc[common])
+            same_lower <- length(agree$moved) == 0 &&
+                length(unique(lower[common])) == length(unique(ega_wc[common]))
+
+            models <- list(list(key = "one", label = txt("cfa_hier", "m_one"),
+                                fit = .el_cfa_fit(data, stats::setNames(rep("1", length(common)), common), estimator)))
+            models[[2]] <- list(key = "ega",
+                                label = txt("cfa_hier", if (same_lower) "m_ega_same" else "m_ega"),
+                                fit = .el_cfa_fit(data, ega_wc[common], estimator))
+            if (!same_lower)
+                models[[length(models) + 1]] <- list(key = "lower", label = txt("cfa_hier", "m_lower"),
+                                                     fit = .el_cfa_fit(data, lower[common], estimator))
+            if (isTRUE(hs$hierarchical))
+                models[[length(models) + 1]] <- list(
+                    key = "higher", label = sprintf(txt("cfa_hier", "m_higher"), hs$n_higher),
+                    fit = .el_cfa_fit(data, lower[common], estimator, type = "higher", higher = hs$higher))
+            models[[length(models) + 1]] <- list(key = "bifactor", label = txt("cfa_hier", "m_bifactor"),
+                                                 fit = .el_cfa_fit(data, lower[common], estimator, type = "bifactor"))
+
+            warnings <- character(0)
+            for (i in seq_along(models)) {
+                f <- models[[i]]$fit
+                warnings <- c(warnings, f$warnings)
+                ok <- isTRUE(f$ok)
+                v <- if (ok) f$fit else NULL
+                .el_add_row(table, i, list(
+                    model = models[[i]]$label,
+                    items = as.integer(f$n_items),
+                    chisq = if (ok) paste0(num(v[["chisq"]], 2), " (", num(v[["df"]], 0), ")") else "—",
+                    cfi = if (ok) num(v[["cfi"]]) else "—",
+                    tli = if (ok) num(v[["tli"]]) else "—",
+                    rmsea = if (ok) num(v[["rmsea"]]) else "—",
+                    srmr = if (ok) num(v[["srmr"]]) else "—",
+                    aic = if (ok) num(v[["aic"]], 1) else "—",
+                    bic = if (ok) num(v[["bic"]], 1) else "—"))
+                if (!ok)
+                    table$addFootnote(rowNo = i, col = "model",
+                                      sprintf(txt("cfa_hier", "failed"), if (is.null(f$error)) "—" else f$error))
+                else if (!isTRUE(v[["converged"]] == 1))
+                    table$addFootnote(rowNo = i, col = "model", txt("cfa_hier", "not_converged"))
+            }
+
+            # Interpretation.
+            # ES: Interpretación.
+            paragraphs <- c(txt("cfa_hier", "intro"))
+            ok <- vapply(models, function(m) isTRUE(m$fit$ok) && isTRUE(m$fit$fit[["converged"]] == 1), logical(1))
+            fitted <- models[ok]
+            if (length(fitted) == 0) {
+                paragraphs <- c(paragraphs, txt("cfa_hier", "interp_none"))
+            } else {
+                value <- function(m, k) as.numeric(m$fit$fit[[k]])
+                best_of <- function(k, lowest) {
+                    x <- vapply(fitted, value, numeric(1), k = k)
+                    if (all(is.na(x))) return(NULL)
+                    fitted[[if (lowest) which.min(x) else which.max(x)]]
+                }
+                b_cfi <- best_of("cfi", FALSE)
+                if (!is.null(b_cfi))
+                    paragraphs <- c(paragraphs, sprintf(txt("cfa_hier", "interp_best_cfi"),
+                                                        b_cfi$label, num(value(b_cfi, "cfi"))))
+                b_bic <- best_of("bic", TRUE)
+                if (!is.null(b_bic))
+                    paragraphs <- c(paragraphs, sprintf(txt("cfa_hier", "interp_best_bic"),
+                                                        b_bic$label, num(value(b_bic, "bic"), 1)))
+                else
+                    paragraphs <- c(paragraphs, txt("cfa_hier", "interp_no_ic"))
+                keys <- vapply(fitted, function(m) m$key, character(1))
+                base <- if ("lower" %in% keys) fitted[[match("lower", keys)]] else
+                    if ("ega" %in% keys && same_lower) fitted[[match("ega", keys)]] else NULL
+                if ("higher" %in% keys && !is.null(base)) {
+                    hi <- fitted[[match("higher", keys)]]
+                    equal <- isTRUE(abs(value(hi, "chisq") - value(base, "chisq")) < 1e-3 &&
+                                    value(hi, "df") == value(base, "df"))
+                    paragraphs <- c(paragraphs, if (equal) txt("cfa_hier", "interp_equivalent") else
+                        sprintf(txt("cfa_hier", "interp_higher_vs"), num(value(hi, "cfi")), num(value(base, "cfi")),
+                                num(value(hi, "bic"), 1), num(value(base, "bic"), 1)))
+                }
+                if (!isTRUE(hs$hierarchical))
+                    paragraphs <- c(paragraphs, txt("cfa_hier", "interp_no_higher"))
+                if ("bifactor" %in% keys)
+                    paragraphs <- c(paragraphs, txt("cfa_hier", "interp_bifactor"))
+            }
+            paragraphs <- c(paragraphs, txt("cfa_hier", "interp_optimistic"))
+            self$results$cfaHierInterpretation$setContent(.el_html_block(
+                tr("Models with and without hierarchy", "Modelos con y sin jerarquía"), paragraphs))
+
             unique(warnings)
         },
 
@@ -958,6 +1116,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
         # ---------------------------------------------------------------------
         .runHier = function(prep, ega, tr, txt) {
 
+            private$.hierStructure <- NULL
+
             heading <- tr("Hierarchical EGA", "EGA jerárquico")
             summary <- self$results$hierSummary
             members <- self$results$hierMembership
@@ -979,7 +1139,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (is.null(fit$value) || is.null(fit$value$lower_order)) {
                 self$results$hierStatus$setContent(.el_html_block(
                     heading, c(intro, sprintf(txt("hier", "failed"), if (is.null(fit$error)) "—" else fit$error))))
-                for (name in c("hierSummary", "hierMembership", "hierInterpretation"))
+                for (name in c("hierSummary", "hierMembership", "hierPlot", "hierInterpretation"))
                     self$results[[name]]$setVisible(FALSE)
                 return(fit$warnings)
             }
@@ -1032,6 +1192,24 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     item = items[i], ega = dash(ref[[items[i]]]),
                     lower = dash(aligned[[items[i]]]), higher = dash(higher_wc[[items[i]]])))
 
+            private$.hierStructure <- list(lower = lower_wc, higher = higher_wc,
+                                           hierarchical = hierarchical, n_higher = n_higher)
+
+            # Plot state: items at the bottom, lower-order dimensions in the
+            # middle, higher-order dimensions on top; edge width follows the
+            # network loadings when they are available.
+            # ES: Estado del gráfico: ítems abajo, dimensiones de orden
+            # inferior en el medio y de orden superior arriba; el grosor de
+            # las aristas sigue las cargas de red cuando están disponibles.
+            self$results$hierPlot$setState(.el_hier_plot_state(
+                items = items, lower = lower_wc, aligned = aligned, higher = higher_wc,
+                lower_loadings = h$parameters$lower_loadings,
+                higher_loadings = if (hierarchical) tryCatch(
+                    EGAnet::net.loads(h$higher_order)$std, error = function(e) NULL) else NULL,
+                labels = list(items = tr("Items", "Ítems"), lower = txt("hier", "plot_lower"),
+                              higher = txt("hier", "plot_higher"),
+                              isolated = tr("Isolated", "Aislado"))))
+
             # Interpretation.
             # ES: Interpretación.
             paragraphs <- character(0)
@@ -1058,6 +1236,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 if (n_lower < 4)
                     paragraphs <- c(paragraphs, sprintf(txt("hier", "interp_few"), n_lower))
             }
+            if (hierarchical || (!is.na(n_lower) && n_lower > 1))
+                paragraphs <- c(paragraphs, txt("hier", if (isTRUE(self$options$runCFA)) "interp_cfa_below" else "interp_cfa_hint"))
             paragraphs <- c(paragraphs, txt("hier", "interp_experimental"))
             self$results$hierInterpretation$setContent(.el_html_block(NULL, paragraphs))
 
@@ -1101,8 +1281,18 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # renombran v1..vk y se devuelven a su nombre después.
             items <- names(ega$wc)
             safe <- paste0("v", seq_along(items))
-            d <- prep$data[, items, drop = FALSE]
+            # riEGA always works on the items in their original direction:
+            # prep$raw undoes any reversal of the negatively worded items.
+            # ES: riEGA siempre trabaja con los ítems en su dirección
+            # original: prep$raw deshace toda inversión de los ítems
+            # redactados en negativo.
+            raw <- if (is.null(prep$raw)) prep$data else prep$raw
+            d <- raw[, items, drop = FALSE]
             names(d) <- safe
+            neg <- if (is.null(prep$neg)) character(0) else prep$neg
+            neg_note <- if (length(neg) == 0) txt("ri", "neg_none") else
+                sprintf(txt("ri", if (identical(self$options$negCoding, "raw")) "neg_raw" else "neg_recoded"),
+                        paste(neg, collapse = ", "))
 
             fit <- if (identical(self$options$model, "BGGM")) {
                 list(value = NULL, error = txt("ri", "bggm"), warnings = character(0))
@@ -1121,7 +1311,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (is.null(fit$value) || is.null(fit$value$EGA)) {
                 self$results$riStatus$setContent(paste0(
                     .el_html_block(heading, warning_html, raw = TRUE),
-                    .el_html_block(NULL, c(intro, sprintf(txt("ri", "failed"), if (is.null(fit$error)) "—" else fit$error)))))
+                    .el_html_block(NULL, c(intro, neg_note, sprintf(txt("ri", "failed"), if (is.null(fit$error)) "—" else fit$error)))))
                 for (name in c("riSummary", "riMembership", "riInterpretation"))
                     self$results[[name]]$setVisible(FALSE)
                 return(fit$warnings)
@@ -1129,7 +1319,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
             self$results$riStatus$setContent(paste0(
                 .el_html_block(heading, warning_html, raw = TRUE),
-                .el_html_block(NULL, intro),
+                .el_html_block(NULL, c(intro, neg_note)),
                 .el_html_block(NULL, .el_html_list(txt("ri", "guide")), raw = TRUE)))
 
             r <- fit$value
@@ -1168,7 +1358,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             for (i in seq_along(items))
                 .el_add_row(members, i, list(
                     item = items[i], ega = dash(ref[[items[i]]]), riega = dash(aligned[[items[i]]]),
-                    loading = .el_clean_num(loads[[items[i]]])))
+                    loading = .el_clean_num(loads[[items[i]]]),
+                    negative = if (items[i] %in% neg) txt("cfa", "yes") else ""))
 
             # Interpretation.
             # ES: Interpretación.
@@ -1185,6 +1376,21 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_more"), n_ri, n_ega))
                 if (length(agree$moved) > 0)
                     paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_moved"), paste(agree$moved, collapse = ", ")))
+            }
+            # A dimension of EGA made only of negatively worded items is the
+            # classic sign of a wording factor.
+            # ES: Una dimensión de EGA formada solo por ítems redactados en
+            # negativo es la señal clásica de un factor de redacción.
+            if (length(neg) > 0) {
+                for (g in unique(stats::na.omit(ref))) {
+                    own <- items[!is.na(ref) & ref == g]
+                    if (length(own) >= 2 && all(own %in% neg))
+                        paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_neg_dim"), g, paste(own, collapse = ", ")))
+                }
+                moved_neg <- intersect(agree$moved, neg)
+                if (length(moved_neg) > 0)
+                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_neg_moved"),
+                                                        length(moved_neg), length(agree$moved)))
             }
             paragraphs <- c(paragraphs, txt("ri", "interp_validity"), txt("ri", "interp_tefi"))
             self$results$riInterpretation$setContent(.el_html_block(NULL, paragraphs))
@@ -1561,6 +1767,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("hierSummary", "Hierarchical structure", "Estructura jerárquica"),
                 c("hierMembership", "Item membership by level", "Pertenencia de los ítems por nivel"),
                 c("hierInterpretation", "Hierarchical EGA interpretation", "Interpretación del EGA jerárquico"),
+                c("hierPlot", "Hierarchical structure plot", "Gráfico de la estructura jerárquica"),
+                c("cfaHierModels", "Models with and without hierarchy (total sample)", "Modelos con y sin jerarquía (muestra total)"),
+                c("cfaHierInterpretation", "Hierarchical models interpretation", "Interpretación de los modelos jerárquicos"),
                 c("riStatus", "Wording effects (random-intercept EGA)", "Efectos de redacción (EGA con intercepto aleatorio)"),
                 c("riSummary", "Random-intercept EGA", "EGA con intercepto aleatorio"),
                 c("riMembership", "Item membership with and without wording control", "Pertenencia de los ítems con y sin control de la redacción"),
@@ -1615,6 +1824,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("riSummary", "value", "Value", "Valor"),
                 c("riMembership", "item", "Item", "Ítem"),
                 c("riMembership", "loading", "Random-intercept loading", "Carga del intercepto aleatorio"),
+                c("riMembership", "negative", "Negatively worded", "Redactado en negativo"),
+                c("cfaHierModels", "model", "Model", "Modelo"),
+                c("cfaHierModels", "items", "Items", "Ítems"),
+                c("cfaHierModels", "chisq", "χ² (df)", "χ² (gl)"),
                 c("cfaCompare", "element", "Element", "Elemento"),
                 c("cfaCompare", "total", "Total sample", "Muestra total"),
                 c("cfaCompare", "partA", "Subsample A (exploration)", "SubMuestra A (exploración)"),
@@ -1706,6 +1919,74 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (!is.null(palette))
                 plot <- plot + ggplot2::scale_color_manual(
                     values = rep_len(palette, nlevels(df$dimension)))
+
+            print(plot)
+            TRUE
+        },
+
+        # ---------------------------------------------------------------------
+        # Hierarchical structure: items at the bottom, lower-order dimensions
+        # in the middle and higher-order dimensions on top, joined by edges
+        # whose width follows the network loadings. Standard ggplot, so
+        # jamovi's ggtheme applies.
+        # ES: Estructura jerárquica: ítems abajo, dimensiones de orden
+        # inferior en el medio y de orden superior arriba, unidos por
+        # aristas cuyo grosor sigue las cargas de red. ggplot estándar, así
+        # que se aplica el ggtheme de jamovi.
+        # ---------------------------------------------------------------------
+        .plotHier = function(image, ggtheme, theme, ...) {
+            state <- image$state
+            if (is.null(state) || is.null(state$nodes) || nrow(state$nodes) == 0)
+                return(FALSE)
+
+            nodes <- state$nodes
+            edges <- state$edges
+            if (nrow(edges) > 0) {
+                if (all(is.na(edges$weight))) edges$weight <- 0.5
+                else edges$weight[is.na(edges$weight)] <- min(edges$weight, na.rm = TRUE)
+            }
+            item_nodes <- nodes[nodes$level == 0, , drop = FALSE]
+            dim_nodes <- nodes[nodes$level == 1, , drop = FALSE]
+            top_nodes <- nodes[nodes$level == 2, , drop = FALSE]
+            top <- if (nrow(top_nodes) > 0) 2 else 1
+            groups <- unique(c(dim_nodes$group, item_nodes$group))
+
+            plot <- ggplot2::ggplot()
+            if (nrow(edges) > 0)
+                plot <- plot +
+                    ggplot2::geom_segment(data = edges, ggplot2::aes(x = x, y = y, xend = xend, yend = yend,
+                                                                     linewidth = weight),
+                                          colour = "grey55", lineend = "round") +
+                    ggplot2::scale_linewidth_continuous(range = c(0.3, 2.2), guide = "none")
+            plot <- plot +
+                ggplot2::geom_point(data = item_nodes, ggplot2::aes(x = x, y = level, fill = group),
+                                    shape = 21, size = 4, colour = "grey25") +
+                ggplot2::geom_text(data = item_nodes, ggplot2::aes(x = x, y = level - 0.08, label = label),
+                                   angle = 90, hjust = 1, size = 3.3) +
+                ggplot2::geom_point(data = dim_nodes, ggplot2::aes(x = x, y = level, fill = group),
+                                    shape = 21, size = 11, colour = "grey25") +
+                ggplot2::geom_text(data = dim_nodes, ggplot2::aes(x = x, y = level, label = label),
+                                   size = 4, fontface = "bold")
+            if (nrow(top_nodes) > 0)
+                plot <- plot +
+                    ggplot2::geom_point(data = top_nodes, ggplot2::aes(x = x, y = level),
+                                        shape = 22, size = 12, fill = "grey88", colour = "grey25") +
+                    ggplot2::geom_text(data = top_nodes, ggplot2::aes(x = x, y = level, label = label),
+                                       size = 4, fontface = "bold")
+            plot <- plot +
+                ggplot2::scale_y_continuous(breaks = 0:top,
+                                            labels = c(state$labels$items, state$labels$lower, state$labels$higher)[seq_len(top + 1)],
+                                            limits = c(-(0.2 + 0.045 * max(nchar(item_nodes$label), 4)), top + 0.25)) +
+                ggplot2::scale_x_continuous(expand = ggplot2::expansion(add = 0.8)) +
+                ggtheme +
+                ggplot2::theme(legend.position = "none", axis.title = ggplot2::element_blank(),
+                               axis.text.x = ggplot2::element_blank(), axis.ticks = ggplot2::element_blank(),
+                               axis.line = ggplot2::element_blank(), panel.grid = ggplot2::element_blank())
+
+            palette <- .el_plot_series_palette(self$options$plotPalette)
+            if (!is.null(palette))
+                plot <- plot + ggplot2::scale_fill_manual(
+                    values = stats::setNames(rep_len(palette, length(groups)), groups))
 
             print(plot)
             TRUE

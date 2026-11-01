@@ -100,7 +100,10 @@
 # .el_cfa_fit()
 #
 # Input: data - item data frame; wc - memberships (named by item);
-#   estimator - "auto", "ML", "MLR" or "WLSMV".
+#   estimator - "auto", "ML", "MLR" or "WLSMV"; type - "correlated"
+#   (default), "higher" (second-order factors, from `higher`: the
+#   higher-order label of each item) or "bifactor" (general factor plus
+#   uncorrelated specific factors).
 # Output: list(ok, error, warnings, estimator, ordinal, n, dropped, fit
 #   (named numbers), loadings (data frame item, factor, loading, se)).
 # "auto" follows EGAnet's CFA(): WLSMV with ordered items when any item has
@@ -112,10 +115,11 @@
 # ítem no pueden formar un factor y se descartan (se informa). Los ítems se
 # renombran a nombres sintácticos para lavaan y se devuelven a su nombre.
 # -----------------------------------------------------------------------------
-.el_cfa_fit <- function(data, wc, estimator = "auto") {
+.el_cfa_fit <- function(data, wc, estimator = "auto", type = "correlated", higher = NULL) {
 
     out <- list(ok = FALSE, error = NULL, warnings = character(0), estimator = estimator,
-                ordinal = FALSE, n = nrow(data), dropped = character(0), fit = NULL, loadings = NULL)
+                ordinal = FALSE, n = nrow(data), n_items = 0L, dropped = character(0), fit = NULL,
+                loadings = NULL)
 
     wc <- wc[!is.na(wc)]
     sizes <- table(as.character(wc))
@@ -127,6 +131,7 @@
     }
 
     items <- names(wc)[as.character(wc) %in% keep_dims]
+    out$n_items <- length(items)
     safe <- paste0("v", seq_along(items))
     d <- data[, items, drop = FALSE]
     names(d) <- safe
@@ -140,11 +145,52 @@
     out$ordinal <- identical(estimator, "WLSMV")
 
     factor_names <- paste0("F", keep_dims)
-    model <- paste(vapply(seq_along(keep_dims), function(j) {
+    lines <- vapply(seq_along(keep_dims), function(j) {
         paste0(factor_names[j], " =~ ", paste(safe[as.character(wc[items]) == keep_dims[j]], collapse = " + "))
-    }, character(1)), collapse = "\n")
+    }, character(1))
+    orthogonal <- FALSE
+
+    # Hierarchical models. "higher": second-order factors over the
+    # first-order ones, from `higher` (higher-order label of each item);
+    # two first-order factors under one second-order factor get equal
+    # loadings so the model is identified. "bifactor": one general factor on
+    # every item plus the specific factors, all uncorrelated.
+    # ES: Modelos jerárquicos. "higher": factores de segundo orden sobre los
+    # de primer orden, según `higher` (etiqueta de orden superior de cada
+    # ítem); dos factores de primer orden bajo un mismo factor de segundo
+    # orden llevan cargas iguales para que el modelo esté identificado.
+    # "bifactor": un factor general en todos los ítems más los factores
+    # específicos, todos sin correlación.
+    if (identical(type, "higher")) {
+        higher <- as.character(higher[items])
+        first <- as.character(wc[items])
+        groups <- split(unique(first), vapply(unique(first), function(f) higher[match(f, first)], character(1)))
+        second <- character(0)
+        for (g in names(groups)) {
+            members <- paste0("F", groups[[g]])
+            if (length(members) == 2)
+                second <- c(second, paste0("H", g, " =~ h", g, "*", members[1], " + h", g, "*", members[2]))
+            else if (length(members) > 2)
+                second <- c(second, paste0("H", g, " =~ ", paste(members, collapse = " + ")))
+        }
+        if (length(second) == 0) {
+            out$error <- "no higher-order dimension groups two or more lower-order dimensions"
+            return(out)
+        }
+        lines <- c(lines, second)
+    } else if (identical(type, "bifactor")) {
+        if (length(keep_dims) < 2) {
+            out$error <- "a bifactor model needs two or more specific dimensions"
+            return(out)
+        }
+        lines <- c(paste0("G =~ ", paste(safe, collapse = " + ")), lines)
+        orthogonal <- TRUE
+    }
+    model <- paste(lines, collapse = "\n")
 
     args <- list(model = model, data = d, std.lv = TRUE, estimator = estimator)
+    if (orthogonal)
+        args$orthogonal <- TRUE
     if (out$ordinal) {
         args$ordered <- safe
         args$missing <- "pairwise"
@@ -193,7 +239,7 @@
 
     std <- tryCatch(lavaan::standardizedSolution(model_fit), error = function(e) NULL)
     if (!is.null(std)) {
-        std <- std[std$op == "=~", , drop = FALSE]
+        std <- std[std$op == "=~" & std$rhs %in% safe, , drop = FALSE]
         out$loadings <- data.frame(
             item = unname(item_of[std$rhs]),
             factor = sub("^F", "", std$lhs),

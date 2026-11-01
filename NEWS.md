@@ -14,6 +14,21 @@
   correlations, then compares the dimensions with and without that control
   and shows the random-intercept loadings. The report insists that
   negatively worded items must stay unrecoded.
+* **Hierarchical structure plot**: items at the bottom, lower-order
+  dimensions in the middle and higher-order dimensions on top, with edge
+  width following the network loadings.
+* With **Confirm with CFA** ticked, a new table compares models with and
+  without hierarchy on the total sample and the same items: one factor,
+  correlated factors (EGA and, if different, the hierEGA lower order),
+  higher-order factors from the hierEGA higher order and bifactor
+  (Reise, 2012). The interpretation names the best CFI and BIC, flags when
+  the higher-order model is statistically equivalent to the correlated
+  factors, and warns about the flexibility of the bifactor model.
+* New **Negatively worded items** box: mark the negative items and say
+  whether they are already reversed in the data or as answered. As answered,
+  every analysis reverses them (observed minimum plus maximum, minus the
+  score); riEGA always uses them in their original direction, marks them in
+  its table and points out EGA dimensions made only of negative items.
 
 ## EGA: compare structures with TEFI (phase 3)
 

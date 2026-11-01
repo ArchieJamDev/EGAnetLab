@@ -6,6 +6,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "Language: es\n"
 
+#: ega/results/cfaHierModels.columns.title
+msgid "AIC"
+msgstr "AIC"
+
 #: ega/results/choicesGuide.title
 msgid "About your choices"
 msgstr "Acerca de sus elecciones"
@@ -14,9 +18,17 @@ msgstr "Acerca de sus elecciones"
 msgid "Add CFA fit for each structure"
 msgstr "Añadir el ajuste CFA de cada estructura"
 
+#: ega/options/negCoding/recoded.title
+msgid "Already reversed"
+msgstr "Ya invertidos"
+
 #: ega/results/interpretation.title
 msgid "Applied interpretation"
 msgstr "Interpretación aplicada"
+
+#: ega/options/negCoding/raw.title
+msgid "As answered (not reversed)"
+msgstr "Tal como se respondieron (sin invertir)"
 
 #: ega/results/bootItemStability.columns.title
 msgid "Assessment"
@@ -33,6 +45,10 @@ msgstr "Automática (Pearson / policórica)"
 #: ega/options/model/BGGM.title
 msgid "BGGM"
 msgstr "BGGM"
+
+#: ega/results/cfaHierModels.columns.title
+msgid "BIC"
+msgstr "BIC"
 
 #: ega/options/labelColor/black.title
 #: ega/options/edgePosColor/black.title
@@ -72,6 +88,7 @@ msgid "CFA standardized loadings"
 msgstr "Cargas estandarizadas del CFA"
 
 #: ega/results/compareTable.columns.title
+#: ega/results/cfaHierModels.columns.title
 msgid "CFI"
 msgstr "CFI"
 
@@ -93,7 +110,7 @@ msgid "Community Detection"
 msgstr "Detección de comunidades"
 
 #: ega/results/compareStatus.title
-#: ega/ui[4].label
+#: ega/ui[5].label
 msgid "Compare structures (TEFI)"
 msgstr "Comparar estructuras (TEFI)"
 
@@ -106,7 +123,7 @@ msgid "Confirm with CFA"
 msgstr "Confirmar con CFA"
 
 #: ega/results/cfaStatus.title
-#: ega/ui[8].label
+#: ega/ui[9].label
 msgid "Confirmatory factor analysis"
 msgstr "Análisis factorial confirmatorio"
 
@@ -301,17 +318,33 @@ msgstr "EGA jerárquico (dimensiones de orden superior)"
 msgid "Hierarchical EGA interpretation"
 msgstr "Interpretación del EGA jerárquico"
 
-#: ega/ui[5].label
+#: ega/ui[6].label
 msgid "Hierarchical and wording structure"
 msgstr "Estructura jerárquica y de redacción"
+
+#: ega/results/cfaHierInterpretation.title
+msgid "Hierarchical models interpretation"
+msgstr "Interpretación de los modelos jerárquicos"
 
 #: ega/results/hierSummary.title
 msgid "Hierarchical structure"
 msgstr "Estructura jerárquica"
 
+#: ega/results/hierPlot.title
+msgid "Hierarchical structure plot"
+msgstr "Gráfico de la estructura jerárquica"
+
 #: ega/results/hierMembership.columns.title
 msgid "Higher order"
 msgstr "Orden superior"
+
+#: ega/ui[3][2].label
+msgid "If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction."
+msgstr "Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
+
+#: ega/options/negCoding.title
+msgid "In the data, these items are"
+msgstr "En los datos, estos ítems están"
 
 #: ega/options/compareAlgorithms.title
 msgid "Include the other community algorithms"
@@ -378,6 +411,7 @@ msgstr "Gráfico de estabilidad de ítems"
 #: ega/results/scores.columns.title
 #: ega/results/uvaSets.columns.title
 #: ega/results/bootDimStability.columns.title
+#: ega/results/cfaHierModels.columns.title
 #: ega/ui[0][0].label
 msgid "Items"
 msgstr "Ítems"
@@ -459,6 +493,14 @@ msgstr "Estabilidad media de ítems"
 msgid "Missing Values"
 msgstr "Valores perdidos"
 
+#: ega/results/cfaHierModels.columns.title
+msgid "Model"
+msgstr "Modelo"
+
+#: ega/results/cfaHierModels.title
+msgid "Models with and without hierarchy (total sample)"
+msgstr "Modelos con y sin jerarquía (muestra total)"
+
 #: ega/options/layout/mds.title
 msgid "Multidimensional scaling"
 msgstr "Escalamiento multidimensional"
@@ -478,6 +520,16 @@ msgstr "Línea de aristas negativas"
 #: ega/options/edgeNegColor.title
 msgid "Negative edges"
 msgstr "Aristas negativas"
+
+#: ega/results/riMembership.columns.title
+msgid "Negatively worded"
+msgstr "Redactado en negativo"
+
+#: ega/options/negItems.title
+#: ega/ui[3].label
+#: ega/ui[3][0][0].label
+msgid "Negatively worded items"
+msgstr "Ítems redactados en negativo"
 
 #: ega/options/model.title
 msgid "Network Model"
@@ -499,7 +551,7 @@ msgstr "Gráfico de red"
 #: ega/results/scoresGuide.title
 #: ega/results/scores.title
 #: ega/results/netScoresOV.title
-#: ega/ui[3].label
+#: ega/ui[4].label
 msgid "Network scores"
 msgstr "Puntuaciones de red"
 
@@ -528,15 +580,15 @@ msgstr "Notas"
 msgid "Number of dimensions across samples"
 msgstr "Número de dimensiones entre muestras"
 
-#: ega/ui[5][2].label
-msgid "Only for scales that mix positively and negatively worded items, with the negative items in their original direction (not recoded)."
-msgstr "Solo para escalas que mezclan ítems redactados en positivo y en negativo, con los negativos en su dirección original (sin recodificar)."
+#: ega/ui[6][2].label
+msgid "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively worded items box; this analysis uses them in their original direction (not recoded)."
+msgstr "Solo para escalas que mezclan ítems redactados en positivo y en negativo. Marque los ítems negativos en el cuadro Ítems redactados en negativo; este análisis los usa en su dirección original (sin recodificar)."
 
 #: ega/options/edgeNegColor/orange.title
 msgid "Orange"
 msgstr "Naranja"
 
-#: ega/ui[9].label
+#: ega/ui[10].label
 msgid "Output"
 msgstr "Salida"
 
@@ -552,19 +604,19 @@ msgstr "Paramétrico"
 msgid "Pearson"
 msgstr "Pearson"
 
-#: ega/ui[12].label
+#: ega/ui[13].label
 msgid "Plot Edges"
 msgstr "Gráfico: aristas"
 
-#: ega/ui[10].label
+#: ega/ui[11].label
 msgid "Plot Layout"
 msgstr "Gráfico: disposición"
 
-#: ega/ui[13].label
+#: ega/ui[14].label
 msgid "Plot Legend"
 msgstr "Gráfico: leyenda"
 
-#: ega/ui[11].label
+#: ega/ui[12].label
 msgid "Plot Nodes and Labels"
 msgstr "Gráfico: nodos y etiquetas"
 
@@ -585,6 +637,7 @@ msgid "Proportion for EGA (exploration)"
 msgstr "Proporción para EGA (exploración)"
 
 #: ega/results/compareTable.columns.title
+#: ega/results/cfaHierModels.columns.title
 msgid "RMSEA"
 msgstr "RMSEA"
 
@@ -605,7 +658,7 @@ msgid "Redundancy"
 msgstr "Redundancia"
 
 #: ega/results/uvaStatus.title
-#: ega/ui[6].label
+#: ega/ui[7].label
 msgid "Redundancy (UVA)"
 msgstr "Redundancia (UVA)"
 
@@ -647,6 +700,7 @@ msgid "SE"
 msgstr "EE"
 
 #: ega/results/compareTable.columns.title
+#: ega/results/cfaHierModels.columns.title
 msgid "SRMR"
 msgstr "SRMR"
 
@@ -718,7 +772,7 @@ msgstr "Cuadrado"
 msgid "Stability"
 msgstr "Estabilidad"
 
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Stability (bootstrap)"
 msgstr "Estabilidad (bootstrap)"
 
@@ -774,12 +828,16 @@ msgstr "Se sugiere eliminar"
 msgid "TEFI"
 msgstr "TEFI"
 
+#: ega/results/cfaHierModels.columns.title
+msgid "TLI"
+msgstr "TLI"
+
 #: ega/options/model/TMFG.title
 msgid "TMFG"
 msgstr "TMFG"
 
 #: ega/options/theoryFactors.title
-#: ega/ui[4][2][0].label
+#: ega/ui[5][2][0].label
 msgid "Theoretical structure"
 msgstr "Estructura teórica"
 
@@ -846,3 +904,7 @@ msgstr "riEGA"
 #: ega/results/uvaPairs.columns.title
 msgid "wTO"
 msgstr "wTO"
+
+#: ega/results/cfaHierModels.columns.title
+msgid "χ² (df)"
+msgstr "χ² (gl)"

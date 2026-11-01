@@ -5,14 +5,23 @@
             "": [
                 ""
             ],
+            "AIC": [
+                "AIC"
+            ],
             "About your choices": [
                 "Acerca de sus elecciones"
             ],
             "Add CFA fit for each structure": [
                 "Añadir el ajuste CFA de cada estructura"
             ],
+            "Already reversed": [
+                "Ya invertidos"
+            ],
             "Applied interpretation": [
                 "Interpretación aplicada"
+            ],
+            "As answered (not reversed)": [
+                "Tal como se respondieron (sin invertir)"
             ],
             "Assessment": [
                 "Valoración"
@@ -25,6 +34,9 @@
             ],
             "BGGM": [
                 "BGGM"
+            ],
+            "BIC": [
+                "BIC"
             ],
             "Black": [
                 "Negro"
@@ -212,11 +224,23 @@
             "Hierarchical and wording structure": [
                 "Estructura jerárquica y de redacción"
             ],
+            "Hierarchical models interpretation": [
+                "Interpretación de los modelos jerárquicos"
+            ],
             "Hierarchical structure": [
                 "Estructura jerárquica"
             ],
+            "Hierarchical structure plot": [
+                "Gráfico de la estructura jerárquica"
+            ],
             "Higher order": [
                 "Orden superior"
+            ],
+            "If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction.": [
+                "Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
+            ],
+            "In the data, these items are": [
+                "En los datos, estos ítems están"
             ],
             "Include the other community algorithms": [
                 "Incluir los otros algoritmos de comunidades"
@@ -317,6 +341,12 @@
             "Missing Values": [
                 "Valores perdidos"
             ],
+            "Model": [
+                "Modelo"
+            ],
+            "Models with and without hierarchy (total sample)": [
+                "Modelos con y sin jerarquía (muestra total)"
+            ],
             "Multidimensional scaling": [
                 "Escalamiento multidimensional"
             ],
@@ -331,6 +361,12 @@
             ],
             "Negative edges": [
                 "Aristas negativas"
+            ],
+            "Negatively worded": [
+                "Redactado en negativo"
+            ],
+            "Negatively worded items": [
+                "Ítems redactados en negativo"
             ],
             "Network Model": [
                 "Modelo de red"
@@ -365,8 +401,8 @@
             "Number of dimensions across samples": [
                 "Número de dimensiones entre muestras"
             ],
-            "Only for scales that mix positively and negatively worded items, with the negative items in their original direction (not recoded).": [
-                "Solo para escalas que mezclan ítems redactados en positivo y en negativo, con los negativos en su dirección original (sin recodificar)."
+            "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively worded items box; this analysis uses them in their original direction (not recoded).": [
+                "Solo para escalas que mezclan ítems redactados en positivo y en negativo. Marque los ítems negativos en el cuadro Ítems redactados en negativo; este análisis los usa en su dirección original (sin recodificar)."
             ],
             "Orange": [
                 "Naranja"
@@ -548,6 +584,9 @@
             "TEFI": [
                 "TEFI"
             ],
+            "TLI": [
+                "TLI"
+            ],
             "TMFG": [
                 "TMFG"
             ],
@@ -598,6 +637,9 @@
             ],
             "wTO": [
                 "wTO"
+            ],
+            "χ² (df)": [
+                "χ² (gl)"
             ]
         }
     }

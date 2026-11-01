@@ -226,6 +226,28 @@
             interp_no_cutoff = "There is no established cutoff for a meaningful TEFI difference. Read the differences together with the bootstrap stability, the CFA fit and the content of the items that move, and report the TEFI of every structure compared."
         ),
 
+        cfa_hier = list(
+            unavailable = "The hierarchical EGA could not be estimated, so the hierarchical models were not fitted.",
+            m_one = "One factor",
+            m_ega = "Correlated factors (EGA)",
+            m_ega_same = "Correlated factors (EGA = hierEGA lower order)",
+            m_lower = "Correlated factors (hierEGA lower order)",
+            m_higher = "Higher order (%s higher-order factor(s))",
+            m_bifactor = "Bifactor (general + lower-order specific factors)",
+            failed = "lavaan could not fit this model: %s.",
+            not_converged = "lavaan did not reach convergence; do not interpret this row.",
+            intro = "Every model here is fitted on the total sample and on the same items, so the rows can be compared directly. The correlated-factors models have no hierarchy; the higher-order model places the hierEGA higher-order dimensions above the lower-order factors, and the bifactor model adds a general factor on every item next to the lower-order factors (all uncorrelated; Reise, 2012; see references).",
+            interp_none = "No model reached convergence, so there is no comparison to read.",
+            interp_best_cfi = "The highest CFI is that of %s (%s).",
+            interp_best_bic = "The lowest BIC, which balances fit and the number of parameters, is that of %s (%s); a difference of 10 or more is strong evidence for the model with the lower value.",
+            interp_no_ic = "AIC and BIC are not available with this estimator (WLSMV for ordinal items), so the comparison rests on CFI, TLI, RMSEA and SRMR.",
+            interp_equivalent = "The higher-order model fits exactly as well as the correlated lower-order factors: with two or three lower-order factors under one higher-order factor, the higher level only re-expresses their correlations. The data cannot tell the two apart; the choice rests on theory and on how the scores will be used.",
+            interp_higher_vs = "The higher-order model reaches CFI %s against %s for the correlated lower-order factors (BIC %s against %s). The higher-order model is more restrictive, so a small loss of fit with fewer parameters still supports the hierarchy.",
+            interp_no_higher = "The hierarchical EGA found no higher-order level, so the higher-order model is not fitted.",
+            interp_bifactor = "The bifactor model usually fits best because it is very flexible and also absorbs noise and response styles. Prefer it only when the general factor carries most of the common variance and the specific factors keep clear loadings; otherwise its better fit is not evidence of a general factor.",
+            interp_optimistic = "These models are fitted on the same data that produced the EGA and hierEGA solutions, so their fit is optimistic. Report them as a comparison, and confirm the chosen model in a new sample."
+        ),
+
         hier = list(
             intro = c(
                 "Hierarchical EGA (hierEGA; Jiménez et al., 2023; see references) asks whether the dimensions are themselves grouped under broader, higher-order dimensions, such as a general factor.",
@@ -256,6 +278,10 @@
             interp_tefi_lower = "TEFI is lower at the lower-order level (%s) than at the higher-order level (%s), so by entropy fit the correlated lower-order dimensions describe the data better than the hierarchical structure.",
             interp_tefi_higher = "TEFI is lower at the higher-order level (%s against %s at the lower level), so by entropy fit the hierarchical structure describes the data better than correlated lower-order dimensions.",
             interp_few = "With only %s lower-order dimensions, the higher level rests on very few scores; read it as a hint and confirm it with a higher-order or bifactor CFA.",
+            plot_lower = "Lower order",
+            plot_higher = "Higher order",
+            interp_cfa_hint = "To test the hierarchy as a factor model, tick Confirm with CFA: its section then compares the higher-order and bifactor models with the models without hierarchy.",
+            interp_cfa_below = "The Confirmatory factor analysis section below compares the higher-order and bifactor models with the models without hierarchy.",
             interp_experimental = "EGAnet marks hierEGA as experimental. Report it as exploratory evidence together with the content of the dimensions."
         ),
 
@@ -284,6 +310,11 @@
             interp_fewer = "After removing it, EGA finds %s dimensions instead of %s. Some of the original dimensions probably reflected wording (for example, negative against positive items) rather than content.",
             interp_more = "After removing it, EGA finds %s dimensions instead of %s. The wording factor was masking some distinctions in content; read the new dimensions with care.",
             interp_moved = "Items that change dimension after the wording control: %s.",
+            neg_none = "No item is marked in Negatively worded items, so the items are used exactly as they are in the data. Mark the negative items there so that riEGA can use them in their original direction even if they are already reversed in the data.",
+            neg_raw = "Negatively worded items: %s. They are as answered in the data, so riEGA uses them as they are (the other analyses use them reversed).",
+            neg_recoded = "Negatively worded items: %s. They are already reversed in the data, so riEGA reverses them back to their original direction (observed minimum plus maximum, minus the score).",
+            interp_neg_dim = "EGA dimension %s is made only of negatively worded items (%s): the classic sign of a wording factor rather than a content dimension.",
+            interp_neg_moved = "%s of the %s items that change dimension with the wording control are negatively worded, which points to wording rather than content.",
             interp_validity = "This result is valid only if the negatively worded items are in their original, unrecoded direction and the scale mixes both directions. If all items are worded in the same direction, do not read it as a wording effect.",
             interp_tefi = "The riEGA TEFI is computed on the residual correlations, so it is not comparable with the TEFI of the EGA solution above."
         ),
@@ -511,6 +542,28 @@
             interp_no_cutoff = "No hay un punto de corte establecido para una diferencia de TEFI importante. Lea las diferencias junto con la estabilidad bootstrap, el ajuste CFA y el contenido de los ítems que cambian, e informe el TEFI de cada estructura comparada."
         ),
 
+        cfa_hier = list(
+            unavailable = "No se pudo estimar el EGA jerárquico, así que no se ajustaron los modelos jerárquicos.",
+            m_one = "Un factor",
+            m_ega = "Factores correlacionados (EGA)",
+            m_ega_same = "Factores correlacionados (EGA = orden inferior de hierEGA)",
+            m_lower = "Factores correlacionados (orden inferior de hierEGA)",
+            m_higher = "Orden superior (%s factor(es) de orden superior)",
+            m_bifactor = "Bifactor (general + factores específicos de orden inferior)",
+            failed = "lavaan no pudo ajustar este modelo: %s.",
+            not_converged = "lavaan no alcanzó la convergencia; no interprete esta fila.",
+            intro = "Todos los modelos se ajustan en la muestra total y con los mismos ítems, así que las filas se pueden comparar directamente. Los modelos de factores correlacionados no tienen jerarquía; el modelo de orden superior coloca las dimensiones de orden superior de hierEGA por encima de los factores de orden inferior, y el modelo bifactor agrega un factor general en todos los ítems junto a los factores de orden inferior (todos sin correlación; Reise, 2012; ver referencias).",
+            interp_none = "Ningún modelo alcanzó la convergencia, así que no hay comparación que leer.",
+            interp_best_cfi = "El CFI más alto es el de %s (%s).",
+            interp_best_bic = "El BIC más bajo, que equilibra el ajuste y el número de parámetros, es el de %s (%s); una diferencia de 10 o más es evidencia fuerte a favor del modelo con el valor menor.",
+            interp_no_ic = "AIC y BIC no están disponibles con este estimador (WLSMV para ítems ordinales), así que la comparación se apoya en CFI, TLI, RMSEA y SRMR.",
+            interp_equivalent = "El modelo de orden superior ajusta exactamente igual que los factores de orden inferior correlacionados: con dos o tres factores de orden inferior bajo un factor de orden superior, el nivel superior solo vuelve a expresar sus correlaciones. Los datos no pueden distinguirlos; la elección depende de la teoría y del uso que tendrán las puntuaciones.",
+            interp_higher_vs = "El modelo de orden superior alcanza un CFI de %s frente a %s de los factores de orden inferior correlacionados (BIC %s frente a %s). El modelo de orden superior es más restrictivo, así que una pequeña pérdida de ajuste con menos parámetros todavía respalda la jerarquía.",
+            interp_no_higher = "El EGA jerárquico no encontró un nivel de orden superior, así que no se ajusta el modelo de orden superior.",
+            interp_bifactor = "El modelo bifactor suele ajustar mejor porque es muy flexible y también absorbe ruido y estilos de respuesta. Prefiéralo solo cuando el factor general concentre la mayor parte de la varianza común y los factores específicos conserven cargas claras; si no, su mejor ajuste no es evidencia de un factor general.",
+            interp_optimistic = "Estos modelos se ajustan con los mismos datos que produjeron las soluciones de EGA y hierEGA, así que su ajuste es optimista. Infórmelos como comparación y confirme el modelo elegido en una muestra nueva."
+        ),
+
         hier = list(
             intro = c(
                 "El EGA jerárquico (hierEGA; Jiménez et al., 2023; ver referencias) pregunta si las dimensiones se agrupan a su vez bajo dimensiones más amplias, de orden superior, como un factor general.",
@@ -541,6 +594,10 @@
             interp_tefi_lower = "El TEFI es más bajo en el nivel inferior (%s) que en el superior (%s), así que según el ajuste de entropía las dimensiones de orden inferior correlacionadas describen mejor los datos que la estructura jerárquica.",
             interp_tefi_higher = "El TEFI es más bajo en el nivel superior (%s frente a %s en el inferior), así que según el ajuste de entropía la estructura jerárquica describe mejor los datos que las dimensiones de orden inferior correlacionadas.",
             interp_few = "Con solo %s dimensiones de orden inferior, el nivel superior se apoya en muy pocas puntuaciones; tómelo como un indicio y confírmelo con un CFA de orden superior o bifactor.",
+            plot_lower = "Orden inferior",
+            plot_higher = "Orden superior",
+            interp_cfa_hint = "Para probar la jerarquía como modelo factorial, marque Confirmar con CFA: su sección compara entonces los modelos de orden superior y bifactor con los modelos sin jerarquía.",
+            interp_cfa_below = "La sección Análisis factorial confirmatorio, más abajo, compara los modelos de orden superior y bifactor con los modelos sin jerarquía.",
             interp_experimental = "EGAnet marca hierEGA como experimental. Infórmelo como evidencia exploratoria junto con el contenido de las dimensiones."
         ),
 
@@ -569,6 +626,11 @@
             interp_fewer = "Tras quitarlo, EGA encuentra %s dimensiones en lugar de %s. Algunas de las dimensiones originales probablemente reflejaban la redacción (por ejemplo, ítems negativos frente a positivos) y no el contenido.",
             interp_more = "Tras quitarlo, EGA encuentra %s dimensiones en lugar de %s. El factor de redacción ocultaba algunas distinciones de contenido; lea las nuevas dimensiones con cuidado.",
             interp_moved = "Ítems que cambian de dimensión tras controlar la redacción: %s.",
+            neg_none = "No hay ítems marcados en Ítems redactados en negativo, así que los ítems se usan tal como están en los datos. Márquelos allí para que riEGA los use en su dirección original aunque ya estén invertidos en los datos.",
+            neg_raw = "Ítems redactados en negativo: %s. Están tal como se respondieron en los datos, así que riEGA los usa así (los demás análisis los usan invertidos).",
+            neg_recoded = "Ítems redactados en negativo: %s. Ya están invertidos en los datos, así que riEGA los devuelve a su dirección original (mínimo más máximo observados, menos el puntaje).",
+            interp_neg_dim = "La dimensión %s de EGA está formada solo por ítems redactados en negativo (%s): la señal clásica de un factor de redacción y no de una dimensión de contenido.",
+            interp_neg_moved = "%s de los %s ítems que cambian de dimensión con el control de la redacción están redactados en negativo, lo que apunta a la redacción y no al contenido.",
             interp_validity = "Este resultado solo es válido si los ítems redactados en negativo están en su dirección original, sin recodificar, y la escala mezcla ambas direcciones. Si todos los ítems están redactados en la misma dirección, no lo interprete como un efecto de redacción.",
             interp_tefi = "El TEFI de riEGA se calcula sobre las correlaciones residuales, así que no es comparable con el TEFI de la solución de EGA de arriba."
         ),

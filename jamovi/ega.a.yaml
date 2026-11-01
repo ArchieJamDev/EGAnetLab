@@ -284,6 +284,36 @@ options:
     default: false
 
   # ---------------------------------------------------------------------------
+  # Negatively worded items and how they are coded in the data. When they
+  # are as answered (not reversed), every analysis uses them reversed
+  # (observed minimum + maximum - score); riEGA always uses them in their
+  # original direction.
+  # ES: Ítems redactados en negativo y cómo están codificados en los datos.
+  # Si están tal como se respondieron (sin invertir), todos los análisis los
+  # usan invertidos (mínimo + máximo observados - puntaje); riEGA siempre los
+  # usa en su dirección original.
+  # ---------------------------------------------------------------------------
+  - name: negItems
+    title: Negatively worded items
+    type: Variables
+    suggested:
+      - continuous
+      - ordinal
+    permitted:
+      - numeric
+    default: []
+
+  - name: negCoding
+    title: In the data, these items are
+    type: List
+    options:
+      - title: Already reversed
+        name: recoded
+      - title: As answered (not reversed)
+        name: raw
+    default: recoded
+
+  # ---------------------------------------------------------------------------
   # Hierarchical EGA (EGAnet::hierEGA) and random-intercept EGA
   # (EGAnet::riEGA): optional sections on the same items and options.
   # ES: EGA jerárquico (EGAnet::hierEGA) y EGA con intercepto aleatorio

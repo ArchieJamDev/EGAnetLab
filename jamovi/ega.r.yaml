@@ -51,6 +51,8 @@ items:
       - eganet
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -73,6 +75,8 @@ items:
       - golino_2017
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -101,6 +105,8 @@ items:
       - christensen_2021_loadings
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -125,6 +131,8 @@ items:
     visible: (showNetworkPlot)
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -169,6 +177,8 @@ items:
       - christensen_2021_loadings
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -203,6 +213,8 @@ items:
     measureType: continuous
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -216,6 +228,8 @@ items:
     measureType: continuous
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -243,6 +257,8 @@ items:
       - golino_2021
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -291,6 +307,8 @@ items:
     visible: (runCompare)
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -333,6 +351,8 @@ items:
       - jimenez_2023
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -354,6 +374,8 @@ items:
     visible: (runHier)
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -374,6 +396,24 @@ items:
         title: Higher order
         type: text
 
+  - name: hierPlot
+    title: Hierarchical structure plot
+    type: Image
+    width: 700
+    height: 450
+    renderFun: .plotHier
+    visible: (runHier)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - uniMethod
+      - plotPalette
+      - reportLang
+
   - name: hierInterpretation
     title: Hierarchical EGA interpretation
     type: Html
@@ -393,6 +433,8 @@ items:
       - eganet
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -414,6 +456,8 @@ items:
     visible: (runRI)
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -434,6 +478,9 @@ items:
         title: Random-intercept loading
         type: number
         format: zto
+      - name: negative
+        title: Negatively worded
+        type: text
 
   - name: riInterpretation
     title: Wording effects interpretation
@@ -460,6 +507,8 @@ items:
       - christensen_2023_uva
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -494,6 +543,8 @@ items:
       - christensen_2023_uva
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -535,6 +586,8 @@ items:
     visible: (runBoot)
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -560,6 +613,8 @@ items:
       - eganet
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -584,6 +639,8 @@ items:
     rows: 0
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -614,6 +671,8 @@ items:
       - christensen_2021_boot
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -648,6 +707,8 @@ items:
       - christensen_2021_boot
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -687,6 +748,8 @@ items:
     visible: (runBoot && showItemPlot)
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -708,6 +771,8 @@ items:
     visible: (runBoot && showFrequencyPlot)
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -741,6 +806,8 @@ items:
       - schermelleh_engel_2003
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -774,6 +841,8 @@ items:
     visible: (runCFA && splitSample)
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -810,6 +879,8 @@ items:
       - rosseel_2012
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model
@@ -839,6 +910,59 @@ items:
     type: Html
     visible: (runCFA)
 
+  - name: cfaHierModels
+    title: Models with and without hierarchy (total sample)
+    type: Table
+    rows: 0
+    visible: (runCFA && runHier)
+    refs:
+      - rosseel_2012
+      - reise_2012
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - cfaEstimator
+      - reportLang
+    columns:
+      - name: model
+        title: Model
+        type: text
+      - name: items
+        title: Items
+        type: integer
+      - name: chisq
+        title: χ² (df)
+        type: text
+      - name: cfi
+        title: CFI
+        type: text
+      - name: tli
+        title: TLI
+        type: text
+      - name: rmsea
+        title: RMSEA
+        type: text
+      - name: srmr
+        title: SRMR
+        type: text
+      - name: aic
+        title: AIC
+        type: text
+      - name: bic
+        title: BIC
+        type: text
+
+  - name: cfaHierInterpretation
+    title: Hierarchical models interpretation
+    type: Html
+    visible: (runCFA && runHier)
+
   - name: splitOV
     title: Subsample
     type: Output
@@ -846,6 +970,8 @@ items:
     measureType: nominal
     clearWith:
       - vars
+      - negItems
+      - negCoding
       - corr
       - naData
       - model

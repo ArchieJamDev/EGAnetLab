@@ -381,3 +381,24 @@
 
     .el_html_block(NULL, parts, raw = TRUE)
 }
+
+# -----------------------------------------------------------------------------
+# .el_reverse_items()
+#
+# Input: data - item data frame; items - names of the items to reverse.
+# Output: data with those items reversed as observed minimum + observed
+#   maximum - score (a 1-5 item becomes 5-1). Other columns are untouched.
+# ES: Salida: data con esos ítems invertidos como mínimo observado + máximo
+#   observado - puntaje (un ítem 1-5 pasa a 5-1). Las demás columnas no
+#   cambian.
+# -----------------------------------------------------------------------------
+.el_reverse_items <- function(data, items) {
+
+    for (v in intersect(items, names(data))) {
+        x <- data[[v]]
+        if (all(is.na(x)))
+            next
+        data[[v]] <- min(x, na.rm = TRUE) + max(x, na.rm = TRUE) - x
+    }
+    data
+}

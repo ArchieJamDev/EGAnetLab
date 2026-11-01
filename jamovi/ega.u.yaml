@@ -59,6 +59,33 @@ children:
       - type: ComboBox
         name: uniMethod
   - type: CollapseBox
+    label: Negatively worded items
+    collapsed: true
+    children:
+      - type: VariableSupplier
+        persistentItems: true
+        stretchFactor: 1
+        suggested:
+          - continuous
+          - ordinal
+        permitted:
+          - numeric
+        children:
+          - type: TargetLayoutBox
+            label: Negatively worded items
+            children:
+              - type: VariablesListBox
+                name: negItems
+                isTarget: true
+                height: small
+      - type: ComboBox
+        name: negCoding
+      - type: Label
+        label: >-
+          If they are as answered, every analysis reverses them (observed
+          minimum plus maximum, minus the score). Random-intercept EGA always
+          uses them in their original direction.
+  - type: CollapseBox
     label: Network scores
     collapsed: true
     children:
@@ -132,8 +159,9 @@ children:
         name: runRI
       - type: Label
         label: >-
-          Only for scales that mix positively and negatively worded items,
-          with the negative items in their original direction (not recoded).
+          Only for scales that mix positively and negatively worded items.
+          Mark the negative items in the Negatively worded items box; this analysis
+          uses them in their original direction (not recoded).
   - type: CollapseBox
     label: Redundancy (UVA)
     collapsed: true

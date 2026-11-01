@@ -28,6 +28,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             theoryFactors = list(
                 list(label="Factor 1", vars=list())),
             compareCFA = FALSE,
+            negItems = NULL,
+            negCoding = "recoded",
             runHier = FALSE,
             runRI = FALSE,
             runCFA = FALSE,
@@ -206,6 +208,21 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "compareCFA",
                 compareCFA,
                 default=FALSE)
+            private$..negItems <- jmvcore::OptionVariables$new(
+                "negItems",
+                negItems,
+                suggested=list(
+                    "continuous",
+                    "ordinal"),
+                permitted=list(
+                    "numeric"))
+            private$..negCoding <- jmvcore::OptionList$new(
+                "negCoding",
+                negCoding,
+                options=list(
+                    "recoded",
+                    "raw"),
+                default="recoded")
             private$..runHier <- jmvcore::OptionBool$new(
                 "runHier",
                 runHier,
@@ -410,6 +427,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..compareAlgorithms)
             self$.addOption(private$..theoryFactors)
             self$.addOption(private$..compareCFA)
+            self$.addOption(private$..negItems)
+            self$.addOption(private$..negCoding)
             self$.addOption(private$..runHier)
             self$.addOption(private$..runRI)
             self$.addOption(private$..runCFA)
@@ -465,6 +484,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         compareAlgorithms = function() private$..compareAlgorithms$value,
         theoryFactors = function() private$..theoryFactors$value,
         compareCFA = function() private$..compareCFA$value,
+        negItems = function() private$..negItems$value,
+        negCoding = function() private$..negCoding$value,
         runHier = function() private$..runHier$value,
         runRI = function() private$..runRI$value,
         runCFA = function() private$..runCFA$value,
@@ -519,6 +540,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..compareAlgorithms = NA,
         ..theoryFactors = NA,
         ..compareCFA = NA,
+        ..negItems = NA,
+        ..negCoding = NA,
         ..runHier = NA,
         ..runRI = NA,
         ..runCFA = NA,
@@ -575,6 +598,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         hierStatus = function() private$.items[["hierStatus"]],
         hierSummary = function() private$.items[["hierSummary"]],
         hierMembership = function() private$.items[["hierMembership"]],
+        hierPlot = function() private$.items[["hierPlot"]],
         hierInterpretation = function() private$.items[["hierInterpretation"]],
         riStatus = function() private$.items[["riStatus"]],
         riSummary = function() private$.items[["riSummary"]],
@@ -598,6 +622,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         cfaMembership = function() private$.items[["cfaMembership"]],
         cfaLoadings = function() private$.items[["cfaLoadings"]],
         cfaInterpretation = function() private$.items[["cfaInterpretation"]],
+        cfaHierModels = function() private$.items[["cfaHierModels"]],
+        cfaHierInterpretation = function() private$.items[["cfaHierInterpretation"]],
         splitOV = function() private$.items[["splitOV"]],
         notes = function() private$.items[["notes"]]),
     private = list(),
@@ -632,6 +658,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "eganet"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -656,6 +684,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "golino_2017"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -686,6 +716,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "christensen_2021_loadings"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -711,6 +743,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible="(showNetworkPlot)",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -750,6 +784,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "christensen_2021_loadings"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -790,6 +826,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 measureType="continuous",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -803,6 +841,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 measureType="continuous",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -823,6 +863,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "golino_2021"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -879,6 +921,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible="(runCompare)",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -917,6 +961,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "jimenez_2023"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -940,6 +986,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible="(runHier)",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -963,6 +1011,24 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `name`="higher", 
                         `title`="Higher order", 
                         `type`="text"))))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="hierPlot",
+                title="Hierarchical structure plot",
+                width=700,
+                height=450,
+                renderFun=".plotHier",
+                visible="(runHier)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "uniMethod",
+                    "plotPalette",
+                    "reportLang")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="hierInterpretation",
@@ -983,6 +1049,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "eganet"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1006,6 +1074,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible="(runRI)",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1029,7 +1099,11 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `name`="loading", 
                         `title`="Random-intercept loading", 
                         `type`="number", 
-                        `format`="zto"))))
+                        `format`="zto"),
+                    list(
+                        `name`="negative", 
+                        `title`="Negatively worded", 
+                        `type`="text"))))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="riInterpretation",
@@ -1050,6 +1124,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "christensen_2023_uva"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1089,6 +1165,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "christensen_2023_uva"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1125,6 +1203,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible="(runBoot)",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1150,6 +1230,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "eganet"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1176,6 +1258,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 rows=0,
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1209,6 +1293,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "christensen_2021_boot"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1247,6 +1333,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "christensen_2021_boot"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1290,6 +1378,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible="(runBoot && showItemPlot)",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1311,6 +1401,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible="(runBoot && showFrequencyPlot)",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1338,6 +1430,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "schermelleh_engel_2003"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1375,6 +1469,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible="(runCFA && splitSample)",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1416,6 +1512,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "rosseel_2012"),
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1448,6 +1546,68 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="cfaInterpretation",
                 title="CFA interpretation",
                 visible="(runCFA)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="cfaHierModels",
+                title="Models with and without hierarchy (total sample)",
+                rows=0,
+                visible="(runCFA && runHier)",
+                refs=list(
+                    "rosseel_2012",
+                    "reise_2012"),
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "cfaEstimator",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="model", 
+                        `title`="Model", 
+                        `type`="text"),
+                    list(
+                        `name`="items", 
+                        `title`="Items", 
+                        `type`="integer"),
+                    list(
+                        `name`="chisq", 
+                        `title`="χ² (df)", 
+                        `type`="text"),
+                    list(
+                        `name`="cfi", 
+                        `title`="CFI", 
+                        `type`="text"),
+                    list(
+                        `name`="tli", 
+                        `title`="TLI", 
+                        `type`="text"),
+                    list(
+                        `name`="rmsea", 
+                        `title`="RMSEA", 
+                        `type`="text"),
+                    list(
+                        `name`="srmr", 
+                        `title`="SRMR", 
+                        `type`="text"),
+                    list(
+                        `name`="aic", 
+                        `title`="AIC", 
+                        `type`="text"),
+                    list(
+                        `name`="bic", 
+                        `title`="BIC", 
+                        `type`="text"))))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="cfaHierInterpretation",
+                title="Hierarchical models interpretation",
+                visible="(runCFA && runHier)"))
             self$add(jmvcore::Output$new(
                 options=options,
                 name="splitOV",
@@ -1456,6 +1616,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 measureType="nominal",
                 clearWith=list(
                     "vars",
+                    "negItems",
+                    "negCoding",
                     "corr",
                     "naData",
                     "model",
@@ -1519,6 +1681,8 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param compareAlgorithms .
 #' @param theoryFactors .
 #' @param compareCFA .
+#' @param negItems .
+#' @param negCoding .
 #' @param runHier .
 #' @param runRI .
 #' @param runCFA .
@@ -1570,6 +1734,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$hierStatus} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$hierSummary} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$hierMembership} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$hierPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$hierInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$riStatus} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$riSummary} \tab \tab \tab \tab \tab a table \cr
@@ -1593,6 +1758,8 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$cfaMembership} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$cfaLoadings} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$cfaInterpretation} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$cfaHierModels} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$cfaHierInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$splitOV} \tab \tab \tab \tab \tab an output \cr
 #'   \code{results$notes} \tab \tab \tab \tab \tab a html \cr
 #' }
@@ -1628,6 +1795,8 @@ ega <- function(
     theoryFactors = list(
                 list(label="Factor 1", vars=list())),
     compareCFA = FALSE,
+    negItems,
+    negCoding = "recoded",
     runHier = FALSE,
     runRI = FALSE,
     runCFA = FALSE,
@@ -1662,10 +1831,12 @@ ega <- function(
         stop("ega requires jmvcore to be installed (restart may be required)")
 
     if ( ! missing(vars)) vars <- jmvcore::resolveQuo(jmvcore::enquo(vars))
+    if ( ! missing(negItems)) negItems <- jmvcore::resolveQuo(jmvcore::enquo(negItems))
     if (missing(data))
         data <- jmvcore::marshalData(
             parent.frame(),
-            `if`( ! missing(vars), vars, NULL))
+            `if`( ! missing(vars), vars, NULL),
+            `if`( ! missing(negItems), negItems, NULL))
 
 
     options <- egaOptions$new(
@@ -1690,6 +1861,8 @@ ega <- function(
         compareAlgorithms = compareAlgorithms,
         theoryFactors = theoryFactors,
         compareCFA = compareCFA,
+        negItems = negItems,
+        negCoding = negCoding,
         runHier = runHier,
         runRI = runRI,
         runCFA = runCFA,
