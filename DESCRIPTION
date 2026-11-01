@@ -15,6 +15,7 @@ Imports:
     R6,
     EGAnet (>= 2.4.0),
     lavaan,
+    NetworkComparisonTest,
     sna,
     ggplot2,
     graphics,

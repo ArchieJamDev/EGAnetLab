@@ -42,7 +42,7 @@ msgstr "Automático"
 msgid "Automatic (Pearson / polychoric)"
 msgstr "Automática (Pearson / policórica)"
 
-#: ega/ui[12][0][0].label
+#: ega/ui[13][0][0].label
 msgid "Available when Hierarchical EGA is ticked."
 msgstr "Disponible cuando se marca EGA jerárquico."
 
@@ -54,6 +54,10 @@ msgstr "BGGM"
 msgid "BIC"
 msgstr "BIC"
 
+#: ega/options/nctAdjust/BH.title
+msgid "Benjamini-Hochberg (FDR)"
+msgstr "Benjamini-Hochberg (FDR)"
+
 #: ega/options/labelColor/black.title
 #: ega/options/edgePosColor/black.title
 #: ega/options/hierEdgeColor/black.title
@@ -64,6 +68,10 @@ msgstr "Negro"
 #: ega/options/hierEdgeColor/blue.title
 msgid "Blue"
 msgstr "Azul"
+
+#: ega/options/nctAdjust/bonferroni.title
+msgid "Bonferroni"
+msgstr "Bonferroni"
 
 #: ega/options/iter.title
 msgid "Bootstrap samples"
@@ -124,12 +132,23 @@ msgstr "Comparar estructuras (TEFI)"
 msgid "Compare structures with TEFI"
 msgstr "Comparar estructuras con TEFI"
 
+#: ega/results/invTable.columns.title
+#: ega/results/nctGlobal.columns.title
+#: ega/results/nctEdgeTable.columns.title
+#: ega/results/nctCentralityTable.columns.title
+msgid "Comparison"
+msgstr "Comparación"
+
+#: ega/options/invConfigCut.title
+msgid "Configural stability cutoff"
+msgstr "Punto de corte de estabilidad configural"
+
 #: ega/options/runCFA.title
 msgid "Confirm with CFA"
 msgstr "Confirmar con CFA"
 
 #: ega/results/cfaStatus.title
-#: ega/ui[9].label
+#: ega/ui[10].label
 msgid "Confirmatory factor analysis"
 msgstr "Análisis factorial confirmatorio"
 
@@ -170,6 +189,12 @@ msgstr "Decimales"
 msgid "Diamond"
 msgstr "Rombo"
 
+#: ega/results/invTable.columns.title
+#: ega/results/nctEdgeTable.columns.title
+#: ega/results/nctCentralityTable.columns.title
+msgid "Difference"
+msgstr "Diferencia"
+
 #: ega/results/compareTable.columns.title
 msgid "Difference from lowest"
 msgstr "Diferencia con el más bajo"
@@ -178,6 +203,7 @@ msgstr "Diferencia con el más bajo"
 #: ega/results/scores.columns.title
 #: ega/results/bootDimStability.columns.title
 #: ega/results/bootItemStability.columns.title
+#: ega/results/invTable.columns.title
 msgid "Dimension"
 msgstr "Dimensión"
 
@@ -213,6 +239,10 @@ msgstr "Dimensionalidad"
 msgid "Dimensions"
 msgstr "Dimensiones"
 
+#: ega/results/invTable.columns.title
+msgid "Direction"
+msgstr "Dirección"
+
 #: ega/options/edgeNegLty/dotted.title
 msgid "Dotted"
 msgstr "Punteada"
@@ -222,6 +252,10 @@ msgstr "Punteada"
 #: ega/results/riMembership.columns.title
 msgid "EGA"
 msgstr "EGA"
+
+#: ega/options/invStructure/ega.title
+msgid "EGA solution (configural invariance assumed)"
+msgstr "Solución del EGA (se asume invarianza configural)"
 
 #: package/title
 #: package/analyses/ega.menuGroup
@@ -237,6 +271,10 @@ msgstr "EGAnetLab lleva a jamovi los métodos de psicometría de redes del paque
 msgid "EGAnetLab default"
 msgstr "Por defecto de EGAnetLab"
 
+#: ega/results/nctEdgeTable.columns.title
+msgid "Edge"
+msgstr "Arista"
+
 #: ega/options/hierEdgeColor.title
 msgid "Edge color"
 msgstr "Color de las aristas"
@@ -250,9 +288,13 @@ msgstr "Tamaño de los pesos"
 msgid "Edge width"
 msgstr "Grosor de arista"
 
-#: ega/ui[11][2][0].label
+#: ega/ui[12][2][0].label
 msgid "Edges"
 msgstr "Aristas"
+
+#: ega/results/nctEdgeTable.title
+msgid "Edges that differ"
+msgstr "Aristas que difieren"
 
 #: ega/options/layout/eigen.title
 msgid "Eigenvector"
@@ -309,6 +351,10 @@ msgstr "Análisis Exploratorio de Grafos"
 msgid "Factor"
 msgstr "Factor"
 
+#: ega/results/nctGlobal.columns.title
+msgid "First"
+msgstr "Primero"
+
 #: ega/results/bootFrequency.title
 #: ega/results/bootFrequencyPlot.title
 msgid "Frequency of the number of dimensions"
@@ -318,11 +364,33 @@ msgstr "Frecuencia del número de dimensiones"
 msgid "GLASSO (EBIC)"
 msgstr "GLASSO (EBIC)"
 
+#: ega/results/nctGlobal.title
+msgid "Global network comparison"
+msgstr "Comparación global de las redes"
+
 #: ega/options/edgePosColor/grey50.title
 #: ega/options/edgeNegColor/grey50.title
 #: ega/options/hierEdgeColor/grey55.title
 msgid "Gray"
 msgstr "Gris"
+
+#: ega/results/groupSizes.columns.title
+msgid "Group"
+msgstr "Grupo"
+
+#: ega/results/groupStatus.title
+#: ega/ui[7].label
+msgid "Group comparison"
+msgstr "Comparación entre grupos"
+
+#: ega/options/group.title
+#: ega/ui[0][1].label
+msgid "Grouping variable"
+msgstr "Variable de agrupación"
+
+#: ega/results/groupSizes.title
+msgid "Groups compared"
+msgstr "Grupos comparados"
 
 #: ega/options/edgeMin.title
 msgid "Hide edges weaker than"
@@ -353,13 +421,17 @@ msgid "Hierarchical structure"
 msgstr "Estructura jerárquica"
 
 #: ega/results/hierPlot.title
-#: ega/ui[12].label
+#: ega/ui[13].label
 msgid "Hierarchical structure plot"
 msgstr "Gráfico de la estructura jerárquica"
 
 #: ega/results/hierMembership.columns.title
 msgid "Higher order"
 msgstr "Orden superior"
+
+#: ega/options/nctAdjust/holm.title
+msgid "Holm"
+msgstr "Holm"
 
 #: ega/ui[3][2].label
 msgid "If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction."
@@ -373,9 +445,17 @@ msgstr "En los datos, estos ítems están"
 msgid "Include the other community algorithms"
 msgstr "Incluir los otros algoritmos de comunidades"
 
+#: ega/ui[7][0].label
+msgid "Independent groups: put the grouping variable in the Grouping variable box. Same people measured twice: put the second measurement of the items below, in the same order as the items (NCT only)."
+msgstr "Grupos independientes: coloque la variable de agrupación en la caja Variable de agrupación. Mismas personas medidas dos veces: coloque abajo la segunda medición de los ítems, en el mismo orden de los ítems (solo NCT)."
+
 #: ega/results/intro.title
 msgid "Introduction"
 msgstr "Introducción"
+
+#: ega/ui[7][2][0][0].label
+msgid "Invariance (independent groups)"
+msgstr "Invarianza (grupos independientes)"
 
 #: ega/results/membership.columns.title
 #: ega/results/loadings.columns.title
@@ -387,6 +467,8 @@ msgstr "Introducción"
 #: ega/results/bootItemStability.columns.title
 #: ega/results/cfaMembership.columns.title
 #: ega/results/cfaLoadings.columns.title
+#: ega/results/invTable.columns.title
+#: ega/results/nctCentralityTable.columns.title
 msgid "Item"
 msgstr "Ítem"
 
@@ -465,7 +547,7 @@ msgid "Label size"
 msgstr "Tamaño de etiqueta"
 
 #: ega/options/layout.title
-#: ega/ui[11][0][0].label
+#: ega/ui[12][0][0].label
 msgid "Layout"
 msgstr "Disposición"
 
@@ -477,7 +559,7 @@ msgstr "Autovalor principal"
 msgid "Left"
 msgstr "Izquierda"
 
-#: ega/ui[11][3][0].label
+#: ega/ui[12][3][0].label
 msgid "Legend"
 msgstr "Leyenda"
 
@@ -500,6 +582,18 @@ msgstr "Por lista"
 #: ega/results/cfaLoadings.columns.title
 msgid "Loading"
 msgstr "Carga"
+
+#: ega/results/invTable.columns.title
+msgid "Loading, first group"
+msgstr "Carga, primer grupo"
+
+#: ega/results/invTable.columns.title
+msgid "Loading, second group"
+msgstr "Carga, segundo grupo"
+
+#: ega/options/showInvPlot.title
+msgid "Loadings by group plot"
+msgstr "Gráfico de cargas por grupo"
 
 #: ega/options/algorithm/louvain.title
 #: ega/options/uniMethod/louvain.title
@@ -526,6 +620,22 @@ msgstr "Media"
 msgid "Mean item stability"
 msgstr "Estabilidad media de ítems"
 
+#: ega/results/nctCentralityTable.columns.title
+msgid "Measure"
+msgstr "Medida"
+
+#: ega/results/invStatus.title
+msgid "Metric invariance"
+msgstr "Invarianza métrica"
+
+#: ega/results/invInterpretation.title
+msgid "Metric invariance interpretation"
+msgstr "Interpretación de la invarianza métrica"
+
+#: ega/options/runInvariance.title
+msgid "Metric invariance of network loadings"
+msgstr "Invarianza métrica de las cargas de red"
+
 #: ega/options/naData.title
 msgid "Missing Values"
 msgstr "Valores perdidos"
@@ -543,6 +653,7 @@ msgid "Multidimensional scaling"
 msgstr "Escalamiento multidimensional"
 
 #: ega/results/scores.columns.title
+#: ega/results/groupSizes.columns.title
 msgid "N"
 msgstr "N"
 
@@ -568,6 +679,19 @@ msgstr "Redactado en negativo"
 msgid "Negatively worded items"
 msgstr "Ítems redactados en negativo"
 
+#: ega/results/nctStatus.title
+#: ega/ui[7][2][1][0].label
+msgid "Network Comparison Test"
+msgstr "Network Comparison Test"
+
+#: ega/options/runNCT.title
+msgid "Network Comparison Test (NCT)"
+msgstr "Network Comparison Test (NCT)"
+
+#: ega/results/nctInterpretation.title
+msgid "Network Comparison Test interpretation"
+msgstr "Interpretación del Network Comparison Test"
+
 #: ega/options/model.title
 msgid "Network Model"
 msgstr "Modelo de red"
@@ -585,8 +709,13 @@ msgstr "Cargas de red"
 msgid "Network loadings (standardized)"
 msgstr "Cargas de red (estandarizadas)"
 
+#: ega/results/invTable.title
+#: ega/results/invPlot.title
+msgid "Network loadings by group"
+msgstr "Cargas de red por grupo"
+
 #: ega/options/showNetworkPlot.title
-#: ega/ui[11].label
+#: ega/ui[12].label
 msgid "Network plot"
 msgstr "Gráfico de red"
 
@@ -613,13 +742,21 @@ msgstr "Forma de nodo"
 msgid "Node size"
 msgstr "Tamaño de nodo"
 
-#: ega/ui[12][2][0].label
+#: ega/results/nctCentralityTable.title
+msgid "Node strength and expected influence"
+msgstr "Fuerza e influencia esperada de los nodos"
+
+#: ega/ui[13][2][0].label
 msgid "Nodes and edges"
 msgstr "Nodos y aristas"
 
-#: ega/ui[11][1][0].label
+#: ega/ui[12][1][0].label
 msgid "Nodes and labels"
 msgstr "Nodos y etiquetas"
+
+#: ega/options/nctAdjust/none.title
+msgid "None"
+msgstr "Ninguna"
 
 #: ega/results/notes.title
 msgid "Notes"
@@ -638,7 +775,7 @@ msgstr "Solo para escalas que mezclan ítems redactados en positivo y en negativ
 msgid "Orange"
 msgstr "Naranja"
 
-#: ega/ui[10].label
+#: ega/ui[11].label
 msgid "Output"
 msgstr "Salida"
 
@@ -653,6 +790,14 @@ msgstr "Paramétrico"
 #: ega/options/corr/pearson.title
 msgid "Pearson"
 msgstr "Pearson"
+
+#: ega/options/nctIter.title
+msgid "Permutations (NCT)"
+msgstr "Permutaciones (NCT)"
+
+#: ega/options/invIter.title
+msgid "Permutations (invariance)"
+msgstr "Permutaciones (invarianza)"
 
 #: ega/options/plotTitle.title
 #: ega/options/hierPlotTitle.title
@@ -693,7 +838,7 @@ msgid "Redundancy"
 msgstr "Redundancia"
 
 #: ega/results/uvaStatus.title
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Redundancy (UVA)"
 msgstr "Redundancia (UVA)"
 
@@ -747,6 +892,11 @@ msgstr "Misma dimensión"
 msgid "Same in A and B"
 msgstr "Igual en A y B"
 
+#: ega/options/pairedVars.title
+#: ega/ui[7][1][0].label
+msgid "Same items, second measurement"
+msgstr "Mismos ítems, segunda medición"
+
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
 msgstr "Muestras"
@@ -763,7 +913,12 @@ msgstr "Guardar puntuaciones de red"
 msgid "Save subsample"
 msgstr "Guardar SubMuestra"
 
+#: ega/results/nctGlobal.columns.title
+msgid "Second"
+msgstr "Segundo"
+
 #: ega/options/seed.title
+#: ega/options/groupSeed.title
 msgid "Seed"
 msgstr "Semilla"
 
@@ -815,13 +970,17 @@ msgstr "Cuadrado"
 msgid "Stability"
 msgstr "Estabilidad"
 
-#: ega/ui[8].label
+#: ega/ui[9].label
 msgid "Stability (bootstrap)"
 msgstr "Estabilidad (bootstrap)"
 
 #: ega/results/bootInterpretation.title
 msgid "Stability interpretation"
 msgstr "Interpretación de la estabilidad"
+
+#: ega/results/nctGlobal.columns.title
+msgid "Statistic"
+msgstr "Estadístico"
 
 #: ega/results/bootDimStability.columns.title
 msgid "Structural consistency"
@@ -834,6 +993,10 @@ msgstr "Estructura"
 #: ega/results/compareInterpretation.title
 msgid "Structure comparison interpretation"
 msgstr "Interpretación de la comparación de estructuras"
+
+#: ega/options/invStructure.title
+msgid "Structure to test"
+msgstr "Estructura a evaluar"
 
 #: ega/results/compareTable.title
 msgid "Structures compared"
@@ -883,7 +1046,23 @@ msgstr "TMFG"
 msgid "Table of network connections"
 msgstr "Tabla de conexiones de la red"
 
-#: ega/ui[12][1][0].label
+#: ega/results/nctGlobal.columns.title
+msgid "Test"
+msgstr "Prueba"
+
+#: ega/options/invStructure/configural.title
+msgid "Test configural invariance first (bootstrap)"
+msgstr "Evaluar antes la invarianza configural (bootstrap)"
+
+#: ega/options/nctEdges.title
+msgid "Test every edge"
+msgstr "Evaluar cada arista"
+
+#: ega/options/nctCentrality.title
+msgid "Test node strength and expected influence"
+msgstr "Evaluar la fuerza y la influencia esperada de los nodos"
+
+#: ega/ui[13][1][0].label
 msgid "Text"
 msgstr "Texto"
 
@@ -936,6 +1115,14 @@ msgstr "Walktrap"
 msgid "Weight"
 msgstr "Peso"
 
+#: ega/results/nctEdgeTable.columns.title
+msgid "Weight, first"
+msgstr "Peso, primero"
+
+#: ega/results/nctEdgeTable.columns.title
+msgid "Weight, second"
+msgstr "Peso, segundo"
+
 #: ega/options/labelColor/white.title
 msgid "White"
 msgstr "Blanco"
@@ -947,6 +1134,24 @@ msgstr "Efectos de redacción (EGA con intercepto aleatorio)"
 #: ega/results/riInterpretation.title
 msgid "Wording effects interpretation"
 msgstr "Interpretación de los efectos de redacción"
+
+#: ega/results/invTable.columns.title
+#: ega/results/nctGlobal.columns.title
+msgid "p"
+msgstr "p"
+
+#: ega/results/invTable.columns.title
+msgid "p (BH)"
+msgstr "p (BH)"
+
+#: ega/results/nctEdgeTable.columns.title
+#: ega/results/nctCentralityTable.columns.title
+msgid "p (adjusted)"
+msgstr "p (ajustado)"
+
+#: ega/options/nctAdjust.title
+msgid "p-value correction"
+msgstr "Corrección de valores p"
 
 #: ega/results/scores.columns.title
 msgid "r with mean score"

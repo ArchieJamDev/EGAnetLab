@@ -167,4 +167,26 @@ refs:
         pages: '667-696'
         url: https://doi.org/10.1080/00273171.2012.715555
 
+    jamison_2024:
+        type: 'article'
+        author: 'Jamison, L., Christensen, A. P., & Golino, H. F.'
+        year: 2024
+        title: 'Metric invariance in exploratory graph analysis via permutation testing'
+        publisher: 'Methodology'
+        volume: '20'
+        issue: '2'
+        pages: '144-186'
+        url: https://doi.org/10.5964/meth.12877
+
+    van_borkulo_2023:
+        type: 'article'
+        author: 'van Borkulo, C. D., van Bork, R., Boschloo, L., Kossakowski, J. J., Tio, P., Schoevers, R. A., Borsboom, D., & Waldorp, L. J.'
+        year: 2023
+        title: 'Comparing network structures on three aspects: A permutation test'
+        publisher: 'Psychological Methods'
+        volume: '28'
+        issue: '6'
+        pages: '1273-1285'
+        url: https://doi.org/10.1037/met0000476
+
 ...

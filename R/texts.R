@@ -388,6 +388,78 @@
             plot_prop = "Proportion of samples",
             plot_original = "Original sample",
             plot_other = "Other"
+        ),
+        groups = list(
+            intro = "This section compares the network of the items between groups of people. With a grouping variable it compares independent groups (for example, women and men, or two countries). With a second measurement of the same items it compares the same people at two moments (for example, before and after an intervention).",
+            small_dropped = "Group(s) with fewer than 10 cases were left out of the comparison: %s. Networks cannot be estimated reliably with so few people.",
+            missing_group = "%d case(s) have no value in the grouping variable and were left out of the comparison between groups.",
+            need_two = "The comparison between independent groups needs at least two groups with 10 or more cases each, so it was not run.",
+            pairwise = "The grouping variable has %d groups, so every pair of groups is compared separately. With many pairs, some differences will appear by chance: focus on differences that repeat across pairs or that survive the correction for multiple tests.",
+            paired_count = "The second measurement has %d variable(s), but the analysis uses %d items. Add one variable for each item, in the same order as the items, to compare the two measurements.",
+            nothing = "To compare groups, add a grouping variable (independent groups) or the items of a second measurement of the same people (paired groups)."
+        ),
+
+        inv = list(
+            intro = c(
+                "Metric invariance checks whether each item is related to its dimension with the same strength in every group (Jamison, Christensen & Golino, 2024; see references).",
+                "EGAnetLab estimates the network in each group with the same dimensional structure and compares the network loadings item by item. Then it shuffles people between groups many times to see how large the differences would be if group membership did not matter. An item whose loading differs more than expected by chance is not invariant: the item does not measure its dimension in the same way in the two groups."
+            ),
+            no_groups = "To test invariance, add a grouping variable with at least two groups of 10 or more cases. Invariance compares independent groups; it does not use the second measurement.",
+            structure_configural = "Structure tested: the structure that is stable across groups (configural invariance). EGAnetLab first runs a bootstrap EGA on all cases, keeps only the items that stay in their dimension in enough samples and re-estimates the structure without the unstable items.",
+            structure_ega = "Structure tested: the dimensions found by the EGA above, applied to every group.",
+            iter_seed = "Permutations: %d, seed %d.",
+            isolated = "Items without edges in the network, left out of the invariance test: %s.",
+            failed = "EGAnetLab could not complete the invariance test: %s. The EGA results above are not affected. Check that every group has enough cases and that no item is constant within a group.",
+            configural_failed = "Configural invariance was not reached: after removing the unstable items, fewer than two items keep a stability of %.2f or more, so there is no common structure to compare. The groups do not share the same dimensions; compare their networks with the Network Comparison Test or run the EGA within each group.",
+            configural_ok = "Configural invariance: every item stays in its dimension in enough bootstrap samples, so all items were tested.",
+            configural_partial = "Configural invariance: %d item(s) were unstable and were left out before the metric test: %s.",
+            guide = c(
+                "Loadings: the network loading of the item on its own dimension in each group.",
+                "Difference: loading in the first group minus loading in the second group.",
+                "p: proportion of permutations with a difference at least as large as the observed one. p (BH): the same p value corrected for the number of items with the Benjamini-Hochberg method.",
+                "Direction: the group with the larger loading, shown only when p is .05 or less."
+            ),
+            interp_invariant = "No item shows a loading difference between groups beyond what is expected by chance (all p values above .05). The evidence supports metric invariance: the items relate to their dimensions with similar strength in the groups, so scores built from these dimensions can be compared between groups more safely.",
+            interp_noninvariant = "Items whose loadings differ between groups (p of .05 or less), %d of %d: %s. These items relate to their dimension with different strength in each group, so a dimension score is not fully comparable: part of a group difference on the score could come from these items rather than from the construct.",
+            interp_fdr_none = "None of these differences remains significant after the Benjamini-Hochberg correction for the number of items tested. Treat them as tentative: they may be chance findings, and they need replication in another sample.",
+            interp_fdr_some = "Item(s) that remain different after the Benjamini-Hochberg correction: %s. These are the clearest cases of non-invariance.",
+            interp_partial = "Because some items were removed in the configural step, the metric test only applies to the remaining items. Report which items were removed and why.",
+            interp_next = "Next step: review the content of the non-invariant items (wording, cultural meaning, relevance in each group). If they cannot be fixed, compare groups with scores that exclude them, or report the comparison with and without them. Report the structure tested, the number of permutations, the seed and both p values."
+        ),
+
+        nct = list(
+            intro = c(
+                "The Network Comparison Test (NCT) compares two whole networks: whether their connections differ, and whether the total strength of their connections differs (van Borkulo et al., 2023; see references).",
+                "It estimates the network of each group, records the differences, and then shuffles people between the groups many times (for the same people measured twice, it shuffles the two measurements within each person) to see how large the differences would be by chance."
+            ),
+            estimator_ordinal = "Each network is estimated with the graphical lasso (EBIC, gamma .50) on polychoric correlations, because the items have few categories and the analysis uses automatic correlations.",
+            estimator_pearson = "Each network is estimated with the graphical lasso (EBIC, gamma .50) on Pearson correlations.",
+            iter_seed = "Permutations: %d, seed %d.",
+            model_note = "The network above was estimated with the %s model, but the NCT always uses the graphical lasso. The networks compared here may therefore differ slightly from the one above.",
+            complete_cases = "The NCT needs complete data, so each comparison uses only the cases with every item answered.",
+            nothing = "To run the NCT, add a grouping variable with at least two groups of 10 or more cases, or the items of a second measurement of the same people.",
+            guide = c(
+                "Network structure (M): the largest difference in a single edge between the two networks. A small p means at least one connection differs.",
+                "Global strength (S): the difference in the sum of the absolute edge weights of each network. A small p means one network is, overall, more strongly connected.",
+                "Edges: every connection whose weight differs between the networks (p of .05 or less after the chosen correction).",
+                "Centrality: the difference in strength and expected influence of each item between the networks, with the chosen correction."
+            ),
+            failed = "EGAnetLab could not run the NCT for %s: %s. Check that both groups have enough complete cases and that no item is constant within a group.",
+            row_M = "Network structure (M)",
+            row_S = "Global strength (S)",
+            no_edges_note = "No edge differs between the networks at p of .05 or less after the correction.",
+            note_table = "M = largest difference in a single edge; S = difference in global strength (sum of absolute edge weights). p values come from the permutations.",
+            interp_n = "%s: %s (n = %d) and %s (n = %d)%s.",
+            paired_word = ", the same people measured twice",
+            interp_M_sig = "The network structure differs: the largest difference in a single connection (M = %s) is larger than expected by chance (%s). At least one relation between items is not the same in the two networks. The edge test (Test every edge) looks for which ones; after its correction for many tests, a single edge may not reach significance even when M does, so read M as evidence that the networks differ somewhere.",
+            interp_M_ns = "There is no evidence that the network structure differs: the largest difference in a single connection (M = %s) is within what is expected by chance (%s). This does not prove the networks are equal; with small groups the test has little power.",
+            interp_S_sig = "Global strength differs: %s in %s and %s in %s (%s). In one network the items are, overall, more strongly connected, which often goes with a more homogeneous or more severe presentation of the construct.",
+            interp_S_ns = "Global strength is similar: %s in %s and %s in %s (%s). The overall level of connection among the items does not differ beyond chance.",
+            interp_edges_none = "No individual connection differs after the correction for multiple tests.",
+            interp_edges_some = "%d connection(s) differ between the networks after the correction for multiple tests (see the edge table).",
+            interp_cen_none = "No item differs in centrality between the networks after the correction for multiple tests.",
+            interp_cen_some = "%d centrality value(s) differ between the networks after the correction for multiple tests (see the centrality table).",
+            interp_next = "Next step: interpret differences in connections together with the invariance test, because a different network can change the meaning of a dimension score between groups. Report the estimator, the number of permutations, the seed, the correction and the size of each group."
         )
     ),
 
@@ -716,6 +788,78 @@
             plot_prop = "Proporción de muestras",
             plot_original = "Muestra original",
             plot_other = "Otro"
+        ),
+        groups = list(
+            intro = "Esta sección compara la red de los ítems entre grupos de personas. Con una variable de agrupación compara grupos independientes (por ejemplo, mujeres y hombres, o dos países). Con una segunda medición de los mismos ítems compara a las mismas personas en dos momentos (por ejemplo, antes y después de una intervención).",
+            small_dropped = "Se dejaron fuera de la comparación los grupos con menos de 10 casos: %s. Con tan pocas personas no es posible estimar redes de forma fiable.",
+            missing_group = "%d caso(s) no tienen valor en la variable de agrupación y se dejaron fuera de la comparación entre grupos.",
+            need_two = "La comparación entre grupos independientes necesita al menos dos grupos con 10 casos o más cada uno, así que no se ejecutó.",
+            pairwise = "La variable de agrupación tiene %d grupos, así que cada par de grupos se compara por separado. Con muchos pares, algunas diferencias aparecerán por azar: céntrese en las diferencias que se repiten entre pares o que se mantienen tras la corrección por pruebas múltiples.",
+            paired_count = "La segunda medición tiene %d variable(s), pero el análisis usa %d ítems. Agregue una variable por cada ítem, en el mismo orden de los ítems, para comparar las dos mediciones.",
+            nothing = "Para comparar grupos, agregue una variable de agrupación (grupos independientes) o los ítems de una segunda medición de las mismas personas (grupos pareados)."
+        ),
+
+        inv = list(
+            intro = c(
+                "La invarianza métrica examina si cada ítem se relaciona con su dimensión con la misma fuerza en todos los grupos (Jamison, Christensen y Golino, 2024; ver referencias).",
+                "EGAnetLab estima la red en cada grupo con la misma estructura dimensional y compara las cargas de red ítem por ítem. Luego reparte a las personas entre los grupos al azar muchas veces para ver qué tan grandes serían las diferencias si pertenecer a un grupo no importara. Un ítem cuya carga difiere más de lo esperable por azar no es invariante: no mide su dimensión de la misma forma en los dos grupos."
+            ),
+            no_groups = "Para evaluar la invarianza, agregue una variable de agrupación con al menos dos grupos de 10 casos o más. La invarianza compara grupos independientes; no usa la segunda medición.",
+            structure_configural = "Estructura evaluada: la estructura estable entre grupos (invarianza configural). EGAnetLab primero ejecuta un EGA con bootstrap sobre todos los casos, conserva solo los ítems que se mantienen en su dimensión en suficientes muestras y vuelve a estimar la estructura sin los ítems inestables.",
+            structure_ega = "Estructura evaluada: las dimensiones encontradas por el EGA de arriba, aplicadas a cada grupo.",
+            iter_seed = "Permutaciones: %d, semilla %d.",
+            isolated = "Ítems sin aristas en la red, excluidos de la prueba de invarianza: %s.",
+            failed = "EGAnetLab no pudo completar la prueba de invarianza: %s. Los resultados del EGA de arriba no se ven afectados. Revise que cada grupo tenga suficientes casos y que ningún ítem sea constante dentro de un grupo.",
+            configural_failed = "No se alcanzó la invarianza configural: tras quitar los ítems inestables, menos de dos ítems conservan una estabilidad de %.2f o más, así que no hay una estructura común que comparar. Los grupos no comparten las mismas dimensiones; compare sus redes con el Network Comparison Test o ejecute el EGA dentro de cada grupo.",
+            configural_ok = "Invarianza configural: todos los ítems se mantienen en su dimensión en suficientes muestras bootstrap, así que se evaluaron todos.",
+            configural_partial = "Invarianza configural: %d ítem(s) fueron inestables y se excluyeron antes de la prueba métrica: %s.",
+            guide = c(
+                "Cargas: la carga de red del ítem en su propia dimensión en cada grupo.",
+                "Diferencia: carga en el primer grupo menos carga en el segundo grupo.",
+                "p: proporción de permutaciones con una diferencia al menos tan grande como la observada. p (BH): el mismo valor p corregido por el número de ítems con el método de Benjamini-Hochberg.",
+                "Dirección: el grupo con la carga mayor, que se muestra solo cuando p es .05 o menor."
+            ),
+            interp_invariant = "Ningún ítem muestra una diferencia de carga entre grupos mayor que la esperable por azar (todos los valores p son mayores que .05). La evidencia apoya la invarianza métrica: los ítems se relacionan con sus dimensiones con una fuerza similar en los grupos, así que las puntuaciones de estas dimensiones pueden compararse entre grupos con más seguridad.",
+            interp_noninvariant = "Ítems cuyas cargas difieren entre grupos (p de .05 o menor), %d de %d: %s. Estos ítems se relacionan con su dimensión con distinta fuerza en cada grupo, así que la puntuación de la dimensión no es del todo comparable: parte de una diferencia entre grupos en la puntuación podría deberse a estos ítems y no al constructo.",
+            interp_fdr_none = "Ninguna de estas diferencias sigue siendo significativa tras la corrección de Benjamini-Hochberg por el número de ítems evaluados. Considérelas tentativas: pueden ser hallazgos por azar y necesitan replicarse en otra muestra.",
+            interp_fdr_some = "Ítem(s) que siguen siendo diferentes tras la corrección de Benjamini-Hochberg: %s. Son los casos más claros de falta de invarianza.",
+            interp_partial = "Como algunos ítems se excluyeron en el paso configural, la prueba métrica solo se aplica a los ítems restantes. Informe qué ítems se excluyeron y por qué.",
+            interp_next = "Siguiente paso: revise el contenido de los ítems no invariantes (redacción, significado cultural, pertinencia en cada grupo). Si no pueden corregirse, compare los grupos con puntuaciones que los excluyan, o informe la comparación con y sin ellos. Informe la estructura evaluada, el número de permutaciones, la semilla y ambos valores p."
+        ),
+
+        nct = list(
+            intro = c(
+                "El Network Comparison Test (NCT) compara dos redes completas: si sus conexiones difieren y si la fuerza total de sus conexiones difiere (van Borkulo et al., 2023; ver referencias).",
+                "Estima la red de cada grupo, registra las diferencias y luego reparte a las personas entre los grupos al azar muchas veces (con las mismas personas medidas dos veces, intercambia las dos mediciones dentro de cada persona) para ver qué tan grandes serían las diferencias por azar."
+            ),
+            estimator_ordinal = "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones policóricas, porque los ítems tienen pocas categorías y el análisis usa correlaciones automáticas.",
+            estimator_pearson = "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones de Pearson.",
+            iter_seed = "Permutaciones: %d, semilla %d.",
+            model_note = "La red de arriba se estimó con el modelo %s, pero el NCT siempre usa el lasso gráfico. Por eso las redes comparadas aquí pueden diferir un poco de la de arriba.",
+            complete_cases = "El NCT necesita datos completos, así que cada comparación usa solo los casos con todos los ítems respondidos.",
+            nothing = "Para ejecutar el NCT, agregue una variable de agrupación con al menos dos grupos de 10 casos o más, o los ítems de una segunda medición de las mismas personas.",
+            guide = c(
+                "Estructura de la red (M): la mayor diferencia en una sola arista entre las dos redes. Un p pequeño indica que al menos una conexión difiere.",
+                "Fuerza global (S): la diferencia en la suma de los pesos absolutos de las aristas de cada red. Un p pequeño indica que una red está, en conjunto, más fuertemente conectada.",
+                "Aristas: cada conexión cuyo peso difiere entre las redes (p de .05 o menor tras la corrección elegida).",
+                "Centralidad: la diferencia en fuerza e influencia esperada de cada ítem entre las redes, con la corrección elegida."
+            ),
+            failed = "EGAnetLab no pudo ejecutar el NCT para %s: %s. Revise que ambos grupos tengan suficientes casos completos y que ningún ítem sea constante dentro de un grupo.",
+            row_M = "Estructura de la red (M)",
+            row_S = "Fuerza global (S)",
+            no_edges_note = "Ninguna arista difiere entre las redes con p de .05 o menor tras la corrección.",
+            note_table = "M = mayor diferencia en una sola arista; S = diferencia en la fuerza global (suma de los pesos absolutos de las aristas). Los valores p provienen de las permutaciones.",
+            interp_n = "%s: %s (n = %d) y %s (n = %d)%s.",
+            paired_word = ", las mismas personas medidas dos veces",
+            interp_M_sig = "La estructura de la red difiere: la mayor diferencia en una sola conexión (M = %s) es mayor que la esperable por azar (%s). Al menos una relación entre ítems no es la misma en las dos redes. La prueba de aristas (Evaluar cada arista) busca cuáles; tras su corrección por muchas pruebas, puede que ninguna arista aislada alcance significación aunque M sí la alcance, así que lea M como evidencia de que las redes difieren en algún punto.",
+            interp_M_ns = "No hay evidencia de que la estructura de la red difiera: la mayor diferencia en una sola conexión (M = %s) está dentro de lo esperable por azar (%s). Esto no demuestra que las redes sean iguales; con grupos pequeños la prueba tiene poca potencia.",
+            interp_S_sig = "La fuerza global difiere: %s en %s y %s en %s (%s). En una de las redes los ítems están, en conjunto, más fuertemente conectados, lo que suele acompañar una presentación más homogénea o más intensa del constructo.",
+            interp_S_ns = "La fuerza global es similar: %s en %s y %s en %s (%s). El nivel general de conexión entre los ítems no difiere más allá del azar.",
+            interp_edges_none = "Ninguna conexión individual difiere tras la corrección por pruebas múltiples.",
+            interp_edges_some = "%d conexión(es) difieren entre las redes tras la corrección por pruebas múltiples (ver la tabla de aristas).",
+            interp_cen_none = "Ningún ítem difiere en centralidad entre las redes tras la corrección por pruebas múltiples.",
+            interp_cen_some = "%d valor(es) de centralidad difieren entre las redes tras la corrección por pruebas múltiples (ver la tabla de centralidad).",
+            interp_next = "Siguiente paso: interprete las diferencias en las conexiones junto con la prueba de invarianza, porque una red distinta puede cambiar el significado de la puntuación de una dimensión entre grupos. Informe el estimador, el número de permutaciones, la semilla, la corrección y el tamaño de cada grupo."
         )
     )
 )
