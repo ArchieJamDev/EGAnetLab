@@ -52,6 +52,37 @@
 }
 
 # -----------------------------------------------------------------------------
+# .el_dyn_schedule_items()
+#
+# Input: items - item data ordered by person and time; ids - the person of
+#   each row. Output: the items that behave like schedule variables (day,
+#   beep number): at each measurement number nearly every person has the same
+#   value (80% or more), while the item itself takes varied values (its most
+#   common value covers 60% of rows or less, so items that are almost always
+#   at the floor are not flagged).
+# ES: Entrada: items - datos de los ítems ordenados por persona y tiempo;
+#   ids - la persona de cada fila. Salida: los ítems que se comportan como
+#   variables del calendario (día, número de aviso): en cada número de
+#   medición casi todas las personas tienen el mismo valor (80% o más),
+#   mientras que el ítem toma valores variados (su valor más frecuente cubre
+#   60% de las filas o menos, así que no se marcan los ítems casi siempre en
+#   el piso).
+# -----------------------------------------------------------------------------
+.el_dyn_schedule_items <- function(items, ids) {
+    position <- stats::ave(seq_along(ids), ids, FUN = seq_along)
+    flagged <- vapply(names(items), function(v) {
+        x <- items[[v]]
+        ok <- !is.na(x)
+        if (sum(ok) < 20 || length(unique(x[ok])) < 3) return(FALSE)
+        overall <- max(table(x[ok])) / sum(ok)
+        modal <- tapply(x[ok], position[ok], function(z) max(table(z)))
+        agreement <- sum(modal) / sum(ok)
+        agreement >= 0.80 && overall <= 0.60
+    }, logical(1))
+    names(items)[flagged]
+}
+
+# -----------------------------------------------------------------------------
 # .el_dyn_prepare()
 #
 # Input: data - jamovi data; vars - items; id, time, group - variable names
@@ -69,7 +100,7 @@
 .el_dyn_prepare <- function(data, vars, id, time = NULL, group = NULL, min_points = 7) {
 
     out <- list(ok = FALSE, reason = NULL, dropped = character(0), constant = character(0),
-                group_varies = 0L)
+                group_varies = 0L, schedule = character(0))
     ids <- data[[id]]
     keep <- !is.na(ids) & nzchar(trimws(as.character(ids)))
     items <- as.data.frame(lapply(vars, function(v) .el_dyn_numeric(data[[v]][keep])))
@@ -96,6 +127,8 @@
     ord <- order(person_order, time_key, seq_along(ids))
     items <- items[ord, , drop = FALSE]
     ids <- ids[ord]
+
+    out$schedule <- .el_dyn_schedule_items(items, ids)
 
     df <- items
     df$ID <- ids

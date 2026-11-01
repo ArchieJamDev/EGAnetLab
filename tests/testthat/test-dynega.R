@@ -151,3 +151,13 @@ test_that("a person whose network cannot be estimated does not stop the others",
     ind <- res$indTable$asDF
     expect_true(sum(!is.na(ind$dims)) >= 29)
 })
+
+test_that("schedule variables entered as items are flagged", {
+
+    d <- dynData()
+    d$Beep <- (d$Time - 1) %% 4 + 1
+    d$Day <- (d$Time - 1) %/% 4 + 1
+    res <- EGAnetLab::dynega(data = d, vars = c("V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8", "Beep", "Day"), id = "ID", time = "Time")
+    expect_match(res$notes$content, "Beep, Day", fixed = TRUE)
+    expect_false(grepl("V1", res$notes$content, fixed = TRUE))
+})

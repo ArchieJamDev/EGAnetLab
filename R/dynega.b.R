@@ -74,7 +74,8 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                                           `2` = tr("Acceleration (2)", "Aceleración (2)"))
                 embed <- sprintf(txt("dyn", "embed_text"), n_embed, n_embed, as.integer(o$tau), fmt_delta)
                 self$results$choicesGuide$setContent(
-                    .el_choices_guide(lang, o, labels, extra = embed))
+                    .el_choices_guide(lang, o, labels, extra = embed,
+                                      bodies = list(corr_auto = txt("dyn", "corr_auto"))))
             }
 
             # Preparation (Category A).
@@ -186,6 +187,8 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (length(prep$dropped) > 0)
                 notes <- c(notes, sprintf(txt("dyn", "dropped"), length(prep$dropped), min_points,
                                           paste(utils::head(prep$dropped, 20), collapse = ", ")))
+            if (length(prep$schedule) > 0)
+                notes <- c(notes, sprintf(txt("dyn", "schedule_items"), paste(prep$schedule, collapse = ", ")))
             if (prep$group_varies > 0)
                 notes <- c(notes, sprintf(txt("dyn", "group_varies"), prep$group_varies))
 
@@ -260,6 +263,9 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (isTRUE(o$levelIndividual) && !is.null(cache$individual))
                 private$.fillIndividual(cache, pop, tr, txt)
 
+            # The isolated items are already named in the interpretation.
+            # ES: Los ítems aislados ya se nombran en la interpretación.
+            warnings <- warnings[!grepl("did not belong to a dimension", warnings, fixed = TRUE)]
             warnings <- .el_translate_notices(.el_drop_notices(unique(warnings)), lang)
             notes <- c(notes, warnings)
             if (length(notes) > 0)
@@ -330,9 +336,9 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     .el_add_row(self$results$indTable, i, list(
                         id = ind$id[i], points = ind$points[i],
                         dims = if (is.na(ind$dims[i])) txt("common", "not_computable") else as.character(ind$dims[i]),
-                        ari = .el_clean_num(ind$ari[i]),
+                        ari = if (is.na(ind$ari[i])) "" else ind$ari[i],
                         group = if (has_group) ind$group[i] else NULL,
-                        ariGroup = if (has_group) .el_clean_num(ind$ari_group[i]) else NULL))
+                        ariGroup = if (!has_group) NULL else if (is.na(ind$ari_group[i])) "" else ind$ari_group[i]))
 
             if (isTRUE(self$options$showIndPlot))
                 self$results$indPlot$setState(list(

@@ -363,7 +363,7 @@
     )
 }
 
-.el_choices_guide <- function(lang, options, labels, extra = character(0)) {
+.el_choices_guide <- function(lang, options, labels, extra = character(0), bodies = list()) {
 
     p_style <- "margin: 0.15em 0 0.65em 0; line-height: 1.40;"
     parts <- paste0("<p style=\"", p_style, "\">",
@@ -375,7 +375,9 @@
         if (length(value) == 0 || is.null(label))
             next
         heading <- paste0(.el_text(lang, "choices", paste0("h_", option)), ": ", label, ".")
-        body <- .el_text(lang, "choices", paste0(option, "_", value))
+        body <- bodies[[paste0(option, "_", value)]]
+        if (is.null(body))
+            body <- .el_text(lang, "choices", paste0(option, "_", value))
         parts <- c(parts, paste0(
             "<p style=\"", p_style, "\"><strong>", .el_html_escape(heading), "</strong> ",
             .el_html_escape(body), "</p>"))
@@ -482,7 +484,7 @@
             next
         m <- regmatches(w, regexec("did not belong to a dimension: (.*?)\\s*Use caution", w))[[1]]
         if (length(m) == 2) {
-            items <- trimws(strsplit(m[2], ",")[[1]])
+            items <- sub("\\.(DerivOrd|Ord)[0-9]+$", "", trimws(strsplit(m[2], ",")[[1]]))
             if (all(grepl("^v[0-9]+$", items)))
                 next
             w <- sprintf(if (es) "Ítems sin dimensión, excluidos del cálculo del TEFI: %s." else
