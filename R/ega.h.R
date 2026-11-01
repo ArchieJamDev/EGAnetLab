@@ -28,7 +28,7 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             theoryFactors = list(
                 list(label="Factor 1", vars=list())),
             compareCFA = FALSE,
-            negItems = NULL,
+            negItems = list(),
             negCoding = "recoded",
             runHier = FALSE,
             runRI = FALSE,
@@ -215,7 +215,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "continuous",
                     "ordinal"),
                 permitted=list(
-                    "numeric"))
+                    "numeric"),
+                default=list())
             private$..negCoding <- jmvcore::OptionList$new(
                 "negCoding",
                 negCoding,
@@ -1578,7 +1579,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="integer"),
                     list(
                         `name`="chisq", 
-                        `title`="χ² (df)", 
+                        `title`="\u03C7\u00B2 (df)", 
                         `type`="text"),
                     list(
                         `name`="cfi", 
@@ -1796,7 +1797,7 @@ ega <- function(
     theoryFactors = list(
                 list(label="Factor 1", vars=list())),
     compareCFA = FALSE,
-    negItems = NULL,
+    negItems = list(),
     negCoding = "recoded",
     runHier = FALSE,
     runRI = FALSE,
