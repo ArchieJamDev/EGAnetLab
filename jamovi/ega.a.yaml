@@ -498,6 +498,69 @@ options:
     type: Bool
     default: true
 
+  # ---------------------------------------------------------------------------
+  # Centrality and network stability (phase 6). Centrality is computed with
+  # qgraph on the EGA network; its stability with bootnet, re-estimating the
+  # same network in each bootstrap sample (cached, explicit Run box, seed).
+  # ES: Centralidad y estabilidad de la red (fase 6). La centralidad se
+  # calcula con qgraph sobre la red de EGA; su estabilidad con bootnet,
+  # reestimando la misma red en cada muestra bootstrap (en caché, casilla
+  # explícita, semilla).
+  # ---------------------------------------------------------------------------
+  - name: runCentrality
+    title: Centrality of each item
+    type: Bool
+    default: false
+
+  - name: cenStandardize
+    title: Standardized values (z)
+    type: Bool
+    default: true
+
+  - name: cenClosBetw
+    title: Also closeness and betweenness
+    type: Bool
+    default: false
+
+  - name: showCenPlot
+    title: Centrality plot
+    type: Bool
+    default: true
+
+  - name: runBootnet
+    title: Stability of edges and centrality (bootnet)
+    type: Bool
+    default: false
+
+  - name: bnIter
+    title: Bootstrap samples (edges)
+    type: Integer
+    min: 100
+    max: 10000
+    default: 1000
+
+  - name: bnCaseIter
+    title: Bootstrap samples (dropping cases)
+    type: Integer
+    min: 100
+    max: 10000
+    default: 1000
+
+  - name: bnSeed
+    title: Seed
+    type: Integer
+    default: 2026
+
+  - name: showEdgeCIPlot
+    title: Edge intervals plot
+    type: Bool
+    default: true
+
+  - name: showCasePlot
+    title: Case-dropping plot
+    type: Bool
+    default: true
+
   # Explanatory paragraph for each estimation choice currently selected
   # (Archie's design rule: every menu decision carries its explanation).
   # ES: Párrafo explicativo para cada elección de estimación seleccionada

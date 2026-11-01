@@ -16,6 +16,8 @@ Imports:
     EGAnet (>= 2.4.0),
     lavaan,
     NetworkComparisonTest,
+    bootnet,
+    qgraph,
     sna,
     ggplot2,
     graphics,

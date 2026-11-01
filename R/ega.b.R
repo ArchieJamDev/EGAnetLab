@@ -113,6 +113,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     extra <- sprintf(txt("choices", "iter_seed"),
                                      as.integer(self$options$iter), as.integer(self$options$seed))
                 }
+                if (isTRUE(self$options$runBootnet))
+                    extra <- c(extra, sprintf(txt("choices", "bn_iter_seed"),
+                                              as.integer(self$options$bnIter), as.integer(self$options$bnCaseIter),
+                                              as.integer(self$options$bnSeed)))
                 if (isTRUE(self$options$runUVA))
                     extra <- c(extra, sprintf(txt("choices", "uva_cut"),
                                               .el_fmt_num(as.numeric(self$options$uvaCut), 2)))
@@ -401,6 +405,17 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Comparación entre grupos (invarianza métrica y NCT), solo si
             # se pide.
             # -----------------------------------------------------------------
+            # -----------------------------------------------------------------
+            # Centrality and network stability, only when requested.
+            # ES: Centralidad y estabilidad de la red, solo si se piden.
+            # -----------------------------------------------------------------
+            cen_warnings <- character(0)
+            if (isTRUE(self$options$runCentrality))
+                cen_warnings <- private$.runCentrality(prep, ega, wc, tr, txt)
+            bn_warnings <- character(0)
+            if (isTRUE(self$options$runBootnet))
+                bn_warnings <- private$.runBootnet(prep, ega, tr, txt)
+
             group_warnings <- character(0)
             if (isTRUE(self$options$runInvariance) || isTRUE(self$options$runNCT))
                 group_warnings <- private$.runGroups(prep, ega, tr, txt)
@@ -410,7 +425,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Notas: cada advertencia de EGAnet se muestra, nunca se
             # suprime.
             # -----------------------------------------------------------------
-            warnings <- unique(c(fit$warnings, score_warnings, compare_warnings, hier_warnings, ri_warnings, boot_warnings, uva_warnings, cfa_warnings, group_warnings))
+            warnings <- unique(c(fit$warnings, score_warnings, compare_warnings, hier_warnings, ri_warnings, boot_warnings, uva_warnings, cfa_warnings, cen_warnings, bn_warnings, group_warnings))
             # Purely informative package notices are left out (Archie's
             # request): the report already states what they say.
             # ES: Se omiten los avisos puramente informativos de los
@@ -2349,6 +2364,231 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
         # Result titles in the report language.
         # ES: Títulos de resultados en el idioma del informe.
         # ---------------------------------------------------------------------
+        # ---------------------------------------------------------------------
+        # Centrality of each item on the EGA network (qgraph). Fills the
+        # table, the plot state and the interpretation.
+        # ES: Centralidad de cada ítem en la red de EGA (qgraph). Llena la
+        # tabla, el estado del gráfico y la interpretación.
+        # ---------------------------------------------------------------------
+        .runCentrality = function(prep, ega, wc, tr, txt) {
+
+            heading <- tr("Centrality", "Centralidad")
+            intro <- txt("cen", "intro")
+            network <- as.matrix(ega$network)
+            if (sum(network[upper.tri(network)] != 0) == 0) {
+                self$results$cenStatus$setContent(.el_html_block(heading, c(intro, txt("cen", "empty"))))
+                self$results$cenTable$setVisible(FALSE)
+                self$results$cenPlot$setVisible(FALSE)
+                self$results$cenInterpretation$setVisible(FALSE)
+                return(character(0))
+            }
+
+            z <- isTRUE(self$options$cenStandardize)
+            cb <- isTRUE(self$options$cenClosBetw)
+            fit <- .el_capture(.el_centrality(network, closbetw = cb, standardize = z))
+            if (is.null(fit$value)) {
+                self$results$cenStatus$setContent(.el_html_block(
+                    heading, c(intro, sprintf(txt("cen", "failed"), fit$error))))
+                self$results$cenTable$setVisible(FALSE)
+                self$results$cenPlot$setVisible(FALSE)
+                self$results$cenInterpretation$setVisible(FALSE)
+                return(fit$warnings)
+            }
+            cen <- fit$value
+            raw <- attr(cen, "raw")
+
+            guide <- c(txt("cen", "guide"), txt("cen", if (z) "guide_z" else "guide_raw"))
+            self$results$cenStatus$setContent(paste0(
+                .el_html_block(heading, intro),
+                .el_html_block(NULL, .el_html_list(guide), raw = TRUE)))
+
+            isolated_label <- tr("Isolated", "Aislado")
+            dim_of <- function(item) {
+                d <- wc[[item]]
+                if (is.null(d) || is.na(d)) isolated_label else as.character(d)
+            }
+
+            table <- self$results$cenTable
+            for (i in seq_len(nrow(cen))) {
+                values <- list(item = cen$item[i], dimension = dim_of(cen$item[i]),
+                               strength = .el_clean_num(cen$strength[i]),
+                               ei = .el_clean_num(cen$ei[i]))
+                if (cb) {
+                    values$closeness <- .el_clean_num(cen$closeness[i])
+                    values$betweenness <- .el_clean_num(cen$betweenness[i])
+                }
+                .el_add_row(table, i, values)
+            }
+            table$setNote("values", if (z)
+                tr("Values standardized across items (z): mean 0, SD 1.",
+                   "Valores estandarizados entre ítems (z): media 0, DE 1.")
+                else tr("Raw values: strength and expected influence are sums of partial correlations.",
+                        "Valores sin estandarizar: la fuerza y la influencia esperada son sumas de correlaciones parciales."))
+
+            # Plot state: one row per item and measure.
+            # ES: Estado del gráfico: una fila por ítem y medida.
+            measure_labels <- c(strength = tr("Strength", "Fuerza"),
+                                ei = tr("Expected influence", "Influencia esperada"),
+                                closeness = tr("Closeness", "Cercanía"),
+                                betweenness = tr("Betweenness", "Intermediación"))
+            measures <- if (cb) names(measure_labels) else c("strength", "ei")
+            long <- do.call(rbind, lapply(measures, function(m) data.frame(
+                item = cen$item, dimension = vapply(cen$item, dim_of, ""),
+                measure = measure_labels[[m]], value = cen[[m]], stringsAsFactors = FALSE)))
+            if (isTRUE(self$options$showCenPlot)) {
+                self$results$cenPlot$setSize(if (cb) 760 else 600, max(300, 22 * nrow(cen) + 90))
+                self$results$cenPlot$setState(list(
+                    data = long, measures = unname(measure_labels[measures]),
+                    labels = list(x = if (z) tr("z value", "Valor z") else tr("Value", "Valor"),
+                                  dimension = tr("Dimension", "Dimensión"))))
+            }
+
+            # Interpretation.
+            # ES: Interpretación.
+            paragraphs <- character(0)
+            ord <- order(-raw$strength)
+            top_n <- min(3, nrow(raw))
+            top <- raw$item[ord][seq_len(top_n)]
+            paragraphs <- c(paragraphs, sprintf(txt("cen", "interp_top"), paste(top, collapse = ", ")))
+            low <- raw$item[rev(ord)][seq_len(min(2, nrow(raw) - top_n))]
+            if (length(low) > 0)
+                paragraphs <- c(paragraphs, sprintf(txt("cen", "interp_low"), paste(low, collapse = ", ")))
+            neg <- raw$item[raw$ei < raw$strength - 1e-10]
+            paragraphs <- c(paragraphs, if (length(neg) == 0) txt("cen", "interp_ei_same")
+                            else sprintf(txt("cen", "interp_ei_diff"), length(neg), paste(neg, collapse = ", ")))
+            n_dims <- length(unique(stats::na.omit(wc)))
+            if (n_dims > 1)
+                paragraphs <- c(paragraphs, txt("cen", "interp_dims"))
+            if (cb)
+                paragraphs <- c(paragraphs, txt("cen", "interp_closbetw"))
+            paragraphs <- c(paragraphs, if (isTRUE(self$options$runBootnet))
+                txt("cen", "interp_with_bn") else txt("cen", "interp_next"))
+            self$results$cenInterpretation$setContent(.el_html_block(NULL, paragraphs))
+
+            fit$warnings
+        },
+
+        # ---------------------------------------------------------------------
+        # Network stability with bootnet: edge intervals (resampling cases)
+        # and centrality stability (dropping cases). Cached in bnStatus.
+        # ES: Estabilidad de la red con bootnet: intervalos de las aristas
+        # (remuestreo de casos) y estabilidad de la centralidad (eliminación
+        # de casos). En caché en bnStatus.
+        # ---------------------------------------------------------------------
+        .runBootnet = function(prep, ega, tr, txt) {
+
+            heading <- tr("Network stability", "Estabilidad de la red")
+            intro <- txt("bn", "intro")
+            iter <- as.integer(self$options$bnIter)
+            case_iter <- as.integer(self$options$bnCaseIter)
+            seed <- as.integer(self$options$bnSeed)
+            hide <- function() {
+                for (r in c("bnCS", "bnEdges", "bnEdgePlot", "bnCasePlot", "bnInterpretation"))
+                    self$results[[r]]$setVisible(FALSE)
+            }
+
+            network <- as.matrix(ega$network)
+            if (sum(network[upper.tri(network)] != 0) == 0) {
+                self$results$bnStatus$setContent(.el_html_block(heading, c(intro, txt("bn", "empty"))))
+                hide()
+                return(character(0))
+            }
+
+            cache <- self$results$bnStatus$state
+            if (is.null(cache)) {
+                private$.checkpoint()
+                fit <- .el_capture(.el_bootnet(
+                    prep$data, corr = self$options$corr, na_data = self$options$naData,
+                    model = self$options$model, iter = iter, case_iter = case_iter,
+                    seed = seed, closbetw = isTRUE(self$options$cenClosBetw)))
+                if (is.null(fit$value)) {
+                    self$results$bnStatus$setContent(.el_html_block(
+                        heading, c(intro, sprintf(txt("bn", "failed"), fit$error))))
+                    hide()
+                    return(fit$warnings)
+                }
+                cache <- fit$value
+                cache$network <- NULL
+                cache$warnings <- fit$warnings
+                self$results$bnStatus$setState(cache)
+            }
+
+            self$results$bnStatus$setContent(paste0(
+                .el_html_block(heading, c(intro, sprintf(txt("bn", "done"), cache$iter, cache$case_iter, cache$seed))),
+                .el_html_block(NULL, .el_html_list(txt("bn", "guide")), raw = TRUE)))
+
+            measure_labels <- c(strength = tr("Strength", "Fuerza"),
+                                expectedInfluence = tr("Expected influence", "Influencia esperada"),
+                                closeness = tr("Closeness", "Cercanía"),
+                                betweenness = tr("Betweenness", "Intermediación"))
+            pct <- function(x) paste0(round(100 * x), "%")
+
+            # CS coefficients.
+            # ES: Coeficientes CS.
+            cs_table <- self$results$bnCS
+            paragraphs <- character(0)
+            for (i in seq_along(cache$cs)) {
+                m <- names(cache$cs)[i]
+                value <- .el_clean_num(cache$cs[[i]])
+                reading <- if (is.na(value)) txt("common", "not_computable")
+                           else if (value >= 0.5) txt("bn", "cs_good")
+                           else if (value >= 0.25) txt("bn", "cs_mid") else txt("bn", "cs_bad")
+                .el_add_row(cs_table, i, list(measure = measure_labels[[m]], cs = value, reading = reading))
+                if (!is.na(value)) {
+                    key <- if (value >= 0.5) "interp_cs_good" else if (value >= 0.25) "interp_cs_mid" else "interp_cs_bad"
+                    args <- list(txt("bn", key), tolower(measure_labels[[m]]), .el_fmt_num(value, 2))
+                    if (key == "interp_cs_good") args <- c(args, pct(value))
+                    paragraphs <- c(paragraphs, do.call(sprintf, args))
+                }
+            }
+            cs_table$setNote("cs", txt("bn", "cs_note"))
+
+            # Edge intervals.
+            # ES: Intervalos de las aristas.
+            edges <- cache$edges
+            edge_table <- self$results$bnEdges
+            for (i in seq_len(nrow(edges)))
+                .el_add_row(edge_table, i, list(
+                    edge = paste0(edges$a[i], " – ", edges$b[i]),
+                    weight = .el_clean_num(edges$weight[i]),
+                    low = .el_clean_num(edges$low[i]), high = .el_clean_num(edges$high[i]),
+                    nonzero = .el_clean_num(edges$nonzero[i])))
+            edge_table$setNote("edges", txt("bn", "edges_note"))
+
+            if (nrow(edges) > 0) {
+                stable <- sum(edges$nonzero >= 0.9, na.rm = TRUE)
+                zero <- sum(edges$low <= 0 & edges$high >= 0, na.rm = TRUE)
+                paragraphs <- c(paragraphs,
+                    sprintf(txt("bn", "interp_edges"), stable, nrow(edges), zero),
+                    sprintf(txt("bn", "interp_width"),
+                            .el_fmt_num(mean(edges$high - edges$low, na.rm = TRUE), 2)))
+            }
+            paragraphs <- c(paragraphs, txt("bn", "interp_next"))
+            self$results$bnInterpretation$setContent(.el_html_block(NULL, paragraphs))
+
+            # Plot states.
+            # ES: Estados de los gráficos.
+            if (isTRUE(self$options$showEdgeCIPlot) && nrow(edges) > 0) {
+                self$results$bnEdgePlot$setSize(600, max(300, 16 * nrow(edges) + 110))
+                self$results$bnEdgePlot$setState(list(
+                    edges = edges,
+                    labels = list(x = tr("Edge weight (95% bootstrap interval)",
+                                         "Peso de la arista (intervalo bootstrap del 95%)"))))
+            }
+            if (isTRUE(self$options$showCasePlot)) {
+                cases <- cache$cases
+                cases$measure <- unname(measure_labels[cases$measure])
+                self$results$bnCasePlot$setState(list(
+                    cases = cases,
+                    labels = list(x = tr("Cases dropped", "Casos eliminados"),
+                                  y = tr("Correlation with the original order",
+                                         "Correlación con el orden original"),
+                                  measure = tr("Measure", "Medida"))))
+            }
+
+            cache$warnings
+        },
+
         .setTitles = function(tr) {
             titles <- list(
                 c("intro", "Introduction", "Introducción"),
@@ -2376,6 +2616,16 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("hierMembership", "Item membership by level", "Pertenencia de los ítems por nivel"),
                 c("hierInterpretation", "Hierarchical EGA interpretation", "Interpretación del EGA jerárquico"),
                 c("hierPlot", "Hierarchical structure plot", "Gráfico de la estructura jerárquica"),
+                c("cenStatus", "Centrality", "Centralidad"),
+                c("cenTable", "Centrality of each item", "Centralidad de cada ítem"),
+                c("cenPlot", "Centrality of each item", "Centralidad de cada ítem"),
+                c("cenInterpretation", "Centrality interpretation", "Interpretación de la centralidad"),
+                c("bnStatus", "Network stability", "Estabilidad de la red"),
+                c("bnCS", "Centrality stability (CS coefficient)", "Estabilidad de la centralidad (coeficiente CS)"),
+                c("bnEdges", "Edge weights with bootstrap intervals", "Pesos de las aristas con intervalos bootstrap"),
+                c("bnEdgePlot", "Edge weights with bootstrap intervals", "Pesos de las aristas con intervalos bootstrap"),
+                c("bnCasePlot", "Centrality stability when dropping cases", "Estabilidad de la centralidad al eliminar casos"),
+                c("bnInterpretation", "Network stability interpretation", "Interpretación de la estabilidad de la red"),
                 c("groupStatus", "Group comparison", "Comparación entre grupos"),
                 c("groupSizes", "Groups compared", "Grupos comparados"),
                 c("invStatus", "Metric invariance", "Invarianza métrica"),
@@ -2445,6 +2695,19 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("riMembership", "item", "Item", "Ítem"),
                 c("riMembership", "loading", "Random-intercept loading", "Carga del intercepto aleatorio"),
                 c("riMembership", "negative", "Negatively worded", "Redactado en negativo"),
+                c("cenTable", "item", "Item", "Ítem"),
+                c("cenTable", "dimension", "Dimension", "Dimensión"),
+                c("cenTable", "strength", "Strength", "Fuerza"),
+                c("cenTable", "ei", "Expected influence", "Influencia esperada"),
+                c("cenTable", "closeness", "Closeness", "Cercanía"),
+                c("cenTable", "betweenness", "Betweenness", "Intermediación"),
+                c("bnCS", "measure", "Measure", "Medida"),
+                c("bnCS", "reading", "Reading", "Lectura"),
+                c("bnEdges", "edge", "Edge", "Arista"),
+                c("bnEdges", "weight", "Weight", "Peso"),
+                c("bnEdges", "low", "Lower", "Inferior"),
+                c("bnEdges", "high", "Upper", "Superior"),
+                c("bnEdges", "nonzero", "Samples with the edge", "Muestras con la arista"),
                 c("groupSizes", "group", "Group", "Grupo"),
                 c("invTable", "pair", "Comparison", "Comparación"),
                 c("invTable", "item", "Item", "Ítem"),
@@ -2506,6 +2769,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             )
             for (col in cols)
                 tryCatch(self$results[[col[1]]]$getColumn(col[2])$setTitle(tr(col[3], col[4])), error = function(e) NULL)
+            for (col in c("low", "high"))
+                tryCatch(self$results$bnEdges$getColumn(col)$setSuperTitle(
+                    tr("95% bootstrap interval", "Intervalo bootstrap del 95%")), error = function(e) NULL)
         },
 
         # ---------------------------------------------------------------------
@@ -2739,6 +3005,117 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             palette <- .el_plot_series_palette(self$options$plotPalette)
             if (!is.null(palette))
                 plot <- plot + ggplot2::scale_fill_manual(values = palette[1:2], drop = FALSE)
+
+            print(plot)
+            TRUE
+        },
+
+        # ---------------------------------------------------------------------
+        # Centrality: one panel per measure, items grouped by dimension in
+        # their original order, a line joining the items as in bootnet's
+        # centrality plot. Standard ggplot, so jamovi's ggtheme applies.
+        # ES: Centralidad: un panel por medida, ítems agrupados por dimensión
+        # en su orden original, con una línea que une los ítems como en el
+        # gráfico de centralidad de bootnet. ggplot estándar, así que se
+        # aplica el ggtheme de jamovi.
+        # ---------------------------------------------------------------------
+        .plotCentrality = function(image, ggtheme, theme, ...) {
+            state <- image$state
+            if (is.null(state) || is.null(state$data) || nrow(state$data) == 0)
+                return(FALSE)
+
+            df <- state$data
+            df <- df[!is.na(df$value), , drop = FALSE]
+            if (nrow(df) == 0)
+                return(FALSE)
+            items <- unique(state$data$item)
+            dims <- unique(state$data$dimension[match(items, state$data$item)])
+            dim_order <- dims[order(suppressWarnings(as.numeric(dims)), dims, na.last = TRUE)]
+            item_order <- items[order(match(state$data$dimension[match(items, state$data$item)], dim_order),
+                                      seq_along(items))]
+            df$item <- factor(df$item, levels = rev(item_order))
+            df$dimension <- factor(df$dimension, levels = dim_order)
+            df$measure <- factor(df$measure, levels = state$measures)
+
+            plot <- ggplot2::ggplot(df, ggplot2::aes(x = value, y = item)) +
+                ggplot2::geom_path(ggplot2::aes(group = measure), colour = "grey65", linewidth = 0.6) +
+                ggplot2::geom_point(ggplot2::aes(colour = dimension), size = 3) +
+                ggplot2::facet_grid(. ~ measure, scales = "free_x") +
+                ggplot2::labs(x = state$labels$x, y = NULL, colour = state$labels$dimension) +
+                ggtheme
+
+            palette <- .el_plot_series_palette(self$options$plotPalette)
+            if (!is.null(palette))
+                plot <- plot + ggplot2::scale_colour_manual(values = rep_len(palette, nlevels(df$dimension)))
+
+            print(plot)
+            TRUE
+        },
+
+        # ---------------------------------------------------------------------
+        # Edge weights of the estimated network with their 95% bootstrap
+        # intervals, strongest at the top, and a reference line at zero.
+        # ES: Pesos de las aristas de la red estimada con sus intervalos
+        # bootstrap del 95%, la más fuerte arriba, y una línea de referencia
+        # en cero.
+        # ---------------------------------------------------------------------
+        .plotEdgeCI = function(image, ggtheme, theme, ...) {
+            state <- image$state
+            if (is.null(state) || is.null(state$edges) || nrow(state$edges) == 0)
+                return(FALSE)
+
+            df <- state$edges
+            df$edge <- paste0(df$a, " – ", df$b)
+            df$edge <- factor(df$edge, levels = rev(df$edge[order(-df$weight)]))
+
+            palette <- .el_plot_series_palette(self$options$plotPalette)
+            colour <- if (!is.null(palette)) palette[1] else "#1f77b4"
+
+            plot <- ggplot2::ggplot(df, ggplot2::aes(x = weight, y = edge)) +
+                ggplot2::geom_vline(xintercept = 0, linetype = "dashed", colour = "grey50") +
+                ggplot2::geom_errorbarh(ggplot2::aes(xmin = low, xmax = high), height = 0.3,
+                                        colour = "grey55") +
+                ggplot2::geom_point(size = 2.5, colour = colour) +
+                ggplot2::labs(x = state$labels$x, y = NULL) +
+                ggtheme
+
+            print(plot)
+            TRUE
+        },
+
+        # ---------------------------------------------------------------------
+        # Case-dropping bootstrap: mean correlation of each centrality order
+        # with the original, by proportion of cases dropped, with the band
+        # covering 95% of the samples and the .70 reference line.
+        # ES: Bootstrap de eliminación de casos: correlación media de cada
+        # orden de centralidad con el original según la proporción de casos
+        # eliminados, con la banda que cubre el 95% de las muestras y la
+        # línea de referencia de .70.
+        # ---------------------------------------------------------------------
+        .plotCaseDrop = function(image, ggtheme, theme, ...) {
+            state <- image$state
+            if (is.null(state) || is.null(state$cases) || nrow(state$cases) == 0)
+                return(FALSE)
+
+            df <- state$cases
+            df$measure <- factor(df$measure, levels = unique(df$measure))
+
+            plot <- ggplot2::ggplot(df, ggplot2::aes(x = drop, y = mean, colour = measure, fill = measure)) +
+                ggplot2::geom_hline(yintercept = 0.7, linetype = "dashed", colour = "grey50") +
+                ggplot2::geom_ribbon(ggplot2::aes(ymin = low, ymax = high), alpha = 0.10, colour = NA) +
+                ggplot2::geom_line(linewidth = 0.9) +
+                ggplot2::geom_point(size = 2) +
+                ggplot2::scale_x_continuous(labels = function(x) paste0(round(100 * x), "%")) +
+                ggplot2::coord_cartesian(ylim = c(min(0, min(df$low, na.rm = TRUE)), 1)) +
+                ggplot2::labs(x = state$labels$x, y = state$labels$y,
+                              colour = state$labels$measure, fill = state$labels$measure) +
+                ggtheme
+
+            palette <- .el_plot_series_palette(self$options$plotPalette)
+            if (!is.null(palette))
+                plot <- plot +
+                    ggplot2::scale_colour_manual(values = rep_len(palette, nlevels(df$measure))) +
+                    ggplot2::scale_fill_manual(values = rep_len(palette, nlevels(df$measure)))
 
             print(plot)
             TRUE

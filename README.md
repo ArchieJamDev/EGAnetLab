@@ -142,8 +142,8 @@ explanation.
 | Analysis | Question it answers | Status |
 |---|---|---|
 | **Compare networks** (`compare.EGA.plots`) | How do two structures look side by side? | 🗓 Planned |
-| **Centrality** (qgraph + bootnet) | Which items are central, and are those indices stable (CS-coefficient)? | 🗓 Planned |
-| **Edge accuracy** (bootnet) | How precise is each edge weight (bootstrap confidence intervals)? | 🗓 Planned |
+| **Centrality** (qgraph + bootnet) | Which items are central, and are those indices stable (CS-coefficient)? | 🧪 In review (in EGA, Centrality and network stability section) |
+| **Edge accuracy** (bootnet) | How precise is each edge weight (bootstrap confidence intervals)? | 🧪 In review (in EGA, Centrality and network stability section) |
 
 ---
 
@@ -256,8 +256,8 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 | 2 | UVA, network scores, CFA with random split | ✅ Done |
 | 3 | TEFI comparison of competing structures | ✅ Done |
 | 4 | Hierarchical EGA and random-intercept EGA | ✅ Done |
-| 5 | Invariance and NetworkComparisonTest (independent and paired groups) | 🧪 In review |
-| 6 | Centrality, edge accuracy and network comparison plots | 🗓 |
+| 5 | Invariance and NetworkComparisonTest (independent and paired groups) | ✅ Done |
+| 6 | Centrality and network stability (edge accuracy, CS-coefficient) | 🧪 In review |
 | 7 | Dynamic EGA for longitudinal and intensive data | 🗓 |
 
 See [NEWS.md](NEWS.md) for what changed in each version.

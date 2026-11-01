@@ -1,5 +1,24 @@
 # EGAnetLab 0.1.0 (development)
 
+## EGA: centrality and network stability (phase 6)
+
+* New **Centrality and network stability** box. **Centrality of each item**
+  computes strength and expected influence on the same network as EGA
+  (qgraph; Opsahl et al., 2010; Robinaugh et al., 2016), optionally
+  closeness and betweenness with a caution about their stability
+  (Bringmann et al., 2019), as z values or raw. A plot shows one panel per
+  measure, items grouped by dimension.
+* **Stability of edges and centrality (bootnet)** re-estimates exactly the
+  EGA network (same correlation, model and missing-value handling) in each
+  bootstrap sample (Epskamp et al., 2018): 95% percentile intervals and the
+  share of samples with each edge, and the CS coefficient of each
+  centrality measure from the case-dropping bootstrap, read as stable
+  (.50 or more), to interpret with care (.25 to .50) or not interpretable.
+  Plots of the edge intervals and of the case-dropping correlations. The
+  number of samples of each procedure and the seed are visible; results are
+  cached while the estimation options do not change.
+* New dependency: bootnet (qgraph is now imported directly).
+
 ## EGA: consistency and cautious conclusions (external review)
 
 * CFA: every solution is checked for admissibility (negative variances,

@@ -51,6 +51,16 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             nctAdjust = "holm",
             groupSeed = 2026,
             showInvPlot = TRUE,
+            runCentrality = FALSE,
+            cenStandardize = TRUE,
+            cenClosBetw = FALSE,
+            showCenPlot = TRUE,
+            runBootnet = FALSE,
+            bnIter = 1000,
+            bnCaseIter = 1000,
+            bnSeed = 2026,
+            showEdgeCIPlot = TRUE,
+            showCasePlot = TRUE,
             showChoicesGuide = TRUE,
             showLoadings = TRUE,
             showEdgeTable = FALSE,
@@ -369,6 +379,50 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showInvPlot",
                 showInvPlot,
                 default=TRUE)
+            private$..runCentrality <- jmvcore::OptionBool$new(
+                "runCentrality",
+                runCentrality,
+                default=FALSE)
+            private$..cenStandardize <- jmvcore::OptionBool$new(
+                "cenStandardize",
+                cenStandardize,
+                default=TRUE)
+            private$..cenClosBetw <- jmvcore::OptionBool$new(
+                "cenClosBetw",
+                cenClosBetw,
+                default=FALSE)
+            private$..showCenPlot <- jmvcore::OptionBool$new(
+                "showCenPlot",
+                showCenPlot,
+                default=TRUE)
+            private$..runBootnet <- jmvcore::OptionBool$new(
+                "runBootnet",
+                runBootnet,
+                default=FALSE)
+            private$..bnIter <- jmvcore::OptionInteger$new(
+                "bnIter",
+                bnIter,
+                min=100,
+                max=10000,
+                default=1000)
+            private$..bnCaseIter <- jmvcore::OptionInteger$new(
+                "bnCaseIter",
+                bnCaseIter,
+                min=100,
+                max=10000,
+                default=1000)
+            private$..bnSeed <- jmvcore::OptionInteger$new(
+                "bnSeed",
+                bnSeed,
+                default=2026)
+            private$..showEdgeCIPlot <- jmvcore::OptionBool$new(
+                "showEdgeCIPlot",
+                showEdgeCIPlot,
+                default=TRUE)
+            private$..showCasePlot <- jmvcore::OptionBool$new(
+                "showCasePlot",
+                showCasePlot,
+                default=TRUE)
             private$..showChoicesGuide <- jmvcore::OptionBool$new(
                 "showChoicesGuide",
                 showChoicesGuide,
@@ -607,6 +661,16 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..nctAdjust)
             self$.addOption(private$..groupSeed)
             self$.addOption(private$..showInvPlot)
+            self$.addOption(private$..runCentrality)
+            self$.addOption(private$..cenStandardize)
+            self$.addOption(private$..cenClosBetw)
+            self$.addOption(private$..showCenPlot)
+            self$.addOption(private$..runBootnet)
+            self$.addOption(private$..bnIter)
+            self$.addOption(private$..bnCaseIter)
+            self$.addOption(private$..bnSeed)
+            self$.addOption(private$..showEdgeCIPlot)
+            self$.addOption(private$..showCasePlot)
             self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showLoadings)
             self$.addOption(private$..showEdgeTable)
@@ -687,6 +751,16 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         nctAdjust = function() private$..nctAdjust$value,
         groupSeed = function() private$..groupSeed$value,
         showInvPlot = function() private$..showInvPlot$value,
+        runCentrality = function() private$..runCentrality$value,
+        cenStandardize = function() private$..cenStandardize$value,
+        cenClosBetw = function() private$..cenClosBetw$value,
+        showCenPlot = function() private$..showCenPlot$value,
+        runBootnet = function() private$..runBootnet$value,
+        bnIter = function() private$..bnIter$value,
+        bnCaseIter = function() private$..bnCaseIter$value,
+        bnSeed = function() private$..bnSeed$value,
+        showEdgeCIPlot = function() private$..showEdgeCIPlot$value,
+        showCasePlot = function() private$..showCasePlot$value,
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showLoadings = function() private$..showLoadings$value,
         showEdgeTable = function() private$..showEdgeTable$value,
@@ -766,6 +840,16 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..nctAdjust = NA,
         ..groupSeed = NA,
         ..showInvPlot = NA,
+        ..runCentrality = NA,
+        ..cenStandardize = NA,
+        ..cenClosBetw = NA,
+        ..showCenPlot = NA,
+        ..runBootnet = NA,
+        ..bnIter = NA,
+        ..bnCaseIter = NA,
+        ..bnSeed = NA,
+        ..showEdgeCIPlot = NA,
+        ..showCasePlot = NA,
         ..showChoicesGuide = NA,
         ..showLoadings = NA,
         ..showEdgeTable = NA,
@@ -853,6 +937,16 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         cfaBifactorLoadings = function() private$.items[["cfaBifactorLoadings"]],
         cfaBifactorInterpretation = function() private$.items[["cfaBifactorInterpretation"]],
         cfaHierInterpretation = function() private$.items[["cfaHierInterpretation"]],
+        cenStatus = function() private$.items[["cenStatus"]],
+        cenTable = function() private$.items[["cenTable"]],
+        cenPlot = function() private$.items[["cenPlot"]],
+        cenInterpretation = function() private$.items[["cenInterpretation"]],
+        bnStatus = function() private$.items[["bnStatus"]],
+        bnCS = function() private$.items[["bnCS"]],
+        bnEdges = function() private$.items[["bnEdges"]],
+        bnEdgePlot = function() private$.items[["bnEdgePlot"]],
+        bnCasePlot = function() private$.items[["bnCasePlot"]],
+        bnInterpretation = function() private$.items[["bnInterpretation"]],
         groupStatus = function() private$.items[["groupStatus"]],
         groupSizes = function() private$.items[["groupSizes"]],
         invStatus = function() private$.items[["invStatus"]],
@@ -1952,6 +2046,237 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible="(runCFA && runHier)"))
             self$add(jmvcore::Html$new(
                 options=options,
+                name="cenStatus",
+                title="Centrality",
+                visible="(runCentrality)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="cenTable",
+                title="Centrality of each item",
+                rows=0,
+                visible="(runCentrality)",
+                refs=list(
+                    "opsahl_2010",
+                    "robinaugh_2016"),
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "cenStandardize",
+                    "cenClosBetw",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="item", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="dimension", 
+                        `title`="Dimension", 
+                        `type`="text"),
+                    list(
+                        `name`="strength", 
+                        `title`="Strength", 
+                        `type`="number"),
+                    list(
+                        `name`="ei", 
+                        `title`="Expected influence", 
+                        `type`="number"),
+                    list(
+                        `name`="closeness", 
+                        `title`="Closeness", 
+                        `type`="number", 
+                        `visible`="(cenClosBetw)"),
+                    list(
+                        `name`="betweenness", 
+                        `title`="Betweenness", 
+                        `type`="number", 
+                        `visible`="(cenClosBetw)"))))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="cenPlot",
+                title="Centrality plot",
+                width=600,
+                height=450,
+                renderFun=".plotCentrality",
+                visible="(runCentrality && showCenPlot)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "cenStandardize",
+                    "cenClosBetw",
+                    "plotPalette",
+                    "reportLang")))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="cenInterpretation",
+                title="Centrality interpretation",
+                visible="(runCentrality)"))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="bnStatus",
+                title="Network stability",
+                visible="(runBootnet)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bnIter",
+                    "bnCaseIter",
+                    "bnSeed",
+                    "cenClosBetw")))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="bnCS",
+                title="Centrality stability (CS coefficient)",
+                rows=0,
+                visible="(runBootnet)",
+                refs=list(
+                    "epskamp_2018"),
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bnIter",
+                    "bnCaseIter",
+                    "bnSeed",
+                    "cenClosBetw",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="measure", 
+                        `title`="Measure", 
+                        `type`="text"),
+                    list(
+                        `name`="cs", 
+                        `title`="CS", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="reading", 
+                        `title`="Reading", 
+                        `type`="text"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="bnEdges",
+                title="Edge weights with bootstrap intervals",
+                rows=0,
+                visible="(runBootnet)",
+                refs=list(
+                    "epskamp_2018"),
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bnIter",
+                    "bnCaseIter",
+                    "bnSeed",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="edge", 
+                        `title`="Edge", 
+                        `type`="text"),
+                    list(
+                        `name`="weight", 
+                        `title`="Weight", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="low", 
+                        `title`="Lower", 
+                        `type`="number", 
+                        `format`="zto", 
+                        `superTitle`="95% bootstrap interval"),
+                    list(
+                        `name`="high", 
+                        `title`="Upper", 
+                        `type`="number", 
+                        `format`="zto", 
+                        `superTitle`="95% bootstrap interval"),
+                    list(
+                        `name`="nonzero", 
+                        `title`="Samples with the edge", 
+                        `type`="number", 
+                        `format`="pc"))))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="bnEdgePlot",
+                title="Edge weights with bootstrap intervals",
+                width=600,
+                height=500,
+                renderFun=".plotEdgeCI",
+                visible="(runBootnet && showEdgeCIPlot)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bnIter",
+                    "bnCaseIter",
+                    "bnSeed",
+                    "plotPalette",
+                    "reportLang")))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="bnCasePlot",
+                title="Centrality stability when dropping cases",
+                width=600,
+                height=400,
+                renderFun=".plotCaseDrop",
+                visible="(runBootnet && showCasePlot)",
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bnIter",
+                    "bnCaseIter",
+                    "bnSeed",
+                    "cenClosBetw",
+                    "plotPalette",
+                    "reportLang")))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="bnInterpretation",
+                title="Network stability interpretation",
+                visible="(runBootnet)"))
+            self$add(jmvcore::Html$new(
+                options=options,
                 name="groupStatus",
                 title="Group comparison",
                 visible="(runInvariance || runNCT)"))
@@ -2376,6 +2701,16 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param nctAdjust .
 #' @param groupSeed .
 #' @param showInvPlot .
+#' @param runCentrality .
+#' @param cenStandardize .
+#' @param cenClosBetw .
+#' @param showCenPlot .
+#' @param runBootnet .
+#' @param bnIter .
+#' @param bnCaseIter .
+#' @param bnSeed .
+#' @param showEdgeCIPlot .
+#' @param showCasePlot .
 #' @param showChoicesGuide .
 #' @param showLoadings .
 #' @param showEdgeTable .
@@ -2459,6 +2794,16 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$cfaBifactorLoadings} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$cfaBifactorInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$cfaHierInterpretation} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$cenStatus} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$cenTable} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$cenPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$cenInterpretation} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$bnStatus} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$bnCS} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$bnEdges} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$bnEdgePlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$bnCasePlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$bnInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$groupStatus} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$groupSizes} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$invStatus} \tab \tab \tab \tab \tab a html \cr
@@ -2528,6 +2873,16 @@ ega <- function(
     nctAdjust = "holm",
     groupSeed = 2026,
     showInvPlot = TRUE,
+    runCentrality = FALSE,
+    cenStandardize = TRUE,
+    cenClosBetw = FALSE,
+    showCenPlot = TRUE,
+    runBootnet = FALSE,
+    bnIter = 1000,
+    bnCaseIter = 1000,
+    bnSeed = 2026,
+    showEdgeCIPlot = TRUE,
+    showCasePlot = TRUE,
     showChoicesGuide = TRUE,
     showLoadings = TRUE,
     showEdgeTable = FALSE,
@@ -2622,6 +2977,16 @@ ega <- function(
         nctAdjust = nctAdjust,
         groupSeed = groupSeed,
         showInvPlot = showInvPlot,
+        runCentrality = runCentrality,
+        cenStandardize = cenStandardize,
+        cenClosBetw = cenClosBetw,
+        showCenPlot = showCenPlot,
+        runBootnet = runBootnet,
+        bnIter = bnIter,
+        bnCaseIter = bnCaseIter,
+        bnSeed = bnSeed,
+        showEdgeCIPlot = showEdgeCIPlot,
+        showCasePlot = showCasePlot,
         showChoicesGuide = showChoicesGuide,
         showLoadings = showLoadings,
         showEdgeTable = showEdgeTable,

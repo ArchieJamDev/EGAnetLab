@@ -1060,6 +1060,227 @@ items:
   # ES: Comparación entre grupos: invarianza métrica y NCT.
   # ---------------------------------------------------------------------------
 
+  # ---------------------------------------------------------------------------
+  # Centrality and network stability.
+  # ES: Centralidad y estabilidad de la red.
+  # ---------------------------------------------------------------------------
+  - name: cenStatus
+    title: Centrality
+    type: Html
+    visible: (runCentrality)
+
+  - name: cenTable
+    title: Centrality of each item
+    type: Table
+    rows: 0
+    visible: (runCentrality)
+    refs:
+      - opsahl_2010
+      - robinaugh_2016
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - cenStandardize
+      - cenClosBetw
+      - reportLang
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: dimension
+        title: Dimension
+        type: text
+      - name: strength
+        title: Strength
+        type: number
+      - name: ei
+        title: Expected influence
+        type: number
+      - name: closeness
+        title: Closeness
+        type: number
+        visible: (cenClosBetw)
+      - name: betweenness
+        title: Betweenness
+        type: number
+        visible: (cenClosBetw)
+
+  - name: cenPlot
+    title: Centrality plot
+    type: Image
+    width: 600
+    height: 450
+    renderFun: .plotCentrality
+    visible: (runCentrality && showCenPlot)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - cenStandardize
+      - cenClosBetw
+      - plotPalette
+      - reportLang
+
+  - name: cenInterpretation
+    title: Centrality interpretation
+    type: Html
+    visible: (runCentrality)
+
+  - name: bnStatus
+    title: Network stability
+    type: Html
+    visible: (runBootnet)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bnIter
+      - bnCaseIter
+      - bnSeed
+      - cenClosBetw
+
+  - name: bnCS
+    title: Centrality stability (CS coefficient)
+    type: Table
+    rows: 0
+    visible: (runBootnet)
+    refs:
+      - epskamp_2018
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bnIter
+      - bnCaseIter
+      - bnSeed
+      - cenClosBetw
+      - reportLang
+    columns:
+      - name: measure
+        title: Measure
+        type: text
+      - name: cs
+        title: CS
+        type: number
+        format: zto
+      - name: reading
+        title: Reading
+        type: text
+
+  - name: bnEdges
+    title: Edge weights with bootstrap intervals
+    type: Table
+    rows: 0
+    visible: (runBootnet)
+    refs:
+      - epskamp_2018
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bnIter
+      - bnCaseIter
+      - bnSeed
+      - reportLang
+    columns:
+      - name: edge
+        title: Edge
+        type: text
+      - name: weight
+        title: Weight
+        type: number
+        format: zto
+      - name: low
+        title: Lower
+        type: number
+        format: zto
+        superTitle: 95% bootstrap interval
+      - name: high
+        title: Upper
+        type: number
+        format: zto
+        superTitle: 95% bootstrap interval
+      - name: nonzero
+        title: Samples with the edge
+        type: number
+        format: pc
+
+  - name: bnEdgePlot
+    title: Edge weights with bootstrap intervals
+    type: Image
+    width: 600
+    height: 500
+    renderFun: .plotEdgeCI
+    visible: (runBootnet && showEdgeCIPlot)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bnIter
+      - bnCaseIter
+      - bnSeed
+      - plotPalette
+      - reportLang
+
+  - name: bnCasePlot
+    title: Centrality stability when dropping cases
+    type: Image
+    width: 600
+    height: 400
+    renderFun: .plotCaseDrop
+    visible: (runBootnet && showCasePlot)
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bnIter
+      - bnCaseIter
+      - bnSeed
+      - cenClosBetw
+      - plotPalette
+      - reportLang
+
+  - name: bnInterpretation
+    title: Network stability interpretation
+    type: Html
+    visible: (runBootnet)
+
   - name: groupStatus
     title: Group comparison
     type: Html

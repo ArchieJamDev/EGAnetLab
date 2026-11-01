@@ -163,6 +163,47 @@ children:
           Mark the negative items in the Negatively worded items box; this analysis
           uses them in their original direction (not recoded).
   - type: CollapseBox
+    label: Centrality and network stability
+    collapsed: true
+    children:
+      - type: Label
+        label: Centrality
+        children:
+          - type: CheckBox
+            name: runCentrality
+          - type: CheckBox
+            name: cenStandardize
+            enable: (runCentrality)
+          - type: CheckBox
+            name: cenClosBetw
+            enable: (runCentrality || runBootnet)
+          - type: CheckBox
+            name: showCenPlot
+            enable: (runCentrality)
+      - type: Label
+        label: Stability (bootnet)
+        children:
+          - type: CheckBox
+            name: runBootnet
+          - type: TextBox
+            name: bnIter
+            format: number
+            enable: (runBootnet)
+          - type: TextBox
+            name: bnCaseIter
+            format: number
+            enable: (runBootnet)
+          - type: TextBox
+            name: bnSeed
+            format: number
+            enable: (runBootnet)
+          - type: CheckBox
+            name: showEdgeCIPlot
+            enable: (runBootnet)
+          - type: CheckBox
+            name: showCasePlot
+            enable: (runBootnet)
+  - type: CollapseBox
     label: Group comparison
     collapsed: true
     children:

@@ -22,6 +22,10 @@ msgstr ""
 msgid "Already reversed"
 msgstr ""
 
+#: ega/options/cenClosBetw.title
+msgid "Also closeness and betweenness"
+msgstr ""
+
 #: ega/results/interpretation.title
 msgid "Applied interpretation"
 msgstr ""
@@ -42,7 +46,7 @@ msgstr ""
 msgid "Automatic (Pearson / polychoric)"
 msgstr ""
 
-#: ega/ui[13][0][0].label
+#: ega/ui[14][0][0].label
 msgid "Available when Hierarchical EGA is ticked."
 msgstr ""
 
@@ -56,6 +60,10 @@ msgstr ""
 
 #: ega/options/nctAdjust/BH.title
 msgid "Benjamini-Hochberg (FDR)"
+msgstr ""
+
+#: ega/results/cenTable.columns.title
+msgid "Betweenness"
 msgstr ""
 
 #: ega/results/cfaBifactorGuide.title
@@ -89,6 +97,14 @@ msgstr ""
 msgid "Bootstrap samples"
 msgstr ""
 
+#: ega/options/bnCaseIter.title
+msgid "Bootstrap samples (dropping cases)"
+msgstr ""
+
+#: ega/options/bnIter.title
+msgid "Bootstrap samples (edges)"
+msgstr ""
+
 #: ega/results/bootStatus.title
 msgid "Bootstrap status"
 msgstr ""
@@ -118,6 +134,45 @@ msgstr ""
 msgid "CFI"
 msgstr ""
 
+#: ega/results/bnCS.columns.title
+msgid "CS"
+msgstr ""
+
+#: ega/options/showCasePlot.title
+msgid "Case-dropping plot"
+msgstr ""
+
+#: ega/results/cenStatus.title
+#: ega/ui[7][0].label
+msgid "Centrality"
+msgstr ""
+
+#: ega/ui[7].label
+msgid "Centrality and network stability"
+msgstr ""
+
+#: ega/results/cenInterpretation.title
+msgid "Centrality interpretation"
+msgstr ""
+
+#: ega/options/runCentrality.title
+#: ega/results/cenTable.title
+msgid "Centrality of each item"
+msgstr ""
+
+#: ega/options/showCenPlot.title
+#: ega/results/cenPlot.title
+msgid "Centrality plot"
+msgstr ""
+
+#: ega/results/bnCS.title
+msgid "Centrality stability (CS coefficient)"
+msgstr ""
+
+#: ega/results/bnCasePlot.title
+msgid "Centrality stability when dropping cases"
+msgstr ""
+
 #: ega/results/cfaBifactorLoadings.columns.title
 msgid "Check"
 msgstr ""
@@ -129,6 +184,10 @@ msgstr ""
 #: ega/options/layout/circle.title
 #: ega/options/nodeShape/circle.title
 msgid "Circle"
+msgstr ""
+
+#: ega/results/cenTable.columns.title
+msgid "Closeness"
 msgstr ""
 
 #: ega/options/plotPalette/colorblind.title
@@ -164,7 +223,7 @@ msgid "Confirm with CFA"
 msgstr ""
 
 #: ega/results/cfaStatus.title
-#: ega/ui[10].label
+#: ega/ui[11].label
 msgid "Confirmatory factor analysis"
 msgstr ""
 
@@ -223,6 +282,7 @@ msgstr ""
 #: ega/results/scores.columns.title
 #: ega/results/bootDimStability.columns.title
 #: ega/results/bootItemStability.columns.title
+#: ega/results/cenTable.columns.title
 #: ega/results/invTable.columns.title
 msgid "Dimension"
 msgstr ""
@@ -291,6 +351,7 @@ msgstr ""
 msgid "EGAnetLab default"
 msgstr ""
 
+#: ega/results/bnEdges.columns.title
 #: ega/results/nctEdgeTable.columns.title
 msgid "Edge"
 msgstr ""
@@ -299,8 +360,17 @@ msgstr ""
 msgid "Edge color"
 msgstr ""
 
+#: ega/options/showEdgeCIPlot.title
+msgid "Edge intervals plot"
+msgstr ""
+
 #: ega/options/edgeLabelSize.title
 msgid "Edge weight size"
+msgstr ""
+
+#: ega/results/bnEdges.title
+#: ega/results/bnEdgePlot.title
+msgid "Edge weights with bootstrap intervals"
 msgstr ""
 
 #: ega/options/edgeSize.title
@@ -308,7 +378,7 @@ msgstr ""
 msgid "Edge width"
 msgstr ""
 
-#: ega/ui[12][2][0].label
+#: ega/ui[13][2][0].label
 msgid "Edges"
 msgstr ""
 
@@ -357,6 +427,10 @@ msgstr ""
 msgid "Expand"
 msgstr ""
 
+#: ega/results/cenTable.columns.title
+msgid "Expected influence"
+msgstr ""
+
 #: ega/options/showChoicesGuide.title
 msgid "Explain my choices"
 msgstr ""
@@ -403,12 +477,12 @@ msgid "Group"
 msgstr ""
 
 #: ega/results/groupStatus.title
-#: ega/ui[7].label
+#: ega/ui[8].label
 msgid "Group comparison"
 msgstr ""
 
 #: ega/options/group.title
-#: ega/ui[7][3][0].label
+#: ega/ui[8][3][0].label
 msgid "Grouping variable"
 msgstr ""
 
@@ -445,7 +519,7 @@ msgid "Hierarchical structure"
 msgstr ""
 
 #: ega/results/hierPlot.title
-#: ega/ui[13].label
+#: ega/ui[14].label
 msgid "Hierarchical structure plot"
 msgstr ""
 
@@ -469,7 +543,7 @@ msgstr ""
 msgid "Include the other community algorithms"
 msgstr ""
 
-#: ega/ui[7][0].label
+#: ega/ui[8][0].label
 msgid "Independent groups: the variable that defines them (e.g. sex)."
 msgstr ""
 
@@ -477,7 +551,7 @@ msgstr ""
 msgid "Introduction"
 msgstr ""
 
-#: ega/ui[7][4].label
+#: ega/ui[8][4].label
 msgid "Invariance (independent groups)"
 msgstr ""
 
@@ -492,6 +566,7 @@ msgstr ""
 #: ega/results/cfaMembership.columns.title
 #: ega/results/cfaLoadings.columns.title
 #: ega/results/cfaBifactorLoadings.columns.title
+#: ega/results/cenTable.columns.title
 #: ega/results/invTable.columns.title
 #: ega/results/nctCentralityTable.columns.title
 msgid "Item"
@@ -572,7 +647,7 @@ msgid "Label size"
 msgstr ""
 
 #: ega/options/layout.title
-#: ega/ui[12][0][0].label
+#: ega/ui[13][0][0].label
 msgid "Layout"
 msgstr ""
 
@@ -584,7 +659,7 @@ msgstr ""
 msgid "Left"
 msgstr ""
 
-#: ega/ui[12][3][0].label
+#: ega/ui[13][3][0].label
 msgid "Legend"
 msgstr ""
 
@@ -625,6 +700,10 @@ msgstr ""
 msgid "Louvain"
 msgstr ""
 
+#: ega/results/bnEdges.columns.title
+msgid "Lower"
+msgstr ""
+
 #: ega/results/hierMembership.columns.title
 msgid "Lower order"
 msgstr ""
@@ -645,6 +724,7 @@ msgstr ""
 msgid "Mean item stability"
 msgstr ""
 
+#: ega/results/bnCS.columns.title
 #: ega/results/nctCentralityTable.columns.title
 msgid "Measure"
 msgstr ""
@@ -705,7 +785,7 @@ msgid "Negatively worded items"
 msgstr ""
 
 #: ega/results/nctStatus.title
-#: ega/ui[7][5].label
+#: ega/ui[8][5].label
 msgid "Network Comparison Test"
 msgstr ""
 
@@ -740,7 +820,7 @@ msgid "Network loadings by group"
 msgstr ""
 
 #: ega/options/showNetworkPlot.title
-#: ega/ui[12].label
+#: ega/ui[13].label
 msgid "Network plot"
 msgstr ""
 
@@ -753,6 +833,14 @@ msgstr ""
 
 #: ega/options/netScores.title
 msgid "Network scores summary"
+msgstr ""
+
+#: ega/results/bnStatus.title
+msgid "Network stability"
+msgstr ""
+
+#: ega/results/bnInterpretation.title
+msgid "Network stability interpretation"
 msgstr ""
 
 #: ega/options/nodeAlpha.title
@@ -771,11 +859,11 @@ msgstr ""
 msgid "Node strength and expected influence"
 msgstr ""
 
-#: ega/ui[13][2][0].label
+#: ega/ui[14][2][0].label
 msgid "Nodes and edges"
 msgstr ""
 
-#: ega/ui[12][1][0].label
+#: ega/ui[13][1][0].label
 msgid "Nodes and labels"
 msgstr ""
 
@@ -800,7 +888,7 @@ msgstr ""
 msgid "Orange"
 msgstr ""
 
-#: ega/ui[11].label
+#: ega/ui[12].label
 msgid "Output"
 msgstr ""
 
@@ -858,6 +946,10 @@ msgstr ""
 msgid "Random-intercept loading"
 msgstr ""
 
+#: ega/results/bnCS.columns.title
+msgid "Reading"
+msgstr ""
+
 #: ega/options/edgeNegColor/red.title
 msgid "Red"
 msgstr ""
@@ -867,7 +959,7 @@ msgid "Redundancy"
 msgstr ""
 
 #: ega/results/uvaStatus.title
-#: ega/ui[8].label
+#: ega/ui[9].label
 msgid "Redundancy (UVA)"
 msgstr ""
 
@@ -930,16 +1022,20 @@ msgid "Same in A and B"
 msgstr ""
 
 #: ega/options/pairedVars.title
-#: ega/ui[7][3][1].label
+#: ega/ui[8][3][1].label
 msgid "Same items, second measurement"
 msgstr ""
 
-#: ega/ui[7][1].label
+#: ega/ui[8][1].label
 msgid "Same people measured twice (NCT only): the second measurement"
 msgstr ""
 
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
+msgstr ""
+
+#: ega/results/bnEdges.columns.title
+msgid "Samples with the edge"
 msgstr ""
 
 #: ega/options/meanScoresOV.title
@@ -960,6 +1056,7 @@ msgstr ""
 
 #: ega/options/seed.title
 #: ega/options/groupSeed.title
+#: ega/options/bnSeed.title
 msgid "Seed"
 msgstr ""
 
@@ -1019,7 +1116,11 @@ msgstr ""
 msgid "Stability"
 msgstr ""
 
-#: ega/ui[9].label
+#: ega/ui[7][1].label
+msgid "Stability (bootnet)"
+msgstr ""
+
+#: ega/ui[10].label
 msgid "Stability (bootstrap)"
 msgstr ""
 
@@ -1027,8 +1128,20 @@ msgstr ""
 msgid "Stability interpretation"
 msgstr ""
 
+#: ega/options/runBootnet.title
+msgid "Stability of edges and centrality (bootnet)"
+msgstr ""
+
+#: ega/options/cenStandardize.title
+msgid "Standardized values (z)"
+msgstr ""
+
 #: ega/results/nctGlobal.columns.title
 msgid "Statistic"
+msgstr ""
+
+#: ega/results/cenTable.columns.title
+msgid "Strength"
 msgstr ""
 
 #: ega/results/bootDimStability.columns.title
@@ -1111,7 +1224,7 @@ msgstr ""
 msgid "Test node strength and expected influence"
 msgstr ""
 
-#: ega/ui[13][1][0].label
+#: ega/ui[14][1][0].label
 msgid "Text"
 msgstr ""
 
@@ -1141,6 +1254,10 @@ msgstr ""
 msgid "Unidimensionality Check"
 msgstr ""
 
+#: ega/results/bnEdges.columns.title
+msgid "Upper"
+msgstr ""
+
 #: ega/results/summary.columns.title
 #: ega/results/hierSummary.columns.title
 #: ega/results/riSummary.columns.title
@@ -1161,6 +1278,7 @@ msgid "Walktrap"
 msgstr ""
 
 #: ega/results/edgeTable.columns.title
+#: ega/results/bnEdges.columns.title
 msgid "Weight"
 msgstr ""
 
@@ -1184,7 +1302,7 @@ msgstr ""
 msgid "Wording effects interpretation"
 msgstr ""
 
-#: ega/ui[7][2].label
+#: ega/ui[8][2].label
 msgid "of the same items, in the same order as the items."
 msgstr ""
 

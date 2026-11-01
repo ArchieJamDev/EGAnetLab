@@ -200,4 +200,48 @@ refs:
         pages: '1273-1285'
         url: https://doi.org/10.1037/met0000476
 
+    epskamp_2018:
+        type: 'article'
+        author: 'Epskamp, S., Borsboom, D., & Fried, E. I.'
+        year: 2018
+        title: 'Estimating psychological networks and their accuracy: A tutorial paper'
+        publisher: 'Behavior Research Methods'
+        volume: '50'
+        issue: '1'
+        pages: '195-212'
+        url: https://doi.org/10.3758/s13428-017-0862-1
+
+    opsahl_2010:
+        type: 'article'
+        author: 'Opsahl, T., Agneessens, F., & Skvoretz, J.'
+        year: 2010
+        title: 'Node centrality in weighted networks: Generalizing degree and shortest paths'
+        publisher: 'Social Networks'
+        volume: '32'
+        issue: '3'
+        pages: '245-251'
+        url: https://doi.org/10.1016/j.socnet.2010.03.006
+
+    robinaugh_2016:
+        type: 'article'
+        author: 'Robinaugh, D. J., Millner, A. J., & McNally, R. J.'
+        year: 2016
+        title: 'Identifying highly influential nodes in the complicated grief network'
+        publisher: 'Journal of Abnormal Psychology'
+        volume: '125'
+        issue: '6'
+        pages: '747-757'
+        url: https://doi.org/10.1037/abn0000181
+
+    bringmann_2019:
+        type: 'article'
+        author: 'Bringmann, L. F., Elmer, T., Epskamp, S., Krause, R. W., Schoch, D., Wichers, M., Wigman, J. T. W., & Snippe, E.'
+        year: 2019
+        title: 'What do centrality measures measure in psychological networks?'
+        publisher: 'Journal of Abnormal Psychology'
+        volume: '128'
+        issue: '8'
+        pages: '892-903'
+        url: https://doi.org/10.1037/abn0000446
+
 ...

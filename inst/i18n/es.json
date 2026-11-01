@@ -17,6 +17,9 @@
             "Already reversed": [
                 "Ya invertidos"
             ],
+            "Also closeness and betweenness": [
+                "También cercanía e intermediación"
+            ],
             "Applied interpretation": [
                 "Interpretación aplicada"
             ],
@@ -44,6 +47,9 @@
             "Benjamini-Hochberg (FDR)": [
                 "Benjamini-Hochberg (FDR)"
             ],
+            "Betweenness": [
+                "Intermediación"
+            ],
             "Bifactor loadings": [
                 "Cargas del bifactor"
             ],
@@ -64,6 +70,12 @@
             ],
             "Bootstrap samples": [
                 "Muestras bootstrap"
+            ],
+            "Bootstrap samples (dropping cases)": [
+                "Muestras bootstrap (eliminando casos)"
+            ],
+            "Bootstrap samples (edges)": [
+                "Muestras bootstrap (aristas)"
             ],
             "Bootstrap status": [
                 "Estado del bootstrap"
@@ -86,6 +98,33 @@
             "CFI": [
                 "CFI"
             ],
+            "CS": [
+                "CS"
+            ],
+            "Case-dropping plot": [
+                "Gráfico de eliminación de casos"
+            ],
+            "Centrality": [
+                "Centralidad"
+            ],
+            "Centrality and network stability": [
+                "Centralidad y estabilidad de la red"
+            ],
+            "Centrality interpretation": [
+                "Interpretación de la centralidad"
+            ],
+            "Centrality of each item": [
+                "Centralidad de cada ítem"
+            ],
+            "Centrality plot": [
+                "Gráfico de centralidad"
+            ],
+            "Centrality stability (CS coefficient)": [
+                "Estabilidad de la centralidad (coeficiente CS)"
+            ],
+            "Centrality stability when dropping cases": [
+                "Estabilidad de la centralidad al eliminar casos"
+            ],
             "Check": [
                 "Revisar"
             ],
@@ -94,6 +133,9 @@
             ],
             "Circle": [
                 "Círculo"
+            ],
+            "Closeness": [
+                "Cercanía"
             ],
             "Colorblind-safe (Okabe-Ito)": [
                 "Apta para daltonismo (Okabe-Ito)"
@@ -206,8 +248,14 @@
             "Edge color": [
                 "Color de las aristas"
             ],
+            "Edge intervals plot": [
+                "Gráfico de intervalos de aristas"
+            ],
             "Edge weight size": [
                 "Tamaño de los pesos"
+            ],
+            "Edge weights with bootstrap intervals": [
+                "Pesos de las aristas con intervalos bootstrap"
             ],
             "Edge width": [
                 "Grosor de arista"
@@ -244,6 +292,9 @@
             ],
             "Expand": [
                 "Expandir"
+            ],
+            "Expected influence": [
+                "Influencia esperada"
             ],
             "Explain my choices": [
                 "Explicar mis elecciones"
@@ -425,6 +476,9 @@
             "Louvain": [
                 "Louvain"
             ],
+            "Lower": [
+                "Inferior"
+            ],
             "Lower order": [
                 "Orden inferior"
             ],
@@ -515,6 +569,12 @@
             "Network scores summary": [
                 "Resumen de puntuaciones de red"
             ],
+            "Network stability": [
+                "Estabilidad de la red"
+            ],
+            "Network stability interpretation": [
+                "Interpretación de la estabilidad de la red"
+            ],
             "Node fill opacity": [
                 "Opacidad del relleno"
             ],
@@ -590,6 +650,9 @@
             "Random-intercept loading": [
                 "Carga del intercepto aleatorio"
             ],
+            "Reading": [
+                "Lectura"
+            ],
             "Red": [
                 "Rojo"
             ],
@@ -650,6 +713,9 @@
             "Samples": [
                 "Muestras"
             ],
+            "Samples with the edge": [
+                "Muestras con la arista"
+            ],
             "Save item means": [
                 "Guardar promedios de los ítems"
             ],
@@ -707,14 +773,26 @@
             "Stability": [
                 "Estabilidad"
             ],
+            "Stability (bootnet)": [
+                "Estabilidad (bootnet)"
+            ],
             "Stability (bootstrap)": [
                 "Estabilidad (bootstrap)"
             ],
             "Stability interpretation": [
                 "Interpretación de la estabilidad"
             ],
+            "Stability of edges and centrality (bootnet)": [
+                "Estabilidad de aristas y centralidad (bootnet)"
+            ],
+            "Standardized values (z)": [
+                "Valores estandarizados (z)"
+            ],
             "Statistic": [
                 "Estadístico"
+            ],
+            "Strength": [
+                "Fuerza"
             ],
             "Structural consistency": [
                 "Consistencia estructural"
@@ -796,6 +874,9 @@
             ],
             "Unidimensionality Check": [
                 "Verificación de unidimensionalidad"
+            ],
+            "Upper": [
+                "Superior"
             ],
             "Value": [
                 "Valor"

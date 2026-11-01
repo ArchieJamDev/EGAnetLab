@@ -129,6 +129,7 @@
             bootType_parametric = "Parametric bootstrap draws each new sample from a multivariate normal distribution with the correlation matrix of your data and the same number of cases. It reproduces the estimated correlation structure exactly in expectation and is EGAnetLab's default (Christensen & Golino, 2021; see references).",
             bootType_resampling = "Resampling bootstrap draws cases from your data with replacement. It keeps the real response distributions (skewness, number of categories, outliers) instead of assuming normality, so prefer it when items are markedly non-normal or when you want the stability estimate to reflect the observed responses.",
             uva_cut = "Redundancy is flagged when two items reach a weighted topological overlap (wTO) of %s or more. The value .25 is the cutoff recommended by Christensen, Garrido and Golino (2023; see references) after extensive simulation; lower it only to explore borderline pairs, not to decide which items to remove.",
+            bn_iter_seed = "Network stability (bootnet) uses %d samples resampling cases and %d samples dropping cases, with seed %d. About 1000 of each is the usual recommendation (Epskamp et al., 2018; see references); fewer give less precise intervals and CS coefficients. The same seed with the same data and options reproduces the same results.",
             iter_seed = "The analysis uses %d bootstrap samples with seed %d. More samples give more precise stability estimates; 500 is the usual minimum for reporting. The same seed with the same data and options always reproduces the same results; report it with your findings."
         ),
 
@@ -483,6 +484,56 @@
             interp_cen_none = "No item differs in centrality between the networks after the correction for multiple tests.",
             interp_cen_some = "%d centrality value(s) differ between the networks after the correction for multiple tests (see the centrality table).",
             interp_next = "Next step: interpret differences in connections together with the invariance test, because a different network can change the meaning of a dimension score between groups. Report the estimator, the number of permutations, the seed, the correction and the size of each group."
+        ),
+
+        cen = list(
+            intro = c(
+                "Centrality describes the position of each item in the estimated network. Strength is the sum of the absolute weights of an item's connections; expected influence is the same sum keeping the sign, so negative connections subtract (Opsahl et al., 2010; Robinaugh et al., 2016; see references).",
+                "In a network of items, a central item shares much unique variance with the rest of the set. That describes the item within this item set; it does not show that the item causes or defines the construct."
+            ),
+            guide = c(
+                "Strength: how strongly the item is connected overall, on the same network as EGA.",
+                "Expected influence: like strength, but negative connections count against. It differs from strength only when the item has negative connections.",
+                "Closeness and betweenness (optional): based on the shortest paths between items. They are less stable and harder to interpret in psychological networks (Bringmann et al., 2019; see references)."
+            ),
+            guide_z = "Values are standardized across items (mean 0, SD 1). A value above 1 marks an item clearly more central than the average item; below -1, clearly less central.",
+            guide_raw = "Values are raw: strength and expected influence are sums of partial correlations, closeness and betweenness keep their own scales.",
+            empty = "The estimated network has no edges, so centrality is not defined.",
+            failed = "EGAnetLab could not compute centrality: %s.",
+            interp_top = "By strength, the most central item(s): %s. They share the most unique variance with the rest of the set. If they are also redundant (see Redundancy, UVA), their centrality may reflect overlapping content rather than importance.",
+            interp_low = "The least central item(s): %s. Weakly connected items add little to the network; check their network loadings and their stability.",
+            interp_ei_same = "There are no negative connections, so expected influence orders the items exactly as strength does.",
+            interp_ei_diff = "%d item(s) have negative connections, so their expected influence is lower than their strength: %s. Check whether they are negatively worded or describe the opposite pole of the construct.",
+            interp_dims = "Centrality is computed over the whole network, across dimensions. An item can be central because it connects dimensions, not only because it is central within its own.",
+            interp_closbetw = "Closeness and betweenness are shown because they were requested. In psychological networks they are often unstable and have no clear meaning (Bringmann et al., 2019); give them less weight than strength.",
+            interp_next = "Next step: tick Stability of edges and centrality (bootnet) to check whether the order of the items by centrality holds before interpreting differences between items.",
+            interp_with_bn = "Read the order of the items together with the CS coefficient in Network stability: below .25, differences in centrality between items should not be interpreted."
+        ),
+
+        bn = list(
+            intro = c(
+                "This section checks how accurate the estimated network is, with the bootnet procedures (Epskamp et al., 2018; see references). It re-estimates the same network as EGA (same correlation, model and missing-value handling) in many bootstrap samples.",
+                "Two procedures are used: resampling cases with replacement, which gives an interval for each edge weight, and dropping growing proportions of cases, which shows whether the order of the items by centrality holds with fewer people."
+            ),
+            done = "Done: %d samples resampling cases and %d samples dropping cases, seed %d. The results are kept while the estimation options do not change.",
+            failed = "EGAnetLab could not run the network stability analysis: %s.",
+            empty = "The estimated network has no edges, so its stability cannot be assessed.",
+            guide = c(
+                "CS coefficient: the largest proportion of cases that can be dropped while the centrality order still correlates .70 or more with the original in 95% of the samples. Below .25 the order should not be interpreted; .50 or more is preferred (Epskamp et al., 2018).",
+                "Edge intervals: the range that covers 95% of the bootstrap weights of each edge. A wide interval means the weight is imprecise; an interval that includes 0 means the edge may be absent in other samples.",
+                "Samples with the edge: the percentage of bootstrap samples in which the edge was estimated as different from zero."
+            ),
+            cs_good = "Stable (.50 or more)",
+            cs_mid = "Interpret with care (.25 to .50)",
+            cs_bad = "Not interpretable (below .25)",
+            cs_note = "CS = largest proportion of cases that can be dropped keeping a correlation of .70 or more with the original order in 95% of the samples. The largest value tested is .75.",
+            edges_note = "Only the edges of the estimated network are listed, strongest first. The intervals are percentile intervals from resampling cases. In regularized networks the weights are pulled toward zero, so the intervals describe precision and are not significance tests (Epskamp et al., 2018).",
+            interp_cs_good = "The order of the items by %s is stable (CS = %s): it holds when up to %s of the cases are dropped, so differences between items can be interpreted.",
+            interp_cs_mid = "The order of the items by %s is moderately stable (CS = %s): interpret only large differences between items, and with care.",
+            interp_cs_bad = "The order of the items by %s is not stable (CS = %s): it changes when only a few cases are dropped, so differences between items should not be interpreted.",
+            interp_edges = "%d of the %d edges of the network were estimated in at least 90%% of the samples; %d have an interval that includes zero, so they may be absent in other samples.",
+            interp_width = "The mean width of the edge intervals is %s. Two edges whose intervals overlap widely cannot be said to differ in strength.",
+            interp_next = "Next step: report the number of samples, the seed and the CS coefficient together with the centrality results. If stability is low, a larger sample is the main remedy; removing items to raise it changes the construct being measured."
         )
     ),
 
@@ -552,6 +603,7 @@
             bootType_parametric = "El bootstrap paramétrico extrae cada muestra nueva de una distribución normal multivariada con la matriz de correlaciones de sus datos y el mismo número de casos. Reproduce en promedio exactamente la estructura de correlaciones estimada y es el valor por defecto de EGAnetLab (Christensen y Golino, 2021; ver referencias).",
             bootType_resampling = "El bootstrap por remuestreo extrae casos de sus datos con reemplazo. Conserva las distribuciones reales de respuesta (asimetría, número de categorías, valores atípicos) en lugar de suponer normalidad, así que prefiéralo cuando los ítems sean claramente no normales o cuando quiera que la estabilidad refleje las respuestas observadas.",
             uva_cut = "La redundancia se señala cuando dos ítems alcanzan un solapamiento topológico ponderado (wTO) de %s o más. El valor .25 es el punto de corte recomendado por Christensen, Garrido y Golino (2023; ver referencias) tras una amplia simulación; bájelo solo para explorar pares limítrofes, no para decidir qué ítems eliminar.",
+            bn_iter_seed = "La estabilidad de la red (bootnet) usa %d muestras remuestreando casos y %d muestras eliminando casos, con semilla %d. Lo habitual es usar unas 1000 de cada tipo (Epskamp et al., 2018; ver referencias); menos dan intervalos y coeficientes CS menos precisos. La misma semilla con los mismos datos y opciones reproduce los mismos resultados.",
             iter_seed = "El análisis usa %d muestras bootstrap con semilla %d. Más muestras dan estimaciones de estabilidad más precisas; 500 es el mínimo habitual para informar. La misma semilla con los mismos datos y opciones reproduce siempre los mismos resultados; infórmela junto con sus hallazgos."
         ),
 
@@ -906,6 +958,56 @@
             interp_cen_none = "Ningún ítem difiere en centralidad entre las redes tras la corrección por pruebas múltiples.",
             interp_cen_some = "%d valor(es) de centralidad difieren entre las redes tras la corrección por pruebas múltiples (ver la tabla de centralidad).",
             interp_next = "Siguiente paso: interprete las diferencias en las conexiones junto con la prueba de invarianza, porque una red distinta puede cambiar el significado de la puntuación de una dimensión entre grupos. Informe el estimador, el número de permutaciones, la semilla, la corrección y el tamaño de cada grupo."
+        ),
+
+        cen = list(
+            intro = c(
+                "La centralidad describe la posición de cada ítem en la red estimada. La fuerza es la suma de los pesos absolutos de las conexiones de un ítem; la influencia esperada es la misma suma conservando el signo, así que las conexiones negativas restan (Opsahl et al., 2010; Robinaugh et al., 2016; ver referencias).",
+                "En una red de ítems, un ítem central comparte mucha varianza única con el resto del conjunto. Eso describe al ítem dentro de este conjunto de ítems; no muestra que el ítem cause o defina el constructo."
+            ),
+            guide = c(
+                "Fuerza: qué tan conectado está el ítem en conjunto, sobre la misma red de EGA.",
+                "Influencia esperada: como la fuerza, pero las conexiones negativas restan. Solo difiere de la fuerza cuando el ítem tiene conexiones negativas.",
+                "Cercanía e intermediación (opcionales): se basan en los caminos más cortos entre ítems. Son menos estables y más difíciles de interpretar en redes psicológicas (Bringmann et al., 2019; ver referencias)."
+            ),
+            guide_z = "Los valores están estandarizados entre ítems (media 0, DE 1). Un valor mayor que 1 señala un ítem claramente más central que el ítem promedio; menor que -1, claramente menos central.",
+            guide_raw = "Los valores están sin estandarizar: la fuerza y la influencia esperada son sumas de correlaciones parciales; la cercanía y la intermediación conservan sus propias escalas.",
+            empty = "La red estimada no tiene aristas, así que la centralidad no está definida.",
+            failed = "EGAnetLab no pudo calcular la centralidad: %s.",
+            interp_top = "Por fuerza, el o los ítems más centrales: %s. Son los que comparten más varianza única con el resto del conjunto. Si además son redundantes (ver Redundancia, UVA), su centralidad puede reflejar contenido solapado más que importancia.",
+            interp_low = "El o los ítems menos centrales: %s. Los ítems débilmente conectados aportan poco a la red; revise sus cargas de red y su estabilidad.",
+            interp_ei_same = "No hay conexiones negativas, así que la influencia esperada ordena los ítems exactamente igual que la fuerza.",
+            interp_ei_diff = "%d ítem(s) tienen conexiones negativas, por lo que su influencia esperada es menor que su fuerza: %s. Revise si están redactados en negativo o describen el polo opuesto del constructo.",
+            interp_dims = "La centralidad se calcula sobre toda la red, a través de las dimensiones. Un ítem puede ser central porque conecta dimensiones, no solo porque sea central dentro de la suya.",
+            interp_closbetw = "La cercanía y la intermediación se muestran porque se pidieron. En redes psicológicas suelen ser inestables y no tienen un significado claro (Bringmann et al., 2019); deles menos peso que a la fuerza.",
+            interp_next = "Siguiente paso: marque Stability of edges and centrality (bootnet) para comprobar si el orden de los ítems por centralidad se mantiene antes de interpretar diferencias entre ítems.",
+            interp_with_bn = "Lea el orden de los ítems junto con el coeficiente CS de Estabilidad de la red: por debajo de .25, las diferencias de centralidad entre ítems no deben interpretarse."
+        ),
+
+        bn = list(
+            intro = c(
+                "Esta sección comprueba qué tan precisa es la red estimada, con los procedimientos de bootnet (Epskamp et al., 2018; ver referencias). Vuelve a estimar la misma red de EGA (misma correlación, modelo y manejo de valores perdidos) en muchas muestras bootstrap.",
+                "Se usan dos procedimientos: remuestrear casos con reemplazo, que da un intervalo para el peso de cada arista, y eliminar proporciones crecientes de casos, que muestra si el orden de los ítems por centralidad se mantiene con menos personas."
+            ),
+            done = "Listo: %d muestras remuestreando casos y %d muestras eliminando casos, semilla %d. Los resultados se conservan mientras no cambien las opciones de estimación.",
+            failed = "EGAnetLab no pudo ejecutar el análisis de estabilidad de la red: %s.",
+            empty = "La red estimada no tiene aristas, así que no se puede evaluar su estabilidad.",
+            guide = c(
+                "Coeficiente CS: la mayor proporción de casos que puede eliminarse manteniendo una correlación de .70 o más entre el orden de centralidad y el original en el 95% de las muestras. Por debajo de .25 el orden no debe interpretarse; se prefiere .50 o más (Epskamp et al., 2018).",
+                "Intervalos de las aristas: el rango que cubre el 95% de los pesos bootstrap de cada arista. Un intervalo amplio indica un peso impreciso; un intervalo que incluye el 0 indica que la arista podría no aparecer en otras muestras.",
+                "Muestras con la arista: el porcentaje de muestras bootstrap en que la arista se estimó distinta de cero."
+            ),
+            cs_good = "Estable (.50 o más)",
+            cs_mid = "Interpretar con cautela (.25 a .50)",
+            cs_bad = "No interpretable (menos de .25)",
+            cs_note = "CS = mayor proporción de casos que puede eliminarse manteniendo una correlación de .70 o más con el orden original en el 95% de las muestras. El valor más alto evaluado es .75.",
+            edges_note = "Solo se listan las aristas de la red estimada, de la más fuerte a la más débil. Los intervalos son percentiles del remuestreo de casos. En redes regularizadas los pesos se acercan a cero, así que los intervalos describen la precisión y no son pruebas de significación (Epskamp et al., 2018).",
+            interp_cs_good = "El orden de los ítems por %s es estable (CS = %s): se mantiene al eliminar hasta el %s de los casos, así que las diferencias entre ítems pueden interpretarse.",
+            interp_cs_mid = "El orden de los ítems por %s es moderadamente estable (CS = %s): interprete solo las diferencias grandes entre ítems, y con cautela.",
+            interp_cs_bad = "El orden de los ítems por %s no es estable (CS = %s): cambia al eliminar pocos casos, así que las diferencias entre ítems no deben interpretarse.",
+            interp_edges = "%d de las %d aristas de la red se estimaron en al menos el 90%% de las muestras; %d tienen un intervalo que incluye el cero, así que podrían no aparecer en otras muestras.",
+            interp_width = "La anchura media de los intervalos de las aristas es %s. No puede afirmarse que dos aristas cuyos intervalos se solapan ampliamente difieran en fuerza.",
+            interp_next = "Siguiente paso: informe el número de muestras, la semilla y el coeficiente CS junto con los resultados de centralidad. Si la estabilidad es baja, el principal remedio es una muestra mayor; eliminar ítems para aumentarla cambia el constructo que se mide."
         )
     )
 )
