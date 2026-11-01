@@ -97,4 +97,10 @@
         `publisher`="Methods of Psychological Research Online", 
         `volume`="8", 
         `issue`="2", 
-        `pages`="23-74"))
+        `pages`="23-74"), 
+    `jimenez_2023`=list(
+        `type`="article", 
+        `author`="Jim\u00E9nez, M., Abad, F. J., Garcia-Garzon, E., Golino, H., Christensen, A. P., & Garrido, L. E.", 
+        `year`=2023, 
+        `title`="Dimensionality assessment in bifactor structures with multiple general factors: A network psychometrics approach", 
+        `publisher`="Psychological Methods"))
