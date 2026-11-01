@@ -1796,7 +1796,7 @@ ega <- function(
     theoryFactors = list(
                 list(label="Factor 1", vars=list())),
     compareCFA = FALSE,
-    negItems,
+    negItems = NULL,
     negCoding = "recoded",
     runHier = FALSE,
     runRI = FALSE,
