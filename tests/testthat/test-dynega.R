@@ -85,6 +85,14 @@ test_that("groups and individuals are summarized", {
     ari <- res$indTable$asDF$ari
     expect_true(all(ari >= -1 & ari <= 1))
     expect_match(res$indInterpretation$content, "ARI", fixed = TRUE)
+
+    # Each person is also compared with the structure of their own group.
+    # ES: Cada persona también se compara con la estructura de su propio grupo.
+    ind <- res$indTable$asDF
+    expect_true(all(c("group", "ariGroup") %in% names(ind)))
+    expect_true(all(ind$ariGroup >= -1 & ind$ariGroup <= 1, na.rm = TRUE))
+    expect_equal(nrow(res$indAgree$asDF), 6)
+    expect_match(res$indInterpretation$content, "own group", fixed = TRUE)
 })
 
 test_that("persons with too few time points are left out with a note", {

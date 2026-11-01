@@ -72,8 +72,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 labels$derivative <- list(`0` = tr("Level (0)", "Nivel (0)"),
                                           `1` = tr("Rate of change (1)", "Velocidad de cambio (1)"),
                                           `2` = tr("Acceleration (2)", "Aceleración (2)"))
-                embed <- sprintf(txt("dyn", "embed_text"), n_embed, n_embed, as.integer(o$tau),
-                                 as.integer(o$tau), fmt_delta)
+                embed <- sprintf(txt("dyn", "embed_text"), n_embed, n_embed, as.integer(o$tau), fmt_delta)
                 self$results$choicesGuide$setContent(
                     .el_choices_guide(lang, o, labels, extra = embed))
             }
@@ -213,8 +212,17 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                                                     paste(isolated, collapse = ", ")))
             paragraphs <- c(paragraphs, txt("dyn", paste0("interp_deriv_", deriv)))
             if (use_groups) {
+                dims_word <- function(n) if (is.na(n)) txt("common", "not_computable")
+                                         else if (n == 1) txt("dyn", "dims_word_1")
+                                         else sprintf(txt("dyn", "dims_word_n"), n)
+                detail <- paste(vapply(names(groups), function(g)
+                    sprintf(txt("dyn", "group_word"), g, dims_word(groups[[g]]$n_dim)), ""), collapse = "; ")
+                paragraphs <- c(paragraphs, sprintf(txt("dyn", "interp_groups_detail"), detail))
+                matches <- vapply(groups, function(g) isTRUE(.el_ari(g$wc, pop$wc) == 1), logical(1))
                 same_n <- all(vapply(groups, function(g) isTRUE(g$n_dim == pop$n_dim), logical(1)))
-                paragraphs <- c(paragraphs, txt("dyn", if (same_n) "interp_groups_same" else "interp_groups_diff"))
+                paragraphs <- c(paragraphs,
+                    if (!any(matches) && !is.na(pop$n_dim)) sprintf(txt("dyn", "interp_pooled"), pop$n_dim)
+                    else txt("dyn", if (same_n) "interp_groups_same" else "interp_groups_diff"))
             }
             if (!isTRUE(o$levelIndividual))
                 paragraphs <- c(paragraphs, txt("dyn", "interp_next"))
@@ -274,16 +282,33 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 list(txt("dyn", "agree_same_n"), pct(same_n)),
                 list(txt("dyn", "agree_identical"), pct(identical_wc)),
                 list(txt("dyn", "agree_median"), .el_fmt_num(median_ari, 2)))
+            has_group <- "ari_group" %in% names(est) && any(!is.na(est$ari_group))
+            if (has_group) {
+                group_identical <- mean(est$ari_group >= 1 - 1e-12, na.rm = TRUE)
+                group_median <- stats::median(est$ari_group, na.rm = TRUE)
+                rows <- c(rows, list(
+                    list(txt("dyn", "agree_group_identical"), pct(group_identical)),
+                    list(txt("dyn", "agree_group_median"), .el_fmt_num(group_median, 2))))
+            }
             for (i in seq_along(rows))
                 .el_add_row(agree, i, list(element = rows[[i]][[1]], value = rows[[i]][[2]]))
             agree$setNote("ari", txt("dyn", "agree_note"))
 
+            if (isTRUE(self$options$showIndTable) && has_group) {
+                self$results$indTable$addColumn(name = "group", title = tr("Group", "Grupo"),
+                                                type = "text", index = 2)
+                self$results$indTable$addColumn(name = "ariGroup",
+                                                title = tr("Agreement with own group (ARI)", "Acuerdo con su grupo (ARI)"),
+                                                type = "number", format = "zto")
+            }
             if (isTRUE(self$options$showIndTable))
                 for (i in seq_len(nrow(ind)))
                     .el_add_row(self$results$indTable, i, list(
                         id = ind$id[i], points = ind$points[i],
                         dims = if (is.na(ind$dims[i])) txt("common", "not_computable") else as.character(ind$dims[i]),
-                        ari = .el_clean_num(ind$ari[i])))
+                        ari = .el_clean_num(ind$ari[i]),
+                        group = if (has_group) ind$group[i] else NULL,
+                        ariGroup = if (has_group) .el_clean_num(ind$ari_group[i]) else NULL))
 
             if (isTRUE(self$options$showIndPlot))
                 self$results$indPlot$setState(list(
@@ -291,17 +316,29 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     labels = list(x = txt("dyn", "plot_x"), y = txt("dyn", "plot_y"),
                                   original = sprintf(txt("dyn", "plot_population"), as.character(pop$n_dim)), other = txt("dyn", "plot_other"))))
 
-            modal <- freq$dims[which.max(freq$count)]
-            paragraphs <- sprintf(txt("dyn", "interp_ind_modal"), as.character(modal),
-                                  pct(max(freq$proportion)), pct(same_n))
-            # High agreement needs both a high median ARI and most persons
-            # with the population's number of dimensions.
-            # ES: Un acuerdo alto exige un ARI mediano alto y que la mayoría
-            # de las personas tenga el número de dimensiones de la población.
-            key <- if (median_ari >= 0.80 && same_n >= 0.5) "interp_ind_high"
-                   else if (median_ari >= 0.50) "interp_ind_mid" else "interp_ind_low"
-            paragraphs <- c(paragraphs, sprintf(txt("dyn", key), .el_fmt_num(median_ari, 2)),
-                            txt("dyn", "interp_ind_next"))
+            dims_word <- function(n) if (n == 1) txt("dyn", "dims_word_1") else sprintf(txt("dyn", "dims_word_n"), n)
+            distribution <- paste(sprintf("%s (%s)", vapply(freq$dims, dims_word, ""), pct(freq$proportion)),
+                                  collapse = ", ")
+            paragraphs <- sprintf(txt("dyn", "interp_ind_modal"), distribution, pct(same_n),
+                                  as.character(pop$n_dim))
+            if (has_group && group_median >= 0.80) {
+                # The groups explain the differences between persons: say
+                # so first, then why agreement with the population is lower.
+                # ES: Los grupos explican las diferencias entre personas:
+                # se dice primero y luego por qué el acuerdo con la
+                # población es menor.
+                paragraphs <- c(paragraphs,
+                    sprintf(txt("dyn", "interp_ind_group_high"), pct(group_identical), .el_fmt_num(group_median, 2)))
+                if (median_ari < 0.80)
+                    paragraphs <- c(paragraphs, sprintf(txt("dyn", "interp_ind_pop_group"), .el_fmt_num(median_ari, 2)))
+            } else {
+                key <- if (median_ari >= 0.80 && same_n >= 0.5) "interp_ind_high"
+                       else if (median_ari >= 0.50) "interp_ind_mid" else "interp_ind_low"
+                paragraphs <- c(paragraphs, sprintf(txt("dyn", key), .el_fmt_num(median_ari, 2)))
+                if (has_group)
+                    paragraphs <- c(paragraphs, sprintf(txt("dyn", "interp_ind_group_low"), .el_fmt_num(group_median, 2)))
+            }
+            paragraphs <- c(paragraphs, txt("dyn", "interp_ind_next"))
             self$results$indInterpretation$setContent(.el_html_block(NULL, paragraphs))
             invisible(NULL)
         },
@@ -380,12 +417,16 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 ggplot2::geom_text(ggplot2::aes(label = formatC(proportion, format = "f", digits = 2)),
                                    vjust = -0.4, size = 4) +
                 ggplot2::scale_y_continuous(limits = c(0, 1.05), breaks = seq(0, 1, 0.25)) +
-                ggplot2::scale_fill_discrete(drop = FALSE) +
                 ggplot2::labs(x = state$labels$x, y = state$labels$y, fill = NULL) +
                 ggtheme
+            # Both legend keys are kept, so the population's number is named
+            # even when no person has it.
+            # ES: Se conservan ambas claves de la leyenda, para nombrar el
+            # número de la población aunque ninguna persona lo tenga.
             palette <- .el_plot_series_palette(self$options$plotPalette)
-            if (!is.null(palette))
-                plot <- plot + ggplot2::scale_fill_manual(values = palette[1:2], drop = FALSE)
+            if (is.null(palette)) palette <- c("#E69F00", "#56B4E9")
+            plot <- plot + ggplot2::scale_fill_manual(values = stats::setNames(palette[1:2], levels(df$group)),
+                                                      limits = levels(df$group), drop = FALSE)
             print(plot)
             TRUE
         }

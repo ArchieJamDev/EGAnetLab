@@ -180,6 +180,16 @@
         }
     }
 
+    # Each person's group, to compare their structure with their own
+    # group's as well as with the population's.
+    # ES: El grupo de cada persona, para comparar su estructura con la de
+    # su propio grupo además de con la de la población.
+    person_group <- function(id) {
+        if (is.null(groups) || length(group_list) == 0) return(NA_character_)
+        g <- groups[[id]]
+        if (is.null(g) || is.na(g)) NA_character_ else as.character(g)
+    }
+
     individual <- NULL
     failed <- character(0)
     if (!is.null(fit$dynEGA$individual)) {
@@ -188,14 +198,18 @@
             entry <- ind[[id]]
             if (is.null(entry) || is.null(entry$wc) || all(is.na(unlist(entry$wc)))) {
                 failed <<- c(failed, id)
-                return(data.frame(id = id, points = points[[id]], dims = NA_real_, ari = NA_real_))
+                return(data.frame(id = id, points = points[[id]], dims = NA_real_, ari = NA_real_,
+                                  group = person_group(id), ari_group = NA_real_))
             }
             wc <- clean_wc(entry$wc)
+            g <- person_group(id)
+            ari_group <- if (!is.na(g) && !is.null(group_list[[g]])) .el_ari(wc, group_list[[g]]$wc) else NA_real_
             data.frame(id = id, points = points[[id]], dims = .el_clean_num(entry$n.dim),
-                       ari = .el_ari(wc, population$wc))
+                       ari = .el_ari(wc, population$wc), group = g, ari_group = ari_group)
         })
         individual <- do.call(rbind, rows)
         individual$id <- as.character(individual$id)
+        individual$group <- as.character(individual$group)
     }
 
     list(population = population, groups = group_list, individual = individual, failed = failed)
