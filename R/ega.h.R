@@ -291,7 +291,8 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "nominal",
                     "ordinal"),
                 permitted=list(
-                    "factor"))
+                    "factor"),
+                default=NULL)
             private$..pairedVars <- jmvcore::OptionVariables$new(
                 "pairedVars",
                 pairedVars,
