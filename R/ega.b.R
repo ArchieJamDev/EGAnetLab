@@ -378,6 +378,11 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # suprime.
             # -----------------------------------------------------------------
             warnings <- unique(c(fit$warnings, score_warnings, compare_warnings, hier_warnings, ri_warnings, boot_warnings, uva_warnings, cfa_warnings))
+            # Purely informative package notices are left out (Archie's
+            # request): the report already states what they say.
+            # ES: Se omiten los avisos puramente informativos de los
+            # paquetes (pedido de Archie): el informe ya dice lo que indican.
+            warnings <- .el_drop_notices(warnings)
             if (length(warnings) > 0) {
                 self$results$notes$setContent(.el_html_block(
                     txt("common", "warnings_title"),
@@ -824,7 +829,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             warnings <- character(0)
             for (i in seq_along(models)) {
                 f <- models[[i]]$fit
-                warnings <- c(warnings, f$warnings)
                 ok <- isTRUE(f$ok)
                 v <- if (ok) f$fit else NULL
                 .el_add_row(table, i, list(
@@ -842,6 +846,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                                       sprintf(txt("cfa_hier", "failed"), if (is.null(f$error)) "—" else f$error))
                 else if (!isTRUE(v[["converged"]] == 1))
                     table$addFootnote(rowNo = i, col = "model", txt("cfa_hier", "not_converged"))
+                else if (length(f$warnings) > 0)
+                    # lavaan's technical warnings become one plain note on
+                    # the row of the model that produced them.
+                    # ES: Las advertencias técnicas de lavaan se convierten
+                    # en una nota simple en la fila del modelo que las dio.
+                    table$addFootnote(rowNo = i, col = "model", txt("cfa_hier", "lavaan_note"))
             }
 
             # Interpretation.

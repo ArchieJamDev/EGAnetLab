@@ -407,3 +407,30 @@
     }
     data
 }
+
+# -----------------------------------------------------------------------------
+# .el_drop_notices()
+#
+# Input: warnings - messages captured from EGAnet and lavaan.
+# Output: the same messages without the purely informative notices whose
+#   content the report already explains (Leiden's default objective
+#   function, hierEGA marked as experimental, the change of default loading
+#   method) and without lavaan's numerical notes on the parameter covariance
+#   matrix, which the hierarchical models table reports as a footnote.
+# ES: Salida: los mismos mensajes sin los avisos puramente informativos cuyo
+#   contenido el informe ya explica (función objetivo por defecto de Leiden,
+#   hierEGA marcado como experimental, cambio del método de cargas por
+#   defecto) y sin las notas numéricas de lavaan sobre la matriz de
+#   covarianzas de los parámetros, que la tabla de modelos jerárquicos
+#   informa como nota al pie.
+# -----------------------------------------------------------------------------
+.el_drop_notices <- function(warnings) {
+
+    patterns <- c("default objective function in the Leiden",
+                  "implementation of `hierEGA` is",
+                  "default 'loading.method' has changed",
+                  "variance-covariance matrix of the estimated parameters")
+    keep <- !vapply(warnings, function(w) any(vapply(patterns, grepl, logical(1), x = w, fixed = TRUE)),
+                    logical(1))
+    unname(warnings[keep])
+}
