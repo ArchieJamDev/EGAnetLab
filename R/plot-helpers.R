@@ -70,7 +70,7 @@
 
     args <- list(
         x = structure(list(network = network, wc = wc), class = "EGA"),
-        layout = opt("layout", "qgraph"),
+        layout = .el_plot_layout(network, opt("layout", "qgraph")),
         node.size = as.numeric(opt("nodeSize", 12)),
         node.shape = shapes[[opt("nodeShape", "circle")]],
         node.alpha = as.numeric(opt("nodeAlpha", 0.5)),
@@ -168,4 +168,38 @@
         label.size = 0,
         label.padding = ggplot2::unit(0.08, "lines")
     )
+}
+
+# -----------------------------------------------------------------------------
+# .el_plot_layout()
+#
+# Input: network - the weight matrix to plot; layout - the layout option.
+# Output: "qgraph" unchanged (EGAnet already uses absolute weights for it),
+#   or the node coordinates of the sna layout computed on the absolute
+#   weights. sna's Kamada-Kawai (and other distance-based layouts) stop with
+#   "Negative edge values not currently supported in geodist" when the
+#   network has negative edges, so the coordinates are computed here and
+#   passed to plot.EGA() as a matrix, which it accepts.
+# ES: Salida: "qgraph" sin cambios (EGAnet ya usa pesos absolutos para él),
+#   o las coordenadas de los nodos del layout de sna calculado sobre los
+#   pesos absolutos. Kamada-Kawai de sna (y otros layouts basados en
+#   distancias) se detienen con "Negative edge values not currently
+#   supported in geodist" cuando la red tiene aristas negativas, así que las
+#   coordenadas se calculan aquí y se pasan a plot.EGA() como matriz, que
+#   este acepta.
+# -----------------------------------------------------------------------------
+.el_plot_layout <- function(network, layout) {
+
+    if (!is.character(layout) || identical(layout, "qgraph"))
+        return(layout)
+    fun <- switch(layout,
+        kamadakawai = sna::gplot.layout.kamadakawai,
+        circle = sna::gplot.layout.circle,
+        mds = sna::gplot.layout.mds,
+        eigen = sna::gplot.layout.eigen,
+        NULL)
+    if (is.null(fun))
+        return(layout)
+    coords <- tryCatch(fun(abs(as.matrix(network)), NULL), error = function(e) NULL)
+    if (is.null(coords)) layout else coords
 }

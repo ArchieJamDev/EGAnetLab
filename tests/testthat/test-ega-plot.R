@@ -117,3 +117,16 @@ test_that("palettes longer than the number of dimensions are accepted", {
         expect_true(renders(plot), info = choice)
     }
 })
+
+test_that("distance-based layouts work with negative edges", {
+
+    data <- edgeStructureData()
+    data$item1 <- -data$item1 + 0.6 * data$item5
+    for (layout in c("kamadakawai", "mds", "circle")) {
+        res <- EGAnetLab::ega(data = data, vars = names(data), layout = layout)
+        state <- res$networkPlot$state
+        expect_true(any(state$network < 0))
+        plot <- EGAnetLab:::.el_ega_plot(state$network, state$wc, list(layout = layout))
+        expect_s3_class(plot, "ggplot")
+    }
+})

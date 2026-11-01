@@ -7,6 +7,9 @@
   Edges and Legend as headings inside it.
 * New **Hierarchical structure plot** box: title, level names, item names
   and their size, item and dimension node sizes, edge width and edge color.
+* Fix: the Kamada-Kawai, MDS, circle and eigenvector layouts no longer stop
+  with "Negative edge values not currently supported in geodist" when the
+  network has negative edges; the layout is computed on absolute weights.
 
 ## EGA: hierarchical EGA and wording effects (phase 4)
 
