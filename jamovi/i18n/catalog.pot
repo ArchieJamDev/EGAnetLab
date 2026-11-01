@@ -384,7 +384,7 @@ msgid "Group comparison"
 msgstr ""
 
 #: ega/options/group.title
-#: ega/ui[0][1].label
+#: ega/ui[7][3][0].label
 msgid "Grouping variable"
 msgstr ""
 
@@ -446,14 +446,14 @@ msgid "Include the other community algorithms"
 msgstr ""
 
 #: ega/ui[7][0].label
-msgid "Independent groups: put the grouping variable in the Grouping variable box. Same people measured twice: put the second measurement of the items below, in the same order as the items (NCT only)."
+msgid "Independent groups: the variable that defines them (e.g. sex)."
 msgstr ""
 
 #: ega/results/intro.title
 msgid "Introduction"
 msgstr ""
 
-#: ega/ui[7][2][0][0].label
+#: ega/ui[7][4].label
 msgid "Invariance (independent groups)"
 msgstr ""
 
@@ -680,7 +680,7 @@ msgid "Negatively worded items"
 msgstr ""
 
 #: ega/results/nctStatus.title
-#: ega/ui[7][2][1][0].label
+#: ega/ui[7][5].label
 msgid "Network Comparison Test"
 msgstr ""
 
@@ -893,8 +893,12 @@ msgid "Same in A and B"
 msgstr ""
 
 #: ega/options/pairedVars.title
-#: ega/ui[7][1][0].label
+#: ega/ui[7][3][1].label
 msgid "Same items, second measurement"
+msgstr ""
+
+#: ega/ui[7][1].label
+msgid "Same people measured twice (NCT only): the second measurement"
 msgstr ""
 
 #: ega/results/bootFrequency.columns.title
@@ -1133,6 +1137,10 @@ msgstr ""
 
 #: ega/results/riInterpretation.title
 msgid "Wording effects interpretation"
+msgstr ""
+
+#: ega/ui[7][2].label
+msgid "of the same items, in the same order as the items."
 msgstr ""
 
 #: ega/results/invTable.columns.title

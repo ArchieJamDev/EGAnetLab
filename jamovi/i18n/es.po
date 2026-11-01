@@ -384,7 +384,7 @@ msgid "Group comparison"
 msgstr "Comparación entre grupos"
 
 #: ega/options/group.title
-#: ega/ui[0][1].label
+#: ega/ui[7][3][0].label
 msgid "Grouping variable"
 msgstr "Variable de agrupación"
 
@@ -446,14 +446,14 @@ msgid "Include the other community algorithms"
 msgstr "Incluir los otros algoritmos de comunidades"
 
 #: ega/ui[7][0].label
-msgid "Independent groups: put the grouping variable in the Grouping variable box. Same people measured twice: put the second measurement of the items below, in the same order as the items (NCT only)."
-msgstr "Grupos independientes: coloque la variable de agrupación en la caja Variable de agrupación. Mismas personas medidas dos veces: coloque abajo la segunda medición de los ítems, en el mismo orden de los ítems (solo NCT)."
+msgid "Independent groups: the variable that defines them (e.g. sex)."
+msgstr "Grupos independientes: la variable que los define (p. ej., sexo)."
 
 #: ega/results/intro.title
 msgid "Introduction"
 msgstr "Introducción"
 
-#: ega/ui[7][2][0][0].label
+#: ega/ui[7][4].label
 msgid "Invariance (independent groups)"
 msgstr "Invarianza (grupos independientes)"
 
@@ -680,7 +680,7 @@ msgid "Negatively worded items"
 msgstr "Ítems redactados en negativo"
 
 #: ega/results/nctStatus.title
-#: ega/ui[7][2][1][0].label
+#: ega/ui[7][5].label
 msgid "Network Comparison Test"
 msgstr "Network Comparison Test"
 
@@ -893,9 +893,13 @@ msgid "Same in A and B"
 msgstr "Igual en A y B"
 
 #: ega/options/pairedVars.title
-#: ega/ui[7][1][0].label
+#: ega/ui[7][3][1].label
 msgid "Same items, second measurement"
 msgstr "Mismos ítems, segunda medición"
+
+#: ega/ui[7][1].label
+msgid "Same people measured twice (NCT only): the second measurement"
+msgstr "Mismas personas medidas dos veces (solo NCT): la segunda medición"
 
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
@@ -1134,6 +1138,10 @@ msgstr "Efectos de redacción (EGA con intercepto aleatorio)"
 #: ega/results/riInterpretation.title
 msgid "Wording effects interpretation"
 msgstr "Interpretación de los efectos de redacción"
+
+#: ega/ui[7][2].label
+msgid "of the same items, in the same order as the items."
+msgstr "de los mismos ítems, en el mismo orden de los ítems."
 
 #: ega/results/invTable.columns.title
 #: ega/results/nctGlobal.columns.title

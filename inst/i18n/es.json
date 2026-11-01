@@ -305,8 +305,8 @@
             "Include the other community algorithms": [
                 "Incluir los otros algoritmos de comunidades"
             ],
-            "Independent groups: put the grouping variable in the Grouping variable box. Same people measured twice: put the second measurement of the items below, in the same order as the items (NCT only).": [
-                "Grupos independientes: coloque la variable de agrupación en la caja Variable de agrupación. Mismas personas medidas dos veces: coloque abajo la segunda medición de los ítems, en el mismo orden de los ítems (solo NCT)."
+            "Independent groups: the variable that defines them (e.g. sex).": [
+                "Grupos independientes: la variable que los define (p. ej., sexo)."
             ],
             "Introduction": [
                 "Introducción"
@@ -617,6 +617,9 @@
             "Same items, second measurement": [
                 "Mismos ítems, segunda medición"
             ],
+            "Same people measured twice (NCT only): the second measurement": [
+                "Mismas personas medidas dos veces (solo NCT): la segunda medición"
+            ],
             "Samples": [
                 "Muestras"
             ],
@@ -790,6 +793,9 @@
             ],
             "Wording effects interpretation": [
                 "Interpretación de los efectos de redacción"
+            ],
+            "of the same items, in the same order as the items.": [
+                "de los mismos ítems, en el mismo orden de los ítems."
             ],
             "p": [
                 "p"
