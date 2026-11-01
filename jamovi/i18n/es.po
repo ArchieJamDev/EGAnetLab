@@ -58,6 +58,18 @@ msgstr "BIC"
 msgid "Benjamini-Hochberg (FDR)"
 msgstr "Benjamini-Hochberg (FDR)"
 
+#: ega/results/cfaBifactorGuide.title
+msgid "Bifactor loadings"
+msgstr "Cargas del bifactor"
+
+#: ega/results/cfaBifactorInterpretation.title
+msgid "Bifactor loadings interpretation"
+msgstr "Interpretación de las cargas del bifactor"
+
+#: ega/results/cfaBifactorLoadings.title
+msgid "Bifactor model loadings (standardized, total sample)"
+msgstr "Cargas del modelo bifactor (estandarizadas, muestra total)"
+
 #: ega/options/labelColor/black.title
 #: ega/options/edgePosColor/black.title
 #: ega/options/hierEdgeColor/black.title
@@ -105,6 +117,10 @@ msgstr "Cargas estandarizadas del CFA"
 #: ega/results/cfaHierModels.columns.title
 msgid "CFI"
 msgstr "CFI"
+
+#: ega/results/cfaBifactorLoadings.columns.title
+msgid "Check"
+msgstr "Revisar"
 
 #: ega/options/runUVA.title
 msgid "Check redundancy (UVA)"
@@ -368,6 +384,10 @@ msgstr "Frecuencia del número de dimensiones"
 msgid "GLASSO (EBIC)"
 msgstr "GLASSO (EBIC)"
 
+#: ega/results/cfaBifactorLoadings.columns.title
+msgid "General"
+msgstr "General"
+
 #: ega/results/nctGlobal.title
 msgid "Global network comparison"
 msgstr "Comparación global de las redes"
@@ -471,6 +491,7 @@ msgstr "Invarianza (grupos independientes)"
 #: ega/results/bootItemStability.columns.title
 #: ega/results/cfaMembership.columns.title
 #: ega/results/cfaLoadings.columns.title
+#: ega/results/cfaBifactorLoadings.columns.title
 #: ega/results/invTable.columns.title
 #: ega/results/nctCentralityTable.columns.title
 msgid "Item"
@@ -871,6 +892,10 @@ msgstr "Idioma del informe"
 msgid "Resampling (cases)"
 msgstr "Remuestreo (casos)"
 
+#: ega/results/cfaBifactorLoadings.columns.title
+msgid "Residual variance"
+msgstr "Varianza residual"
+
 #: ega/options/legendPosition/right.title
 msgid "Right"
 msgstr "Derecha"
@@ -965,6 +990,14 @@ msgstr "Continua"
 #: ega/options/corr/spearman.title
 msgid "Spearman"
 msgstr "Spearman"
+
+#: ega/results/cfaBifactorLoadings.columns.title
+msgid "Specific"
+msgstr "Específica"
+
+#: ega/results/cfaBifactorLoadings.columns.title
+msgid "Specific factor"
+msgstr "Factor específico"
 
 #: ega/options/splitSeed.title
 msgid "Split seed"

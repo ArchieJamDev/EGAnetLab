@@ -58,6 +58,18 @@ msgstr ""
 msgid "Benjamini-Hochberg (FDR)"
 msgstr ""
 
+#: ega/results/cfaBifactorGuide.title
+msgid "Bifactor loadings"
+msgstr ""
+
+#: ega/results/cfaBifactorInterpretation.title
+msgid "Bifactor loadings interpretation"
+msgstr ""
+
+#: ega/results/cfaBifactorLoadings.title
+msgid "Bifactor model loadings (standardized, total sample)"
+msgstr ""
+
 #: ega/options/labelColor/black.title
 #: ega/options/edgePosColor/black.title
 #: ega/options/hierEdgeColor/black.title
@@ -104,6 +116,10 @@ msgstr ""
 #: ega/results/compareTable.columns.title
 #: ega/results/cfaHierModels.columns.title
 msgid "CFI"
+msgstr ""
+
+#: ega/results/cfaBifactorLoadings.columns.title
+msgid "Check"
 msgstr ""
 
 #: ega/options/runUVA.title
@@ -368,6 +384,10 @@ msgstr ""
 msgid "GLASSO (EBIC)"
 msgstr ""
 
+#: ega/results/cfaBifactorLoadings.columns.title
+msgid "General"
+msgstr ""
+
 #: ega/results/nctGlobal.title
 msgid "Global network comparison"
 msgstr ""
@@ -471,6 +491,7 @@ msgstr ""
 #: ega/results/bootItemStability.columns.title
 #: ega/results/cfaMembership.columns.title
 #: ega/results/cfaLoadings.columns.title
+#: ega/results/cfaBifactorLoadings.columns.title
 #: ega/results/invTable.columns.title
 #: ega/results/nctCentralityTable.columns.title
 msgid "Item"
@@ -871,6 +892,10 @@ msgstr ""
 msgid "Resampling (cases)"
 msgstr ""
 
+#: ega/results/cfaBifactorLoadings.columns.title
+msgid "Residual variance"
+msgstr ""
+
 #: ega/options/legendPosition/right.title
 msgid "Right"
 msgstr ""
@@ -964,6 +989,14 @@ msgstr ""
 
 #: ega/options/corr/spearman.title
 msgid "Spearman"
+msgstr ""
+
+#: ega/results/cfaBifactorLoadings.columns.title
+msgid "Specific"
+msgstr ""
+
+#: ega/results/cfaBifactorLoadings.columns.title
+msgid "Specific factor"
 msgstr ""
 
 #: ega/options/splitSeed.title

@@ -852,6 +852,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 table$setVisible(FALSE)
                 self$results$cfaHierInterpretation$setContent(
                     .el_html_block(NULL, txt("cfa_hier", "unavailable")))
+                for (name in c("cfaBifactorGuide", "cfaBifactorLoadings", "cfaBifactorInterpretation"))
+                    self$results[[name]]$setVisible(FALSE)
                 return(character(0))
             }
 
@@ -913,6 +915,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
             # Interpretation.
             # ES: Interpretación.
+            private$.fillBifactor(models, tr, txt)
+
             paragraphs <- c(txt("cfa_hier", "intro"))
             ok <- vapply(models, function(m) isTRUE(m$fit$ok) && isTRUE(m$fit$fit[["converged"]] == 1), logical(1))
             admissible <- vapply(models, function(m) length(m$fit$problems) == 0, logical(1))
@@ -1385,6 +1389,86 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             self$results$nctInterpretation$setContent(.el_html_block(NULL, paragraphs))
 
             unique(warnings)
+        },
+
+        # ---------------------------------------------------------------------
+        # Bifactor loadings: general and specific loading of each item, its
+        # residual variance, the explained common variance (ECV) and the
+        # specific factors that collapse into the general one. It shows why
+        # a bifactor solution is inadmissible or over-extracted (Rodriguez,
+        # Reise & Haviland, 2016).
+        # ES: Cargas del bifactor: carga general y específica de cada ítem,
+        # su varianza residual, la varianza común explicada (ECV) y los
+        # factores específicos que colapsan en el general. Muestra por qué
+        # una solución bifactor es inadmisible o está sobreextraída.
+        # ---------------------------------------------------------------------
+        .fillBifactor = function(models, tr, txt) {
+
+            table <- self$results$cfaBifactorLoadings
+            table$deleteRows()
+            hide <- function() for (name in c("cfaBifactorGuide", "cfaBifactorLoadings", "cfaBifactorInterpretation"))
+                self$results[[name]]$setVisible(FALSE)
+            keys <- vapply(models, function(m) m$key, character(1))
+            if (!"bifactor" %in% keys) return(hide())
+            f <- models[[match("bifactor", keys)]]$fit
+            if (!isTRUE(f$ok) || is.null(f$loadings) || nrow(f$loadings) == 0) return(hide())
+
+            L <- f$loadings
+            items <- unique(L$item)
+            gen <- L[L$factor == "G", , drop = FALSE]
+            spe <- L[L$factor != "G", , drop = FALSE]
+            g_of <- stats::setNames(gen$loading, gen$item)
+            s_of <- stats::setNames(spe$loading, spe$item)
+            f_of <- stats::setNames(spe$factor, spe$item)
+            resid <- if (is.null(f$resid)) stats::setNames(rep(NA_real_, length(items)), items) else f$resid
+
+            heywood <- character(0); above <- character(0); weak <- character(0)
+            for (i in seq_along(items)) {
+                it <- items[i]
+                g <- .el_clean_num(g_of[it]); sp <- .el_clean_num(s_of[it]); r <- .el_clean_num(resid[it])
+                flags <- character(0)
+                if (!is.na(r) && r < 0) { flags <- c(flags, txt("bifactor", "flag_heywood")); heywood <- c(heywood, it) }
+                if ((!is.na(g) && abs(g) > 1) || (!is.na(sp) && abs(sp) > 1)) {
+                    flags <- c(flags, txt("bifactor", "flag_above")); above <- c(above, it) }
+                if (!is.na(sp) && abs(sp) < 0.20) { flags <- c(flags, txt("bifactor", "flag_weak")); weak <- c(weak, it) }
+                if (!is.na(g) && abs(g) < 0.20) flags <- c(flags, txt("bifactor", "flag_weak_general"))
+                .el_add_row(table, i, list(item = it, specific = if (is.na(f_of[it])) "—" else unname(f_of[it]),
+                    general = g, spec = sp, resid = r, flag = paste(flags, collapse = "; ")))
+            }
+
+            # Explained common variance and collapsing specific factors.
+            # ES: Varianza común explicada y factores específicos que
+            # colapsan.
+            ecv <- sum(gen$loading^2, na.rm = TRUE) / (sum(gen$loading^2, na.rm = TRUE) + sum(spe$loading^2, na.rm = TRUE))
+            paragraphs <- sprintf(txt("bifactor", if (isTRUE(ecv >= 0.70)) "interp_ecv_high" else "interp_ecv_low"),
+                                  paste0(round(100 * ecv), "%"), .el_fmt_num(ecv, 2))
+            few <- character(0)
+            for (fac in unique(spe$factor)) {
+                own <- spe[spe$factor == fac, , drop = FALSE]
+                mean_abs <- mean(abs(own$loading), na.rm = TRUE)
+                if (isTRUE(mean_abs < 0.20) || isTRUE(mean(abs(own$loading) < 0.20, na.rm = TRUE) > 0.5))
+                    paragraphs <- c(paragraphs, sprintf(txt("bifactor", "interp_collapse"), fac,
+                                                        .el_fmt_num(mean_abs, 2)))
+                if (nrow(own) <= 3)
+                    few <- c(few, paste0(fac, " (", nrow(own), ")"))
+            }
+            if (length(few) > 0)
+                paragraphs <- c(paragraphs, sprintf(txt("bifactor", "interp_few_items"), paste(few, collapse = ", ")))
+            weak_general <- items[vapply(items, function(it) isTRUE(abs(.el_clean_num(g_of[it])) < 0.20), logical(1))]
+            if (length(weak_general) > 0)
+                paragraphs <- c(paragraphs, sprintf(txt("bifactor", "interp_weak_general"), paste(weak_general, collapse = ", ")))
+            if (length(heywood) > 0)
+                paragraphs <- c(paragraphs, sprintf(txt("bifactor", "interp_heywood"), paste(heywood, collapse = ", ")))
+            if (length(above) > 0)
+                paragraphs <- c(paragraphs, sprintf(txt("bifactor", "interp_above"), paste(above, collapse = ", ")))
+            if (length(heywood) + length(above) == 0 && length(f$problems) == 0)
+                paragraphs <- c(paragraphs, txt("bifactor", "interp_admissible"))
+            paragraphs <- c(paragraphs, txt("bifactor", "interp_next"))
+
+            self$results$cfaBifactorGuide$setContent(paste0(
+                .el_html_block(tr("Bifactor model loadings", "Cargas del modelo bifactor"), txt("bifactor", "intro")),
+                .el_html_block(NULL, .el_html_list(txt("bifactor", "guide")), raw = TRUE)))
+            self$results$cfaBifactorInterpretation$setContent(.el_html_block(NULL, paragraphs))
         },
 
         # ---------------------------------------------------------------------
@@ -2304,6 +2388,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("nctCentralityTable", "Node strength and expected influence", "Fuerza e influencia esperada de los nodos"),
                 c("nctInterpretation", "Network Comparison Test interpretation", "Interpretación del Network Comparison Test"),
                 c("cfaHierModels", "Models with and without hierarchy (total sample)", "Modelos con y sin jerarquía (muestra total)"),
+                c("cfaBifactorLoadings", "Bifactor model loadings (standardized, total sample)", "Cargas del modelo bifactor (estandarizadas, muestra total)"),
                 c("cfaHierInterpretation", "Hierarchical models interpretation", "Interpretación de los modelos jerárquicos"),
                 c("riStatus", "Wording effects (random-intercept EGA)", "Efectos de redacción (EGA con intercepto aleatorio)"),
                 c("riSummary", "Random-intercept EGA", "EGA con intercepto aleatorio"),
@@ -2383,6 +2468,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 c("nctCentralityTable", "measure", "Measure", "Medida"),
                 c("nctCentralityTable", "diff", "Difference", "Diferencia"),
                 c("nctCentralityTable", "p", "p (adjusted)", "p (ajustado)"),
+                c("cfaBifactorLoadings", "item", "Item", "Ítem"),
+                c("cfaBifactorLoadings", "specific", "Specific factor", "Factor específico"),
+                c("cfaBifactorLoadings", "general", "General", "General"),
+                c("cfaBifactorLoadings", "spec", "Specific", "Específica"),
+                c("cfaBifactorLoadings", "resid", "Residual variance", "Varianza residual"),
+                c("cfaBifactorLoadings", "flag", "Check", "Revisar"),
                 c("cfaHierModels", "model", "Model", "Modelo"),
                 c("cfaHierModels", "items", "Items", "Ítems"),
                 c("cfaHierModels", "chisq", "χ² (df)", "χ² (gl)"),

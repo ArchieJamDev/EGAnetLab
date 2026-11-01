@@ -245,6 +245,8 @@
 
     std <- suppressWarnings(tryCatch(lavaan::standardizedSolution(model_fit), error = function(e) NULL))
     if (!is.null(std)) {
+        res <- std[std$op == "~~" & std$lhs == std$rhs & std$lhs %in% safe, , drop = FALSE]
+        out$resid <- stats::setNames(as.numeric(res$est.std), unname(item_of[res$lhs]))
         std <- std[std$op == "=~" & std$rhs %in% safe, , drop = FALSE]
         out$loadings <- data.frame(
             item = unname(item_of[std$rhs]),

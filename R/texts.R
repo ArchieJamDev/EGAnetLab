@@ -258,6 +258,28 @@
             interp_optimistic = "These models are fitted on the same data that produced the EGA and hierEGA solutions, so their fit is optimistic. Report them as a comparison, and confirm the chosen model in a new sample."
         ),
 
+        bifactor = list(
+            intro = "This table opens up the bifactor model of the comparison above: for each item, its loading on the general factor (every item) and on its specific factor (the hierEGA lower-order dimension), and its residual variance. It shows whether the specific factors keep their own variance or collapse into the general factor, which is the usual source of inadmissible bifactor solutions (Rodriguez, Reise & Haviland, 2016; see references).",
+            guide = c(
+                "General and Specific: standardized loadings. In a sound bifactor model, items load clearly on the general factor and still keep visible loadings (.20 or more) on their specific factor.",
+                "Residual variance: the part of the item not explained by either factor. A negative value is a Heywood case: the solution is not admissible.",
+                "Check: Heywood case, loading above 1, a specific loading below .20 (the item adds almost nothing to its specific factor) or a general loading below .20."
+            ),
+            flag_heywood = "Heywood case",
+            flag_above = "Loading above 1",
+            flag_weak = "Weak specific loading",
+            interp_ecv_high = "The general factor explains %s of the common variance (explained common variance, ECV = %s). From .70 upward, the items are close to unidimensional: the specific factors add little, and a single score is often defensible.",
+            interp_ecv_low = "The general factor explains %s of the common variance (explained common variance, ECV = %s). Below .70, the specific factors keep an important part of the common variance, so the scale is not essentially unidimensional.",
+            interp_collapse = "Specific factor %s collapses into the general factor: its loadings are mostly below .20 (mean absolute loading %s). The model probably has one specific factor too many; consider a bifactor model without it (bifactor S-1) or the correlated-factors model.",
+            interp_few_items = "Specific factors with three items or fewer (number of items in parentheses): %s. A specific factor with so few items is weakly identified next to a general factor and is a common source of Heywood cases.",
+            interp_weak_general = "Items with a general loading below .20: %s. They do not share the general factor; check their wording (for example, negatively worded items not reversed) or whether they belong to the scale.",
+            flag_weak_general = "Weak general loading",
+            interp_heywood = "Items with a negative residual variance (Heywood case): %s. Their loadings are pushed beyond what the data allow, usually because their specific factor is nearly empty or has very few items. Do not interpret the bifactor model while this happens.",
+            interp_above = "Items with a standardized loading above 1: %s. This is not possible in an admissible solution; read it together with the Heywood cases.",
+            interp_admissible = "No Heywood case or loading above 1 appears, so the bifactor solution is admissible; judge it by the ECV and by whether each specific factor keeps its own loadings.",
+            interp_next = "Next step: if a specific factor collapses or has very few items, fit the model without it or keep the correlated-factors model. Do not add parameters suggested by modification indices to rescue an inadmissible bifactor: that tends to fit the noise of this sample."
+        ),
+
         hier = list(
             intro = c(
                 "Hierarchical EGA (hierEGA; Jiménez et al., 2023; see references) asks whether the dimensions are themselves grouped under broader, higher-order dimensions, such as a general factor.",
@@ -657,6 +679,28 @@
             interp_no_higher = "El EGA jerárquico no encontró un nivel de orden superior, así que no se ajusta el modelo de orden superior.",
             interp_bifactor = "El modelo bifactor suele ajustar mejor porque es muy flexible y también absorbe ruido y estilos de respuesta. Prefiéralo solo cuando el factor general concentre la mayor parte de la varianza común y los factores específicos conserven cargas claras; si no, su mejor ajuste no es evidencia de un factor general.",
             interp_optimistic = "Estos modelos se ajustan con los mismos datos que produjeron las soluciones de EGA y hierEGA, así que su ajuste es optimista. Infórmelos como comparación y confirme el modelo elegido en una muestra nueva."
+        ),
+
+        bifactor = list(
+            intro = "Esta tabla abre el modelo bifactor de la comparación de arriba: para cada ítem, su carga en el factor general (todos los ítems) y en su factor específico (la dimensión de orden inferior de hierEGA), y su varianza residual. Muestra si los factores específicos conservan varianza propia o colapsan en el factor general, que es la causa habitual de las soluciones bifactor inadmisibles (Rodriguez, Reise y Haviland, 2016; ver referencias).",
+            guide = c(
+                "General y Específica: cargas estandarizadas. En un modelo bifactor sólido, los ítems cargan claramente en el factor general y conservan cargas visibles (.20 o más) en su factor específico.",
+                "Varianza residual: la parte del ítem que no explica ninguno de los dos factores. Un valor negativo es un caso Heywood: la solución no es admisible.",
+                "Revisar: caso Heywood, carga mayor que 1, carga específica menor que .20 (el ítem casi no aporta a su factor específico) o carga general menor que .20."
+            ),
+            flag_heywood = "Caso Heywood",
+            flag_above = "Carga mayor que 1",
+            flag_weak = "Carga específica débil",
+            interp_ecv_high = "El factor general explica el %s de la varianza común (varianza común explicada, ECV = %s). Desde .70, los ítems están cerca de la unidimensionalidad: los factores específicos aportan poco y una sola puntuación suele ser defendible.",
+            interp_ecv_low = "El factor general explica el %s de la varianza común (varianza común explicada, ECV = %s). Por debajo de .70, los factores específicos conservan una parte importante de la varianza común, así que la escala no es esencialmente unidimensional.",
+            interp_collapse = "El factor específico %s colapsa en el factor general: sus cargas son en su mayoría menores que .20 (carga absoluta media %s). Probablemente el modelo tiene un factor específico de más; considere un modelo bifactor sin él (bifactor S-1) o el modelo de factores correlacionados.",
+            interp_few_items = "Factores específicos con tres ítems o menos (número de ítems entre paréntesis): %s. Un factor específico con tan pocos ítems está débilmente identificado junto a un factor general y es una causa frecuente de casos Heywood.",
+            interp_weak_general = "Ítems con una carga general menor que .20: %s. No comparten el factor general; revise su redacción (por ejemplo, ítems en negativo sin invertir) o si pertenecen a la escala.",
+            flag_weak_general = "Carga general débil",
+            interp_heywood = "Ítems con varianza residual negativa (caso Heywood): %s. Sus cargas quedan forzadas más allá de lo que permiten los datos, por lo general porque su factor específico está casi vacío o tiene muy pocos ítems. No interprete el modelo bifactor mientras esto ocurra.",
+            interp_above = "Ítems con una carga estandarizada mayor que 1: %s. Esto no es posible en una solución admisible; léalo junto con los casos Heywood.",
+            interp_admissible = "No aparece ningún caso Heywood ni cargas mayores que 1, así que la solución bifactor es admisible; júzguela por la ECV y por si cada factor específico conserva sus propias cargas.",
+            interp_next = "Siguiente paso: si un factor específico colapsa o tiene muy pocos ítems, ajuste el modelo sin él o conserve el modelo de factores correlacionados. No agregue parámetros sugeridos por índices de modificación para rescatar un bifactor inadmisible: eso tiende a ajustar el ruido de esta muestra."
         ),
 
         hier = list(

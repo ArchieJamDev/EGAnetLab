@@ -44,6 +44,15 @@
             "Benjamini-Hochberg (FDR)": [
                 "Benjamini-Hochberg (FDR)"
             ],
+            "Bifactor loadings": [
+                "Cargas del bifactor"
+            ],
+            "Bifactor loadings interpretation": [
+                "Interpretación de las cargas del bifactor"
+            ],
+            "Bifactor model loadings (standardized, total sample)": [
+                "Cargas del modelo bifactor (estandarizadas, muestra total)"
+            ],
             "Black": [
                 "Negro"
             ],
@@ -76,6 +85,9 @@
             ],
             "CFI": [
                 "CFI"
+            ],
+            "Check": [
+                "Revisar"
             ],
             "Check redundancy (UVA)": [
                 "Revisar redundancia (UVA)"
@@ -250,6 +262,9 @@
             ],
             "GLASSO (EBIC)": [
                 "GLASSO (EBIC)"
+            ],
+            "General": [
+                "General"
             ],
             "Global network comparison": [
                 "Comparación global de las redes"
@@ -599,6 +614,9 @@
             "Resampling (cases)": [
                 "Remuestreo (casos)"
             ],
+            "Residual variance": [
+                "Varianza residual"
+            ],
             "Right": [
                 "Derecha"
             ],
@@ -667,6 +685,12 @@
             ],
             "Spearman": [
                 "Spearman"
+            ],
+            "Specific": [
+                "Específica"
+            ],
+            "Specific factor": [
+                "Factor específico"
             ],
             "Split seed": [
                 "Semilla de la división"

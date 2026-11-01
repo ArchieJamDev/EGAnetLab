@@ -998,6 +998,58 @@ items:
         title: BIC
         type: text
 
+  - name: cfaBifactorGuide
+    title: Bifactor loadings
+    type: Html
+    visible: (runCFA && runHier)
+
+  - name: cfaBifactorLoadings
+    title: Bifactor model loadings (standardized, total sample)
+    type: Table
+    rows: 0
+    visible: (runCFA && runHier)
+    refs:
+      - rosseel_2012
+      - rodriguez_2016
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - cfaEstimator
+      - reportLang
+    columns:
+      - name: item
+        title: Item
+        type: text
+      - name: specific
+        title: Specific factor
+        type: text
+      - name: general
+        title: General
+        type: number
+        format: zto
+      - name: spec
+        title: Specific
+        type: number
+        format: zto
+      - name: resid
+        title: Residual variance
+        type: number
+        format: zto
+      - name: flag
+        title: Check
+        type: text
+
+  - name: cfaBifactorInterpretation
+    title: Bifactor loadings interpretation
+    type: Html
+    visible: (runCFA && runHier)
+
   - name: cfaHierInterpretation
     title: Hierarchical models interpretation
     type: Html

@@ -849,6 +849,9 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         cfaLoadings = function() private$.items[["cfaLoadings"]],
         cfaInterpretation = function() private$.items[["cfaInterpretation"]],
         cfaHierModels = function() private$.items[["cfaHierModels"]],
+        cfaBifactorGuide = function() private$.items[["cfaBifactorGuide"]],
+        cfaBifactorLoadings = function() private$.items[["cfaBifactorLoadings"]],
+        cfaBifactorInterpretation = function() private$.items[["cfaBifactorInterpretation"]],
         cfaHierInterpretation = function() private$.items[["cfaHierInterpretation"]],
         groupStatus = function() private$.items[["groupStatus"]],
         groupSizes = function() private$.items[["groupSizes"]],
@@ -1886,6 +1889,64 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="text"))))
             self$add(jmvcore::Html$new(
                 options=options,
+                name="cfaBifactorGuide",
+                title="Bifactor loadings",
+                visible="(runCFA && runHier)"))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="cfaBifactorLoadings",
+                title="Bifactor model loadings (standardized, total sample)",
+                rows=0,
+                visible="(runCFA && runHier)",
+                refs=list(
+                    "rosseel_2012",
+                    "rodriguez_2016"),
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "cfaEstimator",
+                    "reportLang"),
+                columns=list(
+                    list(
+                        `name`="item", 
+                        `title`="Item", 
+                        `type`="text"),
+                    list(
+                        `name`="specific", 
+                        `title`="Specific factor", 
+                        `type`="text"),
+                    list(
+                        `name`="general", 
+                        `title`="General", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="spec", 
+                        `title`="Specific", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="resid", 
+                        `title`="Residual variance", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="flag", 
+                        `title`="Check", 
+                        `type`="text"))))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="cfaBifactorInterpretation",
+                title="Bifactor loadings interpretation",
+                visible="(runCFA && runHier)"))
+            self$add(jmvcore::Html$new(
+                options=options,
                 name="cfaHierInterpretation",
                 title="Hierarchical models interpretation",
                 visible="(runCFA && runHier)"))
@@ -2394,6 +2455,9 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$cfaLoadings} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$cfaInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$cfaHierModels} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$cfaBifactorGuide} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$cfaBifactorLoadings} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$cfaBifactorInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$cfaHierInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$groupStatus} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$groupSizes} \tab \tab \tab \tab \tab a table \cr

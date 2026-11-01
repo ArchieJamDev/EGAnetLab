@@ -106,3 +106,17 @@ test_that("the CFA explains why its ordinal rule differs from EGA's", {
     res <- EGAnetLab::ega(data = data, vars = names(data), runCFA = TRUE)
     expect_match(res$cfaStatus$content, "Rhemtulla", fixed = TRUE)
 })
+
+test_that("the bifactor loadings table opens up the bifactor model", {
+
+    data <- edgeStructureData()
+    res <- EGAnetLab::ega(data = data, vars = names(data), runHier = TRUE, runCFA = TRUE)
+    if (res$cfaBifactorLoadings$visible) {
+        loads <- res$cfaBifactorLoadings$asDF
+        expect_equal(nrow(loads), 12)
+        expect_true(all(c("general", "spec", "resid") %in% names(loads)))
+        expect_match(res$cfaBifactorInterpretation$content, "ECV", fixed = TRUE)
+    }
+    plain <- EGAnetLab::ega(data = data, vars = names(data), runCFA = TRUE)
+    expect_false(plain$cfaBifactorLoadings$visible)
+})
