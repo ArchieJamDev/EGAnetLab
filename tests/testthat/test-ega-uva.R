@@ -74,7 +74,7 @@ test_that("UVA flags a near-duplicate item and suggests one to remove", {
     removed <- strsplit(sets$remove[hit], ", ")[[1]]
     expect_true(any(c("item1", "item1b") %in% removed))
 
-    expect_match(res$uvaInterpretation$content, "redundant set", fixed = TRUE)
+    expect_match(res$uvaInterpretation$content, "Redundant sets", fixed = TRUE)
     expect_match(res$choicesGuide$content, "wTO", fixed = TRUE)
 })
 
@@ -90,6 +90,6 @@ test_that("UVA reports no redundancy below the cutoff", {
 test_that("UVA renders in Spanish", {
 
     res <- runUVA(redundantData(), reportLang = "es")
-    expect_match(res$uvaInterpretation$content, "conjunto(s) redundante(s)", fixed = TRUE)
+    expect_match(res$uvaInterpretation$content, "Conjuntos redundantes", fixed = TRUE)
     expect_equal(res$uvaPairs$asDF$sameDim[1], "Sí")
 })

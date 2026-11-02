@@ -1806,13 +1806,13 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
         },
 
         # ---------------------------------------------------------------------
-        # Hierarchical EGA with EGAnet::hierEGA() (Jiménez et al., 2023):
+        # Hierarchical EGA with EGAnet::hierEGA() (Jiménez et al., 2025):
         # lower-order dimensions from the lower level of Louvain, network
         # scores of those dimensions, and EGA on the scores for the
         # higher-order dimensions. Louvain uses seed 2026. A failure is
         # explained in the section and leaves the rest intact. Returns the
         # EGAnet messages captured.
-        # ES: EGA jerárquico con EGAnet::hierEGA() (Jiménez et al., 2023):
+        # ES: EGA jerárquico con EGAnet::hierEGA() (Jiménez et al., 2025):
         # dimensiones de orden inferior del nivel inferior de Louvain,
         # puntuaciones de red de esas dimensiones y EGA sobre ellas para las
         # dimensiones de orden superior. Louvain usa la semilla 2026. Un
@@ -1924,7 +1924,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (!is.na(n_lower) && n_lower <= 1) {
                 paragraphs <- c(paragraphs, txt("hier", "interp_one_lower"))
             } else {
-                paragraphs <- c(paragraphs, sprintf(txt("hier", "interp_dims"), n_lower, dash(as.character(n_higher))))
+                paragraphs <- c(paragraphs, sprintf(txt("hier", if (identical(as.numeric(n_higher), 1)) "interp_dims_one" else "interp_dims"), n_lower, dash(as.character(n_higher))))
                 if (length(agree$moved) == 0 && n_lower == length(unique(stats::na.omit(ref))))
                     paragraphs <- c(paragraphs, txt("hier", "interp_lower_same"))
                 else

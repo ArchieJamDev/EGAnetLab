@@ -89,9 +89,9 @@
             edges_note = "Weights are the partial correlations of the estimated network (each pair of items, controlling for all the others), from strongest to weakest in absolute value. A negative weight means the two items move in opposite directions once the rest are held constant.",
             interp_dims_one = "EGA found a single dimension. The unidimensionality check (%s) did not separate the items into distinct communities, which supports treating the item set as measuring one construct.",
             interp_dims_many = "EGA found %d dimensions. The items group into %d communities of densely connected nodes, which suggests %d related but distinct constructs.",
-            interp_isolated = "%d item(s) are not connected to any other item and were left without a dimension: %s. Isolated items share little unique variance with the rest; review their wording and content.",
+            interp_isolated = "Items not connected to any other item, left without a dimension (%d): %s. Isolated items share little unique variance with the rest; review their wording and content.",
             interp_tefi = "TEFI = %s. Compare it with the TEFI of an alternative structure (for example, a theoretical one) estimated on the same data; the lower value indicates the better-fitting structure.",
-            interp_low_loadings = "%d item(s) have a dominant network loading below 0.15 (small): %s. Their assignment is weakly supported; the Stability (bootstrap) section will show whether they replicate.",
+            interp_low_loadings = "Items with a dominant network loading below 0.15, small (%d): %s. Their assignment is weakly supported; the Stability (bootstrap) section will show whether they replicate.",
             interp_next = "Next step: tick Run bootstrap in the Stability (bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above.",
             loadings_failed = "Network loadings could not be computed for this structure: %s.",
             loadings_all_singleton = "Every item forms its own community, so network loadings are undefined."
@@ -180,7 +180,7 @@
             no = "No",
             changed = "Changes",
             new_dim = "new",
-            dropped_factor = "Dimension(s) with a single item cannot form a factor and were left out of the CFA: %s.",
+            dropped_factor = "Dimensions with a single item cannot form a factor and were left out of the CFA: %s.",
             failed = "lavaan could not fit the CFA%s: %s.",
             fit_guide = "Conventional guidelines (Hu & Bentler, 1999; see references): CFI and TLI of .95 or more, RMSEA of .06 or less and SRMR of .08 or less suggest good fit; CFI/TLI of .90 and RMSEA of .08 are often taken as acceptable. With WLSMV these cutoffs are only approximate.",
             fit_guide_more = "Other indices (Schermelleh-Engel, Moosbrugger & Müller, 2003; see references): χ²/df of 2 or less is good and 3 or less acceptable; GFI and NFI of .95 or more are good and .90 acceptable; AGFI of .90 or more is good and .85 acceptable; IFI is read like CFI. GFI and AGFI depend on sample size and are reported mostly by tradition; CFI, TLI, RMSEA and SRMR are the most recommended. AIC and BIC only compare models fitted to the same data (lower is better) and are not available with WLSMV.",
@@ -241,7 +241,7 @@
             m_ega = "Correlated factors (EGA)",
             m_ega_same = "Correlated factors (EGA = hierEGA lower order)",
             m_lower = "Correlated factors (hierEGA lower order)",
-            m_higher = "Higher order (%s higher-order factor(s))",
+            m_higher = "Higher order (higher-order factors: %s)",
             m_bifactor = "Bifactor (general + lower-order specific factors)",
             failed = "lavaan could not fit this model: %s.",
             not_converged = "lavaan did not reach convergence; do not interpret this row.",
@@ -287,7 +287,7 @@
 
         hier = list(
             intro = c(
-                "Hierarchical EGA (hierEGA; Jiménez et al., 2023; see references) asks whether the dimensions are themselves grouped under broader, higher-order dimensions, such as a general factor.",
+                "Hierarchical EGA (hierEGA; Jiménez et al., 2025; see references) asks whether the dimensions are themselves grouped under broader, higher-order dimensions, such as a general factor.",
                 "It works in two steps: it finds the lower-order dimensions with the lower level of the Louvain algorithm, computes each person's network score on them, and then runs EGA on those scores to find the higher-order dimensions. Louvain starts from random values, so it uses the fixed seed 2026."
             ),
             guide = c(
@@ -306,7 +306,8 @@
             better_lower = "Correlated lower-order dimensions",
             better_higher = "Hierarchical structure",
             interp_one_lower = "hierEGA finds a single lower-order dimension, so there is no hierarchy to estimate.",
-            interp_dims = "hierEGA finds %s lower-order dimensions grouped into %s higher-order dimension(s).",
+            interp_dims = "hierEGA finds %s lower-order dimensions grouped into %s higher-order dimensions.",
+            interp_dims_one = "hierEGA finds %s lower-order dimensions grouped into 1 higher-order dimension.",
             interp_lower_same = "The lower-order dimensions are the same as in the EGA solution above.",
             interp_lower_diff = "The lower-order level has %s dimensions against %s in the EGA solution above, and places %d of %d items as EGA does. Items in a different dimension: %s. The lower level of Louvain tends to split broad dimensions, so this is expected.",
             interp_no_higher = "Each lower-order dimension stays on its own at the higher level, so there is no evidence of broader dimensions grouping them.",
@@ -377,12 +378,12 @@
             no_pairs = "No pair reaches wTO .20",
             failed = "EGAnetLab could not complete the redundancy analysis: %s. The EGA results above are not affected.",
             interp_none = "No pair of items reaches a wTO of %s, so there is no evidence of redundancy (local dependence) at the recommended cutoff. Each item contributes its own information to the network.",
-            interp_borderline = "%d pair(s) fall between .20 and the cutoff (%s). They are not redundant by the recommended rule, but check their wording if they also stand out elsewhere (low stability or low loadings).",
-            interp_sets = "%d redundant set(s) at wTO %s or more: %s. Items in a set share most of their connections, so together they add less information than their number suggests and can pull the dimensional structure toward themselves.",
+            interp_borderline = "Pairs between .20 and the cutoff of %2$s (%1$d). They are not redundant by the recommended rule, but check their wording if they also stand out elsewhere (low stability or low loadings).",
+            interp_sets = "Redundant sets at wTO %2$s or more (%1$d): %3$s. Items in a set share most of their connections, so together they add less information than their number suggests and can pull the dimensional structure toward themselves.",
             interp_suggest = "EGAnetLab's automatic rule would keep %s and remove %s. Treat this as a starting point: decide by content (which item best covers the construct, has the clearest wording, or is needed for a balanced scale), and consider combining items instead of removing them when both cover essential content.",
-            interp_split = "Redundant pair(s) placed in different dimensions: %s. This often signals an item that bridges two dimensions; review its content before keeping it.",
-            interp_unstable = "Item(s) that are both redundant and unstable in the bootstrap: %s. These are the strongest candidates for revision.",
-            interp_unstable_borderline = "Borderline pair(s) that involve an item unstable in the bootstrap: %s. The overlap is below the redundancy cutoff, but it may explain why the item moves between dimensions across samples; review the wording of both items.",
+            interp_split = "Redundant pairs placed in different dimensions: %s. This often signals an item that bridges two dimensions; review its content before keeping it.",
+            interp_unstable = "Items that are both redundant and unstable in the bootstrap: %s. These are the strongest candidates for revision.",
+            interp_unstable_borderline = "Borderline pairs that involve an item unstable in the bootstrap: %s. The overlap is below the redundancy cutoff, but it may explain why the item moves between dimensions across samples; review the wording of both items.",
             interp_next = "Next step: if you remove or combine items, run the analysis again on the revised item set and compare the number of dimensions and the stability with the original solution. Do not compare TEFI values between the original and the revised item sets: TEFI is only comparable between structures of the same items. Report the cutoff and the items you changed."
         ),
 
@@ -406,9 +407,9 @@
             interp_mode_match = "Across %d samples, the most frequent solution has %d dimensions (%s of samples), the same number found in the original sample. The median is %s, with 95%% of samples between %s and %s dimensions.",
             interp_mode_mismatch = "Across %d samples, the most frequent solution has %d dimensions (%s of samples), while the original sample showed %d. The original structure is not the typical one across samples; interpret it with caution and look at which items are unstable. The median is %s, with 95%% of samples between %s and %s dimensions.",
             interp_mode_weak = "The most frequent solution appears in only %s of samples, below the %s cutoff, so the number of dimensions itself is not firmly established: neighbouring solutions are also common. Report the full frequency distribution, not only the most frequent value.",
-            interp_dims_low = "Dimension(s) with structural consistency below %s: %s. These dimensions are often not reproduced with exactly the same items; usually one or more of their items move to another dimension in some samples (see item stability).",
+            interp_dims_low = "Dimensions with structural consistency below %s: %s. These dimensions are often not reproduced with exactly the same items; usually one or more of their items move to another dimension in some samples (see item stability).",
             interp_dims_ok = "Every dimension reappears with exactly the same items in at least %s of samples.",
-            interp_items_low = "%d item(s) stay in their original dimension in fewer than %s of samples: %s. Low stability usually means an item relates to more than one dimension, overlaps heavily with another item, or is ambiguously worded. A commonly used cutoff is .70.",
+            interp_items_low = "Items that stay in their original dimension in fewer than %2$s of samples (%1$d): %3$s. Low stability usually means an item relates to more than one dimension, overlaps heavily with another item, or is ambiguously worded. A commonly used cutoff is .70.",
             interp_items_ok = "Every item stays in its original dimension in at least %s of samples, which supports the stability of the structure.",
             interp_next = "Next step: if some items are unstable, check them for redundancy (the Redundancy (UVA) box) and for content before deciding to remove or rewrite them, then run the analysis again, with the bootstrap, on the revised item set. Report the number of samples, the bootstrap type and the seed.",
             plot_stability = "Proportion of samples in the original dimension",
@@ -419,11 +420,11 @@
         ),
         groups = list(
             intro = "This section compares the network of the items between groups of people. With a grouping variable it compares independent groups (for example, women and men, or two countries). With a second measurement of the same items it compares the same people at two moments (for example, before and after an intervention).",
-            small_dropped = "Group(s) with fewer than 10 cases were left out of the comparison: %s. Networks cannot be estimated reliably with so few people.",
-            missing_group = "%d case(s) have no value in the grouping variable and were left out of the comparison between groups.",
+            small_dropped = "Groups with fewer than 10 cases were left out of the comparison: %s. Networks cannot be estimated reliably with so few people.",
+            missing_group = "Cases with no value in the grouping variable (%d) were left out of the comparison between groups.",
             need_two = "The comparison between independent groups needs at least two groups with 10 or more cases each, so it was not run.",
             pairwise = "The grouping variable has %d groups, so every pair of groups is compared separately. With many pairs, some differences will appear by chance: focus on differences that repeat across pairs or that survive the correction for multiple tests.",
-            paired_count = "The second measurement has %d variable(s), but the analysis uses %d items. Add one variable for each item, in the same order as the items, to compare the two measurements.",
+            paired_count = "Variables in the second measurement: %d. However, the analysis uses %d items. Add one variable for each item, in the same order as the items, to compare the two measurements.",
             nothing = "To compare groups, add a grouping variable (independent groups) or the items of a second measurement of the same people (paired groups)."
         ),
 
@@ -440,7 +441,7 @@
             failed = "EGAnetLab could not complete the invariance test: %s. The EGA results above are not affected. Check that every group has enough cases and that no item is constant within a group.",
             configural_failed = "Configural invariance was not reached: after removing the unstable items, fewer than two items keep a stability of %.2f or more, so there is no common structure to compare. The groups do not share the same dimensions; compare their networks with the Network Comparison Test or run the EGA within each group.",
             configural_ok = "Configural invariance: every item stays in its dimension in enough bootstrap samples, so all items were tested.",
-            configural_partial = "Configural invariance: %d item(s) were unstable and were left out before the metric test: %s.",
+            configural_partial = "Configural invariance: unstable items left out before the metric test (%d): %s.",
             guide = c(
                 "Loadings: the network loading of the item on its own dimension in each group.",
                 "Difference: loading in the first group minus loading in the second group.",
@@ -450,7 +451,7 @@
             interp_invariant = "No item shows a loading difference between groups beyond what is expected by chance (all p values above .05). The evidence supports metric invariance: the items relate to their dimensions with similar strength in the groups, so scores built from these dimensions can be compared between groups more safely.",
             interp_noninvariant = "Items whose loadings differ between groups (p of .05 or less), %d of %d: %s. These items relate to their dimension with different strength in each group, so a dimension score is not fully comparable: part of a group difference on the score could come from these items rather than from the construct.",
             interp_fdr_none = "None of these differences remains significant after the Benjamini-Hochberg correction for the number of items tested. Treat them as tentative: they may be chance findings, and they need replication in another sample.",
-            interp_fdr_some = "Item(s) that remain different after the Benjamini-Hochberg correction: %s. These are the clearest cases of non-invariance.",
+            interp_fdr_some = "Items that remain different after the Benjamini-Hochberg correction: %s. These are the clearest cases of non-invariance.",
             interp_partial = "Because some items were removed in the configural step, the metric test only applies to the remaining items. Report which items were removed and why.",
             interp_next = "Next step: review the content of the non-invariant items (wording, cultural meaning, relevance in each group). If they cannot be fixed, compare groups with scores that exclude them, or report the comparison with and without them. Report the structure tested, the number of permutations, the seed and both p values."
         ),
@@ -485,9 +486,9 @@
             interp_S_sig = "Global strength differs: %s in %s and %s in %s (%s). In one network the items are, overall, more strongly connected, which often goes with a more homogeneous or more severe presentation of the construct.",
             interp_S_ns = "Global strength is similar: %s in %s and %s in %s (%s). The overall level of connection among the items does not differ beyond chance.",
             interp_edges_none = "No individual connection differs after the correction for multiple tests.",
-            interp_edges_some = "%d connection(s) differ between the networks after the correction for multiple tests (see the edge table).",
+            interp_edges_some = "Connections that differ between the networks after the correction for multiple tests: %d (see the edge table).",
             interp_cen_none = "No item differs in centrality between the networks after the correction for multiple tests.",
-            interp_cen_some = "%d centrality value(s) differ between the networks after the correction for multiple tests (see the centrality table).",
+            interp_cen_some = "Centrality values that differ between the networks after the correction for multiple tests: %d (see the centrality table).",
             interp_next = "Next step: interpret differences in connections together with the invariance test, because a different network can change the meaning of a dimension score between groups. Report the estimator, the number of permutations, the seed, the correction and the size of each group."
         ),
 
@@ -505,10 +506,10 @@
             guide_raw = "Values are raw: strength and expected influence are sums of partial correlations, closeness and betweenness keep their own scales.",
             empty = "The estimated network has no edges, so centrality is not defined.",
             failed = "EGAnetLab could not compute centrality: %s.",
-            interp_top = "By strength, the most central item(s): %s. They share the most unique variance with the rest of the set. If they are also redundant (see Redundancy, UVA), their centrality may reflect overlapping content rather than importance.",
-            interp_low = "The least central item(s): %s. Weakly connected items add little to the network; check their network loadings and their stability.",
+            interp_top = "By strength, the most central items: %s. They share the most unique variance with the rest of the set. If they are also redundant (see Redundancy, UVA), their centrality may reflect overlapping content rather than importance.",
+            interp_low = "The least central items: %s. Weakly connected items add little to the network; check their network loadings and their stability.",
             interp_ei_same = "There are no negative connections, so expected influence orders the items exactly as strength does.",
-            interp_ei_diff = "%d item(s) have negative connections, so their expected influence is lower than their strength: %s. Check whether they are negatively worded or describe the opposite pole of the construct.",
+            interp_ei_diff = "Items with negative connections, whose expected influence is lower than their strength (%d): %s. Check whether they are negatively worded or describe the opposite pole of the construct.",
             interp_dims = "Centrality is computed over the whole network, across dimensions. An item can be central because it connects dimensions, not only because it is central within its own.",
             interp_closbetw = "Closeness and betweenness are shown because they were requested. In psychological networks they are often unstable and have no clear meaning (Bringmann et al., 2019); give them less weight than strength.",
             interp_next = "Next step: tick Stability of edges and centrality (bootnet) to check whether the order of the items by centrality holds before interpreting differences between items.",
@@ -698,9 +699,9 @@
             edges_note = "Los pesos son las correlaciones parciales de la red estimada (cada par de ítems, controlando por todos los demás), de la más fuerte a la más débil en valor absoluto. Un peso negativo indica que los dos ítems van en direcciones opuestas una vez que se mantiene constante el resto.",
             interp_dims_one = "EGA encontró una sola dimensión. La verificación de unidimensionalidad (%s) no separó los ítems en comunidades distintas, lo que respalda tratar el conjunto de ítems como medida de un único constructo.",
             interp_dims_many = "EGA encontró %d dimensiones. Los ítems se agrupan en %d comunidades de nodos densamente conectados, lo que sugiere %d constructos relacionados pero distintos.",
-            interp_isolated = "%d ítem(s) no están conectados con ningún otro y quedaron sin dimensión: %s. Los ítems aislados comparten poca varianza única con el resto; revise su redacción y contenido.",
+            interp_isolated = "Ítems sin conexión con ningún otro, que quedaron sin dimensión (%d): %s. Los ítems aislados comparten poca varianza única con el resto; revise su redacción y contenido.",
             interp_tefi = "TEFI = %s. Compárelo con el TEFI de una estructura alternativa (por ejemplo, la teórica) estimada con los mismos datos; el valor más bajo indica la estructura con mejor ajuste.",
-            interp_low_loadings = "%d ítem(s) tienen una carga de red dominante menor que 0.15 (pequeña): %s. Su asignación tiene poco respaldo; la sección Stability (bootstrap) mostrará si se replica.",
+            interp_low_loadings = "Ítems con una carga de red dominante menor que 0.15, pequeña (%d): %s. Su asignación tiene poco respaldo; la sección Stability (bootstrap) mostrará si se replica.",
             interp_next = "Siguiente paso: marque Run bootstrap en la caja Stability (bootstrap) para verificar si el número de dimensiones y la pertenencia de cada ítem son estables entre remuestreos antes de interpretar la estructura. Usa exactamente las opciones de estimación de arriba.",
             loadings_failed = "No se pudieron calcular las cargas de red para esta estructura: %s.",
             loadings_all_singleton = "Cada ítem forma su propia comunidad, así que las cargas de red no están definidas."
@@ -844,7 +845,7 @@
             m_ega = "Factores correlacionados (EGA)",
             m_ega_same = "Factores correlacionados (EGA = orden inferior de hierEGA)",
             m_lower = "Factores correlacionados (orden inferior de hierEGA)",
-            m_higher = "Orden superior (%s factor(es) de orden superior)",
+            m_higher = "Orden superior (factores de orden superior: %s)",
             m_bifactor = "Bifactor (general + factores específicos de orden inferior)",
             failed = "lavaan no pudo ajustar este modelo: %s.",
             not_converged = "lavaan no alcanzó la convergencia; no interprete esta fila.",
@@ -890,7 +891,7 @@
 
         hier = list(
             intro = c(
-                "El EGA jerárquico (hierEGA; Jiménez et al., 2023; ver referencias) pregunta si las dimensiones se agrupan a su vez bajo dimensiones más amplias, de orden superior, como un factor general.",
+                "El EGA jerárquico (hierEGA; Jiménez et al., 2025; ver referencias) pregunta si las dimensiones se agrupan a su vez bajo dimensiones más amplias, de orden superior, como un factor general.",
                 "Trabaja en dos pasos: encuentra las dimensiones de orden inferior con el nivel inferior del algoritmo Louvain, calcula la puntuación de red de cada persona en ellas y luego aplica EGA a esas puntuaciones para hallar las dimensiones de orden superior. Louvain parte de valores aleatorios, así que usa la semilla fija 2026."
             ),
             guide = c(
@@ -909,7 +910,8 @@
             better_lower = "Dimensiones de orden inferior correlacionadas",
             better_higher = "Estructura jerárquica",
             interp_one_lower = "hierEGA encuentra una sola dimensión de orden inferior, así que no hay jerarquía que estimar.",
-            interp_dims = "hierEGA encuentra %s dimensiones de orden inferior agrupadas en %s dimensión(es) de orden superior.",
+            interp_dims = "hierEGA encuentra %s dimensiones de orden inferior agrupadas en %s dimensiones de orden superior.",
+            interp_dims_one = "hierEGA encuentra %s dimensiones de orden inferior agrupadas en 1 dimensión de orden superior.",
             interp_lower_same = "Las dimensiones de orden inferior son las mismas de la solución de EGA de arriba.",
             interp_lower_diff = "El nivel inferior tiene %s dimensiones frente a %s en la solución de EGA de arriba, y ubica %d de %d ítems como EGA. Ítems en otra dimensión: %s. El nivel inferior de Louvain tiende a dividir las dimensiones amplias, así que es esperable.",
             interp_no_higher = "Cada dimensión de orden inferior queda sola en el nivel superior, así que no hay evidencia de dimensiones más amplias que las agrupen.",
@@ -980,12 +982,12 @@
             no_pairs = "Ningún par alcanza wTO .20",
             failed = "EGAnetLab no pudo completar el análisis de redundancia: %s. Los resultados de EGA de arriba no se ven afectados.",
             interp_none = "Ningún par de ítems alcanza un wTO de %s, así que no hay evidencia de redundancia (dependencia local) con el punto de corte recomendado. Cada ítem aporta su propia información a la red.",
-            interp_borderline = "%d par(es) quedan entre .20 y el punto de corte (%s). No son redundantes según la regla recomendada, pero revise su redacción si además destacan en otros resultados (baja estabilidad o cargas bajas).",
-            interp_sets = "%d conjunto(s) redundante(s) con wTO de %s o más: %s. Los ítems de un conjunto comparten la mayoría de sus conexiones, así que juntos aportan menos información de la que sugiere su número y pueden atraer la estructura dimensional hacia sí.",
+            interp_borderline = "Pares entre .20 y el punto de corte de %2$s (%1$d). No son redundantes según la regla recomendada, pero revise su redacción si además destacan en otros resultados (baja estabilidad o cargas bajas).",
+            interp_sets = "Conjuntos redundantes con wTO de %2$s o más (%1$d): %3$s. Los ítems de un conjunto comparten la mayoría de sus conexiones, así que juntos aportan menos información de la que sugiere su número y pueden atraer la estructura dimensional hacia sí.",
             interp_suggest = "La regla automática de EGAnetLab conservaría %s y eliminaría %s. Tómelo como punto de partida: decida por el contenido (qué ítem cubre mejor el constructo, tiene la redacción más clara o es necesario para una escala equilibrada), y considere combinar ítems en lugar de eliminarlos cuando ambos cubren contenido esencial.",
-            interp_split = "Par(es) redundante(s) ubicados en dimensiones distintas: %s. Suele indicar un ítem que hace de puente entre dos dimensiones; revise su contenido antes de conservarlo.",
-            interp_unstable = "Ítem(s) que son a la vez redundantes e inestables en el bootstrap: %s. Son los candidatos más claros a revisión.",
-            interp_unstable_borderline = "Par(es) limítrofe(s) que incluyen un ítem inestable en el bootstrap: %s. El solapamiento está por debajo del punto de corte de redundancia, pero puede explicar por qué el ítem cambia de dimensión entre muestras; revise la redacción de ambos ítems.",
+            interp_split = "Pares redundantes ubicados en dimensiones distintas: %s. Suele indicar un ítem que hace de puente entre dos dimensiones; revise su contenido antes de conservarlo.",
+            interp_unstable = "Ítems que son a la vez redundantes e inestables en el bootstrap: %s. Son los candidatos más claros a revisión.",
+            interp_unstable_borderline = "Pares limítrofes que incluyen un ítem inestable en el bootstrap: %s. El solapamiento está por debajo del punto de corte de redundancia, pero puede explicar por qué el ítem cambia de dimensión entre muestras; revise la redacción de ambos ítems.",
             interp_next = "Siguiente paso: si elimina o combina ítems, vuelva a ejecutar el análisis con el conjunto revisado y compare el número de dimensiones y la estabilidad con la solución original. No compare valores de TEFI entre el conjunto original y el revisado: el TEFI solo es comparable entre estructuras de los mismos ítems. Informe el punto de corte y los ítems que cambió."
         ),
 
@@ -1009,9 +1011,9 @@
             interp_mode_match = "En %d muestras, la solución más frecuente tiene %d dimensiones (%s de las muestras), el mismo número hallado en la muestra original. La mediana es %s, y el 95%% de las muestras está entre %s y %s dimensiones.",
             interp_mode_mismatch = "En %d muestras, la solución más frecuente tiene %d dimensiones (%s de las muestras), mientras que la muestra original mostró %d. La estructura original no es la típica entre muestras; interprétela con cautela y revise qué ítems son inestables. La mediana es %s, y el 95%% de las muestras está entre %s y %s dimensiones.",
             interp_mode_weak = "La solución más frecuente aparece solo en %s de las muestras, por debajo del punto de corte de %s, así que el número de dimensiones en sí no está firmemente establecido: las soluciones vecinas también son comunes. Informe la distribución completa de frecuencias, no solo el valor más frecuente.",
-            interp_dims_low = "Dimensión(es) con consistencia estructural menor que %s: %s. Estas dimensiones a menudo no se reproducen con exactamente los mismos ítems; por lo general uno o más de sus ítems pasan a otra dimensión en algunas muestras (ver estabilidad de los ítems).",
+            interp_dims_low = "Dimensiones con consistencia estructural menor que %s: %s. Estas dimensiones a menudo no se reproducen con exactamente los mismos ítems; por lo general uno o más de sus ítems pasan a otra dimensión en algunas muestras (ver estabilidad de los ítems).",
             interp_dims_ok = "Cada dimensión reaparece con exactamente los mismos ítems en al menos %s de las muestras.",
-            interp_items_low = "%d ítem(s) permanecen en su dimensión original en menos de %s de las muestras: %s. Una estabilidad baja suele indicar que el ítem se relaciona con más de una dimensión, se superpone mucho con otro ítem o tiene una redacción ambigua. Un punto de corte de uso común es .70.",
+            interp_items_low = "Ítems que permanecen en su dimensión original en menos de %2$s de las muestras (%1$d): %3$s. Una estabilidad baja suele indicar que el ítem se relaciona con más de una dimensión, se superpone mucho con otro ítem o tiene una redacción ambigua. Un punto de corte de uso común es .70.",
             interp_items_ok = "Cada ítem permanece en su dimensión original en al menos %s de las muestras, lo que respalda la estabilidad de la estructura.",
             interp_next = "Siguiente paso: si hay ítems inestables, revise su redundancia (caja Redundancy (UVA)) y su contenido antes de decidir eliminarlos o reescribirlos; luego vuelva a ejecutar el análisis, con el bootstrap, sobre el conjunto revisado. Informe el número de muestras, el tipo de bootstrap y la semilla.",
             plot_stability = "Proporción de muestras en la dimensión original",
@@ -1023,10 +1025,10 @@
         groups = list(
             intro = "Esta sección compara la red de los ítems entre grupos de personas. Con una variable de agrupación compara grupos independientes (por ejemplo, mujeres y hombres, o dos países). Con una segunda medición de los mismos ítems compara a las mismas personas en dos momentos (por ejemplo, antes y después de una intervención).",
             small_dropped = "Se dejaron fuera de la comparación los grupos con menos de 10 casos: %s. Con tan pocas personas no es posible estimar redes de forma fiable.",
-            missing_group = "%d caso(s) no tienen valor en la variable de agrupación y se dejaron fuera de la comparación entre grupos.",
+            missing_group = "Casos sin valor en la variable de agrupación (%d), que se dejaron fuera de la comparación entre grupos.",
             need_two = "La comparación entre grupos independientes necesita al menos dos grupos con 10 casos o más cada uno, así que no se ejecutó.",
             pairwise = "La variable de agrupación tiene %d grupos, así que cada par de grupos se compara por separado. Con muchos pares, algunas diferencias aparecerán por azar: céntrese en las diferencias que se repiten entre pares o que se mantienen tras la corrección por pruebas múltiples.",
-            paired_count = "La segunda medición tiene %d variable(s), pero el análisis usa %d ítems. Agregue una variable por cada ítem, en el mismo orden de los ítems, para comparar las dos mediciones.",
+            paired_count = "Variables en la segunda medición: %d. Sin embargo, el análisis usa %d ítems. Agregue una variable por cada ítem, en el mismo orden de los ítems, para comparar las dos mediciones.",
             nothing = "Para comparar grupos, agregue una variable de agrupación (grupos independientes) o los ítems de una segunda medición de las mismas personas (grupos pareados)."
         ),
 
@@ -1043,7 +1045,7 @@
             failed = "EGAnetLab no pudo completar la prueba de invarianza: %s. Los resultados del EGA de arriba no se ven afectados. Revise que cada grupo tenga suficientes casos y que ningún ítem sea constante dentro de un grupo.",
             configural_failed = "No se alcanzó la invarianza configural: tras quitar los ítems inestables, menos de dos ítems conservan una estabilidad de %.2f o más, así que no hay una estructura común que comparar. Los grupos no comparten las mismas dimensiones; compare sus redes con el Network Comparison Test o ejecute el EGA dentro de cada grupo.",
             configural_ok = "Invarianza configural: todos los ítems se mantienen en su dimensión en suficientes muestras bootstrap, así que se evaluaron todos.",
-            configural_partial = "Invarianza configural: %d ítem(s) fueron inestables y se excluyeron antes de la prueba métrica: %s.",
+            configural_partial = "Invarianza configural: ítems inestables excluidos antes de la prueba métrica (%d): %s.",
             guide = c(
                 "Cargas: la carga de red del ítem en su propia dimensión en cada grupo.",
                 "Diferencia: carga en el primer grupo menos carga en el segundo grupo.",
@@ -1053,7 +1055,7 @@
             interp_invariant = "Ningún ítem muestra una diferencia de carga entre grupos mayor que la esperable por azar (todos los valores p son mayores que .05). La evidencia apoya la invarianza métrica: los ítems se relacionan con sus dimensiones con una fuerza similar en los grupos, así que las puntuaciones de estas dimensiones pueden compararse entre grupos con más seguridad.",
             interp_noninvariant = "Ítems cuyas cargas difieren entre grupos (p de .05 o menor), %d de %d: %s. Estos ítems se relacionan con su dimensión con distinta fuerza en cada grupo, así que la puntuación de la dimensión no es del todo comparable: parte de una diferencia entre grupos en la puntuación podría deberse a estos ítems y no al constructo.",
             interp_fdr_none = "Ninguna de estas diferencias sigue siendo significativa tras la corrección de Benjamini-Hochberg por el número de ítems evaluados. Considérelas tentativas: pueden ser hallazgos por azar y necesitan replicarse en otra muestra.",
-            interp_fdr_some = "Ítem(s) que siguen siendo diferentes tras la corrección de Benjamini-Hochberg: %s. Son los casos más claros de falta de invarianza.",
+            interp_fdr_some = "Ítems que siguen siendo diferentes tras la corrección de Benjamini-Hochberg: %s. Son los casos más claros de falta de invarianza.",
             interp_partial = "Como algunos ítems se excluyeron en el paso configural, la prueba métrica solo se aplica a los ítems restantes. Informe qué ítems se excluyeron y por qué.",
             interp_next = "Siguiente paso: revise el contenido de los ítems no invariantes (redacción, significado cultural, pertinencia en cada grupo). Si no pueden corregirse, compare los grupos con puntuaciones que los excluyan, o informe la comparación con y sin ellos. Informe la estructura evaluada, el número de permutaciones, la semilla y ambos valores p."
         ),
@@ -1088,9 +1090,9 @@
             interp_S_sig = "La fuerza global difiere: %s en %s y %s en %s (%s). En una de las redes los ítems están, en conjunto, más fuertemente conectados, lo que suele acompañar una presentación más homogénea o más intensa del constructo.",
             interp_S_ns = "La fuerza global es similar: %s en %s y %s en %s (%s). El nivel general de conexión entre los ítems no difiere más allá del azar.",
             interp_edges_none = "Ninguna conexión individual difiere tras la corrección por pruebas múltiples.",
-            interp_edges_some = "%d conexión(es) difieren entre las redes tras la corrección por pruebas múltiples (ver la tabla de aristas).",
+            interp_edges_some = "Conexiones que difieren entre las redes tras la corrección por pruebas múltiples: %d (ver la tabla de aristas).",
             interp_cen_none = "Ningún ítem difiere en centralidad entre las redes tras la corrección por pruebas múltiples.",
-            interp_cen_some = "%d valor(es) de centralidad difieren entre las redes tras la corrección por pruebas múltiples (ver la tabla de centralidad).",
+            interp_cen_some = "Valores de centralidad que difieren entre las redes tras la corrección por pruebas múltiples: %d (ver la tabla de centralidad).",
             interp_next = "Siguiente paso: interprete las diferencias en las conexiones junto con la prueba de invarianza, porque una red distinta puede cambiar el significado de la puntuación de una dimensión entre grupos. Informe el estimador, el número de permutaciones, la semilla, la corrección y el tamaño de cada grupo."
         ),
 
@@ -1108,10 +1110,10 @@
             guide_raw = "Los valores están sin estandarizar: la fuerza y la influencia esperada son sumas de correlaciones parciales; la cercanía y la intermediación conservan sus propias escalas.",
             empty = "La red estimada no tiene aristas, así que la centralidad no está definida.",
             failed = "EGAnetLab no pudo calcular la centralidad: %s.",
-            interp_top = "Por fuerza, el o los ítems más centrales: %s. Son los que comparten más varianza única con el resto del conjunto. Si además son redundantes (ver Redundancia, UVA), su centralidad puede reflejar contenido solapado más que importancia.",
-            interp_low = "El o los ítems menos centrales: %s. Los ítems débilmente conectados aportan poco a la red; revise sus cargas de red y su estabilidad.",
+            interp_top = "Por fuerza, los ítems más centrales: %s. Son los que comparten más varianza única con el resto del conjunto. Si además son redundantes (ver Redundancia, UVA), su centralidad puede reflejar contenido solapado más que importancia.",
+            interp_low = "Los ítems menos centrales: %s. Los ítems débilmente conectados aportan poco a la red; revise sus cargas de red y su estabilidad.",
             interp_ei_same = "No hay conexiones negativas, así que la influencia esperada ordena los ítems exactamente igual que la fuerza.",
-            interp_ei_diff = "%d ítem(s) tienen conexiones negativas, por lo que su influencia esperada es menor que su fuerza: %s. Revise si están redactados en negativo o describen el polo opuesto del constructo.",
+            interp_ei_diff = "Ítems con conexiones negativas, cuya influencia esperada es menor que su fuerza (%d): %s. Revise si están redactados en negativo o describen el polo opuesto del constructo.",
             interp_dims = "La centralidad se calcula sobre toda la red, a través de las dimensiones. Un ítem puede ser central porque conecta dimensiones, no solo porque sea central dentro de la suya.",
             interp_closbetw = "La cercanía y la intermediación se muestran porque se pidieron. En redes psicológicas suelen ser inestables y no tienen un significado claro (Bringmann et al., 2019); deles menos peso que a la fuerza.",
             interp_next = "Siguiente paso: marque Stability of edges and centrality (bootnet) para comprobar si el orden de los ítems por centralidad se mantiene antes de interpretar diferencias entre ítems.",
