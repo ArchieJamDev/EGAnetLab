@@ -77,29 +77,40 @@ EGAnetLab puts that whole toolkit in jamovi's point-and-click interface:
 
 ## Screenshots
 
-<!-- Images go in docs/screenshots/. Replace each file keeping its name. -->
-
 <p align="center">
-  <img src="docs/screenshots/demo.gif" alt="EGAnetLab demo" width="85%">
-  <br><em>From item selection to dimensions, stability and interpretation.</em>
+  <img src="docs/screenshots/demo.gif" width="100%" alt="EGAnetLab demo">
 </p>
 
-<table>
+<table width="100%">
   <tr>
-    <td width="50%"><img src="docs/screenshots/menu.png" width="100%" alt="EGAnet Lab menu"><br><em>The EGAnet Lab menu in jamovi.</em></td>
-    <td width="50%"><img src="docs/screenshots/ega-options.png" width="100%" alt="EGA options"><br><em>Every estimation choice explained in the options panel.</em></td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/ega-network.png" width="100%" alt="EGA network plot">
+      <p><em>Item network coloured by dimension, with the EGAnet Lab menu in jamovi</em></p>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/ega-wording.png" width="100%" alt="Random-intercept EGA">
+      <p><em>Wording effects with random-intercept EGA (riEGA)</em></p>
+    </td>
   </tr>
   <tr>
-    <td width="50%"><img src="docs/screenshots/ega-network.png" width="100%" alt="EGA network plot"><br><em>Item network coloured by dimension.</em></td>
-    <td width="50%"><img src="docs/screenshots/ega-results.png" width="100%" alt="EGA results"><br><em>Dimensions, membership, network loadings and interpretation.</em></td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/bootega-stability.png" width="100%" alt="bootEGA item stability">
+      <p><em>Bootstrap stability of each item</em></p>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/hierarchical.png" width="100%" alt="Hierarchical EGA">
+      <p><em>Hierarchical structure (hierEGA)</em></p>
+    </td>
   </tr>
   <tr>
-    <td width="50%"><img src="docs/screenshots/bootega-stability.png" width="100%" alt="bootEGA stability"><br><em>Bootstrap stability of items and dimensions.</em></td>
-    <td width="50%"><img src="docs/screenshots/uva-redundancy.png" width="100%" alt="UVA redundancy"><br><em>Redundant items flagged by Unique Variable Analysis.</em></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="docs/screenshots/invariance.png" width="100%" alt="Invariance"><br><em>Comparing network structure across groups.</em></td>
-    <td width="50%"><img src="docs/screenshots/centrality.png" width="100%" alt="Centrality"><br><em>Centrality indices with bootnet stability.</em></td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/centrality.png" width="100%" alt="Centrality stability">
+      <p><em>Centrality and its stability (bootnet)</em></p>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/dynamic-ega.png" width="100%" alt="Dynamic EGA">
+      <p><em>Dynamic EGA for intensive longitudinal data</em></p>
+    </td>
   </tr>
 </table>
 
@@ -119,7 +130,7 @@ explanation.
 | **Bootstrap EGA** (`bootEGA`) | Would the same dimensions appear in hundreds of resamples, or are they sample noise? | ✅ 0.1.0 (in EGA, Stability section) |
 | **Hierarchical EGA** (`hierEGA`) | Do the specific dimensions sit under one or more higher-order factors? | ✅ 0.1.0 (in EGA, Hierarchical and wording section) |
 | **Random-intercept EGA** (`riEGA`) | Are positively and negatively worded items splitting into method dimensions? | ✅ 0.1.0 (in EGA, Hierarchical and wording section) |
-| **Dynamic EGA** (`dynEGA`) | How does the structure unfold over time, per person, per group or for the population? | ✅ Available (own analysis: EGAnet Lab › Dynamic EGA) |
+| **Dynamic EGA** (`dynEGA`) | How does the structure unfold over time, per person, per group or for the population? | ✅ 0.1.0 (own analysis: EGAnet Lab › Dynamic EGA) |
 
 ### 2. Diagnosis and psychometric quality
 
@@ -129,8 +140,8 @@ explanation.
 | **Item & dimension stability** | What percentage of resamples place each item in the same dimension? | ✅ 0.1.0 (in EGA, Stability section) |
 | **Unique Variable Analysis** (`UVA`) | Which items are redundant and should be removed or combined? | ✅ 0.1.0 (in EGA, Redundancy section) |
 | **Network scores** (`net.scores`) | What is each person's score per dimension (network score or item mean), saved back to the data? | ✅ 0.1.0 (in EGA, Network scores section) |
-| **Invariance** (`invariance` + NetworkComparisonTest) | Is the structure equivalent across groups, or before and after an intervention? | ✅ Done (in EGA, Group comparison section) |
-| **Confirmatory test** (`CFA`) | Does the EGA structure hold as a confirmatory factor model, also in a random confirmation subsample? | ✅ 0.1.0 (in EGA, CFA section) |
+| **Invariance** (`invariance` + NetworkComparisonTest) | Is the structure equivalent across groups, or before and after an intervention? | ✅ 0.1.0 (in EGA, Group comparison section) |
+| **Confirmatory test** (`CFA`) | Does the EGA structure hold as a confirmatory factor model, also when EGA explores one random SubMuestra and CFA confirms in the other? | ✅ 0.1.0 (in EGA, CFA section) |
 
 ### 3. Information theory and fit
 
@@ -142,9 +153,18 @@ explanation.
 
 | Analysis | Question it answers | Status |
 |---|---|---|
-| **Compare networks** (`compare.EGA.plots`) | How do two structures look side by side? | 🗓 Planned |
+| **Compare networks** (`compare.EGA.plots`) | How do two structures look side by side? | 🗓 Planned after 0.1.0 |
 | **Centrality** (qgraph + bootnet) | Which items are central, and are those indices stable (CS-coefficient)? | ✅ 0.1.0 (in EGA, Centrality and network stability section) |
 | **Edge accuracy** (bootnet) | How precise is each edge weight (bootstrap confidence intervals)? | ✅ 0.1.0 (in EGA, Centrality and network stability section) |
+
+### 5. Reporting
+
+| Feature | What it gives you | Status |
+|---|---|---|
+| **Key findings summary** | The report of EGA and Dynamic EGA opens with the main findings, the uncertainties and the warnings, one sentence each, naming the section that explains it | ✅ 0.1.0 |
+| **Explained choices** | A section that restates every estimation choice you made and what it means | ✅ 0.1.0 |
+| **Report in English or Spanish** | Guides and interpretations in the language you choose; menus follow jamovi's language | ✅ 0.1.0 |
+| **Native citations** | Each table cites its sources in jamovi's reference format; the full APA list is in [`docs/Bibliography.md`](docs/Bibliography.md) | ✅ 0.1.0 |
 
 ---
 
@@ -159,9 +179,9 @@ three kinds of items, and adapts the correlation to each:
 | **Ordinal** | Likert items with up to 7 categories | Polychoric |
 | **Dichotomous** | Right/wrong test items, yes/no symptoms | Tetrachoric |
 
-And, as the analyses grow, these designs:
+And these designs:
 
-- **Cross-sectional** samples (EGA, bootEGA, UVA, TEFI).
+- **Cross-sectional** samples (EGA, bootEGA, UVA, TEFI, CFA, centrality).
 - **Scales with reversed items** and wording effects (riEGA).
 - **Hierarchical** constructs (hierEGA).
 - **Two or more groups**, independent or paired pre/post (invariance,
@@ -182,7 +202,7 @@ author preparing a figure gets full control:
 | Group | Options |
 |---|---|
 | **Layout** | Fruchterman-Reingold, Kamada-Kawai, circle and other `sna` layouts |
-| **Nodes** | Size, shape, transparency, border, palette (jamovi, Okabe-Ito colorblind, viridis) |
+| **Nodes** | Size, shape, transparency, border, palette (EGAnetLab default, Okabe-Ito colorblind, viridis) |
 | **Labels** | Size, colour, item names or abbreviations |
 | **Edges** | Width, positive/negative colours, transparency, line type, edge-weight labels, minimum weight shown |
 | **Legend** | Show/hide, position, size |
@@ -205,6 +225,9 @@ author preparing a figure gets full control:
 ---
 
 ## Installation
+
+EGAnetLab is not yet in the official jamovi Library (submission in
+preparation). Until then, install it from a release file.
 
 ### From a release (recommended)
 
@@ -283,6 +306,8 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 | 6 | Centrality and network stability (edge accuracy, CS-coefficient) | ✅ Done |
 | 7 | Dynamic EGA for longitudinal and intensive data | ✅ Done |
 | 8 | Key findings summary at the top of each report (findings, uncertainties, warnings) | ✅ Done |
+| 9 | Review for the jamovi Library: references, icon, example datasets, stress tests, README | 🔄 In progress |
+| Next | Side-by-side network comparison (`compare.EGA.plots`) | 🗓 Planned |
 
 See [NEWS.md](NEWS.md) for what changed in each version.
 
@@ -336,8 +361,12 @@ Copyright © 2026 Arquímedes De León Chacón Chacón
 (EGA) basado en el paquete de R EGAnet. Permite estimar cuántas dimensiones
 mide un conjunto de ítems y qué ítems pertenecen a cada una, y luego evaluar
 la solidez de esa respuesta: estabilidad por bootstrap, redundancia (UVA),
-ajuste (TEFI), estructuras jerárquicas, efectos de redacción, invarianza entre
-grupos (incluido pre/post) y cambio en el tiempo.
+cargas y puntuaciones de red, ajuste (TEFI) y comparación de estructuras,
+análisis factorial confirmatorio (también con SubMuestras de Exploración y
+Confirmación), estructuras jerárquicas, efectos de redacción, invarianza entre
+grupos (incluido pre/post), centralidad y su estabilidad, y cambio en el
+tiempo (EGA dinámico). Cada informe abre con un Resumen de hallazgos:
+hallazgos principales, incertidumbres y advertencias.
 
 Trabaja con ítems continuos, ordinales y dicotómicos. Cada opción del menú
 incluye un párrafo que explica qué hace y cuándo conviene elegirla, y los
@@ -345,7 +374,8 @@ resultados se acompañan de guías e interpretaciones en español o inglés. Los
 gráficos de red son altamente configurables (disposición, nodos, etiquetas,
 aristas y leyenda) y usan paletas aptas para daltonismo.
 
-Para instalarlo, descargue el archivo `.jmo` desde
+Aún no está en la Biblioteca oficial de jamovi (envío en preparación). Para
+instalarlo, descargue el archivo `.jmo` desde
 [Releases](https://github.com/ArchieJamDev/EGAnetLab/releases) y, en jamovi,
 use **⋮** → **Modules** → **Install from file**.
 
