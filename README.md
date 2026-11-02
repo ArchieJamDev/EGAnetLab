@@ -76,29 +76,40 @@ EGAnetLab puts that whole toolkit in jamovi's point-and-click interface:
 
 ## Screenshots
 
-<!-- Images go in docs/screenshots/. Replace each file keeping its name. -->
-
 <p align="center">
-  <img src="docs/screenshots/demo.gif" alt="EGAnetLab demo" width="85%">
-  <br><em>From item selection to dimensions, stability and interpretation.</em>
+  <img src="docs/screenshots/demo.gif" width="100%" alt="EGAnetLab demo">
 </p>
 
-<table>
+<table width="100%">
   <tr>
-    <td width="50%"><img src="docs/screenshots/menu.png" width="100%" alt="EGAnet Lab menu"><br><em>The EGAnet Lab menu in jamovi.</em></td>
-    <td width="50%"><img src="docs/screenshots/ega-options.png" width="100%" alt="EGA options"><br><em>Every estimation choice explained in the options panel.</em></td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/ega-network.png" width="100%" alt="EGA network plot">
+      <p><em>Item network coloured by dimension, with the EGAnet Lab menu in jamovi</em></p>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/ega-wording.png" width="100%" alt="Random-intercept EGA">
+      <p><em>Wording effects with random-intercept EGA (riEGA)</em></p>
+    </td>
   </tr>
   <tr>
-    <td width="50%"><img src="docs/screenshots/ega-network.png" width="100%" alt="EGA network plot"><br><em>Item network coloured by dimension.</em></td>
-    <td width="50%"><img src="docs/screenshots/ega-results.png" width="100%" alt="EGA results"><br><em>Dimensions, membership, network loadings and interpretation.</em></td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/bootega-stability.png" width="100%" alt="bootEGA item stability">
+      <p><em>Bootstrap stability of each item</em></p>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/hierarchical.png" width="100%" alt="Hierarchical EGA">
+      <p><em>Hierarchical structure (hierEGA)</em></p>
+    </td>
   </tr>
   <tr>
-    <td width="50%"><img src="docs/screenshots/bootega-stability.png" width="100%" alt="bootEGA stability"><br><em>Bootstrap stability of items and dimensions.</em></td>
-    <td width="50%"><img src="docs/screenshots/uva-redundancy.png" width="100%" alt="UVA redundancy"><br><em>Redundant items flagged by Unique Variable Analysis.</em></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="docs/screenshots/invariance.png" width="100%" alt="Invariance"><br><em>Comparing network structure across groups.</em></td>
-    <td width="50%"><img src="docs/screenshots/centrality.png" width="100%" alt="Centrality"><br><em>Centrality indices with bootnet stability.</em></td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/centrality.png" width="100%" alt="Centrality stability">
+      <p><em>Centrality and its stability (bootnet)</em></p>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/dynamic-ega.png" width="100%" alt="Dynamic EGA">
+      <p><em>Dynamic EGA for intensive longitudinal data</em></p>
+    </td>
   </tr>
 </table>
 
