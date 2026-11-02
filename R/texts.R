@@ -287,7 +287,7 @@
 
         hier = list(
             intro = c(
-                "Hierarchical EGA (hierEGA; Jiménez et al., 2023; see references) asks whether the dimensions are themselves grouped under broader, higher-order dimensions, such as a general factor.",
+                "Hierarchical EGA (hierEGA; Jiménez et al., 2025; see references) asks whether the dimensions are themselves grouped under broader, higher-order dimensions, such as a general factor.",
                 "It works in two steps: it finds the lower-order dimensions with the lower level of the Louvain algorithm, computes each person's network score on them, and then runs EGA on those scores to find the higher-order dimensions. Louvain starts from random values, so it uses the fixed seed 2026."
             ),
             guide = c(
@@ -890,7 +890,7 @@
 
         hier = list(
             intro = c(
-                "El EGA jerárquico (hierEGA; Jiménez et al., 2023; ver referencias) pregunta si las dimensiones se agrupan a su vez bajo dimensiones más amplias, de orden superior, como un factor general.",
+                "El EGA jerárquico (hierEGA; Jiménez et al., 2025; ver referencias) pregunta si las dimensiones se agrupan a su vez bajo dimensiones más amplias, de orden superior, como un factor general.",
                 "Trabaja en dos pasos: encuentra las dimensiones de orden inferior con el nivel inferior del algoritmo Louvain, calcula la puntuación de red de cada persona en ellas y luego aplica EGA a esas puntuaciones para hallar las dimensiones de orden superior. Louvain parte de valores aleatorios, así que usa la semilla fija 2026."
             ),
             guide = c(

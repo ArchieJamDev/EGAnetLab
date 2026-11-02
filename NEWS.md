@@ -1,5 +1,18 @@
 # EGAnetLab 0.1.0 (development)
 
+## References review before jamovi submission
+
+* `docs/Bibliography.md` now lists all 23 sources cited by the module in
+  APA 7th edition (it listed only 8, several still marked as planned),
+  grouped by analysis, and states the rule that every key in
+  `jamovi/00refs.yaml` is listed there and every source cited in the
+  report text is in `jamovi/00refs.yaml`.
+* Every reference now has a working link. Jiménez et al. is cited with
+  its print issue (2025, *Psychological Methods, 30*(4), 770–792, with
+  DOI); Schermelleh-Engel et al. (2003) gets its PsychArchives DOI; the
+  Boker et al. (2010) chapter, which has no DOI, links to the publisher's
+  page for the book.
+
 ## Key findings summary (phase 8)
 
 * EGA and Dynamic EGA reports open with a **Key findings** summary right
