@@ -1924,7 +1924,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (!is.na(n_lower) && n_lower <= 1) {
                 paragraphs <- c(paragraphs, txt("hier", "interp_one_lower"))
             } else {
-                paragraphs <- c(paragraphs, sprintf(txt("hier", "interp_dims"), n_lower, dash(as.character(n_higher))))
+                paragraphs <- c(paragraphs, sprintf(txt("hier", if (identical(as.numeric(n_higher), 1)) "interp_dims_one" else "interp_dims"), n_lower, dash(as.character(n_higher))))
                 if (length(agree$moved) == 0 && n_lower == length(unique(stats::na.omit(ref))))
                     paragraphs <- c(paragraphs, txt("hier", "interp_lower_same"))
                 else
