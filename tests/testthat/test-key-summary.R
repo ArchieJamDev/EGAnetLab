@@ -73,3 +73,24 @@ test_that("Dynamic EGA opens with the key findings", {
     expect_match(html, "schedule variables: Beep", fixed = TRUE)
     expect_match(html, "Individual structures were not estimated", fixed = TRUE)
 })
+
+test_that("a TEFI notice names the analysis that produced it", {
+    raw <- "Some variables did not belong to a dimension: EV8, PL12.Ord1 \n\nUse caution: These variables have been removed from the TEFI calculation"
+    tagged <- EGAnetLab:::.el_tag_notices(c(raw, "Other warning"), "hierEGA")
+    expect_equal(tagged[2], "Other warning")
+    out <- EGAnetLab:::.el_translate_notices(tagged, "es")
+    expect_true(any(grepl("Ítems sin dimensión en hierEGA, excluidos del cálculo del TEFI: EV8, PL12.", out, fixed = TRUE)))
+    expect_false(any(grepl("@@", out, fixed = TRUE)))
+    # A second tag keeps the first source.
+    expect_equal(EGAnetLab:::.el_tag_notices(tagged, "CFA"), tagged)
+    out_plain <- EGAnetLab:::.el_translate_notices(raw, "en")
+    expect_equal(out_plain, "Items without a dimension, left out of the TEFI calculation: EV8, PL12.")
+})
+
+test_that("compare membership shows numbers, not internal labels", {
+    wc <- c(a = "1", b = "1", c = "x", d = "y")
+    ref <- c(a = "1", b = "1", c = "2", d = "2")
+    aligned <- EGAnetLab:::.el_align_wc(wc, ref)
+    shown <- EGAnetLab:::.el_number_new(aligned, ref)
+    expect_false(any(grepl("new", shown)))
+})

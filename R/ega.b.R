@@ -459,7 +459,23 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Notas: cada advertencia de EGAnet se muestra, nunca se
             # suprime.
             # -----------------------------------------------------------------
-            warnings <- unique(c(fit$warnings, score_warnings, compare_warnings, hier_warnings, ri_warnings, boot_warnings, uva_warnings, cfa_warnings, cen_warnings, bn_warnings, group_warnings))
+            # Each section's warnings carry its name, so a notice about
+            # items without a dimension says which analysis produced it.
+            # ES: Las advertencias de cada sección llevan su nombre, para que
+            # un aviso sobre ítems sin dimensión diga qué análisis lo produjo.
+            tag <- .el_tag_notices
+            warnings <- unique(c(
+                tag(fit$warnings, tr("the main EGA", "el EGA principal")),
+                tag(score_warnings, tr("Scores", "Puntuaciones")),
+                tag(compare_warnings, tr("Compare structures", "Comparar estructuras")),
+                tag(hier_warnings, "hierEGA"),
+                tag(ri_warnings, "riEGA"),
+                tag(boot_warnings, tr("the bootstrap samples", "las muestras bootstrap")),
+                tag(uva_warnings, "UVA"),
+                tag(cfa_warnings, "CFA"),
+                tag(cen_warnings, tr("Centrality", "Centralidad")),
+                tag(bn_warnings, tr("Network stability", "Estabilidad de la red")),
+                tag(group_warnings, tr("the group comparison", "la comparación entre grupos"))))
             # Purely informative package notices are left out (Archie's
             # request): the report already states what they say.
             # ES: Se omiten los avisos puramente informativos de los
@@ -692,7 +708,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         data = d, corr = self$options$corr, na.data = self$options$naData,
                         model = self$options$model, algorithm = self$options$algorithm,
                         uni.method = self$options$uniMethod, plot.EGA = FALSE, verbose = FALSE))
-                    warnings <- c(warnings, ega_p$warnings)
+                    warnings <- c(warnings, .el_tag_notices(ega_p$warnings, paste0(tr("SubSample ", "SubMuestra "), p)))
                     samples[[p]] <- list(
                         data = d, ega = ega_p$value, error = ega_p$error,
                         wc = if (!is.null(ega_p$value)) .el_align_wc(ega_p$value$wc, wc_total) else NULL)
@@ -1717,11 +1733,16 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             shown <- Filter(function(st) st$kind != "ega" && !is.null(st$wc), structures)
             for (st in shown)
                 members$addColumn(name = st$key, title = st$label, type = "text")
+            # Dimensions with no match in EGA get the next free numbers.
+            # ES: Las dimensiones sin par en EGA reciben los números libres
+            # siguientes.
+            shown_wc <- lapply(shown, function(st) if (st$kind == "theory") NULL else .el_number_new(st$agree$aligned, ref))
+            names(shown_wc) <- vapply(shown, function(st) st$key, character(1))
             for (i in seq_along(items)) {
                 item <- items[i]
                 values <- list(item = item, ega = if (is.na(ref[[item]])) "—" else ref[[item]])
                 for (st in shown) {
-                    label <- if (st$kind == "theory") st$wc[[item]] else st$agree$aligned[[item]]
+                    label <- if (st$kind == "theory") st$wc[[item]] else shown_wc[[st$key]][[item]]
                     values[[st$key]] <- if (is.na(label)) "—" else label
                 }
                 .el_add_row(members, i, values)

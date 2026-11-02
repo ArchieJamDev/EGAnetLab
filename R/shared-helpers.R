@@ -464,6 +464,27 @@
 }
 
 # -----------------------------------------------------------------------------
+# .el_tag_notices()
+#
+# Input: warnings - character vector; source - name of the analysis that
+#   produced them.
+# Output: the same warnings; those about items without a dimension get the
+#   source appended after a "@@" marker, which .el_translate_notices() reads.
+#   A warning that already has a source keeps it.
+# ES: Salida: las mismas advertencias; las de ítems sin dimensión llevan el
+#   origen añadido tras una marca "@@", que lee .el_translate_notices(). Una
+#   advertencia que ya tiene origen lo conserva.
+# -----------------------------------------------------------------------------
+.el_tag_notices <- function(warnings, source) {
+    if (length(warnings) == 0)
+        return(character(0))
+    hit <- grepl("did not belong to a dimension", warnings, fixed = TRUE) &
+        !grepl("@@", warnings, fixed = TRUE)
+    warnings[hit] <- paste0(warnings[hit], "@@", source)
+    warnings
+}
+
+# -----------------------------------------------------------------------------
 # .el_translate_notices()
 #
 # Input: warnings - messages left after .el_drop_notices(); lang.
@@ -487,9 +508,16 @@
             items <- sub("\\.(DerivOrd|Ord)[0-9]+$", "", trimws(strsplit(m[2], ",")[[1]]))
             if (all(grepl("^v[0-9]+$", items)))
                 next
-            w <- sprintf(if (es) "Ítems sin dimensión, excluidos del cálculo del TEFI: %s." else
-                "Items without a dimension, left out of the TEFI calculation: %s.", paste(items, collapse = ", "))
+            source <- if (grepl("@@", w, fixed = TRUE)) sub(".*@@", "", w) else ""
+            w <- if (nzchar(source))
+                sprintf(if (es) "Ítems sin dimensión en %s, excluidos del cálculo del TEFI: %s." else
+                    "Items without a dimension in %s, left out of the TEFI calculation: %s.",
+                    source, paste(items, collapse = ", "))
+            else
+                sprintf(if (es) "Ítems sin dimensión, excluidos del cálculo del TEFI: %s." else
+                    "Items without a dimension, left out of the TEFI calculation: %s.", paste(items, collapse = ", "))
         }
+        w <- sub("@@.*$", "", w)
         out <- c(out, w)
     }
     unique(out)
