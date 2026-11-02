@@ -117,7 +117,7 @@ test_that("a grouping variable with missing values is handled", {
     data$grp <- factor(rep(c("A", "B"), length.out = nrow(data)))
     data$grp[c(1, 50, 100)] <- NA
     expectGraceful(EGAnetLab::ega(data = data, vars = paste0("item", 1:12), group = "grp",
-                                  runInvariance = TRUE, invIter = 50,
+                                  runInvariance = TRUE, invIter = 100,
                                   showNetworkPlot = FALSE))
 })
 
@@ -144,14 +144,15 @@ test_that("the bundled Big Five data run with missing values and wording effects
 
     bfi <- bundledData("eganetlab_bfi.csv")
     skip_if(is.null(bfi), "data/ not available")
-    items <- c(paste0("A", 1:5), paste0("C", 1:5), paste0("E", 1:5), paste0("N", 1:5),
-               paste0("O", 1:5))
-
-    res <- EGAnetLab::ega(data = bfi, vars = items, showNetworkPlot = FALSE)
+    # Items are written in the call itself: jmvcore reads a bare variable
+    # name passed to an option as a column name.
+    # ES: Los ítems se escriben en la propia llamada: jmvcore lee el nombre
+    # de una variable suelta pasada a una opción como nombre de columna.
+    res <- EGAnetLab::ega(data = bfi, vars = paste0(rep(c("A", "C", "E", "N", "O"), each = 5), 1:5), showNetworkPlot = FALSE)
     expect_true(res$summary$isFilled())
     expect_match(casesUsed(res), "^2800 \\(pairwise; 2436 ")
 
-    ri <- EGAnetLab::ega(data = bfi, vars = items, runRI = TRUE,
+    ri <- EGAnetLab::ega(data = bfi, vars = paste0(rep(c("A", "C", "E", "N", "O"), each = 5), 1:5), runRI = TRUE,
                          negItems = c("A1", "C4", "C5", "E1", "E2", "O2", "O5"),
                          negCoding = "raw", showNetworkPlot = FALSE)
     expect_gt(ri$riSummary$rowCount, 0)
