@@ -1,4 +1,9 @@
-# EGAnetLab 0.1.0 (development)
+# EGAnetLab 0.1.0 (released 2026-11-02)
+
+* First public release, archived in Zenodo with DOI
+  [10.5281/zenodo.23886111](https://doi.org/10.5281/zenodo.23886111) (all
+  versions) and 10.5281/zenodo.23886112 (this version). The README shows the
+  DOI badge and `CITATION.cff` lists both DOIs.
 
 ## Preparation for jamovi's library review
 

@@ -10,6 +10,7 @@
   <a href="https://github.com/ArchieJamDev/EGAnetLab/releases"><img src="https://img.shields.io/github/v/release/ArchieJamDev/EGAnetLab?include_prereleases&label=release" alt="Release"></a>
   <a href="https://github.com/ArchieJamDev/EGAnetLab/actions/workflows/jamovi-check.yml"><img src="https://github.com/ArchieJamDev/EGAnetLab/actions/workflows/jamovi-check.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/EGAnet-%E2%89%A5%202.4-009E73" alt="EGAnet ≥ 2.4">
+  <a href="https://doi.org/10.5281/zenodo.23886111"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23886111.svg" alt="DOI"></a>
   <img src="https://komarev.com/ghpvc/?username=ArchieJamDev-EGAnetLab&label=views&color=lightgrey&style=flat" alt="Views">
 </p>
 
@@ -325,10 +326,14 @@ Bug reports, ideas and pull requests are welcome. Please read
 If you use EGAnetLab in your research, please cite the module and EGAnet.
 Citation metadata is in [CITATION.cff](CITATION.cff) (GitHub's **Cite this
 repository** button uses it).
+Every release is archived in Zenodo. The DOI
+[10.5281/zenodo.23886111](https://doi.org/10.5281/zenodo.23886111) covers all
+versions and always resolves to the latest one; each version also has its own
+DOI, listed on the Zenodo page.
 
 > Chacón Chacón, A. D. L. (2026). *EGAnetLab: A jamovi module for Exploratory
-> Graph Analysis* (Version 0.1.0) [Computer software].
-> https://github.com/ArchieJamDev/EGAnetLab
+> Graph Analysis* (Version 0.1.0) [Computer software]. Zenodo.
+> https://doi.org/10.5281/zenodo.23886111
 
 > Golino, H., & Christensen, A. P. (2026). *EGAnet: Exploratory graph
 > analysis – A framework for estimating the number of dimensions in
