@@ -95,6 +95,10 @@ msgstr ""
 msgid "Bifactor model loadings (standardized, total sample)"
 msgstr ""
 
+#: package/datasets.description
+msgid "Twenty-five Big Five personality items (6-point scale) with real missing data, seven negatively worded items, gender, education and age, from the psychTools package - see data/README.md"
+msgstr ""
+
 #: ega/options/labelColor/black.title
 #: ega/options/edgePosColor/black.title
 #: ega/options/hierEdgeColor/black.title
@@ -410,7 +414,7 @@ msgid "EGAnet Lab"
 msgstr ""
 
 #: package/description
-msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis and, in later releases, adds bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and invariance extensions. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation."
+msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis, with bootstrap stability, redundancy analysis (UVA), network loadings and scores, entropy fit and comparison of structures, confirmatory factor analysis, hierarchical and random-intercept structures, group comparisons, centrality, and dynamic EGA for intensive longitudinal data. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation."
 msgstr ""
 
 #: ega/options/plotPalette/default.title
@@ -500,7 +504,7 @@ msgstr ""
 
 #: package/analyses/ega.description
 #: ega/options.description.main
-msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnetLab), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation."
+msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGA), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation."
 msgstr ""
 
 #: ega/ui[2].label

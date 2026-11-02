@@ -259,8 +259,17 @@
     complete <- stats::complete.cases(items)
     out$n_complete <- sum(complete)
 
-    if (identical(na_data, "listwise"))
+    if (identical(na_data, "listwise")) {
         items <- items[complete, , drop = FALSE]
+        # Checked before the per-item checks: with no complete rows every
+        # item would otherwise be reported as empty.
+        # ES: Se revisa antes que los ítems: sin filas completas, cada ítem
+        # se informaría como vacío.
+        if (nrow(items) < 2) {
+            out$reason <- "too_few_cases"
+            return(out)
+        }
+    }
 
     observed <- vapply(items, function(x) sum(!is.na(x)), numeric(1))
     if (any(observed < 2)) {

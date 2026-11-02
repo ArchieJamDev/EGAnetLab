@@ -95,6 +95,10 @@ msgstr "Interpretación de las cargas del bifactor"
 msgid "Bifactor model loadings (standardized, total sample)"
 msgstr "Cargas del modelo bifactor (estandarizadas, muestra total)"
 
+#: package/datasets.description
+msgid "Twenty-five Big Five personality items (6-point scale) with real missing data, seven negatively worded items, gender, education and age, from the psychTools package - see data/README.md"
+msgstr "Veinticinco ítems de personalidad de los Cinco Grandes (escala de 6 puntos) con datos ausentes reales, siete ítems redactados en negativo, género, educación y edad, del paquete psychTools; ver data/README.md"
+
 #: ega/options/labelColor/black.title
 #: ega/options/edgePosColor/black.title
 #: ega/options/hierEdgeColor/black.title
@@ -410,8 +414,8 @@ msgid "EGAnet Lab"
 msgstr "EGAnet Lab"
 
 #: package/description
-msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis and, in later releases, adds bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and invariance extensions. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation."
-msgstr "EGAnetLab lleva a jamovi los métodos de psicometría de redes del paquete EGAnet y acompaña cada resultado con orientación metodológica basada en evidencia, interpretación y apoyo educativo. Estima el número y el contenido de las dimensiones con el Análisis Exploratorio de Grafos y, en versiones posteriores, agrega estabilidad por bootstrap, análisis de redundancia (UVA) y extensiones jerárquicas, dinámicas y de invarianza. Cada tabla basada en un método cita su propia fuente en el formato numerado nativo de jamovi, y la bibliografía completa en APA 7.ª edición vive en la documentación del módulo."
+msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis, with bootstrap stability, redundancy analysis (UVA), network loadings and scores, entropy fit and comparison of structures, confirmatory factor analysis, hierarchical and random-intercept structures, group comparisons, centrality, and dynamic EGA for intensive longitudinal data. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation."
+msgstr "EGAnetLab lleva a jamovi los métodos de psicometría de redes del paquete EGAnet y acompaña cada resultado con orientación metodológica basada en evidencia, interpretación y apoyo educativo. Estima el número y el contenido de las dimensiones con el Análisis Exploratorio de Grafos, con estabilidad por bootstrap, análisis de redundancia (UVA), cargas y puntuaciones de red, ajuste por entropía y comparación de estructuras, análisis factorial confirmatorio, estructuras jerárquicas y de intercepto aleatorio, comparación de grupos, centralidad y EGA dinámico para datos longitudinales intensivos. Cada tabla basada en un método cita su propia fuente en el formato numerado nativo de jamovi, y la bibliografía completa en APA 7.ª edición vive en la documentación del módulo."
 
 #: ega/options/plotPalette/default.title
 #: dynega/options/plotPalette/default.title
@@ -500,8 +504,8 @@ msgstr "Estima la estructura dimensional de datos longitudinales intensivos (muc
 
 #: package/analyses/ega.description
 #: ega/options.description.main
-msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGAnetLab), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation."
-msgstr "Estima el número de dimensiones subyacentes a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGAnetLab), junto con cargas de red, ajuste por entropía, estabilidad bootstrap opcional de dimensiones e ítems, análisis opcional de redundancia (UVA), e interpretación en lenguaje claro."
+msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGA), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation."
+msgstr "Estima el número de dimensiones subyacentes a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGA), junto con cargas de red, ajuste por entropía, estabilidad bootstrap opcional de dimensiones e ítems, análisis opcional de redundancia (UVA), e interpretación en lenguaje claro."
 
 #: ega/ui[2].label
 #: dynega/results/status.title

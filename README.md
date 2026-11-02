@@ -36,7 +36,8 @@ the evidence behind it and the next step to take.
 - [Network Graphics](#network-graphics)
 - [Methodological Philosophy](#methodological-philosophy)
 - [Installation](#installation)
-- [Example Dataset](#example-dataset)
+- [Example Datasets](#example-datasets)
+- [Testing](#testing)
 - [For Developers](#for-developers)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -222,12 +223,34 @@ jmvtools::install()   # from the repository root, with jamovi installed
 
 ---
 
-## Example Dataset
+## Example Datasets
 
-EGAnetLab ships the **WMT-2 Matrices Test** data (n = 1185) from EGAnet:
-18 dichotomous reasoning items (`wmt1` to `wmt18`) plus demographics. Open it
-from jamovi's **⋮** → **Open** → **Data Library** → **EGAnet Lab**. See
-[`data/README.md`](data/README.md).
+EGAnetLab ships three public datasets, each declared with its source and
+licence in [`data/README.md`](data/README.md). Open them from jamovi's
+**⋮** → **Open** → **Data Library** → **EGAnet Lab**.
+
+| Dataset | What it lets you try |
+|---|---|
+| **WMT-2 Matrices Test** (n = 1185, EGAnet) | 18 dichotomous reasoning items: EGA with tetrachoric correlations, bootstrap, groups by sex or age |
+| **Big Five personality items** (n = 2800, psychTools) | 25 Likert items with real missing data and 7 negatively worded items: pairwise vs. listwise, riEGA, CFA, groups by gender |
+| **Simulated intensive longitudinal data** (100 persons × 50 time points, EGAnet) | Dynamic EGA in long format |
+
+---
+
+## Testing
+
+Every push and pull request runs the GitHub Actions workflow
+[`jamovi-check.yml`](.github/workflows/jamovi-check.yml): `jmvtools::check()`
+and the full `tests/testthat/` suite. Besides correctness tests for each
+section, the suite stress-tests the module the way jamovi users will:
+missing values (pairwise and listwise, including no complete row), samples
+of 50, 20 and 8 cases, Likert and dichotomous items, constant or empty
+items, accented and symbol item names, a single-row data set, grouping
+variables with missing values, missing values in Dynamic EGA, and the three
+bundled datasets end to end. Each case must either finish or stop with an
+EGAnetLab message that explains what to change, never with a raw R error.
+[`validation/`](validation/) compares EGAnetLab's results with direct EGAnet
+calls.
 
 ---
 
@@ -325,3 +348,10 @@ aristas y leyenda) y usan paletas aptas para daltonismo.
 Para instalarlo, descargue el archivo `.jmo` desde
 [Releases](https://github.com/ArchieJamDev/EGAnetLab/releases) y, en jamovi,
 use **⋮** → **Modules** → **Install from file**.
+
+El módulo incluye tres conjuntos de datos públicos para practicar (ítems
+dicotómicos del WMT-2, ítems Likert de los Cinco Grandes con datos ausentes
+reales e ítems redactados en negativo, y datos longitudinales intensivos
+simulados), con su fuente y licencia declaradas en
+[`data/README.md`](data/README.md). Cada cambio pasa por pruebas automáticas
+que incluyen datos ausentes, muestras pequeñas e ítems categóricos.

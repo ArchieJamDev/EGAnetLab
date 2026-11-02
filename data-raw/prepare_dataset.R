@@ -78,3 +78,38 @@ dyn$Group <- factor(dyn$Group)
 dyn <- dyn[c("ID", "Group", "Time", items)]
 
 utils::write.csv(dyn, file.path("data", "eganetlab_dynamic_sim.csv"), row.names = FALSE, na = "")
+
+# -----------------------------------------------------------------------------
+# Big Five personality items (bfi).
+# ES: Ítems de personalidad de los Cinco Grandes (bfi).
+#
+# Source: the `bfi` data set of the psychTools R package (GPL >= 2;
+# Revelle, 2024): 2,800 people from the SAPA web project answering 25
+# public-domain IPIP items on a 6-point scale (1 = very inaccurate,
+# 6 = very accurate), five per Big Five domain, plus gender, education
+# and age. It complements wmt2 with what wmt2 lacks: polytomous items,
+# real missing data (364 people with at least one missing item), negatively
+# worded items (A1, C4, C5, E1, E2, O2, O5) for riEGA, and a grouping
+# variable for group comparisons. Item responses are kept as published;
+# only gender and education get their labels.
+#
+# ES: Fuente: el conjunto `bfi` del paquete de R psychTools (GPL >= 2;
+# Revelle, 2024): 2.800 personas del proyecto web SAPA que respondieron 25
+# ítems de dominio público del IPIP en una escala de 6 puntos (1 = muy
+# inexacto, 6 = muy exacto), cinco por dominio de los Cinco Grandes, más
+# género, educación y edad. Complementa a wmt2 con lo que a este le falta:
+# ítems politómicos, datos ausentes reales (364 personas con al menos un
+# ítem sin responder), ítems redactados en negativo (A1, C4, C5, E1, E2, O2,
+# O5) para riEGA y una variable de agrupación para comparar grupos. Las
+# respuestas se conservan tal cual; solo género y educación reciben sus
+# etiquetas.
+# -----------------------------------------------------------------------------
+utils::data("bfi", package = "psychTools", envir = environment())
+
+big5 <- bfi
+big5$gender <- factor(big5$gender, levels = 1:2, labels = c("Male", "Female"))
+big5$education <- factor(big5$education, levels = 1:5,
+                         labels = c("Some high school", "High school", "Some college",
+                                    "College graduate", "Graduate degree"))
+
+utils::write.csv(big5, file.path("data", "eganetlab_bfi.csv"), row.names = FALSE, na = "")

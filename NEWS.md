@@ -1,5 +1,23 @@
 # EGAnetLab 0.1.0 (development)
 
+## Preparation for jamovi's library review
+
+* The module now has its own icon in jamovi (`jamovi/assets/eganetlab-icon.png`,
+  from `docs/logo/eganetlab-icon.svg`), and the module description no longer
+  says that features already available will come "in later releases".
+* New bundled dataset **Big Five personality items** (`eganetlab_bfi.csv`,
+  n = 2800, from psychTools): Likert items with real missing data, negatively
+  worded items for riEGA and a grouping variable. `data/README.md` now
+  declares the source, licence and citation of all three datasets.
+* Listwise deletion that leaves fewer than two complete rows now says so,
+  instead of reporting every item as having fewer than two observed values.
+* New stress tests (`tests/testthat/test-stress.R`): missing values pairwise
+  and listwise, small samples (50, 20 and 8 cases), Likert and dichotomous
+  items, bootstrap and CFA with missing values, a grouping variable with
+  missing values, missing values in Dynamic EGA, and the bundled datasets end
+  to end. Each must finish or stop with an EGAnetLab message, never a raw R
+  error.
+
 ## Key findings summary (phase 8)
 
 * EGA and Dynamic EGA reports open with a **Key findings** summary right

@@ -84,3 +84,73 @@ edgeEmptyItemData <- function() {
 edgeSingleRowData <- function() {
     edgeStructureData()[1, , drop = FALSE]
 }
+
+# -----------------------------------------------------------------------------
+# Stress fixtures: missing data, small samples and categorical items.
+# ES: Datos de estrés: datos ausentes, muestras pequeñas e ítems categóricos.
+#
+# Built from the same clean three-dimensional structure, so a failure points
+# at the stress itself, not at the structure.
+#
+# ES: Se construyen a partir de la misma estructura limpia de tres
+# dimensiones, para que un fallo señale al estrés mismo y no a la estructura.
+# -----------------------------------------------------------------------------
+edgeMissingData <- function(rate = 0.10, n = 300, seed = 20261102) {
+    data <- edgeStructureData(n = n)
+    withr::local_seed(seed)
+    for (v in names(data))
+        data[[v]][stats::runif(nrow(data)) < rate] <- NA_real_
+    data
+}
+
+# Every row misses exactly one item, so no row is complete.
+# ES: Cada fila omite exactamente un ítem, así que ninguna fila está completa.
+edgeNoCompleteRowData <- function() {
+    data <- edgeStructureData(n = 120)
+    for (i in seq_len(nrow(data)))
+        data[i, (i - 1) %% ncol(data) + 1] <- NA_real_
+    data
+}
+
+edgeLikertData <- function(categories = 5, n = 300) {
+    data <- edgeStructureData(n = n)
+    breaks <- stats::qnorm(seq(0, 1, length.out = categories + 1))
+    data[] <- lapply(data, function(x) as.integer(cut(x, breaks = breaks)))
+    data
+}
+
+edgeBinaryData <- function(n = 400) {
+    data <- edgeStructureData(n = n)
+    data[] <- lapply(data, function(x) as.integer(x > 0))
+    data
+}
+
+# -----------------------------------------------------------------------------
+# expectGraceful(): the analysis either finishes or stops with one of
+# EGAnetLab's own messages (Category A/B), never with a raw R error.
+# ES: expectGraceful(): el análisis termina o se detiene con uno de los
+# mensajes propios de EGAnetLab (Categoría A/B), nunca con un error crudo de R.
+# -----------------------------------------------------------------------------
+expectGraceful <- function(expr) {
+    res <- tryCatch(expr, error = function(e) e)
+    if (inherits(res, "error")) {
+        texts <- unlist(EGAnetLab:::.el_texts, use.names = FALSE)
+        prefixes <- unique(vapply(strsplit(texts, "%", fixed = TRUE),
+                                  function(x) substr(x[1], 1, 40), character(1)))
+        prefixes <- prefixes[nchar(prefixes) >= 20]
+        known <- any(vapply(prefixes, function(p) grepl(p, conditionMessage(res), fixed = TRUE),
+                            logical(1)))
+        expect_true(known, info = paste("Raw error:", conditionMessage(res)))
+        return(invisible(NULL))
+    }
+    expect_true(TRUE)
+    invisible(res)
+}
+
+# Bundled dataset from data/, or NULL when the tests run outside the repo.
+# ES: Conjunto incluido en data/, o NULL si las pruebas corren fuera del repo.
+bundledData <- function(file) {
+    path <- testthat::test_path("..", "..", "data", file)
+    if (!file.exists(path)) return(NULL)
+    utils::read.csv(path, stringsAsFactors = TRUE)
+}

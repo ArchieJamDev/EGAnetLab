@@ -10,13 +10,16 @@ description: >
   EGAnetLab brings the network psychometrics methods of the EGAnet package to
   jamovi and pairs every result with evidence-based methodological guidance,
   interpretation and educational support. It estimates the number and content of
-  dimensions with Exploratory Graph Analysis and, in later releases, adds
-  bootstrap stability, redundancy analysis (UVA), hierarchical, dynamic and
-  invariance extensions. Every method-backed table cites its own source in
-  jamovi's native numbered format, and the complete APA 7th edition bibliography
-  lives in the module's documentation.
+  dimensions with Exploratory Graph Analysis, with bootstrap stability,
+  redundancy analysis (UVA), network loadings and scores, entropy fit and
+  comparison of structures, confirmatory factor analysis, hierarchical and
+  random-intercept structures, group comparisons, centrality, and dynamic EGA
+  for intensive longitudinal data. Every method-backed table cites its own
+  source in jamovi's native numbered format, and the complete APA 7th edition
+  bibliography lives in the module's documentation.
 usesNative: false
 minApp: 1.0.8
+icon: assets/eganetlab-icon.png
 analyses:
   - title: Exploratory Graph Analysis
     name: ega
@@ -27,7 +30,7 @@ analyses:
     description: >
       Estimates the number of dimensions underlying a set of items, and which
       items belong to each dimension, with Exploratory Graph Analysis
-      (EGAnetLab), paired with network loadings, entropy fit, optional bootstrap
+      (EGA), paired with network loadings, entropy fit, optional bootstrap
       stability of dimensions and items, optional redundancy analysis (UVA), and
       plain-language interpretation.
     category: analyses
@@ -50,6 +53,12 @@ datasets:
     description: >-
       Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic
       variables, from the EGAnet package - see data/README.md
+  - name: Big Five personality items (n=2800)
+    path: eganetlab_bfi.csv
+    description: >-
+      Twenty-five Big Five personality items (6-point scale) with real missing
+      data, seven negatively worded items, gender, education and age, from the
+      psychTools package - see data/README.md
   - name: Simulated intensive longitudinal data (100 persons x 50 time points)
     path: eganetlab_dynamic_sim.csv
     description: >-
