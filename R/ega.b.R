@@ -2060,10 +2060,14 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             paragraphs <- character(0)
             if (!converged)
                 private$.addKey("warnings", txt("key", "ri_not_converged"))
+            else if (!is.na(n_ri) && n_ri == 0)
+                private$.addKey("findings", txt("key", "ri_empty"))
             else if (!is.na(n_ri) && n_ri != n_ega)
                 private$.addKey("findings", sprintf(txt("key", "ri_changed"), as.integer(n_ri), as.integer(n_ega)))
             else if (!is.na(n_ri))
                 private$.addKey("findings", txt("key", "ri_same"))
+            if (converged && length(neg) == 0)
+                private$.addKey("uncertain", txt("key", "ri_no_neg"))
             if (!converged) {
                 paragraphs <- c(paragraphs, txt("ri", "interp_not_converged"))
             } else {
@@ -2072,6 +2076,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     paragraphs <- c(paragraphs, txt("ri", "interp_no_neg"))
                 if (!is.na(n_ri) && n_ri == n_ega && length(agree$moved) == 0)
                     paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_same"), n_ega))
+                else if (!is.na(n_ri) && n_ri == 0)
+                    paragraphs <- c(paragraphs, txt("ri", "interp_empty"))
                 else if (!is.na(n_ri) && n_ri < n_ega)
                     paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_fewer"), n_ri, n_ega))
                 else if (!is.na(n_ri) && n_ri > n_ega)
@@ -2429,7 +2435,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     private$.addKey("uncertain", sprintf(txt("key", "boot_mismatch"), as.integer(mode_row$dims),
                         pct(mode_row$proportion), as.integer(cache$empirical_ndim)))
                 }
-                if (mode_row$proportion < cut)
+                matched <- !is.na(cache$empirical_ndim) && mode_row$dims == cache$empirical_ndim
+                if (matched && mode_row$proportion < cut)
                     private$.addKey("uncertain", sprintf(txt("key", "boot_weak"), pct(mode_row$proportion), pct(cut)))
             }
             if (length(low_dims) > 0)
@@ -2637,7 +2644,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 .el_add_row(cs_table, i, list(measure = measure_labels[[m]], cs = value, reading = reading))
                 if (!is.na(value))
                     private$.addKey(if (value >= 0.5) "findings" else "uncertain",
-                        sprintf(txt("key", if (value >= 0.5) "cs_good" else "cs_low"),
+                        sprintf(txt("key", if (value >= 0.5) "cs_good" else if (value >= 0.25) "cs_mid" else "cs_low"),
                                 tolower(measure_labels[[m]]), .el_fmt_num(value, 2)))
                 if (!is.na(value)) {
                     key <- if (value >= 0.5) "interp_cs_good" else if (value >= 0.25) "interp_cs_mid" else "interp_cs_bad"
