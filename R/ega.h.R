@@ -7,7 +7,6 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(
             vars = NULL,
-            reportLang = "en",
             corr = "auto",
             naData = "pairwise",
             model = "glasso",
@@ -108,13 +107,6 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "ordinal"),
                 permitted=list(
                     "numeric"))
-            private$..reportLang <- jmvcore::OptionList$new(
-                "reportLang",
-                reportLang,
-                options=list(
-                    "en",
-                    "es"),
-                default="en")
             private$..corr <- jmvcore::OptionList$new(
                 "corr",
                 corr,
@@ -620,7 +612,6 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 default="grey55")
 
             self$.addOption(private$..vars)
-            self$.addOption(private$..reportLang)
             self$.addOption(private$..corr)
             self$.addOption(private$..naData)
             self$.addOption(private$..model)
@@ -711,7 +702,6 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         }),
     active = list(
         vars = function() private$..vars$value,
-        reportLang = function() private$..reportLang$value,
         corr = function() private$..corr$value,
         naData = function() private$..naData$value,
         model = function() private$..model$value,
@@ -801,7 +791,6 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         hierEdgeColor = function() private$..hierEdgeColor$value),
     private = list(
         ..vars = NA,
-        ..reportLang = NA,
         ..corr = NA,
         ..naData = NA,
         ..model = NA,
@@ -1012,8 +1001,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "naData",
                     "model",
                     "algorithm",
-                    "uniMethod",
-                    "reportLang"),
+                    "uniMethod"),
                 columns=list(
                     list(
                         `name`="element", 
@@ -1038,8 +1026,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "naData",
                     "model",
                     "algorithm",
-                    "uniMethod",
-                    "reportLang"),
+                    "uniMethod"),
                 columns=list(
                     list(
                         `name`="item", 
@@ -1070,8 +1057,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "naData",
                     "model",
                     "algorithm",
-                    "uniMethod",
-                    "reportLang"),
+                    "uniMethod"),
                 columns=list(
                     list(
                         `name`="item", 
@@ -1095,8 +1081,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "naData",
                     "model",
                     "algorithm",
-                    "uniMethod",
-                    "reportLang"),
+                    "uniMethod"),
                 columns=list(
                     list(
                         `name`="item1", 
@@ -1173,8 +1158,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "naData",
                     "model",
                     "algorithm",
-                    "uniMethod",
-                    "reportLang"),
+                    "uniMethod"),
                 columns=list(
                     list(
                         `name`="dimension", 
@@ -1255,8 +1239,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "compareAlgorithms",
                     "theoryFactors",
-                    "compareCFA",
-                    "reportLang"),
+                    "compareCFA"),
                 columns=list(
                     list(
                         `name`="structure", 
@@ -1313,8 +1296,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "compareAlgorithms",
                     "theoryFactors",
-                    "compareCFA",
-                    "reportLang"),
+                    "compareCFA"),
                 columns=list(
                     list(
                         `name`="item", 
@@ -1350,8 +1332,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "naData",
                     "model",
                     "algorithm",
-                    "uniMethod",
-                    "reportLang"),
+                    "uniMethod"),
                 columns=list(
                     list(
                         `name`="element", 
@@ -1375,8 +1356,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "naData",
                     "model",
                     "algorithm",
-                    "uniMethod",
-                    "reportLang"),
+                    "uniMethod"),
                 columns=list(
                     list(
                         `name`="item", 
@@ -1418,8 +1398,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "hierItemSize",
                     "hierDimSize",
                     "hierEdgeWidth",
-                    "hierEdgeColor",
-                    "reportLang")))
+                    "hierEdgeColor")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="hierInterpretation",
@@ -1446,8 +1425,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "naData",
                     "model",
                     "algorithm",
-                    "uniMethod",
-                    "reportLang"),
+                    "uniMethod"),
                 columns=list(
                     list(
                         `name`="element", 
@@ -1471,8 +1449,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "naData",
                     "model",
                     "algorithm",
-                    "uniMethod",
-                    "reportLang"),
+                    "uniMethod"),
                 columns=list(
                     list(
                         `name`="item", 
@@ -1522,8 +1499,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "model",
                     "algorithm",
                     "uniMethod",
-                    "uvaCut",
-                    "reportLang"),
+                    "uvaCut"),
                 columns=list(
                     list(
                         `name`="itemA", 
@@ -1563,8 +1539,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "model",
                     "algorithm",
                     "uniMethod",
-                    "uvaCut",
-                    "reportLang"),
+                    "uvaCut"),
                 columns=list(
                     list(
                         `name`="set", 
@@ -1590,7 +1565,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Html$new(
                 options=options,
                 name="bootStatus",
-                title="Bootstrap status",
+                title="Stability (bootstrap)",
                 visible="(runBoot)",
                 clearWith=list(
                     "vars",
@@ -1630,8 +1605,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "bootType",
                     "iter",
-                    "seed",
-                    "reportLang"),
+                    "seed"),
                 columns=list(
                     list(
                         `name`="element", 
@@ -1658,8 +1632,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "bootType",
                     "iter",
-                    "seed",
-                    "reportLang"),
+                    "seed"),
                 columns=list(
                     list(
                         `name`="dims", 
@@ -1693,8 +1666,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "bootType",
                     "iter",
-                    "seed",
-                    "reportLang"),
+                    "seed"),
                 columns=list(
                     list(
                         `name`="dimension", 
@@ -1734,7 +1706,6 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "bootType",
                     "iter",
                     "seed",
-                    "reportLang",
                     "stabilityCut"),
                 columns=list(
                     list(
@@ -1780,7 +1751,6 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "iter",
                     "seed",
                     "stabilityCut",
-                    "reportLang",
                     "plotPalette")))
             self$add(jmvcore::Image$new(
                 options=options,
@@ -1802,7 +1772,6 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "bootType",
                     "iter",
                     "seed",
-                    "reportLang",
                     "plotPalette")))
             self$add(jmvcore::Html$new(
                 options=options,
@@ -1832,8 +1801,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "cfaEstimator",
                     "splitSample",
                     "splitProp",
-                    "splitSeed",
-                    "reportLang"),
+                    "splitSeed"),
                 columns=list(
                     list(
                         `name`="element", 
@@ -1871,8 +1839,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "cfaEstimator",
                     "splitSample",
                     "splitProp",
-                    "splitSeed",
-                    "reportLang"),
+                    "splitSeed"),
                 columns=list(
                     list(
                         `name`="item", 
@@ -1914,8 +1881,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "cfaEstimator",
                     "splitSample",
                     "splitProp",
-                    "splitSeed",
-                    "reportLang"),
+                    "splitSeed"),
                 columns=list(
                     list(
                         `name`="item", 
@@ -1956,8 +1922,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "model",
                     "algorithm",
                     "uniMethod",
-                    "cfaEstimator",
-                    "reportLang"),
+                    "cfaEstimator"),
                 columns=list(
                     list(
                         `name`="model", 
@@ -2018,8 +1983,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "model",
                     "algorithm",
                     "uniMethod",
-                    "cfaEstimator",
-                    "reportLang"),
+                    "cfaEstimator"),
                 columns=list(
                     list(
                         `name`="item", 
@@ -2083,8 +2047,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "algorithm",
                     "uniMethod",
                     "cenStandardize",
-                    "cenClosBetw",
-                    "reportLang"),
+                    "cenClosBetw"),
                 columns=list(
                     list(
                         `name`="item", 
@@ -2115,7 +2078,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Image$new(
                 options=options,
                 name="cenPlot",
-                title="Centrality plot",
+                title="Centrality of each item",
                 width=600,
                 height=450,
                 renderFun=".plotCentrality",
@@ -2131,8 +2094,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "cenStandardize",
                     "cenClosBetw",
-                    "plotPalette",
-                    "reportLang")))
+                    "plotPalette")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="cenInterpretation",
@@ -2176,8 +2138,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "bnIter",
                     "bnCaseIter",
                     "bnSeed",
-                    "cenClosBetw",
-                    "reportLang"),
+                    "cenClosBetw"),
                 columns=list(
                     list(
                         `name`="measure", 
@@ -2211,8 +2172,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "bnIter",
                     "bnCaseIter",
-                    "bnSeed",
-                    "reportLang"),
+                    "bnSeed"),
                 columns=list(
                     list(
                         `name`="edge", 
@@ -2260,8 +2220,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "bnIter",
                     "bnCaseIter",
                     "bnSeed",
-                    "plotPalette",
-                    "reportLang")))
+                    "plotPalette")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="bnCasePlot",
@@ -2283,8 +2242,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "bnCaseIter",
                     "bnSeed",
                     "cenClosBetw",
-                    "plotPalette",
-                    "reportLang")))
+                    "plotPalette")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="bnInterpretation",
@@ -2312,8 +2270,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "group",
                     "pairedVars",
-                    "groupSeed",
-                    "reportLang"),
+                    "groupSeed"),
                 columns=list(
                     list(
                         `name`="group", 
@@ -2362,7 +2319,6 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "group",
                     "pairedVars",
                     "groupSeed",
-                    "reportLang",
                     "invStructure",
                     "invConfigCut",
                     "invIter"),
@@ -2428,7 +2384,6 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "group",
                     "pairedVars",
                     "groupSeed",
-                    "reportLang",
                     "invStructure",
                     "invConfigCut",
                     "invIter",
@@ -2480,7 +2435,6 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "group",
                     "pairedVars",
                     "groupSeed",
-                    "reportLang",
                     "nctIter",
                     "nctCorr",
                     "nctEdges",
@@ -2533,7 +2487,6 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "group",
                     "pairedVars",
                     "groupSeed",
-                    "reportLang",
                     "nctIter",
                     "nctCorr",
                     "nctEdges",
@@ -2586,7 +2539,6 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "group",
                     "pairedVars",
                     "groupSeed",
-                    "reportLang",
                     "nctIter",
                     "nctCorr",
                     "nctEdges",
@@ -2673,7 +2625,6 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' 
 #' @param data .
 #' @param vars .
-#' @param reportLang .
 #' @param corr .
 #' @param naData .
 #' @param model .
@@ -2846,7 +2797,6 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 ega <- function(
     data,
     vars,
-    reportLang = "en",
     corr = "auto",
     naData = "pairwise",
     model = "glasso",
@@ -2952,7 +2902,6 @@ ega <- function(
 
     options <- egaOptions$new(
         vars = vars,
-        reportLang = reportLang,
         corr = corr,
         naData = naData,
         model = model,

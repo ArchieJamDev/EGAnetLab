@@ -326,15 +326,19 @@
 # -----------------------------------------------------------------------------
 # .el_factor_label()
 #
-# Input: f - lavaan factor names (F<n>, H<n>, G); lang. Output: readable
-#   names ("factor 3", "higher-order factor 1", "general factor").
+# Input: self - the analysis, for jmvcore's `.()`; f - lavaan factor names
+#   (F<n>, H<n>, G).
+# Output: readable names ("factor 3", "higher-order factor 1", "general
+#   factor").
 # -----------------------------------------------------------------------------
-.el_factor_label <- function(f, lang) {
-    es <- identical(.el_normalize_lang(lang), "es")
+.el_factor_label <- function(self, f) {
+    general <- .("general factor")
+    higher <- .("higher-order factor")
+    factor_word <- .("factor")
     vapply(f, function(x) {
-        if (identical(x, "G")) return(if (es) "factor general" else "general factor")
-        if (grepl("^H", x)) return(paste(if (es) "factor de orden superior" else "higher-order factor", sub("^H", "", x)))
-        if (grepl("^F", x)) return(paste(if (es) "factor" else "factor", sub("^F", "", x)))
+        if (identical(x, "G")) return(general)
+        if (grepl("^H", x)) return(paste(higher, sub("^H", "", x)))
+        if (grepl("^F", x)) return(paste(factor_word, sub("^F", "", x)))
         x
     }, character(1), USE.NAMES = FALSE)
 }
@@ -342,40 +346,36 @@
 # -----------------------------------------------------------------------------
 # .el_describe_problems() / .el_describe_warnings()
 #
-# Input: problems - from .el_cfa_problems(); warnings - lavaan warnings;
-#   lang. Output: one plain sentence fragment naming each exact problem.
-#   Warnings without a known meaning are quoted as lavaan wrote them.
+# Input: self - the analysis, for jmvcore's `.()`; problems - from
+#   .el_cfa_problems(); warnings - lavaan warnings.
+# Output: one plain sentence fragment naming each exact problem. Warnings
+#   without a known meaning are quoted as lavaan wrote them.
 # ES: Salida: un fragmento de oración que nombra cada problema exacto. Las
 #   advertencias sin un significado conocido se citan como las escribió
 #   lavaan.
 # -----------------------------------------------------------------------------
-.el_describe_problems <- function(problems, lang) {
-    es <- identical(.el_normalize_lang(lang), "es")
+.el_describe_problems <- function(self, problems) {
     list_of <- function(x) if (isTRUE(x)) "" else paste0(" (", paste(x, collapse = ", "), ")")
     parts <- character(0)
     if (!is.null(problems$neg_resid))
-        parts <- c(parts, paste0(if (es) "varianza residual negativa (caso Heywood)" else
-            "negative residual variance (Heywood case)", list_of(problems$neg_resid)))
+        parts <- c(parts, paste0(.("negative residual variance (Heywood case)"), list_of(problems$neg_resid)))
     if (!is.null(problems$neg_lv))
-        parts <- c(parts, paste0(if (es) "varianza negativa de un factor" else "negative factor variance",
-            if (isTRUE(problems$neg_lv)) "" else paste0(" (", paste(.el_factor_label(problems$neg_lv, lang), collapse = ", "), ")")))
+        parts <- c(parts, paste0(.("negative factor variance"),
+            if (isTRUE(problems$neg_lv)) "" else paste0(" (", paste(.el_factor_label(self, problems$neg_lv), collapse = ", "), ")")))
     if (!is.null(problems$std_load))
-        parts <- c(parts, paste0(if (es) "carga estandarizada mayor que 1" else "standardized loading above 1",
+        parts <- c(parts, paste0(.("standardized loading above 1"),
             list_of(ifelse(grepl("^(F|H)[0-9]+$|^G$", problems$std_load),
-                           .el_factor_label(problems$std_load, lang), problems$std_load))))
+                           .el_factor_label(self, problems$std_load), problems$std_load))))
     if (!is.null(problems$lv_npd))
-        parts <- c(parts, if (es) "la matriz de covarianzas de los factores no es definida positiva" else
-            "the factor covariance matrix is not positive definite")
+        parts <- c(parts, .("the factor covariance matrix is not positive definite"))
     if (!is.null(problems$theta_npd))
-        parts <- c(parts, if (es) "la matriz de covarianzas de los residuos de los ítems no es definida positiva" else
-            "the residual covariance matrix of the items is not positive definite")
+        parts <- c(parts, .("the residual covariance matrix of the items is not positive definite"))
     if (!is.null(problems$vcov))
-        parts <- c(parts, if (es) "la matriz de covarianzas de las estimaciones no es definida positiva, lo que puede indicar que el modelo no está identificado" else
-            "the covariance matrix of the estimates is not positive definite, which may mean that the model is not identified")
+        parts <- c(parts, .("the covariance matrix of the estimates is not positive definite, which may mean that the model is not identified"))
     paste(parts, collapse = "; ")
 }
 
-.el_describe_warnings <- function(warnings, lang) {
+.el_describe_warnings <- function(warnings) {
     w <- unique(.el_clean_text(warnings))
     w <- trimws(sub("^lavaan (WARNING|warning):?", "", w))
     w <- gsub("\\s+", " ", w)

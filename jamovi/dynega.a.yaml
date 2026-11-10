@@ -84,16 +84,6 @@ options:
       - factor
     default: null
 
-  - name: reportLang
-    title: Report Language
-    type: List
-    options:
-      - title: English
-        name: en
-      - title: Español
-        name: es
-    default: en
-
   # Generalized local linear approximation (GLLA) of the derivatives.
   # ES: Aproximación lineal local generalizada (GLLA) de las derivadas.
   - name: nEmbed

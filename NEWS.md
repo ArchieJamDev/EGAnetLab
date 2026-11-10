@@ -4,6 +4,24 @@
   analyses, as the jamovi library expects for a release-ready module
   (finding of jamovi's module audit, 2026-11-03).
 
+## Report language follows jamovi
+
+* The report (guides, interpretations, key findings, labels and messages)
+  now uses jamovi's own translation system, like the menus and result
+  titles: it appears in the language set in jamovi's preferences. The
+  per-analysis **Report Language** option is removed; saved analyses that
+  still carry it open normally.
+* All report text is written in English inside jmvcore's `.()` (`R/texts.R`
+  and inline labels), and its Spanish translation moved to
+  `jamovi/i18n/es.po` (885 entries, compiled to `inst/i18n/es.json`). A new
+  language now needs only a new `.po` file.
+* Result titles are no longer overwritten on every run, so the translated
+  titles in `es.po` are the ones shown. The status titles of the bootstrap
+  and the centrality plot now match what the report showed ("Stability
+  (bootstrap)", "Centrality of each item").
+* The "Isolated" label in the network plot legend is translated when the
+  plot is drawn, so it always matches the current language.
+
 # EGAnetLab 0.1.0 (released 2026-11-02)
 
 * First public release, archived in Zenodo with DOI

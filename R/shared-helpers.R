@@ -44,32 +44,6 @@
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
-# .el_tr()
-#
-# Input: lang - normalized language code ("es" or "en", see
-#   .el_normalize_lang() in texts.R); en - English text; es - Spanish text
-#   (optional; defaults to `en`).
-# Output: `es` when lang is "es", otherwise `en`.
-#
-# Report text that varies at runtime goes through this function, never
-# through jmvcore's `.()`: `.()` caches its translator once per R process,
-# so dynamic text routed through it freezes at the language active when
-# jamovi started (the FiabilityLab regression documented in AssumptionsLab's
-# ARCHITECTURE.md §12).
-#
-# ES: El texto del informe que varía en tiempo de ejecución pasa por esta
-# función, nunca por `.()` de jmvcore: `.()` guarda su traductor una sola vez
-# por proceso de R, así que el texto dinámico que pasa por ahí se congela en
-# el idioma activo cuando jamovi arrancó (la regresión de FiabilityLab
-# documentada en ARCHITECTURE.md §12 de AssumptionsLab).
-# -----------------------------------------------------------------------------
-.el_tr <- function(lang, en, es = NULL) {
-    if (is.null(es))
-        es <- en
-    if (identical(lang, "es")) es else en
-}
-
-# -----------------------------------------------------------------------------
 # .el_html_escape() / .el_html_block() / .el_html_list()
 #
 # HTML assembly for every `Html` result. Identical in behavior to
@@ -344,9 +318,9 @@
 # -----------------------------------------------------------------------------
 # .el_estimation_choice_labels() / .el_choices_guide()
 #
-# Input: tr - the analysis' translator (en, es); lang - report language;
-#   options - self$options; labels - named list option -> (value -> label),
-#   usually .el_estimation_choice_labels(tr) plus analysis-specific entries;
+# Input: self - the analysis, for jmvcore's `.()`; options - self$options;
+#   labels - named list option -> (value -> label), usually
+#   .el_estimation_choice_labels(self) plus analysis-specific entries;
 #   extra - further plain paragraphs appended at the end.
 # Output: the HTML of the "About your choices" block: an introduction, then
 #   one paragraph per option in `labels`, headed "Decision: selected value."
@@ -357,36 +331,36 @@
 # ES: Compartido por todo análisis que estima una red EGA, para que las cinco
 # decisiones de estimación se expliquen con las mismas palabras en todos.
 # -----------------------------------------------------------------------------
-.el_estimation_choice_labels <- function(tr) {
+.el_estimation_choice_labels <- function(self) {
     list(
         corr = list(
-            auto = tr("Automatic", "Automática"), pearson = "Pearson",
-            spearman = "Spearman", cosine = tr("Cosine", "Coseno")),
+            auto = .("Automatic (Pearson / polychoric)"), pearson = "Pearson",
+            spearman = "Spearman", cosine = .("Cosine")),
         naData = list(
-            pairwise = tr("Pairwise", "Por pares"), listwise = tr("Listwise", "Por lista")),
+            pairwise = .("Pairwise"), listwise = .("Listwise")),
         model = list(glasso = "GLASSO (EBIC)", TMFG = "TMFG", BGGM = "BGGM"),
         algorithm = list(walktrap = "Walktrap", louvain = "Louvain", leiden = "Leiden"),
         uniMethod = list(
-            louvain = "Louvain", expand = tr("Expand", "Expandir"),
-            LE = tr("Leading eigenvalue", "Autovalor principal"))
+            louvain = "Louvain", expand = .("Expand"),
+            LE = .("Leading eigenvalue"))
     )
 }
 
-.el_choices_guide <- function(lang, options, labels, extra = character(0), bodies = list()) {
+.el_choices_guide <- function(self, options, labels, extra = character(0), bodies = list()) {
 
     p_style <- "margin: 0.15em 0 0.65em 0; line-height: 1.40;"
     parts <- paste0("<p style=\"", p_style, "\">",
-                    .el_html_escape(.el_text(lang, "choices", "intro")), "</p>")
+                    .el_html_escape(.el_text(self, "choices", "intro")), "</p>")
 
     for (option in names(labels)) {
         value <- as.character(options[[option]])
         label <- labels[[option]][[value]]
         if (length(value) == 0 || is.null(label))
             next
-        heading <- paste0(.el_text(lang, "choices", paste0("h_", option)), ": ", label, ".")
+        heading <- paste0(.el_text(self, "choices", paste0("h_", option)), ": ", label, ".")
         body <- bodies[[paste0(option, "_", value)]]
         if (is.null(body))
-            body <- .el_text(lang, "choices", paste0(option, "_", value))
+            body <- .el_text(self, "choices", paste0(option, "_", value))
         parts <- c(parts, paste0(
             "<p style=\"", p_style, "\"><strong>", .el_html_escape(heading), "</strong> ",
             .el_html_escape(body), "</p>"))
@@ -496,18 +470,18 @@
 # -----------------------------------------------------------------------------
 # .el_translate_notices()
 #
-# Input: warnings - messages left after .el_drop_notices(); lang.
+# Input: self - the analysis, for jmvcore's `.()`; warnings - messages left
+#   after .el_drop_notices().
 # Output: the same messages with the known EGAnet notices rewritten in the
-#   report language. Internal notices about temporary variable names (v1,
+#   language of the analysis. Internal notices about temporary variable names (v1,
 #   v2, ...) or an empty network in a unidimensional subsample are left out,
 #   because the report already states their consequence.
 # ES: Salida: los mismos mensajes, con los avisos conocidos de EGAnet
-#   reescritos en el idioma del informe. Se omiten los avisos internos sobre
+#   reescritos en el idioma del análisis. Se omiten los avisos internos sobre
 #   nombres temporales de variables (v1, v2, ...) o sobre una red vacía en
 #   una submuestra unidimensional, porque el informe ya dice su consecuencia.
 # -----------------------------------------------------------------------------
-.el_translate_notices <- function(warnings, lang) {
-    es <- identical(.el_normalize_lang(lang), "es")
+.el_translate_notices <- function(self, warnings) {
     out <- character(0)
     for (w in warnings) {
         if (grepl("network input is empty", w, fixed = TRUE))
@@ -519,12 +493,11 @@
                 next
             source <- if (grepl("@@", w, fixed = TRUE)) sub(".*@@", "", w) else ""
             w <- if (nzchar(source))
-                sprintf(if (es) "Ítems sin dimensión en %s, excluidos del cálculo del TEFI: %s." else
-                    "Items without a dimension in %s, left out of the TEFI calculation: %s.",
+                sprintf(.("Items without a dimension in %s, left out of the TEFI calculation: %s."),
                     source, paste(items, collapse = ", "))
             else
-                sprintf(if (es) "Ítems sin dimensión, excluidos del cálculo del TEFI: %s." else
-                    "Items without a dimension, left out of the TEFI calculation: %s.", paste(items, collapse = ", "))
+                sprintf(.("Items without a dimension, left out of the TEFI calculation: %s."),
+                        paste(items, collapse = ", "))
         }
         w <- sub("@@.*$", "", w)
         out <- c(out, w)
@@ -535,19 +508,19 @@
 # -----------------------------------------------------------------------------
 # .el_key_summary()
 #
-# Input: lang; key - list with character vectors findings, uncertain and
+# Input: self - the analysis, for jmvcore's `.()`; key - list with character vectors findings, uncertain and
 #   warnings, each a one-sentence line that names its section.
 # Output: the HTML of the key findings summary shown at the top of the
 #   report: a short introduction and three headed lists. Empty lists say so,
 #   so the reader knows they were checked.
-# ES: Entrada: lang; key - lista con los vectores findings, uncertain y
+# ES: Entrada: self - el análisis, para `.()` de jmvcore; key - lista con los vectores findings, uncertain y
 #   warnings, cada uno con líneas de una oración que nombran su sección.
 #   Salida: el HTML del resumen de hallazgos que se muestra al inicio del
 #   informe: una introducción breve y tres listas con encabezado. Las listas
 #   vacías lo dicen, para que el lector sepa que se revisaron.
 # -----------------------------------------------------------------------------
-.el_key_summary <- function(lang, key) {
-    txt <- function(k) .el_text(lang, "key", k)
+.el_key_summary <- function(self, key) {
+    txt <- function(k) .el_text(self, "key", k)
     p_style <- "margin: 0.15em 0 0.65em 0; line-height: 1.40;"
     h_style <- "margin: 0.65em 0 0.20em 0; font-weight: bold;"
     section <- function(heading, lines, empty) {

@@ -507,16 +507,15 @@ source text jamovi's catalog serves to every language, including English.
 Regenerate the catalog (`jmvtools::i18nUpdate("es")`) whenever such text
 changes.
 
-An `Html` result's static `content:` field (resolved natively, like
-`title`) is the right place for text that never changes once compiled —
-`AssumptionsLab's Assumption Library`'s category guides are the precedent: fully static
-glossary text, translated through `jamovi/i18n/es.po` instead of
-`reportLang`, with zero risk of the `.()`-from-R caching bug (§21), since
-nothing is ever assembled in R for it. The moment text needs to vary at
-runtime (per row, per computed value, per dataset), it no longer qualifies
-for a static `content:` field and must go through `tr()`/`reportLang`
-like everything else in this project — never through `.()` called from
-`.b.R`.
+Text assembled in R at runtime (interpretations, labels, messages) is
+written in English inside jmvcore's `.()`, as a literal string, so the
+catalog tooling extracts it from `R/` as well: long report text in
+`R/texts.R` (read with `.el_text(self, section, key)`), short labels inline.
+`.()` needs the analysis (`self`) in its calling frame, so helpers outside
+the analysis class take `self` as their first argument. Variable parts are
+filled with `sprintf()` after translation. There is no module-level
+language option: the report follows jamovi's language (ARCHITECTURE.md
+§12).
 
 -------------------------------------------------------------------------------
 
@@ -533,17 +532,16 @@ texto fuente no traducible que el catálogo de jamovi sirve a todo idioma,
 incluido el inglés. Regenerar el catálogo
 (`jmvtools::i18nUpdate("es")`) cada vez que ese texto cambie.
 
-El campo `content:` estático de un resultado `Html` (resuelto de forma
-nativa, igual que `title`) es el lugar correcto para texto que nunca
-cambia una vez compilado — las guías por categoría de `Assumption
-Library` son el precedente: texto de glosario completamente estático,
-traducido vía `jamovi/i18n/es.po` en vez de `reportLang`, sin ningún
-riesgo del bug de caché de `.()` llamado desde R (§21), porque nada se
-ensambla en R para ese contenido. En el momento en que el texto necesita
-variar en tiempo de ejecución (por fila, por valor calculado, por
-dataset), ya no califica para un `content:` estático y debe pasar por
-`tr()`/`reportLang` como todo lo demás en este proyecto — nunca por
-`.()` llamado desde `.b.R`.
+El texto que se arma en R en tiempo de ejecución (interpretaciones,
+etiquetas, mensajes) se escribe en inglés dentro de `.()` de jmvcore, como
+texto literal, para que las herramientas del catálogo también lo extraigan
+de `R/`: el texto largo del informe en `R/texts.R` (leído con
+`.el_text(self, sección, clave)`) y las etiquetas cortas en línea. `.()`
+necesita el análisis (`self`) en el marco que lo llama, así que las
+funciones auxiliares fuera de la clase del análisis reciben `self` como
+primer argumento. Las partes variables se llenan con `sprintf()` después
+de traducir. No hay una opción de idioma propia del módulo: el informe
+sigue el idioma de jamovi (ARCHITECTURE.md §12).
 
 -------------------------------------------------------------------------------
 

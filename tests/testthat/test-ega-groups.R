@@ -152,8 +152,8 @@ test_that("a second measurement with the wrong number of variables is explained"
 test_that("group comparison texts switch to Spanish", {
 
     data <- groupData()
-    res <- EGAnetLab::ega(data = data, vars = paste0("item", 1:12), group = "grp",
-                          runInvariance = TRUE, invIter = 100, reportLang = "es")
+    res <- inSpanish(EGAnetLab::ega(data = data, vars = paste0("item", 1:12), group = "grp",
+                                    runInvariance = TRUE, invIter = 100))
 
     expect_match(res$invStatus$content, "Invarianza métrica", fixed = TRUE)
     expect_match(res$invInterpretation$content, "Siguiente paso", fixed = TRUE)

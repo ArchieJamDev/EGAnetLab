@@ -63,7 +63,6 @@ items:
       - model
       - algorithm
       - uniMethod
-      - reportLang
     columns:
       - name: element
         title: Element
@@ -87,7 +86,6 @@ items:
       - model
       - algorithm
       - uniMethod
-      - reportLang
     columns:
       - name: item
         title: Item
@@ -117,7 +115,6 @@ items:
       - model
       - algorithm
       - uniMethod
-      - reportLang
     columns:
       - name: item
         title: Item
@@ -141,7 +138,6 @@ items:
       - model
       - algorithm
       - uniMethod
-      - reportLang
     columns:
       - name: item1
         title: Item
@@ -220,7 +216,6 @@ items:
       - model
       - algorithm
       - uniMethod
-      - reportLang
     columns:
       - name: dimension
         title: Dimension
@@ -303,7 +298,6 @@ items:
       - compareAlgorithms
       - theoryFactors
       - compareCFA
-      - reportLang
     columns:
       - name: structure
         title: Structure
@@ -353,7 +347,6 @@ items:
       - compareAlgorithms
       - theoryFactors
       - compareCFA
-      - reportLang
     columns:
       - name: item
         title: Item
@@ -394,7 +387,6 @@ items:
       - model
       - algorithm
       - uniMethod
-      - reportLang
     columns:
       - name: element
         title: Element
@@ -417,7 +409,6 @@ items:
       - model
       - algorithm
       - uniMethod
-      - reportLang
     columns:
       - name: item
         title: Item
@@ -456,7 +447,6 @@ items:
       - hierDimSize
       - hierEdgeWidth
       - hierEdgeColor
-      - reportLang
 
   - name: hierInterpretation
     title: Hierarchical EGA interpretation
@@ -484,7 +474,6 @@ items:
       - model
       - algorithm
       - uniMethod
-      - reportLang
     columns:
       - name: element
         title: Element
@@ -507,7 +496,6 @@ items:
       - model
       - algorithm
       - uniMethod
-      - reportLang
     columns:
       - name: item
         title: Item
@@ -559,7 +547,6 @@ items:
       - algorithm
       - uniMethod
       - uvaCut
-      - reportLang
     columns:
       - name: itemA
         title: Item
@@ -595,7 +582,6 @@ items:
       - algorithm
       - uniMethod
       - uvaCut
-      - reportLang
     columns:
       - name: set
         title: Set
@@ -625,7 +611,7 @@ items:
   # ES: Guarda en su estado el resumen del bootstrap; se limpia solo cuando
   # cambia una opción que altera el cálculo (ARCHITECTURE.md §16).
   - name: bootStatus
-    title: Bootstrap status
+    title: Stability (bootstrap)
     type: Html
     visible: (runBoot)
     clearWith:
@@ -667,7 +653,6 @@ items:
       - bootType
       - iter
       - seed
-      - reportLang
     columns:
       - name: element
         title: Element
@@ -693,7 +678,6 @@ items:
       - bootType
       - iter
       - seed
-      - reportLang
     columns:
       - name: dims
         title: Dimensions
@@ -725,7 +709,6 @@ items:
       - bootType
       - iter
       - seed
-      - reportLang
     columns:
       - name: dimension
         title: Dimension
@@ -761,7 +744,6 @@ items:
       - bootType
       - iter
       - seed
-      - reportLang
       - stabilityCut
     columns:
       - name: item
@@ -803,7 +785,6 @@ items:
       - iter
       - seed
       - stabilityCut
-      - reportLang
       - plotPalette
 
   - name: bootFrequencyPlot
@@ -825,7 +806,6 @@ items:
       - bootType
       - iter
       - seed
-      - reportLang
       - plotPalette
 
   # ---------------------------------------------------------------------------
@@ -862,7 +842,6 @@ items:
       - splitSample
       - splitProp
       - splitSeed
-      - reportLang
     columns:
       - name: element
         title: Element
@@ -897,7 +876,6 @@ items:
       - splitSample
       - splitProp
       - splitSeed
-      - reportLang
     columns:
       - name: item
         title: Item
@@ -935,7 +913,6 @@ items:
       - splitSample
       - splitProp
       - splitSeed
-      - reportLang
     columns:
       - name: item
         title: Item
@@ -973,7 +950,6 @@ items:
       - algorithm
       - uniMethod
       - cfaEstimator
-      - reportLang
     columns:
       - name: model
         title: Model
@@ -1026,7 +1002,6 @@ items:
       - algorithm
       - uniMethod
       - cfaEstimator
-      - reportLang
     columns:
       - name: item
         title: Item
@@ -1094,7 +1069,6 @@ items:
       - uniMethod
       - cenStandardize
       - cenClosBetw
-      - reportLang
     columns:
       - name: item
         title: Item
@@ -1118,7 +1092,7 @@ items:
         visible: (cenClosBetw)
 
   - name: cenPlot
-    title: Centrality plot
+    title: Centrality of each item
     type: Image
     width: 600
     height: 450
@@ -1136,7 +1110,6 @@ items:
       - cenStandardize
       - cenClosBetw
       - plotPalette
-      - reportLang
 
   - name: cenInterpretation
     title: Centrality interpretation
@@ -1181,7 +1154,6 @@ items:
       - bnCaseIter
       - bnSeed
       - cenClosBetw
-      - reportLang
     columns:
       - name: measure
         title: Measure
@@ -1213,7 +1185,6 @@ items:
       - bnIter
       - bnCaseIter
       - bnSeed
-      - reportLang
     columns:
       - name: edge
         title: Edge
@@ -1257,7 +1228,6 @@ items:
       - bnCaseIter
       - bnSeed
       - plotPalette
-      - reportLang
 
   - name: bnCasePlot
     title: Centrality stability when dropping cases
@@ -1280,7 +1250,6 @@ items:
       - bnSeed
       - cenClosBetw
       - plotPalette
-      - reportLang
 
   - name: bnInterpretation
     title: Network stability interpretation
@@ -1309,7 +1278,6 @@ items:
       - group
       - pairedVars
       - groupSeed
-      - reportLang
     columns:
       - name: group
         title: "Group"
@@ -1356,7 +1324,6 @@ items:
       - group
       - pairedVars
       - groupSeed
-      - reportLang
       - invStructure
       - invConfigCut
       - invIter
@@ -1413,7 +1380,6 @@ items:
       - group
       - pairedVars
       - groupSeed
-      - reportLang
       - invStructure
       - invConfigCut
       - invIter
@@ -1465,7 +1431,6 @@ items:
       - group
       - pairedVars
       - groupSeed
-      - reportLang
       - nctIter
       - nctCorr
       - nctEdges
@@ -1512,7 +1477,6 @@ items:
       - group
       - pairedVars
       - groupSeed
-      - reportLang
       - nctIter
       - nctCorr
       - nctEdges
@@ -1559,7 +1523,6 @@ items:
       - group
       - pairedVars
       - groupSeed
-      - reportLang
       - nctIter
       - nctCorr
       - nctEdges

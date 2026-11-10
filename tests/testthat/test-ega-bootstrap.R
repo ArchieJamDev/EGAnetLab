@@ -95,7 +95,7 @@ test_that("the bootstrap flags items below the stability cutoff", {
 test_that("the bootstrap renders in Spanish", {
 
     data <- edgeStructureData()
-    res <- runBoot(data, reportLang = "es", bootType = "resampling")
+    res <- inSpanish(runBoot(data, bootType = "resampling"))
 
     expect_true("Dimensiones en la muestra original" %in% res$bootSummary$asDF$element)
     expect_match(res$choicesGuide$content, "Tipo de bootstrap: Remuestreo (casos)", fixed = TRUE)

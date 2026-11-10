@@ -45,10 +45,10 @@ test_that("ega recovers a clean three-dimensional structure", {
     expect_equal(dims, "3")
 })
 
-test_that("ega renders the report in Spanish when asked", {
+test_that("ega renders the report in Spanish when jamovi runs in Spanish", {
 
     data <- edgeStructureData()
-    res <- EGAnetLab::ega(data = data, vars = names(data), reportLang = "es", showNetworkPlot = FALSE)
+    res <- inSpanish(EGAnetLab::ega(data = data, vars = names(data), showNetworkPlot = FALSE))
 
     expect_true("Número de dimensiones" %in% res$summary$asDF$element)
 })
@@ -118,15 +118,13 @@ test_that("ega explains the selected estimation choices in both languages", {
     expect_match(html, "Community detection: Louvain", fixed = TRUE)
     expect_match(html, "3(p - 2)", fixed = TRUE)
 
-    res_es <- EGAnetLab::ega(data = data, vars = names(data), reportLang = "es",
-                             showNetworkPlot = FALSE)
+    res_es <- inSpanish(EGAnetLab::ega(data = data, vars = names(data), showNetworkPlot = FALSE))
     expect_match(res_es$choicesGuide$content, "Modelo de red: GLASSO (EBIC)", fixed = TRUE)
 })
 
 test_that("every choice explanation exists in English and Spanish", {
 
-    texts <- EGAnetLab:::.el_texts
-    expect_setequal(names(texts$en$choices), names(texts$es$choices))
+    keys <- EGAnetLab:::.el_text_keys()$choices
 
     values <- list(
         corr = c("auto", "pearson", "spearman", "cosine"),
@@ -136,7 +134,28 @@ test_that("every choice explanation exists in English and Spanish", {
         uniMethod = c("louvain", "expand", "LE")
     )
     for (option in names(values))
-        for (value in values[[option]])
-            expect_true(paste0(option, "_", value) %in% names(texts$es$choices),
-                        info = paste(option, value))
+        for (value in values[[option]]) {
+            key <- paste0(option, "_", value)
+            expect_true(key %in% keys, info = key)
+            en <- EGAnetLab:::.el_text(textSelf(), "choices", key)
+            es <- inSpanish(EGAnetLab:::.el_text(textSelf(), "choices", key))
+            expect_false(identical(en, es), info = key)
+        }
+})
+
+test_that("every report text resolves, and the catalog translates it", {
+
+    keys <- EGAnetLab:::.el_text_keys()
+    n <- 0; same <- 0
+    for (section in names(keys))
+        for (key in keys[[section]]) {
+            en <- EGAnetLab:::.el_text(textSelf(), section, key)
+            es <- inSpanish(EGAnetLab:::.el_text(textSelf(), section, key))
+            expect_false(any(grepl("[missing text", c(en, es), fixed = TRUE)), info = key)
+            expect_equal(length(en), length(es), info = key)
+            n <- n + 1; same <- same + identical(en, es)
+        }
+    # A few short labels are spelled the same in both languages.
+    # ES: Algunas etiquetas cortas se escriben igual en ambos idiomas.
+    expect_lt(same / n, 0.05)
 })

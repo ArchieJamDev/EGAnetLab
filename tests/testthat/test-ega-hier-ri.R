@@ -83,7 +83,7 @@ test_that("random-intercept EGA works with item names lavaan cannot read", {
 test_that("hierarchical and random-intercept EGA render in Spanish", {
 
     data <- edgeStructureData()
-    res <- EGAnetLab::ega(data = data, vars = names(data), runHier = TRUE, runRI = TRUE, reportLang = "es")
+    res <- inSpanish(EGAnetLab::ega(data = data, vars = names(data), runHier = TRUE, runRI = TRUE))
     expect_match(res$hierStatus$content, "orden superior", fixed = TRUE)
     expect_match(res$riStatus$content, "aquiescencia", fixed = TRUE)
 })

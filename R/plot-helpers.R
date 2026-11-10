@@ -28,7 +28,9 @@
 # Input: network - the estimated network (EGA()$network); wc - the item
 #   memberships (EGA()$wc); opts - the analysis options (self$options or a
 #   plain list with the same names); palette - NULL (EGAnet's default) or a
-#   character vector of colors from .el_plot_series_palette().
+#   character vector of colors from .el_plot_series_palette(); isolated_label
+#   - legend label for items without a dimension, already translated with
+#   `.()` by the calling analysis.
 # Output: a ggplot object, or NULL when no edge survives the edgeMin filter.
 #
 # Draws the network with EGAnet's own plot method (GGally::ggnet2 + sna
@@ -48,7 +50,7 @@
 # punto medio de cada arista a partir de las coordenadas de nodos que ggnet2
 # guarda en plot$data).
 # -----------------------------------------------------------------------------
-.el_ega_plot <- function(network, wc, opts, palette = NULL) {
+.el_ega_plot <- function(network, wc, opts, palette = NULL, isolated_label = "Isolated") {
 
     opt <- function(name, default) {
         value <- opts[[name]]
@@ -133,9 +135,8 @@
     for (scale in plot$scales$scales) {
         if (!"colour" %in% scale$aesthetics || !is.atomic(scale$labels) || !anyNA(scale$labels))
             next
-        isolated <- if (identical(.el_normalize_lang(opt("reportLang", "en")), "es")) "Aislado" else "Isolated"
         labels <- as.character(scale$labels)
-        labels[is.na(labels)] <- isolated
+        labels[is.na(labels)] <- isolated_label
         scale$labels <- labels
     }
 

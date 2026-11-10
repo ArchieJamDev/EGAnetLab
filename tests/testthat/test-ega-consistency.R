@@ -72,8 +72,8 @@ test_that("a solution with a negative variance is flagged as inadmissible", {
     fit <- suppressWarnings(lavaan::cfa(model, data = data[, 1:4], std.lv = TRUE))
     problems <- EGAnetLab:::.el_cfa_problems(fit, c(v1 = "item1", v2 = "item2", v3 = "item3", v4 = "item4"))
     expect_equal(problems$neg_resid, "item1")
-    expect_match(EGAnetLab:::.el_describe_problems(problems, "en"), "Heywood case) (item1)", fixed = TRUE)
-    expect_match(EGAnetLab:::.el_describe_problems(problems, "es"), "caso Heywood", fixed = TRUE)
+    expect_match(EGAnetLab:::.el_describe_problems(textSelf(), problems), "Heywood case) (item1)", fixed = TRUE)
+    expect_match(inSpanish(EGAnetLab:::.el_describe_problems(textSelf(), problems)), "caso Heywood", fixed = TRUE)
 })
 
 test_that("an admissible model reports no problems", {

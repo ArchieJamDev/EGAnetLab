@@ -42,8 +42,8 @@ test_that("the EGA report opens with the key findings", {
 test_that("the key findings follow the bootstrap and the report language", {
 
     data <- edgeStructureData()
-    res <- EGAnetLab::ega(data = data, vars = names(data), showNetworkPlot = FALSE,
-                          runBoot = TRUE, iter = 20, reportLang = "es")
+    res <- inSpanish(EGAnetLab::ega(data = data, vars = names(data), showNetworkPlot = FALSE,
+                                    runBoot = TRUE, iter = 20))
     html <- res$keySummary$content
 
     expect_match(html, "Hallazgos principales", fixed = TRUE)
@@ -78,12 +78,12 @@ test_that("a TEFI notice names the analysis that produced it", {
     raw <- "Some variables did not belong to a dimension: EV8, PL12.Ord1 \n\nUse caution: These variables have been removed from the TEFI calculation"
     tagged <- EGAnetLab:::.el_tag_notices(c(raw, "Other warning"), "hierEGA")
     expect_equal(tagged[2], "Other warning")
-    out <- EGAnetLab:::.el_translate_notices(tagged, "es")
+    out <- inSpanish(EGAnetLab:::.el_translate_notices(textSelf(), tagged))
     expect_true(any(grepl("Ítems sin dimensión en hierEGA, excluidos del cálculo del TEFI: EV8, PL12.", out, fixed = TRUE)))
     expect_false(any(grepl("@@", out, fixed = TRUE)))
     # A second tag keeps the first source.
     expect_equal(EGAnetLab:::.el_tag_notices(tagged, "CFA"), tagged)
-    out_plain <- EGAnetLab:::.el_translate_notices(raw, "en")
+    out_plain <- EGAnetLab:::.el_translate_notices(textSelf(), raw)
     expect_equal(out_plain, "Items without a dimension, left out of the TEFI calculation: EV8, PL12.")
 })
 

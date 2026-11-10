@@ -76,7 +76,7 @@ test_that("the random split is reproducible and follows the proportion", {
 
 test_that("CFA renders in Spanish", {
 
-    res <- runCFA(splitSample = TRUE, reportLang = "es")
+    res <- inSpanish(runCFA(splitSample = TRUE))
     expect_true("Casos" %in% res$cfaCompare$asDF$element)
     expect_match(res$cfaInterpretation$content, "semilla", fixed = TRUE)
 })

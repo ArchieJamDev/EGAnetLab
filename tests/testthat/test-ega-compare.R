@@ -133,7 +133,7 @@ test_that("CFA fit is added for each structure on request", {
 
 test_that("the structure comparison renders in Spanish", {
 
-    res <- runCompare(theoryFactors = theory3, reportLang = "es")
+    res <- inSpanish(runCompare(theoryFactors = theory3))
     expect_match(res$compareStatus$content, "Índice de Ajuste de Entropía Total", fixed = TRUE)
     expect_equal(res$compareTable$asDF$agree[4], "12 de 12 (100%)")
 })

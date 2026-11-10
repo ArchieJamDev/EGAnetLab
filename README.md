@@ -164,7 +164,7 @@ explanation.
 |---|---|---|
 | **Key findings summary** | The report of EGA and Dynamic EGA opens with the main findings, the uncertainties and the warnings, one sentence each, naming the section that explains it | ✅ 0.1.0 |
 | **Explained choices** | A section that restates every estimation choice you made and what it means | ✅ 0.1.0 |
-| **Report in English or Spanish** | Guides and interpretations in the language you choose; menus follow jamovi's language | ✅ 0.1.0 |
+| **Report in English or Spanish** | Menus, result titles, guides and interpretations follow the language set in jamovi | ✅ 1.0.0 (0.1.0 had its own Report Language option) |
 | **Native citations** | Each table cites its sources in jamovi's reference format; the full APA list is in [`docs/Bibliography.md`](docs/Bibliography.md) | ✅ 0.1.0 |
 
 ---

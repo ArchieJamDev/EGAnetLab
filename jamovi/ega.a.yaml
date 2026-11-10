@@ -55,16 +55,6 @@ options:
     permitted:
       - numeric
 
-  - name: reportLang
-    title: Report Language
-    type: List
-    options:
-      - title: English
-        name: en
-      - title: Español
-        name: es
-    default: en
-
   # Correlation passed to EGAnet::EGA(corr =). "auto" lets EGAnet choose
   # polychoric/tetrachoric correlations for items with few categories; the
   # report states which items triggered that choice.

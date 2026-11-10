@@ -5,29 +5,146 @@
             "": [
                 ""
             ],
+            " complete cases)": [
+                " casos completos)"
+            ],
+            " samples, ": [
+                " muestras, "
+            ],
+            " to ": [
+                " a "
+            ],
+            "%d of %d (%s%%)": [
+                "%d de %d (%s%%)"
+            ],
+            "%d of the %d edges of the network were estimated in at least 90%% of the samples; %d have an interval that includes zero, so they may be absent in other samples.": [
+                "%d de las %d aristas de la red se estimaron en al menos el 90%% de las muestras; %d tienen un intervalo que incluye el cero, así que podrían no aparecer en otras muestras."
+            ],
+            "%s (already reversed in the data)": [
+                "%s (ya invertidos en los datos)"
+            ],
+            "%s (reversed for the analysis)": [
+                "%s (invertidos para el análisis)"
+            ],
+            "%s dimensions": [
+                "%s dimensiones"
+            ],
+            "%s has a single dimension. TEFI is always 0 for one dimension, so it is not compared with the multidimensional structures; use the unidimensionality check of EGA for that question.": [
+                "%s tiene una sola dimensión. El TEFI vale siempre 0 con una dimensión, así que no se compara con las estructuras multidimensionales; para esa pregunta use la verificación de unidimensionalidad de EGA."
+            ],
+            "%s has the lowest TEFI (%s), %s below the EGA solution (%s). By entropy fit it separates the items into dimensions better than the EGA solution.": [
+                "%s tiene el TEFI más bajo (%s), %s por debajo de la solución de EGA (%s). Según el ajuste de entropía separa los ítems en dimensiones mejor que la solución de EGA."
+            ],
+            "%s is left out when picking the best fit: %s. Its fit indices are shown, but they cannot be read until that problem is resolved.": [
+                "%s queda fuera de la elección del mejor ajuste: %s. Sus índices de ajuste se muestran, pero no pueden leerse hasta resolver ese problema."
+            ],
+            "%s of the %s items that change dimension with the wording control are negatively worded, which points to wording rather than content.": [
+                "%s de los %s ítems que cambian de dimensión con el control de la redacción están redactados en negativo, lo que apunta a la redacción y no al contenido."
+            ],
+            "%s of the items fall in the same dimension in subsamples A and B.": [
+                "El %s de los ítems queda en la misma dimensión en las SubMuestras A y B."
+            ],
+            "%s places %d of %d items as EGA (TEFI %s; %s from the lowest). Items that change dimension: %s.": [
+                "%s ubica %d de %d ítems como EGA (TEFI %s; %s por encima del más bajo). Ítems que cambian de dimensión: %s."
+            ],
+            "%s: %s (n = %d) and %s (n = %d)%s.": [
+                "%s: %s (n = %d) y %s (n = %d)%s."
+            ],
+            "* p ≤ .05 (uncorrected)": [
+                "* p ≤ .05 (sin corregir)"
+            ],
+            ", each person": [
+                ", cada persona"
+            ],
+            ", groups": [
+                ", grupos"
+            ],
+            ", the same people measured twice": [
+                ", las mismas personas medidas dos veces"
+            ],
+            "1 dimension": [
+                "1 dimensión"
+            ],
+            "95% bootstrap interval": [
+                "Intervalo bootstrap del 95%"
+            ],
+            "95% interval (2.5th to 97.5th percentile)": [
+                "Intervalo del 95% (percentiles 2.5 a 97.5)"
+            ],
+            "; items with 7 or fewer categories treated as ordinal": [
+                "; ítems con 7 o menos categorías tratados como ordinales"
+            ],
+            "A random-intercept component was estimated (standardized loadings %s). Reading it as acquiescence or a wording effect requires justifying the direction and the content of the items: the component captures whatever all items share to the same degree, and that can include content.": [
+                "Se estimó un componente de intercepto aleatorio (cargas estandarizadas %s). Su interpretación como aquiescencia o efecto de redacción requiere justificar la dirección y el contenido de los ítems: el componente recoge lo que todos los ítems comparten en el mismo grado, y eso puede incluir contenido."
+            ],
             "AIC": [
                 "AIC"
+            ],
+            "AIC and BIC are not available with this estimator (WLSMV for ordinal items), so the comparison rests on CFI, TLI, RMSEA and SRMR.": [
+                "AIC y BIC no están disponibles con este estimador (WLSMV para ítems ordinales), así que la comparación se apoya en CFI, TLI, RMSEA y SRMR."
+            ],
+            "ARI = adjusted Rand index between each person's item membership and the population's (Hubert & Arabie, 1985): 1 = identical, about 0 = no more agreement than chance. Items without a dimension count as their own group.": [
+                "ARI = índice de Rand ajustado entre la pertenencia de los ítems de cada persona y la de la población (Hubert y Arabie, 1985): 1 = idéntica, cerca de 0 = no más acuerdo que el azar. Los ítems sin dimensión cuentan como un grupo propio."
             ],
             "About your choices": [
                 "Acerca de sus elecciones"
             ],
+            "Acceleration (2)": [
+                "Aceleración (2)"
+            ],
             "Acceleration (2, second derivative)": [
                 "Aceleración (2, segunda derivada)"
+            ],
+            "Across %d samples, the most frequent solution has %d dimensions (%s of samples), the same number found in the original sample. The median is %s, with 95%% of samples between %s and %s dimensions.": [
+                "En %d muestras, la solución más frecuente tiene %d dimensiones (%s de las muestras), el mismo número hallado en la muestra original. La mediana es %s, y el 95%% de las muestras está entre %s y %s dimensiones."
+            ],
+            "Across %d samples, the most frequent solution has %d dimensions (%s of samples), while the original sample showed %d. The original structure is not the typical one across samples; interpret it with caution and look at which items are unstable. The median is %s, with 95%% of samples between %s and %s dimensions.": [
+                "En %d muestras, la solución más frecuente tiene %d dimensiones (%s de las muestras), mientras que la muestra original mostró %d. La estructura original no es la típica entre muestras; interprétela con cautela y revise qué ítems son inestables. La mediana es %s, y el 95%% de las muestras está entre %s y %s dimensiones."
             ],
             "Add CFA fit for each structure": [
                 "Añadir el ajuste CFA de cada estructura"
             ],
+            "Admissible solution": [
+                "Solución admisible"
+            ],
+            "After removing it, EGA finds %s dimensions instead of %s. The random-intercept component may have been masking some distinctions in content, or the control may be splitting dimensions; read the new dimensions with care and check them against the item content.": [
+                "Tras quitarlo, EGA encuentra %s dimensiones en lugar de %s. Puede que el componente de intercepto aleatorio ocultara algunas distinciones de contenido, o que el control esté dividiendo dimensiones; lea las nuevas dimensiones con cuidado y contrástelas con el contenido de los ítems."
+            ],
+            "After removing it, EGA finds %s dimensions instead of %s. This is compatible with some original dimensions reflecting wording rather than content, but also with the random intercept absorbing content that the items share. Look at which items change dimension and at their wording before choosing an explanation.": [
+                "Tras quitarlo, EGA encuentra %s dimensiones en lugar de %s. Esto es compatible con que algunas dimensiones originales reflejen la redacción y no el contenido, pero también con que el intercepto aleatorio absorba contenido que los ítems comparten. Revise qué ítems cambian de dimensión y su redacción antes de elegir una explicación."
+            ],
+            "After removing it, EGA still finds %s dimensions with the same items, so the dimensional structure does not depend on this component.": [
+                "%s agrupa los ítems exactamente como la solución de EGA, así que tiene el mismo TEFI. Que algoritmos distintos lleguen a las mismas dimensiones respalda la solución."
+            ],
+            "After removing it, no item stays connected to another, so EGA finds no dimension. The random intercept took up what the items share; with all items worded in the same direction this is expected and is not evidence of a wording effect.": [
+                "Tras quitarlo, ningún ítem queda conectado con otro, así que EGA no encuentra ninguna dimensión. El intercepto aleatorio absorbió lo que los ítems comparten; con todos los ítems redactados en la misma dirección esto es esperable y no es evidencia de un efecto de redacción."
+            ],
+            "After removing the random intercept, no item stays connected to another, so no dimension remains (Random-intercept EGA).": [
+                "Tras quitar el intercepto aleatorio, ningún ítem queda conectado con otro, así que no queda ninguna dimensión (EGA con intercepto aleatorio)."
+            ],
             "Agreement (ARI)": [
                 "Acuerdo (ARI)"
             ],
+            "Agreement with own group (ARI)": [
+                "Acuerdo con su grupo (ARI)"
+            ],
             "Agreement with the population structure": [
                 "Acuerdo con la estructura de la población"
+            ],
+            "All lower-order dimensions group into one higher-order dimension, which is consistent with a general factor behind the specific dimensions.": [
+                "Todas las dimensiones de orden inferior se agrupan en una sola dimensión de orden superior, lo que es coherente con un factor general detrás de las dimensiones específicas."
             ],
             "Already reversed": [
                 "Ya invertidos"
             ],
             "Also closeness and betweenness": [
                 "También cercanía e intermediación"
+            ],
+            "Among the structures compared, %s has a lower TEFI than the EGA structure (Compare structures).": [
+                "Entre las estructuras comparadas, %s tiene un TEFI más bajo que la estructura de EGA (Comparar estructuras)."
+            ],
+            "Among the structures compared, the EGA structure has the lowest TEFI (Compare structures).": [
+                "Entre las estructuras comparadas, la estructura de EGA tiene el TEFI más bajo (Comparar estructuras)."
             ],
             "Applied interpretation": [
                 "Interpretación aplicada"
@@ -44,26 +161,68 @@
             "Automatic (Pearson / polychoric)": [
                 "Automática (Pearson / policórica)"
             ],
+            "Automatic (Pearson, because the derivatives are continuous)": [
+                "Automática (Pearson, porque las derivadas son continuas)"
+            ],
+            "Automatic lets EGAnetLab choose the correlation for each pair of items from their measurement level: polychoric for ordinal items (few categories), tetrachoric for dichotomous items and Pearson for continuous items. It is the recommended choice for Likert-type and right/wrong items, because Pearson correlations underestimate the association between categorical variables.": [
+                "Automática deja que EGAnetLab elija la correlación de cada par de ítems según su nivel de medida: policórica para ítems ordinales (pocas categorías), tetracórica para ítems dicotómicos y Pearson para ítems continuos. Es la opción recomendada para ítems tipo Likert y de acierto/error, porque la correlación de Pearson subestima la asociación entre variables categóricas."
+            ],
             "Available when Hierarchical EGA is ticked.": [
                 "Disponible cuando se marca EGA jerárquico."
             ],
             "BGGM": [
                 "BGGM"
             ],
+            "BGGM estimates the network with a Bayesian Gaussian graphical model and keeps the edges whose posterior distribution supports a non-zero partial correlation. It expresses uncertainty about each edge directly and is a principled alternative to GLASSO, but it is slower. Use it to confirm a GLASSO solution from a different estimation framework.": [
+                "BGGM estima la red con un modelo gráfico gaussiano bayesiano y conserva las aristas cuya distribución posterior respalda una correlación parcial distinta de cero. Expresa directamente la incertidumbre de cada arista y es una alternativa fundamentada a GLASSO, aunque más lenta. Úsela para confirmar una solución GLASSO desde otro marco de estimación."
+            ],
             "BIC": [
                 "BIC"
+            ],
+            "Because some items were removed in the configural step, the metric test only applies to the remaining items. Report which items were removed and why.": [
+                "Como algunos ítems se excluyeron en el paso configural, la prueba métrica solo se aplica a los ítems restantes. Informe qué ítems se excluyeron y por qué."
+            ],
+            "Because the first derivative was analysed, this is a structure of change: it describes which items rise and fall together from moment to moment. It can differ from the structure of a cross-sectional EGA of the same items, which describes which people score high or low together.": [
+                "Como se analizó la primera derivada, esta es una estructura de cambio: describe qué ítems suben y bajan juntos de un momento a otro. Puede diferir de la estructura de un EGA transversal de los mismos ítems, que describe qué personas puntúan alto o bajo a la vez."
+            ],
+            "Because the level (derivative 0) was analysed, the structure reflects the smoothed values of the items within each person's window, closer to a structure of states than of change.": [
+                "Como se analizó el nivel (derivada 0), la estructura refleja los valores suavizados de los ítems dentro de la ventana de cada persona, más cercana a una estructura de estados que de cambio."
+            ],
+            "Because the second derivative was analysed, the structure describes how the speed of change accelerates together; it is noisier and needs many time points per person.": [
+                "Como se analizó la segunda derivada, la estructura describe cómo se acelera conjuntamente el cambio; es más ruidosa y necesita muchos momentos por persona."
+            ],
+            "Before reading this section: riEGA only makes sense when the scale mixes positively and negatively worded items, and the negatively worded items are in their original direction, not recoded. With recoded items, or with a scale whose items are all worded in the same direction, the random intercept absorbs shared variance that is part of the content and the result is not a wording effect.": [
+                "Antes de leer esta sección: riEGA solo tiene sentido si la escala mezcla ítems redactados en positivo y en negativo, y los ítems negativos están en su dirección original, sin recodificar. Con ítems recodificados, o con una escala cuyos ítems están todos redactados en la misma dirección, el intercepto aleatorio absorbe varianza compartida que es parte del contenido y el resultado no indica un efecto de redacción."
+            ],
+            "Before the multidimensional solution is accepted, EGA checks whether the items could be unidimensional. The Louvain check applies the Louvain algorithm to the zero-order correlation matrix: if it finds a single community, the structure is reported as one dimension. It is EGAnetLab's current default.": [
+                "Antes de aceptar la solución multidimensional, EGA verifica si los ítems podrían ser unidimensionales. La verificación Louvain aplica el algoritmo Louvain a la matriz de correlaciones de orden cero: si encuentra una sola comunidad, la estructura se informa como una dimensión. Es el valor por defecto actual de EGAnetLab."
+            ],
+            "Below cutoff": [
+                "Bajo el punto de corte"
             ],
             "Benjamini-Hochberg (FDR)": [
                 "Benjamini-Hochberg (FDR)"
             ],
+            "Better fit by TEFI": [
+                "Mejor ajuste según TEFI"
+            ],
+            "Between %s and %s": [
+                "Entre %s y %s"
+            ],
             "Betweenness": [
                 "Intermediación"
+            ],
+            "Bifactor (general + lower-order specific factors)": [
+                "Bifactor (general + factores específicos de orden inferior)"
             ],
             "Bifactor loadings": [
                 "Cargas del bifactor"
             ],
             "Bifactor loadings interpretation": [
                 "Interpretación de las cargas del bifactor"
+            ],
+            "Bifactor model loadings": [
+                "Cargas del modelo bifactor"
             ],
             "Bifactor model loadings (standardized, total sample)": [
                 "Cargas del modelo bifactor (estandarizadas, muestra total)"
@@ -77,6 +236,12 @@
             "Bonferroni": [
                 "Bonferroni"
             ],
+            "Bootstrap": [
+                "Bootstrap"
+            ],
+            "Bootstrap complete: %d samples (%s), seed %d. Changing only the stability cutoff or the plot options reuses these results without running the bootstrap again.": [
+                "Bootstrap completado: %d muestras (%s), semilla %d. Si cambia solo el punto de corte de estabilidad o las opciones de gráfico, se reutilizan estos resultados sin volver a ejecutar el bootstrap."
+            ],
             "Bootstrap samples": [
                 "Muestras bootstrap"
             ],
@@ -86,17 +251,26 @@
             "Bootstrap samples (edges)": [
                 "Muestras bootstrap (aristas)"
             ],
-            "Bootstrap status": [
-                "Estado del bootstrap"
-            ],
             "Bootstrap type": [
                 "Tipo de bootstrap"
+            ],
+            "Borderline pairs that involve an item unstable in the bootstrap: %s. The overlap is below the redundancy cutoff, but it may explain why the item moves between dimensions across samples; review the wording of both items.": [
+                "Pares limítrofes que incluyen un ítem inestable en el bootstrap: %s. El solapamiento está por debajo del punto de corte de redundancia, pero puede explicar por qué el ítem cambia de dimensión entre muestras; revise la redacción de ambos ítems."
             ],
             "Bottom": [
                 "Abajo"
             ],
+            "By group, %s.": [
+                "Por grupos, %s."
+            ],
+            "By strength, the most central items: %s. They share the most unique variance with the rest of the set. If they are also redundant (see Redundancy, UVA), their centrality may reflect overlapping content rather than importance.": [
+                "Por fuerza, los ítems más centrales: %s. Son los que comparten más varianza única con el resto del conjunto. Si además son redundantes (ver Redundancia, UVA), su centralidad puede reflejar contenido solapado más que importancia."
+            ],
             "CFA estimator": [
                 "Estimador del CFA"
+            ],
+            "CFA fit for each structure: confirmatory factor analysis of each structure with lavaan (automatic estimator: WLSMV for items with fewer than 6 categories, otherwise MLR), with CFI, RMSEA and SRMR. It is estimated on the same data that produced the EGA solution, which favors that solution; for an independent test use the random split in the Confirmatory factor analysis box.": [
+                "Ajuste CFA de cada estructura: análisis factorial confirmatorio de cada estructura con lavaan (estimador automático: WLSMV con ítems de menos de 6 categorías, si no MLR), con CFI, RMSEA y SRMR. Se estima con los mismos datos que produjeron la solución de EGA, lo que favorece a esa solución; para una prueba independiente use la división aleatoria de la caja Confirmatory factor analysis."
             ],
             "CFA interpretation": [
                 "Interpretación del CFA"
@@ -104,14 +278,38 @@
             "CFA standardized loadings": [
                 "Cargas estandarizadas del CFA"
             ],
+            "CFA standardized loadings (subsample B, confirmation)": [
+                "Cargas estandarizadas del CFA (SubMuestra B, confirmación)"
+            ],
+            "CFA standardized loadings (total sample)": [
+                "Cargas estandarizadas del CFA (muestra total)"
+            ],
             "CFI": [
                 "CFI"
             ],
             "CS": [
                 "CS"
             ],
+            "CS = largest proportion of cases that can be dropped keeping a correlation of .70 or more with the original order in 95% of the samples. The largest value tested is .75.": [
+                "CS = mayor proporción de casos que puede eliminarse manteniendo una correlación de .70 o más con el orden original en el 95% de las muestras. El valor más alto evaluado es .75."
+            ],
+            "CS coefficient: the largest proportion of cases that can be dropped while the centrality order still correlates .70 or more with the original in 95% of the samples. Below .25 the order should not be interpreted; .50 or more is preferred (Epskamp et al., 2018).": [
+                "Coeficiente CS: la mayor proporción de casos que puede eliminarse manteniendo una correlación de .70 o más entre el orden de centralidad y el original en el 95% de las muestras. Por debajo de .25 el orden no debe interpretarse; se prefiere .50 o más (Epskamp et al., 2018)."
+            ],
             "Case-dropping plot": [
                 "Gráfico de eliminación de casos"
+            ],
+            "Cases": [
+                "Casos"
+            ],
+            "Cases dropped": [
+                "Casos eliminados"
+            ],
+            "Cases used": [
+                "Casos usados"
+            ],
+            "Cases with no value in the grouping variable (%d) were left out of the comparison between groups.": [
+                "Casos sin valor en la variable de agrupación (%d), que se dejaron fuera de la comparación entre grupos."
             ],
             "Centrality": [
                 "Centralidad"
@@ -119,8 +317,23 @@
             "Centrality and network stability": [
                 "Centralidad y estabilidad de la red"
             ],
+            "Centrality by %s is moderately stable, CS = %s: interpret only large differences between items (Network stability).": [
+                "La centralidad por %s es moderadamente estable, CS = %s: interprete solo las diferencias grandes entre ítems (Estabilidad de la red)."
+            ],
+            "Centrality by %s is not stable enough to rank items, CS = %s (Network stability).": [
+                "La centralidad por %s no es lo bastante estable para ordenar los ítems, CS = %s (Estabilidad de la red)."
+            ],
+            "Centrality by %s is stable, CS = %s (Network stability).": [
+                "La centralidad por %s es estable, CS = %s (Estabilidad de la red)."
+            ],
+            "Centrality describes the position of each item in the estimated network. Strength is the sum of the absolute weights of an item's connections; expected influence is the same sum keeping the sign, so negative connections subtract (Opsahl et al., 2010; Robinaugh et al., 2016; see references).": [
+                "La centralidad describe la posición de cada ítem en la red estimada. La fuerza es la suma de los pesos absolutos de las conexiones de un ítem; la influencia esperada es la misma suma conservando el signo, así que las conexiones negativas restan (Opsahl et al., 2010; Robinaugh et al., 2016; ver referencias)."
+            ],
             "Centrality interpretation": [
                 "Interpretación de la centralidad"
+            ],
+            "Centrality is computed over the whole network, across dimensions. An item can be central because it connects dimensions, not only because it is central within its own.": [
+                "La centralidad se calcula sobre toda la red, a través de las dimensiones. Un ítem puede ser central porque conecta dimensiones, no solo porque sea central dentro de la suya."
             ],
             "Centrality of each item": [
                 "Centralidad de cada ítem"
@@ -134,11 +347,23 @@
             "Centrality stability when dropping cases": [
                 "Estabilidad de la centralidad al eliminar casos"
             ],
+            "Centrality values that differ between the networks after the correction for multiple tests: %d (see the centrality table).": [
+                "Valores de centralidad que difieren entre las redes tras la corrección por pruebas múltiples: %d (ver la tabla de centralidad)."
+            ],
+            "Centrality: the difference in strength and expected influence of each item between the networks, with the chosen correction.": [
+                "Centralidad: la diferencia en fuerza e influencia esperada de cada ítem entre las redes, con la corrección elegida."
+            ],
+            "Changes": [
+                "Cambia"
+            ],
             "Check": [
                 "Revisar"
             ],
             "Check redundancy (UVA)": [
                 "Revisar redundancia (UVA)"
+            ],
+            "Check: Heywood case, loading above 1, a specific loading below .20 (the item adds almost nothing to its specific factor) or a general loading below .20.": [
+                "Revisar: caso Heywood, carga mayor que 1, carga específica menor que .20 (el ítem casi no aporta a su factor específico) o carga general menor que .20."
             ],
             "Circle": [
                 "Círculo"
@@ -146,11 +371,23 @@
             "Closeness": [
                 "Cercanía"
             ],
+            "Closeness and betweenness (optional): based on the shortest paths between items. They are less stable and harder to interpret in psychological networks (Bringmann et al., 2019; see references).": [
+                "Cercanía e intermediación (opcionales): se basan en los caminos más cortos entre ítems. Son menos estables y más difíciles de interpretar en redes psicológicas (Bringmann et al., 2019; ver referencias)."
+            ],
+            "Closeness and betweenness are shown because they were requested. In psychological networks they are often unstable and have no clear meaning (Bringmann et al., 2019); give them less weight than strength.": [
+                "La cercanía y la intermediación se muestran porque se pidieron. En redes psicológicas suelen ser inestables y no tienen un significado claro (Bringmann et al., 2019); deles menos peso que a la fuerza."
+            ],
             "Colorblind-safe (Okabe-Ito)": [
                 "Apta para daltonismo (Okabe-Ito)"
             ],
             "Community Detection": [
                 "Detección de comunidades"
+            ],
+            "Community detection": [
+                "Detección de comunidades"
+            ],
+            "Compare structures": [
+                "Comparar estructuras"
             ],
             "Compare structures (TEFI)": [
                 "Comparar estructuras (TEFI)"
@@ -158,8 +395,20 @@
             "Compare structures with TEFI": [
                 "Comparar estructuras con TEFI"
             ],
+            "Compared with their own group, %s of the persons show exactly their group's item membership (median ARI = %s). The differences between persons are explained by the group they belong to, not by idiosyncratic structures: describe each group's structure.": [
+                "Comparadas con su propio grupo, el %s de las personas muestra exactamente la pertenencia de ítems de su grupo (ARI mediano = %s). Las diferencias entre personas se explican por el grupo al que pertenecen, no por estructuras idiosincrásicas: describa la estructura de cada grupo."
+            ],
             "Comparison": [
                 "Comparación"
+            ],
+            "Configural invariance was not reached: after removing the unstable items, fewer than two items keep a stability of %.2f or more, so there is no common structure to compare. The groups do not share the same dimensions; compare their networks with the Network Comparison Test or run the EGA within each group.": [
+                "No se alcanzó la invarianza configural: tras quitar los ítems inestables, menos de dos ítems conservan una estabilidad de %.2f o más, así que no hay una estructura común que comparar. Los grupos no comparten las mismas dimensiones; compare sus redes con el Network Comparison Test o ejecute el EGA dentro de cada grupo."
+            ],
+            "Configural invariance: every item stays in its dimension in enough bootstrap samples, so all items were tested.": [
+                "Invarianza configural: todos los ítems se mantienen en su dimensión en suficientes muestras bootstrap, así que se evaluaron todos."
+            ],
+            "Configural invariance: unstable items left out before the metric test (%d): %s.": [
+                "Invarianza configural: ítems inestables excluidos antes de la prueba métrica (%d): %s."
             ],
             "Configural stability cutoff": [
                 "Punto de corte de estabilidad configural"
@@ -170,17 +419,56 @@
             "Confirmatory factor analysis": [
                 "Análisis factorial confirmatorio"
             ],
+            "Confirmatory factor analysis (CFA) tests the structure found by EGA as a factor model: each dimension becomes a factor and each item loads only on its own factor (lavaan; Rosseel, 2012; see references).": [
+                "El análisis factorial confirmatorio (AFC/CFA) pone a prueba la estructura hallada por EGA como un modelo factorial: cada dimensión es un factor y cada ítem carga solo en su propio factor (lavaan; Rosseel, 2012; ver referencias)."
+            ],
+            "Connections that differ between the networks after the correction for multiple tests: %d (see the edge table).": [
+                "Conexiones que difieren entre las redes tras la corrección por pruebas múltiples: %d (ver la tabla de aristas)."
+            ],
             "Control wording effects (random-intercept EGA)": [
                 "Controlar efectos de redacción (EGA con intercepto aleatorio)"
             ],
+            "Controlling for a wording effect changes the structure: %d dimensions with the random intercept against %d without it (Random-intercept EGA).": [
+                "Controlar un efecto de redacción cambia la estructura: %d dimensiones con el intercepto aleatorio frente a %d sin él (EGA con intercepto aleatorio)."
+            ],
+            "Controlling for a wording effect does not change the number of dimensions (Random-intercept EGA).": [
+                "Controlar un efecto de redacción no cambia el número de dimensiones (EGA con intercepto aleatorio)."
+            ],
+            "Conventional guidelines (Hu & Bentler, 1999; see references): CFI and TLI of .95 or more, RMSEA of .06 or less and SRMR of .08 or less suggest good fit; CFI/TLI of .90 and RMSEA of .08 are often taken as acceptable. With WLSMV these cutoffs are only approximate.": [
+                "Guías convencionales (Hu y Bentler, 1999; ver referencias): CFI y TLI de .95 o más, RMSEA de .06 o menos y SRMR de .08 o menos sugieren buen ajuste; CFI/TLI de .90 y RMSEA de .08 suelen tomarse como aceptables. Con WLSMV estos puntos de corte son solo aproximados."
+            ],
+            "Converged": [
+                "Convergió"
+            ],
+            "Correlated factors (EGA = hierEGA lower order)": [
+                "Factores correlacionados (EGA = orden inferior de hierEGA)"
+            ],
+            "Correlated factors (EGA)": [
+                "Factores correlacionados (EGA)"
+            ],
+            "Correlated factors (hierEGA lower order)": [
+                "Factores correlacionados (orden inferior de hierEGA)"
+            ],
+            "Correlated lower-order dimensions": [
+                "Dimensiones de orden inferior correlacionadas"
+            ],
             "Correlation": [
                 "Correlación"
+            ],
+            "Correlation with the original order": [
+                "Correlación con el orden original"
+            ],
+            "Correlation: with items that have few response categories, EGAnetLab's automatic option uses polychoric or tetrachoric correlations.": [
+                "Correlación: con ítems de pocas categorías de respuesta, la opción automática de EGAnetLab usa correlaciones policóricas o tetracóricas."
             ],
             "Correlations (NCT)": [
                 "Correlaciones (NCT)"
             ],
             "Cosine": [
                 "Coseno"
+            ],
+            "Cosine similarity measures the angle between response vectors rather than their linear association. It is used mainly with text-derived or high-dimensional data. For typical questionnaire items, Automatic or Pearson are better established in the EGA literature.": [
+                "La similitud coseno mide el ángulo entre los vectores de respuesta en lugar de su asociación lineal. Se usa sobre todo con datos derivados de texto o de alta dimensión. Para ítems de cuestionario habituales, Automática o Pearson están mejor establecidas en la literatura de EGA."
             ],
             "Dark gray": [
                 "Gris oscuro"
@@ -209,11 +497,20 @@
             "Diamond": [
                 "Rombo"
             ],
+            "Did not converge": [
+                "No convergió"
+            ],
             "Difference": [
                 "Diferencia"
             ],
             "Difference from lowest": [
                 "Diferencia con el más bajo"
+            ],
+            "Difference from lowest: how far each structure is from the lowest TEFI among the structures that use the same items. There is no established cutoff for a meaningful difference.": [
+                "Diferencia con el más bajo: cuánto se aleja cada estructura del TEFI más bajo entre las estructuras que usan los mismos ítems. No hay un punto de corte establecido para una diferencia importante."
+            ],
+            "Difference: loading in the first group minus loading in the second group.": [
+                "Diferencia: carga en el primer grupo menos carga en el segundo grupo."
             ],
             "Dimension": [
                 "Dimensión"
@@ -239,11 +536,44 @@
             "Dimensions": [
                 "Dimensiones"
             ],
+            "Dimensions (population)": [
+                "Dimensiones (población)"
+            ],
             "Dimensions across persons plot": [
                 "Gráfico de dimensiones entre personas"
             ],
+            "Dimensions after wording control (riEGA)": [
+                "Dimensiones tras controlar la redacción (riEGA)"
+            ],
+            "Dimensions found by EGA": [
+                "Dimensiones halladas por EGA"
+            ],
+            "Dimensions in the original sample": [
+                "Dimensiones en la muestra original"
+            ],
+            "Dimensions that replicate poorly, below %s: %s (Stability).": [
+                "Dimensiones que se replican poco, por debajo de %s: %s (Estabilidad)."
+            ],
+            "Dimensions with a single item cannot form a factor and were left out of the CFA: %s.": [
+                "Las dimensiones con un solo ítem no pueden formar un factor y quedaron fuera del CFA: %s."
+            ],
+            "Dimensions with and without the wording control: if the number of dimensions drops after the control, some of the original dimensions probably reflected wording rather than content.": [
+                "Dimensiones con y sin control de la redacción: si el número de dimensiones baja tras el control, algunas de las dimensiones originales probablemente reflejaban la redacción y no el contenido."
+            ],
+            "Dimensions with structural consistency below %s: %s. These dimensions are often not reproduced with exactly the same items; usually one or more of their items move to another dimension in some samples (see item stability).": [
+                "Dimensiones con consistencia estructural menor que %s: %s. Estas dimensiones a menudo no se reproducen con exactamente los mismos ítems; por lo general uno o más de sus ítems pasan a otra dimensión en algunas muestras (ver estabilidad de los ítems)."
+            ],
+            "Dimensions without wording control (EGA)": [
+                "Dimensiones sin control de la redacción (EGA)"
+            ],
             "Direction": [
                 "Dirección"
+            ],
+            "Direction: the group with the larger loading, shown only when p is .05 or less.": [
+                "Dirección: el grupo con la carga mayor, que se muestra solo cuando p es .05 o menor."
+            ],
+            "Done: %d samples resampling cases and %d samples dropping cases, seed %d. The results are kept while the estimation options do not change.": [
+                "Listo: %d muestras remuestreando casos y %d muestras eliminando casos, semilla %d. Los resultados se conservan mientras no cambien las opciones de estimación."
             ],
             "Dotted": [
                 "Punteada"
@@ -254,11 +584,44 @@
             "Dynamic EGA (intensive longitudinal data)": [
                 "EGA dinámico (datos longitudinales intensivos)"
             ],
+            "Dynamic EGA estimates the network from the derivatives of the items, which are continuous even when the answers are Likert-type, so Automatic uses Pearson correlations. Spearman is an alternative when a few extreme changes dominate the series.": [
+                "El EGA dinámico estima la red a partir de las derivadas de los ítems, que son continuas aunque las respuestas sean tipo Likert, así que Automática usa correlaciones de Pearson. Spearman es una alternativa cuando unos pocos cambios extremos dominan la serie."
+            ],
+            "Dynamic Exploratory Graph Analysis (dynEGA) estimates the dimensional structure of intensive longitudinal data: the same items answered many times by each person, for example in daily diaries or ecological momentary assessment (Golino et al., 2022; see references).": [
+                "El Análisis Exploratorio de Grafos dinámico (dynEGA) estima la estructura dimensional de datos longitudinales intensivos: los mismos ítems respondidos muchas veces por cada persona, por ejemplo en diarios o en evaluación ecológica momentánea (Golino et al., 2022; ver referencias)."
+            ],
             "EGA": [
                 "EGA"
             ],
+            "EGA dimension %s is made only of negatively worded items (%s): the classic sign of a wording factor rather than a content dimension.": [
+                "La dimensión %s de EGA está formada solo por ítems redactados en negativo (%s): la señal clásica de un factor de redacción y no de una dimensión de contenido."
+            ],
+            "EGA finds %s dimensions in the total sample, %s in subsample A and %s in subsample B: the number of dimensions does not fully replicate across random subsamples, so interpret the structure with caution.": [
+                "EGA encuentra %s dimensiones en la muestra total, %s en la SubMuestra A y %s en la SubMuestra B: el número de dimensiones no se replica del todo entre submuestras aleatorias, así que interprete la estructura con cautela."
+            ],
+            "EGA finds %s dimensions in the total sample, %s in subsample A and %s in subsample B: the number of dimensions replicates across random subsamples.": [
+                "EGA encuentra %s dimensiones en la muestra total, %s en la SubMuestra A y %s en la SubMuestra B: el número de dimensiones se replica entre submuestras aleatorias."
+            ],
+            "EGA found %d dimensions. The items group into %d communities of densely connected nodes, which suggests %d related but distinct constructs.": [
+                "EGA encontró %d dimensiones. Los ítems se agrupan en %d comunidades de nodos densamente conectados, lo que sugiere %d constructos relacionados pero distintos."
+            ],
+            "EGA found a single dimension. The unidimensionality check (%s) did not separate the items into distinct communities, which supports treating the item set as measuring one construct.": [
+                "EGA encontró una sola dimensión. La verificación de unidimensionalidad (%s) no separó los ítems en comunidades distintas, lo que respalda tratar el conjunto de ítems como medida de un único constructo."
+            ],
+            "EGA in subsample A": [
+                "EGA en la SubMuestra A"
+            ],
+            "EGA in the total sample": [
+                "EGA en la muestra total"
+            ],
+            "EGA solution (%s)": [
+                "Solución de EGA (%s)"
+            ],
             "EGA solution (configural invariance assumed)": [
                 "Solución del EGA (se asume invarianza configural)"
+            ],
+            "EGA with %s": [
+                "EGA con %s"
             ],
             "EGAnet Lab": [
                 "EGAnet Lab"
@@ -266,8 +629,77 @@
             "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis, with bootstrap stability, redundancy analysis (UVA), network loadings and scores, entropy fit and comparison of structures, confirmatory factor analysis, hierarchical and random-intercept structures, group comparisons, centrality, and dynamic EGA for intensive longitudinal data. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation.": [
                 "EGAnetLab lleva a jamovi los métodos de psicometría de redes del paquete EGAnet y acompaña cada resultado con orientación metodológica basada en evidencia, interpretación y apoyo educativo. Estima el número y el contenido de las dimensiones con el Análisis Exploratorio de Grafos, con estabilidad por bootstrap, análisis de redundancia (UVA), cargas y puntuaciones de red, ajuste por entropía y comparación de estructuras, análisis factorial confirmatorio, estructuras jerárquicas y de intercepto aleatorio, comparación de grupos, centralidad y EGA dinámico para datos longitudinales intensivos. Cada tabla basada en un método cita su propia fuente en el formato numerado nativo de jamovi, y la bibliografía completa en APA 7.ª edición vive en la documentación del módulo."
             ],
+            "EGAnetLab could not complete the bootstrap: %s. The EGA above was estimated, so the problem lies in some bootstrap samples: try the resampling bootstrap, or fewer items with very few categories.": [
+                "EGAnetLab no pudo completar el bootstrap: %s. El EGA de arriba sí se estimó, así que el problema está en algunas muestras bootstrap: pruebe el bootstrap por remuestreo, o menos ítems con muy pocas categorías."
+            ],
+            "EGAnetLab could not complete the invariance test: %s. The EGA results above are not affected. Check that every group has enough cases and that no item is constant within a group.": [
+                "EGAnetLab no pudo completar la prueba de invarianza: %s. Los resultados del EGA de arriba no se ven afectados. Revise que cada grupo tenga suficientes casos y que ningún ítem sea constante dentro de un grupo."
+            ],
+            "EGAnetLab could not complete the redundancy analysis: %s. The EGA results above are not affected.": [
+                "EGAnetLab no pudo completar el análisis de redundancia: %s. Los resultados de EGA de arriba no se ven afectados."
+            ],
+            "EGAnetLab could not compute centrality: %s.": [
+                "EGAnetLab no pudo calcular la centralidad: %s."
+            ],
+            "EGAnetLab could not compute network scores: %s.": [
+                "EGAnetLab no pudo calcular las puntuaciones de red: %s."
+            ],
+            "EGAnetLab could not estimate Dynamic EGA: %s. This usually means too few time points per person for the number of items, or items that barely change over time. Try a smaller embedding dimension, fewer items, or the population level only.": [
+                "EGAnetLab no pudo estimar el EGA dinámico: %s. Esto suele indicar muy pocos momentos por persona para el número de ítems, o ítems que casi no cambian en el tiempo. Pruebe una dimensión de inmersión menor, menos ítems o solo el nivel de población."
+            ],
+            "EGAnetLab could not estimate the hierarchical EGA: %s. The results above are not affected.": [
+                "EGAnetLab no pudo estimar el EGA jerárquico: %s. Los resultados de arriba no se ven afectados."
+            ],
+            "EGAnetLab could not estimate the network: %s. This usually means the correlation matrix is not positive definite (too few cases for the number of items, or items that are near-duplicates). Check the sample size and item redundancy, or try a different correlation or network model.": [
+                "EGAnetLab no pudo estimar la red: %s. Suele deberse a que la matriz de correlaciones no es definida positiva (muy pocos casos para el número de ítems, o ítems casi duplicados). Revise el tamaño de muestra y la redundancia de los ítems, o pruebe otra correlación u otro modelo de red."
+            ],
+            "EGAnetLab could not estimate the random-intercept EGA: %s. The results above are not affected.": [
+                "EGAnetLab no pudo estimar el EGA con intercepto aleatorio: %s. Los resultados de arriba no se ven afectados."
+            ],
+            "EGAnetLab could not estimate this structure: %s.": [
+                "EGAnetLab no pudo estimar esta estructura: %s."
+            ],
+            "EGAnetLab could not run the NCT for %s: %s. Check that both groups have enough complete cases and that no item is constant within a group.": [
+                "EGAnetLab no pudo ejecutar el NCT para %s: %s. Revise que ambos grupos tengan suficientes casos completos y que ningún ítem sea constante dentro de un grupo."
+            ],
+            "EGAnetLab could not run the network stability analysis: %s.": [
+                "EGAnetLab no pudo ejecutar el análisis de estabilidad de la red: %s."
+            ],
             "EGAnetLab default": [
                 "Por defecto de EGAnetLab"
+            ],
+            "EGAnetLab estimates the network in each group with the same dimensional structure and compares the network loadings item by item. Then it shuffles people between groups many times to see how large the differences would be if group membership did not matter. An item whose loading differs more than expected by chance is not invariant: the item does not measure its dimension in the same way in the two groups.": [
+                "EGAnetLab estima la red en cada grupo con la misma estructura dimensional y compara las cargas de red ítem por ítem. Luego reparte a las personas entre los grupos al azar muchas veces para ver qué tan grandes serían las diferencias si pertenecer a un grupo no importara. Un ítem cuya carga difiere más de lo esperable por azar no es invariante: no mide su dimensión de la misma forma en los dos grupos."
+            ],
+            "EGAnetLab marks hierEGA as experimental. Report it as exploratory evidence together with the content of the dimensions.": [
+                "EGAnetLab marca hierEGA como experimental. Infórmelo como evidencia exploratoria junto con el contenido de las dimensiones."
+            ],
+            "EGAnetLab's automatic rule would keep %s and remove %s. Treat this as a starting point: decide by content (which item best covers the construct, has the clearest wording, or is needed for a balanced scale), and consider combining items instead of removing them when both cover essential content.": [
+                "La regla automática de EGAnetLab conservaría %s y eliminaría %s. Tómelo como punto de partida: decida por el contenido (qué ítem cubre mejor el constructo, tiene la redacción más clara o es necesario para una escala equilibrada), y considere combinar ítems en lugar de eliminarlos cuando ambos cubren contenido esencial."
+            ],
+            "Each estimation decision below is explained for the option currently selected, with guidance on when an alternative would fit your data better.": [
+                "Cada decisión de estimación se explica a continuación para la opción seleccionada, con orientación sobre cuándo una alternativa se ajustaría mejor a sus datos."
+            ],
+            "Each item is a node. Edges are regularized partial correlations: the association between two items after controlling for all the others. A community detection algorithm then groups densely connected items; each group is an estimated dimension.": [
+                "Cada ítem es un nodo. Las aristas son correlaciones parciales regularizadas: la asociación entre dos ítems tras controlar todos los demás. Luego, un algoritmo de detección de comunidades agrupa los ítems densamente conectados; cada grupo es una dimensión estimada."
+            ],
+            "Each lower-order dimension stays on its own at the higher level, so there is no evidence of broader dimensions grouping them.": [
+                "Cada dimensión de orden inferior queda sola en el nivel superior, así que no hay evidencia de dimensiones más amplias que las agrupen."
+            ],
+            "Each network is estimated with the graphical lasso (EBIC, gamma .50) on Pearson correlations, the default of the NCT. With ordinal items Pearson slightly underestimates the associations, but both networks are estimated the same way, so the comparison stays fair. Choose Same as EGA in Correlations (NCT) for polychoric correlations; they are recomputed in every permutation, so the test takes several times longer.": [
+                "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones de Pearson, el valor por defecto del NCT. Con ítems ordinales, Pearson subestima un poco las asociaciones, pero ambas redes se estiman de la misma forma, así que la comparación sigue siendo justa. Elija Same as EGA en Correlations (NCT) para usar correlaciones policóricas; se recalculan en cada permutación, así que la prueba tarda varias veces más."
+            ],
+            "Each network is estimated with the graphical lasso (EBIC, gamma .50) on Pearson correlations.": [
+                "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones de Pearson."
+            ],
+            "Each network is estimated with the graphical lasso (EBIC, gamma .50) on polychoric correlations, because the items have few categories and Same as EGA was chosen in Correlations (NCT). They are recomputed in every permutation, so the test is slow.": [
+                "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones policóricas, porque los ítems tienen pocas categorías y se eligió Same as EGA en Correlations (NCT). Se recalculan en cada permutación, así que la prueba es lenta."
+            ],
+            "Each person agrees with their own group with a median ARI of %s (Structure of each person).": [
+                "Cada persona coincide con su propio grupo con un ARI mediano de %s (Estructura de cada persona)."
+            ],
+            "Each person's own network is estimated from their derivatives. Individual structures rely on fewer data points than the population structure, so they are noisier; read their distribution, not each one separately.": [
+                "La red propia de cada persona se estima a partir de sus derivadas. Las estructuras individuales se basan en menos datos que la de la población, así que son más ruidosas; lea su distribución, no cada una por separado."
             ],
             "Edge": [
                 "Arista"
@@ -277,6 +709,12 @@
             ],
             "Edge intervals plot": [
                 "Gráfico de intervalos de aristas"
+            ],
+            "Edge intervals: the range that covers 95% of the bootstrap weights of each edge. A wide interval means the weight is imprecise; an interval that includes 0 means the edge may be absent in other samples.": [
+                "Intervalos de las aristas: el rango que cubre el 95% de los pesos bootstrap de cada arista. Un intervalo amplio indica un peso impreciso; un intervalo que incluye el 0 indica que la arista podría no aparecer en otras muestras."
+            ],
+            "Edge weight (95% bootstrap interval)": [
+                "Peso de la arista (intervalo bootstrap del 95%)"
             ],
             "Edge weight size": [
                 "Tamaño de los pesos"
@@ -293,6 +731,9 @@
             "Edges that differ": [
                 "Aristas que difieren"
             ],
+            "Edges: every connection whose weight differs between the networks (p of .05 or less after the chosen correction).": [
+                "Aristas: cada conexión cuyo peso difiere entre las redes (p de .05 o menor tras la corrección elegida)."
+            ],
             "Eigenvector": [
                 "Autovector"
             ],
@@ -302,17 +743,20 @@
             "Element": [
                 "Elemento"
             ],
+            "Embedding dimension %d: each derivative is estimated from a window of %d consecutive time points. Larger windows smooth out measurement noise but need more time points per person and hide fast changes; 5 is the usual value. Lag tau = %d: with tau = 1 the window uses consecutive time points; larger values skip time points and smooth the series further. Delta = %s is the time between measurements; it only rescales the derivatives.": [
+                "Dimensión de inmersión %d: cada derivada se estima con una ventana de %d momentos consecutivos. Ventanas más grandes suavizan el error de medida, pero necesitan más momentos por persona y ocultan los cambios rápidos; 5 es el valor habitual. Retardo tau = %d: con tau = 1 la ventana usa momentos consecutivos; valores mayores saltan momentos y suavizan más la serie. Delta = %s es el tiempo entre mediciones; solo cambia la escala de las derivadas."
+            ],
             "Embedding dimension (time points per window)": [
                 "Dimensión de inmersión (momentos por ventana)"
             ],
-            "English": [
-                "English"
-            ],
-            "Español": [
-                "Español"
-            ],
             "Estimated network": [
                 "Red estimada"
+            ],
+            "Estimated network (hierarchical: higher · lower order)": [
+                "Red estimada (jerárquica: orden superior · inferior)"
+            ],
+            "Estimated: population%s%s, derivative %s, embedding dimension %d, seed %d. The results are kept while the estimation options do not change.": [
+                "Estimado: población%s%s, derivada %s, dimensión de inmersión %d, semilla %d. Los resultados se conservan mientras no cambien las opciones de estimación."
             ],
             "Estimates the dimensional structure of intensive longitudinal data (many measurements per person) with dynamic Exploratory Graph Analysis: derivatives of each person's time series, and their structure for the whole sample, for each group and for each person, with plain-language interpretation.": [
                 "Estima la estructura dimensional de datos longitudinales intensivos (muchas mediciones por persona) con el Análisis Exploratorio de Grafos dinámico: derivadas de la serie temporal de cada persona y su estructura para toda la muestra, para cada grupo y para cada persona, con interpretación en lenguaje claro."
@@ -323,6 +767,36 @@
             "Estimation": [
                 "Estimación"
             ],
+            "Estimator: %s, as chosen in the options.": [
+                "Estimador: %s, según lo elegido en las opciones."
+            ],
+            "Estimator: MLR (robust maximum likelihood) with full-information handling of missing values, as EGAnetLab's CFA() does for items with 6 or more categories.": [
+                "Estimador: MLR (máxima verosimilitud robusta) con manejo de información completa de los valores perdidos, como hace CFA() de EGAnetLab con ítems de 6 o más categorías."
+            ],
+            "Estimator: WLSMV with items treated as ordinal (some items have fewer than 6 categories), as EGAnetLab's CFA() does.": [
+                "Estimador: WLSMV con los ítems tratados como ordinales (algunos ítems tienen menos de 6 categorías), como hace CFA() de EGAnetLab."
+            ],
+            "Even within their own group, persons differ (median ARI with their group = %s): individual structures vary beyond group membership.": [
+                "Incluso dentro de su propio grupo las personas difieren (ARI mediano con su grupo = %s): las estructuras individuales varían más allá del grupo."
+            ],
+            "Every dimension reappears with exactly the same items in at least %s of samples.": [
+                "Cada dimensión reaparece con exactamente los mismos ítems en al menos %s de las muestras."
+            ],
+            "Every group shows the same item membership as the population (Structure of each group).": [
+                "Todos los grupos muestran la misma pertenencia de ítems que la población (Estructura de cada grupo)."
+            ],
+            "Every group shows the same number of dimensions as the population.": [
+                "Todos los grupos muestran el mismo número de dimensiones que la población."
+            ],
+            "Every item forms its own community, so network loadings are undefined.": [
+                "Cada ítem forma su propia comunidad, así que las cargas de red no están definidas."
+            ],
+            "Every item stays in its original dimension in at least %s of samples, which supports the stability of the structure.": [
+                "Cada ítem permanece en su dimensión original en al menos %s de las muestras, lo que respalda la estabilidad de la estructura."
+            ],
+            "Every model here is fitted on the total sample and on the same items, so the rows can be compared directly. The correlated-factors models have no hierarchy; the higher-order model places the hierEGA higher-order dimensions above the lower-order factors, and the bifactor model adds a general factor on every item next to the lower-order factors (all uncorrelated; Reise, 2012; see references).": [
+                "Todos los modelos se ajustan en la muestra total y con los mismos ítems, así que las filas se pueden comparar directamente. Los modelos de factores correlacionados no tienen jerarquía; el modelo de orden superior coloca las dimensiones de orden superior de hierEGA por encima de los factores de orden inferior, y el modelo bifactor agrega un factor general en todos los ítems junto a los factores de orden inferior (todos sin correlación; Reise, 2012; ver referencias)."
+            ],
             "Every person": [
                 "Cada persona"
             ],
@@ -332,29 +806,71 @@
             "Expected influence": [
                 "Influencia esperada"
             ],
+            "Expected influence: like strength, but negative connections count against. It differs from strength only when the item has negative connections.": [
+                "Influencia esperada: como la fuerza, pero las conexiones negativas restan. Solo difiere de la fuerza cuando el ítem tiene conexiones negativas."
+            ],
             "Explain my choices": [
                 "Explicar mis elecciones"
             ],
             "Exploratory Graph Analysis": [
                 "Análisis Exploratorio de Grafos"
             ],
+            "Exploratory Graph Analysis (EGA) estimates how many dimensions underlie a set of items, and which items belong to each, by modeling the items as a network rather than as indicators of latent factors (Golino & Epskamp, 2017; see references).": [
+                "El Análisis Exploratorio de Grafos (EGA) estima cuántas dimensiones subyacen a un conjunto de ítems, y qué ítems pertenecen a cada una, modelando los ítems como una red en lugar de como indicadores de factores latentes (Golino & Epskamp, 2017; ver referencias)."
+            ],
             "Factor": [
                 "Factor"
+            ],
+            "Fewer than two complete cases remain after listwise deletion. Switch Missing Values to pairwise, or review the missing-data pattern.": [
+                "Quedan menos de dos casos completos tras la eliminación por lista. Cambie Valores perdidos a pairwise o revise el patrón de datos faltantes."
+            ],
+            "Fewer than two persons have enough time points (at least %d, the embedding dimension plus 2). Dynamic EGA needs many time points per person; lower the embedding dimension or check the Person ID variable.": [
+                "Menos de dos personas tienen suficientes momentos (al menos %d, la dimensión de inmersión más 2). El EGA dinámico necesita muchos momentos por persona; reduzca la dimensión de inmersión o revise la variable Person ID."
             ],
             "First": [
                 "Primero"
             ],
+            "Fitting the CFA on the same data that produced the structure gives an optimistic fit. Splitting the sample at random gives an honest check: EGA finds the structure in subsample A (exploration) and the CFA tests it in subsample B (confirmation). The table shows the total sample and both subsamples side by side.": [
+                "Ajustar el CFA con los mismos datos que produjeron la estructura da un ajuste optimista. Dividir la muestra al azar da una prueba honesta: EGA encuentra la estructura en la SubMuestra A (exploración) y el CFA la prueba en la SubMuestra B (confirmación). La tabla muestra la muestra total y ambas submuestras lado a lado."
+            ],
+            "For each person, it first estimates how every item changes from one time point to the next (its derivatives, with generalized local linear approximation; Boker et al., 2010). It then applies EGA to those derivatives, so the dimensions group items that change together over time, not items that are simply high or low together.": [
+                "Para cada persona estima primero cómo cambia cada ítem de un momento al siguiente (sus derivadas, con aproximación lineal local generalizada; Boker et al., 2010). Luego aplica EGA a esas derivadas, así que las dimensiones agrupan ítems que cambian juntos en el tiempo, no ítems que simplemente son altos o bajos a la vez."
+            ],
             "Frequency of the number of dimensions": [
                 "Frecuencia del número de dimensiones"
+            ],
+            "Frequency: how often each number of dimensions appeared. A dominant value that matches the original sample supports the structure.": [
+                "Frecuencia: cuántas veces apareció cada número de dimensiones. Un valor dominante que coincide con la muestra original respalda la estructura."
             ],
             "GLASSO (EBIC)": [
                 "GLASSO (EBIC)"
             ],
+            "GLASSO with EBIC model selection estimates a sparse network of regularized partial correlations: weak edges are shrunk to exactly zero, so only associations supported by the data remain. It is EGA's original and most studied estimator (Golino et al., 2020; see references) and works best with moderate to large samples.": [
+                "GLASSO con selección EBIC estima una red dispersa de correlaciones parciales regularizadas: las aristas débiles se reducen exactamente a cero, así que solo quedan las asociaciones respaldadas por los datos. Es el estimador original y más estudiado de EGA (Golino et al., 2020; ver referencias) y funciona mejor con muestras medianas o grandes."
+            ],
             "General": [
                 "General"
             ],
+            "General and Specific: standardized loadings. In a sound bifactor model, items load clearly on the general factor and still keep visible loadings (.20 or more) on their specific factor.": [
+                "General y Específica: cargas estandarizadas. En un modelo bifactor sólido, los ítems cargan claramente en el factor general y conservan cargas visibles (.20 o más) en su factor específico."
+            ],
+            "Generalized TEFI": [
+                "TEFI generalizado"
+            ],
             "Global network comparison": [
                 "Comparación global de las redes"
+            ],
+            "Global strength (S)": [
+                "Fuerza global (S)"
+            ],
+            "Global strength (S): the difference in the sum of the absolute edge weights of each network. A small p means one network is, overall, more strongly connected.": [
+                "Fuerza global (S): la diferencia en la suma de los pesos absolutos de las aristas de cada red. Un p pequeño indica que una red está, en conjunto, más fuertemente conectada."
+            ],
+            "Global strength differs: %s in %s and %s in %s (%s). In one network the items are, overall, more strongly connected, which often goes with a more homogeneous or more severe presentation of the construct.": [
+                "La fuerza global difiere: %s en %s y %s en %s (%s). En una de las redes los ítems están, en conjunto, más fuertemente conectados, lo que suele acompañar una presentación más homogénea o más intensa del constructo."
+            ],
+            "Global strength is similar: %s in %s and %s in %s (%s). The overall level of connection among the items does not differ beyond chance.": [
+                "La fuerza global es similar: %s en %s y %s en %s (%s). El nivel general de conexión entre los ítems no difiere más allá del azar."
             ],
             "Gray": [
                 "Gris"
@@ -371,14 +887,26 @@
             "Grouping variable (optional)": [
                 "Variable de agrupación (opcional)"
             ],
+            "Groups": [
+                "Grupos"
+            ],
             "Groups compared": [
                 "Grupos comparados"
+            ],
+            "Groups with fewer than 10 cases were left out of the comparison: %s. Networks cannot be estimated reliably with so few people.": [
+                "Se dejaron fuera de la comparación los grupos con menos de 10 casos: %s. Con tan pocas personas no es posible estimar redes de forma fiable."
+            ],
+            "Heywood case": [
+                "Caso Heywood"
             ],
             "Hide edges weaker than": [
                 "Ocultar aristas menores que"
             ],
             "Hierarchical EGA": [
                 "EGA jerárquico"
+            ],
+            "Hierarchical EGA (hierEGA; Jiménez et al., 2025; see references) asks whether the dimensions are themselves grouped under broader, higher-order dimensions, such as a general factor.": [
+                "El EGA jerárquico (hierEGA; Jiménez et al., 2025; ver referencias) pregunta si las dimensiones se agrupan a su vez bajo dimensiones más amplias, de orden superior, como un factor general."
             ],
             "Hierarchical EGA (higher-order dimensions)": [
                 "EGA jerárquico (dimensiones de orden superior)"
@@ -398,8 +926,17 @@
             "Hierarchical structure plot": [
                 "Gráfico de la estructura jerárquica"
             ],
+            "Higher %s · %s": [
+                "Superior %s · %s"
+            ],
             "Higher order": [
                 "Orden superior"
+            ],
+            "Higher order (higher-order factors: %s)": [
+                "Orden superior (factores de orden superior: %s)"
+            ],
+            "Higher-order dimensions": [
+                "Dimensiones de orden superior"
             ],
             "Holm": [
                 "Holm"
@@ -407,8 +944,23 @@
             "If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction.": [
                 "Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
             ],
+            "In %s, the CFA of the EGA structure gives CFI = %s, TLI = %s, RMSEA = %s and SRMR = %s, which suggests %s fit.": [
+                "En %s, el CFA de la estructura de EGA da CFI = %s, TLI = %s, RMSEA = %s y SRMR = %s, lo que sugiere un ajuste %s."
+            ],
+            "In a network of items, a central item shares much unique variance with the rest of the set. That describes the item within this item set; it does not show that the item causes or defines the construct.": [
+                "En una red de ítems, un ítem central comparte mucha varianza única con el resto del conjunto. Eso describe al ítem dentro de este conjunto de ítems; no muestra que el ítem cause o defina el constructo."
+            ],
             "In the data, these items are": [
                 "En los datos, estos ítems están"
+            ],
+            "In the population, the items form %d dimensions (derivative analysed: %s): within each dimension the items change together over time, and partly independently of the other dimensions.": [
+                "En la población, los ítems forman %d dimensiones (derivada analizada: %s): dentro de cada dimensión los ítems cambian juntos en el tiempo, y en parte de forma independiente de las otras dimensiones."
+            ],
+            "In the population, the items form %d dimensions of change over time (Dynamic EGA).": [
+                "En la población, los ítems forman %d dimensiones de cambio en el tiempo (EGA dinámico)."
+            ],
+            "In the population, the items form a single dimension (derivative analysed: %s): they tend to change together over time.": [
+                "En la población, los ítems forman una sola dimensión (derivada analizada: %s): tienden a cambiar juntos en el tiempo."
             ],
             "Include the other community algorithms": [
                 "Incluir los otros algoritmos de comunidades"
@@ -416,8 +968,20 @@
             "Independent groups: the variable that defines them (e.g. sex).": [
                 "Grupos independientes: la variable que los define (p. ej., sexo)."
             ],
+            "Individual structures agree with the population with a median ARI of %s (Structure of each person).": [
+                "Las estructuras individuales coinciden con la de la población con un ARI mediano de %s (Estructura de cada persona)."
+            ],
+            "Individual structures differ markedly from the population, median ARI = %s: the population structure does not describe each person (Structure of each person).": [
+                "Las estructuras individuales difieren mucho de la de la población, ARI mediano = %s: la estructura de la población no describe a cada persona (Estructura de cada persona)."
+            ],
             "Individual structures interpretation": [
                 "Interpretación de las estructuras individuales"
+            ],
+            "Individual structures were not estimated, so it is unknown whether the population structure describes each person (Levels).": [
+                "No se estimaron las estructuras individuales, así que no se sabe si la estructura de la población describe a cada persona (Niveles)."
+            ],
+            "Interpret with care (.25 to .50)": [
+                "Interpretar con cautela (.25 a .50)"
             ],
             "Introduction": [
                 "Introducción"
@@ -425,8 +989,35 @@
             "Invariance (independent groups)": [
                 "Invarianza (grupos independientes)"
             ],
+            "Isolated": [
+                "Aislado"
+            ],
+            "Isolated (no edges)": [
+                "Aislado (sin aristas)"
+            ],
+            "It draws many new samples from your data, runs EGA with the same estimation options on each one and records how many dimensions appear and where each item ends up. A solid structure appears again and again; an unstable one changes from sample to sample.": [
+                "Extrae muchas muestras nuevas de sus datos, ejecuta EGA con las mismas opciones de estimación en cada una y registra cuántas dimensiones aparecen y dónde queda cada ítem. Una estructura sólida aparece una y otra vez; una inestable cambia de una muestra a otra."
+            ],
+            "It estimates the network of each group, records the differences, and then shuffles people between the groups many times (for the same people measured twice, it shuffles the two measurements within each person) to see how large the differences would be by chance.": [
+                "Estima la red de cada grupo, registra las diferencias y luego reparte a las personas entre los grupos al azar muchas veces (con las mismas personas medidas dos veces, intercambia las dos mediciones dentro de cada persona) para ver qué tan grandes serían las diferencias por azar."
+            ],
+            "It is %s points below the next model: strong evidence in its favor.": [
+                "Está %s puntos por debajo del siguiente modelo: evidencia fuerte a su favor."
+            ],
+            "It is only %s points below the next model (less than 10), so BIC does not clearly separate them; choose by theory and by the loadings.": [
+                "Está solo %s puntos por debajo del siguiente modelo (menos de 10), así que el BIC no los separa con claridad; elija según la teoría y las cargas."
+            ],
+            "It uses the weighted topological overlap (wTO) of the network estimated above: the more two items are linked to the same other items with similar strength, the higher their wTO. Redundant items inflate a dimension and can create small artificial dimensions made only of near-duplicates.": [
+                "Usa el solapamiento topológico ponderado (wTO) de la red estimada arriba: cuanto más se conectan dos ítems con los mismos otros ítems y con fuerza similar, mayor es su wTO. Los ítems redundantes inflan una dimensión y pueden crear dimensiones pequeñas y artificiales formadas solo por casi duplicados."
+            ],
+            "It works in two steps: it finds the lower-order dimensions with the lower level of the Louvain algorithm, computes each person's network score on them, and then runs EGA on those scores to find the higher-order dimensions. Louvain starts from random values, so it uses the fixed seed 2026.": [
+                "Trabaja en dos pasos: encuentra las dimensiones de orden inferior con el nivel inferior del algoritmo Louvain, calcula la puntuación de red de cada persona en ellas y luego aplica EGA a esas puntuaciones para hallar las dimensiones de orden superior. Louvain parte de valores aleatorios, así que usa la semilla fija 2026."
+            ],
             "Item": [
                 "Ítem"
+            ],
+            "Item mean %s": [
+                "Promedio de ítems %s"
             ],
             "Item means": [
                 "Promedios de los ítems"
@@ -436,6 +1027,9 @@
             ],
             "Item membership by level": [
                 "Pertenencia de los ítems por nivel"
+            ],
+            "Item membership by level: the EGA column is the solution above; the lower-order column uses the same numbers where the dimensions match; the higher-order column shows the broader dimension each item ends up in.": [
+                "Pertenencia de los ítems por nivel: la columna EGA es la solución de arriba; la de orden inferior usa los mismos números donde las dimensiones coinciden; la de orden superior muestra la dimensión amplia en la que queda cada ítem."
             ],
             "Item membership by sample": [
                 "Pertenencia de los ítems por muestra"
@@ -464,11 +1058,83 @@
             "Item stability plot": [
                 "Gráfico de estabilidad de ítems"
             ],
+            "Item stability: the proportion of samples in which an item is placed in its original dimension.": [
+                "Estabilidad del ítem: la proporción de muestras en que un ítem queda en su dimensión original."
+            ],
             "Items": [
                 "Ítems"
             ],
+            "Items not connected to any other item, left without a dimension (%d): %s. Isolated items share little unique variance with the rest; review their wording and content.": [
+                "Ítems sin conexión con ningún otro, que quedaron sin dimensión (%d): %s. Los ítems aislados comparten poca varianza única con el resto; revise su redacción y contenido."
+            ],
             "Items placed as in EGA": [
                 "Ítems ubicados como en EGA"
+            ],
+            "Items placed as in EGA: how many items fall in the same dimension as in the EGA solution, after matching each dimension with the EGA dimension it shares most items with.": [
+                "Ítems ubicados como en EGA: cuántos ítems quedan en la misma dimensión que en la solución de EGA, tras emparejar cada dimensión con la dimensión de EGA con la que comparte más ítems."
+            ],
+            "Items that are both redundant and unstable in the bootstrap: %s. These are the strongest candidates for revision.": [
+                "Ítems que son a la vez redundantes e inestables en el bootstrap: %s. Son los candidatos más claros a revisión."
+            ],
+            "Items that change dimension after the wording control: %s.": [
+                "Ítems que cambian de dimensión tras controlar la redacción: %s."
+            ],
+            "Items that change dimension between subsamples A and B: %s. Compare them with the bootstrap item stability and the redundancy results.": [
+                "Ítems que cambian de dimensión entre las SubMuestras A y B: %s. Compárelos con la estabilidad bootstrap de los ítems y con los resultados de redundancia."
+            ],
+            "Items that change dimension often, stability below %s: %s (Stability).": [
+                "Ítems que cambian de dimensión con frecuencia, estabilidad menor que %s: %s (Estabilidad)."
+            ],
+            "Items that look like schedule variables: %s. Remove them from Items (Messages).": [
+                "Ítems que parecen variables del calendario: %s. Quítelos de Ítems (Mensajes)."
+            ],
+            "Items that remain different after the Benjamini-Hochberg correction: %s. These are the clearest cases of non-invariance.": [
+                "Ítems que siguen siendo diferentes tras la corrección de Benjamini-Hochberg: %s. Son los casos más claros de falta de invarianza."
+            ],
+            "Items that stay in their original dimension in fewer than %2$s of samples (%1$d): %3$s. Low stability usually means an item relates to more than one dimension, overlaps heavily with another item, or is ambiguously worded. A commonly used cutoff is .70.": [
+                "Ítems que permanecen en su dimensión original en menos de %2$s de las muestras (%1$d): %3$s. Una estabilidad baja suele indicar que el ítem se relaciona con más de una dimensión, se superpone mucho con otro ítem o tiene una redacción ambigua. Un punto de corte de uso común es .70."
+            ],
+            "Items whose loadings differ between groups (p of .05 or less), %d of %d: %s. These items relate to their dimension with different strength in each group, so a dimension score is not fully comparable: part of a group difference on the score could come from these items rather than from the construct.": [
+                "Ítems cuyas cargas difieren entre grupos (p de .05 o menor), %d de %d: %s. Estos ítems se relacionan con su dimensión con distinta fuerza en cada grupo, así que la puntuación de la dimensión no es del todo comparable: parte de una diferencia entre grupos en la puntuación podría deberse a estos ítems y no al constructo."
+            ],
+            "Items whose network loadings differ between groups, uncorrected: %d (Group comparison).": [
+                "Ítems con cargas de red que difieren entre grupos, sin corregir: %d (Comparación entre grupos)."
+            ],
+            "Items with a dominant network loading below 0.15, small (%d): %s. Their assignment is weakly supported; the Stability (bootstrap) section will show whether they replicate.": [
+                "Ítems con una carga de red dominante menor que 0.15, pequeña (%d): %s. Su asignación tiene poco respaldo; la sección Stability (bootstrap) mostrará si se replica."
+            ],
+            "Items with a general loading below .20: %s. They do not share the general factor; check their wording (for example, negatively worded items not reversed) or whether they belong to the scale.": [
+                "Ítems con una carga general menor que .20: %s. No comparten el factor general; revise su redacción (por ejemplo, ítems en negativo sin invertir) o si pertenecen a la escala."
+            ],
+            "Items with a negative residual variance (Heywood case): %s. Their loadings are pushed beyond what the data allow, usually because their specific factor is nearly empty or has very few items. Do not interpret the bifactor model while this happens.": [
+                "Ítems con varianza residual negativa (caso Heywood): %s. Sus cargas quedan forzadas más allá de lo que permiten los datos, por lo general porque su factor específico está casi vacío o tiene muy pocos ítems. No interprete el modelo bifactor mientras esto ocurra."
+            ],
+            "Items with a small network loading on their own dimension, below 0.15: %s (Network loadings).": [
+                "Ítems con carga de red pequeña en su propia dimensión, menor que 0.15: %s (Cargas de red)."
+            ],
+            "Items with a standardized loading above 1: %s. This is not possible in an admissible solution; read it together with the Heywood cases.": [
+                "Ítems con una carga estandarizada mayor que 1: %s. Esto no es posible en una solución admisible; léalo junto con los casos Heywood."
+            ],
+            "Items with negative connections, whose expected influence is lower than their strength (%d): %s. Check whether they are negatively worded or describe the opposite pole of the construct.": [
+                "Ítems con conexiones negativas, cuya influencia esperada es menor que su fuerza (%d): %s. Revise si están redactados en negativo o describen el polo opuesto del constructo."
+            ],
+            "Items without a dimension in %s, left out of the TEFI calculation: %s.": [
+                "Ítems sin dimensión en %s, excluidos del cálculo del TEFI: %s."
+            ],
+            "Items without a dimension in the population (%d): %s. Their changes over time are not connected to those of the other items.": [
+                "Ítems sin dimensión en la población (%d): %s. Sus cambios en el tiempo no se conectan con los de los demás ítems."
+            ],
+            "Items without a dimension in the population: %s (Item membership).": [
+                "Ítems sin dimensión en la población: %s (Pertenencia de los ítems)."
+            ],
+            "Items without a dimension, left out of the TEFI calculation: %s.": [
+                "Ítems sin dimensión, excluidos del cálculo del TEFI: %s."
+            ],
+            "Items without a dimension: %s. They are not connected to the rest of the network (Item membership).": [
+                "Ítems sin dimensión: %s. No se conectan con el resto de la red (Pertenencia de los ítems)."
+            ],
+            "Items without edges in the network, left out of the invariance test: %s.": [
+                "Ítems sin aristas en la red, excluidos de la prueba de invarianza: %s."
             ],
             "Kamada-Kawai": [
                 "Kamada-Kawai"
@@ -487,6 +1153,9 @@
             ],
             "Lag between time points (tau)": [
                 "Retardo entre momentos (tau)"
+            ],
+            "Large to very large": [
+                "Grande a muy grande"
             ],
             "Layout": [
                 "Disposición"
@@ -509,17 +1178,35 @@
             "Leiden": [
                 "Leiden"
             ],
+            "Leiden refines Louvain and guarantees that every community it returns is internally connected, which Louvain does not. It is stochastic as well. Choose it as a modern alternative to Louvain, and compare its solution with Walktrap's.": [
+                "Leiden refina Louvain y garantiza que cada comunidad que devuelve esté conectada internamente, algo que Louvain no asegura. También es estocástico. Elíjalo como alternativa moderna a Louvain y compare su solución con la de Walktrap."
+            ],
+            "Level (0)": [
+                "Nivel (0)"
+            ],
             "Level (0, the values themselves)": [
                 "Nivel (0, los valores mismos)"
             ],
             "Levels": [
                 "Niveles"
             ],
+            "Line: mean correlation. Band: 95% of the samples. Dashed line: .70.": [
+                "Línea: correlación media. Banda: 95% de las muestras. Línea discontinua: .70."
+            ],
             "Listwise": [
                 "Por lista"
             ],
+            "Listwise deletion keeps only respondents who answered every item. Every correlation then comes from the same people, which keeps the matrix coherent, at the cost of sample size. Choose it when few cases are incomplete, or to check that pairwise results are not driven by missing-data patterns.": [
+                "La eliminación por lista conserva solo a quienes respondieron todos los ítems. Así todas las correlaciones provienen de las mismas personas, lo que mantiene la matriz coherente, a costa del tamaño de muestra. Elíjala cuando pocos casos estén incompletos, o para comprobar que los resultados por pares no dependen del patrón de perdidos."
+            ],
             "Loading": [
                 "Carga"
+            ],
+            "Loading above 1": [
+                "Carga mayor que 1"
+            ],
+            "Loading, %s": [
+                "Carga, %s"
             ],
             "Loading, first group": [
                 "Carga, primer grupo"
@@ -530,14 +1217,32 @@
             "Loadings by group plot": [
                 "Gráfico de cargas por grupo"
             ],
+            "Loadings: the network loading of the item on its own dimension in each group.": [
+                "Cargas: la carga de red del ítem en su propia dimensión en cada grupo."
+            ],
             "Louvain": [
                 "Louvain"
+            ],
+            "Louvain finds communities by maximizing modularity, merging items into groups level by level. It is fast and performs well in recent simulations, but it is stochastic: results can vary slightly between runs. Use it to check whether the Walktrap solution holds under a different algorithm.": [
+                "Louvain encuentra comunidades maximizando la modularidad, uniendo ítems en grupos nivel por nivel. Es rápido y rinde bien en simulaciones recientes, pero es estocástico: los resultados pueden variar ligeramente entre ejecuciones. Úselo para comprobar si la solución de Walktrap se mantiene con otro algoritmo."
             ],
             "Lower": [
                 "Inferior"
             ],
+            "Lower TEFI means a better fit: the items within each dimension share more information with each other than with the rest of the items.": [
+                "Un TEFI más bajo indica mejor ajuste: los ítems de cada dimensión comparten más información entre sí que con el resto de los ítems."
+            ],
+            "Lower and higher order: how many dimensions there are at each level. Higher-order dimensions group lower-order dimensions, not items.": [
+                "Orden inferior y superior: cuántas dimensiones hay en cada nivel. Las dimensiones de orden superior agrupan dimensiones de orden inferior, no ítems."
+            ],
             "Lower order": [
                 "Orden inferior"
+            ],
+            "Lower-order dimensions": [
+                "Dimensiones de orden inferior"
+            ],
+            "M = largest difference in a single edge; S = difference in global strength (sum of absolute edge weights). p values come from the permutations.": [
+                "M = mayor diferencia en una sola arista; S = diferencia en la fuerza global (suma de los pesos absolutos de las aristas). Los valores p provienen de las permutaciones."
             ],
             "ML": [
                 "ML"
@@ -545,17 +1250,53 @@
             "MLR (robust)": [
                 "MLR (robusto)"
             ],
+            "Main findings": [
+                "Hallazgos principales"
+            ],
             "Mean": [
                 "Media"
             ],
             "Mean item stability": [
                 "Estabilidad media de ítems"
             ],
+            "Mean of the answered items of dimension %s (EGAnetLab)": [
+                "Promedio de los ítems respondidos de la dimensión %s (EGAnetLab)"
+            ],
             "Measure": [
                 "Medida"
             ],
+            "Measurement 1": [
+                "Medición 1"
+            ],
+            "Measurement 1 vs. 2": [
+                "Medición 1 vs. 2"
+            ],
+            "Measurement 2": [
+                "Medición 2"
+            ],
+            "Median agreement with the population (ARI)": [
+                "Acuerdo mediano con la población (ARI)"
+            ],
+            "Median agreement with their own group (ARI)": [
+                "Acuerdo mediano con su propio grupo (ARI)"
+            ],
+            "Median and interval: the typical number of dimensions across samples, and the range that contains the middle 95% of samples.": [
+                "Mediana e intervalo: el número típico de dimensiones entre muestras y el rango que contiene el 95% central de las muestras."
+            ],
+            "Median number of dimensions": [
+                "Mediana del número de dimensiones"
+            ],
+            "Messages from EGAnetLab": [
+                "Mensajes de EGAnetLab"
+            ],
+            "Messages from EGAnetLab at the end of the report: %d.": [
+                "Mensajes de EGAnetLab al final del informe: %d."
+            ],
             "Metric invariance": [
                 "Invarianza métrica"
+            ],
+            "Metric invariance checks whether each item is related to its dimension with the same strength in every group (Jamison, Christensen & Golino, 2024; see references).": [
+                "La invarianza métrica examina si cada ítem se relaciona con su dimensión con la misma fuerza en todos los grupos (Jamison, Christensen y Golino, 2024; ver referencias)."
             ],
             "Metric invariance interpretation": [
                 "Interpretación de la invarianza métrica"
@@ -566,11 +1307,20 @@
             "Missing Values": [
                 "Valores perdidos"
             ],
+            "Missing values": [
+                "Valores perdidos"
+            ],
             "Model": [
                 "Modelo"
             ],
+            "Models with and without hierarchy": [
+                "Modelos con y sin jerarquía"
+            ],
             "Models with and without hierarchy (total sample)": [
                 "Modelos con y sin jerarquía (muestra total)"
+            ],
+            "Moderate to large": [
+                "Moderada a grande"
             ],
             "Multidimensional scaling": [
                 "Escalamiento multidimensional"
@@ -593,6 +1343,12 @@
             "Negatively worded items": [
                 "Ítems redactados en negativo"
             ],
+            "Negatively worded items: %s. They are already reversed in the data, so riEGA reverses them back to their original direction (observed minimum plus maximum, minus the score).": [
+                "Ítems redactados en negativo: %s. Ya están invertidos en los datos, así que riEGA los devuelve a su dirección original (mínimo más máximo observados, menos el puntaje)."
+            ],
+            "Negatively worded items: %s. They are as answered in the data, so riEGA uses them as they are (the other analyses use them reversed).": [
+                "Ítems redactados en negativo: %s. Están tal como se respondieron en los datos, así que riEGA los usa así (los demás análisis los usan invertidos)."
+            ],
             "Network Comparison Test": [
                 "Network Comparison Test"
             ],
@@ -608,6 +1364,9 @@
             "Network connections": [
                 "Conexiones de la red"
             ],
+            "Network loading on its dimension": [
+                "Carga de red en su dimensión"
+            ],
             "Network loadings": [
                 "Cargas de red"
             ],
@@ -617,8 +1376,23 @@
             "Network loadings by group": [
                 "Cargas de red por grupo"
             ],
+            "Network loadings could not be computed for this structure: %s.": [
+                "No se pudieron calcular las cargas de red para esta estructura: %s."
+            ],
+            "Network loadings summarize how strongly each item is connected to each dimension, on a scale comparable to factor loadings (Christensen & Golino, 2021; see references).": [
+                "Las cargas de red resumen con qué fuerza se conecta cada ítem con cada dimensión, en una escala comparable a la de las cargas factoriales (Christensen & Golino, 2021; ver referencias)."
+            ],
+            "Network model": [
+                "Modelo de red"
+            ],
             "Network plot": [
                 "Gráfico de red"
+            ],
+            "Network score %s": [
+                "Puntuación de red %s"
+            ],
+            "Network score for dimension %s (EGAnetLab)": [
+                "Puntuación de red de la dimensión %s (EGAnetLab)"
             ],
             "Network scores": [
                 "Puntuaciones de red"
@@ -626,11 +1400,98 @@
             "Network scores summary": [
                 "Resumen de puntuaciones de red"
             ],
+            "Network scores weight each item by its network loading on its own dimension (Christensen & Golino, 2021; see references), so items more central to a dimension count more. They are the network counterpart of factor scores.": [
+                "Las puntuaciones de red ponderan cada ítem por su carga de red en su propia dimensión (Christensen y Golino, 2021; ver referencias), así que los ítems más centrales de una dimensión pesan más. Son el equivalente en redes de las puntuaciones factoriales."
+            ],
             "Network stability": [
                 "Estabilidad de la red"
             ],
+            "Network stability (bootnet) uses %d samples resampling cases and %d samples dropping cases, with seed %d. About 1000 of each is the usual recommendation (Epskamp et al., 2018; see references); fewer give less precise intervals and CS coefficients. The same seed with the same data and options reproduces the same results.": [
+                "La estabilidad de la red (bootnet) usa %d muestras remuestreando casos y %d muestras eliminando casos, con semilla %d. Lo habitual es usar unas 1000 de cada tipo (Epskamp et al., 2018; ver referencias); menos dan intervalos y coeficientes CS menos precisos. La misma semilla con los mismos datos y opciones reproduce los mismos resultados."
+            ],
             "Network stability interpretation": [
                 "Interpretación de la estabilidad de la red"
+            ],
+            "Network structure (M)": [
+                "Estructura de la red (M)"
+            ],
+            "Network structure (M): the largest difference in a single edge between the two networks. A small p means at least one connection differs.": [
+                "Estructura de la red (M): la mayor diferencia en una sola arista entre las dos redes. Un p pequeño indica que al menos una conexión difiere."
+            ],
+            "Next step: if a specific factor collapses or has very few items, fit the model without it or keep the correlated-factors model. Do not add parameters suggested by modification indices to rescue an inadmissible bifactor: that tends to fit the noise of this sample.": [
+                "Siguiente paso: si un factor específico colapsa o tiene muy pocos ítems, ajuste el modelo sin él o conserve el modelo de factores correlacionados. No agregue parámetros sugeridos por índices de modificación para rescatar un bifactor inadmisible: eso tiende a ajustar el ruido de esta muestra."
+            ],
+            "Next step: if some items are unstable, check them for redundancy (the Redundancy (UVA) box) and for content before deciding to remove or rewrite them, then run the analysis again, with the bootstrap, on the revised item set. Report the number of samples, the bootstrap type and the seed.": [
+                "Siguiente paso: si hay ítems inestables, revise su redundancia (caja Redundancy (UVA)) y su contenido antes de decidir eliminarlos o reescribirlos; luego vuelva a ejecutar el análisis, con el bootstrap, sobre el conjunto revisado. Informe el número de muestras, el tipo de bootstrap y la semilla."
+            ],
+            "Next step: if you remove or combine items, run the analysis again on the revised item set and compare the number of dimensions and the stability with the original solution. Do not compare TEFI values between the original and the revised item sets: TEFI is only comparable between structures of the same items. Report the cutoff and the items you changed.": [
+                "Siguiente paso: si elimina o combina ítems, vuelva a ejecutar el análisis con el conjunto revisado y compare el número de dimensiones y la estabilidad con la solución original. No compare valores de TEFI entre el conjunto original y el revisado: el TEFI solo es comparable entre estructuras de los mismos ítems. Informe el punto de corte y los ítems que cambió."
+            ],
+            "Next step: interpret differences in connections together with the invariance test, because a different network can change the meaning of a dimension score between groups. Report the estimator, the number of permutations, the seed, the correction and the size of each group.": [
+                "Siguiente paso: interprete las diferencias en las conexiones junto con la prueba de invarianza, porque una red distinta puede cambiar el significado de la puntuación de una dimensión entre grupos. Informe el estimador, el número de permutaciones, la semilla, la corrección y el tamaño de cada grupo."
+            ],
+            "Next step: report the confirmation fit (subsample B) as the main evidence for the structure, and the total-sample fit as a reference. If the fit is poor, look at the items with low loadings or that change dimension.": [
+                "Siguiente paso: informe el ajuste de confirmación (SubMuestra B) como evidencia principal de la estructura, y el de la muestra total como referencia. Si el ajuste es pobre, revise los ítems con cargas bajas o que cambian de dimensión."
+            ],
+            "Next step: report the number of samples, the seed and the CS coefficient together with the centrality results. If stability is low, a larger sample is the main remedy; removing items to raise it changes the construct being measured.": [
+                "Siguiente paso: informe el número de muestras, la semilla y el coeficiente CS junto con los resultados de centralidad. Si la estabilidad es baja, el principal remedio es una muestra mayor; eliminar ítems para aumentarla cambia el constructo que se mide."
+            ],
+            "Next step: report the population structure together with the distribution of individual structures, the number of time points per person and the derivative analysed. Check whether persons who differ from the population share characteristics (group, adherence, number of time points).": [
+                "Siguiente paso: informe la estructura de la población junto con la distribución de las estructuras individuales, el número de momentos por persona y la derivada analizada. Revise si las personas que difieren de la población comparten características (grupo, adherencia, número de momentos)."
+            ],
+            "Next step: review the content of the non-invariant items (wording, cultural meaning, relevance in each group). If they cannot be fixed, compare groups with scores that exclude them, or report the comparison with and without them. Report the structure tested, the number of permutations, the seed and both p values.": [
+                "Siguiente paso: revise el contenido de los ítems no invariantes (redacción, significado cultural, pertinencia en cada grupo). Si no pueden corregirse, compare los grupos con puntuaciones que los excluyan, o informe la comparación con y sin ellos. Informe la estructura evaluada, el número de permutaciones, la semilla y ambos valores p."
+            ],
+            "Next step: tick Run bootstrap in the Stability (bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above.": [
+                "Siguiente paso: marque Run bootstrap en la caja Stability (bootstrap) para verificar si el número de dimensiones y la pertenencia de cada ítem son estables entre remuestreos antes de interpretar la estructura. Usa exactamente las opciones de estimación de arriba."
+            ],
+            "Next step: tick Stability of edges and centrality (bootnet) to check whether the order of the items by centrality holds before interpreting differences between items.": [
+                "Siguiente paso: marque Stability of edges and centrality (bootnet) para comprobar si el orden de los ítems por centralidad se mantiene antes de interpretar diferencias entre ítems."
+            ],
+            "Next step: tick Structure of each person to see whether the population structure describes individuals. Population structures of intensive longitudinal data often do not hold for every person.": [
+                "Siguiente paso: marque Structure of each person para ver si la estructura de la población describe a los individuos. En datos longitudinales intensivos, la estructura de la población a menudo no se cumple en cada persona."
+            ],
+            "No": [
+                "No"
+            ],
+            "No Heywood case or loading above 1 appears, so the bifactor solution is admissible; judge it by the ECV and by whether each specific factor keeps its own loadings.": [
+                "No aparece ningún caso Heywood ni cargas mayores que 1, así que la solución bifactor es admisible; júzguela por la ECV y por si cada factor específico conserva sus propias cargas."
+            ],
+            "No data are available.": [
+                "No hay datos disponibles."
+            ],
+            "No edge differs between the networks at p of .05 or less after the correction.": [
+                "Ninguna arista difiere entre las redes con p de .05 o menor tras la corrección."
+            ],
+            "No group reproduces the population structure. The population's %s dimensions combine structures that differ between groups, so they describe neither group well. Report the structure of each group rather than the population result alone.": [
+                "Ningún grupo reproduce la estructura de la población. Las %s dimensiones de la población combinan estructuras que difieren entre grupos, así que no describen bien a ninguno. Informe la estructura de cada grupo en lugar de solo el resultado de la población."
+            ],
+            "No individual connection differs after the correction for multiple tests.": [
+                "Ninguna conexión individual difiere tras la corrección por pruebas múltiples."
+            ],
+            "No item differs in centrality between the networks after the correction for multiple tests.": [
+                "Ningún ítem difiere en centralidad entre las redes tras la corrección por pruebas múltiples."
+            ],
+            "No item is marked in Negatively worded items, so nothing in this analysis supports reading the random intercept as a wording effect. Mark the negatively worded items, or read riEGA only as a sensitivity check.": [
+                "Ningún ítem está marcado en Negatively worded items, así que nada en este análisis respalda leer el intercepto aleatorio como un efecto de redacción. Marque los ítems redactados en negativo, o lea riEGA solo como una prueba de sensibilidad."
+            ],
+            "No item is marked in Negatively worded items, so the items are used exactly as they are in the data. Mark the negative items there so that riEGA can use them in their original direction even if they are already reversed in the data.": [
+                "No hay ítems marcados en Ítems redactados en negativo, así que los ítems se usan tal como están en los datos. Márquelos allí para que riEGA los use en su dirección original aunque ya estén invertidos en los datos."
+            ],
+            "No item shows a loading difference between groups beyond what is expected by chance (all p values above .05). The evidence supports metric invariance: the items relate to their dimensions with similar strength in the groups, so scores built from these dimensions can be compared between groups more safely.": [
+                "Ningún ítem muestra una diferencia de carga entre grupos mayor que la esperable por azar (todos los valores p son mayores que .05). La evidencia apoya la invarianza métrica: los ítems se relacionan con sus dimensiones con una fuerza similar en los grupos, así que las puntuaciones de estas dimensiones pueden compararse entre grupos con más seguridad."
+            ],
+            "No model reached a converged and admissible solution, so there is no comparison to read.": [
+                "Ningún modelo alcanzó una solución convergente y admisible, así que no hay comparación que leer."
+            ],
+            "No network loading differs between groups beyond chance (Group comparison).": [
+                "Ninguna carga de red difiere entre grupos más allá del azar (Comparación entre grupos)."
+            ],
+            "No pair of items reaches a wTO of %s, so there is no evidence of redundancy (local dependence) at the recommended cutoff. Each item contributes its own information to the network.": [
+                "Ningún par de ítems alcanza un wTO de %s, así que no hay evidencia de redundancia (dependencia local) con el punto de corte recomendado. Cada ítem aporta su propia información a la red."
+            ],
+            "No pair reaches wTO .20": [
+                "Ningún par alcanza wTO .20"
             ],
             "Node fill opacity": [
                 "Opacidad del relleno"
@@ -653,29 +1514,95 @@
             "None": [
                 "Ninguna"
             ],
+            "None flagged by the analyses that were run.": [
+                "Ninguna señalada por los análisis ejecutados."
+            ],
+            "None of these differences remains significant after the Benjamini-Hochberg correction for the number of items tested. Treat them as tentative: they may be chance findings, and they need replication in another sample.": [
+                "Ninguna de estas diferencias sigue siendo significativa tras la corrección de Benjamini-Hochberg por el número de ítems evaluados. Considérelas tentativas: pueden ser hallazgos por azar y necesitan replicarse en otra muestra."
+            ],
+            "None.": [
+                "Ninguna."
+            ],
+            "Not computable": [
+                "No computable"
+            ],
+            "Not every group shows the population's number of dimensions (see Structure of each group). The structure of change may differ between groups; check the group sizes before interpreting it.": [
+                "No todos los grupos muestran el número de dimensiones de la población (ver Estructura de cada grupo). La estructura del cambio puede diferir entre grupos; revise el tamaño de los grupos antes de interpretarlo."
+            ],
+            "Not in any dimension: %s. They are left out of TEFI, so this value is not compared with the others.": [
+                "Sin dimensión: %s. Quedan fuera del TEFI, así que este valor no se compara con los demás."
+            ],
+            "Not interpretable (below .25)": [
+                "No interpretable (menos de .25)"
+            ],
             "Notes": [
                 "Notas"
+            ],
+            "Number of dimensions": [
+                "Número de dimensiones"
             ],
             "Number of dimensions across persons": [
                 "Número de dimensiones entre personas"
             ],
+            "Number of dimensions across persons: %s. %s of the persons show the population's number of dimensions (%s).": [
+                "Número de dimensiones entre personas: %s. El %s de las personas muestra el número de dimensiones de la población (%s)."
+            ],
             "Number of dimensions across samples": [
                 "Número de dimensiones entre muestras"
+            ],
+            "Number of dimensions: how many communities the algorithm found. Isolated items (no edges) are not assigned to any dimension.": [
+                "Número de dimensiones: cuántas comunidades encontró el algoritmo. Los ítems aislados (sin aristas) no se asignan a ninguna dimensión."
+            ],
+            "One dimension: TEFI is always 0 for a single dimension, so it cannot compare a unidimensional structure with multidimensional ones. EGA judges unidimensionality with its own check (see the choices above).": [
+                "Una dimensión: el TEFI vale siempre 0 con una sola dimensión, así que no sirve para comparar una estructura unidimensional con otras multidimensionales. EGA evalúa la unidimensionalidad con su propia verificación (ver las elecciones de arriba)."
+            ],
+            "One dimension: TEFI is always 0, so it is not compared.": [
+                "Una dimensión: el TEFI vale siempre 0, así que no se compara."
+            ],
+            "One factor": [
+                "Un factor"
             ],
             "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively worded items box; this analysis uses them in their original direction (not recoded).": [
                 "Solo para escalas que mezclan ítems redactados en positivo y en negativo. Marque los ítems negativos en el cuadro Ítems redactados en negativo; este análisis los usa en su dirección original (sin recodificar)."
             ],
+            "Only the edges of the estimated network are listed, strongest first. The intervals are percentile intervals from resampling cases. In regularized networks the weights are pulled toward zero, so the intervals describe precision and are not significance tests (Epskamp et al., 2018).": [
+                "Solo se listan las aristas de la red estimada, de la más fuerte a la más débil. Los intervalos son percentiles del remuestreo de casos. En redes regularizadas los pesos se acercan a cero, así que los intervalos describen la precisión y no son pruebas de significación (Epskamp et al., 2018)."
+            ],
             "Orange": [
                 "Naranja"
+            ],
+            "Original sample": [
+                "Muestra original"
+            ],
+            "Other": [
+                "Otro"
+            ],
+            "Other community algorithms: EGA is run again with the same network and each of the other algorithms (Walktrap, Louvain, Leiden). Louvain and Leiden start from random values, so they use the fixed seed 2026 and always give the same result with the same data.": [
+                "Otros algoritmos de comunidades: EGA se ejecuta de nuevo con la misma red y cada uno de los otros algoritmos (Walktrap, Louvain, Leiden). Louvain y Leiden parten de valores aleatorios, así que usan la semilla fija 2026 y siempre dan el mismo resultado con los mismos datos."
+            ],
+            "Other indices (Schermelleh-Engel, Moosbrugger & Müller, 2003; see references): χ²/df of 2 or less is good and 3 or less acceptable; GFI and NFI of .95 or more are good and .90 acceptable; AGFI of .90 or more is good and .85 acceptable; IFI is read like CFI. GFI and AGFI depend on sample size and are reported mostly by tradition; CFI, TLI, RMSEA and SRMR are the most recommended. AIC and BIC only compare models fitted to the same data (lower is better) and are not available with WLSMV.": [
+                "Otros índices (Schermelleh-Engel, Moosbrugger y Müller, 2003; ver referencias): χ²/gl de 2 o menos es bueno y de 3 o menos aceptable; GFI y NFI de .95 o más son buenos y de .90 aceptables; AGFI de .90 o más es bueno y de .85 aceptable; IFI se lee como el CFI. GFI y AGFI dependen del tamaño de la muestra y se informan sobre todo por tradición; CFI, TLI, RMSEA y SRMR son los más recomendados. AIC y BIC solo comparan modelos ajustados a los mismos datos (más bajo es mejor) y no están disponibles con WLSMV."
             ],
             "Output": [
                 "Salida"
             ],
+            "Pairs between .20 and the cutoff of %2$s (%1$d). They are not redundant by the recommended rule, but check their wording if they also stand out elsewhere (low stability or low loadings).": [
+                "Pares entre .20 y el punto de corte de %2$s (%1$d). No son redundantes según la regla recomendada, pero revise su redacción si además destacan en otros resultados (baja estabilidad o cargas bajas)."
+            ],
+            "Pairs: every pair with wTO of .20 or more, from highest to lowest. Above .30 is large-to-very-large redundancy, .25 to .30 moderate-to-large, .20 to .25 small-to-moderate.": [
+                "Pares: todo par con wTO de .20 o más, de mayor a menor. Por encima de .30 es redundancia grande a muy grande, de .25 a .30 moderada a grande, de .20 a .25 pequeña a moderada."
+            ],
             "Pairwise": [
                 "Por pares"
             ],
+            "Pairwise deletion computes each correlation from all respondents who answered both items, so no information is discarded. It is the usual choice when data are missing at random and missingness is modest. With heavy or patterned missingness the correlation matrix can become unstable; compare with Listwise.": [
+                "La eliminación por pares calcula cada correlación con todas las personas que respondieron ambos ítems, así que no se descarta información. Es la opción habitual cuando los datos faltan al azar y la proporción de perdidos es moderada. Con muchos perdidos o patrones sistemáticos la matriz de correlaciones puede volverse inestable; compare con Por lista."
+            ],
             "Parametric": [
                 "Paramétrico"
+            ],
+            "Parametric bootstrap draws each new sample from a multivariate normal distribution with the correlation matrix of your data and the same number of cases. It reproduces the estimated correlation structure exactly in expectation and is EGAnetLab's default (Christensen & Golino, 2021; see references).": [
+                "El bootstrap paramétrico extrae cada muestra nueva de una distribución normal multivariada con la matriz de correlaciones de sus datos y el mismo número de casos. Reproduce en promedio exactamente la estructura de correlaciones estimada y es el valor por defecto de EGAnetLab (Christensen y Golino, 2021; ver referencias)."
             ],
             "Pearson": [
                 "Pearson"
@@ -683,11 +1610,17 @@
             "Pearson (fast)": [
                 "Pearson (rápida)"
             ],
+            "Pearson correlations treat every item as continuous and linearly related. Choose them for scale scores, reaction times or other genuinely continuous items with roughly symmetric distributions. With ordinal or dichotomous items they underestimate associations; use Automatic instead.": [
+                "La correlación de Pearson trata cada ítem como continuo y relacionado linealmente. Elíjala para puntuaciones de escala, tiempos de reacción u otros ítems realmente continuos con distribuciones aproximadamente simétricas. Con ítems ordinales o dicotómicos subestima las asociaciones; use Automática en su lugar."
+            ],
             "Permutations (NCT)": [
                 "Permutaciones (NCT)"
             ],
             "Permutations (invariance)": [
                 "Permutaciones (invarianza)"
+            ],
+            "Permutations: %d, seed %d.": [
+                "Permutaciones: %d, semilla %d."
             ],
             "Person": [
                 "Persona"
@@ -697,6 +1630,30 @@
             ],
             "Persons": [
                 "Personas"
+            ],
+            "Persons left out for having too few time points: %d (Messages).": [
+                "Personas excluidas por tener muy pocos momentos: %d (Mensajes)."
+            ],
+            "Persons whose grouping variable changes over time: %d. Each was assigned to the group of their first time point.": [
+                "Personas cuya variable de agrupación cambia en el tiempo: %d. A cada una se le asignó el grupo de su primer momento."
+            ],
+            "Persons whose own structure could not be estimated (%d): %s. This usually means too few time points or items that never change for that person.": [
+                "Personas cuya estructura propia no pudo estimarse (%d): %s. Suele deberse a muy pocos momentos o a ítems que nunca cambian en esa persona."
+            ],
+            "Persons whose own structure could not be estimated: %d (Structure of each person).": [
+                "Personas cuya estructura propia no pudo estimarse: %d (Estructura de cada persona)."
+            ],
+            "Persons with an estimated structure": [
+                "Personas con estructura estimada"
+            ],
+            "Persons with fewer derivative estimates than items: %1$d. Derivative estimates are the time points minus the embedding dimension plus 1, and there are %2$d items, so these individual networks rest on very little information and are unreliable. Individual structures need many more time points than items.": [
+                "Personas con menos estimaciones de derivadas que ítems: %1$d. Las estimaciones de derivadas son los momentos menos la dimensión de inmersión más 1, y hay %2$d ítems, así que estas redes individuales se basan en muy poca información y no son fiables. Las estructuras individuales necesitan muchos más momentos que ítems."
+            ],
+            "Persons with fewer derivative estimates than items: %d. Their individual networks are unreliable (Structure of each person).": [
+                "Personas con menos estimaciones de derivadas que ítems: %d. Sus redes individuales no son fiables (Estructura de cada persona)."
+            ],
+            "Persons with fewer than %2$d time points, left out (%1$d): %3$s.": [
+                "Personas con menos de %2$d momentos, que quedaron fuera (%1$d): %3$s."
             ],
             "Plot title": [
                 "Título del gráfico"
@@ -710,8 +1667,14 @@
             "Population network plot": [
                 "Gráfico de la red de la población"
             ],
+            "Population's number (%s)": [
+                "Número de la población (%s)"
+            ],
             "Positive edges": [
                 "Aristas positivas"
+            ],
+            "Possible redundancy between items: %s. Consider keeping one item per set (Redundancy).": [
+                "Posible redundancia entre ítems: %s. Considere conservar un ítem por conjunto (Redundancia)."
             ],
             "Proportion": [
                 "Proporción"
@@ -719,17 +1682,59 @@
             "Proportion for EGA (exploration)": [
                 "Proporción para EGA (exploración)"
             ],
+            "Proportion of persons": [
+                "Proporción de personas"
+            ],
+            "Proportion of samples": [
+                "Proporción de muestras"
+            ],
+            "Proportion of samples in the original dimension": [
+                "Proporción de muestras en la dimensión original"
+            ],
+            "Proposed effect-size guidelines for the dominant loading: about 0.15 small, 0.25 moderate, 0.35 large.": [
+                "Guías propuestas de tamaño del efecto para la carga dominante: alrededor de 0.15 pequeña, 0.25 moderada, 0.35 grande."
+            ],
             "RMSEA": [
                 "RMSEA"
+            ],
+            "RMSEA [90% CI]": [
+                "RMSEA [IC 90%]"
+            ],
+            "Random subsample (A = exploration, B = confirmation; seed %d)": [
+                "Submuestra aleatoria (A = exploración, B = confirmación; semilla %d)"
             ],
             "Random-intercept EGA": [
                 "EGA con intercepto aleatorio"
             ],
+            "Random-intercept EGA (riEGA, in EGAnetLab; see references) checks whether some dimensions come from how the items are worded rather than from their content. Scales that mix positively and negatively worded items often produce an extra dimension made of the negative items, caused by acquiescence (the tendency to agree regardless of content).": [
+                "El EGA con intercepto aleatorio (riEGA, de EGAnetLab; ver referencias) revisa si algunas dimensiones provienen de cómo están redactados los ítems y no de su contenido. Las escalas que mezclan ítems redactados en positivo y en negativo suelen producir una dimensión extra formada por los ítems negativos, causada por la aquiescencia (la tendencia a estar de acuerdo sin importar el contenido)."
+            ],
             "Random-intercept loading": [
                 "Carga del intercepto aleatorio"
             ],
+            "Random-intercept model": [
+                "Modelo de intercepto aleatorio"
+            ],
+            "Random-intercept model: whether the random-intercept component could be estimated. If it does not converge, the result cannot be interpreted: it is evidence neither for nor against a wording effect.": [
+                "Modelo de intercepto aleatorio: si se pudo estimar el componente de intercepto aleatorio. Si no converge, el resultado no es interpretable: no es evidencia ni a favor ni en contra de un efecto de redacción."
+            ],
+            "Rate of change (1)": [
+                "Velocidad de cambio (1)"
+            ],
             "Rate of change (1, first derivative)": [
                 "Velocidad de cambio (1, primera derivada)"
+            ],
+            "Raw values: strength and expected influence are sums of partial correlations.": [
+                "Valores sin estandarizar: la fuerza y la influencia esperada son sumas de correlaciones parciales."
+            ],
+            "Read the order of the items together with the CS coefficient in Network stability: below .25, differences in centrality between items should not be interpreted.": [
+                "Lea el orden de los ítems junto con el coeficiente CS de Estabilidad de la red: por debajo de .25, las diferencias de centralidad entre ítems no deben interpretarse."
+            ],
+            "Read the results in this order: the distribution of the number of dimensions, the stability of each dimension, the stability of each item, and the stability interpretation.": [
+                "Lea los resultados en este orden: la distribución del número de dimensiones, la estabilidad de cada dimensión, la estabilidad de cada ítem y la interpretación de la estabilidad."
+            ],
+            "Read the results in this order: the number of dimensions and its fit (TEFI), the item memberships, the network loadings, and finally the network plot.": [
+                "Lea los resultados en este orden: el número de dimensiones y su ajuste (TEFI), la pertenencia de los ítems, las cargas de red y, por último, el gráfico de la red."
             ],
             "Reading": [
                 "Lectura"
@@ -749,20 +1754,38 @@
             "Redundancy interpretation": [
                 "Interpretación de la redundancia"
             ],
+            "Redundancy is flagged when two items reach a weighted topological overlap (wTO) of %s or more. The value .25 is the cutoff recommended by Christensen, Garrido and Golino (2023; see references) after extensive simulation; lower it only to explore borderline pairs, not to decide which items to remove.": [
+                "La redundancia se señala cuando dos ítems alcanzan un solapamiento topológico ponderado (wTO) de %s o más. El valor .25 es el punto de corte recomendado por Christensen, Garrido y Golino (2023; ver referencias) tras una amplia simulación; bájelo solo para explorar pares limítrofes, no para decidir qué ítems eliminar."
+            ],
+            "Redundant pairs placed in different dimensions: %s. This often signals an item that bridges two dimensions; review its content before keeping it.": [
+                "Pares redundantes ubicados en dimensiones distintas: %s. Suele indicar un ítem que hace de puente entre dos dimensiones; revise su contenido antes de conservarlo."
+            ],
             "Redundant sets": [
                 "Conjuntos redundantes"
             ],
-            "Report Language": [
-                "Idioma del informe"
+            "Redundant sets at wTO %2$s or more (%1$d): %3$s. Items in a set share most of their connections, so together they add less information than their number suggests and can pull the dimensional structure toward themselves.": [
+                "Conjuntos redundantes con wTO de %2$s o más (%1$d): %3$s. Los ítems de un conjunto comparten la mayoría de sus conexiones, así que juntos aportan menos información de la que sugiere su número y pueden atraer la estructura dimensional hacia sí."
+            ],
+            "Redundant sets: items linked by wTO at or above the cutoff. The suggestion follows EGAnetLab's automatic rule: with two items it keeps the one less redundant with the rest of the scale; with three or more it keeps the one most central to the set.": [
+                "Conjuntos redundantes: ítems unidos por un wTO igual o mayor que el punto de corte. La sugerencia sigue la regla automática de EGAnetLab: con dos ítems conserva el menos redundante con el resto de la escala; con tres o más conserva el más central del conjunto."
             ],
             "Resampling (cases)": [
                 "Remuestreo (casos)"
             ],
+            "Resampling bootstrap draws cases from your data with replacement. It keeps the real response distributions (skewness, number of categories, outliers) instead of assuming normality, so prefer it when items are markedly non-normal or when you want the stability estimate to reflect the observed responses.": [
+                "El bootstrap por remuestreo extrae casos de sus datos con reemplazo. Conserva las distribuciones reales de respuesta (asimetría, número de categorías, valores atípicos) en lugar de suponer normalidad, así que prefiéralo cuando los ítems sean claramente no normales o cuando quiera que la estabilidad refleje las respuestas observadas."
+            ],
             "Residual variance": [
                 "Varianza residual"
             ],
+            "Residual variance: the part of the item not explained by either factor. A negative value is a Heywood case: the solution is not admissible.": [
+                "Varianza residual: la parte del ítem que no explica ninguno de los dos factores. Un valor negativo es un caso Heywood: la solución no es admisible."
+            ],
             "Right": [
                 "Derecha"
+            ],
+            "Rows used": [
+                "Filas usadas"
             ],
             "Run bootstrap": [
                 "Ejecutar bootstrap"
@@ -782,17 +1805,35 @@
             "Same as population": [
                 "Igual que la población"
             ],
+            "Same as population: identical item membership.": [
+                "Igual que la población: pertenencia de los ítems idéntica."
+            ],
             "Same dimension": [
                 "Misma dimensión"
+            ],
+            "Same dimension: redundant items usually fall in the same dimension; a redundant pair split across dimensions deserves a close look at its wording.": [
+                "Misma dimensión: los ítems redundantes suelen caer en la misma dimensión; un par redundante repartido entre dimensiones merece una revisión cuidadosa de su redacción."
             ],
             "Same in A and B": [
                 "Igual en A y B"
             ],
+            "Same item membership as the population (ARI = 1)": [
+                "Misma pertenencia de ítems que la población (ARI = 1)"
+            ],
+            "Same item membership as their own group (ARI = 1)": [
+                "Misma pertenencia de ítems que su propio grupo (ARI = 1)"
+            ],
             "Same items, second measurement": [
                 "Mismos ítems, segunda medición"
             ],
+            "Same number of dimensions as the population": [
+                "Mismo número de dimensiones que la población"
+            ],
             "Same people measured twice (NCT only): the second measurement": [
                 "Mismas personas medidas dos veces (solo NCT): la segunda medición"
+            ],
+            "Same people, both measurements": [
+                "Mismas personas, ambas mediciones"
             ],
             "Samples": [
                 "Muestras"
@@ -800,20 +1841,41 @@
             "Samples with the edge": [
                 "Muestras con la arista"
             ],
+            "Samples with the edge: the percentage of bootstrap samples in which the edge was estimated as different from zero.": [
+                "Muestras con la arista: el porcentaje de muestras bootstrap en que la arista se estimó distinta de cero."
+            ],
             "Save item means": [
                 "Guardar promedios de los ítems"
+            ],
+            "Save item means adds one column per dimension with the mean of the items each person answered, on the original response scale (for example, 1 to 5). Use them when you need scores that are easy to read in the units of the questionnaire.": [
+                "Guardar promedios de los ítems añade una columna por dimensión con el promedio de los ítems que cada persona respondió, en la escala original de respuesta (por ejemplo, de 1 a 5). Úselos cuando necesite puntuaciones fáciles de leer en las unidades del cuestionario."
             ],
             "Save network scores": [
                 "Guardar puntuaciones de red"
             ],
+            "Save network scores (in the Network scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it.": [
+                "Guardar puntuaciones de red (en la caja Network scores) añade una columna por dimensión al conjunto de datos, para usar las puntuaciones en otros análisis. Quien tenga una respuesta perdida en algún ítem de una dimensión queda sin puntuación en ella."
+            ],
             "Save subsample": [
                 "Guardar SubMuestra"
+            ],
+            "Scale: EGAnetLab first standardizes each item (z score: mean 0, SD 1 in this sample) and then adds the items weighted by their loadings. The scores are therefore centered at 0: negative values are below the sample average and positive values above it. They are not on the response scale of the items, and their mean is 0 by construction.": [
+                "Escala: EGAnetLab primero estandariza cada ítem (puntuación z: media 0 y DE 1 en esta muestra) y luego suma los ítems ponderados por sus cargas. Por eso las puntuaciones están centradas en 0: los valores negativos están por debajo del promedio de la muestra y los positivos por encima. No están en la escala de respuesta de los ítems, y su media es 0 por construcción."
+            ],
+            "Scores": [
+                "Puntuaciones"
             ],
             "Second": [
                 "Segundo"
             ],
             "Seed": [
                 "Semilla"
+            ],
+            "Select at least three items. Exploratory Graph Analysis needs at least three variables to estimate a network in which communities (dimensions) can form.": [
+                "Seleccione al menos tres ítems. El Análisis Exploratorio de Grafos necesita al menos tres variables para estimar una red en la que puedan formarse comunidades (dimensiones)."
+            ],
+            "Select the items, and the variable that identifies each person, to run Dynamic EGA. The data must be in long format: one row per person and time point.": [
+                "Seleccione los ítems y la variable que identifica a cada persona para ejecutar el EGA dinámico. Los datos deben estar en formato largo: una fila por persona y momento."
             ],
             "Set": [
                 "Conjunto"
@@ -830,11 +1892,17 @@
             "Show level names": [
                 "Mostrar nombres de los niveles"
             ],
+            "Small to moderate": [
+                "Pequeña a moderada"
+            ],
             "Solid": [
                 "Continua"
             ],
             "Spearman": [
                 "Spearman"
+            ],
+            "Spearman correlations use the ranks of the responses, so they capture monotonic (not only linear) relationships and are robust to skewness and outliers. They suit continuous items with markedly non-normal distributions. For items with few categories, Automatic (polychoric) is usually more accurate.": [
+                "La correlación de Spearman usa los rangos de las respuestas, así que capta relaciones monótonas (no solo lineales) y es robusta a la asimetría y a los valores atípicos. Conviene para ítems continuos con distribuciones claramente no normales. Para ítems con pocas categorías, Automática (policórica) suele ser más precisa."
             ],
             "Specific": [
                 "Específica"
@@ -842,11 +1910,20 @@
             "Specific factor": [
                 "Factor específico"
             ],
+            "Specific factor %s collapses into the general factor: its loadings are mostly below .20 (mean absolute loading %s). The model probably has one specific factor too many; consider a bifactor model without it (bifactor S-1) or the correlated-factors model.": [
+                "El factor específico %s colapsa en el factor general: sus cargas son en su mayoría menores que .20 (carga absoluta media %s). Probablemente el modelo tiene un factor específico de más; considere un modelo bifactor sin él (bifactor S-1) o el modelo de factores correlacionados."
+            ],
+            "Specific factors with three items or fewer (number of items in parentheses): %s. A specific factor with so few items is weakly identified next to a general factor and is a common source of Heywood cases.": [
+                "Factores específicos con tres ítems o menos (número de ítems entre paréntesis): %s. Un factor específico con tan pocos ítems está débilmente identificado junto a un factor general y es una causa frecuente de casos Heywood."
+            ],
             "Split seed": [
                 "Semilla de la división"
             ],
             "Split the sample at random (EGA in one subsample, CFA in the other)": [
                 "Dividir la muestra al azar (EGA en una submuestra, CFA en la otra)"
+            ],
+            "Split: %d cases in subsample A and %d in subsample B (seed %d). Report the seed so the split can be reproduced; a different seed gives a different split.": [
+                "División: %d casos en la SubMuestra A y %d en la SubMuestra B (semilla %d). Informe la semilla para poder reproducir la división; otra semilla da otra división."
             ],
             "Spring (Fruchterman-Reingold)": [
                 "Resorte (Fruchterman-Reingold)"
@@ -869,6 +1946,18 @@
             "Stability of edges and centrality (bootnet)": [
                 "Estabilidad de aristas y centralidad (bootnet)"
             ],
+            "Stable": [
+                "Estable"
+            ],
+            "Stable (.50 or more)": [
+                "Estable (.50 o más)"
+            ],
+            "Standard error": [
+                "Error estándar"
+            ],
+            "Standardized random-intercept loadings": [
+                "Cargas estandarizadas del intercepto aleatorio"
+            ],
             "Standardized values (z)": [
                 "Valores estandarizados (z)"
             ],
@@ -878,8 +1967,14 @@
             "Strength": [
                 "Fuerza"
             ],
+            "Strength: how strongly the item is connected overall, on the same network as EGA.": [
+                "Fuerza: qué tan conectado está el ítem en conjunto, sobre la misma red de EGA."
+            ],
             "Structural consistency": [
                 "Consistencia estructural"
+            ],
+            "Structural consistency: the proportion of samples in which a dimension reappears with exactly the same items.": [
+                "Consistencia estructural: la proporción de muestras en que una dimensión reaparece exactamente con los mismos ítems."
             ],
             "Structure": [
                 "Estructura"
@@ -893,11 +1988,23 @@
             "Structure of each person": [
                 "Estructura de cada persona"
             ],
+            "Structure tested by the CFA": [
+                "Estructura probada por el CFA"
+            ],
+            "Structure tested: the dimensions found by the EGA above, applied to every group.": [
+                "Estructura evaluada: las dimensiones encontradas por el EGA de arriba, aplicadas a cada grupo."
+            ],
+            "Structure tested: the structure that is stable across groups (configural invariance). EGAnetLab first runs a bootstrap EGA on all cases, keeps only the items that stay in their dimension in enough samples and re-estimates the structure without the unstable items.": [
+                "Estructura evaluada: la estructura estable entre grupos (invarianza configural). EGAnetLab primero ejecuta un EGA con bootstrap sobre todos los casos, conserva solo los ítems que se mantienen en su dimensión en suficientes muestras y vuelve a estimar la estructura sin los ítems inestables."
+            ],
             "Structure to test": [
                 "Estructura a evaluar"
             ],
             "Structures compared": [
                 "Estructuras comparadas"
+            ],
+            "SubSample ": [
+                "SubMuestra "
             ],
             "Subsample": [
                 "SubMuestra"
@@ -923,11 +2030,38 @@
             "TEFI": [
                 "TEFI"
             ],
+            "TEFI (Total Entropy Fit Index): lower values indicate a better-fitting structure. It is meaningful when comparing alternative structures for the same data, not as an absolute cut-off (Golino et al., 2021; see references).": [
+                "TEFI (Índice de Ajuste de Entropía Total): valores más bajos indican una estructura con mejor ajuste. Tiene sentido al comparar estructuras alternativas para los mismos datos, no como punto de corte absoluto (Golino et al., 2021; ver referencias)."
+            ],
+            "TEFI (residual correlations)": [
+                "TEFI (correlaciones residuales)"
+            ],
+            "TEFI = %s. Compare it with the TEFI of an alternative structure (for example, a theoretical one) estimated on the same data; the lower value indicates the better-fitting structure.": [
+                "TEFI = %s. Compárelo con el TEFI de una estructura alternativa (por ejemplo, la teórica) estimada con los mismos datos; el valor más bajo indica la estructura con mejor ajuste."
+            ],
+            "TEFI by level: EGAnetLab compares the entropy fit of the lower-order level with that of the higher-order level. A lower TEFI at the lower level favors correlated dimensions without a hierarchy; a lower TEFI at the higher level favors the hierarchical structure (EGAnetLab calls it bifactor).": [
+                "TEFI por nivel: EGAnetLab compara el ajuste de entropía del nivel inferior con el del nivel superior. Un TEFI más bajo en el nivel inferior favorece dimensiones correlacionadas sin jerarquía; un TEFI más bajo en el nivel superior favorece la estructura jerárquica (EGAnetLab la llama bifactor)."
+            ],
+            "TEFI is lower at the higher-order level (%s against %s at the lower level), so by entropy fit the hierarchical structure describes the data better than correlated lower-order dimensions.": [
+                "El TEFI es más bajo en el nivel superior (%s frente a %s en el inferior), así que según el ajuste de entropía la estructura jerárquica describe mejor los datos que las dimensiones de orden inferior correlacionadas."
+            ],
+            "TEFI is lower at the lower-order level (%s) than at the higher-order level (%s), so by entropy fit the correlated lower-order dimensions describe the data better than the hierarchical structure.": [
+                "El TEFI es más bajo en el nivel inferior (%s) que en el superior (%s), así que según el ajuste de entropía las dimensiones de orden inferior correlacionadas describen mejor los datos que la estructura jerárquica."
+            ],
+            "TEFI, higher order": [
+                "TEFI, orden superior"
+            ],
+            "TEFI, lower order": [
+                "TEFI, orden inferior"
+            ],
             "TLI": [
                 "TLI"
             ],
             "TMFG": [
                 "TMFG"
+            ],
+            "TMFG (Triangulated Maximally Filtered Graph) keeps the strongest correlations under a fixed rule, always retaining 3(p - 2) edges for p items regardless of sample size. It does not depend on a regularization parameter, which makes it a useful robustness check against GLASSO, especially with small samples or few items per dimension.": [
+                "TMFG (Triangulated Maximally Filtered Graph) conserva las correlaciones más fuertes bajo una regla fija, reteniendo siempre 3(p - 2) aristas para p ítems, sin importar el tamaño de muestra. No depende de un parámetro de regularización, lo que lo hace útil como verificación de robustez frente a GLASSO, sobre todo con muestras pequeñas o pocos ítems por dimensión."
             ],
             "Table of network connections": [
                 "Tabla de conexiones de la red"
@@ -950,8 +2084,269 @@
             "Text": [
                 "Texto"
             ],
+            "The CFA could not be estimated: %s.": [
+                "No se pudo estimar el CFA: %s."
+            ],
+            "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory factor analysis box.": [
+                "Los índices del CFA salen de los mismos datos que produjeron la solución de EGA, así que la favorecen. Úselos como una segunda mirada y confirme con la división aleatoria de la caja Confirmatory factor analysis."
+            ],
+            "The CFA uses the same sample as EGA, so its fit is optimistic. Tick Split the sample at random for a check in an independent subsample.": [
+                "El CFA usa la misma muestra que EGA, así que su ajuste es optimista. Marque Split the sample at random para una prueba en una submuestra independiente."
+            ],
+            "The Confirmatory factor analysis section below compares the higher-order and bifactor models with the models without hierarchy.": [
+                "La sección Análisis factorial confirmatorio, más abajo, compara los modelos de orden superior y bifactor con los modelos sin jerarquía."
+            ],
+            "The EGA solution has the lowest TEFI (%s) among the structures compared, so by entropy fit it is the structure that best separates the items into dimensions.": [
+                "La solución de EGA tiene el TEFI más bajo (%s) entre las estructuras comparadas, así que según el ajuste de entropía es la que mejor separa los ítems en dimensiones."
+            ],
+            "The Expand check is EGA's original unidimensionality test: it adds simulated variables that form a separate dimension and estimates the network again. If every real item ends up in one community, the items are treated as unidimensional. Use it to reproduce results from studies that used the original EGA procedure.": [
+                "La verificación Expandir es la prueba de unidimensionalidad original de EGA: agrega variables simuladas que forman una dimensión aparte y vuelve a estimar la red. Si todos los ítems reales quedan en una sola comunidad, se consideran unidimensionales. Úsela para reproducir resultados de estudios que emplearon el procedimiento EGA original."
+            ],
+            "The Leading eigenvalue check applies the leading eigenvalue community algorithm to the zero-order correlation matrix: a single community means one dimension (Golino et al., 2020; see references). It is an established alternative to the Louvain check.": [
+                "La verificación de autovalor principal aplica el algoritmo de comunidades leading eigenvalue a la matriz de correlaciones de orden cero: una sola comunidad significa una dimensión (Golino et al., 2020; ver referencias). Es una alternativa establecida a la verificación Louvain."
+            ],
+            "The NCT needs complete data, so each comparison uses only the cases with every item answered.": [
+                "El NCT necesita datos completos, así que cada comparación usa solo los casos con todos los ítems respondidos."
+            ],
+            "The Network Comparison Test (NCT) compares two whole networks: whether their connections differ, and whether the total strength of their connections differs (van Borkulo et al., 2023; see references).": [
+                "El Network Comparison Test (NCT) compara dos redes completas: si sus conexiones difieren y si la fuerza total de sus conexiones difiere (van Borkulo et al., 2023; ver referencias)."
+            ],
+            "The agreement with the population (median ARI = %s) is lower because the population mixes the groups.": [
+                "El acuerdo con la población (ARI mediano = %s) es menor porque la población mezcla los grupos."
+            ],
+            "The analysis uses %d bootstrap samples with seed %d. More samples give more precise stability estimates; 500 is the usual minimum for reporting. The same seed with the same data and options always reproduces the same results; report it with your findings.": [
+                "El análisis usa %d muestras bootstrap con semilla %d. Más muestras dan estimaciones de estabilidad más precisas; 500 es el mínimo habitual para informar. La misma semilla con los mismos datos y opciones reproduce siempre los mismos resultados; infórmela junto con sus hallazgos."
+            ],
+            "The bifactor model usually fits best because it is very flexible and also absorbs noise and response styles. Prefer it only when the general factor carries most of the common variance and the specific factors keep clear loadings; otherwise its better fit is not evidence of a general factor.": [
+                "El modelo bifactor suele ajustar mejor porque es muy flexible y también absorbe ruido y estilos de respuesta. Prefiéralo solo cuando el factor general concentre la mayor parte de la varianza común y los factores específicos conserven cargas claras; si no, su mejor ajuste no es evidencia de un factor general."
+            ],
+            "The bootstrap checks whether the dimensions found above are a stable property of the items or an accident of this particular sample (Christensen & Golino, 2021; see references).": [
+                "El bootstrap verifica si las dimensiones halladas arriba son una propiedad estable de los ítems o un accidente de esta muestra en particular (Christensen y Golino, 2021; ver referencias)."
+            ],
+            "The comparison between independent groups needs at least two groups with 10 or more cases each, so it was not run.": [
+                "La comparación entre grupos independientes necesita al menos dos grupos con 10 casos o más cada uno, así que no se ejecutó."
+            ],
+            "The confirmatory model built from this structure shows %s fit in %s: CFI = %s, RMSEA = %s (Confirmatory factor analysis).": [
+                "El modelo confirmatorio construido con esta estructura muestra un ajuste %s en %s: CFI = %s, RMSEA = %s (Análisis factorial confirmatorio)."
+            ],
+            "The confirmatory model has an inadmissible solution in %s: %s (Confirmatory factor analysis).": [
+                "El modelo confirmatorio tiene una solución inadmisible en %s: %s (Análisis factorial confirmatorio)."
+            ],
+            "The estimated network has no edges, so centrality is not defined.": [
+                "La red estimada no tiene aristas, así que la centralidad no está definida."
+            ],
+            "The estimated network has no edges, so its stability cannot be assessed.": [
+                "La red estimada no tiene aristas, así que no se puede evaluar su estabilidad."
+            ],
+            "The estimated network has no edges.": [
+                "La red estimada no tiene aristas."
+            ],
+            "The first derivative is the rate of change of each item from one time point to the next. It is dynEGA's default and the most studied choice (Golino et al., 2022; see references): the dimensions group items that rise and fall together.": [
+                "La primera derivada es la velocidad de cambio de cada ítem de un momento al siguiente. Es el valor por defecto de dynEGA y la opción más estudiada (Golino et al., 2022; ver referencias): las dimensiones agrupan ítems que suben y bajan juntos."
+            ],
+            "The following items do not vary in the data and cannot enter the analysis: %s. Remove them.": [
+                "Los siguientes ítems no varían en los datos y no pueden entrar en el análisis: %s. Retírelos."
+            ],
+            "The following items have fewer than two observed values and cannot enter a correlation matrix: %s. Remove them from the analysis.": [
+                "Los siguientes ítems tienen menos de dos valores observados y no pueden entrar en una matriz de correlaciones: %s. Quítelos del análisis."
+            ],
+            "The following items have zero variance (every respondent gave the same answer), so their correlations are undefined: %s. Remove them from the analysis; a constant item carries no information about dimensional structure.": [
+                "Los siguientes ítems tienen varianza cero (todas las personas dieron la misma respuesta), por lo que sus correlaciones no están definidas: %s. Quítelos del análisis; un ítem constante no aporta información sobre la estructura dimensional."
+            ],
+            "The general factor explains %s of the common variance (explained common variance, ECV = %s). Below .70, the specific factors keep an important part of the common variance, so the scale is not essentially unidimensional.": [
+                "El factor general explica el %s de la varianza común (varianza común explicada, ECV = %s). Por debajo de .70, los factores específicos conservan una parte importante de la varianza común, así que la escala no es esencialmente unidimensional."
+            ],
+            "The general factor explains %s of the common variance (explained common variance, ECV = %s). From .70 upward, the items are close to unidimensional: the specific factors add little, and a single score is often defensible.": [
+                "El factor general explica el %s de la varianza común (varianza común explicada, ECV = %s). Desde .70, los ítems están cerca de la unidimensionalidad: los factores específicos aportan poco y una sola puntuación suele ser defendible."
+            ],
+            "The grouping variable has %d groups, so every pair of groups is compared separately. With many pairs, some differences will appear by chance: focus on differences that repeat across pairs or that survive the correction for multiple tests.": [
+                "La variable de agrupación tiene %d grupos, así que cada par de grupos se compara por separado. Con muchos pares, algunas diferencias aparecerán por azar: céntrese en las diferencias que se repiten entre pares o que se mantienen tras la corrección por pruebas múltiples."
+            ],
+            "The groups differ from the population structure: %s (Structure of each group).": [
+                "Los grupos difieren de la estructura de la población: %s (Estructura de cada grupo)."
+            ],
+            "The hierarchical EGA could not be estimated, so the hierarchical models were not fitted.": [
+                "No se pudo estimar el EGA jerárquico, así que no se ajustaron los modelos jerárquicos."
+            ],
+            "The hierarchical EGA does not find a higher-order level (Hierarchical EGA).": [
+                "El EGA jerárquico no encuentra un nivel de orden superior (EGA jerárquico)."
+            ],
+            "The hierarchical EGA finds %d higher-order dimensions above %d lower-order dimensions (Hierarchical EGA).": [
+                "El EGA jerárquico encuentra %d dimensiones de orden superior sobre %d dimensiones de orden inferior (EGA jerárquico)."
+            ],
+            "The hierarchical EGA finds a general higher-order dimension above %d lower-order dimensions (Hierarchical EGA).": [
+                "El EGA jerárquico encuentra una dimensión general de orden superior sobre %d dimensiones de orden inferior (EGA jerárquico)."
+            ],
+            "The hierarchical EGA found no higher-order level, so the higher-order model is not fitted.": [
+                "El EGA jerárquico no encontró un nivel de orden superior, así que no se ajusta el modelo de orden superior."
+            ],
+            "The higher-order model fits exactly as well as the correlated lower-order factors: with two or three lower-order factors under one higher-order factor, the higher level only re-expresses their correlations. The data cannot tell the two apart; the choice rests on theory and on how the scores will be used.": [
+                "El modelo de orden superior ajusta exactamente igual que los factores de orden inferior correlacionados: con dos o tres factores de orden inferior bajo un factor de orden superior, el nivel superior solo vuelve a expresar sus correlaciones. Los datos no pueden distinguirlos; la elección depende de la teoría y del uso que tendrán las puntuaciones."
+            ],
+            "The higher-order model reaches CFI %s against %s for the correlated lower-order factors. The loss is larger than .01: under this descriptive criterion the higher-order factors do not reproduce the correlations among the lower-order factors well, so the model without hierarchy is preferable.": [
+                "El modelo de orden superior alcanza un CFI de %s frente a %s de los factores de orden inferior correlacionados. La pérdida es mayor que .01: bajo este criterio descriptivo los factores de orden superior no reproducen bien las correlaciones entre los factores de orden inferior, así que es preferible el modelo sin jerarquía."
+            ],
+            "The higher-order model reaches CFI %s against %s for the correlated lower-order factors. The loss of fit is limited (.01 or less) under this descriptive criterion, and the model is more restrictive; interpreting the structure as hierarchical requires further evaluation (theory, the loadings of the higher-order factors and replication in another sample).": [
+                "El modelo de orden superior alcanza un CFI de %s frente a %s de los factores de orden inferior correlacionados. La pérdida de ajuste es limitada (.01 o menos) bajo este criterio descriptivo, y el modelo es más restrictivo; la interpretación jerárquica requiere evaluación adicional (teoría, cargas de los factores de orden superior y replicación en otra muestra)."
+            ],
+            "The highest CFI is that of %s (%s).": [
+                "El CFI más alto es el de %s (%s)."
+            ],
+            "The items form %d dimensions: %s (Exploratory Graph Analysis).": [
+                "Los ítems forman %d dimensiones: %s (Análisis Exploratorio de Grafos)."
+            ],
+            "The items form a single dimension (Exploratory Graph Analysis).": [
+                "Los ítems forman una sola dimensión (Análisis Exploratorio de Grafos)."
+            ],
+            "The least central items: %s. Weakly connected items add little to the network; check their network loadings and their stability.": [
+                "Los ítems menos centrales: %s. Los ítems débilmente conectados aportan poco a la red; revise sus cargas de red y su estabilidad."
+            ],
+            "The level (derivative 0) is the smoothed value of each item within the window. Its structure is closest to that of the raw scores and keeps stable differences between occasions; choose it to describe states rather than change.": [
+                "El nivel (derivada 0) es el valor suavizado de cada ítem dentro de la ventana. Su estructura es la más cercana a la de las puntuaciones brutas y conserva las diferencias estables entre ocasiones; elíjalo para describir estados más que cambio."
+            ],
+            "The lower-order dimensions are the same as in the EGA solution above.": [
+                "Las dimensiones de orden inferior son las mismas de la solución de EGA de arriba."
+            ],
+            "The lower-order dimensions group into %s higher-order dimensions, which suggests broader domains above the specific dimensions.": [
+                "Las dimensiones de orden inferior se agrupan en %s dimensiones de orden superior, lo que sugiere dominios más amplios por encima de las dimensiones específicas."
+            ],
+            "The lower-order level has %s dimensions against %s in the EGA solution above, and places %d of %d items as EGA does. Items in a different dimension: %s. The lower level of Louvain tends to split broad dimensions, so this is expected.": [
+                "El nivel inferior tiene %s dimensiones frente a %s en la solución de EGA de arriba, y ubica %d de %d ítems como EGA. Ítems en otra dimensión: %s. El nivel inferior de Louvain tiende a dividir las dimensiones amplias, así que es esperable."
+            ],
+            "The lowest BIC, which balances fit and the number of parameters, is that of %s (%s).": [
+                "El BIC más bajo, que equilibra el ajuste y el número de parámetros, es el de %s (%s)."
+            ],
+            "The mean width of the edge intervals is %s. Two edges whose intervals overlap widely cannot be said to differ in strength.": [
+                "La anchura media de los intervalos de las aristas es %s. No puede afirmarse que dos aristas cuyos intervalos se solapan ampliamente difieran en fuerza."
+            ],
+            "The median agreement with the population membership is high (ARI = %s) and most persons show the population's number of dimensions, so the population structure is a reasonable summary of individuals.": [
+                "El acuerdo mediano con la pertenencia de la población es alto (ARI = %s) y la mayoría de las personas muestra el número de dimensiones de la población, así que la estructura de la población es un resumen razonable de los individuos."
+            ],
+            "The median agreement with the population membership is low (ARI = %s): individual structures differ markedly from the population structure, so it should not be read as the structure of each person. This pattern is consistent with a non-ergodic process, although individual networks with few time points are also noisy.": [
+                "El acuerdo mediano con la pertenencia de la población es bajo (ARI = %s): las estructuras individuales difieren mucho de la de la población, así que no debe leerse como la estructura de cada persona. Este patrón es coherente con un proceso no ergódico, aunque las redes individuales con pocos momentos también son ruidosas."
+            ],
+            "The median agreement with the population membership is moderate (ARI = %s): the population structure describes individuals only partly. Report the individual heterogeneity together with the population result.": [
+                "El acuerdo mediano con la pertenencia de la población es moderado (ARI = %s): la estructura de la población describe a los individuos solo en parte. Informe la heterogeneidad individual junto con el resultado de la población."
+            ],
+            "The most central items by strength are %s (Centrality).": [
+                "Los ítems más centrales por fuerza son %s (Centralidad)."
+            ],
+            "The most frequent number of dimensions appears in only %s of the bootstrap samples, below the %s cutoff (Stability).": [
+                "El número de dimensiones más frecuente aparece solo en el %s de las muestras bootstrap, por debajo del punto de corte de %s (Estabilidad)."
+            ],
+            "The most frequent number of dimensions in the bootstrap is %d, in %s of the samples, and differs from the %d estimated in the data (Stability).": [
+                "El número de dimensiones más frecuente en el bootstrap es %d, en el %s de las muestras, y difiere de las %d estimadas en los datos (Estabilidad)."
+            ],
+            "The most frequent solution appears in only %s of samples, below the %s cutoff, so the number of dimensions itself is not firmly established: neighbouring solutions are also common. Report the full frequency distribution, not only the most frequent value.": [
+                "La solución más frecuente aparece solo en %s de las muestras, por debajo del punto de corte de %s, así que el número de dimensiones en sí no está firmemente establecido: las soluciones vecinas también son comunes. Informe la distribución completa de frecuencias, no solo el valor más frecuente."
+            ],
+            "The network above was estimated with the %s model, but the NCT always uses the graphical lasso. The networks compared here may therefore differ slightly from the one above.": [
+                "La red de arriba se estimó con el modelo %s, pero el NCT siempre usa el lasso gráfico. Por eso las redes comparadas aquí pueden diferir un poco de la de arriba."
+            ],
+            "The network comparison test finds no global difference between %s (Group comparison).": [
+                "La prueba de comparación de redes no encuentra diferencia global entre %s (Comparación entre grupos)."
+            ],
+            "The network structure differs: the largest difference in a single connection (M = %s) is larger than expected by chance (%s). At least one relation between items is not the same in the two networks. The edge test (Test every edge) looks for which ones; after its correction for many tests, a single edge may not reach significance even when M does, so read M as evidence that the networks differ somewhere.": [
+                "La estructura de la red difiere: la mayor diferencia en una sola conexión (M = %s) es mayor que la esperable por azar (%s). Al menos una relación entre ítems no es la misma en las dos redes. La prueba de aristas (Evaluar cada arista) busca cuáles; tras su corrección por muchas pruebas, puede que ninguna arista aislada alcance significación aunque M sí la alcance, así que lea M como evidencia de que las redes difieren en algún punto."
+            ],
+            "The networks of %s differ in %s (Group comparison).": [
+                "Las redes de %s difieren en %s (Comparación entre grupos)."
+            ],
+            "The number of dimensions could not be computed (Exploratory Graph Analysis).": [
+                "No se pudo calcular el número de dimensiones (Análisis Exploratorio de Grafos)."
+            ],
+            "The order of the items by %s is moderately stable (CS = %s): interpret only large differences between items, and with care.": [
+                "El orden de los ítems por %s es moderadamente estable (CS = %s): interprete solo las diferencias grandes entre ítems, y con cautela."
+            ],
+            "The order of the items by %s is not stable (CS = %s): it changes when only a few cases are dropped, so differences between items should not be interpreted.": [
+                "El orden de los ítems por %s no es estable (CS = %s): cambia al eliminar pocos casos, así que las diferencias entre ítems no deben interpretarse."
+            ],
+            "The order of the items by %s is stable (CS = %s): it holds when up to %s of the cases are dropped, so differences between items can be interpreted.": [
+                "El orden de los ítems por %s es estable (CS = %s): se mantiene al eliminar hasta el %s de los casos, así que las diferencias entre ítems pueden interpretarse."
+            ],
+            "The random-intercept EGA did not converge and cannot be interpreted (Random-intercept EGA).": [
+                "El EGA con intercepto aleatorio no convergió y no puede interpretarse (EGA con intercepto aleatorio)."
+            ],
+            "The random-intercept EGA ran without items marked as negatively worded, so it does not show a wording effect; read it only as a sensitivity check (Random-intercept EGA).": [
+                "El EGA con intercepto aleatorio se ejecutó sin ítems marcados como redactados en negativo, así que no muestra un efecto de redacción; léalo solo como prueba de sensibilidad (EGA con intercepto aleatorio)."
+            ],
+            "The random-intercept model did not converge, so this result cannot be interpreted: non-convergence is not evidence that there is no wording effect, nor that there is one. riEGA then runs EGA on the ordinary correlations, so the riEGA column repeats an ordinary EGA without any wording control. Check the direction of the items and the sample size before drawing conclusions about wording.": [
+                "El modelo de intercepto aleatorio no convergió, así que este resultado no es interpretable: la falta de convergencia no es evidencia de que no haya un efecto de redacción, ni de que lo haya. riEGA ejecuta entonces EGA sobre las correlaciones habituales, así que la columna riEGA repite un EGA ordinario sin control de la redacción. Revise la dirección de los ítems y el tamaño de la muestra antes de sacar conclusiones sobre la redacción."
+            ],
+            "The riEGA TEFI is computed on the residual correlations, so it is not comparable with the TEFI of the EGA solution above.": [
+                "El TEFI de riEGA se calcula sobre las correlaciones residuales, así que no es comparable con el TEFI de la solución de EGA de arriba."
+            ],
+            "The same number of dimensions appeared in %s of the bootstrap samples (Stability).": [
+                "El mismo número de dimensiones apareció en el %s de las muestras bootstrap (Estabilidad)."
+            ],
+            "The second derivative is the acceleration of each item. It captures how changes speed up or slow down together, but it amplifies measurement noise and needs many time points per person; use it only with dense series.": [
+                "La segunda derivada es la aceleración de cada ítem. Capta cómo los cambios se aceleran o frenan juntos, pero amplifica el error de medida y necesita muchos momentos por persona; úsela solo con series densas."
+            ],
+            "The stability of the structure was not checked. Without the bootstrap, it is unknown whether the same number of dimensions would appear in another sample (Stability).": [
+                "No se evaluó la estabilidad de la estructura. Sin el bootstrap, no se sabe si aparecería el mismo número de dimensiones en otra muestra (Estabilidad)."
+            ],
+            "The structure can be estimated for the whole sample (population), for each group and for each person. Comparing them shows whether one structure describes everyone or whether people differ.": [
+                "La estructura puede estimarse para toda la muestra (población), para cada grupo y para cada persona. Compararlas muestra si una sola estructura describe a todos o si las personas difieren."
+            ],
+            "The theoretical structure and the EGA solution group the items in the same way, which supports the intended structure.": [
+                "La estructura teórica y la solución de EGA agrupan los ítems de la misma manera, lo que respalda la estructura prevista."
+            ],
+            "The theoretical structure has no item of the analysis in any factor.": [
+                "La estructura teórica no tiene ningún ítem del análisis en sus factores."
+            ],
+            "The theoretical structure includes variables that are not among the Items of the analysis: %s. Add them to Items or remove them from the factors.": [
+                "La estructura teórica incluye variables que no están entre los Items del análisis: %s. Agréguelas a Items o quítelas de los factores."
+            ],
+            "The theoretical structure places %d of %d items as EGA. The items EGA places elsewhere (%s) are the ones to examine: read their content and check whether they are also unstable in the bootstrap or redundant in UVA.": [
+                "La estructura teórica ubica %d de %d ítems como EGA. Los ítems que EGA ubica en otra dimensión (%s) son los que hay que examinar: lea su contenido y revise si también son inestables en el bootstrap o redundantes en UVA."
+            ],
+            "Theoretical": [
+                "Teórica"
+            ],
             "Theoretical structure": [
                 "Estructura teórica"
+            ],
+            "Theoretical structure: build it as in jamovi's Confirmatory Factor Analysis. Drag the items of each dimension into a factor, use Add New Factor for the next one, and click a factor's name to rename it. Items left out of every factor are not part of the theoretical structure.": [
+                "Estructura teórica: se arma como en el Análisis Factorial Confirmatorio de jamovi. Arrastre los ítems de cada dimensión a un factor, use Add New Factor para el siguiente y haga clic en el nombre de un factor para cambiarlo. Los ítems que no estén en ningún factor quedan fuera de la estructura teórica."
+            ],
+            "There are no negative connections, so expected influence orders the items exactly as strength does.": [
+                "No hay conexiones negativas, así que la influencia esperada ordena los ítems exactamente igual que la fuerza."
+            ],
+            "There is no established cutoff for a meaningful TEFI difference. Read the differences together with the bootstrap stability, the CFA fit and the content of the items that move, and report the TEFI of every structure compared.": [
+                "No hay un punto de corte establecido para una diferencia de TEFI importante. Lea las diferencias junto con la estabilidad bootstrap, el ajuste CFA y el contenido de los ítems que cambian, e informe el TEFI de cada estructura comparada."
+            ],
+            "There is no evidence that the network structure differs: the largest difference in a single connection (M = %s) is within what is expected by chance (%s). This does not prove the networks are equal; with small groups the test has little power.": [
+                "No hay evidencia de que la estructura de la red difiera: la mayor diferencia en una sola conexión (M = %s) está dentro de lo esperable por azar (%s). Esto no demuestra que las redes sean iguales; con grupos pequeños la prueba tiene poca potencia."
+            ],
+            "These factor names are used more than once: %s.": [
+                "Estos nombres de factor se usan más de una vez: %s."
+            ],
+            "These items are in more than one factor of the theoretical structure: %s. Each item can belong to one factor only.": [
+                "Estos ítems están en más de un factor de la estructura teórica: %s. Cada ítem puede pertenecer a un solo factor."
+            ],
+            "These models are fitted on the same data that produced the EGA and hierEGA solutions, so their fit is optimistic. Report them as a comparison, and confirm the chosen model in a new sample.": [
+                "Estos modelos se ajustan con los mismos datos que produjeron las soluciones de EGA y hierEGA, así que su ajuste es optimista. Infórmelos como comparación y confirme el modelo elegido en una muestra nueva."
+            ],
+            "These variables look like measurement schedule variables rather than responses, because nearly every person has the same value at the same measurement number: %s. Examples are the day or the beep number. Time variables change together by design, so they form a dimension of their own. Remove them from Items, and use one of them as Time if it orders the measurements.": [
+                "Estas variables parecen variables del calendario de mediciones y no respuestas, porque casi todas las personas tienen el mismo valor en el mismo número de medición: %s. Ejemplos son el día o el número de aviso. Las variables de tiempo cambian juntas por diseño, así que forman una dimensión propia. Quítelas de Ítems, y use una de ellas como Tiempo si ordena las mediciones."
+            ],
+            "This result is valid only if the negatively worded items are in their original, unrecoded direction and the scale mixes both directions. If all items are worded in the same direction, do not read it as a wording effect.": [
+                "Este resultado solo es válido si los ítems redactados en negativo están en su dirección original, sin recodificar, y la escala mezcla ambas direcciones. Si todos los ítems están redactados en la misma dirección, no lo interprete como un efecto de redacción."
+            ],
+            "This section checks how accurate the estimated network is, with the bootnet procedures (Epskamp et al., 2018; see references). It re-estimates the same network as EGA (same correlation, model and missing-value handling) in many bootstrap samples.": [
+                "Esta sección comprueba qué tan precisa es la red estimada, con los procedimientos de bootnet (Epskamp et al., 2018; ver referencias). Vuelve a estimar la misma red de EGA (misma correlación, modelo y manejo de valores perdidos) en muchas muestras bootstrap."
+            ],
+            "This section compares the network of the items between groups of people. With a grouping variable it compares independent groups (for example, women and men, or two countries). With a second measurement of the same items it compares the same people at two moments (for example, before and after an intervention).": [
+                "Esta sección compara la red de los ítems entre grupos de personas. Con una variable de agrupación compara grupos independientes (por ejemplo, mujeres y hombres, o dos países). Con una segunda medición de los mismos ítems compara a las mismas personas en dos momentos (por ejemplo, antes y después de una intervención)."
+            ],
+            "This section compares the structure found by EGA with alternative structures for the same items, using the Total Entropy Fit Index (TEFI; Golino et al., 2021; see references). Every structure is evaluated on the same correlation matrix as the EGA above, so their TEFI values can be compared directly.": [
+                "Esta sección compara la estructura hallada por EGA con estructuras alternativas para los mismos ítems, mediante el Índice de Ajuste de Entropía Total (TEFI; Golino et al., 2021; ver referencias). Todas las estructuras se evalúan sobre la misma matriz de correlaciones del EGA de arriba, así que sus valores de TEFI se pueden comparar directamente."
+            ],
+            "This summary gathers the main results of the sections below, what remains uncertain and what needs attention. Each line points to the section that explains it; read those sections before drawing conclusions.": [
+                "Este resumen reúne los resultados principales de las secciones de abajo, lo que sigue siendo incierto y lo que requiere atención. Cada línea indica la sección que lo explica; lea esas secciones antes de sacar conclusiones."
+            ],
+            "This table opens up the bifactor model of the comparison above: for each item, its loading on the general factor (every item) and on its specific factor (the hierEGA lower-order dimension), and its residual variance. It shows whether the specific factors keep their own variance or collapse into the general factor, which is the usual source of inadmissible bifactor solutions (Rodriguez, Reise & Haviland, 2016; see references).": [
+                "Esta tabla abre el modelo bifactor de la comparación de arriba: para cada ítem, su carga en el factor general (todos los ítems) y en su factor específico (la dimensión de orden inferior de hierEGA), y su varianza residual. Muestra si los factores específicos conservan varianza propia o colapsan en el factor general, que es la causa habitual de las soluciones bifactor inadmisibles (Rodriguez, Reise y Haviland, 2016; ver referencias)."
             ],
             "Time (optional)": [
                 "Tiempo (opcional)"
@@ -965,6 +2360,24 @@
             "Time points": [
                 "Momentos"
             ],
+            "Time points per person (min / median / max)": [
+                "Momentos por persona (mín. / mediana / máx.)"
+            ],
+            "To compare groups, add a grouping variable (independent groups) or the items of a second measurement of the same people (paired groups).": [
+                "Para comparar grupos, agregue una variable de agrupación (grupos independientes) o los ítems de una segunda medición de las mismas personas (grupos pareados)."
+            ],
+            "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare structures (TEFI) box.": [
+                "Para comparar también la estructura teórica, arrastre sus ítems a los factores de Theoretical structure, en la caja Compare structures (TEFI)."
+            ],
+            "To run the NCT, add a grouping variable with at least two groups of 10 or more cases, or the items of a second measurement of the same people.": [
+                "Para ejecutar el NCT, agregue una variable de agrupación con al menos dos grupos de 10 casos o más, o los ítems de una segunda medición de las mismas personas."
+            ],
+            "To test invariance, add a grouping variable with at least two groups of 10 or more cases. Invariance compares independent groups; it does not use the second measurement.": [
+                "Para evaluar la invarianza, agregue una variable de agrupación con al menos dos grupos de 10 casos o más. La invarianza compara grupos independientes; no usa la segunda medición."
+            ],
+            "To test the hierarchy as a factor model, tick Confirm with CFA: its section then compares the higher-order and bifactor models with the models without hierarchy.": [
+                "Para probar la jerarquía como modelo factorial, marque Confirmar con CFA: su sección compara entonces los modelos de orden superior y bifactor con los modelos sin jerarquía."
+            ],
             "Top": [
                 "Arriba"
             ],
@@ -973,6 +2386,9 @@
             ],
             "Total sample and random subsamples": [
                 "Muestra total y submuestras aleatorias"
+            ],
+            "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que la estructura dimensional no depende de este componente.": [
+                "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que las dimensiones no son un artefacto de la redacción."
             ],
             "Triangle": [
                 "Triángulo"
@@ -983,14 +2399,38 @@
             "Twenty-four items measured 50 times in 100 simulated persons in two groups (long format, with ID, Group and Time), from the EGAnet package - see data/README.md": [
                 "Veinticuatro ítems medidos 50 veces en 100 personas simuladas de dos grupos (formato largo, con ID, Group y Time), del paquete EGAnet; ver data/README.md"
             ],
+            "Two procedures are used: resampling cases with replacement, which gives an interval for each edge weight, and dropping growing proportions of cases, which shows whether the order of the items by centrality holds with fewer people.": [
+                "Se usan dos procedimientos: remuestrear casos con reemplazo, que da un intervalo para el peso de cada arista, y eliminar proporciones crecientes de casos, que muestra si el orden de los ítems por centralidad se mantiene con menos personas."
+            ],
+            "Uncertainties": [
+                "Incertidumbres"
+            ],
             "Unidimensionality Check": [
                 "Verificación de unidimensionalidad"
+            ],
+            "Unidimensionality check": [
+                "Verificación de unidimensionalidad"
+            ],
+            "Unique Variable Analysis (UVA) looks for redundant items: pairs that share so many of their connections in the network that they behave almost like the same item (Christensen, Garrido & Golino, 2023; see references).": [
+                "El Análisis de Variables Únicas (UVA) busca ítems redundantes: pares que comparten tantas de sus conexiones en la red que se comportan casi como el mismo ítem (Christensen, Garrido y Golino, 2023; ver referencias)."
             ],
             "Upper": [
                 "Superior"
             ],
             "Value": [
                 "Valor"
+            ],
+            "Values are raw: strength and expected influence are sums of partial correlations, closeness and betweenness keep their own scales.": [
+                "Los valores están sin estandarizar: la fuerza y la influencia esperada son sumas de correlaciones parciales; la cercanía y la intermediación conservan sus propias escalas."
+            ],
+            "Values are standardized across items (mean 0, SD 1). A value above 1 marks an item clearly more central than the average item; below -1, clearly less central.": [
+                "Los valores están estandarizados entre ítems (media 0, DE 1). Un valor mayor que 1 señala un ítem claramente más central que el ítem promedio; menor que -1, claramente menos central."
+            ],
+            "Values standardized across items (z): mean 0, SD 1.": [
+                "Valores estandarizados entre ítems (z): media 0, DE 1."
+            ],
+            "Variables in the second measurement: %d. However, the analysis uses %d items. Add one variable for each item, in the same order as the items, to compare the two measurements.": [
+                "Variables en la segunda medición: %d. Sin embargo, el análisis usa %d ítems. Agregue una variable por cada ítem, en el mismo orden de los ítems, para comparar las dos mediciones."
             ],
             "Viridis": [
                 "Viridis"
@@ -1001,8 +2441,23 @@
             "Walktrap": [
                 "Walktrap"
             ],
+            "Walktrap groups items by short random walks along the edges: walks tend to stay inside densely connected regions, which become the dimensions. It is deterministic (the same data always give the same answer) and is the algorithm with the strongest simulation record in EGA (Golino et al., 2020; see references).": [
+                "Walktrap agrupa los ítems mediante caminatas aleatorias cortas por las aristas: las caminatas tienden a quedarse en regiones densamente conectadas, que se convierten en las dimensiones. Es determinista (los mismos datos dan siempre la misma respuesta) y es el algoritmo con mayor respaldo de simulación en EGA (Golino et al., 2020; ver referencias)."
+            ],
+            "Warnings": [
+                "Advertencias"
+            ],
+            "Weak general loading": [
+                "Carga general débil"
+            ],
+            "Weak specific loading": [
+                "Carga específica débil"
+            ],
             "Weight": [
                 "Peso"
+            ],
+            "Weight, %s": [
+                "Peso, %s"
             ],
             "Weight, first": [
                 "Peso, primero"
@@ -1010,14 +2465,98 @@
             "Weight, second": [
                 "Peso, segundo"
             ],
+            "Weights are the partial correlations of the estimated network (each pair of items, controlling for all the others), from strongest to weakest in absolute value. A negative weight means the two items move in opposite directions once the rest are held constant.": [
+                "Los pesos son las correlaciones parciales de la red estimada (cada par de ítems, controlando por todos los demás), de la más fuerte a la más débil en valor absoluto. Un peso negativo indica que los dos ítems van en direcciones opuestas una vez que se mantiene constante el resto."
+            ],
             "White": [
                 "Blanco"
+            ],
+            "Why the ordinal rule differs from EGA: EGA's automatic correlations treat items with 7 or fewer categories as ordinal (polychoric), while the CFA uses WLSMV only below 6 categories, as EGAnetLab's CFA() does. With 6 or 7 categories the network therefore uses polychoric correlations and the CFA uses robust maximum likelihood, which performs well with that many categories (Rhemtulla, Brosseau-Liard & Savalei, 2012; see references). To use the same treatment in both, choose the CFA estimator in the options.": [
+                "Por qué la regla ordinal difiere de la de EGA: las correlaciones automáticas de EGA tratan como ordinales (policóricas) los ítems con 7 categorías o menos, mientras que el CFA usa WLSMV solo por debajo de 6 categorías, como hace CFA() de EGAnetLab. Con 6 o 7 categorías la red usa entonces correlaciones policóricas y el CFA usa máxima verosimilitud robusta, que funciona bien con esa cantidad de categorías (Rhemtulla, Brosseau-Liard y Savalei, 2012; ver referencias). Para usar el mismo tratamiento en ambos, elija el estimador del CFA en las opciones."
+            ],
+            "With only %s lower-order dimensions, the higher level rests on very few scores; read it as a hint and confirm it with a higher-order or bifactor CFA.": [
+                "Con solo %s dimensiones de orden inferior, el nivel superior se apoya en muy pocas puntuaciones; tómelo como un indicio y confírmelo con un CFA de orden superior o bifactor."
+            ],
+            "Within dimension %s": [
+                "Dentro de la dimensión %s"
             ],
             "Wording effects (random-intercept EGA)": [
                 "Efectos de redacción (EGA con intercepto aleatorio)"
             ],
             "Wording effects interpretation": [
                 "Interpretación de los efectos de redacción"
+            ],
+            "Yes": [
+                "Sí"
+            ],
+            "acceleration": [
+                "aceleración"
+            ],
+            "acceptable": [
+                "aceptable"
+            ],
+            "dimension %s with %d items": [
+                "dimensión %s con %d ítems"
+            ],
+            "embedding %d, tau %d, delta %s; derivative analysed: %s": [
+                "inmersión %d, tau %d, delta %s; derivada analizada: %s"
+            ],
+            "factor": [
+                "factor"
+            ],
+            "general factor": [
+                "factor general"
+            ],
+            "global strength": [
+                "fuerza global"
+            ],
+            "good": [
+                "bueno"
+            ],
+            "group %s has %s": [
+                "el grupo %s tiene %s"
+            ],
+            "hierEGA does not accept the cosine similarity, so it uses the automatic correlation here.": [
+                "hierEGA no acepta la similitud coseno, así que aquí usa la correlación automática."
+            ],
+            "hierEGA finds %s lower-order dimensions grouped into %s higher-order dimensions.": [
+                "hierEGA encuentra %s dimensiones de orden inferior agrupadas en %s dimensiones de orden superior."
+            ],
+            "hierEGA finds %s lower-order dimensions grouped into 1 higher-order dimension.": [
+                "hierEGA encuentra %s dimensiones de orden inferior agrupadas en 1 dimensión de orden superior."
+            ],
+            "hierEGA finds a single lower-order dimension, so there is no hierarchy to estimate.": [
+                "hierEGA encuentra una sola dimensión de orden inferior, así que no hay jerarquía que estimar."
+            ],
+            "higher-order factor": [
+                "factor de orden superior"
+            ],
+            "lavaan could not fit the CFA%s: %s.": [
+                "lavaan no pudo ajustar el CFA%s: %s."
+            ],
+            "lavaan could not fit this model: %s.": [
+                "lavaan no pudo ajustar este modelo: %s."
+            ],
+            "lavaan did not reach convergence; do not interpret this row.": [
+                "lavaan no alcanzó la convergencia; no interprete esta fila."
+            ],
+            "lavaan flagged a problem with this solution: %s. Do not interpret or prefer this model until you review its estimates.": [
+                "lavaan señaló un problema en esta solución: %s. No interprete ni prefiera este modelo hasta revisar sus estimaciones."
+            ],
+            "lavaan warned about this model: %s. The solution looks admissible, but review its estimates before preferring it.": [
+                "lavaan advirtió sobre este modelo: %s. La solución parece admisible, pero revise sus estimaciones antes de preferirlo."
+            ],
+            "level": [
+                "nivel"
+            ],
+            "negative factor variance": [
+                "varianza negativa de un factor"
+            ],
+            "negative residual variance (Heywood case)": [
+                "varianza residual negativa (caso Heywood)"
+            ],
+            "new": [
+                "nueva"
             ],
             "of the same items, in the same order as the items.": [
                 "de los mismos ítems, en el mismo orden de los ítems."
@@ -1034,17 +2573,92 @@
             "p-value correction": [
                 "Corrección de valores p"
             ],
+            "p: proportion of permutations with a difference at least as large as the observed one. p (BH): the same p value corrected for the number of items with the Benjamini-Hochberg method.": [
+                "p: proporción de permutaciones con una diferencia al menos tan grande como la observada. p (BH): el mismo valor p corregido por el número de ítems con el método de Benjamini-Hochberg."
+            ],
+            "parametric": [
+                "paramétrico"
+            ],
+            "poor": [
+                "pobre"
+            ],
             "r with mean score": [
                 "r con el promedio"
+            ],
+            "r with mean score: correlation between the network score and the unweighted mean of the same items (the mean keeps dimensions with different numbers of items on the same scale). Values near 1 mean the weighting changes little; lower values mean the items contribute very unequally to the dimension.": [
+                "r con el promedio: correlación entre la puntuación de red y el promedio sin ponderar de los mismos ítems (el promedio mantiene en la misma escala dimensiones con distinto número de ítems). Valores cercanos a 1 indican que la ponderación cambia poco; valores menores indican que los ítems aportan de forma muy desigual a la dimensión."
+            ],
+            "rate of change": [
+                "velocidad de cambio"
+            ],
+            "resampling": [
+                "remuestreo"
             ],
             "riEGA": [
                 "riEGA"
             ],
+            "riEGA dimensions take the number of the EGA dimension with which they share the most items, so the numbers are labels, not a count.": [
+                "Las dimensiones de riEGA llevan el número de la dimensión de EGA con la que comparten más ítems, así que los números son etiquetas, no un conteo."
+            ],
+            "riEGA does not work with the BGGM network model; choose GLASSO or TMFG in Estimation": [
+                "riEGA no funciona con el modelo de red BGGM; elija GLASSO o TMFG en Estimation"
+            ],
+            "riEGA first fits a random-intercept factor with the same loading for every item, which captures that wording effect, removes it, and then runs EGA on what is left.": [
+                "riEGA primero ajusta un factor de intercepto aleatorio con la misma carga para todos los ítems, que capta ese efecto de redacción, lo quita y luego aplica EGA a lo que queda."
+            ],
+            "standardized loading above 1": [
+                "carga estandarizada mayor que 1"
+            ],
+            "structure": [
+                "estructura"
+            ],
+            "structure and global strength": [
+                "estructura y fuerza global"
+            ],
+            "subsample ": [
+                "SubMuestra "
+            ],
+            "subsample B (confirmation)": [
+                "la SubMuestra B (confirmación)"
+            ],
+            "the bootstrap samples": [
+                "las muestras bootstrap"
+            ],
+            "the covariance matrix of the estimates is not positive definite, which may mean that the model is not identified": [
+                "la matriz de covarianzas de las estimaciones no es definida positiva, lo que puede indicar que el modelo no está identificado"
+            ],
+            "the factor covariance matrix is not positive definite": [
+                "la matriz de covarianzas de los factores no es definida positiva"
+            ],
+            "the group comparison": [
+                "la comparación entre grupos"
+            ],
+            "the main EGA": [
+                "el EGA principal"
+            ],
+            "the residual covariance matrix of the items is not positive definite": [
+                "la matriz de covarianzas de los residuos de los ítems no es definida positiva"
+            ],
+            "the total sample": [
+                "la muestra total"
+            ],
+            "vs.": [
+                "vs."
+            ],
             "wTO": [
                 "wTO"
             ],
+            "z value": [
+                "Valor z"
+            ],
             "χ² (df)": [
                 "χ² (gl)"
+            ],
+            "χ² (df), p": [
+                "χ² (gl), p"
+            ],
+            "χ²/df": [
+                "χ²/gl"
             ]
         }
     }

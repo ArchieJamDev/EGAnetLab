@@ -36,7 +36,7 @@
 #   there is no higher level); lower_loadings - hierEGA network loadings of
 #   the items (items x lower dimensions) or NULL; higher_loadings - network
 #   loadings of the lower-order scores on the higher-order dimensions or
-#   NULL; labels - axis and group labels in the report language.
+#   NULL; labels - axis and group labels, already translated.
 # Output: list(nodes, edges, labels), small and plain, for the plot state.
 #   Items are ordered by higher-order and then lower-order dimension, so
 #   edges do not cross; isolated items go last, without edges.

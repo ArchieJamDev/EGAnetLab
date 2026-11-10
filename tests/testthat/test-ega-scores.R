@@ -63,7 +63,7 @@ test_that("network scores keep missing responses as missing", {
 test_that("network scores render in Spanish", {
 
     data <- edgeStructureData()
-    res <- EGAnetLab::ega(data = data, vars = names(data), netScores = TRUE, reportLang = "es")
+    res <- inSpanish(EGAnetLab::ega(data = data, vars = names(data), netScores = TRUE))
     expect_match(res$scoresGuide$content, "puntuaciones de red", fixed = TRUE)
 })
 

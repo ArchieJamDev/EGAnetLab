@@ -89,7 +89,6 @@ items:
       - seed
       - levelGroup
       - levelIndividual
-      - reportLang
     columns:
       - name: element
         title: Element
@@ -120,7 +119,6 @@ items:
       - seed
       - levelGroup
       - levelIndividual
-      - reportLang
     columns:
       - name: item
         title: Item
@@ -150,7 +148,6 @@ items:
       - seed
       - levelGroup
       - levelIndividual
-      - reportLang
     columns:
       - name: group
         title: Group
@@ -211,7 +208,6 @@ items:
       - showLegend
       - legendPosition
       - legendTitle
-      - reportLang
 
   - name: indStatus
     title: Structure of each person
@@ -241,7 +237,6 @@ items:
       - seed
       - levelGroup
       - levelIndividual
-      - reportLang
     columns:
       - name: dims
         title: Dimensions
@@ -277,7 +272,6 @@ items:
       - seed
       - levelGroup
       - levelIndividual
-      - reportLang
     columns:
       - name: element
         title: Element
@@ -307,7 +301,6 @@ items:
       - seed
       - levelGroup
       - levelIndividual
-      - reportLang
     columns:
       - name: id
         title: Person
@@ -347,7 +340,6 @@ items:
       - levelGroup
       - levelIndividual
       - plotPalette
-      - reportLang
 
   - name: indInterpretation
     title: Individual structures interpretation

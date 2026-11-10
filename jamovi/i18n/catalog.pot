@@ -6,8 +6,112 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "Language: c\n"
 
+#: R/ega.b.R
+msgid " complete cases)"
+msgstr ""
+
+#: R/ega.b.R
+msgid " samples, "
+msgstr ""
+
+#: R/ega.b.R
+msgid " to "
+msgstr ""
+
+#: R/texts.R
+msgid "%d of %d (%s%%)"
+msgstr ""
+
+#: R/texts.R
+msgid "%d of the %d edges of the network were estimated in at least 90%% of the samples; %d have an interval that includes zero, so they may be absent in other samples."
+msgstr ""
+
+#: R/ega.b.R
+msgid "%s (already reversed in the data)"
+msgstr ""
+
+#: R/ega.b.R
+msgid "%s (reversed for the analysis)"
+msgstr ""
+
+#: R/texts.R
+msgid "%s dimensions"
+msgstr ""
+
+#: R/texts.R
+msgid "%s has a single dimension. TEFI is always 0 for one dimension, so it is not compared with the multidimensional structures; use the unidimensionality check of EGA for that question."
+msgstr ""
+
+#: R/texts.R
+msgid "%s has the lowest TEFI (%s), %s below the EGA solution (%s). By entropy fit it separates the items into dimensions better than the EGA solution."
+msgstr ""
+
+#: R/texts.R
+msgid "%s is left out when picking the best fit: %s. Its fit indices are shown, but they cannot be read until that problem is resolved."
+msgstr ""
+
+#: R/texts.R
+msgid "%s of the %s items that change dimension with the wording control are negatively worded, which points to wording rather than content."
+msgstr ""
+
+#: R/texts.R
+msgid "%s of the items fall in the same dimension in subsamples A and B."
+msgstr ""
+
+#: R/texts.R
+msgid "%s places %d of %d items as EGA (TEFI %s; %s from the lowest). Items that change dimension: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "%s: %s (n = %d) and %s (n = %d)%s."
+msgstr ""
+
+#: R/ega.b.R
+msgid "* p ≤ .05 (uncorrected)"
+msgstr ""
+
+#: R/texts.R
+msgid ", each person"
+msgstr ""
+
+#: R/texts.R
+msgid ", groups"
+msgstr ""
+
+#: R/texts.R
+msgid ", the same people measured twice"
+msgstr ""
+
+#: R/texts.R
+msgid "1 dimension"
+msgstr ""
+
+#: R/ega.b.R
+msgid "95% bootstrap interval"
+msgstr ""
+
+#: R/ega.b.R
+msgid "95% interval (2.5th to 97.5th percentile)"
+msgstr ""
+
+#: R/ega.b.R
+msgid "; items with 7 or fewer categories treated as ordinal"
+msgstr ""
+
+#: R/texts.R
+msgid "A random-intercept component was estimated (standardized loadings %s). Reading it as acquiescence or a wording effect requires justifying the direction and the content of the items: the component captures whatever all items share to the same degree, and that can include content."
+msgstr ""
+
 #: ega/results/cfaHierModels.columns.title
 msgid "AIC"
+msgstr ""
+
+#: R/texts.R
+msgid "AIC and BIC are not available with this estimator (WLSMV for ordinal items), so the comparison rests on CFI, TLI, RMSEA and SRMR."
+msgstr ""
+
+#: R/texts.R
+msgid "ARI = adjusted Rand index between each person's item membership and the population's (Hubert & Arabie, 1985): 1 = identical, about 0 = no more agreement than chance. Items without a dimension count as their own group."
 msgstr ""
 
 #: ega/results/choicesGuide.title
@@ -16,20 +120,64 @@ msgstr ""
 msgid "About your choices"
 msgstr ""
 
+#: R/dynega.b.R
+msgid "Acceleration (2)"
+msgstr ""
+
 #: dynega/options/derivative/2.title
 msgid "Acceleration (2, second derivative)"
+msgstr ""
+
+#: R/texts.R
+msgid "Across %d samples, the most frequent solution has %d dimensions (%s of samples), the same number found in the original sample. The median is %s, with 95%% of samples between %s and %s dimensions."
+msgstr ""
+
+#: R/texts.R
+msgid "Across %d samples, the most frequent solution has %d dimensions (%s of samples), while the original sample showed %d. The original structure is not the typical one across samples; interpret it with caution and look at which items are unstable. The median is %s, with 95%% of samples between %s and %s dimensions."
 msgstr ""
 
 #: ega/options/compareCFA.title
 msgid "Add CFA fit for each structure"
 msgstr ""
 
+#: R/texts.R
+msgid "Admissible solution"
+msgstr ""
+
+#: R/texts.R
+msgid "After removing it, EGA finds %s dimensions instead of %s. The random-intercept component may have been masking some distinctions in content, or the control may be splitting dimensions; read the new dimensions with care and check them against the item content."
+msgstr ""
+
+#: R/texts.R
+msgid "After removing it, EGA finds %s dimensions instead of %s. This is compatible with some original dimensions reflecting wording rather than content, but also with the random intercept absorbing content that the items share. Look at which items change dimension and at their wording before choosing an explanation."
+msgstr ""
+
+#: R/texts.R
+msgid "After removing it, EGA still finds %s dimensions with the same items, so the dimensional structure does not depend on this component."
+msgstr ""
+
+#: R/texts.R
+msgid "After removing it, no item stays connected to another, so EGA finds no dimension. The random intercept took up what the items share; with all items worded in the same direction this is expected and is not evidence of a wording effect."
+msgstr ""
+
+#: R/texts.R
+msgid "After removing the random intercept, no item stays connected to another, so no dimension remains (Random-intercept EGA)."
+msgstr ""
+
 #: dynega/results/indTable.columns.title
 msgid "Agreement (ARI)"
 msgstr ""
 
+#: R/dynega.b.R
+msgid "Agreement with own group (ARI)"
+msgstr ""
+
 #: dynega/results/indAgree.title
 msgid "Agreement with the population structure"
+msgstr ""
+
+#: R/texts.R
+msgid "All lower-order dimensions group into one higher-order dimension, which is consistent with a general factor behind the specific dimensions."
 msgstr ""
 
 #: ega/options/negCoding/recoded.title
@@ -38,6 +186,14 @@ msgstr ""
 
 #: ega/options/cenClosBetw.title
 msgid "Also closeness and betweenness"
+msgstr ""
+
+#: R/texts.R
+msgid "Among the structures compared, %s has a lower TEFI than the EGA structure (Compare structures)."
+msgstr ""
+
+#: R/texts.R
+msgid "Among the structures compared, the EGA structure has the lowest TEFI (Compare structures)."
 msgstr ""
 
 #: ega/results/interpretation.title
@@ -59,10 +215,20 @@ msgstr ""
 
 #: ega/options/corr/auto.title
 #: dynega/options/corr/auto.title
+#: R/ega.b.R
+#: R/shared-helpers.R
 msgid "Automatic (Pearson / polychoric)"
 msgstr ""
 
-#: ega/ui[14][0][0].label
+#: R/dynega.b.R
+msgid "Automatic (Pearson, because the derivatives are continuous)"
+msgstr ""
+
+#: R/texts.R
+msgid "Automatic lets EGAnetLab choose the correlation for each pair of items from their measurement level: polychoric for ordinal items (few categories), tetrachoric for dichotomous items and Pearson for continuous items. It is the recommended choice for Likert-type and right/wrong items, because Pearson correlations underestimate the association between categorical variables."
+msgstr ""
+
+#: ega/ui[13][0][0].label
 msgid "Available when Hierarchical EGA is ticked."
 msgstr ""
 
@@ -71,16 +237,61 @@ msgstr ""
 msgid "BGGM"
 msgstr ""
 
+#: R/texts.R
+msgid "BGGM estimates the network with a Bayesian Gaussian graphical model and keeps the edges whose posterior distribution supports a non-zero partial correlation. It expresses uncertainty about each edge directly and is a principled alternative to GLASSO, but it is slower. Use it to confirm a GLASSO solution from a different estimation framework."
+msgstr ""
+
 #: ega/results/cfaHierModels.columns.title
 msgid "BIC"
+msgstr ""
+
+#: R/texts.R
+msgid "Because some items were removed in the configural step, the metric test only applies to the remaining items. Report which items were removed and why."
+msgstr ""
+
+#: R/texts.R
+msgid "Because the first derivative was analysed, this is a structure of change: it describes which items rise and fall together from moment to moment. It can differ from the structure of a cross-sectional EGA of the same items, which describes which people score high or low together."
+msgstr ""
+
+#: R/texts.R
+msgid "Because the level (derivative 0) was analysed, the structure reflects the smoothed values of the items within each person's window, closer to a structure of states than of change."
+msgstr ""
+
+#: R/texts.R
+msgid "Because the second derivative was analysed, the structure describes how the speed of change accelerates together; it is noisier and needs many time points per person."
+msgstr ""
+
+#: R/texts.R
+msgid "Before reading this section: riEGA only makes sense when the scale mixes positively and negatively worded items, and the negatively worded items are in their original direction, not recoded. With recoded items, or with a scale whose items are all worded in the same direction, the random intercept absorbs shared variance that is part of the content and the result is not a wording effect."
+msgstr ""
+
+#: R/texts.R
+msgid "Before the multidimensional solution is accepted, EGA checks whether the items could be unidimensional. The Louvain check applies the Louvain algorithm to the zero-order correlation matrix: if it finds a single community, the structure is reported as one dimension. It is EGAnetLab's current default."
+msgstr ""
+
+#: R/texts.R
+msgid "Below cutoff"
 msgstr ""
 
 #: ega/options/nctAdjust/BH.title
 msgid "Benjamini-Hochberg (FDR)"
 msgstr ""
 
+#: R/texts.R
+msgid "Better fit by TEFI"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Between %s and %s"
+msgstr ""
+
 #: ega/results/cenTable.columns.title
+#: R/ega.b.R
 msgid "Betweenness"
+msgstr ""
+
+#: R/texts.R
+msgid "Bifactor (general + lower-order specific factors)"
 msgstr ""
 
 #: ega/results/cfaBifactorGuide.title
@@ -91,12 +302,12 @@ msgstr ""
 msgid "Bifactor loadings interpretation"
 msgstr ""
 
-#: ega/results/cfaBifactorLoadings.title
-msgid "Bifactor model loadings (standardized, total sample)"
+#: R/ega.b.R
+msgid "Bifactor model loadings"
 msgstr ""
 
-#: package/datasets.description
-msgid "Twenty-five Big Five personality items (6-point scale) with real missing data, seven negatively worded items, gender, education and age, from the psychTools package - see data/README.md"
+#: ega/results/cfaBifactorLoadings.title
+msgid "Bifactor model loadings (standardized, total sample)"
 msgstr ""
 
 #: ega/options/labelColor/black.title
@@ -117,6 +328,14 @@ msgstr ""
 msgid "Bonferroni"
 msgstr ""
 
+#: R/ega.b.R
+msgid "Bootstrap"
+msgstr ""
+
+#: R/texts.R
+msgid "Bootstrap complete: %d samples (%s), seed %d. Changing only the stability cutoff or the plot options reuses these results without running the bootstrap again."
+msgstr ""
+
 #: ega/options/iter.title
 msgid "Bootstrap samples"
 msgstr ""
@@ -129,12 +348,13 @@ msgstr ""
 msgid "Bootstrap samples (edges)"
 msgstr ""
 
-#: ega/results/bootStatus.title
-msgid "Bootstrap status"
+#: ega/options/bootType.title
+#: R/texts.R
+msgid "Bootstrap type"
 msgstr ""
 
-#: ega/options/bootType.title
-msgid "Bootstrap type"
+#: R/texts.R
+msgid "Borderline pairs that involve an item unstable in the bootstrap: %s. The overlap is below the redundancy cutoff, but it may explain why the item moves between dimensions across samples; review the wording of both items."
 msgstr ""
 
 #: ega/options/legendPosition/bottom.title
@@ -142,8 +362,20 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+#: R/texts.R
+msgid "By group, %s."
+msgstr ""
+
+#: R/texts.R
+msgid "By strength, the most central items: %s. They share the most unique variance with the rest of the set. If they are also redundant (see Redundancy, UVA), their centrality may reflect overlapping content rather than importance."
+msgstr ""
+
 #: ega/options/cfaEstimator.title
 msgid "CFA estimator"
+msgstr ""
+
+#: R/texts.R
+msgid "CFA fit for each structure: confirmatory factor analysis of each structure with lavaan (automatic estimator: WLSMV for items with fewer than 6 categories, otherwise MLR), with CFI, RMSEA and SRMR. It is estimated on the same data that produced the EGA solution, which favors that solution; for an independent test use the random split in the Confirmatory factor analysis box."
 msgstr ""
 
 #: ega/results/cfaInterpretation.title
@@ -154,8 +386,17 @@ msgstr ""
 msgid "CFA standardized loadings"
 msgstr ""
 
+#: R/ega.b.R
+msgid "CFA standardized loadings (subsample B, confirmation)"
+msgstr ""
+
+#: R/ega.b.R
+msgid "CFA standardized loadings (total sample)"
+msgstr ""
+
 #: ega/results/compareTable.columns.title
 #: ega/results/cfaHierModels.columns.title
+#: R/texts.R
 msgid "CFI"
 msgstr ""
 
@@ -163,30 +404,75 @@ msgstr ""
 msgid "CS"
 msgstr ""
 
+#: R/texts.R
+msgid "CS = largest proportion of cases that can be dropped keeping a correlation of .70 or more with the original order in 95% of the samples. The largest value tested is .75."
+msgstr ""
+
+#: R/texts.R
+msgid "CS coefficient: the largest proportion of cases that can be dropped while the centrality order still correlates .70 or more with the original in 95% of the samples. Below .25 the order should not be interpreted; .50 or more is preferred (Epskamp et al., 2018)."
+msgstr ""
+
 #: ega/options/showCasePlot.title
 msgid "Case-dropping plot"
 msgstr ""
 
+#: R/texts.R
+msgid "Cases"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Cases dropped"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Cases used"
+msgstr ""
+
+#: R/texts.R
+msgid "Cases with no value in the grouping variable (%d) were left out of the comparison between groups."
+msgstr ""
+
 #: ega/results/cenStatus.title
-#: ega/ui[7][0].label
+#: ega/ui[6][0].label
+#: R/ega.b.R
 msgid "Centrality"
 msgstr ""
 
-#: ega/ui[7].label
+#: ega/ui[6].label
 msgid "Centrality and network stability"
+msgstr ""
+
+#: R/texts.R
+msgid "Centrality by %s is moderately stable, CS = %s: interpret only large differences between items (Network stability)."
+msgstr ""
+
+#: R/texts.R
+msgid "Centrality by %s is not stable enough to rank items, CS = %s (Network stability)."
+msgstr ""
+
+#: R/texts.R
+msgid "Centrality by %s is stable, CS = %s (Network stability)."
+msgstr ""
+
+#: R/texts.R
+msgid "Centrality describes the position of each item in the estimated network. Strength is the sum of the absolute weights of an item's connections; expected influence is the same sum keeping the sign, so negative connections subtract (Opsahl et al., 2010; Robinaugh et al., 2016; see references)."
 msgstr ""
 
 #: ega/results/cenInterpretation.title
 msgid "Centrality interpretation"
 msgstr ""
 
+#: R/texts.R
+msgid "Centrality is computed over the whole network, across dimensions. An item can be central because it connects dimensions, not only because it is central within its own."
+msgstr ""
+
+#: ega/results/cenPlot.title
 #: ega/options/runCentrality.title
 #: ega/results/cenTable.title
 msgid "Centrality of each item"
 msgstr ""
 
 #: ega/options/showCenPlot.title
-#: ega/results/cenPlot.title
 msgid "Centrality plot"
 msgstr ""
 
@@ -198,12 +484,28 @@ msgstr ""
 msgid "Centrality stability when dropping cases"
 msgstr ""
 
+#: R/texts.R
+msgid "Centrality values that differ between the networks after the correction for multiple tests: %d (see the centrality table)."
+msgstr ""
+
+#: R/texts.R
+msgid "Centrality: the difference in strength and expected influence of each item between the networks, with the chosen correction."
+msgstr ""
+
+#: R/texts.R
+msgid "Changes"
+msgstr ""
+
 #: ega/results/cfaBifactorLoadings.columns.title
 msgid "Check"
 msgstr ""
 
 #: ega/options/runUVA.title
 msgid "Check redundancy (UVA)"
+msgstr ""
+
+#: R/texts.R
+msgid "Check: Heywood case, loading above 1, a specific loading below .20 (the item adds almost nothing to its specific factor) or a general loading below .20."
 msgstr ""
 
 #: ega/options/layout/circle.title
@@ -214,7 +516,16 @@ msgid "Circle"
 msgstr ""
 
 #: ega/results/cenTable.columns.title
+#: R/ega.b.R
 msgid "Closeness"
+msgstr ""
+
+#: R/texts.R
+msgid "Closeness and betweenness (optional): based on the shortest paths between items. They are less stable and harder to interpret in psychological networks (Bringmann et al., 2019; see references)."
+msgstr ""
+
+#: R/texts.R
+msgid "Closeness and betweenness are shown because they were requested. In psychological networks they are often unstable and have no clear meaning (Bringmann et al., 2019); give them less weight than strength."
 msgstr ""
 
 #: ega/options/plotPalette/colorblind.title
@@ -227,8 +538,19 @@ msgstr ""
 msgid "Community Detection"
 msgstr ""
 
+#: R/texts.R
+#: R/ega.b.R
+#: R/dynega.b.R
+msgid "Community detection"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Compare structures"
+msgstr ""
+
 #: ega/results/compareStatus.title
-#: ega/ui[5].label
+#: ega/ui[4].label
+#: R/ega.b.R
 msgid "Compare structures (TEFI)"
 msgstr ""
 
@@ -236,11 +558,27 @@ msgstr ""
 msgid "Compare structures with TEFI"
 msgstr ""
 
+#: R/texts.R
+msgid "Compared with their own group, %s of the persons show exactly their group's item membership (median ARI = %s). The differences between persons are explained by the group they belong to, not by idiosyncratic structures: describe each group's structure."
+msgstr ""
+
 #: ega/results/invTable.columns.title
 #: ega/results/nctGlobal.columns.title
 #: ega/results/nctEdgeTable.columns.title
 #: ega/results/nctCentralityTable.columns.title
 msgid "Comparison"
+msgstr ""
+
+#: R/texts.R
+msgid "Configural invariance was not reached: after removing the unstable items, fewer than two items keep a stability of %.2f or more, so there is no common structure to compare. The groups do not share the same dimensions; compare their networks with the Network Comparison Test or run the EGA within each group."
+msgstr ""
+
+#: R/texts.R
+msgid "Configural invariance: every item stays in its dimension in enough bootstrap samples, so all items were tested."
+msgstr ""
+
+#: R/texts.R
+msgid "Configural invariance: unstable items left out before the metric test (%d): %s."
 msgstr ""
 
 #: ega/options/invConfigCut.title
@@ -252,17 +590,69 @@ msgid "Confirm with CFA"
 msgstr ""
 
 #: ega/results/cfaStatus.title
-#: ega/ui[11].label
+#: ega/ui[10].label
+#: R/ega.b.R
 msgid "Confirmatory factor analysis"
+msgstr ""
+
+#: R/texts.R
+msgid "Confirmatory factor analysis (CFA) tests the structure found by EGA as a factor model: each dimension becomes a factor and each item loads only on its own factor (lavaan; Rosseel, 2012; see references)."
+msgstr ""
+
+#: R/texts.R
+msgid "Connections that differ between the networks after the correction for multiple tests: %d (see the edge table)."
 msgstr ""
 
 #: ega/options/runRI.title
 msgid "Control wording effects (random-intercept EGA)"
 msgstr ""
 
+#: R/texts.R
+msgid "Controlling for a wording effect changes the structure: %d dimensions with the random intercept against %d without it (Random-intercept EGA)."
+msgstr ""
+
+#: R/texts.R
+msgid "Controlling for a wording effect does not change the number of dimensions (Random-intercept EGA)."
+msgstr ""
+
+#: R/texts.R
+msgid "Conventional guidelines (Hu & Bentler, 1999; see references): CFI and TLI of .95 or more, RMSEA of .06 or less and SRMR of .08 or less suggest good fit; CFI/TLI of .90 and RMSEA of .08 are often taken as acceptable. With WLSMV these cutoffs are only approximate."
+msgstr ""
+
+#: R/texts.R
+msgid "Converged"
+msgstr ""
+
+#: R/texts.R
+msgid "Correlated factors (EGA = hierEGA lower order)"
+msgstr ""
+
+#: R/texts.R
+msgid "Correlated factors (EGA)"
+msgstr ""
+
+#: R/texts.R
+msgid "Correlated factors (hierEGA lower order)"
+msgstr ""
+
+#: R/texts.R
+msgid "Correlated lower-order dimensions"
+msgstr ""
+
 #: ega/options/corr.title
 #: dynega/options/corr.title
+#: R/texts.R
+#: R/ega.b.R
+#: R/dynega.b.R
 msgid "Correlation"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Correlation with the original order"
+msgstr ""
+
+#: R/texts.R
+msgid "Correlation: with items that have few response categories, EGAnetLab's automatic option uses polychoric or tetrachoric correlations."
 msgstr ""
 
 #: ega/options/nctCorr.title
@@ -270,7 +660,13 @@ msgid "Correlations (NCT)"
 msgstr ""
 
 #: ega/options/corr/cosine.title
+#: R/ega.b.R
+#: R/shared-helpers.R
 msgid "Cosine"
+msgstr ""
+
+#: R/texts.R
+msgid "Cosine similarity measures the angle between response vectors rather than their linear association. It is used mainly with text-derived or high-dimensional data. For typical questionnaire items, Automatic or Pearson are better established in the EGA literature."
 msgstr ""
 
 #: ega/options/labelColor/grey30.title
@@ -304,16 +700,22 @@ msgid "Decimals"
 msgstr ""
 
 #: dynega/options/derivative.title
+#: R/texts.R
 msgid "Derivative analysed"
 msgstr ""
 
-#: dynega/ui[2].label
+#: dynega/ui[1].label
+#: R/texts.R
 msgid "Derivatives (GLLA)"
 msgstr ""
 
 #: ega/options/nodeShape/diamond.title
 #: dynega/options/nodeShape/diamond.title
 msgid "Diamond"
+msgstr ""
+
+#: R/texts.R
+msgid "Did not converge"
 msgstr ""
 
 #: ega/results/invTable.columns.title
@@ -326,12 +728,21 @@ msgstr ""
 msgid "Difference from lowest"
 msgstr ""
 
+#: R/texts.R
+msgid "Difference from lowest: how far each structure is from the lowest TEFI among the structures that use the same items. There is no established cutoff for a meaningful difference."
+msgstr ""
+
+#: R/texts.R
+msgid "Difference: loading in the first group minus loading in the second group."
+msgstr ""
+
 #: ega/results/membership.columns.title
 #: ega/results/scores.columns.title
 #: ega/results/bootDimStability.columns.title
 #: ega/results/bootItemStability.columns.title
 #: ega/results/cenTable.columns.title
 #: ega/results/invTable.columns.title
+#: R/ega.b.R
 msgid "Dimension"
 msgstr ""
 
@@ -373,12 +784,56 @@ msgstr ""
 msgid "Dimensions"
 msgstr ""
 
+#: R/texts.R
+msgid "Dimensions (population)"
+msgstr ""
+
 #: dynega/options/showIndPlot.title
 msgid "Dimensions across persons plot"
 msgstr ""
 
+#: R/texts.R
+msgid "Dimensions after wording control (riEGA)"
+msgstr ""
+
+#: R/texts.R
+msgid "Dimensions found by EGA"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Dimensions in the original sample"
+msgstr ""
+
+#: R/texts.R
+msgid "Dimensions that replicate poorly, below %s: %s (Stability)."
+msgstr ""
+
+#: R/texts.R
+msgid "Dimensions with a single item cannot form a factor and were left out of the CFA: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "Dimensions with and without the wording control: if the number of dimensions drops after the control, some of the original dimensions probably reflected wording rather than content."
+msgstr ""
+
+#: R/texts.R
+msgid "Dimensions with structural consistency below %s: %s. These dimensions are often not reproduced with exactly the same items; usually one or more of their items move to another dimension in some samples (see item stability)."
+msgstr ""
+
+#: R/texts.R
+msgid "Dimensions without wording control (EGA)"
+msgstr ""
+
 #: ega/results/invTable.columns.title
 msgid "Direction"
+msgstr ""
+
+#: R/texts.R
+msgid "Direction: the group with the larger loading, shown only when p is .05 or less."
+msgstr ""
+
+#: R/texts.R
+msgid "Done: %d samples resampling cases and %d samples dropping cases, seed %d. The results are kept while the estimation options do not change."
 msgstr ""
 
 #: ega/options/edgeNegLty/dotted.title
@@ -395,14 +850,58 @@ msgstr ""
 msgid "Dynamic EGA (intensive longitudinal data)"
 msgstr ""
 
+#: R/texts.R
+msgid "Dynamic EGA estimates the network from the derivatives of the items, which are continuous even when the answers are Likert-type, so Automatic uses Pearson correlations. Spearman is an alternative when a few extreme changes dominate the series."
+msgstr ""
+
+#: R/texts.R
+msgid "Dynamic Exploratory Graph Analysis (dynEGA) estimates the dimensional structure of intensive longitudinal data: the same items answered many times by each person, for example in daily diaries or ecological momentary assessment (Golino et al., 2022; see references)."
+msgstr ""
+
 #: ega/results/compareMembership.columns.title
 #: ega/results/hierMembership.columns.title
 #: ega/results/riMembership.columns.title
 msgid "EGA"
 msgstr ""
 
+#: R/texts.R
+msgid "EGA dimension %s is made only of negatively worded items (%s): the classic sign of a wording factor rather than a content dimension."
+msgstr ""
+
+#: R/texts.R
+msgid "EGA finds %s dimensions in the total sample, %s in subsample A and %s in subsample B: the number of dimensions does not fully replicate across random subsamples, so interpret the structure with caution."
+msgstr ""
+
+#: R/texts.R
+msgid "EGA finds %s dimensions in the total sample, %s in subsample A and %s in subsample B: the number of dimensions replicates across random subsamples."
+msgstr ""
+
+#: R/texts.R
+msgid "EGA found %d dimensions. The items group into %d communities of densely connected nodes, which suggests %d related but distinct constructs."
+msgstr ""
+
+#: R/texts.R
+msgid "EGA found a single dimension. The unidimensionality check (%s) did not separate the items into distinct communities, which supports treating the item set as measuring one construct."
+msgstr ""
+
+#: R/texts.R
+msgid "EGA in subsample A"
+msgstr ""
+
+#: R/texts.R
+msgid "EGA in the total sample"
+msgstr ""
+
+#: R/texts.R
+msgid "EGA solution (%s)"
+msgstr ""
+
 #: ega/options/invStructure/ega.title
 msgid "EGA solution (configural invariance assumed)"
+msgstr ""
+
+#: R/texts.R
+msgid "EGA with %s"
 msgstr ""
 
 #: package/title
@@ -417,9 +916,101 @@ msgstr ""
 msgid "EGAnetLab brings the network psychometrics methods of the EGAnet package to jamovi and pairs every result with evidence-based methodological guidance, interpretation and educational support. It estimates the number and content of dimensions with Exploratory Graph Analysis, with bootstrap stability, redundancy analysis (UVA), network loadings and scores, entropy fit and comparison of structures, confirmatory factor analysis, hierarchical and random-intercept structures, group comparisons, centrality, and dynamic EGA for intensive longitudinal data. Every method-backed table cites its own source in jamovi's native numbered format, and the complete APA 7th edition bibliography lives in the module's documentation."
 msgstr ""
 
+#: R/texts.R
+msgid "EGAnetLab could not complete the bootstrap: %s. The EGA above was estimated, so the problem lies in some bootstrap samples: try the resampling bootstrap, or fewer items with very few categories."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not complete the invariance test: %s. The EGA results above are not affected. Check that every group has enough cases and that no item is constant within a group."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not complete the redundancy analysis: %s. The EGA results above are not affected."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not compute centrality: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not compute network scores: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not estimate Dynamic EGA: %s. This usually means too few time points per person for the number of items, or items that barely change over time. Try a smaller embedding dimension, fewer items, or the population level only."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not estimate the hierarchical EGA: %s. The results above are not affected."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not estimate the network: %s. This usually means the correlation matrix is not positive definite (too few cases for the number of items, or items that are near-duplicates). Check the sample size and item redundancy, or try a different correlation or network model."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not estimate the random-intercept EGA: %s. The results above are not affected."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not estimate this structure: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not run the NCT for %s: %s. Check that both groups have enough complete cases and that no item is constant within a group."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab could not run the network stability analysis: %s."
+msgstr ""
+
 #: ega/options/plotPalette/default.title
 #: dynega/options/plotPalette/default.title
 msgid "EGAnetLab default"
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab estimates the network in each group with the same dimensional structure and compares the network loadings item by item. Then it shuffles people between groups many times to see how large the differences would be if group membership did not matter. An item whose loading differs more than expected by chance is not invariant: the item does not measure its dimension in the same way in the two groups."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab marks hierEGA as experimental. Report it as exploratory evidence together with the content of the dimensions."
+msgstr ""
+
+#: R/texts.R
+msgid "EGAnetLab's automatic rule would keep %s and remove %s. Treat this as a starting point: decide by content (which item best covers the construct, has the clearest wording, or is needed for a balanced scale), and consider combining items instead of removing them when both cover essential content."
+msgstr ""
+
+#: R/texts.R
+msgid "Each estimation decision below is explained for the option currently selected, with guidance on when an alternative would fit your data better."
+msgstr ""
+
+#: R/texts.R
+msgid "Each item is a node. Edges are regularized partial correlations: the association between two items after controlling for all the others. A community detection algorithm then groups densely connected items; each group is an estimated dimension."
+msgstr ""
+
+#: R/texts.R
+msgid "Each lower-order dimension stays on its own at the higher level, so there is no evidence of broader dimensions grouping them."
+msgstr ""
+
+#: R/texts.R
+msgid "Each network is estimated with the graphical lasso (EBIC, gamma .50) on Pearson correlations, the default of the NCT. With ordinal items Pearson slightly underestimates the associations, but both networks are estimated the same way, so the comparison stays fair. Choose Same as EGA in Correlations (NCT) for polychoric correlations; they are recomputed in every permutation, so the test takes several times longer."
+msgstr ""
+
+#: R/texts.R
+msgid "Each network is estimated with the graphical lasso (EBIC, gamma .50) on Pearson correlations."
+msgstr ""
+
+#: R/texts.R
+msgid "Each network is estimated with the graphical lasso (EBIC, gamma .50) on polychoric correlations, because the items have few categories and Same as EGA was chosen in Correlations (NCT). They are recomputed in every permutation, so the test is slow."
+msgstr ""
+
+#: R/texts.R
+msgid "Each person agrees with their own group with a median ARI of %s (Structure of each person)."
+msgstr ""
+
+#: R/texts.R
+msgid "Each person's own network is estimated from their derivatives. Individual structures rely on fewer data points than the population structure, so they are noisier; read their distribution, not each one separately."
 msgstr ""
 
 #: ega/results/bnEdges.columns.title
@@ -433,6 +1024,14 @@ msgstr ""
 
 #: ega/options/showEdgeCIPlot.title
 msgid "Edge intervals plot"
+msgstr ""
+
+#: R/texts.R
+msgid "Edge intervals: the range that covers 95% of the bootstrap weights of each edge. A wide interval means the weight is imprecise; an interval that includes 0 means the edge may be absent in other samples."
+msgstr ""
+
+#: R/ega.b.R
+msgid "Edge weight (95% bootstrap interval)"
 msgstr ""
 
 #: ega/options/edgeLabelSize.title
@@ -451,13 +1050,17 @@ msgstr ""
 msgid "Edge width"
 msgstr ""
 
-#: ega/ui[13][2][0].label
-#: dynega/ui[6][2][0].label
+#: ega/ui[12][2][0].label
+#: dynega/ui[5][2][0].label
 msgid "Edges"
 msgstr ""
 
 #: ega/results/nctEdgeTable.title
 msgid "Edges that differ"
+msgstr ""
+
+#: R/texts.R
+msgid "Edges: every connection whose weight differs between the networks (p of .05 or less after the chosen correction)."
 msgstr ""
 
 #: ega/options/layout/eigen.title
@@ -479,22 +1082,25 @@ msgstr ""
 msgid "Element"
 msgstr ""
 
+#: R/texts.R
+msgid "Embedding dimension %d: each derivative is estimated from a window of %d consecutive time points. Larger windows smooth out measurement noise but need more time points per person and hide fast changes; 5 is the usual value. Lag tau = %d: with tau = 1 the window uses consecutive time points; larger values skip time points and smooth the series further. Delta = %s is the time between measurements; it only rescales the derivatives."
+msgstr ""
+
 #: dynega/options/nEmbed.title
 msgid "Embedding dimension (time points per window)"
 msgstr ""
 
-#: ega/options/reportLang/en.title
-#: dynega/options/reportLang/en.title
-msgid "English"
-msgstr ""
-
-#: ega/options/reportLang/es.title
-#: dynega/options/reportLang/es.title
-msgid "Español"
-msgstr ""
-
 #: ega/results/networkPlot.title
+#: R/ega.b.R
 msgid "Estimated network"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Estimated network (hierarchical: higher · lower order)"
+msgstr ""
+
+#: R/texts.R
+msgid "Estimated: population%s%s, derivative %s, embedding dimension %d, seed %d. The results are kept while the estimation options do not change."
 msgstr ""
 
 #: package/analyses/dynega.description
@@ -507,10 +1113,50 @@ msgstr ""
 msgid "Estimates the number of dimensions underlying a set of items, and which items belong to each dimension, with Exploratory Graph Analysis (EGA), paired with network loadings, entropy fit, optional bootstrap stability of dimensions and items, optional redundancy analysis (UVA), and plain-language interpretation."
 msgstr ""
 
-#: ega/ui[2].label
+#: ega/ui[1].label
 #: dynega/results/status.title
-#: dynega/ui[3].label
+#: dynega/ui[2].label
 msgid "Estimation"
+msgstr ""
+
+#: R/texts.R
+msgid "Estimator: %s, as chosen in the options."
+msgstr ""
+
+#: R/texts.R
+msgid "Estimator: MLR (robust maximum likelihood) with full-information handling of missing values, as EGAnetLab's CFA() does for items with 6 or more categories."
+msgstr ""
+
+#: R/texts.R
+msgid "Estimator: WLSMV with items treated as ordinal (some items have fewer than 6 categories), as EGAnetLab's CFA() does."
+msgstr ""
+
+#: R/texts.R
+msgid "Even within their own group, persons differ (median ARI with their group = %s): individual structures vary beyond group membership."
+msgstr ""
+
+#: R/texts.R
+msgid "Every dimension reappears with exactly the same items in at least %s of samples."
+msgstr ""
+
+#: R/texts.R
+msgid "Every group shows the same item membership as the population (Structure of each group)."
+msgstr ""
+
+#: R/texts.R
+msgid "Every group shows the same number of dimensions as the population."
+msgstr ""
+
+#: R/texts.R
+msgid "Every item forms its own community, so network loadings are undefined."
+msgstr ""
+
+#: R/texts.R
+msgid "Every item stays in its original dimension in at least %s of samples, which supports the stability of the structure."
+msgstr ""
+
+#: R/texts.R
+msgid "Every model here is fitted on the total sample and on the same items, so the rows can be compared directly. The correlated-factors models have no hierarchy; the higher-order model places the hierEGA higher-order dimensions above the lower-order factors, and the bifactor model adds a general factor on every item next to the lower-order factors (all uncorrelated; Reise, 2012; see references)."
 msgstr ""
 
 #: dynega/results/indTable.title
@@ -519,11 +1165,17 @@ msgstr ""
 
 #: ega/options/uniMethod/expand.title
 #: dynega/options/uniMethod/expand.title
+#: R/shared-helpers.R
 msgid "Expand"
 msgstr ""
 
 #: ega/results/cenTable.columns.title
+#: R/ega.b.R
 msgid "Expected influence"
+msgstr ""
+
+#: R/texts.R
+msgid "Expected influence: like strength, but negative connections count against. It differs from strength only when the item has negative connections."
 msgstr ""
 
 #: ega/options/showChoicesGuide.title
@@ -536,12 +1188,32 @@ msgstr ""
 msgid "Exploratory Graph Analysis"
 msgstr ""
 
+#: R/texts.R
+msgid "Exploratory Graph Analysis (EGA) estimates how many dimensions underlie a set of items, and which items belong to each, by modeling the items as a network rather than as indicators of latent factors (Golino & Epskamp, 2017; see references)."
+msgstr ""
+
 #: ega/results/cfaLoadings.columns.title
 msgid "Factor"
 msgstr ""
 
+#: R/texts.R
+msgid "Fewer than two complete cases remain after listwise deletion. Switch Missing Values to pairwise, or review the missing-data pattern."
+msgstr ""
+
+#: R/texts.R
+msgid "Fewer than two persons have enough time points (at least %d, the embedding dimension plus 2). Dynamic EGA needs many time points per person; lower the embedding dimension or check the Person ID variable."
+msgstr ""
+
 #: ega/results/nctGlobal.columns.title
 msgid "First"
+msgstr ""
+
+#: R/texts.R
+msgid "Fitting the CFA on the same data that produced the structure gives an optimistic fit. Splitting the sample at random gives an honest check: EGA finds the structure in subsample A (exploration) and the CFA tests it in subsample B (confirmation). The table shows the total sample and both subsamples side by side."
+msgstr ""
+
+#: R/texts.R
+msgid "For each person, it first estimates how every item changes from one time point to the next (its derivatives, with generalized local linear approximation; Boker et al., 2010). It then applies EGA to those derivatives, so the dimensions group items that change together over time, not items that are simply high or low together."
 msgstr ""
 
 #: ega/results/bootFrequency.title
@@ -549,17 +1221,49 @@ msgstr ""
 msgid "Frequency of the number of dimensions"
 msgstr ""
 
+#: R/texts.R
+msgid "Frequency: how often each number of dimensions appeared. A dominant value that matches the original sample supports the structure."
+msgstr ""
+
 #: ega/options/model/glasso.title
 #: dynega/options/model/glasso.title
 msgid "GLASSO (EBIC)"
+msgstr ""
+
+#: R/texts.R
+msgid "GLASSO with EBIC model selection estimates a sparse network of regularized partial correlations: weak edges are shrunk to exactly zero, so only associations supported by the data remain. It is EGA's original and most studied estimator (Golino et al., 2020; see references) and works best with moderate to large samples."
 msgstr ""
 
 #: ega/results/cfaBifactorLoadings.columns.title
 msgid "General"
 msgstr ""
 
+#: R/texts.R
+msgid "General and Specific: standardized loadings. In a sound bifactor model, items load clearly on the general factor and still keep visible loadings (.20 or more) on their specific factor."
+msgstr ""
+
+#: R/texts.R
+msgid "Generalized TEFI"
+msgstr ""
+
 #: ega/results/nctGlobal.title
 msgid "Global network comparison"
+msgstr ""
+
+#: R/texts.R
+msgid "Global strength (S)"
+msgstr ""
+
+#: R/texts.R
+msgid "Global strength (S): the difference in the sum of the absolute edge weights of each network. A small p means one network is, overall, more strongly connected."
+msgstr ""
+
+#: R/texts.R
+msgid "Global strength differs: %s in %s and %s in %s (%s). In one network the items are, overall, more strongly connected, which often goes with a more homogeneous or more severe presentation of the construct."
+msgstr ""
+
+#: R/texts.R
+msgid "Global strength is similar: %s in %s and %s in %s (%s). The overall level of connection among the items does not differ beyond chance."
 msgstr ""
 
 #: ega/options/edgePosColor/grey50.title
@@ -572,16 +1276,19 @@ msgstr ""
 
 #: ega/results/groupSizes.columns.title
 #: dynega/results/groupTable.columns.title
+#: R/ega.b.R
+#: R/dynega.b.R
 msgid "Group"
 msgstr ""
 
 #: ega/results/groupStatus.title
-#: ega/ui[8].label
+#: ega/ui[7].label
+#: R/ega.b.R
 msgid "Group comparison"
 msgstr ""
 
 #: ega/options/group.title
-#: ega/ui[8][3][0].label
+#: ega/ui[7][3][0].label
 #: dynega/options/group.title
 msgid "Grouping variable"
 msgstr ""
@@ -590,8 +1297,20 @@ msgstr ""
 msgid "Grouping variable (optional)"
 msgstr ""
 
+#: R/dynega.b.R
+msgid "Groups"
+msgstr ""
+
 #: ega/results/groupSizes.title
 msgid "Groups compared"
+msgstr ""
+
+#: R/texts.R
+msgid "Groups with fewer than 10 cases were left out of the comparison: %s. Networks cannot be estimated reliably with so few people."
+msgstr ""
+
+#: R/texts.R
+msgid "Heywood case"
 msgstr ""
 
 #: ega/options/edgeMin.title
@@ -600,7 +1319,12 @@ msgid "Hide edges weaker than"
 msgstr ""
 
 #: ega/results/hierStatus.title
+#: R/ega.b.R
 msgid "Hierarchical EGA"
+msgstr ""
+
+#: R/texts.R
+msgid "Hierarchical EGA (hierEGA; Jiménez et al., 2025; see references) asks whether the dimensions are themselves grouped under broader, higher-order dimensions, such as a general factor."
 msgstr ""
 
 #: ega/options/runHier.title
@@ -611,7 +1335,7 @@ msgstr ""
 msgid "Hierarchical EGA interpretation"
 msgstr ""
 
-#: ega/ui[6].label
+#: ega/ui[5].label
 msgid "Hierarchical and wording structure"
 msgstr ""
 
@@ -620,40 +1344,90 @@ msgid "Hierarchical models interpretation"
 msgstr ""
 
 #: ega/results/hierSummary.title
+#: R/texts.R
 msgid "Hierarchical structure"
 msgstr ""
 
 #: ega/results/hierPlot.title
-#: ega/ui[14].label
+#: ega/ui[13].label
 msgid "Hierarchical structure plot"
 msgstr ""
 
+#: R/ega.b.R
+msgid "Higher %s · %s"
+msgstr ""
+
 #: ega/results/hierMembership.columns.title
+#: R/texts.R
 msgid "Higher order"
+msgstr ""
+
+#: R/texts.R
+msgid "Higher order (higher-order factors: %s)"
+msgstr ""
+
+#: R/texts.R
+msgid "Higher-order dimensions"
 msgstr ""
 
 #: ega/options/nctAdjust/holm.title
 msgid "Holm"
 msgstr ""
 
-#: ega/ui[3][2].label
+#: ega/ui[2][2].label
 msgid "If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction."
+msgstr ""
+
+#: R/texts.R
+msgid "In %s, the CFA of the EGA structure gives CFI = %s, TLI = %s, RMSEA = %s and SRMR = %s, which suggests %s fit."
+msgstr ""
+
+#: R/texts.R
+msgid "In a network of items, a central item shares much unique variance with the rest of the set. That describes the item within this item set; it does not show that the item causes or defines the construct."
 msgstr ""
 
 #: ega/options/negCoding.title
 msgid "In the data, these items are"
 msgstr ""
 
+#: R/texts.R
+msgid "In the population, the items form %d dimensions (derivative analysed: %s): within each dimension the items change together over time, and partly independently of the other dimensions."
+msgstr ""
+
+#: R/texts.R
+msgid "In the population, the items form %d dimensions of change over time (Dynamic EGA)."
+msgstr ""
+
+#: R/texts.R
+msgid "In the population, the items form a single dimension (derivative analysed: %s): they tend to change together over time."
+msgstr ""
+
 #: ega/options/compareAlgorithms.title
 msgid "Include the other community algorithms"
 msgstr ""
 
-#: ega/ui[8][0].label
+#: ega/ui[7][0].label
 msgid "Independent groups: the variable that defines them (e.g. sex)."
+msgstr ""
+
+#: R/texts.R
+msgid "Individual structures agree with the population with a median ARI of %s (Structure of each person)."
+msgstr ""
+
+#: R/texts.R
+msgid "Individual structures differ markedly from the population, median ARI = %s: the population structure does not describe each person (Structure of each person)."
 msgstr ""
 
 #: dynega/results/indInterpretation.title
 msgid "Individual structures interpretation"
+msgstr ""
+
+#: R/texts.R
+msgid "Individual structures were not estimated, so it is unknown whether the population structure describes each person (Levels)."
+msgstr ""
+
+#: R/texts.R
+msgid "Interpret with care (.25 to .50)"
 msgstr ""
 
 #: ega/results/intro.title
@@ -661,8 +1435,43 @@ msgstr ""
 msgid "Introduction"
 msgstr ""
 
-#: ega/ui[8][4].label
+#: ega/ui[7][4].label
 msgid "Invariance (independent groups)"
+msgstr ""
+
+#: R/ega.b.R
+#: R/dynega.b.R
+msgid "Isolated"
+msgstr ""
+
+#: R/texts.R
+#: R/ega.b.R
+#: R/dynega.b.R
+msgid "Isolated (no edges)"
+msgstr ""
+
+#: R/texts.R
+msgid "It draws many new samples from your data, runs EGA with the same estimation options on each one and records how many dimensions appear and where each item ends up. A solid structure appears again and again; an unstable one changes from sample to sample."
+msgstr ""
+
+#: R/texts.R
+msgid "It estimates the network of each group, records the differences, and then shuffles people between the groups many times (for the same people measured twice, it shuffles the two measurements within each person) to see how large the differences would be by chance."
+msgstr ""
+
+#: R/texts.R
+msgid "It is %s points below the next model: strong evidence in its favor."
+msgstr ""
+
+#: R/texts.R
+msgid "It is only %s points below the next model (less than 10), so BIC does not clearly separate them; choose by theory and by the loadings."
+msgstr ""
+
+#: R/texts.R
+msgid "It uses the weighted topological overlap (wTO) of the network estimated above: the more two items are linked to the same other items with similar strength, the higher their wTO. Redundant items inflate a dimension and can create small artificial dimensions made only of near-duplicates."
+msgstr ""
+
+#: R/texts.R
+msgid "It works in two steps: it finds the lower-order dimensions with the lower level of the Louvain algorithm, computes each person's network score on them, and then runs EGA on those scores to find the higher-order dimensions. Louvain starts from random values, so it uses the fixed seed 2026."
 msgstr ""
 
 #: ega/results/membership.columns.title
@@ -683,6 +1492,10 @@ msgstr ""
 msgid "Item"
 msgstr ""
 
+#: R/texts.R
+msgid "Item mean %s"
+msgstr ""
+
 #: ega/results/meanScoresOV.title
 msgid "Item means"
 msgstr ""
@@ -694,6 +1507,10 @@ msgstr ""
 
 #: ega/results/hierMembership.title
 msgid "Item membership by level"
+msgstr ""
+
+#: R/texts.R
+msgid "Item membership by level: the EGA column is the solution above; the lower-order column uses the same numbers where the dimensions match; the higher-order column shows the broader dimension each item ends up in."
 msgstr ""
 
 #: ega/results/cfaMembership.title
@@ -733,6 +1550,10 @@ msgstr ""
 msgid "Item stability plot"
 msgstr ""
 
+#: R/texts.R
+msgid "Item stability: the proportion of samples in which an item is placed in its original dimension."
+msgstr ""
+
 #: ega/options/vars.title
 #: ega/results/scores.columns.title
 #: ega/results/uvaSets.columns.title
@@ -741,11 +1562,104 @@ msgstr ""
 #: ega/ui[0][0].label
 #: dynega/options/vars.title
 #: dynega/ui[0][0].label
+#: R/ega.b.R
 msgid "Items"
+msgstr ""
+
+#: R/texts.R
+msgid "Items not connected to any other item, left without a dimension (%d): %s. Isolated items share little unique variance with the rest; review their wording and content."
 msgstr ""
 
 #: ega/results/compareTable.columns.title
 msgid "Items placed as in EGA"
+msgstr ""
+
+#: R/texts.R
+msgid "Items placed as in EGA: how many items fall in the same dimension as in the EGA solution, after matching each dimension with the EGA dimension it shares most items with."
+msgstr ""
+
+#: R/texts.R
+msgid "Items that are both redundant and unstable in the bootstrap: %s. These are the strongest candidates for revision."
+msgstr ""
+
+#: R/texts.R
+msgid "Items that change dimension after the wording control: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "Items that change dimension between subsamples A and B: %s. Compare them with the bootstrap item stability and the redundancy results."
+msgstr ""
+
+#: R/texts.R
+msgid "Items that change dimension often, stability below %s: %s (Stability)."
+msgstr ""
+
+#: R/texts.R
+msgid "Items that look like schedule variables: %s. Remove them from Items (Messages)."
+msgstr ""
+
+#: R/texts.R
+msgid "Items that remain different after the Benjamini-Hochberg correction: %s. These are the clearest cases of non-invariance."
+msgstr ""
+
+#: R/texts.R
+msgid "Items that stay in their original dimension in fewer than %2$s of samples (%1$d): %3$s. Low stability usually means an item relates to more than one dimension, overlaps heavily with another item, or is ambiguously worded. A commonly used cutoff is .70."
+msgstr ""
+
+#: R/texts.R
+msgid "Items whose loadings differ between groups (p of .05 or less), %d of %d: %s. These items relate to their dimension with different strength in each group, so a dimension score is not fully comparable: part of a group difference on the score could come from these items rather than from the construct."
+msgstr ""
+
+#: R/texts.R
+msgid "Items whose network loadings differ between groups, uncorrected: %d (Group comparison)."
+msgstr ""
+
+#: R/texts.R
+msgid "Items with a dominant network loading below 0.15, small (%d): %s. Their assignment is weakly supported; the Stability (bootstrap) section will show whether they replicate."
+msgstr ""
+
+#: R/texts.R
+msgid "Items with a general loading below .20: %s. They do not share the general factor; check their wording (for example, negatively worded items not reversed) or whether they belong to the scale."
+msgstr ""
+
+#: R/texts.R
+msgid "Items with a negative residual variance (Heywood case): %s. Their loadings are pushed beyond what the data allow, usually because their specific factor is nearly empty or has very few items. Do not interpret the bifactor model while this happens."
+msgstr ""
+
+#: R/texts.R
+msgid "Items with a small network loading on their own dimension, below 0.15: %s (Network loadings)."
+msgstr ""
+
+#: R/texts.R
+msgid "Items with a standardized loading above 1: %s. This is not possible in an admissible solution; read it together with the Heywood cases."
+msgstr ""
+
+#: R/texts.R
+msgid "Items with negative connections, whose expected influence is lower than their strength (%d): %s. Check whether they are negatively worded or describe the opposite pole of the construct."
+msgstr ""
+
+#: R/shared-helpers.R
+msgid "Items without a dimension in %s, left out of the TEFI calculation: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "Items without a dimension in the population (%d): %s. Their changes over time are not connected to those of the other items."
+msgstr ""
+
+#: R/texts.R
+msgid "Items without a dimension in the population: %s (Item membership)."
+msgstr ""
+
+#: R/shared-helpers.R
+msgid "Items without a dimension, left out of the TEFI calculation: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "Items without a dimension: %s. They are not connected to the rest of the network (Item membership)."
+msgstr ""
+
+#: R/texts.R
+msgid "Items without edges in the network, left out of the invariance test: %s."
 msgstr ""
 
 #: ega/options/layout/kamadakawai.title
@@ -755,6 +1669,7 @@ msgstr ""
 
 #: ega/results/keySummary.title
 #: dynega/results/keySummary.title
+#: R/texts.R
 msgid "Key findings"
 msgstr ""
 
@@ -777,15 +1692,20 @@ msgstr ""
 msgid "Lag between time points (tau)"
 msgstr ""
 
+#: R/texts.R
+msgid "Large to very large"
+msgstr ""
+
 #: ega/options/layout.title
-#: ega/ui[13][0][0].label
+#: ega/ui[12][0][0].label
 #: dynega/options/layout.title
-#: dynega/ui[6][0][0].label
+#: dynega/ui[5][0][0].label
 msgid "Layout"
 msgstr ""
 
 #: ega/options/uniMethod/LE.title
 #: dynega/options/uniMethod/LE.title
+#: R/shared-helpers.R
 msgid "Leading eigenvalue"
 msgstr ""
 
@@ -794,8 +1714,8 @@ msgstr ""
 msgid "Left"
 msgstr ""
 
-#: ega/ui[13][3][0].label
-#: dynega/ui[6][3][0].label
+#: ega/ui[12][3][0].label
+#: dynega/ui[5][3][0].label
 msgid "Legend"
 msgstr ""
 
@@ -814,32 +1734,63 @@ msgstr ""
 msgid "Leiden"
 msgstr ""
 
+#: R/texts.R
+msgid "Leiden refines Louvain and guarantees that every community it returns is internally connected, which Louvain does not. It is stochastic as well. Choose it as a modern alternative to Louvain, and compare its solution with Walktrap's."
+msgstr ""
+
+#: R/dynega.b.R
+msgid "Level (0)"
+msgstr ""
+
 #: dynega/options/derivative/0.title
 msgid "Level (0, the values themselves)"
 msgstr ""
 
-#: dynega/ui[4].label
+#: dynega/ui[3].label
 msgid "Levels"
 msgstr ""
 
+#: R/ega.b.R
+msgid "Line: mean correlation. Band: 95% of the samples. Dashed line: .70."
+msgstr ""
+
 #: ega/options/naData/listwise.title
+#: R/shared-helpers.R
 msgid "Listwise"
+msgstr ""
+
+#: R/texts.R
+msgid "Listwise deletion keeps only respondents who answered every item. Every correlation then comes from the same people, which keeps the matrix coherent, at the cost of sample size. Choose it when few cases are incomplete, or to check that pairwise results are not driven by missing-data patterns."
 msgstr ""
 
 #: ega/results/cfaLoadings.columns.title
 msgid "Loading"
 msgstr ""
 
+#: R/texts.R
+msgid "Loading above 1"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Loading, %s"
+msgstr ""
+
 #: ega/results/invTable.columns.title
+#: R/ega.b.R
 msgid "Loading, first group"
 msgstr ""
 
 #: ega/results/invTable.columns.title
+#: R/ega.b.R
 msgid "Loading, second group"
 msgstr ""
 
 #: ega/options/showInvPlot.title
 msgid "Loadings by group plot"
+msgstr ""
+
+#: R/texts.R
+msgid "Loadings: the network loading of the item on its own dimension in each group."
 msgstr ""
 
 #: ega/options/algorithm/louvain.title
@@ -849,12 +1800,33 @@ msgstr ""
 msgid "Louvain"
 msgstr ""
 
+#: R/texts.R
+msgid "Louvain finds communities by maximizing modularity, merging items into groups level by level. It is fast and performs well in recent simulations, but it is stochastic: results can vary slightly between runs. Use it to check whether the Walktrap solution holds under a different algorithm."
+msgstr ""
+
 #: ega/results/bnEdges.columns.title
 msgid "Lower"
 msgstr ""
 
+#: R/texts.R
+msgid "Lower TEFI means a better fit: the items within each dimension share more information with each other than with the rest of the items."
+msgstr ""
+
+#: R/texts.R
+msgid "Lower and higher order: how many dimensions there are at each level. Higher-order dimensions group lower-order dimensions, not items."
+msgstr ""
+
 #: ega/results/hierMembership.columns.title
+#: R/texts.R
 msgid "Lower order"
+msgstr ""
+
+#: R/texts.R
+msgid "Lower-order dimensions"
+msgstr ""
+
+#: R/texts.R
+msgid "M = largest difference in a single edge; S = difference in global strength (sum of absolute edge weights). p values come from the permutations."
 msgstr ""
 
 #: ega/options/cfaEstimator/ML.title
@@ -865,6 +1837,10 @@ msgstr ""
 msgid "MLR (robust)"
 msgstr ""
 
+#: R/texts.R
+msgid "Main findings"
+msgstr ""
+
 #: ega/results/scores.columns.title
 msgid "Mean"
 msgstr ""
@@ -873,13 +1849,59 @@ msgstr ""
 msgid "Mean item stability"
 msgstr ""
 
+#: R/texts.R
+msgid "Mean of the answered items of dimension %s (EGAnetLab)"
+msgstr ""
+
 #: ega/results/bnCS.columns.title
 #: ega/results/nctCentralityTable.columns.title
+#: R/ega.b.R
 msgid "Measure"
 msgstr ""
 
+#: R/ega.b.R
+msgid "Measurement 1"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Measurement 1 vs. 2"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Measurement 2"
+msgstr ""
+
+#: R/texts.R
+msgid "Median agreement with the population (ARI)"
+msgstr ""
+
+#: R/texts.R
+msgid "Median agreement with their own group (ARI)"
+msgstr ""
+
+#: R/texts.R
+msgid "Median and interval: the typical number of dimensions across samples, and the range that contains the middle 95% of samples."
+msgstr ""
+
+#: R/ega.b.R
+msgid "Median number of dimensions"
+msgstr ""
+
+#: R/texts.R
+msgid "Messages from EGAnetLab"
+msgstr ""
+
+#: R/texts.R
+msgid "Messages from EGAnetLab at the end of the report: %d."
+msgstr ""
+
 #: ega/results/invStatus.title
+#: R/ega.b.R
 msgid "Metric invariance"
+msgstr ""
+
+#: R/texts.R
+msgid "Metric invariance checks whether each item is related to its dimension with the same strength in every group (Jamison, Christensen & Golino, 2024; see references)."
 msgstr ""
 
 #: ega/results/invInterpretation.title
@@ -894,12 +1916,24 @@ msgstr ""
 msgid "Missing Values"
 msgstr ""
 
+#: R/texts.R
+msgid "Missing values"
+msgstr ""
+
 #: ega/results/cfaHierModels.columns.title
 msgid "Model"
 msgstr ""
 
+#: R/ega.b.R
+msgid "Models with and without hierarchy"
+msgstr ""
+
 #: ega/results/cfaHierModels.title
 msgid "Models with and without hierarchy (total sample)"
+msgstr ""
+
+#: R/texts.R
+msgid "Moderate to large"
 msgstr ""
 
 #: ega/options/layout/mds.title
@@ -932,13 +1966,23 @@ msgid "Negatively worded"
 msgstr ""
 
 #: ega/options/negItems.title
-#: ega/ui[3].label
-#: ega/ui[3][0][0].label
+#: ega/ui[2].label
+#: ega/ui[2][0][0].label
+#: R/ega.b.R
 msgid "Negatively worded items"
 msgstr ""
 
+#: R/texts.R
+msgid "Negatively worded items: %s. They are already reversed in the data, so riEGA reverses them back to their original direction (observed minimum plus maximum, minus the score)."
+msgstr ""
+
+#: R/texts.R
+msgid "Negatively worded items: %s. They are as answered in the data, so riEGA uses them as they are (the other analyses use them reversed)."
+msgstr ""
+
 #: ega/results/nctStatus.title
-#: ega/ui[8][5].label
+#: ega/ui[7][5].label
+#: R/ega.b.R
 msgid "Network Comparison Test"
 msgstr ""
 
@@ -959,6 +2003,10 @@ msgstr ""
 msgid "Network connections"
 msgstr ""
 
+#: R/ega.b.R
+msgid "Network loading on its dimension"
+msgstr ""
+
 #: ega/options/showLoadings.title
 #: ega/results/loadingsGuide.title
 msgid "Network loadings"
@@ -973,16 +2021,38 @@ msgstr ""
 msgid "Network loadings by group"
 msgstr ""
 
+#: R/texts.R
+msgid "Network loadings could not be computed for this structure: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "Network loadings summarize how strongly each item is connected to each dimension, on a scale comparable to factor loadings (Christensen & Golino, 2021; see references)."
+msgstr ""
+
+#: R/texts.R
+#: R/ega.b.R
+#: R/dynega.b.R
+msgid "Network model"
+msgstr ""
+
 #: ega/options/showNetworkPlot.title
-#: ega/ui[13].label
-#: dynega/ui[6].label
+#: ega/ui[12].label
+#: dynega/ui[5].label
 msgid "Network plot"
+msgstr ""
+
+#: R/texts.R
+msgid "Network score %s"
+msgstr ""
+
+#: R/texts.R
+msgid "Network score for dimension %s (EGAnetLab)"
 msgstr ""
 
 #: ega/results/scoresGuide.title
 #: ega/results/scores.title
 #: ega/results/netScoresOV.title
-#: ega/ui[4].label
+#: ega/ui[3].label
 msgid "Network scores"
 msgstr ""
 
@@ -990,12 +2060,130 @@ msgstr ""
 msgid "Network scores summary"
 msgstr ""
 
+#: R/texts.R
+msgid "Network scores weight each item by its network loading on its own dimension (Christensen & Golino, 2021; see references), so items more central to a dimension count more. They are the network counterpart of factor scores."
+msgstr ""
+
 #: ega/results/bnStatus.title
+#: R/ega.b.R
 msgid "Network stability"
+msgstr ""
+
+#: R/texts.R
+msgid "Network stability (bootnet) uses %d samples resampling cases and %d samples dropping cases, with seed %d. About 1000 of each is the usual recommendation (Epskamp et al., 2018; see references); fewer give less precise intervals and CS coefficients. The same seed with the same data and options reproduces the same results."
 msgstr ""
 
 #: ega/results/bnInterpretation.title
 msgid "Network stability interpretation"
+msgstr ""
+
+#: R/texts.R
+msgid "Network structure (M)"
+msgstr ""
+
+#: R/texts.R
+msgid "Network structure (M): the largest difference in a single edge between the two networks. A small p means at least one connection differs."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: if a specific factor collapses or has very few items, fit the model without it or keep the correlated-factors model. Do not add parameters suggested by modification indices to rescue an inadmissible bifactor: that tends to fit the noise of this sample."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: if some items are unstable, check them for redundancy (the Redundancy (UVA) box) and for content before deciding to remove or rewrite them, then run the analysis again, with the bootstrap, on the revised item set. Report the number of samples, the bootstrap type and the seed."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: if you remove or combine items, run the analysis again on the revised item set and compare the number of dimensions and the stability with the original solution. Do not compare TEFI values between the original and the revised item sets: TEFI is only comparable between structures of the same items. Report the cutoff and the items you changed."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: interpret differences in connections together with the invariance test, because a different network can change the meaning of a dimension score between groups. Report the estimator, the number of permutations, the seed, the correction and the size of each group."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: report the confirmation fit (subsample B) as the main evidence for the structure, and the total-sample fit as a reference. If the fit is poor, look at the items with low loadings or that change dimension."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: report the number of samples, the seed and the CS coefficient together with the centrality results. If stability is low, a larger sample is the main remedy; removing items to raise it changes the construct being measured."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: report the population structure together with the distribution of individual structures, the number of time points per person and the derivative analysed. Check whether persons who differ from the population share characteristics (group, adherence, number of time points)."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: review the content of the non-invariant items (wording, cultural meaning, relevance in each group). If they cannot be fixed, compare groups with scores that exclude them, or report the comparison with and without them. Report the structure tested, the number of permutations, the seed and both p values."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: tick Run bootstrap in the Stability (bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: tick Stability of edges and centrality (bootnet) to check whether the order of the items by centrality holds before interpreting differences between items."
+msgstr ""
+
+#: R/texts.R
+msgid "Next step: tick Structure of each person to see whether the population structure describes individuals. Population structures of intensive longitudinal data often do not hold for every person."
+msgstr ""
+
+#: R/texts.R
+#: R/dynega.b.R
+msgid "No"
+msgstr ""
+
+#: R/texts.R
+msgid "No Heywood case or loading above 1 appears, so the bifactor solution is admissible; judge it by the ECV and by whether each specific factor keeps its own loadings."
+msgstr ""
+
+#: R/texts.R
+msgid "No data are available."
+msgstr ""
+
+#: R/texts.R
+msgid "No edge differs between the networks at p of .05 or less after the correction."
+msgstr ""
+
+#: R/texts.R
+msgid "No group reproduces the population structure. The population's %s dimensions combine structures that differ between groups, so they describe neither group well. Report the structure of each group rather than the population result alone."
+msgstr ""
+
+#: R/texts.R
+msgid "No individual connection differs after the correction for multiple tests."
+msgstr ""
+
+#: R/texts.R
+msgid "No item differs in centrality between the networks after the correction for multiple tests."
+msgstr ""
+
+#: R/texts.R
+msgid "No item is marked in Negatively worded items, so nothing in this analysis supports reading the random intercept as a wording effect. Mark the negatively worded items, or read riEGA only as a sensitivity check."
+msgstr ""
+
+#: R/texts.R
+msgid "No item is marked in Negatively worded items, so the items are used exactly as they are in the data. Mark the negative items there so that riEGA can use them in their original direction even if they are already reversed in the data."
+msgstr ""
+
+#: R/texts.R
+msgid "No item shows a loading difference between groups beyond what is expected by chance (all p values above .05). The evidence supports metric invariance: the items relate to their dimensions with similar strength in the groups, so scores built from these dimensions can be compared between groups more safely."
+msgstr ""
+
+#: R/texts.R
+msgid "No model reached a converged and admissible solution, so there is no comparison to read."
+msgstr ""
+
+#: R/texts.R
+msgid "No network loading differs between groups beyond chance (Group comparison)."
+msgstr ""
+
+#: R/texts.R
+msgid "No pair of items reaches a wTO of %s, so there is no evidence of redundancy (local dependence) at the recommended cutoff. Each item contributes its own information to the network."
+msgstr ""
+
+#: R/texts.R
+msgid "No pair reaches wTO .20"
 msgstr ""
 
 #: ega/options/nodeAlpha.title
@@ -1017,12 +2205,12 @@ msgstr ""
 msgid "Node strength and expected influence"
 msgstr ""
 
-#: ega/ui[14][2][0].label
+#: ega/ui[13][2][0].label
 msgid "Nodes and edges"
 msgstr ""
 
-#: ega/ui[13][1][0].label
-#: dynega/ui[6][1][0].label
+#: ega/ui[12][1][0].label
+#: dynega/ui[5][1][0].label
 msgid "Nodes and labels"
 msgstr ""
 
@@ -1030,9 +2218,42 @@ msgstr ""
 msgid "None"
 msgstr ""
 
+#: R/texts.R
+msgid "None flagged by the analyses that were run."
+msgstr ""
+
+#: R/texts.R
+msgid "None of these differences remains significant after the Benjamini-Hochberg correction for the number of items tested. Treat them as tentative: they may be chance findings, and they need replication in another sample."
+msgstr ""
+
+#: R/texts.R
+msgid "None."
+msgstr ""
+
+#: R/texts.R
+msgid "Not computable"
+msgstr ""
+
+#: R/texts.R
+msgid "Not every group shows the population's number of dimensions (see Structure of each group). The structure of change may differ between groups; check the group sizes before interpreting it."
+msgstr ""
+
+#: R/texts.R
+msgid "Not in any dimension: %s. They are left out of TEFI, so this value is not compared with the others."
+msgstr ""
+
+#: R/texts.R
+msgid "Not interpretable (below .25)"
+msgstr ""
+
 #: ega/results/notes.title
 #: dynega/results/notes.title
 msgid "Notes"
+msgstr ""
+
+#: R/texts.R
+#: R/ega.b.R
+msgid "Number of dimensions"
 msgstr ""
 
 #: dynega/results/indFreq.title
@@ -1040,13 +2261,37 @@ msgstr ""
 msgid "Number of dimensions across persons"
 msgstr ""
 
+#: R/texts.R
+msgid "Number of dimensions across persons: %s. %s of the persons show the population's number of dimensions (%s)."
+msgstr ""
+
 #: ega/results/bootSummaryGuide.title
 #: ega/results/bootSummary.title
 msgid "Number of dimensions across samples"
 msgstr ""
 
-#: ega/ui[6][2].label
+#: R/texts.R
+msgid "Number of dimensions: how many communities the algorithm found. Isolated items (no edges) are not assigned to any dimension."
+msgstr ""
+
+#: R/texts.R
+msgid "One dimension: TEFI is always 0 for a single dimension, so it cannot compare a unidimensional structure with multidimensional ones. EGA judges unidimensionality with its own check (see the choices above)."
+msgstr ""
+
+#: R/texts.R
+msgid "One dimension: TEFI is always 0, so it is not compared."
+msgstr ""
+
+#: R/texts.R
+msgid "One factor"
+msgstr ""
+
+#: ega/ui[5][2].label
 msgid "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively worded items box; this analysis uses them in their original direction (not recoded)."
+msgstr ""
+
+#: R/texts.R
+msgid "Only the edges of the estimated network are listed, strongest first. The intervals are percentile intervals from resampling cases. In regularized networks the weights are pulled toward zero, so the intervals describe precision and are not significance tests (Epskamp et al., 2018)."
 msgstr ""
 
 #: ega/options/edgeNegColor/orange.title
@@ -1054,17 +2299,51 @@ msgstr ""
 msgid "Orange"
 msgstr ""
 
-#: ega/ui[12].label
-#: dynega/ui[5].label
+#: R/texts.R
+msgid "Original sample"
+msgstr ""
+
+#: R/texts.R
+msgid "Other"
+msgstr ""
+
+#: R/texts.R
+msgid "Other community algorithms: EGA is run again with the same network and each of the other algorithms (Walktrap, Louvain, Leiden). Louvain and Leiden start from random values, so they use the fixed seed 2026 and always give the same result with the same data."
+msgstr ""
+
+#: R/texts.R
+msgid "Other indices (Schermelleh-Engel, Moosbrugger & Müller, 2003; see references): χ²/df of 2 or less is good and 3 or less acceptable; GFI and NFI of .95 or more are good and .90 acceptable; AGFI of .90 or more is good and .85 acceptable; IFI is read like CFI. GFI and AGFI depend on sample size and are reported mostly by tradition; CFI, TLI, RMSEA and SRMR are the most recommended. AIC and BIC only compare models fitted to the same data (lower is better) and are not available with WLSMV."
+msgstr ""
+
+#: ega/ui[11].label
+#: dynega/ui[4].label
 msgid "Output"
 msgstr ""
 
+#: R/texts.R
+msgid "Pairs between .20 and the cutoff of %2$s (%1$d). They are not redundant by the recommended rule, but check their wording if they also stand out elsewhere (low stability or low loadings)."
+msgstr ""
+
+#: R/texts.R
+msgid "Pairs: every pair with wTO of .20 or more, from highest to lowest. Above .30 is large-to-very-large redundancy, .25 to .30 moderate-to-large, .20 to .25 small-to-moderate."
+msgstr ""
+
 #: ega/options/naData/pairwise.title
+#: R/shared-helpers.R
 msgid "Pairwise"
 msgstr ""
 
+#: R/texts.R
+msgid "Pairwise deletion computes each correlation from all respondents who answered both items, so no information is discarded. It is the usual choice when data are missing at random and missingness is modest. With heavy or patterned missingness the correlation matrix can become unstable; compare with Listwise."
+msgstr ""
+
 #: ega/options/bootType/parametric.title
+#: R/ega.b.R
 msgid "Parametric"
+msgstr ""
+
+#: R/texts.R
+msgid "Parametric bootstrap draws each new sample from a multivariate normal distribution with the correlation matrix of your data and the same number of cases. It reproduces the estimated correlation structure exactly in expectation and is EGAnetLab's default (Christensen & Golino, 2021; see references)."
 msgstr ""
 
 #: ega/options/corr/pearson.title
@@ -1076,12 +2355,20 @@ msgstr ""
 msgid "Pearson (fast)"
 msgstr ""
 
+#: R/texts.R
+msgid "Pearson correlations treat every item as continuous and linearly related. Choose them for scale scores, reaction times or other genuinely continuous items with roughly symmetric distributions. With ordinal or dichotomous items they underestimate associations; use Automatic instead."
+msgstr ""
+
 #: ega/options/nctIter.title
 msgid "Permutations (NCT)"
 msgstr ""
 
 #: ega/options/invIter.title
 msgid "Permutations (invariance)"
+msgstr ""
+
+#: R/texts.R
+msgid "Permutations: %d, seed %d."
 msgstr ""
 
 #: dynega/results/indTable.columns.title
@@ -1095,7 +2382,40 @@ msgstr ""
 
 #: dynega/results/groupTable.columns.title
 #: dynega/results/indFreq.columns.title
+#: R/texts.R
 msgid "Persons"
+msgstr ""
+
+#: R/texts.R
+msgid "Persons left out for having too few time points: %d (Messages)."
+msgstr ""
+
+#: R/texts.R
+msgid "Persons whose grouping variable changes over time: %d. Each was assigned to the group of their first time point."
+msgstr ""
+
+#: R/texts.R
+msgid "Persons whose own structure could not be estimated (%d): %s. This usually means too few time points or items that never change for that person."
+msgstr ""
+
+#: R/texts.R
+msgid "Persons whose own structure could not be estimated: %d (Structure of each person)."
+msgstr ""
+
+#: R/texts.R
+msgid "Persons with an estimated structure"
+msgstr ""
+
+#: R/texts.R
+msgid "Persons with fewer derivative estimates than items: %1$d. Derivative estimates are the time points minus the embedding dimension plus 1, and there are %2$d items, so these individual networks rest on very little information and are unreliable. Individual structures need many more time points than items."
+msgstr ""
+
+#: R/texts.R
+msgid "Persons with fewer derivative estimates than items: %d. Their individual networks are unreliable (Structure of each person)."
+msgstr ""
+
+#: R/texts.R
+msgid "Persons with fewer than %2$d time points, left out (%1$d): %3$s."
 msgstr ""
 
 #: ega/options/plotTitle.title
@@ -1116,9 +2436,17 @@ msgstr ""
 msgid "Population network plot"
 msgstr ""
 
+#: R/texts.R
+msgid "Population's number (%s)"
+msgstr ""
+
 #: ega/options/edgePosColor.title
 #: dynega/options/edgePosColor.title
 msgid "Positive edges"
+msgstr ""
+
+#: R/texts.R
+msgid "Possible redundancy between items: %s. Consider keeping one item per set (Redundancy)."
 msgstr ""
 
 #: ega/results/bootFrequency.columns.title
@@ -1130,21 +2458,77 @@ msgstr ""
 msgid "Proportion for EGA (exploration)"
 msgstr ""
 
+#: R/texts.R
+msgid "Proportion of persons"
+msgstr ""
+
+#: R/texts.R
+msgid "Proportion of samples"
+msgstr ""
+
+#: R/texts.R
+msgid "Proportion of samples in the original dimension"
+msgstr ""
+
+#: R/texts.R
+msgid "Proposed effect-size guidelines for the dominant loading: about 0.15 small, 0.25 moderate, 0.35 large."
+msgstr ""
+
 #: ega/results/compareTable.columns.title
 #: ega/results/cfaHierModels.columns.title
 msgid "RMSEA"
+msgstr ""
+
+#: R/texts.R
+msgid "RMSEA [90% CI]"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Random subsample (A = exploration, B = confirmation; seed %d)"
 msgstr ""
 
 #: ega/results/riSummary.title
 msgid "Random-intercept EGA"
 msgstr ""
 
+#: R/texts.R
+msgid "Random-intercept EGA (riEGA, in EGAnetLab; see references) checks whether some dimensions come from how the items are worded rather than from their content. Scales that mix positively and negatively worded items often produce an extra dimension made of the negative items, caused by acquiescence (the tendency to agree regardless of content)."
+msgstr ""
+
 #: ega/results/riMembership.columns.title
 msgid "Random-intercept loading"
 msgstr ""
 
+#: R/texts.R
+msgid "Random-intercept model"
+msgstr ""
+
+#: R/texts.R
+msgid "Random-intercept model: whether the random-intercept component could be estimated. If it does not converge, the result cannot be interpreted: it is evidence neither for nor against a wording effect."
+msgstr ""
+
+#: R/dynega.b.R
+msgid "Rate of change (1)"
+msgstr ""
+
 #: dynega/options/derivative/1.title
 msgid "Rate of change (1, first derivative)"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Raw values: strength and expected influence are sums of partial correlations."
+msgstr ""
+
+#: R/texts.R
+msgid "Read the order of the items together with the CS coefficient in Network stability: below .25, differences in centrality between items should not be interpreted."
+msgstr ""
+
+#: R/texts.R
+msgid "Read the results in this order: the distribution of the number of dimensions, the stability of each dimension, the stability of each item, and the stability interpretation."
+msgstr ""
+
+#: R/texts.R
+msgid "Read the results in this order: the number of dimensions and its fit (TEFI), the item memberships, the network loadings, and finally the network plot."
 msgstr ""
 
 #: ega/results/bnCS.columns.title
@@ -1161,7 +2545,8 @@ msgid "Redundancy"
 msgstr ""
 
 #: ega/results/uvaStatus.title
-#: ega/ui[9].label
+#: ega/ui[8].label
+#: R/ega.b.R
 msgid "Redundancy (UVA)"
 msgstr ""
 
@@ -1173,28 +2558,50 @@ msgstr ""
 msgid "Redundancy interpretation"
 msgstr ""
 
+#: R/texts.R
+msgid "Redundancy is flagged when two items reach a weighted topological overlap (wTO) of %s or more. The value .25 is the cutoff recommended by Christensen, Garrido and Golino (2023; see references) after extensive simulation; lower it only to explore borderline pairs, not to decide which items to remove."
+msgstr ""
+
+#: R/texts.R
+msgid "Redundant pairs placed in different dimensions: %s. This often signals an item that bridges two dimensions; review its content before keeping it."
+msgstr ""
+
 #: ega/results/uvaSets.title
 msgid "Redundant sets"
 msgstr ""
 
-#: ega/options/reportLang.title
-#: ega/ui[1].label
-#: dynega/options/reportLang.title
-#: dynega/ui[1].label
-msgid "Report Language"
+#: R/texts.R
+msgid "Redundant sets at wTO %2$s or more (%1$d): %3$s. Items in a set share most of their connections, so together they add less information than their number suggests and can pull the dimensional structure toward themselves."
+msgstr ""
+
+#: R/texts.R
+msgid "Redundant sets: items linked by wTO at or above the cutoff. The suggestion follows EGAnetLab's automatic rule: with two items it keeps the one less redundant with the rest of the scale; with three or more it keeps the one most central to the set."
 msgstr ""
 
 #: ega/options/bootType/resampling.title
+#: R/ega.b.R
 msgid "Resampling (cases)"
+msgstr ""
+
+#: R/texts.R
+msgid "Resampling bootstrap draws cases from your data with replacement. It keeps the real response distributions (skewness, number of categories, outliers) instead of assuming normality, so prefer it when items are markedly non-normal or when you want the stability estimate to reflect the observed responses."
 msgstr ""
 
 #: ega/results/cfaBifactorLoadings.columns.title
 msgid "Residual variance"
 msgstr ""
 
+#: R/texts.R
+msgid "Residual variance: the part of the item not explained by either factor. A negative value is a Heywood case: the solution is not admissible."
+msgstr ""
+
 #: ega/options/legendPosition/right.title
 #: dynega/options/legendPosition/right.title
 msgid "Right"
+msgstr ""
+
+#: R/texts.R
+msgid "Rows used"
 msgstr ""
 
 #: ega/options/runBoot.title
@@ -1211,6 +2618,7 @@ msgstr ""
 
 #: ega/results/compareTable.columns.title
 #: ega/results/cfaHierModels.columns.title
+#: R/texts.R
 msgid "SRMR"
 msgstr ""
 
@@ -1222,21 +2630,45 @@ msgstr ""
 msgid "Same as population"
 msgstr ""
 
+#: R/dynega.b.R
+msgid "Same as population: identical item membership."
+msgstr ""
+
 #: ega/results/uvaPairs.columns.title
 msgid "Same dimension"
+msgstr ""
+
+#: R/texts.R
+msgid "Same dimension: redundant items usually fall in the same dimension; a redundant pair split across dimensions deserves a close look at its wording."
 msgstr ""
 
 #: ega/results/cfaMembership.columns.title
 msgid "Same in A and B"
 msgstr ""
 
+#: R/texts.R
+msgid "Same item membership as the population (ARI = 1)"
+msgstr ""
+
+#: R/texts.R
+msgid "Same item membership as their own group (ARI = 1)"
+msgstr ""
+
 #: ega/options/pairedVars.title
-#: ega/ui[8][3][1].label
+#: ega/ui[7][3][1].label
 msgid "Same items, second measurement"
 msgstr ""
 
-#: ega/ui[8][1].label
+#: R/texts.R
+msgid "Same number of dimensions as the population"
+msgstr ""
+
+#: ega/ui[7][1].label
 msgid "Same people measured twice (NCT only): the second measurement"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Same people, both measurements"
 msgstr ""
 
 #: ega/results/bootFrequency.columns.title
@@ -1247,16 +2679,36 @@ msgstr ""
 msgid "Samples with the edge"
 msgstr ""
 
+#: R/texts.R
+msgid "Samples with the edge: the percentage of bootstrap samples in which the edge was estimated as different from zero."
+msgstr ""
+
 #: ega/options/meanScoresOV.title
 msgid "Save item means"
+msgstr ""
+
+#: R/texts.R
+msgid "Save item means adds one column per dimension with the mean of the items each person answered, on the original response scale (for example, 1 to 5). Use them when you need scores that are easy to read in the units of the questionnaire."
 msgstr ""
 
 #: ega/options/netScoresOV.title
 msgid "Save network scores"
 msgstr ""
 
+#: R/texts.R
+msgid "Save network scores (in the Network scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it."
+msgstr ""
+
 #: ega/options/splitOV.title
 msgid "Save subsample"
+msgstr ""
+
+#: R/texts.R
+msgid "Scale: EGAnetLab first standardizes each item (z score: mean 0, SD 1 in this sample) and then adds the items weighted by their loadings. The scores are therefore centered at 0: negative values are below the sample average and positive values above it. They are not on the response scale of the items, and their mean is 0 by construction."
+msgstr ""
+
+#: R/ega.b.R
+msgid "Scores"
 msgstr ""
 
 #: ega/results/nctGlobal.columns.title
@@ -1267,7 +2719,16 @@ msgstr ""
 #: ega/options/groupSeed.title
 #: ega/options/bnSeed.title
 #: dynega/options/seed.title
+#: R/ega.b.R
 msgid "Seed"
+msgstr ""
+
+#: R/texts.R
+msgid "Select at least three items. Exploratory Graph Analysis needs at least three variables to estimate a network in which communities (dimensions) can form."
+msgstr ""
+
+#: R/texts.R
+msgid "Select the items, and the variable that identifies each person, to run Dynamic EGA. The data must be in long format: one row per person and time point."
 msgstr ""
 
 #: ega/results/uvaSets.columns.title
@@ -1292,6 +2753,10 @@ msgstr ""
 msgid "Show level names"
 msgstr ""
 
+#: R/texts.R
+msgid "Small to moderate"
+msgstr ""
+
 #: ega/options/edgeNegLty/solid.title
 #: dynega/options/edgeNegLty/solid.title
 msgid "Solid"
@@ -1302,6 +2767,10 @@ msgstr ""
 msgid "Spearman"
 msgstr ""
 
+#: R/texts.R
+msgid "Spearman correlations use the ranks of the responses, so they capture monotonic (not only linear) relationships and are robust to skewness and outliers. They suit continuous items with markedly non-normal distributions. For items with few categories, Automatic (polychoric) is usually more accurate."
+msgstr ""
+
 #: ega/results/cfaBifactorLoadings.columns.title
 msgid "Specific"
 msgstr ""
@@ -1310,12 +2779,24 @@ msgstr ""
 msgid "Specific factor"
 msgstr ""
 
+#: R/texts.R
+msgid "Specific factor %s collapses into the general factor: its loadings are mostly below .20 (mean absolute loading %s). The model probably has one specific factor too many; consider a bifactor model without it (bifactor S-1) or the correlated-factors model."
+msgstr ""
+
+#: R/texts.R
+msgid "Specific factors with three items or fewer (number of items in parentheses): %s. A specific factor with so few items is weakly identified next to a general factor and is a common source of Heywood cases."
+msgstr ""
+
 #: ega/options/splitSeed.title
 msgid "Split seed"
 msgstr ""
 
 #: ega/options/splitSample.title
 msgid "Split the sample at random (EGA in one subsample, CFA in the other)"
+msgstr ""
+
+#: R/texts.R
+msgid "Split: %d cases in subsample A and %d in subsample B (seed %d). Report the seed so the split can be reproduced; a different seed gives a different split."
 msgstr ""
 
 #: ega/options/layout/qgraph.title
@@ -1332,11 +2813,13 @@ msgstr ""
 msgid "Stability"
 msgstr ""
 
-#: ega/ui[7][1].label
+#: ega/ui[6][1].label
 msgid "Stability (bootnet)"
 msgstr ""
 
-#: ega/ui[10].label
+#: ega/results/bootStatus.title
+#: ega/ui[9].label
+#: R/ega.b.R
 msgid "Stability (bootstrap)"
 msgstr ""
 
@@ -1348,6 +2831,22 @@ msgstr ""
 msgid "Stability of edges and centrality (bootnet)"
 msgstr ""
 
+#: R/texts.R
+msgid "Stable"
+msgstr ""
+
+#: R/texts.R
+msgid "Stable (.50 or more)"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Standard error"
+msgstr ""
+
+#: R/texts.R
+msgid "Standardized random-intercept loadings"
+msgstr ""
+
 #: ega/options/cenStandardize.title
 msgid "Standardized values (z)"
 msgstr ""
@@ -1357,11 +2856,20 @@ msgid "Statistic"
 msgstr ""
 
 #: ega/results/cenTable.columns.title
+#: R/ega.b.R
 msgid "Strength"
+msgstr ""
+
+#: R/texts.R
+msgid "Strength: how strongly the item is connected overall, on the same network as EGA."
 msgstr ""
 
 #: ega/results/bootDimStability.columns.title
 msgid "Structural consistency"
+msgstr ""
+
+#: R/texts.R
+msgid "Structural consistency: the proportion of samples in which a dimension reappears with exactly the same items."
 msgstr ""
 
 #: ega/results/compareTable.columns.title
@@ -1382,6 +2890,18 @@ msgstr ""
 msgid "Structure of each person"
 msgstr ""
 
+#: R/texts.R
+msgid "Structure tested by the CFA"
+msgstr ""
+
+#: R/texts.R
+msgid "Structure tested: the dimensions found by the EGA above, applied to every group."
+msgstr ""
+
+#: R/texts.R
+msgid "Structure tested: the structure that is stable across groups (configural invariance). EGAnetLab first runs a bootstrap EGA on all cases, keeps only the items that stay in their dimension in enough samples and re-estimates the structure without the unstable items."
+msgstr ""
+
 #: ega/options/invStructure.title
 msgid "Structure to test"
 msgstr ""
@@ -1390,7 +2910,12 @@ msgstr ""
 msgid "Structures compared"
 msgstr ""
 
+#: R/ega.b.R
+msgid "SubSample "
+msgstr ""
+
 #: ega/results/splitOV.title
+#: R/ega.b.R
 msgid "Subsample"
 msgstr ""
 
@@ -1419,16 +2944,54 @@ msgid "Suggested to remove"
 msgstr ""
 
 #: ega/results/compareTable.columns.title
+#: R/texts.R
 msgid "TEFI"
 msgstr ""
 
+#: R/texts.R
+msgid "TEFI (Total Entropy Fit Index): lower values indicate a better-fitting structure. It is meaningful when comparing alternative structures for the same data, not as an absolute cut-off (Golino et al., 2021; see references)."
+msgstr ""
+
+#: R/texts.R
+msgid "TEFI (residual correlations)"
+msgstr ""
+
+#: R/texts.R
+msgid "TEFI = %s. Compare it with the TEFI of an alternative structure (for example, a theoretical one) estimated on the same data; the lower value indicates the better-fitting structure."
+msgstr ""
+
+#: R/texts.R
+msgid "TEFI by level: EGAnetLab compares the entropy fit of the lower-order level with that of the higher-order level. A lower TEFI at the lower level favors correlated dimensions without a hierarchy; a lower TEFI at the higher level favors the hierarchical structure (EGAnetLab calls it bifactor)."
+msgstr ""
+
+#: R/texts.R
+msgid "TEFI is lower at the higher-order level (%s against %s at the lower level), so by entropy fit the hierarchical structure describes the data better than correlated lower-order dimensions."
+msgstr ""
+
+#: R/texts.R
+msgid "TEFI is lower at the lower-order level (%s) than at the higher-order level (%s), so by entropy fit the correlated lower-order dimensions describe the data better than the hierarchical structure."
+msgstr ""
+
+#: R/texts.R
+msgid "TEFI, higher order"
+msgstr ""
+
+#: R/texts.R
+msgid "TEFI, lower order"
+msgstr ""
+
 #: ega/results/cfaHierModels.columns.title
+#: R/texts.R
 msgid "TLI"
 msgstr ""
 
 #: ega/options/model/TMFG.title
 #: dynega/options/model/TMFG.title
 msgid "TMFG"
+msgstr ""
+
+#: R/texts.R
+msgid "TMFG (Triangulated Maximally Filtered Graph) keeps the strongest correlations under a fixed rule, always retaining 3(p - 2) edges for p items regardless of sample size. It does not depend on a regularization parameter, which makes it a useful robustness check against GLASSO, especially with small samples or few items per dimension."
 msgstr ""
 
 #: ega/options/showEdgeTable.title
@@ -1455,13 +3018,361 @@ msgstr ""
 msgid "Test node strength and expected influence"
 msgstr ""
 
-#: ega/ui[14][1][0].label
+#: ega/ui[13][1][0].label
 msgid "Text"
 msgstr ""
 
+#: R/texts.R
+msgid "The CFA could not be estimated: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory factor analysis box."
+msgstr ""
+
+#: R/texts.R
+msgid "The CFA uses the same sample as EGA, so its fit is optimistic. Tick Split the sample at random for a check in an independent subsample."
+msgstr ""
+
+#: R/texts.R
+msgid "The Confirmatory factor analysis section below compares the higher-order and bifactor models with the models without hierarchy."
+msgstr ""
+
+#: R/texts.R
+msgid "The EGA solution has the lowest TEFI (%s) among the structures compared, so by entropy fit it is the structure that best separates the items into dimensions."
+msgstr ""
+
+#: R/texts.R
+msgid "The Expand check is EGA's original unidimensionality test: it adds simulated variables that form a separate dimension and estimates the network again. If every real item ends up in one community, the items are treated as unidimensional. Use it to reproduce results from studies that used the original EGA procedure."
+msgstr ""
+
+#: R/texts.R
+msgid "The Leading eigenvalue check applies the leading eigenvalue community algorithm to the zero-order correlation matrix: a single community means one dimension (Golino et al., 2020; see references). It is an established alternative to the Louvain check."
+msgstr ""
+
+#: R/texts.R
+msgid "The NCT needs complete data, so each comparison uses only the cases with every item answered."
+msgstr ""
+
+#: R/texts.R
+msgid "The Network Comparison Test (NCT) compares two whole networks: whether their connections differ, and whether the total strength of their connections differs (van Borkulo et al., 2023; see references)."
+msgstr ""
+
+#: R/texts.R
+msgid "The agreement with the population (median ARI = %s) is lower because the population mixes the groups."
+msgstr ""
+
+#: R/texts.R
+msgid "The analysis uses %d bootstrap samples with seed %d. More samples give more precise stability estimates; 500 is the usual minimum for reporting. The same seed with the same data and options always reproduces the same results; report it with your findings."
+msgstr ""
+
+#: R/texts.R
+msgid "The bifactor model usually fits best because it is very flexible and also absorbs noise and response styles. Prefer it only when the general factor carries most of the common variance and the specific factors keep clear loadings; otherwise its better fit is not evidence of a general factor."
+msgstr ""
+
+#: R/texts.R
+msgid "The bootstrap checks whether the dimensions found above are a stable property of the items or an accident of this particular sample (Christensen & Golino, 2021; see references)."
+msgstr ""
+
+#: R/texts.R
+msgid "The comparison between independent groups needs at least two groups with 10 or more cases each, so it was not run."
+msgstr ""
+
+#: R/texts.R
+msgid "The confirmatory model built from this structure shows %s fit in %s: CFI = %s, RMSEA = %s (Confirmatory factor analysis)."
+msgstr ""
+
+#: R/texts.R
+msgid "The confirmatory model has an inadmissible solution in %s: %s (Confirmatory factor analysis)."
+msgstr ""
+
+#: R/texts.R
+msgid "The estimated network has no edges, so centrality is not defined."
+msgstr ""
+
+#: R/texts.R
+msgid "The estimated network has no edges, so its stability cannot be assessed."
+msgstr ""
+
+#: R/texts.R
+msgid "The estimated network has no edges."
+msgstr ""
+
+#: R/texts.R
+msgid "The first derivative is the rate of change of each item from one time point to the next. It is dynEGA's default and the most studied choice (Golino et al., 2022; see references): the dimensions group items that rise and fall together."
+msgstr ""
+
+#: R/texts.R
+msgid "The following items do not vary in the data and cannot enter the analysis: %s. Remove them."
+msgstr ""
+
+#: R/texts.R
+msgid "The following items have fewer than two observed values and cannot enter a correlation matrix: %s. Remove them from the analysis."
+msgstr ""
+
+#: R/texts.R
+msgid "The following items have zero variance (every respondent gave the same answer), so their correlations are undefined: %s. Remove them from the analysis; a constant item carries no information about dimensional structure."
+msgstr ""
+
+#: R/texts.R
+msgid "The general factor explains %s of the common variance (explained common variance, ECV = %s). Below .70, the specific factors keep an important part of the common variance, so the scale is not essentially unidimensional."
+msgstr ""
+
+#: R/texts.R
+msgid "The general factor explains %s of the common variance (explained common variance, ECV = %s). From .70 upward, the items are close to unidimensional: the specific factors add little, and a single score is often defensible."
+msgstr ""
+
+#: R/texts.R
+msgid "The grouping variable has %d groups, so every pair of groups is compared separately. With many pairs, some differences will appear by chance: focus on differences that repeat across pairs or that survive the correction for multiple tests."
+msgstr ""
+
+#: R/texts.R
+msgid "The groups differ from the population structure: %s (Structure of each group)."
+msgstr ""
+
+#: R/texts.R
+msgid "The hierarchical EGA could not be estimated, so the hierarchical models were not fitted."
+msgstr ""
+
+#: R/texts.R
+msgid "The hierarchical EGA does not find a higher-order level (Hierarchical EGA)."
+msgstr ""
+
+#: R/texts.R
+msgid "The hierarchical EGA finds %d higher-order dimensions above %d lower-order dimensions (Hierarchical EGA)."
+msgstr ""
+
+#: R/texts.R
+msgid "The hierarchical EGA finds a general higher-order dimension above %d lower-order dimensions (Hierarchical EGA)."
+msgstr ""
+
+#: R/texts.R
+msgid "The hierarchical EGA found no higher-order level, so the higher-order model is not fitted."
+msgstr ""
+
+#: R/texts.R
+msgid "The higher-order model fits exactly as well as the correlated lower-order factors: with two or three lower-order factors under one higher-order factor, the higher level only re-expresses their correlations. The data cannot tell the two apart; the choice rests on theory and on how the scores will be used."
+msgstr ""
+
+#: R/texts.R
+msgid "The higher-order model reaches CFI %s against %s for the correlated lower-order factors. The loss is larger than .01: under this descriptive criterion the higher-order factors do not reproduce the correlations among the lower-order factors well, so the model without hierarchy is preferable."
+msgstr ""
+
+#: R/texts.R
+msgid "The higher-order model reaches CFI %s against %s for the correlated lower-order factors. The loss of fit is limited (.01 or less) under this descriptive criterion, and the model is more restrictive; interpreting the structure as hierarchical requires further evaluation (theory, the loadings of the higher-order factors and replication in another sample)."
+msgstr ""
+
+#: R/texts.R
+msgid "The highest CFI is that of %s (%s)."
+msgstr ""
+
+#: R/texts.R
+msgid "The items form %d dimensions: %s (Exploratory Graph Analysis)."
+msgstr ""
+
+#: R/texts.R
+msgid "The items form a single dimension (Exploratory Graph Analysis)."
+msgstr ""
+
+#: R/texts.R
+msgid "The least central items: %s. Weakly connected items add little to the network; check their network loadings and their stability."
+msgstr ""
+
+#: R/texts.R
+msgid "The level (derivative 0) is the smoothed value of each item within the window. Its structure is closest to that of the raw scores and keeps stable differences between occasions; choose it to describe states rather than change."
+msgstr ""
+
+#: R/texts.R
+msgid "The lower-order dimensions are the same as in the EGA solution above."
+msgstr ""
+
+#: R/texts.R
+msgid "The lower-order dimensions group into %s higher-order dimensions, which suggests broader domains above the specific dimensions."
+msgstr ""
+
+#: R/texts.R
+msgid "The lower-order level has %s dimensions against %s in the EGA solution above, and places %d of %d items as EGA does. Items in a different dimension: %s. The lower level of Louvain tends to split broad dimensions, so this is expected."
+msgstr ""
+
+#: R/texts.R
+msgid "The lowest BIC, which balances fit and the number of parameters, is that of %s (%s)."
+msgstr ""
+
+#: R/texts.R
+msgid "The mean width of the edge intervals is %s. Two edges whose intervals overlap widely cannot be said to differ in strength."
+msgstr ""
+
+#: R/texts.R
+msgid "The median agreement with the population membership is high (ARI = %s) and most persons show the population's number of dimensions, so the population structure is a reasonable summary of individuals."
+msgstr ""
+
+#: R/texts.R
+msgid "The median agreement with the population membership is low (ARI = %s): individual structures differ markedly from the population structure, so it should not be read as the structure of each person. This pattern is consistent with a non-ergodic process, although individual networks with few time points are also noisy."
+msgstr ""
+
+#: R/texts.R
+msgid "The median agreement with the population membership is moderate (ARI = %s): the population structure describes individuals only partly. Report the individual heterogeneity together with the population result."
+msgstr ""
+
+#: R/texts.R
+msgid "The most central items by strength are %s (Centrality)."
+msgstr ""
+
+#: R/texts.R
+msgid "The most frequent number of dimensions appears in only %s of the bootstrap samples, below the %s cutoff (Stability)."
+msgstr ""
+
+#: R/texts.R
+msgid "The most frequent number of dimensions in the bootstrap is %d, in %s of the samples, and differs from the %d estimated in the data (Stability)."
+msgstr ""
+
+#: R/texts.R
+msgid "The most frequent solution appears in only %s of samples, below the %s cutoff, so the number of dimensions itself is not firmly established: neighbouring solutions are also common. Report the full frequency distribution, not only the most frequent value."
+msgstr ""
+
+#: R/texts.R
+msgid "The network above was estimated with the %s model, but the NCT always uses the graphical lasso. The networks compared here may therefore differ slightly from the one above."
+msgstr ""
+
+#: R/texts.R
+msgid "The network comparison test finds no global difference between %s (Group comparison)."
+msgstr ""
+
+#: R/texts.R
+msgid "The network structure differs: the largest difference in a single connection (M = %s) is larger than expected by chance (%s). At least one relation between items is not the same in the two networks. The edge test (Test every edge) looks for which ones; after its correction for many tests, a single edge may not reach significance even when M does, so read M as evidence that the networks differ somewhere."
+msgstr ""
+
+#: R/texts.R
+msgid "The networks of %s differ in %s (Group comparison)."
+msgstr ""
+
+#: R/texts.R
+msgid "The number of dimensions could not be computed (Exploratory Graph Analysis)."
+msgstr ""
+
+#: R/texts.R
+msgid "The order of the items by %s is moderately stable (CS = %s): interpret only large differences between items, and with care."
+msgstr ""
+
+#: R/texts.R
+msgid "The order of the items by %s is not stable (CS = %s): it changes when only a few cases are dropped, so differences between items should not be interpreted."
+msgstr ""
+
+#: R/texts.R
+msgid "The order of the items by %s is stable (CS = %s): it holds when up to %s of the cases are dropped, so differences between items can be interpreted."
+msgstr ""
+
+#: R/texts.R
+msgid "The random-intercept EGA did not converge and cannot be interpreted (Random-intercept EGA)."
+msgstr ""
+
+#: R/texts.R
+msgid "The random-intercept EGA ran without items marked as negatively worded, so it does not show a wording effect; read it only as a sensitivity check (Random-intercept EGA)."
+msgstr ""
+
+#: R/texts.R
+msgid "The random-intercept model did not converge, so this result cannot be interpreted: non-convergence is not evidence that there is no wording effect, nor that there is one. riEGA then runs EGA on the ordinary correlations, so the riEGA column repeats an ordinary EGA without any wording control. Check the direction of the items and the sample size before drawing conclusions about wording."
+msgstr ""
+
+#: R/texts.R
+msgid "The riEGA TEFI is computed on the residual correlations, so it is not comparable with the TEFI of the EGA solution above."
+msgstr ""
+
+#: R/texts.R
+msgid "The same number of dimensions appeared in %s of the bootstrap samples (Stability)."
+msgstr ""
+
+#: R/texts.R
+msgid "The second derivative is the acceleration of each item. It captures how changes speed up or slow down together, but it amplifies measurement noise and needs many time points per person; use it only with dense series."
+msgstr ""
+
+#: R/texts.R
+msgid "The stability of the structure was not checked. Without the bootstrap, it is unknown whether the same number of dimensions would appear in another sample (Stability)."
+msgstr ""
+
+#: R/texts.R
+msgid "The structure can be estimated for the whole sample (population), for each group and for each person. Comparing them shows whether one structure describes everyone or whether people differ."
+msgstr ""
+
+#: R/texts.R
+msgid "The theoretical structure and the EGA solution group the items in the same way, which supports the intended structure."
+msgstr ""
+
+#: R/texts.R
+msgid "The theoretical structure has no item of the analysis in any factor."
+msgstr ""
+
+#: R/texts.R
+msgid "The theoretical structure includes variables that are not among the Items of the analysis: %s. Add them to Items or remove them from the factors."
+msgstr ""
+
+#: R/texts.R
+msgid "The theoretical structure places %d of %d items as EGA. The items EGA places elsewhere (%s) are the ones to examine: read their content and check whether they are also unstable in the bootstrap or redundant in UVA."
+msgstr ""
+
+#: R/texts.R
+msgid "Theoretical"
+msgstr ""
+
 #: ega/options/theoryFactors.title
-#: ega/ui[5][2][0].label
+#: ega/ui[4][2][0].label
 msgid "Theoretical structure"
+msgstr ""
+
+#: R/texts.R
+msgid "Theoretical structure: build it as in jamovi's Confirmatory Factor Analysis. Drag the items of each dimension into a factor, use Add New Factor for the next one, and click a factor's name to rename it. Items left out of every factor are not part of the theoretical structure."
+msgstr ""
+
+#: R/texts.R
+msgid "There are no negative connections, so expected influence orders the items exactly as strength does."
+msgstr ""
+
+#: R/texts.R
+msgid "There is no established cutoff for a meaningful TEFI difference. Read the differences together with the bootstrap stability, the CFA fit and the content of the items that move, and report the TEFI of every structure compared."
+msgstr ""
+
+#: R/texts.R
+msgid "There is no evidence that the network structure differs: the largest difference in a single connection (M = %s) is within what is expected by chance (%s). This does not prove the networks are equal; with small groups the test has little power."
+msgstr ""
+
+#: R/texts.R
+msgid "These factor names are used more than once: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "These items are in more than one factor of the theoretical structure: %s. Each item can belong to one factor only."
+msgstr ""
+
+#: R/texts.R
+msgid "These models are fitted on the same data that produced the EGA and hierEGA solutions, so their fit is optimistic. Report them as a comparison, and confirm the chosen model in a new sample."
+msgstr ""
+
+#: R/texts.R
+msgid "These variables look like measurement schedule variables rather than responses, because nearly every person has the same value at the same measurement number: %s. Examples are the day or the beep number. Time variables change together by design, so they form a dimension of their own. Remove them from Items, and use one of them as Time if it orders the measurements."
+msgstr ""
+
+#: R/texts.R
+msgid "This result is valid only if the negatively worded items are in their original, unrecoded direction and the scale mixes both directions. If all items are worded in the same direction, do not read it as a wording effect."
+msgstr ""
+
+#: R/texts.R
+msgid "This section checks how accurate the estimated network is, with the bootnet procedures (Epskamp et al., 2018; see references). It re-estimates the same network as EGA (same correlation, model and missing-value handling) in many bootstrap samples."
+msgstr ""
+
+#: R/texts.R
+msgid "This section compares the network of the items between groups of people. With a grouping variable it compares independent groups (for example, women and men, or two countries). With a second measurement of the same items it compares the same people at two moments (for example, before and after an intervention)."
+msgstr ""
+
+#: R/texts.R
+msgid "This section compares the structure found by EGA with alternative structures for the same items, using the Total Entropy Fit Index (TEFI; Golino et al., 2021; see references). Every structure is evaluated on the same correlation matrix as the EGA above, so their TEFI values can be compared directly."
+msgstr ""
+
+#: R/texts.R
+msgid "This summary gathers the main results of the sections below, what remains uncertain and what needs attention. Each line points to the section that explains it; read those sections before drawing conclusions."
+msgstr ""
+
+#: R/texts.R
+msgid "This table opens up the bifactor model of the comparison above: for each item, its loading on the general factor (every item) and on its specific factor (the hierEGA lower-order dimension), and its residual variance. It shows whether the specific factors keep their own variance or collapse into the general factor, which is the usual source of inadmissible bifactor solutions (Rodriguez, Reise & Haviland, 2016; see references)."
 msgstr ""
 
 #: dynega/ui[0][2].label
@@ -1480,6 +3391,30 @@ msgstr ""
 msgid "Time points"
 msgstr ""
 
+#: R/texts.R
+msgid "Time points per person (min / median / max)"
+msgstr ""
+
+#: R/texts.R
+msgid "To compare groups, add a grouping variable (independent groups) or the items of a second measurement of the same people (paired groups)."
+msgstr ""
+
+#: R/texts.R
+msgid "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare structures (TEFI) box."
+msgstr ""
+
+#: R/texts.R
+msgid "To run the NCT, add a grouping variable with at least two groups of 10 or more cases, or the items of a second measurement of the same people."
+msgstr ""
+
+#: R/texts.R
+msgid "To test invariance, add a grouping variable with at least two groups of 10 or more cases. Invariance compares independent groups; it does not use the second measurement."
+msgstr ""
+
+#: R/texts.R
+msgid "To test the hierarchy as a factor model, tick Confirm with CFA: its section then compares the higher-order and bifactor models with the models without hierarchy."
+msgstr ""
+
 #: ega/options/legendPosition/top.title
 #: dynega/options/legendPosition/top.title
 msgid "Top"
@@ -1487,11 +3422,16 @@ msgstr ""
 
 #: ega/results/cfaCompare.columns.title
 #: ega/results/cfaMembership.columns.title
+#: R/ega.b.R
 msgid "Total sample"
 msgstr ""
 
 #: ega/results/cfaCompare.title
 msgid "Total sample and random subsamples"
+msgstr ""
+
+#: R/texts.R
+msgid "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que la estructura dimensional no depende de este componente."
 msgstr ""
 
 #: ega/options/nodeShape/triangle.title
@@ -1500,12 +3440,33 @@ msgid "Triangle"
 msgstr ""
 
 #: package/datasets.description
+msgid "Twenty-five Big Five personality items (6-point scale) with real missing data, seven negatively worded items, gender, education and age, from the psychTools package - see data/README.md"
+msgstr ""
+
+#: package/datasets.description
 msgid "Twenty-four items measured 50 times in 100 simulated persons in two groups (long format, with ID, Group and Time), from the EGAnet package - see data/README.md"
+msgstr ""
+
+#: R/texts.R
+msgid "Two procedures are used: resampling cases with replacement, which gives an interval for each edge weight, and dropping growing proportions of cases, which shows whether the order of the items by centrality holds with fewer people."
+msgstr ""
+
+#: R/texts.R
+msgid "Uncertainties"
 msgstr ""
 
 #: ega/options/uniMethod.title
 #: dynega/options/uniMethod.title
 msgid "Unidimensionality Check"
+msgstr ""
+
+#: R/texts.R
+#: R/ega.b.R
+msgid "Unidimensionality check"
+msgstr ""
+
+#: R/texts.R
+msgid "Unique Variable Analysis (UVA) looks for redundant items: pairs that share so many of their connections in the network that they behave almost like the same item (Christensen, Garrido & Golino, 2023; see references)."
 msgstr ""
 
 #: ega/results/bnEdges.columns.title
@@ -1518,7 +3479,24 @@ msgstr ""
 #: ega/results/bootSummary.columns.title
 #: dynega/results/summary.columns.title
 #: dynega/results/indAgree.columns.title
+#: R/ega.b.R
 msgid "Value"
+msgstr ""
+
+#: R/texts.R
+msgid "Values are raw: strength and expected influence are sums of partial correlations, closeness and betweenness keep their own scales."
+msgstr ""
+
+#: R/texts.R
+msgid "Values are standardized across items (mean 0, SD 1). A value above 1 marks an item clearly more central than the average item; below -1, clearly less central."
+msgstr ""
+
+#: R/ega.b.R
+msgid "Values standardized across items (z): mean 0, SD 1."
+msgstr ""
+
+#: R/texts.R
+msgid "Variables in the second measurement: %d. However, the analysis uses %d items. Add one variable for each item, in the same order as the items, to compare the two measurements."
 msgstr ""
 
 #: ega/options/plotPalette/viridis.title
@@ -1535,9 +3513,29 @@ msgstr ""
 msgid "Walktrap"
 msgstr ""
 
+#: R/texts.R
+msgid "Walktrap groups items by short random walks along the edges: walks tend to stay inside densely connected regions, which become the dimensions. It is deterministic (the same data always give the same answer) and is the algorithm with the strongest simulation record in EGA (Golino et al., 2020; see references)."
+msgstr ""
+
+#: R/texts.R
+msgid "Warnings"
+msgstr ""
+
+#: R/texts.R
+msgid "Weak general loading"
+msgstr ""
+
+#: R/texts.R
+msgid "Weak specific loading"
+msgstr ""
+
 #: ega/results/edgeTable.columns.title
 #: ega/results/bnEdges.columns.title
 msgid "Weight"
+msgstr ""
+
+#: R/ega.b.R
+msgid "Weight, %s"
 msgstr ""
 
 #: ega/results/nctEdgeTable.columns.title
@@ -1548,12 +3546,29 @@ msgstr ""
 msgid "Weight, second"
 msgstr ""
 
+#: R/texts.R
+msgid "Weights are the partial correlations of the estimated network (each pair of items, controlling for all the others), from strongest to weakest in absolute value. A negative weight means the two items move in opposite directions once the rest are held constant."
+msgstr ""
+
 #: ega/options/labelColor/white.title
 #: dynega/options/labelColor/white.title
 msgid "White"
 msgstr ""
 
+#: R/texts.R
+msgid "Why the ordinal rule differs from EGA: EGA's automatic correlations treat items with 7 or fewer categories as ordinal (polychoric), while the CFA uses WLSMV only below 6 categories, as EGAnetLab's CFA() does. With 6 or 7 categories the network therefore uses polychoric correlations and the CFA uses robust maximum likelihood, which performs well with that many categories (Rhemtulla, Brosseau-Liard & Savalei, 2012; see references). To use the same treatment in both, choose the CFA estimator in the options."
+msgstr ""
+
+#: R/texts.R
+msgid "With only %s lower-order dimensions, the higher level rests on very few scores; read it as a hint and confirm it with a higher-order or bifactor CFA."
+msgstr ""
+
+#: R/ega.b.R
+msgid "Within dimension %s"
+msgstr ""
+
 #: ega/results/riStatus.title
+#: R/ega.b.R
 msgid "Wording effects (random-intercept EGA)"
 msgstr ""
 
@@ -1561,7 +3576,104 @@ msgstr ""
 msgid "Wording effects interpretation"
 msgstr ""
 
-#: ega/ui[8][2].label
+#: R/texts.R
+#: R/dynega.b.R
+msgid "Yes"
+msgstr ""
+
+#: R/texts.R
+msgid "acceleration"
+msgstr ""
+
+#: R/texts.R
+msgid "acceptable"
+msgstr ""
+
+#: R/texts.R
+msgid "dimension %s with %d items"
+msgstr ""
+
+#: R/texts.R
+msgid "embedding %d, tau %d, delta %s; derivative analysed: %s"
+msgstr ""
+
+#: R/cfa-helpers.R
+msgid "factor"
+msgstr ""
+
+#: R/cfa-helpers.R
+msgid "general factor"
+msgstr ""
+
+#: R/texts.R
+msgid "global strength"
+msgstr ""
+
+#: R/texts.R
+msgid "good"
+msgstr ""
+
+#: R/texts.R
+msgid "group %s has %s"
+msgstr ""
+
+#: R/texts.R
+msgid "hierEGA does not accept the cosine similarity, so it uses the automatic correlation here."
+msgstr ""
+
+#: R/texts.R
+msgid "hierEGA finds %s lower-order dimensions grouped into %s higher-order dimensions."
+msgstr ""
+
+#: R/texts.R
+msgid "hierEGA finds %s lower-order dimensions grouped into 1 higher-order dimension."
+msgstr ""
+
+#: R/texts.R
+msgid "hierEGA finds a single lower-order dimension, so there is no hierarchy to estimate."
+msgstr ""
+
+#: R/cfa-helpers.R
+msgid "higher-order factor"
+msgstr ""
+
+#: R/texts.R
+msgid "lavaan could not fit the CFA%s: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "lavaan could not fit this model: %s."
+msgstr ""
+
+#: R/texts.R
+msgid "lavaan did not reach convergence; do not interpret this row."
+msgstr ""
+
+#: R/texts.R
+msgid "lavaan flagged a problem with this solution: %s. Do not interpret or prefer this model until you review its estimates."
+msgstr ""
+
+#: R/texts.R
+msgid "lavaan warned about this model: %s. The solution looks admissible, but review its estimates before preferring it."
+msgstr ""
+
+#: R/texts.R
+msgid "level"
+msgstr ""
+
+#: R/cfa-helpers.R
+msgid "negative factor variance"
+msgstr ""
+
+#: R/cfa-helpers.R
+msgid "negative residual variance (Heywood case)"
+msgstr ""
+
+#: R/texts.R
+msgid "new"
+msgstr ""
+
+#: ega/ui[7][2].label
 msgid "of the same items, in the same order as the items."
 msgstr ""
 
@@ -1583,18 +3695,118 @@ msgstr ""
 msgid "p-value correction"
 msgstr ""
 
+#: R/texts.R
+msgid "p: proportion of permutations with a difference at least as large as the observed one. p (BH): the same p value corrected for the number of items with the Benjamini-Hochberg method."
+msgstr ""
+
+#: R/ega.b.R
+msgid "parametric"
+msgstr ""
+
+#: R/texts.R
+msgid "poor"
+msgstr ""
+
 #: ega/results/scores.columns.title
 msgid "r with mean score"
+msgstr ""
+
+#: R/texts.R
+msgid "r with mean score: correlation between the network score and the unweighted mean of the same items (the mean keeps dimensions with different numbers of items on the same scale). Values near 1 mean the weighting changes little; lower values mean the items contribute very unequally to the dimension."
+msgstr ""
+
+#: R/texts.R
+msgid "rate of change"
+msgstr ""
+
+#: R/ega.b.R
+msgid "resampling"
 msgstr ""
 
 #: ega/results/riMembership.columns.title
 msgid "riEGA"
 msgstr ""
 
+#: R/texts.R
+msgid "riEGA dimensions take the number of the EGA dimension with which they share the most items, so the numbers are labels, not a count."
+msgstr ""
+
+#: R/texts.R
+msgid "riEGA does not work with the BGGM network model; choose GLASSO or TMFG in Estimation"
+msgstr ""
+
+#: R/texts.R
+msgid "riEGA first fits a random-intercept factor with the same loading for every item, which captures that wording effect, removes it, and then runs EGA on what is left."
+msgstr ""
+
+#: R/cfa-helpers.R
+msgid "standardized loading above 1"
+msgstr ""
+
+#: R/texts.R
+msgid "structure"
+msgstr ""
+
+#: R/texts.R
+msgid "structure and global strength"
+msgstr ""
+
+#: R/ega.b.R
+msgid "subsample "
+msgstr ""
+
+#: R/texts.R
+msgid "subsample B (confirmation)"
+msgstr ""
+
+#: R/ega.b.R
+msgid "the bootstrap samples"
+msgstr ""
+
+#: R/cfa-helpers.R
+msgid "the covariance matrix of the estimates is not positive definite, which may mean that the model is not identified"
+msgstr ""
+
+#: R/cfa-helpers.R
+msgid "the factor covariance matrix is not positive definite"
+msgstr ""
+
+#: R/ega.b.R
+msgid "the group comparison"
+msgstr ""
+
+#: R/ega.b.R
+msgid "the main EGA"
+msgstr ""
+
+#: R/cfa-helpers.R
+msgid "the residual covariance matrix of the items is not positive definite"
+msgstr ""
+
+#: R/texts.R
+msgid "the total sample"
+msgstr ""
+
+#: R/ega.b.R
+msgid "vs."
+msgstr ""
+
 #: ega/results/uvaPairs.columns.title
 msgid "wTO"
 msgstr ""
 
+#: R/ega.b.R
+msgid "z value"
+msgstr ""
+
 #: ega/results/cfaHierModels.columns.title
 msgid "χ² (df)"
+msgstr ""
+
+#: R/texts.R
+msgid "χ² (df), p"
+msgstr ""
+
+#: R/texts.R
+msgid "χ²/df"
 msgstr ""

@@ -640,40 +640,47 @@ English
 
 Spanish
 
-EGAnetLab has three separate bilingual mechanisms — do not confuse
-them.
+EGAnetLab has two separate bilingual mechanisms — do not confuse them.
 
 1. **Source comments.** Every `.R`/`.yaml` comment: English, then a
    Spanish `# ES:` block immediately below. Governed by CODE_STYLE.md.
-2. **Report content.** The `reportLang` option, `tr()`, and `texts.R`.
-   Controls the language of the analytical content the user sees inside a
-   running analysis's results — chosen per-analysis by the user,
-   independent of jamovi's own interface language.
-3. **Interface catalog.** jamovi's own native i18n mechanism
-   (`jamovi/i18n/catalog.pot` + `es.po`). Controls option-panel titles,
-   descriptions, and result/table headers — follows jamovi's own
-   UI-language setting, entirely independent of `reportLang`. See
-   ARCHITECTURE.md §12.
+2. **jamovi's catalog.** Everything the user reads: option-panel titles,
+   result and column titles, and the report text assembled in R. The yaml
+   strings are extracted by jamovi's compiler; report text is written in
+   English inside `.()` (in `R/texts.R`, read with `.el_text(self, section,
+   key)`, or inline for short labels). Spanish lives in
+   `jamovi/i18n/es.po`, compiled to `inst/i18n/es.json`. Everything follows
+   jamovi's own language setting. See ARCHITECTURE.md §12.
+
+To add or change a report string: edit the English `.()` literal, then add
+or update its entry in `jamovi/i18n/catalog.pot` and `es.po` (with
+`jmvtools::i18nUpdate("es")` where available) and rebuild the module so
+`inst/i18n/es.json` is regenerated. Run the tests with `LANGUAGE=es` to see
+the Spanish report.
 
 -------------------------------------------------------------------------------
 
 # ES:
 
-EGAnetLab tiene tres mecanismos bilingües separados — no
-confundirlos.
+EGAnetLab tiene dos mecanismos bilingües separados — no confundirlos.
 
 1. **Comentarios de código fuente.** Cada comentario `.R`/`.yaml`: inglés,
    seguido de un bloque `# ES:` en español inmediatamente debajo. Regido
    por CODE_STYLE.md.
-2. **Contenido del informe.** La opción `reportLang`, `tr()` y `texts.R`.
-   Controla el idioma del contenido analítico que el usuario ve dentro de
-   los resultados de un análisis en ejecución — elegido por el usuario
-   para cada análisis, independiente del idioma de interfaz de jamovi.
-3. **Catálogo de interfaz.** El propio mecanismo nativo de i18n de jamovi
-   (`jamovi/i18n/catalog.pot` + `es.po`). Controla los títulos del panel
-   de opciones, descripciones y encabezados de resultado/tabla — sigue el
-   propio ajuste de idioma de interfaz de jamovi, totalmente independiente
-   de `reportLang`. Ver ARCHITECTURE.md §12.
+2. **Catálogo de jamovi.** Todo lo que lee el usuario: títulos del panel de
+   opciones, títulos de resultados y columnas, y el texto del informe que
+   se arma en R. El compilador de jamovi extrae los textos del yaml; el
+   texto del informe se escribe en inglés dentro de `.()` (en `R/texts.R`,
+   leído con `.el_text(self, sección, clave)`, o en línea para etiquetas
+   cortas). El español vive en `jamovi/i18n/es.po`, compilado en
+   `inst/i18n/es.json`. Todo sigue el ajuste de idioma de jamovi. Ver
+   ARCHITECTURE.md §12.
+
+Para agregar o cambiar un texto del informe: edite el literal en inglés de
+`.()`, luego agregue o actualice su entrada en `jamovi/i18n/catalog.pot` y
+`es.po` (con `jmvtools::i18nUpdate("es")` cuando esté disponible) y
+reconstruya el módulo para que se regenere `inst/i18n/es.json`. Ejecute
+las pruebas con `LANGUAGE=es` para ver el informe en español.
 
 -------------------------------------------------------------------------------
 

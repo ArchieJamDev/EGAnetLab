@@ -126,6 +126,20 @@ edgeBinaryData <- function(n = 400) {
 }
 
 # -----------------------------------------------------------------------------
+# inSpanish(): runs an expression as jamovi does with its interface in
+# Spanish. Outside jamovi, jmvcore's `.()` reads the LANGUAGE variable.
+# textSelf(): the smallest analysis-like object `.()` needs, for testing the
+# text helpers directly.
+# ES: inSpanish(): ejecuta una expresión como lo hace jamovi con su interfaz
+# en español. Fuera de jamovi, `.()` de jmvcore lee la variable LANGUAGE.
+# textSelf(): el objeto mínimo, parecido a un análisis, que necesita `.()`,
+# para probar directamente las funciones de texto.
+# -----------------------------------------------------------------------------
+inSpanish <- function(expr) withr::with_envvar(c(LANGUAGE = "es"), expr)
+
+textSelf <- function() list(options = EGAnetLab:::egaOptions$new())
+
+# -----------------------------------------------------------------------------
 # expectGraceful(): the analysis either finishes or stops with one of
 # EGAnetLab's own messages (Category A/B), never with a raw R error.
 # ES: expectGraceful(): el análisis termina o se detiene con uno de los
@@ -134,7 +148,10 @@ edgeBinaryData <- function(n = 400) {
 expectGraceful <- function(expr) {
     res <- tryCatch(expr, error = function(e) e)
     if (inherits(res, "error")) {
-        texts <- unlist(EGAnetLab:::.el_texts, use.names = FALSE)
+        keys <- EGAnetLab:::.el_text_keys()
+        texts <- unlist(lapply(names(keys), function(section)
+            lapply(keys[[section]], function(key)
+                EGAnetLab:::.el_text(textSelf(), section, key))), use.names = FALSE)
         prefixes <- unique(vapply(strsplit(texts, "%", fixed = TRUE),
                                   function(x) substr(x[1], 1, 40), character(1)))
         prefixes <- prefixes[nchar(prefixes) >= 20]

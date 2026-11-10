@@ -59,12 +59,6 @@ children:
             maxItemCount: 1
             isTarget: true
   - type: CollapseBox
-    label: Report Language
-    collapsed: false
-    children:
-      - type: ComboBox
-        name: reportLang
-  - type: CollapseBox
     label: Derivatives (GLLA)
     collapsed: true
     children:

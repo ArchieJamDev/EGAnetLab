@@ -80,8 +80,8 @@ test_that("negative edges separate expected influence from strength", {
 test_that("centrality is reported in Spanish", {
 
     data <- edgeStructureData()
-    res <- EGAnetLab::ega(data = data, vars = paste0("item", 1:12),
-                          runCentrality = TRUE, reportLang = "es")
+    res <- inSpanish(EGAnetLab::ega(data = data, vars = paste0("item", 1:12),
+                                    runCentrality = TRUE))
 
     expect_match(res$cenStatus$content, "fuerza", fixed = TRUE)
     expect_match(res$cenInterpretation$content, "Siguiente paso", fixed = TRUE)

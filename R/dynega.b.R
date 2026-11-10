@@ -49,12 +49,11 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
         .run = function() {
 
-            lang <- .el_normalize_lang(self$options$reportLang)
-            tr <- function(en, es) .el_tr(lang, en, es)
-            txt <- function(section, key) .el_text(lang, section, key)
+            # Report text goes through jmvcore's `.()` (see texts.R).
+            # ES: El texto del informe pasa por `.()` de jmvcore (ver texts.R).
+            txt <- function(section, key) .el_text(self, section, key)
             o <- self$options
 
-            private$.setTitles(tr)
             self$results$intro$setContent(.el_html_block(NULL, txt("dyn", "intro")))
 
             if (length(o$vars) == 0 || is.null(o$id) || length(o$id) == 0) {
@@ -74,15 +73,15 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # About your choices.
             # ES: Acerca de sus elecciones.
             if (isTRUE(o$showChoicesGuide)) {
-                labels <- .el_estimation_choice_labels(tr)
+                labels <- .el_estimation_choice_labels(self)
                 labels$naData <- NULL
                 labels$corr$cosine <- NULL
-                labels$derivative <- list(`0` = tr("Level (0)", "Nivel (0)"),
-                                          `1` = tr("Rate of change (1)", "Velocidad de cambio (1)"),
-                                          `2` = tr("Acceleration (2)", "Aceleración (2)"))
+                labels$derivative <- list(`0` = .("Level (0)"),
+                                          `1` = .("Rate of change (1)"),
+                                          `2` = .("Acceleration (2)"))
                 embed <- sprintf(txt("dyn", "embed_text"), n_embed, n_embed, as.integer(o$tau), fmt_delta)
                 self$results$choicesGuide$setContent(
-                    .el_choices_guide(lang, o, labels, extra = embed,
+                    .el_choices_guide(self, o, labels, extra = embed,
                                       bodies = list(corr_auto = txt("dyn", "corr_auto"))))
             }
 
@@ -179,12 +178,11 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 list(txt("dyn", "summary_rows"), as.character(nrow(prep$data))),
                 list(txt("dyn", "summary_glla"), sprintf(txt("dyn", "summary_glla_value"), n_embed,
                                                          as.integer(o$tau), fmt_delta, deriv_label)),
-                list(tr("Correlation", "Correlación"), switch(o$corr,
-                    auto = tr("Automatic (Pearson, because the derivatives are continuous)",
-                              "Automática (Pearson, porque las derivadas son continuas)"),
+                list(.("Correlation"), switch(o$corr,
+                    auto = .("Automatic (Pearson, because the derivatives are continuous)"),
                     pearson = "Pearson", spearman = "Spearman")),
-                list(tr("Network model", "Modelo de red"), o$model),
-                list(tr("Community detection", "Detección de comunidades"), o$algorithm),
+                list(.("Network model"), o$model),
+                list(.("Community detection"), o$algorithm),
                 list(txt("dyn", "summary_ndim"), if (is.na(pop$n_dim)) txt("common", "not_computable")
                                                  else as.character(pop$n_dim))
             )
@@ -202,14 +200,14 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
             # Item membership: population and each group.
             # ES: Pertenencia de los ítems: población y cada grupo.
-            isolated_label <- tr("Isolated (no edges)", "Aislado (sin aristas)")
+            isolated_label <- .("Isolated (no edges)")
             dim_label <- function(d) if (is.na(d)) isolated_label else as.character(d)
             table <- self$results$membership
             groups <- cache$groups
             if (use_groups)
                 for (g in names(groups))
                     table$addColumn(name = paste0("g_", g), title = g, type = "text",
-                                    superTitle = tr("Groups", "Grupos"))
+                                    superTitle = .("Groups"))
             for (i in seq_along(o$vars)) {
                 item <- o$vars[i]
                 values <- list(item = item, population = dim_label(pop$wc[[item]]))
@@ -226,10 +224,9 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     same <- !is.na(g$n_dim) && !is.na(pop$n_dim) && .el_ari(g$wc, pop$wc) == 1
                     .el_add_row(gt, i, list(group = names(groups)[i], persons = g$persons,
                                             dims = if (is.na(g$n_dim)) txt("common", "not_computable") else as.character(g$n_dim),
-                                            same = if (same) tr("Yes", "Sí") else tr("No", "No")))
+                                            same = if (same) .("Yes") else .("No")))
                 }
-                gt$setNote("same", tr("Same as population: identical item membership.",
-                                      "Igual que la población: pertenencia de los ítems idéntica."))
+                gt$setNote("same", .("Same as population: identical item membership."))
             } else {
                 self$results$groupTable$setVisible(FALSE)
             }
@@ -238,7 +235,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Hallazgos clave: población, grupos y notas de los datos.
             private$.key <- list(findings = character(0), uncertain = character(0), warnings = character(0))
             if (is.na(pop$n_dim))
-                private$.addKey("warnings", .el_text(lang, "key", "dims_none"))
+                private$.addKey("warnings", .el_text(self, "key", "dims_none"))
             else
                 private$.addKey("findings", sprintf(txt("key", "pop_dims"), as.integer(pop$n_dim)))
             if (length(prep$schedule) > 0)
@@ -287,18 +284,18 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # Individual structures.
             # ES: Estructuras individuales.
             if (isTRUE(o$levelIndividual) && !is.null(cache$individual))
-                private$.fillIndividual(cache, pop, tr, txt)
+                private$.fillIndividual(cache, pop, txt)
 
             # The isolated items are already named in the interpretation.
             # ES: Los ítems aislados ya se nombran en la interpretación.
             warnings <- warnings[!grepl("did not belong to a dimension", warnings, fixed = TRUE)]
-            warnings <- .el_translate_notices(.el_drop_notices(unique(warnings)), lang)
+            warnings <- .el_translate_notices(self, .el_drop_notices(unique(warnings)))
             notes <- c(notes, warnings)
             if (length(warnings) > 0)
                 private$.addKey("warnings", sprintf(txt("key", "notes"), length(warnings)))
             self$results$keySummary$setTitle(txt("key", "title"))
             if (isTRUE(o$showKeySummary))
-                self$results$keySummary$setContent(.el_key_summary(lang, private$.key))
+                self$results$keySummary$setContent(.el_key_summary(self, private$.key))
             if (length(notes) > 0)
                 self$results$notes$setContent(.el_html_block(
                     txt("common", "warnings_title"), .el_html_list(notes), raw = TRUE))
@@ -306,7 +303,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 self$results$notes$setVisible(FALSE)
         },
 
-        .fillIndividual = function(cache, pop, tr, txt) {
+        .fillIndividual = function(cache, pop, txt) {
 
             ind <- cache$individual
             n_items <- length(self$options$vars)
@@ -361,10 +358,10 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             agree$setNote("ari", txt("dyn", "agree_note"))
 
             if (isTRUE(self$options$showIndTable) && has_group) {
-                self$results$indTable$addColumn(name = "group", title = tr("Group", "Grupo"),
+                self$results$indTable$addColumn(name = "group", title = .("Group"),
                                                 type = "text", index = 2)
                 self$results$indTable$addColumn(name = "ariGroup",
-                                                title = tr("Agreement with own group (ARI)", "Acuerdo con su grupo (ARI)"),
+                                                title = .("Agreement with own group (ARI)"),
                                                 type = "number", format = "zto")
             }
             if (isTRUE(self$options$showIndTable))
@@ -413,49 +410,6 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             invisible(NULL)
         },
 
-        .setTitles = function(tr) {
-            titles <- list(
-                c("intro", "Introduction", "Introducción"),
-                c("choicesGuide", "About your choices", "Acerca de sus elecciones"),
-                c("status", "Estimation", "Estimación"),
-                c("summary", "Data and estimation", "Datos y estimación"),
-                c("membership", "Item membership", "Pertenencia de los ítems"),
-                c("groupTable", "Structure of each group", "Estructura de cada grupo"),
-                c("interpretation", "Applied interpretation", "Interpretación aplicada"),
-                c("networkPlot", "Population network", "Red de la población"),
-                c("indStatus", "Structure of each person", "Estructura de cada persona"),
-                c("indFreq", "Number of dimensions across persons", "Número de dimensiones entre personas"),
-                c("indAgree", "Agreement with the population structure", "Acuerdo con la estructura de la población"),
-                c("indTable", "Every person", "Cada persona"),
-                c("indPlot", "Number of dimensions across persons", "Número de dimensiones entre personas"),
-                c("indInterpretation", "Individual structures interpretation", "Interpretación de las estructuras individuales"),
-                c("notes", "Notes", "Notas")
-            )
-            for (t in titles)
-                tryCatch(self$results[[t[1]]]$setTitle(tr(t[2], t[3])), error = function(e) NULL)
-            cols <- list(
-                c("summary", "element", "Element", "Elemento"),
-                c("summary", "value", "Value", "Valor"),
-                c("membership", "item", "Item", "Ítem"),
-                c("membership", "population", "Population", "Población"),
-                c("groupTable", "group", "Group", "Grupo"),
-                c("groupTable", "persons", "Persons", "Personas"),
-                c("groupTable", "dims", "Dimensions", "Dimensiones"),
-                c("groupTable", "same", "Same as population", "Igual que la población"),
-                c("indFreq", "dims", "Dimensions", "Dimensiones"),
-                c("indFreq", "count", "Persons", "Personas"),
-                c("indFreq", "proportion", "Proportion", "Proporción"),
-                c("indAgree", "element", "Element", "Elemento"),
-                c("indAgree", "value", "Value", "Valor"),
-                c("indTable", "id", "Person", "Persona"),
-                c("indTable", "points", "Time points", "Momentos"),
-                c("indTable", "dims", "Dimensions", "Dimensiones"),
-                c("indTable", "ari", "Agreement (ARI)", "Acuerdo (ARI)")
-            )
-            for (col in cols)
-                tryCatch(self$results[[col[1]]]$getColumn(col[2])$setTitle(tr(col[3], col[4])), error = function(e) NULL)
-        },
-
         # Population network: the same network plot as the EGA analysis.
         # ES: Red de la población: el mismo gráfico de red que el análisis EGA.
         .plotNetwork = function(image, ggtheme, theme, ...) {
@@ -463,7 +417,8 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (is.null(state) || is.null(state$network) || sum(state$network != 0) == 0)
                 return(FALSE)
             plot <- .el_ega_plot(network = state$network, wc = state$wc, opts = self$options,
-                                 palette = .el_plot_series_palette(self$options$plotPalette))
+                                 palette = .el_plot_series_palette(self$options$plotPalette),
+                                 isolated_label = .("Isolated"))
             if (is.null(plot))
                 return(FALSE)
             print(plot)

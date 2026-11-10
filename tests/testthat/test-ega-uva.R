@@ -89,7 +89,7 @@ test_that("UVA reports no redundancy below the cutoff", {
 
 test_that("UVA renders in Spanish", {
 
-    res <- runUVA(redundantData(), reportLang = "es")
+    res <- inSpanish(runUVA(redundantData()))
     expect_match(res$uvaInterpretation$content, "Conjuntos redundantes", fixed = TRUE)
     expect_equal(res$uvaPairs$asDF$sameDim[1], "Sí")
 })

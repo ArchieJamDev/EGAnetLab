@@ -10,7 +10,6 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             id = NULL,
             time = NULL,
             group = NULL,
-            reportLang = "en",
             nEmbed = 5,
             tau = 1,
             delta = 1,
@@ -83,13 +82,6 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 permitted=list(
                     "factor"),
                 default=NULL)
-            private$..reportLang <- jmvcore::OptionList$new(
-                "reportLang",
-                reportLang,
-                options=list(
-                    "en",
-                    "es"),
-                default="en")
             private$..nEmbed <- jmvcore::OptionInteger$new(
                 "nEmbed",
                 nEmbed,
@@ -315,7 +307,6 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..id)
             self$.addOption(private$..time)
             self$.addOption(private$..group)
-            self$.addOption(private$..reportLang)
             self$.addOption(private$..nEmbed)
             self$.addOption(private$..tau)
             self$.addOption(private$..delta)
@@ -357,7 +348,6 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         id = function() private$..id$value,
         time = function() private$..time$value,
         group = function() private$..group$value,
-        reportLang = function() private$..reportLang$value,
         nEmbed = function() private$..nEmbed$value,
         tau = function() private$..tau$value,
         delta = function() private$..delta$value,
@@ -398,7 +388,6 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..id = NA,
         ..time = NA,
         ..group = NA,
-        ..reportLang = NA,
         ..nEmbed = NA,
         ..tau = NA,
         ..delta = NA,
@@ -521,8 +510,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "seed",
                     "levelGroup",
-                    "levelIndividual",
-                    "reportLang"),
+                    "levelIndividual"),
                 columns=list(
                     list(
                         `name`="element", 
@@ -554,8 +542,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "seed",
                     "levelGroup",
-                    "levelIndividual",
-                    "reportLang"),
+                    "levelIndividual"),
                 columns=list(
                     list(
                         `name`="item", 
@@ -586,8 +573,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "seed",
                     "levelGroup",
-                    "levelIndividual",
-                    "reportLang"),
+                    "levelIndividual"),
                 columns=list(
                     list(
                         `name`="group", 
@@ -651,8 +637,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "edgeLabelDigits",
                     "showLegend",
                     "legendPosition",
-                    "legendTitle",
-                    "reportLang")))
+                    "legendTitle")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="indStatus",
@@ -681,8 +666,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "seed",
                     "levelGroup",
-                    "levelIndividual",
-                    "reportLang"),
+                    "levelIndividual"),
                 columns=list(
                     list(
                         `name`="dims", 
@@ -720,8 +704,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "seed",
                     "levelGroup",
-                    "levelIndividual",
-                    "reportLang"),
+                    "levelIndividual"),
                 columns=list(
                     list(
                         `name`="element", 
@@ -752,8 +735,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "seed",
                     "levelGroup",
-                    "levelIndividual",
-                    "reportLang"),
+                    "levelIndividual"),
                 columns=list(
                     list(
                         `name`="id", 
@@ -796,8 +778,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "seed",
                     "levelGroup",
                     "levelIndividual",
-                    "plotPalette",
-                    "reportLang")))
+                    "plotPalette")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="indInterpretation",
@@ -842,7 +823,6 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param id .
 #' @param time .
 #' @param group .
-#' @param reportLang .
 #' @param nEmbed .
 #' @param tau .
 #' @param delta .
@@ -911,7 +891,6 @@ dynega <- function(
     id = NULL,
     time = NULL,
     group = NULL,
-    reportLang = "en",
     nEmbed = 5,
     tau = 1,
     delta = 1,
@@ -970,7 +949,6 @@ dynega <- function(
         id = id,
         time = time,
         group = group,
-        reportLang = reportLang,
         nEmbed = nEmbed,
         tau = tau,
         delta = delta,
