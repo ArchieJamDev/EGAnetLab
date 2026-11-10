@@ -2650,7 +2650,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "EGAnetLab",
                 name = "ega",
-                version = c(0,1,0),
+                version = c(1,0,0),
                 options = options,
                 results = egaResults$new(options=options),
                 data = data,
