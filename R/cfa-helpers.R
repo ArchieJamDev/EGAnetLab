@@ -144,7 +144,15 @@
     out$estimator <- estimator
     out$ordinal <- identical(estimator, "WLSMV")
 
-    factor_names <- paste0("F", keep_dims)
+    # lavaan identifiers must not contain spaces, and a theoretical factor
+    # can be called "Factor 1", so the model uses F1, F2, ... and maps the
+    # names back afterwards.
+    # ES: lavaan no admite espacios en los identificadores y un factor
+    # teórico puede llamarse "Factor 1", así que el modelo usa F1, F2, ... y
+    # luego recupera los nombres.
+    factor_names <- paste0("F", seq_along(keep_dims))
+    factor_of <- stats::setNames(keep_dims, factor_names)
+    lv_label <- stats::setNames(paste0("F", keep_dims), factor_names)
     lines <- vapply(seq_along(keep_dims), function(j) {
         paste0(factor_names[j], " =~ ", paste(safe[as.character(wc[items]) == keep_dims[j]], collapse = " + "))
     }, character(1))
@@ -167,11 +175,13 @@
         groups <- split(unique(first), vapply(unique(first), function(f) higher[match(f, first)], character(1)))
         second <- character(0)
         for (g in names(groups)) {
-            members <- paste0("F", groups[[g]])
+            members <- factor_names[match(groups[[g]], keep_dims)]
+            hg <- match(g, names(groups))
+            lv_label[paste0("H", hg)] <- paste0("H", g)
             if (length(members) == 2)
-                second <- c(second, paste0("H", g, " =~ h", g, "*", members[1], " + h", g, "*", members[2]))
+                second <- c(second, paste0("H", hg, " =~ h", hg, "*", members[1], " + h", hg, "*", members[2]))
             else if (length(members) > 2)
-                second <- c(second, paste0("H", g, " =~ ", paste(members, collapse = " + ")))
+                second <- c(second, paste0("H", hg, " =~ ", paste(members, collapse = " + ")))
         }
         if (length(second) == 0) {
             out$error <- "no higher-order dimension groups two or more lower-order dimensions"
@@ -250,13 +260,16 @@
         std <- std[std$op == "=~" & std$rhs %in% safe, , drop = FALSE]
         out$loadings <- data.frame(
             item = unname(item_of[std$rhs]),
-            factor = sub("^F", "", std$lhs),
+            factor = ifelse(std$lhs %in% names(factor_of), factor_of[std$lhs], std$lhs),
             loading = as.numeric(std$est.std),
             se = as.numeric(std$se),
             stringsAsFactors = FALSE)
     }
 
     out$problems <- .el_cfa_problems(model_fit, item_of, out$warnings)
+    if (is.character(out$problems$neg_lv))
+        out$problems$neg_lv <- unname(ifelse(out$problems$neg_lv %in% names(lv_label),
+                                             lv_label[out$problems$neg_lv], out$problems$neg_lv))
 
     out$ok <- TRUE
     out

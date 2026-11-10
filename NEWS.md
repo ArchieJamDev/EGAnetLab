@@ -76,6 +76,17 @@
   versions) and 10.5281/zenodo.23886112 (this version). The README shows the
   DOI badge and `CITATION.cff` lists both DOIs.
 
+## Fixes found in the report of the 1.0.0 build
+
+* Theoretical factors whose names contain spaces (such as "Factor 1") no
+  longer make lavaan print raw notices under the key findings: the CFA
+  model names its factors F1, F2, ... and maps them back to the names
+  given in the panel.
+* When another algorithm groups the items exactly as EGA, the structure
+  comparison says so again; it was showing the random-intercept sentence
+  ("After removing it, EGA still finds ..."). The Spanish of that
+  random-intercept sentence is restored as well.
+
 ## Preparation for jamovi's library review
 
 * The module now has its own icon in jamovi (`jamovi/assets/eganetlab-icon.png`,

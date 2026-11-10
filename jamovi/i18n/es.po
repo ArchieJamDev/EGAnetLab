@@ -39,6 +39,10 @@ msgid "%s dimensions"
 msgstr "%s dimensiones"
 
 #: R/texts.R
+msgid "%s groups the items exactly as the EGA solution, so it has the same TEFI. Different algorithms reaching the same dimensions support the solution."
+msgstr "%s agrupa los ítems exactamente como la solución de EGA, así que tiene el mismo TEFI. Que algoritmos distintos lleguen a las mismas dimensiones respalda la solución."
+
+#: R/texts.R
 msgid "%s has a single dimension. TEFI is always 0 for one dimension, so it is not compared with the multidimensional structures; use the unidimensionality check of EGA for that question."
 msgstr "%s tiene una sola dimensión. El TEFI vale siempre 0 con una dimensión, así que no se compara con las estructuras multidimensionales; para esa pregunta use la verificación de unidimensionalidad de EGA."
 
@@ -159,7 +163,7 @@ msgstr "Tras quitarlo, EGA encuentra %s dimensiones en lugar de %s. Esto es comp
 
 #: R/texts.R
 msgid "After removing it, EGA still finds %s dimensions with the same items, so the dimensional structure does not depend on this component."
-msgstr "%s agrupa los ítems exactamente como la solución de EGA, así que tiene el mismo TEFI. Que algoritmos distintos lleguen a las mismas dimensiones respalda la solución."
+msgstr "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que la estructura dimensional no depende de este componente."
 
 #: R/texts.R
 msgid "After removing it, no item stays connected to another, so EGA finds no dimension. The random intercept took up what the items share; with all items worded in the same direction this is expected and is not evidence of a wording effect."
@@ -3441,10 +3445,6 @@ msgstr "Muestra total"
 #: ega/results/cfaCompare.title
 msgid "Total sample and random subsamples"
 msgstr "Muestra total y submuestras aleatorias"
-
-#: R/texts.R
-msgid "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que la estructura dimensional no depende de este componente."
-msgstr "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que las dimensiones no son un artefacto de la redacción."
 
 #: ega/options/nodeShape/triangle.title
 #: dynega/options/nodeShape/triangle.title

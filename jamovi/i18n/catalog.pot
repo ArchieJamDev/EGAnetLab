@@ -39,6 +39,10 @@ msgid "%s dimensions"
 msgstr ""
 
 #: R/texts.R
+msgid "%s groups the items exactly as the EGA solution, so it has the same TEFI. Different algorithms reaching the same dimensions support the solution."
+msgstr ""
+
+#: R/texts.R
 msgid "%s has a single dimension. TEFI is always 0 for one dimension, so it is not compared with the multidimensional structures; use the unidimensionality check of EGA for that question."
 msgstr ""
 
@@ -3440,10 +3444,6 @@ msgstr ""
 
 #: ega/results/cfaCompare.title
 msgid "Total sample and random subsamples"
-msgstr ""
-
-#: R/texts.R
-msgid "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que la estructura dimensional no depende de este componente."
 msgstr ""
 
 #: ega/options/nodeShape/triangle.title

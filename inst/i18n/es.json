@@ -29,6 +29,9 @@
             "%s dimensions": [
                 "%s dimensiones"
             ],
+            "%s groups the items exactly as the EGA solution, so it has the same TEFI. Different algorithms reaching the same dimensions support the solution.": [
+                "%s agrupa los ítems exactamente como la solución de EGA, así que tiene el mismo TEFI. Que algoritmos distintos lleguen a las mismas dimensiones respalda la solución."
+            ],
             "%s has a single dimension. TEFI is always 0 for one dimension, so it is not compared with the multidimensional structures; use the unidimensionality check of EGA for that question.": [
                 "%s tiene una sola dimensión. El TEFI vale siempre 0 con una dimensión, así que no se compara con las estructuras multidimensionales; para esa pregunta use la verificación de unidimensionalidad de EGA."
             ],
@@ -117,7 +120,7 @@
                 "Tras quitarlo, EGA encuentra %s dimensiones en lugar de %s. Esto es compatible con que algunas dimensiones originales reflejen la redacción y no el contenido, pero también con que el intercepto aleatorio absorba contenido que los ítems comparten. Revise qué ítems cambian de dimensión y su redacción antes de elegir una explicación."
             ],
             "After removing it, EGA still finds %s dimensions with the same items, so the dimensional structure does not depend on this component.": [
-                "%s agrupa los ítems exactamente como la solución de EGA, así que tiene el mismo TEFI. Que algoritmos distintos lleguen a las mismas dimensiones respalda la solución."
+                "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que la estructura dimensional no depende de este componente."
             ],
             "After removing it, no item stays connected to another, so EGA finds no dimension. The random intercept took up what the items share; with all items worded in the same direction this is expected and is not evidence of a wording effect.": [
                 "Tras quitarlo, ningún ítem queda conectado con otro, así que EGA no encuentra ninguna dimensión. El intercepto aleatorio absorbió lo que los ítems comparten; con todos los ítems redactados en la misma dirección esto es esperable y no es evidencia de un efecto de redacción."
@@ -2398,9 +2401,6 @@
             ],
             "Total sample and random subsamples": [
                 "Muestra total y submuestras aleatorias"
-            ],
-            "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que la estructura dimensional no depende de este componente.": [
-                "Tras quitarlo, EGA sigue encontrando %s dimensiones con los mismos ítems, así que las dimensiones no son un artefacto de la redacción."
             ],
             "Triangle": [
                 "Triángulo"

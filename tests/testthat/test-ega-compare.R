@@ -62,6 +62,7 @@ test_that("the EGA solution is compared with the other algorithms", {
     expect_true(any(table$delta == 0))
     expect_equal(nrow(res$compareMembership$asDF), 12)
     expect_match(res$compareInterpretation$content, "Theoretical structure", fixed = TRUE)
+    expect_false(grepl("After removing it", res$compareInterpretation$content, fixed = TRUE))
 })
 
 test_that("algorithm solutions are reproducible", {
@@ -127,6 +128,19 @@ test_that("CFA fit is added for each structure on request", {
     expect_true(all(table$cfi > 0.9 & table$cfi <= 1))
     expect_true(all(table$rmsea >= 0))
     expect_match(res$compareInterpretation$content, "favor it", fixed = TRUE)
+})
+
+test_that("theoretical factor names with spaces reach the CFA without lavaan notices", {
+
+    spaced <- factors(`Factor 1` = paste0("item", 1:4), `Factor 2` = paste0("item", 5:8),
+                      `Factor 3` = paste0("item", 9:12))
+    res <- runCompare(compareAlgorithms = FALSE, theoryFactors = spaced, compareCFA = TRUE)
+    table <- res$compareTable$asDF
+
+    expect_true(all(is.finite(table$cfi)))
+    report <- paste(capture.output(print(res)), collapse = "\n")
+    expect_false(grepl("lavaan", report, fixed = TRUE))
+    expect_false(grepl("identifiers", report, fixed = TRUE))
 })
 
 test_that("the structure comparison renders in Spanish", {
