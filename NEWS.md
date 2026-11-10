@@ -1,5 +1,9 @@
 # EGAnetLab 1.0.0 (released 2026-11-10)
 
+* Archived in Zenodo: version DOI
+  [10.5281/zenodo.24112120](https://doi.org/10.5281/zenodo.24112120);
+  all versions: [10.5281/zenodo.23886111](https://doi.org/10.5281/zenodo.23886111).
+
 * Version raised to 1.0.0 in `DESCRIPTION`, `jamovi/0000.yaml` and both
   analyses, as the jamovi library expects for a release-ready module
   (finding of jamovi's module audit, 2026-11-03).
