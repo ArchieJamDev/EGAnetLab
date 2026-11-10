@@ -565,8 +565,9 @@ from jamovi's own Theme/Palette settings via its native `ggtheme`/`theme`
 mechanism, exactly as in AssumptionsLab. Network plots are the one exception:
 EGAnet draws them itself (GGally::ggnet2) with a manual color scale, and adding
 jamovi's ggtheme on top would draw axes and a panel background behind the
-network. For those, the `plotPalette` option offers EGAnet's default palette
-plus two colorblind-safe alternatives (Okabe-Ito, viridis), and the render
+network. Their dimension colors still follow jamovi: `.el_plot_series_palette()`
+asks `jmvcore::colorPalette()` for the palette chosen in jamovi's settings
+(the `theme` argument of the render function), and the render
 function receives only the network matrix and memberships through
 `image$state`, never the whole EGA object.
 
@@ -583,9 +584,10 @@ heredan su identidad visual de los ajustes de Tema/Paleta de jamovi vía su
 mecanismo nativo `ggtheme`/`theme`, igual que en AssumptionsLab. Los gráficos
 de red son la excepción: EGAnet los dibuja por su cuenta (GGally::ggnet2) con
 una escala de color manual, y agregar encima el ggtheme de jamovi dibujaría
-ejes y un fondo de panel detrás de la red. Para ellos, la opción
-`plotPalette` ofrece la paleta por defecto de EGAnet más dos alternativas
-aptas para daltonismo (Okabe-Ito, viridis), y la función de render recibe
+ejes y un fondo de panel detrás de la red. Aun así, sus colores de dimensión
+siguen a jamovi: `.el_plot_series_palette()` pide a `jmvcore::colorPalette()`
+la paleta elegida en los ajustes de jamovi (el argumento `theme` de la
+función de render), y la función de render recibe
 solo la matriz de la red y las pertenencias vía `image$state`, nunca el
 objeto EGA completo.
 

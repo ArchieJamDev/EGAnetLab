@@ -117,9 +117,16 @@ test_that("dynega is reported in Spanish", {
 
     res <- inSpanish(EGAnetLab::dynega(data = dynData(), vars = paste0("V", 1:24), id = "ID",
                                        time = "Time"))
-    expect_match(res$intro$content, "longitudinales intensivos", fixed = TRUE)
+    expect_false(res$intro$visible)
     expect_match(res$interpretation$content, "Siguiente paso", fixed = TRUE)
     expect_false(grepl("EGAnet(?!Lab)", res$interpretation$content, perl = TRUE))
+})
+
+test_that("the introduction is shown only while the analysis is empty", {
+
+    empty <- inSpanish(EGAnetLab::dynega(data = dynData(), vars = paste0("V", 1:24)))
+    expect_true(empty$intro$visible)
+    expect_match(empty$intro$content, "longitudinales intensivos", fixed = TRUE)
 })
 
 test_that("memberships are matched to the items even without names", {

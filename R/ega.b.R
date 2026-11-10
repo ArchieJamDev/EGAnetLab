@@ -104,17 +104,17 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             for (col in c("low", "high"))
                 self$results$bnEdges$getColumn(col)$setSuperTitle(.("95% bootstrap interval"))
 
-            self$results$intro$setContent(
-                .el_html_block(NULL, txt("ega", "intro"))
-            )
-
             # Nothing selected yet: show the introduction only, without an
-            # error, exactly as AssumptionsLab does on an empty analysis.
+            # error. Once items are chosen the introduction is hidden, so the
+            # report starts with the results.
             # ES: Aún no hay nada seleccionado: se muestra solo la
-            # introducción, sin error, igual que AssumptionsLab con un
-            # análisis vacío.
-            if (length(self$options$vars) == 0)
+            # introducción, sin error. Al elegir ítems la introducción se
+            # oculta, así que el informe empieza con los resultados.
+            self$results$intro$setVisible(length(self$options$vars) == 0)
+            if (length(self$options$vars) == 0) {
+                self$results$intro$setContent(.el_html_block(NULL, txt("ega", "intro")))
                 return()
+            }
             private$.key <- list(findings = character(0), uncertain = character(0), warnings = character(0))
 
             # -----------------------------------------------------------------
@@ -2710,7 +2710,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 network = state$network,
                 wc = state$wc,
                 opts = self$options,
-                palette = .el_plot_series_palette(self$options$plotPalette),
+                palette = .el_plot_series_palette(max(1L, length(unique(stats::na.omit(state$wc)))), theme),
                 isolated_label = .("Isolated")
             )
             if (is.null(plot))
@@ -2750,7 +2750,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 ggplot2::labs(x = NULL, y = state$labels$y, color = state$labels$dimension) +
                 ggtheme
 
-            palette <- .el_plot_series_palette(self$options$plotPalette)
+            palette <- .el_plot_series_palette(nlevels(df$dimension), theme)
             if (!is.null(palette))
                 plot <- plot + ggplot2::scale_color_manual(
                     values = rep_len(palette, nlevels(df$dimension)))
@@ -2790,7 +2790,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                               caption = state$labels$note) +
                 ggtheme
 
-            palette <- .el_plot_series_palette(self$options$plotPalette)
+            palette <- .el_plot_series_palette(nlevels(df$group), theme)
             if (!is.null(palette))
                 plot <- plot + ggplot2::scale_colour_manual(values = rep_len(palette, nlevels(df$group)))
 
@@ -2887,7 +2887,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 plot <- plot + ggplot2::ggtitle(title) +
                     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, face = "bold"))
 
-            palette <- .el_plot_series_palette(o$plotPalette)
+            palette <- .el_plot_series_palette(length(groups), theme)
             if (!is.null(palette))
                 plot <- plot + ggplot2::scale_fill_manual(
                     values = stats::setNames(rep_len(palette, length(groups)), groups))
@@ -2922,7 +2922,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 ggplot2::labs(x = state$labels$x, y = state$labels$y, fill = NULL) +
                 ggtheme
 
-            palette <- .el_plot_series_palette(self$options$plotPalette)
+            palette <- .el_plot_series_palette(2L, theme)
             if (!is.null(palette))
                 plot <- plot + ggplot2::scale_fill_manual(values = palette[1:2], drop = FALSE)
 
@@ -2964,7 +2964,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 ggplot2::labs(x = state$labels$x, y = NULL, colour = state$labels$dimension) +
                 ggtheme
 
-            palette <- .el_plot_series_palette(self$options$plotPalette)
+            palette <- .el_plot_series_palette(nlevels(df$dimension), theme)
             if (!is.null(palette))
                 plot <- plot + ggplot2::scale_colour_manual(values = rep_len(palette, nlevels(df$dimension)))
 
@@ -2988,7 +2988,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             df$edge <- paste0(df$a, " – ", df$b)
             df$edge <- factor(df$edge, levels = rev(df$edge[order(-df$weight)]))
 
-            palette <- .el_plot_series_palette(self$options$plotPalette)
+            palette <- .el_plot_series_palette(1L, theme)
             colour <- if (!is.null(palette)) palette[1] else "#1f77b4"
 
             plot <- ggplot2::ggplot(df, ggplot2::aes(x = weight, y = edge)) +
@@ -3037,7 +3037,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 ggtheme +
                 ggplot2::theme(legend.position = "none")
 
-            palette <- .el_plot_series_palette(self$options$plotPalette)
+            palette <- .el_plot_series_palette(nlevels(df$measure), theme)
             if (!is.null(palette))
                 plot <- plot +
                     ggplot2::scale_colour_manual(values = rep_len(palette, nlevels(df$measure))) +

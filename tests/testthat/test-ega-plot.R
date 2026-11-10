@@ -68,7 +68,7 @@ test_that("every layout, shape and edge style renders", {
 
     for (opts in grid) {
         plot <- EGAnetLab:::.el_ega_plot(fit$network, fit$wc, opts = opts,
-                                         palette = EGAnetLab:::.el_plot_series_palette("colorblind"))
+                                         palette = EGAnetLab:::.el_plot_series_palette(8))
         expect_s3_class(plot, "ggplot")
         expect_true(renders(plot), info = opts$layout)
     }
@@ -108,14 +108,19 @@ test_that("the legend can be hidden", {
     expect_equal(plot$theme$legend.position, "none")
 })
 
-test_that("palettes longer than the number of dimensions are accepted", {
+test_that("the dimension colors come from jamovi's palette", {
 
     fit <- edgeEgaFit()
-    for (choice in c("colorblind", "viridis")) {
-        plot <- EGAnetLab:::.el_ega_plot(fit$network, fit$wc, opts = list(),
-                                         palette = EGAnetLab:::.el_plot_series_palette(choice))
-        expect_true(renders(plot), info = choice)
-    }
+    colors <- EGAnetLab:::.el_plot_series_palette(3, theme = list(palette = "jmv"))
+    expect_length(colors, 3)
+    expect_identical(colors, jmvcore::colorPalette(3, "jmv", "fill"))
+    expect_identical(EGAnetLab:::.el_plot_series_palette(3), colors)
+
+    # Longer than the number of dimensions is accepted too.
+    # ES: También se acepta una paleta más larga que las dimensiones.
+    plot <- EGAnetLab:::.el_ega_plot(fit$network, fit$wc, opts = list(),
+                                     palette = EGAnetLab:::.el_plot_series_palette(8))
+    expect_true(renders(plot))
 })
 
 test_that("distance-based layouts work with negative edges", {

@@ -44,6 +44,23 @@
 * bootEGA, invariance, UVA and hierEGA start with a checkpoint, so jamovi can
   stop a long run that the user has already changed.
 
+## Options panel and plots
+
+* The introduction is shown only while no items are selected; with items
+  chosen the report starts with the results. The "how to read this table"
+  blocks have their own **Reading guides** checkbox in *Output* (on by
+  default).
+* The **Dimension Colors** option is removed: every plot, including the
+  network plot drawn by EGAnet, takes its colors from the palette chosen in
+  jamovi's settings.
+* **Grouping variable** and **Same items, second measurement** moved to the
+  variable boxes at the top of the panel, like jmv's own analyses. The
+  negatively worded items and the theoretical structure stay in their
+  sections, because they hold the same items already selected in *Items*.
+* Section headings use title case, option names sentence case, checkboxes
+  no longer start with "Show", and the spelling is American throughout
+  ("Derivative analyzed").
+
 # EGAnetLab 0.1.0 (released 2026-11-02)
 
 * First public release, archived in Zenodo with DOI

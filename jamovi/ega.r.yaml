@@ -44,6 +44,7 @@ items:
   - name: summaryGuide
     title: Dimensional structure
     type: Html
+    visible: (showGuides)
 
   - name: summary
     title: Dimensional structure
@@ -98,7 +99,7 @@ items:
   - name: loadingsGuide
     title: Network loadings
     type: Html
-    visible: (showLoadings)
+    visible: (showGuides && showLoadings)
 
   - name: loadings
     title: Network loadings (standardized)
@@ -171,7 +172,6 @@ items:
       - model
       - algorithm
       - uniMethod
-      - plotPalette
       - layout
       - plotTitle
       - nodeSize
@@ -199,7 +199,7 @@ items:
   - name: scoresGuide
     title: Network scores
     type: Html
-    visible: (netScores)
+    visible: (showGuides && netScores)
 
   - name: scores
     title: Network scores
@@ -439,7 +439,6 @@ items:
       - naData
       - model
       - uniMethod
-      - plotPalette
       - hierPlotTitle
       - hierShowLevels
       - hierItemLabels
@@ -631,7 +630,7 @@ items:
   - name: bootSummaryGuide
     title: Number of dimensions across samples
     type: Html
-    visible: (runBoot)
+    visible: (showGuides && runBoot)
 
   - name: bootSummary
     title: Number of dimensions across samples
@@ -786,7 +785,6 @@ items:
       - iter
       - seed
       - stabilityCut
-      - plotPalette
 
   - name: bootFrequencyPlot
     title: Frequency of the number of dimensions
@@ -807,7 +805,6 @@ items:
       - bootType
       - iter
       - seed
-      - plotPalette
 
   # ---------------------------------------------------------------------------
   # Confirmatory factor analysis (CFA), with the optional random split.
@@ -1081,7 +1078,7 @@ items:
   - name: cfaBifactorGuide
     title: Bifactor loadings
     type: Html
-    visible: (runCFA && runHier)
+    visible: (showGuides && runCFA && runHier)
 
   - name: cfaBifactorLoadings
     title: Bifactor model loadings (standardized, total sample)
@@ -1209,7 +1206,6 @@ items:
       - uniMethod
       - cenStandardize
       - cenClosBetw
-      - plotPalette
 
   - name: cenInterpretation
     title: Centrality interpretation
@@ -1327,7 +1323,6 @@ items:
       - bnIter
       - bnCaseIter
       - bnSeed
-      - plotPalette
 
   - name: bnCasePlot
     title: Centrality stability when dropping cases
@@ -1349,7 +1344,6 @@ items:
       - bnCaseIter
       - bnSeed
       - cenClosBetw
-      - plotPalette
 
   - name: bnInterpretation
     title: Network stability interpretation
@@ -1483,7 +1477,6 @@ items:
       - invStructure
       - invConfigCut
       - invIter
-      - plotPalette
 
   - name: invInterpretation
     title: Metric invariance interpretation

@@ -54,9 +54,16 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             txt <- function(section, key) .el_text(self, section, key)
             o <- self$options
 
-            self$results$intro$setContent(.el_html_block(NULL, txt("dyn", "intro")))
+            # The introduction is help for the empty analysis: it is shown
+            # only until the items and the person ID are chosen.
+            # ES: La introducción es ayuda para el análisis vacío: se muestra
+            # solo hasta que se eligen los ítems y el ID de persona.
+            ready <- length(o$vars) > 0 && !is.null(o$id) && length(o$id) > 0
+            self$results$intro$setVisible(!ready)
+            if (!ready)
+                self$results$intro$setContent(.el_html_block(NULL, txt("dyn", "intro")))
 
-            if (length(o$vars) == 0 || is.null(o$id) || length(o$id) == 0) {
+            if (!ready) {
                 self$results$status$setContent(.el_html_block(NULL, txt("dyn", "choose_id")))
                 return()
             }
@@ -418,7 +425,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (is.null(state) || is.null(state$network) || sum(state$network != 0) == 0)
                 return(FALSE)
             plot <- .el_ega_plot(network = state$network, wc = state$wc, opts = self$options,
-                                 palette = .el_plot_series_palette(self$options$plotPalette),
+                                 palette = .el_plot_series_palette(max(1L, length(unique(stats::na.omit(state$wc)))), theme),
                                  isolated_label = .("Isolated"))
             if (is.null(plot))
                 return(FALSE)
@@ -449,7 +456,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # even when no person has it.
             # ES: Se conservan ambas claves de la leyenda, para nombrar el
             # número de la población aunque ninguna persona lo tenga.
-            palette <- .el_plot_series_palette(self$options$plotPalette)
+            palette <- .el_plot_series_palette(2L, theme)
             if (is.null(palette)) palette <- c("#E69F00", "#56B4E9")
             plot <- plot + ggplot2::scale_fill_manual(values = stats::setNames(palette[1:2], levels(df$group)),
                                                       limits = levels(df$group), drop = FALSE)

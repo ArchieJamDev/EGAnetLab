@@ -26,7 +26,6 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showChoicesGuide = TRUE,
             showNetworkPlot = TRUE,
             showIndPlot = TRUE,
-            plotPalette = "default",
             layout = "qgraph",
             plotTitle = "",
             nodeSize = 12,
@@ -173,14 +172,6 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showIndPlot",
                 showIndPlot,
                 default=TRUE)
-            private$..plotPalette <- jmvcore::OptionList$new(
-                "plotPalette",
-                plotPalette,
-                options=list(
-                    "default",
-                    "colorblind",
-                    "viridis"),
-                default="default")
             private$..layout <- jmvcore::OptionList$new(
                 "layout",
                 layout,
@@ -323,7 +314,6 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..showChoicesGuide)
             self$.addOption(private$..showNetworkPlot)
             self$.addOption(private$..showIndPlot)
-            self$.addOption(private$..plotPalette)
             self$.addOption(private$..layout)
             self$.addOption(private$..plotTitle)
             self$.addOption(private$..nodeSize)
@@ -364,7 +354,6 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         showChoicesGuide = function() private$..showChoicesGuide$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
         showIndPlot = function() private$..showIndPlot$value,
-        plotPalette = function() private$..plotPalette$value,
         layout = function() private$..layout$value,
         plotTitle = function() private$..plotTitle$value,
         nodeSize = function() private$..nodeSize$value,
@@ -404,7 +393,6 @@ dynegaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..showChoicesGuide = NA,
         ..showNetworkPlot = NA,
         ..showIndPlot = NA,
-        ..plotPalette = NA,
         ..layout = NA,
         ..plotTitle = NA,
         ..nodeSize = NA,
@@ -619,7 +607,6 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "seed",
                     "levelGroup",
                     "levelIndividual",
-                    "plotPalette",
                     "layout",
                     "plotTitle",
                     "nodeSize",
@@ -777,8 +764,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "seed",
                     "levelGroup",
-                    "levelIndividual",
-                    "plotPalette")))
+                    "levelIndividual")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="indInterpretation",
@@ -835,7 +821,6 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showChoicesGuide .
 #' @param showNetworkPlot .
 #' @param showIndPlot .
-#' @param plotPalette .
 #' @param layout .
 #' @param plotTitle .
 #' @param nodeSize .
@@ -902,7 +887,6 @@ dynega <- function(
     showChoicesGuide = TRUE,
     showNetworkPlot = TRUE,
     showIndPlot = TRUE,
-    plotPalette = "default",
     layout = "qgraph",
     plotTitle = "",
     nodeSize = 12,
@@ -960,7 +944,6 @@ dynega <- function(
         showChoicesGuide = showChoicesGuide,
         showNetworkPlot = showNetworkPlot,
         showIndPlot = showIndPlot,
-        plotPalette = plotPalette,
         layout = layout,
         plotTitle = plotTitle,
         nodeSize = nodeSize,

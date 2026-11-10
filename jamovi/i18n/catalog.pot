@@ -256,15 +256,15 @@ msgid "Because some items were removed in the configural step, the metric test o
 msgstr ""
 
 #: R/texts.R
-msgid "Because the first derivative was analysed, this is a structure of change: it describes which items rise and fall together from moment to moment. It can differ from the structure of a cross-sectional EGA of the same items, which describes which people score high or low together."
+msgid "Because the first derivative was analyzed, this is a structure of change: it describes which items rise and fall together from moment to moment. It can differ from the structure of a cross-sectional EGA of the same items, which describes which people score high or low together."
 msgstr ""
 
 #: R/texts.R
-msgid "Because the level (derivative 0) was analysed, the structure reflects the smoothed values of the items within each person's window, closer to a structure of states than of change."
+msgid "Because the level (derivative 0) was analyzed, the structure reflects the smoothed values of the items within each person's window, closer to a structure of states than of change."
 msgstr ""
 
 #: R/texts.R
-msgid "Because the second derivative was analysed, the structure describes how the speed of change accelerates together; it is noisier and needs many time points per person."
+msgid "Because the second derivative was analyzed, the structure describes how the speed of change accelerates together; it is noisier and needs many time points per person."
 msgstr ""
 
 #: R/texts.R
@@ -381,7 +381,7 @@ msgid "CFA estimator"
 msgstr ""
 
 #: R/texts.R
-msgid "CFA fit for each structure: confirmatory factor analysis of each structure with lavaan (automatic estimator: WLSMV for items with fewer than 6 categories, otherwise MLR), with CFI, RMSEA and SRMR. It is estimated on the same data that produced the EGA solution, which favors that solution; for an independent test use the random split in the Confirmatory factor analysis box."
+msgid "CFA fit for each structure: confirmatory factor analysis of each structure with lavaan (automatic estimator: WLSMV for items with fewer than 6 categories, otherwise MLR), with CFI, RMSEA and SRMR. It is estimated on the same data that produced the EGA solution, which favors that solution; for an independent test use the random split in the Confirmatory Factor Analysis box."
 msgstr ""
 
 #: ega/results/cfaInterpretation.title
@@ -445,7 +445,7 @@ msgid "Centrality"
 msgstr ""
 
 #: ega/ui[6].label
-msgid "Centrality and network stability"
+msgid "Centrality and Network Stability"
 msgstr ""
 
 #: R/texts.R
@@ -534,27 +534,22 @@ msgstr ""
 msgid "Closeness and betweenness are shown because they were requested. In psychological networks they are often unstable and have no clear meaning (Bringmann et al., 2019); give them less weight than strength."
 msgstr ""
 
-#: ega/options/plotPalette/colorblind.title
-#: dynega/options/plotPalette/colorblind.title
-msgid "Colorblind-safe (Okabe-Ito)"
-msgstr ""
-
 #: ega/options/algorithm.title
 #: dynega/options/algorithm.title
-msgid "Community Detection"
-msgstr ""
-
 #: R/dynega.b.R
 #: R/ega.b.R
 #: R/texts.R
 msgid "Community detection"
 msgstr ""
 
+#: ega/ui[4].label
+msgid "Compare Structures (TEFI)"
+msgstr ""
+
 #: R/ega.b.R
 msgid "Compare structures"
 msgstr ""
 
-#: ega/ui[4].label
 #: ega/results/compareStatus.title
 #: R/ega.b.R
 msgid "Compare structures (TEFI)"
@@ -596,6 +591,9 @@ msgid "Confirm with CFA"
 msgstr ""
 
 #: ega/ui[10].label
+msgid "Confirmatory Factor Analysis"
+msgstr ""
+
 #: ega/results/cfaStatus.title
 #: R/ega.b.R
 msgid "Confirmatory factor analysis"
@@ -707,7 +705,7 @@ msgstr ""
 
 #: dynega/options/derivative.title
 #: R/texts.R
-msgid "Derivative analysed"
+msgid "Derivative analyzed"
 msgstr ""
 
 #: dynega/ui[1].label
@@ -750,11 +748,6 @@ msgstr ""
 #: ega/results/invTable.columns.title
 #: R/ega.b.R
 msgid "Dimension"
-msgstr ""
-
-#: ega/options/plotPalette.title
-#: dynega/options/plotPalette.title
-msgid "Dimension Colors"
 msgstr ""
 
 #: ega/options/showFrequencyPlot.title
@@ -970,11 +963,6 @@ msgstr ""
 msgid "EGAnetLab could not run the network stability analysis: %s."
 msgstr ""
 
-#: ega/options/plotPalette/default.title
-#: dynega/options/plotPalette/default.title
-msgid "EGAnetLab default"
-msgstr ""
-
 #: R/texts.R
 msgid "EGAnetLab estimates the network in each group with the same dimensional structure and compares the network loadings item by item. Then it shuffles people between groups many times to see how large the differences would be if group membership did not matter. An item whose loading differs more than expected by chance is not invariant: the item does not measure its dimension in the same way in the two groups."
 msgstr ""
@@ -1043,6 +1031,11 @@ msgstr ""
 #: ega/options/edgeLabelSize.title
 #: dynega/options/edgeLabelSize.title
 msgid "Edge weight size"
+msgstr ""
+
+#: ega/options/showEdgeLabels.title
+#: dynega/options/showEdgeLabels.title
+msgid "Edge weights"
 msgstr ""
 
 #: ega/results/bnEdges.title
@@ -1291,13 +1284,16 @@ msgid "Group"
 msgstr ""
 
 #: ega/ui[7].label
+msgid "Group Comparison"
+msgstr ""
+
 #: ega/results/groupStatus.title
 #: R/ega.b.R
 msgid "Group comparison"
 msgstr ""
 
 #: ega/options/group.title
-#: ega/ui[7][3][0].label
+#: ega/ui[0][1].label
 #: dynega/options/group.title
 msgid "Grouping variable"
 msgstr ""
@@ -1344,8 +1340,12 @@ msgstr ""
 msgid "Hierarchical EGA interpretation"
 msgstr ""
 
+#: ega/ui[13].label
+msgid "Hierarchical Structure Plot"
+msgstr ""
+
 #: ega/ui[5].label
-msgid "Hierarchical and wording structure"
+msgid "Hierarchical and Wording Structure"
 msgstr ""
 
 #: ega/results/cfaHierInterpretation.title
@@ -1357,7 +1357,6 @@ msgstr ""
 msgid "Hierarchical structure"
 msgstr ""
 
-#: ega/ui[13].label
 #: ega/results/hierPlot.title
 msgid "Hierarchical structure plot"
 msgstr ""
@@ -1404,7 +1403,7 @@ msgid "In the data, these items are"
 msgstr ""
 
 #: R/texts.R
-msgid "In the population, the items form %d dimensions (derivative analysed: %s): within each dimension the items change together over time, and partly independently of the other dimensions."
+msgid "In the population, the items form %d dimensions (derivative analyzed: %s): within each dimension the items change together over time, and partly independently of the other dimensions."
 msgstr ""
 
 #: R/texts.R
@@ -1412,15 +1411,11 @@ msgid "In the population, the items form %d dimensions of change over time (Dyna
 msgstr ""
 
 #: R/texts.R
-msgid "In the population, the items form a single dimension (derivative analysed: %s): they tend to change together over time."
+msgid "In the population, the items form a single dimension (derivative analyzed: %s): they tend to change together over time."
 msgstr ""
 
 #: ega/options/compareAlgorithms.title
 msgid "Include the other community algorithms"
-msgstr ""
-
-#: ega/ui[7][0].label
-msgid "Independent groups: the variable that defines them (e.g. sex)."
 msgstr ""
 
 #: R/texts.R
@@ -1448,7 +1443,7 @@ msgstr ""
 msgid "Introduction"
 msgstr ""
 
-#: ega/ui[7][4].label
+#: ega/ui[7][1].label
 msgid "Invariance (independent groups)"
 msgstr ""
 
@@ -1540,6 +1535,10 @@ msgstr ""
 
 #: ega/options/hierItemLabelSize.title
 msgid "Item name size"
+msgstr ""
+
+#: ega/options/hierItemLabels.title
+msgid "Item names"
 msgstr ""
 
 #: ega/options/hierItemSize.title
@@ -1727,7 +1726,9 @@ msgstr ""
 msgid "Left"
 msgstr ""
 
+#: ega/options/showLegend.title
 #: ega/ui[12][3][0].label
+#: dynega/options/showLegend.title
 #: dynega/ui[5][3][0].label
 msgid "Legend"
 msgstr ""
@@ -1757,6 +1758,10 @@ msgstr ""
 
 #: dynega/options/derivative/0.title
 msgid "Level (0, the values themselves)"
+msgstr ""
+
+#: ega/options/hierShowLevels.title
+msgid "Level names"
 msgstr ""
 
 #: dynega/ui[3].label
@@ -1923,9 +1928,6 @@ msgid "Metric invariance of network loadings"
 msgstr ""
 
 #: ega/options/naData.title
-msgid "Missing Values"
-msgstr ""
-
 #: R/texts.R
 msgid "Missing values"
 msgstr ""
@@ -1975,12 +1977,15 @@ msgstr ""
 msgid "Negative edges"
 msgstr ""
 
+#: ega/ui[2].label
+msgid "Negatively Worded Items"
+msgstr ""
+
 #: ega/results/riMembership.columns.title
 msgid "Negatively worded"
 msgstr ""
 
 #: ega/options/negItems.title
-#: ega/ui[2].label
 #: ega/ui[2][0][0].label
 #: R/ega.b.R
 msgid "Negatively worded items"
@@ -1994,7 +1999,7 @@ msgstr ""
 msgid "Negatively worded items: %s. They are as answered in the data, so riEGA uses them as they are (the other analyses use them reversed)."
 msgstr ""
 
-#: ega/ui[7][5].label
+#: ega/ui[7][2].label
 #: ega/results/nctStatus.title
 #: R/ega.b.R
 msgid "Network Comparison Test"
@@ -2008,9 +2013,13 @@ msgstr ""
 msgid "Network Comparison Test interpretation"
 msgstr ""
 
-#: ega/options/model.title
-#: dynega/options/model.title
-msgid "Network Model"
+#: ega/ui[12].label
+#: dynega/ui[5].label
+msgid "Network Plot"
+msgstr ""
+
+#: ega/ui[3].label
+msgid "Network Scores"
 msgstr ""
 
 #: ega/results/edgeTable.title
@@ -2043,6 +2052,8 @@ msgstr ""
 msgid "Network loadings summarize how strongly each item is connected to each dimension, on a scale comparable to factor loadings (Christensen & Golino, 2021; see references)."
 msgstr ""
 
+#: ega/options/model.title
+#: dynega/options/model.title
 #: R/dynega.b.R
 #: R/ega.b.R
 #: R/texts.R
@@ -2050,8 +2061,6 @@ msgid "Network model"
 msgstr ""
 
 #: ega/options/showNetworkPlot.title
-#: ega/ui[12].label
-#: dynega/ui[5].label
 msgid "Network plot"
 msgstr ""
 
@@ -2063,7 +2072,6 @@ msgstr ""
 msgid "Network score for dimension %s (EGAnetLab)"
 msgstr ""
 
-#: ega/ui[3].label
 #: ega/results/scoresGuide.title
 #: ega/results/scores.title
 #: ega/results/netScoresOV.title
@@ -2124,7 +2132,7 @@ msgid "Next step: report the number of samples, the seed and the CS coefficient 
 msgstr ""
 
 #: R/texts.R
-msgid "Next step: report the population structure together with the distribution of individual structures, the number of time points per person and the derivative analysed. Check whether persons who differ from the population share characteristics (group, adherence, number of time points)."
+msgid "Next step: report the population structure together with the distribution of individual structures, the number of time points per person and the derivative analyzed. Check whether persons who differ from the population share characteristics (group, adherence, number of time points)."
 msgstr ""
 
 #: R/texts.R
@@ -2132,7 +2140,7 @@ msgid "Next step: review the content of the non-invariant items (wording, cultur
 msgstr ""
 
 #: R/texts.R
-msgid "Next step: tick Run bootstrap in the Stability (bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above."
+msgid "Next step: tick Run bootstrap in the Stability (Bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above."
 msgstr ""
 
 #: R/texts.R
@@ -2296,7 +2304,7 @@ msgid "One factor"
 msgstr ""
 
 #: ega/ui[5][2].label
-msgid "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively worded items box; this analysis uses them in their original direction (not recoded)."
+msgid "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively Worded Items box; this analysis uses them in their original direction (not recoded)."
 msgstr ""
 
 #: R/texts.R
@@ -2545,6 +2553,10 @@ msgstr ""
 msgid "Reading"
 msgstr ""
 
+#: ega/options/showGuides.title
+msgid "Reading guides"
+msgstr ""
+
 #: ega/options/edgeNegColor/red.title
 #: dynega/options/edgeNegColor/red.title
 msgid "Red"
@@ -2665,16 +2677,12 @@ msgid "Same item membership as their own group (ARI = 1)"
 msgstr ""
 
 #: ega/options/pairedVars.title
-#: ega/ui[7][3][1].label
+#: ega/ui[0][2].label
 msgid "Same items, second measurement"
 msgstr ""
 
 #: R/texts.R
 msgid "Same number of dimensions as the population"
-msgstr ""
-
-#: ega/ui[7][1].label
-msgid "Same people measured twice (NCT only): the second measurement"
 msgstr ""
 
 #: R/ega.b.R
@@ -2711,7 +2719,7 @@ msgid "Save network scores"
 msgstr ""
 
 #: R/texts.R
-msgid "Save network scores (in the Network scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it."
+msgid "Save network scores (in the Network Scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it."
 msgstr ""
 
 #: ega/options/splitOV.title
@@ -2750,22 +2758,8 @@ msgstr ""
 msgid "Set"
 msgstr ""
 
-#: ega/options/showEdgeLabels.title
-#: dynega/options/showEdgeLabels.title
-msgid "Show edge weights"
-msgstr ""
-
-#: ega/options/hierItemLabels.title
-msgid "Show item names"
-msgstr ""
-
-#: ega/options/showLegend.title
-#: dynega/options/showLegend.title
-msgid "Show legend"
-msgstr ""
-
-#: ega/options/hierShowLevels.title
-msgid "Show level names"
+#: ega/ui[7][0].label
+msgid "Set the groups in the variable boxes at the top: Grouping variable for independent groups (e.g. sex), or Same items, second measurement when the same people answered the items twice (NCT only, items in the same order)."
 msgstr ""
 
 #: R/texts.R
@@ -2828,11 +2822,14 @@ msgstr ""
 msgid "Stability"
 msgstr ""
 
+#: ega/ui[9].label
+msgid "Stability (Bootstrap)"
+msgstr ""
+
 #: ega/ui[6][1].label
 msgid "Stability (bootnet)"
 msgstr ""
 
-#: ega/ui[9].label
 #: ega/results/bootStatus.title
 #: R/ega.b.R
 msgid "Stability (bootstrap)"
@@ -3046,7 +3043,7 @@ msgid "The CFA could not be fitted in this sample (see the text above)."
 msgstr ""
 
 #: R/texts.R
-msgid "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory factor analysis box."
+msgid "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory Factor Analysis box."
 msgstr ""
 
 #: R/texts.R
@@ -3419,7 +3416,7 @@ msgid "To compare groups, add a grouping variable (independent groups) or the it
 msgstr ""
 
 #: R/texts.R
-msgid "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare structures (TEFI) box."
+msgid "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare Structures (TEFI) box."
 msgstr ""
 
 #: R/texts.R
@@ -3475,9 +3472,6 @@ msgstr ""
 
 #: ega/options/uniMethod.title
 #: dynega/options/uniMethod.title
-msgid "Unidimensionality Check"
-msgstr ""
-
 #: R/ega.b.R
 #: R/texts.R
 msgid "Unidimensionality check"
@@ -3516,11 +3510,6 @@ msgstr ""
 
 #: R/texts.R
 msgid "Variables in the second measurement: %d. However, the analysis uses %d items. Add one variable for each item, in the same order as the items, to compare the two measurements."
-msgstr ""
-
-#: ega/options/plotPalette/viridis.title
-#: dynega/options/plotPalette/viridis.title
-msgid "Viridis"
 msgstr ""
 
 #: ega/options/cfaEstimator/WLSMV.title
@@ -3618,7 +3607,7 @@ msgid "dimension %s with %d items"
 msgstr ""
 
 #: R/texts.R
-msgid "embedding %d, tau %d, delta %s; derivative analysed: %s"
+msgid "embedding %d, tau %d, delta %s; derivative analyzed: %s"
 msgstr ""
 
 #: R/cfa-helpers.R
@@ -3695,10 +3684,6 @@ msgstr ""
 
 #: R/texts.R
 msgid "new"
-msgstr ""
-
-#: ega/ui[7][2].label
-msgid "of the same items, in the same order as the items."
 msgstr ""
 
 #: ega/results/cfaCompare.columns.title

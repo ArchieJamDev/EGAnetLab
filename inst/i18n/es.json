@@ -185,13 +185,13 @@
             "Because some items were removed in the configural step, the metric test only applies to the remaining items. Report which items were removed and why.": [
                 "Como algunos ítems se excluyeron en el paso configural, la prueba métrica solo se aplica a los ítems restantes. Informe qué ítems se excluyeron y por qué."
             ],
-            "Because the first derivative was analysed, this is a structure of change: it describes which items rise and fall together from moment to moment. It can differ from the structure of a cross-sectional EGA of the same items, which describes which people score high or low together.": [
+            "Because the first derivative was analyzed, this is a structure of change: it describes which items rise and fall together from moment to moment. It can differ from the structure of a cross-sectional EGA of the same items, which describes which people score high or low together.": [
                 "Como se analizó la primera derivada, esta es una estructura de cambio: describe qué ítems suben y bajan juntos de un momento a otro. Puede diferir de la estructura de un EGA transversal de los mismos ítems, que describe qué personas puntúan alto o bajo a la vez."
             ],
-            "Because the level (derivative 0) was analysed, the structure reflects the smoothed values of the items within each person's window, closer to a structure of states than of change.": [
+            "Because the level (derivative 0) was analyzed, the structure reflects the smoothed values of the items within each person's window, closer to a structure of states than of change.": [
                 "Como se analizó el nivel (derivada 0), la estructura refleja los valores suavizados de los ítems dentro de la ventana de cada persona, más cercana a una estructura de estados que de cambio."
             ],
-            "Because the second derivative was analysed, the structure describes how the speed of change accelerates together; it is noisier and needs many time points per person.": [
+            "Because the second derivative was analyzed, the structure describes how the speed of change accelerates together; it is noisier and needs many time points per person.": [
                 "Como se analizó la segunda derivada, la estructura describe cómo se acelera conjuntamente el cambio; es más ruidosa y necesita muchos momentos por persona."
             ],
             "Before reading this section: riEGA only makes sense when the scale mixes positively and negatively worded items, and the negatively worded items are in their original direction, not recoded. With recoded items, or with a scale whose items are all worded in the same direction, the random intercept absorbs shared variance that is part of the content and the result is not a wording effect.": [
@@ -272,7 +272,7 @@
             "CFA estimator": [
                 "Estimador del CFA"
             ],
-            "CFA fit for each structure: confirmatory factor analysis of each structure with lavaan (automatic estimator: WLSMV for items with fewer than 6 categories, otherwise MLR), with CFI, RMSEA and SRMR. It is estimated on the same data that produced the EGA solution, which favors that solution; for an independent test use the random split in the Confirmatory factor analysis box.": [
+            "CFA fit for each structure: confirmatory factor analysis of each structure with lavaan (automatic estimator: WLSMV for items with fewer than 6 categories, otherwise MLR), with CFI, RMSEA and SRMR. It is estimated on the same data that produced the EGA solution, which favors that solution; for an independent test use the random split in the Confirmatory Factor Analysis box.": [
                 "Ajuste CFA de cada estructura: análisis factorial confirmatorio de cada estructura con lavaan (estimador automático: WLSMV con ítems de menos de 6 categorías, si no MLR), con CFI, RMSEA y SRMR. Se estima con los mismos datos que produjeron la solución de EGA, lo que favorece a esa solución; para una prueba independiente use la división aleatoria de la caja Confirmatory factor analysis."
             ],
             "CFA interpretation": [
@@ -317,7 +317,7 @@
             "Centrality": [
                 "Centralidad"
             ],
-            "Centrality and network stability": [
+            "Centrality and Network Stability": [
                 "Centralidad y estabilidad de la red"
             ],
             "Centrality by %s is moderately stable, CS = %s: interpret only large differences between items (Network stability).": [
@@ -380,14 +380,11 @@
             "Closeness and betweenness are shown because they were requested. In psychological networks they are often unstable and have no clear meaning (Bringmann et al., 2019); give them less weight than strength.": [
                 "La cercanía y la intermediación se muestran porque se pidieron. En redes psicológicas suelen ser inestables y no tienen un significado claro (Bringmann et al., 2019); deles menos peso que a la fuerza."
             ],
-            "Colorblind-safe (Okabe-Ito)": [
-                "Apta para daltonismo (Okabe-Ito)"
-            ],
-            "Community Detection": [
-                "Detección de comunidades"
-            ],
             "Community detection": [
                 "Detección de comunidades"
+            ],
+            "Compare Structures (TEFI)": [
+                "Comparar estructuras (TEFI)"
             ],
             "Compare structures": [
                 "Comparar estructuras"
@@ -418,6 +415,9 @@
             ],
             "Confirm with CFA": [
                 "Confirmar con CFA"
+            ],
+            "Confirmatory Factor Analysis": [
+                "Análisis factorial confirmatorio"
             ],
             "Confirmatory factor analysis": [
                 "Análisis factorial confirmatorio"
@@ -491,7 +491,7 @@
             "Decimals": [
                 "Decimales"
             ],
-            "Derivative analysed": [
+            "Derivative analyzed": [
                 "Derivada analizada"
             ],
             "Derivatives (GLLA)": [
@@ -517,9 +517,6 @@
             ],
             "Dimension": [
                 "Dimensión"
-            ],
-            "Dimension Colors": [
-                "Colores de las dimensiones"
             ],
             "Dimension frequency plot": [
                 "Gráfico de frecuencia de dimensiones"
@@ -668,9 +665,6 @@
             "EGAnetLab could not run the network stability analysis: %s.": [
                 "EGAnetLab no pudo ejecutar el análisis de estabilidad de la red: %s."
             ],
-            "EGAnetLab default": [
-                "Por defecto de EGAnetLab"
-            ],
             "EGAnetLab estimates the network in each group with the same dimensional structure and compares the network loadings item by item. Then it shuffles people between groups many times to see how large the differences would be if group membership did not matter. An item whose loading differs more than expected by chance is not invariant: the item does not measure its dimension in the same way in the two groups.": [
                 "EGAnetLab estima la red en cada grupo con la misma estructura dimensional y compara las cargas de red ítem por ítem. Luego reparte a las personas entre los grupos al azar muchas veces para ver qué tan grandes serían las diferencias si pertenecer a un grupo no importara. Un ítem cuya carga difiere más de lo esperable por azar no es invariante: no mide su dimensión de la misma forma en los dos grupos."
             ],
@@ -721,6 +715,9 @@
             ],
             "Edge weight size": [
                 "Tamaño de los pesos"
+            ],
+            "Edge weights": [
+                "Pesos de las aristas"
             ],
             "Edge weights with bootstrap intervals": [
                 "Pesos de las aristas con intervalos bootstrap"
@@ -884,6 +881,9 @@
             "Group": [
                 "Grupo"
             ],
+            "Group Comparison": [
+                "Comparación entre grupos"
+            ],
             "Group comparison": [
                 "Comparación entre grupos"
             ],
@@ -920,7 +920,10 @@
             "Hierarchical EGA interpretation": [
                 "Interpretación del EGA jerárquico"
             ],
-            "Hierarchical and wording structure": [
+            "Hierarchical Structure Plot": [
+                "Gráfico de la estructura jerárquica"
+            ],
+            "Hierarchical and Wording Structure": [
                 "Estructura jerárquica y de redacción"
             ],
             "Hierarchical models interpretation": [
@@ -962,20 +965,17 @@
             "In the data, these items are": [
                 "En los datos, estos ítems están"
             ],
-            "In the population, the items form %d dimensions (derivative analysed: %s): within each dimension the items change together over time, and partly independently of the other dimensions.": [
+            "In the population, the items form %d dimensions (derivative analyzed: %s): within each dimension the items change together over time, and partly independently of the other dimensions.": [
                 "En la población, los ítems forman %d dimensiones (derivada analizada: %s): dentro de cada dimensión los ítems cambian juntos en el tiempo, y en parte de forma independiente de las otras dimensiones."
             ],
             "In the population, the items form %d dimensions of change over time (Dynamic EGA).": [
                 "En la población, los ítems forman %d dimensiones de cambio en el tiempo (EGA dinámico)."
             ],
-            "In the population, the items form a single dimension (derivative analysed: %s): they tend to change together over time.": [
+            "In the population, the items form a single dimension (derivative analyzed: %s): they tend to change together over time.": [
                 "En la población, los ítems forman una sola dimensión (derivada analizada: %s): tienden a cambiar juntos en el tiempo."
             ],
             "Include the other community algorithms": [
                 "Incluir los otros algoritmos de comunidades"
-            ],
-            "Independent groups: the variable that defines them (e.g. sex).": [
-                "Grupos independientes: la variable que los define (p. ej., sexo)."
             ],
             "Individual structures agree with the population with a median ARI of %s (Structure of each person).": [
                 "Las estructuras individuales coinciden con la de la población con un ARI mediano de %s (Estructura de cada persona)."
@@ -1051,6 +1051,9 @@
             ],
             "Item name size": [
                 "Tamaño del nombre de los ítems"
+            ],
+            "Item names": [
+                "Nombres de los ítems"
             ],
             "Item node size": [
                 "Tamaño de los nodos de ítems"
@@ -1196,6 +1199,9 @@
             "Level (0, the values themselves)": [
                 "Nivel (0, los valores mismos)"
             ],
+            "Level names": [
+                "Nombres de los niveles"
+            ],
             "Levels": [
                 "Niveles"
             ],
@@ -1310,9 +1316,6 @@
             "Metric invariance of network loadings": [
                 "Invarianza métrica de las cargas de red"
             ],
-            "Missing Values": [
-                "Valores perdidos"
-            ],
             "Missing values": [
                 "Valores perdidos"
             ],
@@ -1346,6 +1349,9 @@
             "Negative edges": [
                 "Aristas negativas"
             ],
+            "Negatively Worded Items": [
+                "Ítems redactados en negativo"
+            ],
             "Negatively worded": [
                 "Redactado en negativo"
             ],
@@ -1367,8 +1373,11 @@
             "Network Comparison Test interpretation": [
                 "Interpretación del Network Comparison Test"
             ],
-            "Network Model": [
-                "Modelo de red"
+            "Network Plot": [
+                "Gráfico de red"
+            ],
+            "Network Scores": [
+                "Puntuaciones de red"
             ],
             "Network connections": [
                 "Conexiones de la red"
@@ -1445,13 +1454,13 @@
             "Next step: report the number of samples, the seed and the CS coefficient together with the centrality results. If stability is low, a larger sample is the main remedy; removing items to raise it changes the construct being measured.": [
                 "Siguiente paso: informe el número de muestras, la semilla y el coeficiente CS junto con los resultados de centralidad. Si la estabilidad es baja, el principal remedio es una muestra mayor; eliminar ítems para aumentarla cambia el constructo que se mide."
             ],
-            "Next step: report the population structure together with the distribution of individual structures, the number of time points per person and the derivative analysed. Check whether persons who differ from the population share characteristics (group, adherence, number of time points).": [
+            "Next step: report the population structure together with the distribution of individual structures, the number of time points per person and the derivative analyzed. Check whether persons who differ from the population share characteristics (group, adherence, number of time points).": [
                 "Siguiente paso: informe la estructura de la población junto con la distribución de las estructuras individuales, el número de momentos por persona y la derivada analizada. Revise si las personas que difieren de la población comparten características (grupo, adherencia, número de momentos)."
             ],
             "Next step: review the content of the non-invariant items (wording, cultural meaning, relevance in each group). If they cannot be fixed, compare groups with scores that exclude them, or report the comparison with and without them. Report the structure tested, the number of permutations, the seed and both p values.": [
                 "Siguiente paso: revise el contenido de los ítems no invariantes (redacción, significado cultural, pertinencia en cada grupo). Si no pueden corregirse, compare los grupos con puntuaciones que los excluyan, o informe la comparación con y sin ellos. Informe la estructura evaluada, el número de permutaciones, la semilla y ambos valores p."
             ],
-            "Next step: tick Run bootstrap in the Stability (bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above.": [
+            "Next step: tick Run bootstrap in the Stability (Bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above.": [
                 "Siguiente paso: marque Run bootstrap en la caja Stability (bootstrap) para verificar si el número de dimensiones y la pertenencia de cada ítem son estables entre remuestreos antes de interpretar la estructura. Usa exactamente las opciones de estimación de arriba."
             ],
             "Next step: tick Stability of edges and centrality (bootnet) to check whether the order of the items by centrality holds before interpreting differences between items.": [
@@ -1568,7 +1577,7 @@
             "One factor": [
                 "Un factor"
             ],
-            "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively worded items box; this analysis uses them in their original direction (not recoded).": [
+            "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively Worded Items box; this analysis uses them in their original direction (not recoded).": [
                 "Solo para escalas que mezclan ítems redactados en positivo y en negativo. Marque los ítems negativos en el cuadro Ítems redactados en negativo; este análisis los usa en su dirección original (sin recodificar)."
             ],
             "Only the edges of the estimated network are listed, strongest first. The intervals are percentile intervals from resampling cases. In regularized networks the weights are pulled toward zero, so the intervals describe precision and are not significance tests (Epskamp et al., 2018).": [
@@ -1745,6 +1754,9 @@
             "Reading": [
                 "Lectura"
             ],
+            "Reading guides": [
+                "Guías de lectura"
+            ],
             "Red": [
                 "Rojo"
             ],
@@ -1835,9 +1847,6 @@
             "Same number of dimensions as the population": [
                 "Mismo número de dimensiones que la población"
             ],
-            "Same people measured twice (NCT only): the second measurement": [
-                "Mismas personas medidas dos veces (solo NCT): la segunda medición"
-            ],
             "Same people, both measurements": [
                 "Mismas personas, ambas mediciones"
             ],
@@ -1862,7 +1871,7 @@
             "Save network scores": [
                 "Guardar puntuaciones de red"
             ],
-            "Save network scores (in the Network scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it.": [
+            "Save network scores (in the Network Scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it.": [
                 "Guardar puntuaciones de red (en la caja Network scores) añade una columna por dimensión al conjunto de datos, para usar las puntuaciones en otros análisis. Quien tenga una respuesta perdida en algún ítem de una dimensión queda sin puntuación en ella."
             ],
             "Save subsample": [
@@ -1889,17 +1898,8 @@
             "Set": [
                 "Conjunto"
             ],
-            "Show edge weights": [
-                "Mostrar pesos de aristas"
-            ],
-            "Show item names": [
-                "Mostrar nombres de los ítems"
-            ],
-            "Show legend": [
-                "Mostrar leyenda"
-            ],
-            "Show level names": [
-                "Mostrar nombres de los niveles"
+            "Set the groups in the variable boxes at the top: Grouping variable for independent groups (e.g. sex), or Same items, second measurement when the same people answered the items twice (NCT only, items in the same order).": [
+                "Indique los grupos en las casillas de variables de arriba: Variable de agrupación para grupos independientes (p. ej., sexo), o Mismos ítems, segunda medición cuando las mismas personas respondieron los ítems dos veces (solo NCT, ítems en el mismo orden)."
             ],
             "Small to moderate": [
                 "Pequeña a moderada"
@@ -1942,6 +1942,9 @@
             ],
             "Stability": [
                 "Estabilidad"
+            ],
+            "Stability (Bootstrap)": [
+                "Estabilidad (bootstrap)"
             ],
             "Stability (bootnet)": [
                 "Estabilidad (bootnet)"
@@ -2099,7 +2102,7 @@
             "The CFA could not be fitted in this sample (see the text above).": [
                 "El CFA no pudo ajustarse en esta muestra (vea el texto de arriba)."
             ],
-            "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory factor analysis box.": [
+            "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory Factor Analysis box.": [
                 "Los índices del CFA salen de los mismos datos que produjeron la solución de EGA, así que la favorecen. Úselos como una segunda mirada y confirme con la división aleatoria de la caja Confirmatory factor analysis."
             ],
             "The CFA uses the same sample as EGA, so its fit is optimistic. Tick Split the sample at random for a check in an independent subsample.": [
@@ -2378,7 +2381,7 @@
             "To compare groups, add a grouping variable (independent groups) or the items of a second measurement of the same people (paired groups).": [
                 "Para comparar grupos, agregue una variable de agrupación (grupos independientes) o los ítems de una segunda medición de las mismas personas (grupos pareados)."
             ],
-            "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare structures (TEFI) box.": [
+            "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare Structures (TEFI) box.": [
                 "Para comparar también la estructura teórica, arrastre sus ítems a los factores de Theoretical structure, en la caja Compare structures (TEFI)."
             ],
             "To run the NCT, add a grouping variable with at least two groups of 10 or more cases, or the items of a second measurement of the same people.": [
@@ -2417,9 +2420,6 @@
             "Uncertainties": [
                 "Incertidumbres"
             ],
-            "Unidimensionality Check": [
-                "Verificación de unidimensionalidad"
-            ],
             "Unidimensionality check": [
                 "Verificación de unidimensionalidad"
             ],
@@ -2443,9 +2443,6 @@
             ],
             "Variables in the second measurement: %d. However, the analysis uses %d items. Add one variable for each item, in the same order as the items, to compare the two measurements.": [
                 "Variables en la segunda medición: %d. Sin embargo, el análisis usa %d ítems. Agregue una variable por cada ítem, en el mismo orden de los ítems, para comparar las dos mediciones."
-            ],
-            "Viridis": [
-                "Viridis"
             ],
             "WLSMV (ordinal)": [
                 "WLSMV (ordinal)"
@@ -2513,7 +2510,7 @@
             "dimension %s with %d items": [
                 "dimensión %s con %d ítems"
             ],
-            "embedding %d, tau %d, delta %s; derivative analysed: %s": [
+            "embedding %d, tau %d, delta %s; derivative analyzed: %s": [
                 "inmersión %d, tau %d, delta %s; derivada analizada: %s"
             ],
             "factor": [
@@ -2572,9 +2569,6 @@
             ],
             "new": [
                 "nueva"
-            ],
-            "of the same items, in the same order as the items.": [
-                "de los mismos ítems, en el mismo orden de los ítems."
             ],
             "p": [
                 "p"

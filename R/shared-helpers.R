@@ -148,32 +148,27 @@
 # -----------------------------------------------------------------------------
 # .el_plot_series_palette()
 #
-# Input: choice - the analysis' plotPalette option ("jamovi", "colorblind"
-#   or "viridis").
-# Output: NULL for "jamovi" (let jamovi's own ggtheme scale handle colors),
-#   otherwise a character vector of colors.
+# Input: n - number of colors needed; theme - the `theme` argument jamovi
+#   passes to every render function.
+# Output: a character vector of n colors from the palette chosen in jamovi's
+#   own settings (Settings > Plot color palette), or NULL when jamovi gives
+#   none, so the plot keeps its default scale.
 #
-# Same policy as AssumptionsLab: the default follows jamovi's global theme;
-# only the two palettes jamovi does not ship are added. Viridis stops are
-# hard-coded so the result never depends on whether viridisLite is
-# installed.
+# EGAnetLab has no palette option of its own: the dimension colors follow
+# jamovi's global setting, like every jmv plot.
 #
-# ES: Misma política que AssumptionsLab: por defecto se sigue el tema global
-# de jamovi; solo se agregan las dos paletas que jamovi no trae. Los puntos
-# de viridis están fijos para que el resultado nunca dependa de si
-# viridisLite está instalado.
+# ES: EGAnetLab no tiene opción de paleta propia: los colores de las
+# dimensiones siguen el ajuste global de jamovi (Ajustes > Paleta de colores
+# de los gráficos), como todos los gráficos de jmv.
 # -----------------------------------------------------------------------------
-.el_plot_series_palette <- function(choice) {
-    if (is.null(choice) || length(choice) == 0 || identical(choice, "jamovi"))
+.el_plot_series_palette <- function(n, theme = NULL) {
+    n <- max(1L, as.integer(n))
+    pal <- if (is.list(theme) && !is.null(theme$palette)) theme$palette else "jmv"
+    colors <- tryCatch(jmvcore::colorPalette(n = n, pal = pal, type = "fill"),
+                       error = function(e) NULL)
+    if (is.null(colors) || length(colors) < n)
         return(NULL)
-
-    if (identical(choice, "viridis"))
-        return(c("#440154", "#414487", "#2A788E", "#22A884", "#7AD151", "#FDE725"))
-
-    if (identical(choice, "colorblind"))
-        return(c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"))
-
-    NULL
+    colors
 }
 
 # -----------------------------------------------------------------------------

@@ -86,7 +86,7 @@ EGAnetLab puts that whole toolkit in jamovi's point-and-click interface:
   <tr>
     <td align="center" width="50%">
       <img src="docs/screenshots/ega-network.png" width="100%" alt="EGA network plot">
-      <p><em>Item network coloured by dimension, with the EGAnet Lab menu in jamovi</em></p>
+      <p><em>Item network colored by dimension, with the EGAnet Lab menu in jamovi</em></p>
     </td>
     <td align="center" width="50%">
       <img src="docs/screenshots/ega-wording.png" width="100%" alt="Random-intercept EGA">
@@ -203,9 +203,9 @@ author preparing a figure gets full control:
 | Group | Options |
 |---|---|
 | **Layout** | Fruchterman-Reingold, Kamada-Kawai, circle and other `sna` layouts |
-| **Nodes** | Size, shape, transparency, border, palette (EGAnetLab default, Okabe-Ito colorblind, viridis) |
-| **Labels** | Size, colour, item names or abbreviations |
-| **Edges** | Width, positive/negative colours, transparency, line type, edge-weight labels, minimum weight shown |
+| **Nodes** | Size, shape, transparency, border; dimension colors follow the palette chosen in jamovi's settings |
+| **Labels** | Size, color, item names or abbreviations |
+| **Edges** | Width, positive/negative colors, transparency, line type, edge-weight labels, minimum weight shown |
 | **Legend** | Show/hide, position, size |
 
 ---

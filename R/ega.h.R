@@ -62,10 +62,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showCasePlot = TRUE,
             showKeySummary = TRUE,
             showChoicesGuide = TRUE,
+            showGuides = TRUE,
             showLoadings = TRUE,
             showEdgeTable = FALSE,
             showNetworkPlot = TRUE,
-            plotPalette = "default",
             layout = "qgraph",
             plotTitle = "",
             nodeSize = 12,
@@ -424,6 +424,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showChoicesGuide",
                 showChoicesGuide,
                 default=TRUE)
+            private$..showGuides <- jmvcore::OptionBool$new(
+                "showGuides",
+                showGuides,
+                default=TRUE)
             private$..showLoadings <- jmvcore::OptionBool$new(
                 "showLoadings",
                 showLoadings,
@@ -436,14 +440,6 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showNetworkPlot",
                 showNetworkPlot,
                 default=TRUE)
-            private$..plotPalette <- jmvcore::OptionList$new(
-                "plotPalette",
-                plotPalette,
-                options=list(
-                    "default",
-                    "colorblind",
-                    "viridis"),
-                default="default")
             private$..layout <- jmvcore::OptionList$new(
                 "layout",
                 layout,
@@ -669,10 +665,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..showCasePlot)
             self$.addOption(private$..showKeySummary)
             self$.addOption(private$..showChoicesGuide)
+            self$.addOption(private$..showGuides)
             self$.addOption(private$..showLoadings)
             self$.addOption(private$..showEdgeTable)
             self$.addOption(private$..showNetworkPlot)
-            self$.addOption(private$..plotPalette)
             self$.addOption(private$..layout)
             self$.addOption(private$..plotTitle)
             self$.addOption(private$..nodeSize)
@@ -759,10 +755,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         showCasePlot = function() private$..showCasePlot$value,
         showKeySummary = function() private$..showKeySummary$value,
         showChoicesGuide = function() private$..showChoicesGuide$value,
+        showGuides = function() private$..showGuides$value,
         showLoadings = function() private$..showLoadings$value,
         showEdgeTable = function() private$..showEdgeTable$value,
         showNetworkPlot = function() private$..showNetworkPlot$value,
-        plotPalette = function() private$..plotPalette$value,
         layout = function() private$..layout$value,
         plotTitle = function() private$..plotTitle$value,
         nodeSize = function() private$..nodeSize$value,
@@ -848,10 +844,10 @@ egaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..showCasePlot = NA,
         ..showKeySummary = NA,
         ..showChoicesGuide = NA,
+        ..showGuides = NA,
         ..showLoadings = NA,
         ..showEdgeTable = NA,
         ..showNetworkPlot = NA,
-        ..plotPalette = NA,
         ..layout = NA,
         ..plotTitle = NA,
         ..nodeSize = NA,
@@ -982,7 +978,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Html$new(
                 options=options,
                 name="summaryGuide",
-                title="Dimensional structure"))
+                title="Dimensional structure",
+                visible="(showGuides)"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="summary",
@@ -1041,7 +1038,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="loadingsGuide",
                 title="Network loadings",
-                visible="(showLoadings)"))
+                visible="(showGuides && showLoadings)"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="loadings",
@@ -1119,7 +1116,6 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "model",
                     "algorithm",
                     "uniMethod",
-                    "plotPalette",
                     "layout",
                     "plotTitle",
                     "nodeSize",
@@ -1142,7 +1138,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="scoresGuide",
                 title="Network scores",
-                visible="(netScores)"))
+                visible="(showGuides && netScores)"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="scores",
@@ -1391,7 +1387,6 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "naData",
                     "model",
                     "uniMethod",
-                    "plotPalette",
                     "hierPlotTitle",
                     "hierShowLevels",
                     "hierItemLabels",
@@ -1584,7 +1579,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="bootSummaryGuide",
                 title="Number of dimensions across samples",
-                visible="(runBoot)"))
+                visible="(showGuides && runBoot)"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="bootSummary",
@@ -1751,8 +1746,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "bootType",
                     "iter",
                     "seed",
-                    "stabilityCut",
-                    "plotPalette")))
+                    "stabilityCut")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="bootFrequencyPlot",
@@ -1772,8 +1766,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "bootType",
                     "iter",
-                    "seed",
-                    "plotPalette")))
+                    "seed")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="cfaStatus",
@@ -2083,7 +2076,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="cfaBifactorGuide",
                 title="Bifactor loadings",
-                visible="(runCFA && runHier)"))
+                visible="(showGuides && runCFA && runHier)"))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="cfaBifactorLoadings",
@@ -2213,8 +2206,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "algorithm",
                     "uniMethod",
                     "cenStandardize",
-                    "cenClosBetw",
-                    "plotPalette")))
+                    "cenClosBetw")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="cenInterpretation",
@@ -2339,8 +2331,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod",
                     "bnIter",
                     "bnCaseIter",
-                    "bnSeed",
-                    "plotPalette")))
+                    "bnSeed")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="bnCasePlot",
@@ -2361,8 +2352,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "bnIter",
                     "bnCaseIter",
                     "bnSeed",
-                    "cenClosBetw",
-                    "plotPalette")))
+                    "cenClosBetw")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="bnInterpretation",
@@ -2506,8 +2496,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "groupSeed",
                     "invStructure",
                     "invConfigCut",
-                    "invIter",
-                    "plotPalette")))
+                    "invIter")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="invInterpretation",
@@ -2795,10 +2784,10 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showCasePlot .
 #' @param showKeySummary .
 #' @param showChoicesGuide .
+#' @param showGuides .
 #' @param showLoadings .
 #' @param showEdgeTable .
 #' @param showNetworkPlot .
-#' @param plotPalette .
 #' @param layout .
 #' @param plotTitle .
 #' @param nodeSize .
@@ -2968,10 +2957,10 @@ ega <- function(
     showCasePlot = TRUE,
     showKeySummary = TRUE,
     showChoicesGuide = TRUE,
+    showGuides = TRUE,
     showLoadings = TRUE,
     showEdgeTable = FALSE,
     showNetworkPlot = TRUE,
-    plotPalette = "default",
     layout = "qgraph",
     plotTitle = "",
     nodeSize = 12,
@@ -3072,10 +3061,10 @@ ega <- function(
         showCasePlot = showCasePlot,
         showKeySummary = showKeySummary,
         showChoicesGuide = showChoicesGuide,
+        showGuides = showGuides,
         showLoadings = showLoadings,
         showEdgeTable = showEdgeTable,
         showNetworkPlot = showNetworkPlot,
-        plotPalette = plotPalette,
         layout = layout,
         plotTitle = plotTitle,
         nodeSize = nodeSize,

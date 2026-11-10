@@ -45,6 +45,19 @@ test_that("ega recovers a clean three-dimensional structure", {
     expect_equal(dims, "3")
 })
 
+test_that("the introduction and the reading guides follow their options", {
+
+    data <- edgeStructureData()
+    res <- EGAnetLab::ega(data = data, vars = names(data), showNetworkPlot = FALSE)
+    expect_false(res$intro$visible)
+    expect_true(res$summaryGuide$visible)
+
+    quiet <- EGAnetLab::ega(data = data, vars = names(data), showNetworkPlot = FALSE,
+                            showGuides = FALSE)
+    expect_false(quiet$summaryGuide$visible)
+    expect_false(quiet$loadingsGuide$visible)
+})
+
 test_that("ega renders the report in Spanish when jamovi runs in Spanish", {
 
     data <- edgeStructureData()

@@ -190,7 +190,6 @@ items:
       - seed
       - levelGroup
       - levelIndividual
-      - plotPalette
       - layout
       - plotTitle
       - nodeSize
@@ -340,7 +339,6 @@ items:
       - seed
       - levelGroup
       - levelIndividual
-      - plotPalette
 
   - name: indInterpretation
     title: Individual structures interpretation

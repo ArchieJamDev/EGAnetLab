@@ -256,15 +256,15 @@ msgid "Because some items were removed in the configural step, the metric test o
 msgstr "Como algunos ítems se excluyeron en el paso configural, la prueba métrica solo se aplica a los ítems restantes. Informe qué ítems se excluyeron y por qué."
 
 #: R/texts.R
-msgid "Because the first derivative was analysed, this is a structure of change: it describes which items rise and fall together from moment to moment. It can differ from the structure of a cross-sectional EGA of the same items, which describes which people score high or low together."
+msgid "Because the first derivative was analyzed, this is a structure of change: it describes which items rise and fall together from moment to moment. It can differ from the structure of a cross-sectional EGA of the same items, which describes which people score high or low together."
 msgstr "Como se analizó la primera derivada, esta es una estructura de cambio: describe qué ítems suben y bajan juntos de un momento a otro. Puede diferir de la estructura de un EGA transversal de los mismos ítems, que describe qué personas puntúan alto o bajo a la vez."
 
 #: R/texts.R
-msgid "Because the level (derivative 0) was analysed, the structure reflects the smoothed values of the items within each person's window, closer to a structure of states than of change."
+msgid "Because the level (derivative 0) was analyzed, the structure reflects the smoothed values of the items within each person's window, closer to a structure of states than of change."
 msgstr "Como se analizó el nivel (derivada 0), la estructura refleja los valores suavizados de los ítems dentro de la ventana de cada persona, más cercana a una estructura de estados que de cambio."
 
 #: R/texts.R
-msgid "Because the second derivative was analysed, the structure describes how the speed of change accelerates together; it is noisier and needs many time points per person."
+msgid "Because the second derivative was analyzed, the structure describes how the speed of change accelerates together; it is noisier and needs many time points per person."
 msgstr "Como se analizó la segunda derivada, la estructura describe cómo se acelera conjuntamente el cambio; es más ruidosa y necesita muchos momentos por persona."
 
 #: R/texts.R
@@ -381,7 +381,7 @@ msgid "CFA estimator"
 msgstr "Estimador del CFA"
 
 #: R/texts.R
-msgid "CFA fit for each structure: confirmatory factor analysis of each structure with lavaan (automatic estimator: WLSMV for items with fewer than 6 categories, otherwise MLR), with CFI, RMSEA and SRMR. It is estimated on the same data that produced the EGA solution, which favors that solution; for an independent test use the random split in the Confirmatory factor analysis box."
+msgid "CFA fit for each structure: confirmatory factor analysis of each structure with lavaan (automatic estimator: WLSMV for items with fewer than 6 categories, otherwise MLR), with CFI, RMSEA and SRMR. It is estimated on the same data that produced the EGA solution, which favors that solution; for an independent test use the random split in the Confirmatory Factor Analysis box."
 msgstr "Ajuste CFA de cada estructura: análisis factorial confirmatorio de cada estructura con lavaan (estimador automático: WLSMV con ítems de menos de 6 categorías, si no MLR), con CFI, RMSEA y SRMR. Se estima con los mismos datos que produjeron la solución de EGA, lo que favorece a esa solución; para una prueba independiente use la división aleatoria de la caja Confirmatory factor analysis."
 
 #: ega/results/cfaInterpretation.title
@@ -445,7 +445,7 @@ msgid "Centrality"
 msgstr "Centralidad"
 
 #: ega/ui[6].label
-msgid "Centrality and network stability"
+msgid "Centrality and Network Stability"
 msgstr "Centralidad y estabilidad de la red"
 
 #: R/texts.R
@@ -534,27 +534,22 @@ msgstr "Cercanía e intermediación (opcionales): se basan en los caminos más c
 msgid "Closeness and betweenness are shown because they were requested. In psychological networks they are often unstable and have no clear meaning (Bringmann et al., 2019); give them less weight than strength."
 msgstr "La cercanía y la intermediación se muestran porque se pidieron. En redes psicológicas suelen ser inestables y no tienen un significado claro (Bringmann et al., 2019); deles menos peso que a la fuerza."
 
-#: ega/options/plotPalette/colorblind.title
-#: dynega/options/plotPalette/colorblind.title
-msgid "Colorblind-safe (Okabe-Ito)"
-msgstr "Apta para daltonismo (Okabe-Ito)"
-
 #: ega/options/algorithm.title
 #: dynega/options/algorithm.title
-msgid "Community Detection"
-msgstr "Detección de comunidades"
-
 #: R/dynega.b.R
 #: R/ega.b.R
 #: R/texts.R
 msgid "Community detection"
 msgstr "Detección de comunidades"
 
+#: ega/ui[4].label
+msgid "Compare Structures (TEFI)"
+msgstr "Comparar estructuras (TEFI)"
+
 #: R/ega.b.R
 msgid "Compare structures"
 msgstr "Comparar estructuras"
 
-#: ega/ui[4].label
 #: ega/results/compareStatus.title
 #: R/ega.b.R
 msgid "Compare structures (TEFI)"
@@ -596,6 +591,9 @@ msgid "Confirm with CFA"
 msgstr "Confirmar con CFA"
 
 #: ega/ui[10].label
+msgid "Confirmatory Factor Analysis"
+msgstr "Análisis factorial confirmatorio"
+
 #: ega/results/cfaStatus.title
 #: R/ega.b.R
 msgid "Confirmatory factor analysis"
@@ -707,7 +705,7 @@ msgstr "Decimales"
 
 #: dynega/options/derivative.title
 #: R/texts.R
-msgid "Derivative analysed"
+msgid "Derivative analyzed"
 msgstr "Derivada analizada"
 
 #: dynega/ui[1].label
@@ -751,11 +749,6 @@ msgstr "Diferencia: carga en el primer grupo menos carga en el segundo grupo."
 #: R/ega.b.R
 msgid "Dimension"
 msgstr "Dimensión"
-
-#: ega/options/plotPalette.title
-#: dynega/options/plotPalette.title
-msgid "Dimension Colors"
-msgstr "Colores de las dimensiones"
 
 #: ega/options/showFrequencyPlot.title
 msgid "Dimension frequency plot"
@@ -970,11 +963,6 @@ msgstr "EGAnetLab no pudo ejecutar el NCT para %s: %s. Revise que ambos grupos t
 msgid "EGAnetLab could not run the network stability analysis: %s."
 msgstr "EGAnetLab no pudo ejecutar el análisis de estabilidad de la red: %s."
 
-#: ega/options/plotPalette/default.title
-#: dynega/options/plotPalette/default.title
-msgid "EGAnetLab default"
-msgstr "Por defecto de EGAnetLab"
-
 #: R/texts.R
 msgid "EGAnetLab estimates the network in each group with the same dimensional structure and compares the network loadings item by item. Then it shuffles people between groups many times to see how large the differences would be if group membership did not matter. An item whose loading differs more than expected by chance is not invariant: the item does not measure its dimension in the same way in the two groups."
 msgstr "EGAnetLab estima la red en cada grupo con la misma estructura dimensional y compara las cargas de red ítem por ítem. Luego reparte a las personas entre los grupos al azar muchas veces para ver qué tan grandes serían las diferencias si pertenecer a un grupo no importara. Un ítem cuya carga difiere más de lo esperable por azar no es invariante: no mide su dimensión de la misma forma en los dos grupos."
@@ -1044,6 +1032,11 @@ msgstr "Peso de la arista (intervalo bootstrap del 95%)"
 #: dynega/options/edgeLabelSize.title
 msgid "Edge weight size"
 msgstr "Tamaño de los pesos"
+
+#: ega/options/showEdgeLabels.title
+#: dynega/options/showEdgeLabels.title
+msgid "Edge weights"
+msgstr "Pesos de las aristas"
 
 #: ega/results/bnEdges.title
 #: ega/results/bnEdgePlot.title
@@ -1291,13 +1284,16 @@ msgid "Group"
 msgstr "Grupo"
 
 #: ega/ui[7].label
+msgid "Group Comparison"
+msgstr "Comparación entre grupos"
+
 #: ega/results/groupStatus.title
 #: R/ega.b.R
 msgid "Group comparison"
 msgstr "Comparación entre grupos"
 
 #: ega/options/group.title
-#: ega/ui[7][3][0].label
+#: ega/ui[0][1].label
 #: dynega/options/group.title
 msgid "Grouping variable"
 msgstr "Variable de agrupación"
@@ -1344,8 +1340,12 @@ msgstr "EGA jerárquico (dimensiones de orden superior)"
 msgid "Hierarchical EGA interpretation"
 msgstr "Interpretación del EGA jerárquico"
 
+#: ega/ui[13].label
+msgid "Hierarchical Structure Plot"
+msgstr "Gráfico de la estructura jerárquica"
+
 #: ega/ui[5].label
-msgid "Hierarchical and wording structure"
+msgid "Hierarchical and Wording Structure"
 msgstr "Estructura jerárquica y de redacción"
 
 #: ega/results/cfaHierInterpretation.title
@@ -1357,7 +1357,6 @@ msgstr "Interpretación de los modelos jerárquicos"
 msgid "Hierarchical structure"
 msgstr "Estructura jerárquica"
 
-#: ega/ui[13].label
 #: ega/results/hierPlot.title
 msgid "Hierarchical structure plot"
 msgstr "Gráfico de la estructura jerárquica"
@@ -1404,7 +1403,7 @@ msgid "In the data, these items are"
 msgstr "En los datos, estos ítems están"
 
 #: R/texts.R
-msgid "In the population, the items form %d dimensions (derivative analysed: %s): within each dimension the items change together over time, and partly independently of the other dimensions."
+msgid "In the population, the items form %d dimensions (derivative analyzed: %s): within each dimension the items change together over time, and partly independently of the other dimensions."
 msgstr "En la población, los ítems forman %d dimensiones (derivada analizada: %s): dentro de cada dimensión los ítems cambian juntos en el tiempo, y en parte de forma independiente de las otras dimensiones."
 
 #: R/texts.R
@@ -1412,16 +1411,12 @@ msgid "In the population, the items form %d dimensions of change over time (Dyna
 msgstr "En la población, los ítems forman %d dimensiones de cambio en el tiempo (EGA dinámico)."
 
 #: R/texts.R
-msgid "In the population, the items form a single dimension (derivative analysed: %s): they tend to change together over time."
+msgid "In the population, the items form a single dimension (derivative analyzed: %s): they tend to change together over time."
 msgstr "En la población, los ítems forman una sola dimensión (derivada analizada: %s): tienden a cambiar juntos en el tiempo."
 
 #: ega/options/compareAlgorithms.title
 msgid "Include the other community algorithms"
 msgstr "Incluir los otros algoritmos de comunidades"
-
-#: ega/ui[7][0].label
-msgid "Independent groups: the variable that defines them (e.g. sex)."
-msgstr "Grupos independientes: la variable que los define (p. ej., sexo)."
 
 #: R/texts.R
 msgid "Individual structures agree with the population with a median ARI of %s (Structure of each person)."
@@ -1448,7 +1443,7 @@ msgstr "Interpretar con cautela (.25 a .50)"
 msgid "Introduction"
 msgstr "Introducción"
 
-#: ega/ui[7][4].label
+#: ega/ui[7][1].label
 msgid "Invariance (independent groups)"
 msgstr "Invarianza (grupos independientes)"
 
@@ -1541,6 +1536,10 @@ msgstr "Pertenencia de los ítems con y sin control de la redacción"
 #: ega/options/hierItemLabelSize.title
 msgid "Item name size"
 msgstr "Tamaño del nombre de los ítems"
+
+#: ega/options/hierItemLabels.title
+msgid "Item names"
+msgstr "Nombres de los ítems"
 
 #: ega/options/hierItemSize.title
 msgid "Item node size"
@@ -1727,7 +1726,9 @@ msgstr "Autovalor principal"
 msgid "Left"
 msgstr "Izquierda"
 
+#: ega/options/showLegend.title
 #: ega/ui[12][3][0].label
+#: dynega/options/showLegend.title
 #: dynega/ui[5][3][0].label
 msgid "Legend"
 msgstr "Leyenda"
@@ -1758,6 +1759,10 @@ msgstr "Nivel (0)"
 #: dynega/options/derivative/0.title
 msgid "Level (0, the values themselves)"
 msgstr "Nivel (0, los valores mismos)"
+
+#: ega/options/hierShowLevels.title
+msgid "Level names"
+msgstr "Nombres de los niveles"
 
 #: dynega/ui[3].label
 msgid "Levels"
@@ -1923,9 +1928,6 @@ msgid "Metric invariance of network loadings"
 msgstr "Invarianza métrica de las cargas de red"
 
 #: ega/options/naData.title
-msgid "Missing Values"
-msgstr "Valores perdidos"
-
 #: R/texts.R
 msgid "Missing values"
 msgstr "Valores perdidos"
@@ -1975,12 +1977,15 @@ msgstr "Línea de aristas negativas"
 msgid "Negative edges"
 msgstr "Aristas negativas"
 
+#: ega/ui[2].label
+msgid "Negatively Worded Items"
+msgstr "Ítems redactados en negativo"
+
 #: ega/results/riMembership.columns.title
 msgid "Negatively worded"
 msgstr "Redactado en negativo"
 
 #: ega/options/negItems.title
-#: ega/ui[2].label
 #: ega/ui[2][0][0].label
 #: R/ega.b.R
 msgid "Negatively worded items"
@@ -1994,7 +1999,7 @@ msgstr "Ítems redactados en negativo: %s. Ya están invertidos en los datos, as
 msgid "Negatively worded items: %s. They are as answered in the data, so riEGA uses them as they are (the other analyses use them reversed)."
 msgstr "Ítems redactados en negativo: %s. Están tal como se respondieron en los datos, así que riEGA los usa así (los demás análisis los usan invertidos)."
 
-#: ega/ui[7][5].label
+#: ega/ui[7][2].label
 #: ega/results/nctStatus.title
 #: R/ega.b.R
 msgid "Network Comparison Test"
@@ -2008,10 +2013,14 @@ msgstr "Network Comparison Test (NCT)"
 msgid "Network Comparison Test interpretation"
 msgstr "Interpretación del Network Comparison Test"
 
-#: ega/options/model.title
-#: dynega/options/model.title
-msgid "Network Model"
-msgstr "Modelo de red"
+#: ega/ui[12].label
+#: dynega/ui[5].label
+msgid "Network Plot"
+msgstr "Gráfico de red"
+
+#: ega/ui[3].label
+msgid "Network Scores"
+msgstr "Puntuaciones de red"
 
 #: ega/results/edgeTable.title
 msgid "Network connections"
@@ -2043,6 +2052,8 @@ msgstr "No se pudieron calcular las cargas de red para esta estructura: %s."
 msgid "Network loadings summarize how strongly each item is connected to each dimension, on a scale comparable to factor loadings (Christensen & Golino, 2021; see references)."
 msgstr "Las cargas de red resumen con qué fuerza se conecta cada ítem con cada dimensión, en una escala comparable a la de las cargas factoriales (Christensen & Golino, 2021; ver referencias)."
 
+#: ega/options/model.title
+#: dynega/options/model.title
 #: R/dynega.b.R
 #: R/ega.b.R
 #: R/texts.R
@@ -2050,8 +2061,6 @@ msgid "Network model"
 msgstr "Modelo de red"
 
 #: ega/options/showNetworkPlot.title
-#: ega/ui[12].label
-#: dynega/ui[5].label
 msgid "Network plot"
 msgstr "Gráfico de red"
 
@@ -2063,7 +2072,6 @@ msgstr "Puntuación de red %s"
 msgid "Network score for dimension %s (EGAnetLab)"
 msgstr "Puntuación de red de la dimensión %s (EGAnetLab)"
 
-#: ega/ui[3].label
 #: ega/results/scoresGuide.title
 #: ega/results/scores.title
 #: ega/results/netScoresOV.title
@@ -2124,7 +2132,7 @@ msgid "Next step: report the number of samples, the seed and the CS coefficient 
 msgstr "Siguiente paso: informe el número de muestras, la semilla y el coeficiente CS junto con los resultados de centralidad. Si la estabilidad es baja, el principal remedio es una muestra mayor; eliminar ítems para aumentarla cambia el constructo que se mide."
 
 #: R/texts.R
-msgid "Next step: report the population structure together with the distribution of individual structures, the number of time points per person and the derivative analysed. Check whether persons who differ from the population share characteristics (group, adherence, number of time points)."
+msgid "Next step: report the population structure together with the distribution of individual structures, the number of time points per person and the derivative analyzed. Check whether persons who differ from the population share characteristics (group, adherence, number of time points)."
 msgstr "Siguiente paso: informe la estructura de la población junto con la distribución de las estructuras individuales, el número de momentos por persona y la derivada analizada. Revise si las personas que difieren de la población comparten características (grupo, adherencia, número de momentos)."
 
 #: R/texts.R
@@ -2132,7 +2140,7 @@ msgid "Next step: review the content of the non-invariant items (wording, cultur
 msgstr "Siguiente paso: revise el contenido de los ítems no invariantes (redacción, significado cultural, pertinencia en cada grupo). Si no pueden corregirse, compare los grupos con puntuaciones que los excluyan, o informe la comparación con y sin ellos. Informe la estructura evaluada, el número de permutaciones, la semilla y ambos valores p."
 
 #: R/texts.R
-msgid "Next step: tick Run bootstrap in the Stability (bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above."
+msgid "Next step: tick Run bootstrap in the Stability (Bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above."
 msgstr "Siguiente paso: marque Run bootstrap en la caja Stability (bootstrap) para verificar si el número de dimensiones y la pertenencia de cada ítem son estables entre remuestreos antes de interpretar la estructura. Usa exactamente las opciones de estimación de arriba."
 
 #: R/texts.R
@@ -2296,7 +2304,7 @@ msgid "One factor"
 msgstr "Un factor"
 
 #: ega/ui[5][2].label
-msgid "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively worded items box; this analysis uses them in their original direction (not recoded)."
+msgid "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively Worded Items box; this analysis uses them in their original direction (not recoded)."
 msgstr "Solo para escalas que mezclan ítems redactados en positivo y en negativo. Marque los ítems negativos en el cuadro Ítems redactados en negativo; este análisis los usa en su dirección original (sin recodificar)."
 
 #: R/texts.R
@@ -2545,6 +2553,10 @@ msgstr "Lea los resultados en este orden: el número de dimensiones y su ajuste 
 msgid "Reading"
 msgstr "Lectura"
 
+#: ega/options/showGuides.title
+msgid "Reading guides"
+msgstr "Guías de lectura"
+
 #: ega/options/edgeNegColor/red.title
 #: dynega/options/edgeNegColor/red.title
 msgid "Red"
@@ -2665,17 +2677,13 @@ msgid "Same item membership as their own group (ARI = 1)"
 msgstr "Misma pertenencia de ítems que su propio grupo (ARI = 1)"
 
 #: ega/options/pairedVars.title
-#: ega/ui[7][3][1].label
+#: ega/ui[0][2].label
 msgid "Same items, second measurement"
 msgstr "Mismos ítems, segunda medición"
 
 #: R/texts.R
 msgid "Same number of dimensions as the population"
 msgstr "Mismo número de dimensiones que la población"
-
-#: ega/ui[7][1].label
-msgid "Same people measured twice (NCT only): the second measurement"
-msgstr "Mismas personas medidas dos veces (solo NCT): la segunda medición"
 
 #: R/ega.b.R
 msgid "Same people, both measurements"
@@ -2711,7 +2719,7 @@ msgid "Save network scores"
 msgstr "Guardar puntuaciones de red"
 
 #: R/texts.R
-msgid "Save network scores (in the Network scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it."
+msgid "Save network scores (in the Network Scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it."
 msgstr "Guardar puntuaciones de red (en la caja Network scores) añade una columna por dimensión al conjunto de datos, para usar las puntuaciones en otros análisis. Quien tenga una respuesta perdida en algún ítem de una dimensión queda sin puntuación en ella."
 
 #: ega/options/splitOV.title
@@ -2750,23 +2758,9 @@ msgstr "Seleccione los ítems y la variable que identifica a cada persona para e
 msgid "Set"
 msgstr "Conjunto"
 
-#: ega/options/showEdgeLabels.title
-#: dynega/options/showEdgeLabels.title
-msgid "Show edge weights"
-msgstr "Mostrar pesos de aristas"
-
-#: ega/options/hierItemLabels.title
-msgid "Show item names"
-msgstr "Mostrar nombres de los ítems"
-
-#: ega/options/showLegend.title
-#: dynega/options/showLegend.title
-msgid "Show legend"
-msgstr "Mostrar leyenda"
-
-#: ega/options/hierShowLevels.title
-msgid "Show level names"
-msgstr "Mostrar nombres de los niveles"
+#: ega/ui[7][0].label
+msgid "Set the groups in the variable boxes at the top: Grouping variable for independent groups (e.g. sex), or Same items, second measurement when the same people answered the items twice (NCT only, items in the same order)."
+msgstr "Indique los grupos en las casillas de variables de arriba: Variable de agrupación para grupos independientes (p. ej., sexo), o Mismos ítems, segunda medición cuando las mismas personas respondieron los ítems dos veces (solo NCT, ítems en el mismo orden)."
 
 #: R/texts.R
 msgid "Small to moderate"
@@ -2828,11 +2822,14 @@ msgstr "Cuadrado"
 msgid "Stability"
 msgstr "Estabilidad"
 
+#: ega/ui[9].label
+msgid "Stability (Bootstrap)"
+msgstr "Estabilidad (bootstrap)"
+
 #: ega/ui[6][1].label
 msgid "Stability (bootnet)"
 msgstr "Estabilidad (bootnet)"
 
-#: ega/ui[9].label
 #: ega/results/bootStatus.title
 #: R/ega.b.R
 msgid "Stability (bootstrap)"
@@ -3046,7 +3043,7 @@ msgid "The CFA could not be fitted in this sample (see the text above)."
 msgstr "El CFA no pudo ajustarse en esta muestra (vea el texto de arriba)."
 
 #: R/texts.R
-msgid "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory factor analysis box."
+msgid "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory Factor Analysis box."
 msgstr "Los índices del CFA salen de los mismos datos que produjeron la solución de EGA, así que la favorecen. Úselos como una segunda mirada y confirme con la división aleatoria de la caja Confirmatory factor analysis."
 
 #: R/texts.R
@@ -3419,7 +3416,7 @@ msgid "To compare groups, add a grouping variable (independent groups) or the it
 msgstr "Para comparar grupos, agregue una variable de agrupación (grupos independientes) o los ítems de una segunda medición de las mismas personas (grupos pareados)."
 
 #: R/texts.R
-msgid "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare structures (TEFI) box."
+msgid "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare Structures (TEFI) box."
 msgstr "Para comparar también la estructura teórica, arrastre sus ítems a los factores de Theoretical structure, en la caja Compare structures (TEFI)."
 
 #: R/texts.R
@@ -3475,9 +3472,6 @@ msgstr "Incertidumbres"
 
 #: ega/options/uniMethod.title
 #: dynega/options/uniMethod.title
-msgid "Unidimensionality Check"
-msgstr "Verificación de unidimensionalidad"
-
 #: R/ega.b.R
 #: R/texts.R
 msgid "Unidimensionality check"
@@ -3517,11 +3511,6 @@ msgstr "Valores estandarizados entre ítems (z): media 0, DE 1."
 #: R/texts.R
 msgid "Variables in the second measurement: %d. However, the analysis uses %d items. Add one variable for each item, in the same order as the items, to compare the two measurements."
 msgstr "Variables en la segunda medición: %d. Sin embargo, el análisis usa %d ítems. Agregue una variable por cada ítem, en el mismo orden de los ítems, para comparar las dos mediciones."
-
-#: ega/options/plotPalette/viridis.title
-#: dynega/options/plotPalette/viridis.title
-msgid "Viridis"
-msgstr "Viridis"
 
 #: ega/options/cfaEstimator/WLSMV.title
 msgid "WLSMV (ordinal)"
@@ -3618,7 +3607,7 @@ msgid "dimension %s with %d items"
 msgstr "dimensión %s con %d ítems"
 
 #: R/texts.R
-msgid "embedding %d, tau %d, delta %s; derivative analysed: %s"
+msgid "embedding %d, tau %d, delta %s; derivative analyzed: %s"
 msgstr "inmersión %d, tau %d, delta %s; derivada analizada: %s"
 
 #: R/cfa-helpers.R
@@ -3696,10 +3685,6 @@ msgstr "varianza residual negativa (caso Heywood)"
 #: R/texts.R
 msgid "new"
 msgstr "nueva"
-
-#: ega/ui[7][2].label
-msgid "of the same items, in the same order as the items."
-msgstr "de los mismos ítems, en el mismo orden de los ítems."
 
 #: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title

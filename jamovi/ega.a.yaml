@@ -76,7 +76,7 @@ options:
     default: auto
 
   - name: naData
-    title: Missing Values
+    title: Missing values
     type: List
     options:
       - title: Pairwise
@@ -86,7 +86,7 @@ options:
     default: pairwise
 
   - name: model
-    title: Network Model
+    title: Network model
     type: List
     options:
       - title: GLASSO (EBIC)
@@ -98,7 +98,7 @@ options:
     default: glasso
 
   - name: algorithm
-    title: Community Detection
+    title: Community detection
     type: List
     options:
       - title: Walktrap
@@ -110,7 +110,7 @@ options:
     default: walktrap
 
   - name: uniMethod
-    title: Unidimensionality Check
+    title: Unidimensionality check
     type: List
     options:
       - title: Louvain
@@ -569,6 +569,16 @@ options:
     type: Bool
     default: true
 
+  # "How to read this table" blocks next to the main tables. On by default,
+  # because the module is meant for teaching; one tick hides all of them.
+  # ES: Bloques "cómo leer esta tabla" junto a las tablas principales.
+  # Activado por defecto, porque el módulo está pensado para enseñar; una
+  # casilla los oculta todos.
+  - name: showGuides
+    title: Reading guides
+    type: Bool
+    default: true
+
   - name: showLoadings
     title: Network loadings
     type: Bool
@@ -583,25 +593,6 @@ options:
     title: Network plot
     type: Bool
     default: true
-
-  # Same policy as AssumptionsLab's plotPalette, adapted: EGAnet draws its
-  # own network plot with a manual color scale, so "default" keeps EGAnet's
-  # palette and the other two are colorblind-safe additions.
-  # ES: Misma política que plotPalette de AssumptionsLab, adaptada: EGAnet
-  # dibuja su propio gráfico de red con escala de color manual, así que
-  # "default" conserva la paleta de EGAnet y las otras dos son añadidos
-  # aptos para daltonismo.
-  - name: plotPalette
-    title: Dimension Colors
-    type: List
-    options:
-      - title: EGAnetLab default
-        name: default
-      - title: Colorblind-safe (Okabe-Ito)
-        name: colorblind
-      - title: Viridis
-        name: viridis
-    default: default
 
   # ---------------------------------------------------------------------------
   # Network plot customization. Defaults equal EGAnet's own plot.EGA()
@@ -745,7 +736,7 @@ options:
     default: 0
 
   - name: showEdgeLabels
-    title: Show edge weights
+    title: Edge weights
     type: Bool
     default: false
 
@@ -764,7 +755,7 @@ options:
     default: 2
 
   - name: showLegend
-    title: Show legend
+    title: Legend
     type: Bool
     default: true
 
@@ -798,12 +789,12 @@ options:
     default: ''
 
   - name: hierShowLevels
-    title: Show level names
+    title: Level names
     type: Bool
     default: true
 
   - name: hierItemLabels
-    title: Show item names
+    title: Item names
     type: Bool
     default: true
 

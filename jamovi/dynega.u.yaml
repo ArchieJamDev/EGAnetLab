@@ -112,10 +112,8 @@ children:
       - type: CheckBox
         name: showIndPlot
         enable: (levelIndividual)
-      - type: ComboBox
-        name: plotPalette
   - type: CollapseBox
-    label: Network plot
+    label: Network Plot
     collapsed: true
     children:
       - type: LayoutBox

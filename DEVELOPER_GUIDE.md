@@ -548,9 +548,9 @@ follows the user's own jamovi Theme/Palette settings. Derive fixed colors
 `.plotColors(theme)` helper — see AssumptionsLab's `logcheck.b.R` for the
 reference pattern. Network plots drawn by EGAnet are the documented exception
 (ARCHITECTURE.md §10): they do not add `ggtheme`.
-Offer a module-level `plotPalette` option only for choices jamovi does not
-itself provide (colorblind-safe, viridis) — never a `plotStyle` option,
-which only duplicates jamovi's own Theme control. When a manual N-category
+Never add a module-level palette or style option: it duplicates jamovi's own
+settings. For N-category colors use `.el_plot_series_palette(n, theme)`,
+which returns `jmvcore::colorPalette()` for the palette chosen in jamovi. When a manual N-category
 scale is needed, apply it via `scale_color_manual()`/`scale_fill_manual()`
 placed *after* `+ ggtheme` in the chain — ggtheme's own discrete scale
 otherwise silently wins.
@@ -570,10 +570,10 @@ a nivel de módulo. Toda función de render tiene la firma
 tiene configurados en jamovi. Derivar los colores fijos (punto, línea,
 alerta, referencia) desde `theme$color`/`theme$fill` mediante un pequeño
 ayudante `.plotColors(theme)` — ver `logcheck.b.R` de AssumptionsLab como patrón de
-referencia. Ofrecer una opción `plotPalette` a nivel de módulo solo para
-opciones que jamovi mismo no ofrece (apta para daltonismo, viridis) —
-nunca una opción `plotStyle`, que solo duplica el propio control de Tema
-de jamovi. Cuando se necesite una escala manual de N categorías, aplicarla
+referencia. Nunca agregar una opción de paleta o de estilo a nivel de
+módulo: duplica los ajustes de jamovi. Para colores de N categorías usar
+`.el_plot_series_palette(n, theme)`, que devuelve `jmvcore::colorPalette()`
+con la paleta elegida en jamovi. Cuando se necesite una escala manual de N categorías, aplicarla
 vía `scale_color_manual()`/`scale_fill_manual()` colocada *después* de
 `+ ggtheme` en la cadena — de lo contrario, la escala discreta propia de
 ggtheme gana en silencio.
