@@ -123,7 +123,14 @@
 # volvió no finito sin lanzar error) nunca se muestre como número real.
 # -----------------------------------------------------------------------------
 .el_add_row <- function(table, key, values) {
-    table$addRow(rowKey = key, values = values)
+    # Rows laid out in .init() (fixed labels) are filled in place; any other
+    # row is added.
+    # ES: Las filas preparadas en .init() (etiquetas fijas) se llenan en su
+    # lugar; cualquier otra fila se agrega.
+    if (key %in% table$rowKeys)
+        table$setRow(rowKey = key, values = values)
+    else
+        table$addRow(rowKey = key, values = values)
 }
 
 .el_clean_num <- function(x) {

@@ -72,6 +72,35 @@ items:
         title: Value
         type: text
 
+  # The solution in numbers, so jamovi formats them like any other table.
+  # ES: La solución en números, para que jamovi les dé formato como a
+  # cualquier otra tabla.
+  - name: solution
+    title: Solution
+    type: Table
+    rows: 1
+    refs:
+      - golino_2021
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+    columns:
+      - name: dims
+        title: Dimensions
+        type: integer
+      - name: isolated
+        title: Isolated items
+        type: integer
+      - name: tefi
+        title: TEFI
+        type: number
+
   - name: membership
     title: Item membership
     type: Table
@@ -104,7 +133,7 @@ items:
   - name: loadings
     title: Network loadings (standardized)
     type: Table
-    rows: 0
+    rows: (vars)
     visible: (showLoadings)
     refs:
       - christensen_2021_loadings
@@ -121,6 +150,7 @@ items:
       - name: item
         title: Item
         type: text
+        content: ($key)
 
   - name: interpretation
     title: Applied interpretation
@@ -334,7 +364,7 @@ items:
   - name: compareMembership
     title: Item membership by structure
     type: Table
-    rows: 0
+    rows: (vars)
     visible: (runCompare)
     clearWith:
       - vars
@@ -352,6 +382,7 @@ items:
       - name: item
         title: Item
         type: text
+        content: ($key)
       - name: ega
         title: EGA
         type: text
@@ -399,7 +430,7 @@ items:
   - name: hierMembership
     title: Item membership by level
     type: Table
-    rows: 0
+    rows: (vars)
     visible: (runHier)
     clearWith:
       - vars
@@ -414,6 +445,7 @@ items:
       - name: item
         title: Item
         type: text
+        content: ($key)
       - name: ega
         title: EGA
         type: text
@@ -485,7 +517,7 @@ items:
   - name: riMembership
     title: Item membership with and without wording control
     type: Table
-    rows: 0
+    rows: (vars)
     visible: (runRI)
     clearWith:
       - vars
@@ -500,6 +532,7 @@ items:
       - name: item
         title: Item
         type: text
+        content: ($key)
       - name: ega
         title: EGA
         type: text
@@ -729,7 +762,7 @@ items:
     title: Item stability
     type: Table
     visible: (runBoot)
-    rows: 0
+    rows: (vars)
     refs:
       - christensen_2021_boot
     clearWith:
@@ -749,6 +782,7 @@ items:
       - name: item
         title: Item
         type: text
+        content: ($key)
       - name: dimension
         title: Dimension
         type: text
@@ -946,7 +980,7 @@ items:
   - name: cfaMembership
     title: Item membership by sample
     type: Table
-    rows: 0
+    rows: (vars)
     visible: (runCFA && splitSample)
     clearWith:
       - vars
@@ -965,6 +999,7 @@ items:
       - name: item
         title: Item
         type: text
+        content: ($key)
       - name: total
         title: Total sample
         type: text
@@ -981,7 +1016,7 @@ items:
   - name: cfaLoadings
     title: CFA standardized loadings
     type: Table
-    rows: 0
+    rows: (vars)
     visible: (runCFA)
     refs:
       - rosseel_2012
@@ -1002,6 +1037,7 @@ items:
       - name: item
         title: Item
         type: text
+        content: ($key)
       - name: factor
         title: Factor
         type: text

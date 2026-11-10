@@ -29,7 +29,7 @@ stage: 0
 compilerMode: tame
 children:
   - type: VariableSupplier
-    persistentItems: false
+    persistentItems: true
     stretchFactor: 1
     children:
       - type: TargetLayoutBox
@@ -38,6 +38,46 @@ children:
           - type: VariablesListBox
             name: vars
             isTarget: true
+      - type: TargetLayoutBox
+        label: Negatively worded items
+        children:
+          - type: VariablesListBox
+            name: negItems
+            isTarget: true
+            height: small
+      - type: TargetLayoutBox
+        label: Theoretical structure
+        children:
+          - type: ListBox
+            name: theoryFactors
+            height: large
+            addButton: Add New Factor
+            enable: (runCompare)
+            events:
+              listItemAdded: './ega.events::onFactorsChanged'
+              listItemRemoved: './ega.events::onFactorsChanged'
+            templateName: linreg-block-template
+            template:
+              type: LayoutBox
+              margin: normal
+              children:
+                - type: TextBox
+                  valueKey:
+                    - label
+                  borderless: true
+                  name: blockName
+                  stretchFactor: 1
+                  margin: normal
+                  events:
+                    change: './ega.events::onFactorsChanged'
+                - type: VariablesListBox
+                  valueFilter: unique
+                  valueKey:
+                    - vars
+                  name: blockList
+                  isTarget: true
+                  height: auto
+                  ghostText: drag variables here
       - type: TargetLayoutBox
         label: Grouping variable
         children:
@@ -56,291 +96,268 @@ children:
     label: Estimation
     collapsed: true
     children:
-      - type: ComboBox
-        name: corr
-      - type: ComboBox
-        name: naData
-      - type: ComboBox
-        name: model
-      - type: ComboBox
-        name: algorithm
-      - type: ComboBox
-        name: uniMethod
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: ComboBox
+            name: corr
+          - type: ComboBox
+            name: naData
+          - type: ComboBox
+            name: model
+          - type: ComboBox
+            name: algorithm
+          - type: ComboBox
+            name: uniMethod
   - type: CollapseBox
     label: Negatively Worded Items
     collapsed: true
     children:
-      - type: VariableSupplier
-        persistentItems: true
-        stretchFactor: 1
-        suggested:
-          - continuous
-          - ordinal
-        permitted:
-          - numeric
+      - type: LayoutBox
+        margin: large
         children:
-          - type: TargetLayoutBox
-            label: Negatively worded items
-            children:
-              - type: VariablesListBox
-                name: negItems
-                isTarget: true
-                height: small
-      - type: ComboBox
-        name: negCoding
-      - type: Label
-        label: >-
-          If they are as answered, every analysis reverses them (observed
-          minimum plus maximum, minus the score). Random-intercept EGA always
-          uses them in their original direction.
+          - type: ComboBox
+            name: negCoding
+          - type: Label
+            label: >-
+              Mark them in Negatively worded items, at the top. If they are as
+              answered, every analysis reverses them (observed minimum plus
+              maximum, minus the score). Random-intercept EGA always uses them
+              in their original direction.
   - type: CollapseBox
     label: Network Scores
     collapsed: true
     children:
-      - type: CheckBox
-        name: netScores
-      - type: Output
-        name: netScoresOV
-      - type: Output
-        name: meanScoresOV
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: CheckBox
+            name: netScores
+          - type: Output
+            name: netScoresOV
+          - type: Output
+            name: meanScoresOV
   - type: CollapseBox
     label: Compare Structures (TEFI)
     collapsed: true
     children:
-      - type: CheckBox
-        name: runCompare
-      - type: CheckBox
-        name: compareAlgorithms
-        enable: (runCompare)
-      - type: VariableSupplier
-        persistentItems: true
-        stretchFactor: 1
-        suggested:
-          - continuous
-          - ordinal
-        permitted:
-          - numeric
+      - type: LayoutBox
+        margin: large
         children:
-          - type: TargetLayoutBox
-            label: Theoretical structure
-            children:
-              - type: ListBox
-                name: theoryFactors
-                height: large
-                addButton: Add New Factor
-                enable: (runCompare)
-                events:
-                  listItemAdded: './ega.events::onFactorsChanged'
-                  listItemRemoved: './ega.events::onFactorsChanged'
-                templateName: linreg-block-template
-                template:
-                  type: LayoutBox
-                  margin: normal
-                  children:
-                    - type: TextBox
-                      valueKey:
-                        - label
-                      borderless: true
-                      name: blockName
-                      stretchFactor: 1
-                      margin: normal
-                      events:
-                        change: './ega.events::onFactorsChanged'
-                    - type: VariablesListBox
-                      valueFilter: unique
-                      valueKey:
-                        - vars
-                      name: blockList
-                      isTarget: true
-                      height: auto
-                      ghostText: drag variables here
-      - type: CheckBox
-        name: compareCFA
-        enable: (runCompare)
+          - type: CheckBox
+            name: runCompare
+          - type: CheckBox
+            name: compareAlgorithms
+            enable: (runCompare)
+          - type: CheckBox
+            name: compareCFA
+            enable: (runCompare)
   - type: CollapseBox
     label: Hierarchical and Wording Structure
     collapsed: true
     children:
-      - type: CheckBox
-        name: runHier
-      - type: CheckBox
-        name: runRI
-      - type: Label
-        label: >-
-          Only for scales that mix positively and negatively worded items.
-          Mark the negative items in the Negatively Worded Items box; this analysis
-          uses them in their original direction (not recoded).
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: CheckBox
+            name: runHier
+          - type: CheckBox
+            name: runRI
+          - type: Label
+            label: >-
+              Only for scales that mix positively and negatively worded items.
+              Mark the negative items in Negatively worded items, at the top;
+              this analysis uses them in their original direction (not
+              recoded).
   - type: CollapseBox
     label: Centrality and Network Stability
     collapsed: true
     children:
-      - type: Label
-        label: Centrality
+      - type: LayoutBox
+        margin: large
         children:
-          - type: CheckBox
-            name: runCentrality
-          - type: CheckBox
-            name: cenStandardize
-            enable: (runCentrality)
-          - type: CheckBox
-            name: cenClosBetw
-            enable: (runCentrality || runBootnet)
-          - type: CheckBox
-            name: showCenPlot
-            enable: (runCentrality)
-      - type: Label
-        label: Stability (bootnet)
-        children:
-          - type: CheckBox
-            name: runBootnet
-          - type: TextBox
-            name: bnIter
-            format: number
-            enable: (runBootnet)
-          - type: TextBox
-            name: bnCaseIter
-            format: number
-            enable: (runBootnet)
-          - type: TextBox
-            name: bnSeed
-            format: number
-            enable: (runBootnet)
-          - type: CheckBox
-            name: showEdgeCIPlot
-            enable: (runBootnet)
-          - type: CheckBox
-            name: showCasePlot
-            enable: (runBootnet)
+          - type: Label
+            label: Centrality
+            children:
+              - type: CheckBox
+                name: runCentrality
+              - type: CheckBox
+                name: cenStandardize
+                enable: (runCentrality)
+              - type: CheckBox
+                name: cenClosBetw
+                enable: (runCentrality || runBootnet)
+              - type: CheckBox
+                name: showCenPlot
+                enable: (runCentrality)
+          - type: Label
+            label: Stability (bootnet)
+            children:
+              - type: CheckBox
+                name: runBootnet
+              - type: TextBox
+                name: bnIter
+                format: number
+                enable: (runBootnet)
+              - type: TextBox
+                name: bnCaseIter
+                format: number
+                enable: (runBootnet)
+              - type: TextBox
+                name: bnSeed
+                format: number
+                enable: (runBootnet)
+              - type: CheckBox
+                name: showEdgeCIPlot
+                enable: (runBootnet)
+              - type: CheckBox
+                name: showCasePlot
+                enable: (runBootnet)
   - type: CollapseBox
     label: Group Comparison
     collapsed: true
     children:
-      - type: Label
-        label: >-
-          Set the groups in the variable boxes at the top: Grouping variable
-          for independent groups (e.g. sex), or Same items, second measurement
-          when the same people answered the items twice (NCT only, items in
-          the same order).
-      - type: Label
-        label: Invariance (independent groups)
+      - type: LayoutBox
+        margin: large
         children:
-          - type: CheckBox
-            name: runInvariance
-          - type: ComboBox
-            name: invStructure
-            enable: (runInvariance)
+          - type: Label
+            label: >-
+              Set the groups in the variable boxes at the top: Grouping variable
+              for independent groups (e.g. sex), or Same items, second measurement
+              when the same people answered the items twice (NCT only, items in
+              the same order).
+          - type: Label
+            label: Invariance (independent groups)
+            children:
+              - type: CheckBox
+                name: runInvariance
+              - type: ComboBox
+                name: invStructure
+                enable: (runInvariance)
+              - type: TextBox
+                name: invConfigCut
+                format: number
+                enable: (runInvariance && invStructure:configural)
+              - type: TextBox
+                name: invIter
+                format: number
+                enable: (runInvariance)
+              - type: CheckBox
+                name: showInvPlot
+                enable: (runInvariance)
+          - type: Label
+            label: Network Comparison Test
+            children:
+              - type: CheckBox
+                name: runNCT
+              - type: TextBox
+                name: nctIter
+                format: number
+                enable: (runNCT)
+              - type: ComboBox
+                name: nctCorr
+                enable: (runNCT)
+              - type: CheckBox
+                name: nctEdges
+                enable: (runNCT)
+              - type: CheckBox
+                name: nctCentrality
+                enable: (runNCT)
+              - type: ComboBox
+                name: nctAdjust
+                enable: (runNCT && (nctEdges || nctCentrality))
           - type: TextBox
-            name: invConfigCut
+            name: groupSeed
             format: number
-            enable: (runInvariance && invStructure:configural)
-          - type: TextBox
-            name: invIter
-            format: number
-            enable: (runInvariance)
-          - type: CheckBox
-            name: showInvPlot
-            enable: (runInvariance)
-      - type: Label
-        label: Network Comparison Test
-        children:
-          - type: CheckBox
-            name: runNCT
-          - type: TextBox
-            name: nctIter
-            format: number
-            enable: (runNCT)
-          - type: ComboBox
-            name: nctCorr
-            enable: (runNCT)
-          - type: CheckBox
-            name: nctEdges
-            enable: (runNCT)
-          - type: CheckBox
-            name: nctCentrality
-            enable: (runNCT)
-          - type: ComboBox
-            name: nctAdjust
-            enable: (runNCT && (nctEdges || nctCentrality))
-      - type: TextBox
-        name: groupSeed
-        format: number
-        enable: (runInvariance || runNCT)
+            enable: (runInvariance || runNCT)
   - type: CollapseBox
     label: Redundancy (UVA)
     collapsed: true
     children:
-      - type: CheckBox
-        name: runUVA
-      - type: TextBox
-        name: uvaCut
-        format: number
-        enable: (runUVA)
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: CheckBox
+            name: runUVA
+          - type: TextBox
+            name: uvaCut
+            format: number
+            enable: (runUVA)
   - type: CollapseBox
     label: Stability (Bootstrap)
     collapsed: true
     children:
-      - type: CheckBox
-        name: runBoot
-      - type: ComboBox
-        name: bootType
-        enable: (runBoot)
-      - type: TextBox
-        name: iter
-        format: number
-        enable: (runBoot)
-      - type: TextBox
-        name: seed
-        format: number
-        enable: (runBoot)
-      - type: TextBox
-        name: stabilityCut
-        format: number
-        enable: (runBoot)
-      - type: CheckBox
-        name: showItemPlot
-        enable: (runBoot)
-      - type: CheckBox
-        name: showFrequencyPlot
-        enable: (runBoot)
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: CheckBox
+            name: runBoot
+          - type: ComboBox
+            name: bootType
+            enable: (runBoot)
+          - type: TextBox
+            name: iter
+            format: number
+            enable: (runBoot)
+          - type: TextBox
+            name: seed
+            format: number
+            enable: (runBoot)
+          - type: TextBox
+            name: stabilityCut
+            format: number
+            enable: (runBoot)
+          - type: CheckBox
+            name: showItemPlot
+            enable: (runBoot)
+          - type: CheckBox
+            name: showFrequencyPlot
+            enable: (runBoot)
   - type: CollapseBox
     label: Confirmatory Factor Analysis
     collapsed: true
     children:
-      - type: CheckBox
-        name: runCFA
-      - type: ComboBox
-        name: cfaEstimator
-        enable: (runCFA)
-      - type: CheckBox
-        name: splitSample
-        enable: (runCFA)
-      - type: TextBox
-        name: splitProp
-        format: number
-        enable: (runCFA && splitSample)
-      - type: TextBox
-        name: splitSeed
-        format: number
-        enable: (runCFA && splitSample)
-      - type: Output
-        name: splitOV
-        enable: (runCFA && splitSample)
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: CheckBox
+            name: runCFA
+          - type: ComboBox
+            name: cfaEstimator
+            enable: (runCFA)
+          - type: CheckBox
+            name: splitSample
+            enable: (runCFA)
+          - type: TextBox
+            name: splitProp
+            format: number
+            enable: (runCFA && splitSample)
+          - type: TextBox
+            name: splitSeed
+            format: number
+            enable: (runCFA && splitSample)
+          - type: Output
+            name: splitOV
+            enable: (runCFA && splitSample)
   - type: CollapseBox
     label: Output
     collapsed: true
     children:
-      - type: CheckBox
-        name: showKeySummary
-      - type: CheckBox
-        name: showChoicesGuide
-      - type: CheckBox
-        name: showGuides
-      - type: CheckBox
-        name: showLoadings
-      - type: CheckBox
-        name: showEdgeTable
-      - type: CheckBox
-        name: showNetworkPlot
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: CheckBox
+            name: showKeySummary
+          - type: CheckBox
+            name: showChoicesGuide
+          - type: CheckBox
+            name: showGuides
+          - type: CheckBox
+            name: showLoadings
+          - type: CheckBox
+            name: showEdgeTable
+          - type: CheckBox
+            name: showNetworkPlot
   - type: CollapseBox
     label: Network Plot
     collapsed: true

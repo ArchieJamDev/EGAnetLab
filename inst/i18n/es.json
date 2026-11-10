@@ -953,9 +953,6 @@
             "IFI": [
                 "IFI"
             ],
-            "If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction.": [
-                "Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
-            ],
             "In %s, the CFA of the EGA structure gives CFI = %s, TLI = %s, RMSEA = %s and SRMR = %s, which suggests %s fit.": [
                 "En %s, el CFA de la estructura de EGA da CFI = %s, TLI = %s, RMSEA = %s y SRMR = %s, lo que sugiere un ajuste %s."
             ],
@@ -1003,6 +1000,9 @@
             ],
             "Isolated (no edges)": [
                 "Aislado (sin aristas)"
+            ],
+            "Isolated items": [
+                "Ítems aislados"
             ],
             "It draws many new samples from your data, runs EGA with the same estimation options on each one and records how many dimensions appear and where each item ends up. A solid structure appears again and again; an unstable one changes from sample to sample.": [
                 "Extrae muchas muestras nuevas de sus datos, ejecuta EGA con las mismas opciones de estimación en cada una y registra cuántas dimensiones aparecen y dónde queda cada ítem. Una estructura sólida aparece una y otra vez; una inestable cambia de una muestra a otra."
@@ -1267,6 +1267,9 @@
             ],
             "Main findings": [
                 "Hallazgos principales"
+            ],
+            "Mark them in Negatively worded items, at the top. If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction.": [
+                "Márquelos en Ítems redactados en negativo, arriba. Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
             ],
             "Mean": [
                 "Media"
@@ -1550,6 +1553,9 @@
             "Not in any dimension: %s. They are left out of TEFI, so this value is not compared with the others.": [
                 "Sin dimensión: %s. Quedan fuera del TEFI, así que este valor no se compara con los demás."
             ],
+            "Not in the CFA model: isolated item, or its dimension has fewer than two items.": [
+                "Fuera del modelo CFA: ítem aislado, o su dimensión tiene menos de dos ítems."
+            ],
             "Not interpretable (below .25)": [
                 "No interpretable (menos de .25)"
             ],
@@ -1577,8 +1583,8 @@
             "One factor": [
                 "Un factor"
             ],
-            "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively Worded Items box; this analysis uses them in their original direction (not recoded).": [
-                "Solo para escalas que mezclan ítems redactados en positivo y en negativo. Marque los ítems negativos en el cuadro Ítems redactados en negativo; este análisis los usa en su dirección original (sin recodificar)."
+            "Only for scales that mix positively and negatively worded items. Mark the negative items in Negatively worded items, at the top; this analysis uses them in their original direction (not recoded).": [
+                "Solo para escalas que mezclan ítems redactados en positivo y en negativo. Marque los ítems negativos en Ítems redactados en negativo, arriba; este análisis los usa en su dirección original (sin recodificar)."
             ],
             "Only the edges of the estimated network are listed, strongest first. The intervals are percentile intervals from resampling cases. In regularized networks the weights are pulled toward zero, so the intervals describe precision and are not significance tests (Epskamp et al., 2018).": [
                 "Solo se listan las aristas de la red estimada, de la más fuerte a la más débil. Los intervalos son percentiles del remuestreo de casos. En redes regularizadas los pesos se acercan a cero, así que los intervalos describen la precisión y no son pruebas de significación (Epskamp et al., 2018)."
@@ -1906,6 +1912,9 @@
             ],
             "Solid": [
                 "Continua"
+            ],
+            "Solution": [
+                "Solución"
             ],
             "Spearman": [
                 "Spearman"
@@ -2381,8 +2390,8 @@
             "To compare groups, add a grouping variable (independent groups) or the items of a second measurement of the same people (paired groups).": [
                 "Para comparar grupos, agregue una variable de agrupación (grupos independientes) o los ítems de una segunda medición de las mismas personas (grupos pareados)."
             ],
-            "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare Structures (TEFI) box.": [
-                "Para comparar también la estructura teórica, arrastre sus ítems a los factores de Theoretical structure, en la caja Compare structures (TEFI)."
+            "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, at the top of the panel.": [
+                "Para comparar también la estructura teórica, arrastre sus ítems a los factores de Estructura teórica, en la parte superior del panel."
             ],
             "To run the NCT, add a grouping variable with at least two groups of 10 or more cases, or the items of a second measurement of the same people.": [
                 "Para ejecutar el NCT, agregue una variable de agrupación con al menos dos grupos de 10 casos o más, o los ítems de una segunda medición de las mismas personas."

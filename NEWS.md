@@ -38,9 +38,14 @@
   χ²/df moved to the new *Additional fit indices* table. Non-converged,
   failed or inadmissible solutions are explained in footnotes. *Models with
   and without hierarchy* has separate χ², df and p columns.
-* Item membership (EGA and Dynamic EGA) and centrality tables have one row
-  per selected item from the start, so jamovi lays them out before the
+* Every per-item table (membership, network loadings, centrality, item
+  stability, hierarchical and random-intercept membership, structure
+  comparison, CFA membership and loadings) has one row per selected item
+  from the start, and the summary, bootstrap summary and CS tables lay out
+  their fixed rows in `.init()`, so jamovi draws the tables before the
   analysis finishes.
+* The number of dimensions, the isolated items and the TEFI of the main EGA
+  moved from the summary to the new numeric *Solution* table.
 * bootEGA, invariance, UVA and hierEGA start with a checkpoint, so jamovi can
   stop a long run that the user has already changed.
 
@@ -53,10 +58,12 @@
 * The **Dimension Colors** option is removed: every plot, including the
   network plot drawn by EGAnet, takes its colors from the palette chosen in
   jamovi's settings.
-* **Grouping variable** and **Same items, second measurement** moved to the
-  variable boxes at the top of the panel, like jmv's own analyses. The
-  negatively worded items and the theoretical structure stay in their
-  sections, because they hold the same items already selected in *Items*.
+* **Negatively worded items**, **Theoretical structure**, **Grouping
+  variable** and **Same items, second measurement** moved to the variable
+  boxes at the top of the panel, like jmv's own analyses (the variable list
+  keeps the items, as in jmv's CFA, so an item can be both in *Items* and in
+  these boxes). The options that use them stay in their sections, and every
+  section's controls have jamovi's standard margins.
 * Section headings use title case, option names sentence case, checkboxes
   no longer start with "Show", and the spelling is American throughout
   ("Derivative analyzed").

@@ -54,12 +54,10 @@ test_that("the EGA solution is compared with the other algorithms", {
 
     res <- runCompare()
     table <- res$compareTable$asDF
-    summary <- res$summary$asDF
 
     expect_equal(nrow(table), 3)
     expect_equal(table$dims, c(3, 3, 3))
-    tefi_summary <- as.numeric(summary$value[summary$element == "TEFI"])
-    expect_equal(round(table$tefi[1], 3), tefi_summary)
+    expect_equal(table$tefi[1], res$solution$asDF$tefi, tolerance = 1e-4)
     expect_true(all(table$delta >= 0, na.rm = TRUE))
     expect_true(any(table$delta == 0))
     expect_equal(nrow(res$compareMembership$asDF), 12)

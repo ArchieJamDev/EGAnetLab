@@ -84,6 +84,44 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
         # para ajustar los modelos jerárquicos.
         .hierStructure = NULL,
 
+        # ---------------------------------------------------------------------
+        # Rows whose labels are known before anything is computed, so jamovi
+        # lays the tables out at once (per-item tables are bound to the
+        # items in the .r.yaml). .run() fills them in place.
+        # ES: Filas cuyas etiquetas se conocen antes de calcular nada, para
+        # que jamovi disponga las tablas de inmediato (las tablas por ítem
+        # están ligadas a los ítems en el .r.yaml). .run() las llena en su
+        # lugar.
+        # ---------------------------------------------------------------------
+        .init = function() {
+
+            if (length(self$options$vars) == 0)
+                return()
+
+            summary_labels <- c(.("Items"), .("Cases used"), .("Correlation"), .("Network model"),
+                                .("Community detection"), .("Unidimensionality check"))
+            if (length(intersect(unlist(self$options$negItems), unlist(self$options$vars))) > 0)
+                summary_labels <- c(summary_labels, .("Negatively worded items"))
+            for (i in seq_along(summary_labels))
+                self$results$summary$addRow(rowKey = i, values = list(element = summary_labels[i]))
+
+            if (isTRUE(self$options$runBoot)) {
+                boot_labels <- c(.("Items"), .("Cases used"), .("Bootstrap"), .("Seed"),
+                                 .("Dimensions in the original sample"), .("Median number of dimensions"),
+                                 .("95% interval (2.5th to 97.5th percentile)"), .("Standard error"))
+                for (i in seq_along(boot_labels))
+                    self$results$bootSummary$addRow(rowKey = i, values = list(element = boot_labels[i]))
+            }
+
+            if (isTRUE(self$options$runBootnet)) {
+                cs_labels <- c(.("Strength"), .("Expected influence"))
+                if (isTRUE(self$options$cenClosBetw))
+                    cs_labels <- c(cs_labels, .("Closeness"), .("Betweenness"))
+                for (i in seq_along(cs_labels))
+                    self$results$bnCS$addRow(rowKey = i, values = list(measure = cs_labels[i]))
+            }
+        },
+
         .run = function() {
 
             # -----------------------------------------------------------------
@@ -372,10 +410,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 list(.("Correlation"), corr_label),
                 list(.("Network model"), self$options$model),
                 list(.("Community detection"), self$options$algorithm),
-                list(.("Unidimensionality check"), self$options$uniMethod),
-                list(.("Number of dimensions"),
-                     if (is.na(n_dim)) txt("common", "not_computable") else as.character(n_dim)),
-                list("TEFI", .el_fmt_num(tefi, 3, txt("common", "not_computable")))
+                list(.("Unidimensionality check"), self$options$uniMethod)
             )
             if (length(prep$neg) > 0)
                 summary_rows[[length(summary_rows) + 1]] <- list(
@@ -388,6 +423,20 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             for (i in seq_along(summary_rows))
                 .el_add_row(self$results$summary, i,
                             list(element = summary_rows[[i]][[1]], value = summary_rows[[i]][[2]]))
+
+            # The solution in numbers; what cannot be computed stays empty
+            # with a footnote.
+            # ES: La solución en números; lo que no puede calcularse queda
+            # vacío con una nota al pie.
+            solution <- self$results$solution
+            solution$setRow(rowNo = 1, values = list(
+                dims = if (is.na(n_dim)) "" else as.integer(n_dim),
+                isolated = sum(is.na(wc)),
+                tefi = if (is.na(tefi)) "" else tefi))
+            if (is.na(n_dim))
+                solution$addFootnote(rowNo = 1, col = "dims", txt("common", "not_computable"))
+            if (is.na(tefi))
+                solution$addFootnote(rowNo = 1, col = "tefi", txt("common", "not_computable"))
 
             # -----------------------------------------------------------------
             # Item membership.
@@ -431,18 +480,17 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (is.null(std) || all(is.na(std))) {
                 reason <- if (!is.null(loads$error)) sprintf(txt("ega", "loadings_failed"), loads$error)
                           else txt("ega", "loadings_all_singleton")
-                .el_add_row(table, 1, list(item = txt("common", "not_computable")))
-                table$addFootnote(rowNo = 1, col = "item", reason)
+                .el_notice(self, "loadings", reason, error = FALSE)
             } else {
                 dims <- colnames(std)
                 for (d in dims)
                     table$addColumn(name = paste0("d", d), title = paste(.("Dimension"), d),
                                     type = "number", format = "zto")
                 for (i in seq_len(nrow(std))) {
-                    values <- list(item = rownames(std)[i])
+                    values <- list()
                     for (d in dims)
                         values[[paste0("d", d)]] <- .el_clean_num(std[i, d])
-                    .el_add_row(table, i, values)
+                    table$setRow(rowKey = rownames(std)[i], values = values)
                 }
 
                 # Dominant loading = the loading on the item's own
@@ -780,8 +828,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             part <- NULL
             heading <- .("Confirmatory factor analysis")
 
-            for (name in c("cfaCompare", "cfaMembership", "cfaLoadings"))
-                self$results[[name]]$deleteRows()
+            self$results$cfaCompare$deleteRows()
 
             wc_total <- ega$wc
             items <- names(wc_total)
@@ -876,9 +923,19 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (isTRUE(main$ok) && !is.null(main$loadings)) {
                 ld <- main$loadings
                 for (i in seq_len(nrow(ld)))
-                    .el_add_row(self$results$cfaLoadings, i, list(
-                        item = ld$item[i], factor = ld$factor[i],
+                    self$results$cfaLoadings$setRow(rowKey = ld$item[i], values = list(
+                        factor = ld$factor[i],
                         loading = .el_clean_num(ld$loading[i]), se = .el_clean_num(ld$se[i])))
+                # Items left out of the model (isolated, or in a dimension
+                # too small for a factor) keep their row, with a note.
+                # ES: Los ítems que quedan fuera del modelo (aislados, o en
+                # una dimensión demasiado pequeña para un factor) conservan
+                # su fila, con una nota.
+                for (it in setdiff(items, ld$item)) {
+                    self$results$cfaLoadings$setRow(rowKey = it, values = list(factor = "—"))
+                    self$results$cfaLoadings$addFootnote(rowNo = match(it, self$options$vars), col = "factor",
+                        .("Not in the CFA model: isolated item, or its dimension has fewer than two items."))
+                }
             }
             self$results$cfaLoadings$setTitle(if (split)
                 .("CFA standardized loadings (subsample B, confirmation)")
@@ -974,8 +1031,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     s <- !is.na(a) && !is.na(b) && a == b
                     same <- c(same, s)
                     if (!s) changes <- c(changes, it)
-                    .el_add_row(self$results$cfaMembership, i, list(
-                        item = it, total = label(as.character(wc_total[[it]])),
+                    self$results$cfaMembership$setRow(rowKey = it, values = list(
+                        total = label(as.character(wc_total[[it]])),
                         partA = label(a), partB = label(b),
                         agree = if (s) txt("cfa", "yes") else txt("cfa", "changed")))
                 }
@@ -1707,7 +1764,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             table <- self$results$compareTable
             members <- self$results$compareMembership
             table$deleteRows()
-            members$deleteRows()
             warnings <- character(0)
             use_cfa <- isTRUE(self$options$compareCFA)
             algo_names <- c(walktrap = "Walktrap", louvain = "Louvain", leiden = "Leiden")
@@ -1883,12 +1939,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             names(shown_wc) <- vapply(shown, function(st) st$key, character(1))
             for (i in seq_along(items)) {
                 item <- items[i]
-                values <- list(item = item, ega = if (is.na(ref[[item]])) "—" else ref[[item]])
+                values <- list(ega = if (is.na(ref[[item]])) "—" else ref[[item]])
                 for (st in shown) {
                     label <- if (st$kind == "theory") st$wc[[item]] else shown_wc[[st$key]][[item]]
                     values[[st$key]] <- if (is.na(label)) "—" else label
                 }
-                .el_add_row(members, i, values)
+                members$setRow(rowKey = item, values = values)
             }
         },
 
@@ -1979,7 +2035,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             summary <- self$results$hierSummary
             members <- self$results$hierMembership
             summary$deleteRows()
-            members$deleteRows()
             fmt <- function(x) .el_fmt_num(x, 3, "—")
             intro <- c(txt("hier", "intro"))
 
@@ -2048,8 +2103,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (length(labels) > 0 && !identical(labels, as.character(seq_along(labels))))
                 members$setNote("labels", txt("ri", "labels_note"))
             for (i in seq_along(items))
-                .el_add_row(members, i, list(
-                    item = items[i], ega = dash(ref[[items[i]]]),
+                members$setRow(rowKey = items[i], values = list(
+                    ega = dash(ref[[items[i]]]),
                     lower = dash(aligned[[items[i]]]), higher = dash(higher_wc[[items[i]]])))
 
             private$.hierStructure <- list(lower = lower_wc, higher = higher_wc, aligned = aligned,
@@ -2129,7 +2184,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             summary <- self$results$riSummary
             members <- self$results$riMembership
             summary$deleteRows()
-            members$deleteRows()
             fmt <- function(x) .el_fmt_num(x, 3, "—")
             # The validity warning goes first and in bold, before anything
             # else in the section (Archie's request).
@@ -2223,8 +2277,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (length(labels) > 0 && !identical(labels, as.character(seq_along(labels))))
                 members$setNote("labels", txt("ri", "labels_note"))
             for (i in seq_along(items))
-                .el_add_row(members, i, list(
-                    item = items[i], ega = dash(ref[[items[i]]]), riega = dash(aligned[[items[i]]]),
+                members$setRow(rowKey = items[i], values = list(
+                    ega = dash(ref[[items[i]]]), riega = dash(aligned[[items[i]]]),
                     loading = .el_clean_num(loads[[items[i]]]),
                     negative = if (items[i] %in% neg) txt("cfa", "yes") else ""))
 
@@ -2520,7 +2574,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Las tablas se rellenan en cada ejecución; las filas
             # restauradas de una ejecución previa (cuando cambió una opción
             # fuera de su clearWith) se eliminan antes para no duplicarlas.
-            for (name in c("bootSummary", "bootFrequency", "bootDimStability", "bootItemStability"))
+            for (name in c("bootFrequency", "bootDimStability"))
                 self$results[[name]]$deleteRows()
 
             # Summary.
@@ -2559,8 +2613,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             for (i in seq_len(nrow(it))) {
                 flag <- if (is.na(it$stability[i])) txt("common", "not_computable")
                         else if (it$stability[i] < cut) txt("bootega", "unstable") else txt("bootega", "stable")
-                .el_add_row(self$results$bootItemStability, i, list(
-                    item = it$item[i], dimension = dim_label(it$dimension[i]),
+                self$results$bootItemStability$setRow(rowKey = it$item[i], values = list(
+                    dimension = dim_label(it$dimension[i]),
                     stability = it$stability[i], flag = flag))
             }
 

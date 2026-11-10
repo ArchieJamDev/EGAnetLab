@@ -47,6 +47,25 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 private$.key[[type]] <- c(private$.key[[type]], text)
         },
 
+        # Summary rows have fixed labels, so jamovi lays the table out
+        # before the estimation finishes. .run() fills them in place.
+        # ES: Las filas del resumen tienen etiquetas fijas, así que jamovi
+        # dispone la tabla antes de que termine la estimación. .run() las
+        # llena en su lugar.
+        .init = function() {
+
+            o <- self$options
+            if (length(o$vars) == 0 || is.null(o$id) || length(o$id) == 0)
+                return()
+            txt <- function(section, key) .el_text(self, section, key)
+            labels <- c(txt("dyn", "summary_persons"), txt("dyn", "summary_points"),
+                        txt("dyn", "summary_rows"), txt("dyn", "summary_glla"),
+                        .("Correlation"), .("Network model"), .("Community detection"),
+                        txt("dyn", "summary_ndim"))
+            for (i in seq_along(labels))
+                self$results$summary$addRow(rowKey = i, values = list(element = labels[i]))
+        },
+
         .run = function() {
 
             # Report text goes through jmvcore's `.()` (see texts.R).

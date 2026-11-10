@@ -438,7 +438,7 @@ msgstr "Casos usados"
 msgid "Cases with no value in the grouping variable (%d) were left out of the comparison between groups."
 msgstr "Casos sin valor en la variable de agrupación (%d), que se dejaron fuera de la comparación entre grupos."
 
-#: ega/ui[6][0].label
+#: ega/ui[6][0][0].label
 #: ega/results/cenStatus.title
 #: R/ega.b.R
 msgid "Centrality"
@@ -774,6 +774,7 @@ msgstr "Estructura dimensional"
 msgid "Dimensionality"
 msgstr "Dimensionalidad"
 
+#: ega/results/solution.columns.title
 #: ega/results/edgeTable.columns.title
 #: ega/results/compareTable.columns.title
 #: ega/results/bootFrequency.columns.title
@@ -1293,7 +1294,7 @@ msgid "Group comparison"
 msgstr "Comparación entre grupos"
 
 #: ega/options/group.title
-#: ega/ui[0][1].label
+#: ega/ui[0][3].label
 #: dynega/options/group.title
 msgid "Grouping variable"
 msgstr "Variable de agrupación"
@@ -1386,10 +1387,6 @@ msgstr "Holm"
 msgid "IFI"
 msgstr "IFI"
 
-#: ega/ui[2][2].label
-msgid "If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction."
-msgstr "Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
-
 #: R/texts.R
 msgid "In %s, the CFA of the EGA structure gives CFI = %s, TLI = %s, RMSEA = %s and SRMR = %s, which suggests %s fit."
 msgstr "En %s, el CFA de la estructura de EGA da CFI = %s, TLI = %s, RMSEA = %s y SRMR = %s, lo que sugiere un ajuste %s."
@@ -1443,7 +1440,7 @@ msgstr "Interpretar con cautela (.25 a .50)"
 msgid "Introduction"
 msgstr "Introducción"
 
-#: ega/ui[7][1].label
+#: ega/ui[7][0][1].label
 msgid "Invariance (independent groups)"
 msgstr "Invarianza (grupos independientes)"
 
@@ -1457,6 +1454,10 @@ msgstr "Aislado"
 #: R/texts.R
 msgid "Isolated (no edges)"
 msgstr "Aislado (sin aristas)"
+
+#: ega/results/solution.columns.title
+msgid "Isolated items"
+msgstr "Ítems aislados"
 
 #: R/texts.R
 msgid "It draws many new samples from your data, runs EGA with the same estimation options on each one and records how many dimensions appear and where each item ends up. A solid structure appears again and again; an unstable one changes from sample to sample."
@@ -1860,6 +1861,10 @@ msgstr "MLR (robusto)"
 msgid "Main findings"
 msgstr "Hallazgos principales"
 
+#: ega/ui[2][0][1].label
+msgid "Mark them in Negatively worded items, at the top. If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction."
+msgstr "Márquelos en Ítems redactados en negativo, arriba. Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
+
 #: ega/results/scores.columns.title
 msgid "Mean"
 msgstr "Media"
@@ -1986,7 +1991,7 @@ msgid "Negatively worded"
 msgstr "Redactado en negativo"
 
 #: ega/options/negItems.title
-#: ega/ui[2][0][0].label
+#: ega/ui[0][1].label
 #: R/ega.b.R
 msgid "Negatively worded items"
 msgstr "Ítems redactados en negativo"
@@ -1999,7 +2004,7 @@ msgstr "Ítems redactados en negativo: %s. Ya están invertidos en los datos, as
 msgid "Negatively worded items: %s. They are as answered in the data, so riEGA uses them as they are (the other analyses use them reversed)."
 msgstr "Ítems redactados en negativo: %s. Están tal como se respondieron en los datos, así que riEGA los usa así (los demás análisis los usan invertidos)."
 
-#: ega/ui[7][2].label
+#: ega/ui[7][0][2].label
 #: ega/results/nctStatus.title
 #: R/ega.b.R
 msgid "Network Comparison Test"
@@ -2264,11 +2269,14 @@ msgstr "No todos los grupos muestran el número de dimensiones de la población 
 msgid "Not in any dimension: %s. They are left out of TEFI, so this value is not compared with the others."
 msgstr "Sin dimensión: %s. Quedan fuera del TEFI, así que este valor no se compara con los demás."
 
+#: R/ega.b.R
+msgid "Not in the CFA model: isolated item, or its dimension has fewer than two items."
+msgstr "Fuera del modelo CFA: ítem aislado, o su dimensión tiene menos de dos ítems."
+
 #: R/texts.R
 msgid "Not interpretable (below .25)"
 msgstr "No interpretable (menos de .25)"
 
-#: R/ega.b.R
 #: R/texts.R
 msgid "Number of dimensions"
 msgstr "Número de dimensiones"
@@ -2303,9 +2311,9 @@ msgstr "Una dimensión: el TEFI vale siempre 0, así que no se compara."
 msgid "One factor"
 msgstr "Un factor"
 
-#: ega/ui[5][2].label
-msgid "Only for scales that mix positively and negatively worded items. Mark the negative items in the Negatively Worded Items box; this analysis uses them in their original direction (not recoded)."
-msgstr "Solo para escalas que mezclan ítems redactados en positivo y en negativo. Marque los ítems negativos en el cuadro Ítems redactados en negativo; este análisis los usa en su dirección original (sin recodificar)."
+#: ega/ui[5][0][2].label
+msgid "Only for scales that mix positively and negatively worded items. Mark the negative items in Negatively worded items, at the top; this analysis uses them in their original direction (not recoded)."
+msgstr "Solo para escalas que mezclan ítems redactados en positivo y en negativo. Marque los ítems negativos en Ítems redactados en negativo, arriba; este análisis los usa en su dirección original (sin recodificar)."
 
 #: R/texts.R
 msgid "Only the edges of the estimated network are listed, strongest first. The intervals are percentile intervals from resampling cases. In regularized networks the weights are pulled toward zero, so the intervals describe precision and are not significance tests (Epskamp et al., 2018)."
@@ -2677,7 +2685,7 @@ msgid "Same item membership as their own group (ARI = 1)"
 msgstr "Misma pertenencia de ítems que su propio grupo (ARI = 1)"
 
 #: ega/options/pairedVars.title
-#: ega/ui[0][2].label
+#: ega/ui[0][4].label
 msgid "Same items, second measurement"
 msgstr "Mismos ítems, segunda medición"
 
@@ -2758,7 +2766,7 @@ msgstr "Seleccione los ítems y la variable que identifica a cada persona para e
 msgid "Set"
 msgstr "Conjunto"
 
-#: ega/ui[7][0].label
+#: ega/ui[7][0][0].label
 msgid "Set the groups in the variable boxes at the top: Grouping variable for independent groups (e.g. sex), or Same items, second measurement when the same people answered the items twice (NCT only, items in the same order)."
 msgstr "Indique los grupos en las casillas de variables de arriba: Variable de agrupación para grupos independientes (p. ej., sexo), o Mismos ítems, segunda medición cuando las mismas personas respondieron los ítems dos veces (solo NCT, ítems en el mismo orden)."
 
@@ -2770,6 +2778,10 @@ msgstr "Pequeña a moderada"
 #: dynega/options/edgeNegLty/solid.title
 msgid "Solid"
 msgstr "Continua"
+
+#: ega/results/solution.title
+msgid "Solution"
+msgstr "Solución"
 
 #: ega/options/corr/spearman.title
 #: dynega/options/corr/spearman.title
@@ -2826,7 +2838,7 @@ msgstr "Estabilidad"
 msgid "Stability (Bootstrap)"
 msgstr "Estabilidad (bootstrap)"
 
-#: ega/ui[6][1].label
+#: ega/ui[6][0][1].label
 msgid "Stability (bootnet)"
 msgstr "Estabilidad (bootnet)"
 
@@ -2955,6 +2967,7 @@ msgstr "Se sugiere conservar"
 msgid "Suggested to remove"
 msgstr "Se sugiere eliminar"
 
+#: ega/results/solution.columns.title
 #: ega/results/compareTable.columns.title
 #: ega/results/cfaCompare.columns.title
 msgid "TEFI"
@@ -3331,7 +3344,7 @@ msgid "Theoretical"
 msgstr "Teórica"
 
 #: ega/options/theoryFactors.title
-#: ega/ui[4][2][0].label
+#: ega/ui[0][2].label
 msgid "Theoretical structure"
 msgstr "Estructura teórica"
 
@@ -3416,8 +3429,8 @@ msgid "To compare groups, add a grouping variable (independent groups) or the it
 msgstr "Para comparar grupos, agregue una variable de agrupación (grupos independientes) o los ítems de una segunda medición de las mismas personas (grupos pareados)."
 
 #: R/texts.R
-msgid "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare Structures (TEFI) box."
-msgstr "Para comparar también la estructura teórica, arrastre sus ítems a los factores de Theoretical structure, en la caja Compare structures (TEFI)."
+msgid "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, at the top of the panel."
+msgstr "Para comparar también la estructura teórica, arrastre sus ítems a los factores de Estructura teórica, en la parte superior del panel."
 
 #: R/texts.R
 msgid "To run the NCT, add a grouping variable with at least two groups of 10 or more cases, or the items of a second measurement of the same people."

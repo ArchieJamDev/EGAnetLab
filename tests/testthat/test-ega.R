@@ -41,8 +41,16 @@ test_that("ega recovers a clean three-dimensional structure", {
     expect_true(res$membership$isFilled())
     expect_equal(nrow(res$membership$asDF), 12)
 
-    dims <- res$summary$asDF$value[res$summary$asDF$element == "Number of dimensions"]
-    expect_equal(dims, "3")
+    solution <- res$solution$asDF
+    expect_equal(solution$dims, 3)
+    expect_equal(solution$isolated, 0)
+    expect_true(is.numeric(solution$tefi))
+
+    # The summary rows are laid out by .init() and filled in place.
+    # ES: Las filas del resumen las dispone .init() y se llenan en su lugar.
+    summary <- res$summary$asDF
+    expect_equal(summary$element[1:2], c("Items", "Cases used"))
+    expect_equal(summary$value[1], "12")
 })
 
 test_that("the introduction and the reading guides follow their options", {
@@ -63,7 +71,7 @@ test_that("ega renders the report in Spanish when jamovi runs in Spanish", {
     data <- edgeStructureData()
     res <- inSpanish(EGAnetLab::ega(data = data, vars = names(data), showNetworkPlot = FALSE))
 
-    expect_true("Número de dimensiones" %in% res$summary$asDF$element)
+    expect_true("Casos usados" %in% res$summary$asDF$element)
 })
 
 test_that("ega tolerates accented and symbol item names", {

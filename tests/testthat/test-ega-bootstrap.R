@@ -52,11 +52,10 @@ test_that("the bootstrap resamples the same EGA shown above", {
     data <- edgeStructureData()
     res <- runBoot(data)
 
-    ega_dims <- res$summary$asDF
-    ega_dims <- ega_dims$value[ega_dims$element == "Number of dimensions"]
+    ega_dims <- res$solution$asDF$dims
     boot <- res$bootSummary$asDF
     original <- boot$value[boot$element == "Dimensions in the original sample"]
-    expect_equal(original, ega_dims)
+    expect_equal(original, as.character(ega_dims))
     expect_equal(original, "3")
 
     freq <- res$bootFrequency$asDF

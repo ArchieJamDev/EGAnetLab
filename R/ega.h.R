@@ -885,6 +885,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         choicesGuide = function() private$.items[["choicesGuide"]],
         summaryGuide = function() private$.items[["summaryGuide"]],
         summary = function() private$.items[["summary"]],
+        solution = function() private$.items[["solution"]],
         membership = function() private$.items[["membership"]],
         loadingsGuide = function() private$.items[["loadingsGuide"]],
         loadings = function() private$.items[["loadings"]],
@@ -1010,6 +1011,35 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="text"))))
             self$add(jmvcore::Table$new(
                 options=options,
+                name="solution",
+                title="Solution",
+                rows=1,
+                refs=list(
+                    "golino_2021"),
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod"),
+                columns=list(
+                    list(
+                        `name`="dims", 
+                        `title`="Dimensions", 
+                        `type`="integer"),
+                    list(
+                        `name`="isolated", 
+                        `title`="Isolated items", 
+                        `type`="integer"),
+                    list(
+                        `name`="tefi", 
+                        `title`="TEFI", 
+                        `type`="number"))))
+            self$add(jmvcore::Table$new(
+                options=options,
                 name="membership",
                 title="Item membership",
                 rows="(vars)",
@@ -1043,7 +1073,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="loadings",
                 title="Network loadings (standardized)",
-                rows=0,
+                rows="(vars)",
                 visible="(showLoadings)",
                 refs=list(
                     "christensen_2021_loadings"),
@@ -1060,7 +1090,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="item", 
                         `title`="Item", 
-                        `type`="text"))))
+                        `type`="text", 
+                        `content`="($key)"))))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="interpretation",
@@ -1280,7 +1311,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="compareMembership",
                 title="Item membership by structure",
-                rows=0,
+                rows="(vars)",
                 visible="(runCompare)",
                 clearWith=list(
                     "vars",
@@ -1298,7 +1329,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="item", 
                         `title`="Item", 
-                        `type`="text"),
+                        `type`="text", 
+                        `content`="($key)"),
                     list(
                         `name`="ega", 
                         `title`="EGA", 
@@ -1343,7 +1375,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="hierMembership",
                 title="Item membership by level",
-                rows=0,
+                rows="(vars)",
                 visible="(runHier)",
                 clearWith=list(
                     "vars",
@@ -1358,7 +1390,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="item", 
                         `title`="Item", 
-                        `type`="text"),
+                        `type`="text", 
+                        `content`="($key)"),
                     list(
                         `name`="ega", 
                         `title`="EGA", 
@@ -1435,7 +1468,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="riMembership",
                 title="Item membership with and without wording control",
-                rows=0,
+                rows="(vars)",
                 visible="(runRI)",
                 clearWith=list(
                     "vars",
@@ -1450,7 +1483,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="item", 
                         `title`="Item", 
-                        `type`="text"),
+                        `type`="text", 
+                        `content`="($key)"),
                     list(
                         `name`="ega", 
                         `title`="EGA", 
@@ -1686,8 +1720,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="bootItemStability",
                 title="Item stability",
+                rows="(vars)",
                 visible="(runBoot)",
-                rows=0,
                 refs=list(
                     "christensen_2021_boot"),
                 clearWith=list(
@@ -1707,7 +1741,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="item", 
                         `title`="Item", 
-                        `type`="text"),
+                        `type`="text", 
+                        `content`="($key)"),
                     list(
                         `name`="dimension", 
                         `title`="Dimension", 
@@ -1924,7 +1959,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="cfaMembership",
                 title="Item membership by sample",
-                rows=0,
+                rows="(vars)",
                 visible="(runCFA && splitSample)",
                 clearWith=list(
                     "vars",
@@ -1943,7 +1978,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="item", 
                         `title`="Item", 
-                        `type`="text"),
+                        `type`="text", 
+                        `content`="($key)"),
                     list(
                         `name`="total", 
                         `title`="Total sample", 
@@ -1964,7 +2000,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="cfaLoadings",
                 title="CFA standardized loadings",
-                rows=0,
+                rows="(vars)",
                 visible="(runCFA)",
                 refs=list(
                     "rosseel_2012"),
@@ -1985,7 +2021,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="item", 
                         `title`="Item", 
-                        `type`="text"),
+                        `type`="text", 
+                        `content`="($key)"),
                     list(
                         `name`="factor", 
                         `title`="Factor", 
@@ -2821,6 +2858,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$choicesGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$summaryGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$summary} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$solution} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$membership} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$loadingsGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$loadings} \tab \tab \tab \tab \tab a table \cr

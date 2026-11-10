@@ -62,56 +62,68 @@ children:
     label: Derivatives (GLLA)
     collapsed: true
     children:
-      - type: TextBox
-        name: nEmbed
-        format: number
-      - type: TextBox
-        name: tau
-        format: number
-      - type: TextBox
-        name: delta
-        format: number
-      - type: ComboBox
-        name: derivative
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: TextBox
+            name: nEmbed
+            format: number
+          - type: TextBox
+            name: tau
+            format: number
+          - type: TextBox
+            name: delta
+            format: number
+          - type: ComboBox
+            name: derivative
   - type: CollapseBox
     label: Estimation
     collapsed: true
     children:
-      - type: ComboBox
-        name: corr
-      - type: ComboBox
-        name: model
-      - type: ComboBox
-        name: algorithm
-      - type: ComboBox
-        name: uniMethod
-      - type: TextBox
-        name: seed
-        format: number
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: ComboBox
+            name: corr
+          - type: ComboBox
+            name: model
+          - type: ComboBox
+            name: algorithm
+          - type: ComboBox
+            name: uniMethod
+          - type: TextBox
+            name: seed
+            format: number
   - type: CollapseBox
     label: Levels
     collapsed: false
     children:
-      - type: CheckBox
-        name: levelGroup
-      - type: CheckBox
-        name: levelIndividual
-      - type: CheckBox
-        name: showIndTable
-        enable: (levelIndividual)
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: CheckBox
+            name: levelGroup
+          - type: CheckBox
+            name: levelIndividual
+          - type: CheckBox
+            name: showIndTable
+            enable: (levelIndividual)
   - type: CollapseBox
     label: Output
     collapsed: true
     children:
-      - type: CheckBox
-        name: showKeySummary
-      - type: CheckBox
-        name: showChoicesGuide
-      - type: CheckBox
-        name: showNetworkPlot
-      - type: CheckBox
-        name: showIndPlot
-        enable: (levelIndividual)
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: CheckBox
+            name: showKeySummary
+          - type: CheckBox
+            name: showChoicesGuide
+          - type: CheckBox
+            name: showNetworkPlot
+          - type: CheckBox
+            name: showIndPlot
+            enable: (levelIndividual)
   - type: CollapseBox
     label: Network Plot
     collapsed: true

@@ -205,7 +205,7 @@
             interp_differs = .("%s places %d of %d items as EGA (TEFI %s; %s from the lowest). Items that change dimension: %s."),
             interp_theory_vs_ega = .("The theoretical structure places %d of %d items as EGA. The items EGA places elsewhere (%s) are the ones to examine: read their content and check whether they are also unstable in the bootstrap or redundant in UVA."),
             interp_theory_match = .("The theoretical structure and the EGA solution group the items in the same way, which supports the intended structure."),
-            interp_no_theory = .("To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, in the Compare Structures (TEFI) box."),
+            interp_no_theory = .("To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, at the top of the panel."),
             interp_single = .("%s has a single dimension. TEFI is always 0 for one dimension, so it is not compared with the multidimensional structures; use the unidimensionality check of EGA for that question."),
             interp_cfa = .("The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory Factor Analysis box."),
             interp_no_cutoff = .("There is no established cutoff for a meaningful TEFI difference. Read the differences together with the bootstrap stability, the CFA fit and the content of the items that move, and report the TEFI of every structure compared."),
