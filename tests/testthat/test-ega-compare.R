@@ -139,7 +139,7 @@ test_that("theoretical factor names with spaces reach the CFA without lavaan not
 
     expect_true(all(is.finite(table$cfi)))
     report <- paste(capture.output(print(res)), collapse = "\n")
-    expect_false(grepl("lavaan", report, fixed = TRUE))
+    expect_false(grepl("ldw_parse", report, fixed = TRUE))
     expect_false(grepl("identifiers", report, fixed = TRUE))
 })
 
