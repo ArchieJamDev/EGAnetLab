@@ -57,7 +57,7 @@ test_that("dynega matches EGAnet::dynEGA at the population level", {
     membership <- res$membership$asDF
     expect_equal(nrow(membership), 24)
     expect_equal(as.numeric(membership$population), unname(as.numeric(wc)))
-    expect_match(res$interpretation$content, "derivative analysed", fixed = TRUE)
+    expect_match(res$interpretation$content, "derivative analyzed", fixed = TRUE)
     expect_match(res$interpretation$content, "Next step", fixed = TRUE)
 })
 
