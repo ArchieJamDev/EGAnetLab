@@ -117,32 +117,190 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             }
             private$.key <- list(findings = character(0), uncertain = character(0), warnings = character(0))
 
+            if (isTRUE(self$options$showChoicesGuide))
+                private$.fillChoicesGuide(txt)
+
+            prep <- private$.prepareItems(txt)
+
+            # -----------------------------------------------------------------
+            # Analysis.
+            # ES: Análisis.
+            # -----------------------------------------------------------------
+            fit <- .el_capture(EGAnet::EGA(
+                data = prep$data,
+                corr = self$options$corr,
+                na.data = self$options$naData,
+                model = self$options$model,
+                algorithm = self$options$algorithm,
+                uni.method = self$options$uniMethod,
+                plot.EGA = FALSE,
+                verbose = FALSE
+            ))
+
+            if (is.null(fit$value))
+                jmvcore::reject(sprintf(txt("common", "estimation_failed"), fit$error))
+
+            ega <- fit$value
+            wc <- ega$wc
+
+            private$.fillSummary(prep, ega, txt)
+
+            low_loading_items <- character(0)
+            if (isTRUE(self$options$showLoadings))
+                low_loading_items <- private$.fillLoadings(ega, txt)
+
+            if (isTRUE(self$options$showEdgeTable))
+                private$.fillEdgeTable(ega, txt)
+
+            # -----------------------------------------------------------------
+            # Network scores: summary table and/or new dataset columns.
+            # ES: Puntuaciones de red: tabla resumen y/o columnas nuevas en
+            # el conjunto de datos.
+            # -----------------------------------------------------------------
+            score_warnings <- character(0)
+            if (isTRUE(self$options$netScores) || isTRUE(self$results$netScoresOV$enabled) ||
+                isTRUE(self$results$meanScoresOV$enabled))
+                score_warnings <- private$.computeScores(prep, ega, wc, txt)
+
+            # -----------------------------------------------------------------
+            # Compare structures with TEFI, only when requested.
+            # ES: Comparar estructuras con TEFI, solo si se pide.
+            # -----------------------------------------------------------------
+            compare_warnings <- character(0)
+            if (isTRUE(self$options$runCompare))
+                compare_warnings <- private$.runCompare(prep, ega, txt)
+
+            # -----------------------------------------------------------------
+            # Hierarchical EGA and random-intercept EGA, only when requested.
+            # ES: EGA jerárquico y EGA con intercepto aleatorio, solo si se
+            # piden.
+            # -----------------------------------------------------------------
+            hier_warnings <- character(0)
+            if (isTRUE(self$options$runHier))
+                hier_warnings <- private$.runHier(prep, ega, txt)
+            ri_warnings <- character(0)
+            if (isTRUE(self$options$runRI))
+                ri_warnings <- private$.runRI(prep, ega, txt)
+
+            private$.interpretStructure(ega, low_loading_items, txt)
+
+            # -----------------------------------------------------------------
+            # Stability (bootstrap), only when requested. It re-estimates
+            # this same EGA in every sample, with the options above.
+            # ES: Estabilidad (bootstrap), solo si se pide. Vuelve a estimar
+            # este mismo EGA en cada muestra, con las opciones de arriba.
+            # -----------------------------------------------------------------
+            boot_warnings <- character(0)
+            private$.bootUnstable <- character(0)
+            if (isTRUE(self$options$runBoot))
+                boot_warnings <- private$.runBootstrap(prep, txt)
+
+            # -----------------------------------------------------------------
+            # Redundancy (UVA), only when requested. Runs after the bootstrap
+            # so its interpretation can name items that are both redundant
+            # and unstable.
+            # ES: Redundancia (UVA), solo si se pide. Se ejecuta después del
+            # bootstrap para que su interpretación pueda nombrar los ítems
+            # que son a la vez redundantes e inestables.
+            # -----------------------------------------------------------------
+            uva_warnings <- character(0)
+            if (isTRUE(self$options$runUVA))
+                uva_warnings <- private$.runUVA(prep, wc, txt)
+
+            # -----------------------------------------------------------------
+            # Confirmatory factor analysis, only when requested.
+            # ES: Análisis factorial confirmatorio, solo si se pide.
+            # -----------------------------------------------------------------
+            cfa_warnings <- character(0)
+            if (isTRUE(self$options$runCFA))
+                cfa_warnings <- private$.runCFA(prep, ega, txt)
+
+            # -----------------------------------------------------------------
+            # Centrality and network stability, only when requested.
+            # ES: Centralidad y estabilidad de la red, solo si se piden.
+            # -----------------------------------------------------------------
+            cen_warnings <- character(0)
+            if (isTRUE(self$options$runCentrality))
+                cen_warnings <- private$.runCentrality(prep, ega, wc, txt)
+            bn_warnings <- character(0)
+            if (isTRUE(self$options$runBootnet))
+                bn_warnings <- private$.runBootnet(prep, ega, txt)
+
+            # -----------------------------------------------------------------
+            # Group comparison (metric invariance and NCT), only when
+            # requested.
+            # ES: Comparación entre grupos (invarianza métrica y NCT), solo si
+            # se pide.
+            # -----------------------------------------------------------------
+            group_warnings <- character(0)
+            if (isTRUE(self$options$runInvariance) || isTRUE(self$options$runNCT))
+                group_warnings <- private$.runGroups(prep, ega, txt)
+
+            # -----------------------------------------------------------------
+            # Notes: every EGAnet warning is shown, never suppressed.
+            # ES: Notas: cada advertencia de EGAnet se muestra, nunca se
+            # suprime.
+            # -----------------------------------------------------------------
+            # Each section's warnings carry its name, so a notice about
+            # items without a dimension says which analysis produced it.
+            # ES: Las advertencias de cada sección llevan su nombre, para que
+            # un aviso sobre ítems sin dimensión diga qué análisis lo produjo.
+            tag <- .el_tag_notices
+            warnings <- unique(c(
+                tag(fit$warnings, .("the main EGA")),
+                tag(score_warnings, .("Scores")),
+                tag(compare_warnings, .("Compare structures")),
+                tag(hier_warnings, "hierEGA"),
+                tag(ri_warnings, "riEGA"),
+                tag(boot_warnings, .("the bootstrap samples")),
+                tag(uva_warnings, "UVA"),
+                tag(cfa_warnings, "CFA"),
+                tag(cen_warnings, .("Centrality")),
+                tag(bn_warnings, .("Network stability")),
+                tag(group_warnings, .("the group comparison"))))
+            private$.reportWarnings(warnings, txt)
+
+            private$.setNetworkPlot(ega)
+        },
+        # ---------------------------------------------------------------------
+        # About your choices: one paragraph per estimation decision.
+        # ES: Acerca de sus elecciones: un párrafo por decisión de estimación.
+        # ---------------------------------------------------------------------
+        .fillChoicesGuide = function(txt) {
+
             # -----------------------------------------------------------------
             # About your choices: one explanatory paragraph per estimation
             # decision, for the option currently selected.
             # ES: Acerca de sus elecciones: un párrafo explicativo por
             # decisión de estimación, para la opción seleccionada.
             # -----------------------------------------------------------------
-            if (isTRUE(self$options$showChoicesGuide)) {
-                labels <- .el_estimation_choice_labels(self)
-                extra <- character(0)
-                if (isTRUE(self$options$runBoot)) {
-                    labels$bootType <- list(
-                        parametric = .("Parametric"),
-                        resampling = .("Resampling (cases)"))
-                    extra <- sprintf(txt("choices", "iter_seed"),
-                                     as.integer(self$options$iter), as.integer(self$options$seed))
-                }
-                if (isTRUE(self$options$runBootnet))
-                    extra <- c(extra, sprintf(txt("choices", "bn_iter_seed"),
-                                              as.integer(self$options$bnIter), as.integer(self$options$bnCaseIter),
-                                              as.integer(self$options$bnSeed)))
-                if (isTRUE(self$options$runUVA))
-                    extra <- c(extra, sprintf(txt("choices", "uva_cut"),
-                                              .el_fmt_num(as.numeric(self$options$uvaCut), 2)))
-                self$results$choicesGuide$setContent(
-                    .el_choices_guide(self, self$options, labels, extra = extra))
+            labels <- .el_estimation_choice_labels(self)
+            extra <- character(0)
+            if (isTRUE(self$options$runBoot)) {
+                labels$bootType <- list(
+                    parametric = .("Parametric"),
+                    resampling = .("Resampling (cases)"))
+                extra <- sprintf(txt("choices", "iter_seed"),
+                                 as.integer(self$options$iter), as.integer(self$options$seed))
             }
+            if (isTRUE(self$options$runBootnet))
+                extra <- c(extra, sprintf(txt("choices", "bn_iter_seed"),
+                                          as.integer(self$options$bnIter), as.integer(self$options$bnCaseIter),
+                                          as.integer(self$options$bnSeed)))
+            if (isTRUE(self$options$runUVA))
+                extra <- c(extra, sprintf(txt("choices", "uva_cut"),
+                                          .el_fmt_num(as.numeric(self$options$uvaCut), 2)))
+            self$results$choicesGuide$setContent(
+                .el_choices_guide(self, self$options, labels, extra = extra))
+        },
+
+        # ---------------------------------------------------------------------
+        # Validation (Category A) and the direction of the negatively worded
+        # items. Returns prep.
+        # ES: Validación (Categoría A) y dirección de los ítems redactados en
+        # negativo. Devuelve prep.
+        # ---------------------------------------------------------------------
+        .prepareItems = function(txt) {
 
             # -----------------------------------------------------------------
             # Validation and preparation (Category A).
@@ -176,30 +334,19 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 prep$raw <- .el_reverse_items(prep$data, prep$neg)
             }
 
-            # -----------------------------------------------------------------
-            # Analysis.
-            # ES: Análisis.
-            # -----------------------------------------------------------------
-            fit <- .el_capture(EGAnet::EGA(
-                data = prep$data,
-                corr = self$options$corr,
-                na.data = self$options$naData,
-                model = self$options$model,
-                algorithm = self$options$algorithm,
-                uni.method = self$options$uniMethod,
-                plot.EGA = FALSE,
-                verbose = FALSE
-            ))
+            prep
+        },
 
-            if (is.null(fit$value))
-                jmvcore::reject(sprintf(txt("common", "estimation_failed"), fit$error))
+        # ---------------------------------------------------------------------
+        # Summary table and item membership of the main EGA.
+        # ES: Tabla de resumen y pertenencia de los ítems del EGA principal.
+        # ---------------------------------------------------------------------
+        .fillSummary = function(prep, ega, txt) {
 
-            ega <- fit$value
             wc <- ega$wc
             items <- names(wc)
             n_dim <- .el_clean_num(ega$n.dim)
             tefi <- .el_clean_num(ega$TEFI)
-            isolated <- items[is.na(wc)]
 
             # -----------------------------------------------------------------
             # Summary table.
@@ -256,6 +403,16 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 dim_value <- if (is.na(wc[[i]])) isolated_label else as.character(wc[[i]])
                 self$results$membership$setRow(rowNo = i, values = list(item = items[i], dimension = dim_value))
             }
+        },
+
+        # ---------------------------------------------------------------------
+        # Network loadings. Returns the items whose dominant loading is small.
+        # ES: Cargas de red. Devuelve los ítems cuya carga dominante es
+        # pequeña.
+        # ---------------------------------------------------------------------
+        .fillLoadings = function(ega, txt) {
+
+            wc <- ega$wc
 
             # -----------------------------------------------------------------
             # Network loadings (Category B on failure).
@@ -263,49 +420,57 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # -----------------------------------------------------------------
             low_loading_items <- character(0)
 
-            if (isTRUE(self$options$showLoadings)) {
+            self$results$loadingsGuide$setContent(
+                .el_html_block(NULL, .el_html_list(txt("ega", "guide_loadings")), raw = TRUE)
+            )
 
-                self$results$loadingsGuide$setContent(
-                    .el_html_block(NULL, .el_html_list(txt("ega", "guide_loadings")), raw = TRUE)
-                )
+            table <- self$results$loadings
+            loads <- .el_capture(EGAnet::net.loads(A = ega$network, wc = wc))
+            std <- if (!is.null(loads$value)) loads$value$std else NULL
 
-                table <- self$results$loadings
-                loads <- .el_capture(EGAnet::net.loads(A = ega$network, wc = wc))
-                std <- if (!is.null(loads$value)) loads$value$std else NULL
-
-                if (is.null(std) || all(is.na(std))) {
-                    reason <- if (!is.null(loads$error)) sprintf(txt("ega", "loadings_failed"), loads$error)
-                              else txt("ega", "loadings_all_singleton")
-                    .el_add_row(table, 1, list(item = txt("common", "not_computable")))
-                    table$addFootnote(rowNo = 1, col = "item", reason)
-                } else {
-                    dims <- colnames(std)
+            if (is.null(std) || all(is.na(std))) {
+                reason <- if (!is.null(loads$error)) sprintf(txt("ega", "loadings_failed"), loads$error)
+                          else txt("ega", "loadings_all_singleton")
+                .el_add_row(table, 1, list(item = txt("common", "not_computable")))
+                table$addFootnote(rowNo = 1, col = "item", reason)
+            } else {
+                dims <- colnames(std)
+                for (d in dims)
+                    table$addColumn(name = paste0("d", d), title = paste(.("Dimension"), d),
+                                    type = "number", format = "zto")
+                for (i in seq_len(nrow(std))) {
+                    values <- list(item = rownames(std)[i])
                     for (d in dims)
-                        table$addColumn(name = paste0("d", d), title = paste(.("Dimension"), d),
-                                        type = "number", format = "zto")
-                    for (i in seq_len(nrow(std))) {
-                        values <- list(item = rownames(std)[i])
-                        for (d in dims)
-                            values[[paste0("d", d)]] <- .el_clean_num(std[i, d])
-                        .el_add_row(table, i, values)
-                    }
+                        values[[paste0("d", d)]] <- .el_clean_num(std[i, d])
+                    .el_add_row(table, i, values)
+                }
 
-                    # Dominant loading = the loading on the item's own
-                    # dimension. Below 0.15 is "small" in Christensen &
-                    # Golino's (2021) guidelines.
-                    # ES: Carga dominante = la carga en la propia dimensión
-                    # del ítem. Por debajo de 0.15 es "pequeña" según las
-                    # guías de Christensen y Golino (2021).
-                    for (item in rownames(std)) {
-                        own <- wc[[item]]
-                        if (!is.na(own) && as.character(own) %in% dims) {
-                            value <- .el_clean_num(std[item, as.character(own)])
-                            if (!is.na(value) && abs(value) < 0.15)
-                                low_loading_items <- c(low_loading_items, item)
-                        }
+                # Dominant loading = the loading on the item's own
+                # dimension. Below 0.15 is "small" in Christensen &
+                # Golino's (2021) guidelines.
+                # ES: Carga dominante = la carga en la propia dimensión
+                # del ítem. Por debajo de 0.15 es "pequeña" según las
+                # guías de Christensen y Golino (2021).
+                for (item in rownames(std)) {
+                    own <- wc[[item]]
+                    if (!is.na(own) && as.character(own) %in% dims) {
+                        value <- .el_clean_num(std[item, as.character(own)])
+                        if (!is.na(value) && abs(value) < 0.15)
+                            low_loading_items <- c(low_loading_items, item)
                     }
                 }
             }
+
+            low_loading_items
+        },
+
+        # ---------------------------------------------------------------------
+        # Table of network connections.
+        # ES: Tabla de conexiones de la red.
+        # ---------------------------------------------------------------------
+        .fillEdgeTable = function(ega, txt) {
+
+            wc <- ega$wc
 
             # -----------------------------------------------------------------
             # Network connections: every non-zero edge, strongest first, so
@@ -314,51 +479,32 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # más fuerte a la más débil, para leer los pesos sin que las
             # etiquetas saturen el gráfico.
             # -----------------------------------------------------------------
-            if (isTRUE(self$options$showEdgeTable)) {
-                edge_table <- self$results$edgeTable
-                edges <- .el_edge_list(ega$network, wc)
-                if (nrow(edges) == 0) {
-                    edge_table$setNote("none", txt("ega", "edges_none"))
-                } else {
-                    for (i in seq_len(nrow(edges)))
-                        .el_add_row(edge_table, i, list(
-                            item1 = edges$a[i], item2 = edges$b[i], weight = edges$w[i],
-                            relation = if (is.na(edges$same[i])) "—" else if (edges$same[i])
-                                sprintf(.("Within dimension %s"), edges$da[i]) else
-                                sprintf(.("Between %s and %s"), edges$da[i], edges$db[i])))
-                    edge_table$setNote("weights", txt("ega", "edges_note"))
-                }
+            edge_table <- self$results$edgeTable
+            edges <- .el_edge_list(ega$network, wc)
+            if (nrow(edges) == 0) {
+                edge_table$setNote("none", txt("ega", "edges_none"))
+            } else {
+                for (i in seq_len(nrow(edges)))
+                    .el_add_row(edge_table, i, list(
+                        item1 = edges$a[i], item2 = edges$b[i], weight = edges$w[i],
+                        relation = if (is.na(edges$same[i])) "—" else if (edges$same[i])
+                            sprintf(.("Within dimension %s"), edges$da[i]) else
+                            sprintf(.("Between %s and %s"), edges$da[i], edges$db[i])))
+                edge_table$setNote("weights", txt("ega", "edges_note"))
             }
+        },
 
-            # -----------------------------------------------------------------
-            # Network scores: summary table and/or new dataset columns.
-            # ES: Puntuaciones de red: tabla resumen y/o columnas nuevas en
-            # el conjunto de datos.
-            # -----------------------------------------------------------------
-            score_warnings <- character(0)
-            if (isTRUE(self$options$netScores) || isTRUE(self$results$netScoresOV$enabled) ||
-                isTRUE(self$results$meanScoresOV$enabled))
-                score_warnings <- private$.computeScores(prep, ega, wc, txt)
+        # ---------------------------------------------------------------------
+        # Interpretation of the main EGA and its key findings.
+        # ES: Interpretación del EGA principal y sus hallazgos clave.
+        # ---------------------------------------------------------------------
+        .interpretStructure = function(ega, low_loading_items, txt) {
 
-            # -----------------------------------------------------------------
-            # Compare structures with TEFI, only when requested.
-            # ES: Comparar estructuras con TEFI, solo si se pide.
-            # -----------------------------------------------------------------
-            compare_warnings <- character(0)
-            if (isTRUE(self$options$runCompare))
-                compare_warnings <- private$.runCompare(prep, ega, txt)
-
-            # -----------------------------------------------------------------
-            # Hierarchical EGA and random-intercept EGA, only when requested.
-            # ES: EGA jerárquico y EGA con intercepto aleatorio, solo si se
-            # piden.
-            # -----------------------------------------------------------------
-            hier_warnings <- character(0)
-            if (isTRUE(self$options$runHier))
-                hier_warnings <- private$.runHier(prep, ega, txt)
-            ri_warnings <- character(0)
-            if (isTRUE(self$options$runRI))
-                ri_warnings <- private$.runRI(prep, ega, txt)
+            wc <- ega$wc
+            items <- names(wc)
+            n_dim <- .el_clean_num(ega$n.dim)
+            tefi <- .el_clean_num(ega$TEFI)
+            isolated <- items[is.na(wc)]
 
             # -----------------------------------------------------------------
             # Interpretation and recommendations.
@@ -413,81 +559,15 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 private$.addKey("warnings", sprintf(txt("key", "low_loadings"), paste(low_loading_items, collapse = ", ")))
             if (!isTRUE(self$options$runBoot))
                 private$.addKey("uncertain", txt("key", "no_boot"))
+        },
 
-            # -----------------------------------------------------------------
-            # Stability (bootstrap), only when requested. It re-estimates
-            # this same EGA in every sample, with the options above.
-            # ES: Estabilidad (bootstrap), solo si se pide. Vuelve a estimar
-            # este mismo EGA en cada muestra, con las opciones de arriba.
-            # -----------------------------------------------------------------
-            boot_warnings <- character(0)
-            private$.bootUnstable <- character(0)
-            if (isTRUE(self$options$runBoot))
-                boot_warnings <- private$.runBootstrap(prep, txt)
+        # ---------------------------------------------------------------------
+        # Package messages: key-summary count and one jamovi notice each.
+        # ES: Mensajes de los paquetes: conteo en los hallazgos clave y un
+        # aviso de jamovi por mensaje.
+        # ---------------------------------------------------------------------
+        .reportWarnings = function(warnings, txt) {
 
-            # -----------------------------------------------------------------
-            # Redundancy (UVA), only when requested. Runs after the bootstrap
-            # so its interpretation can name items that are both redundant
-            # and unstable.
-            # ES: Redundancia (UVA), solo si se pide. Se ejecuta después del
-            # bootstrap para que su interpretación pueda nombrar los ítems
-            # que son a la vez redundantes e inestables.
-            # -----------------------------------------------------------------
-            uva_warnings <- character(0)
-            if (isTRUE(self$options$runUVA))
-                uva_warnings <- private$.runUVA(prep, wc, txt)
-
-            # -----------------------------------------------------------------
-            # Confirmatory factor analysis, only when requested.
-            # ES: Análisis factorial confirmatorio, solo si se pide.
-            # -----------------------------------------------------------------
-            cfa_warnings <- character(0)
-            if (isTRUE(self$options$runCFA))
-                cfa_warnings <- private$.runCFA(prep, ega, txt)
-
-            # -----------------------------------------------------------------
-            # Group comparison (metric invariance and NCT), only when
-            # requested.
-            # ES: Comparación entre grupos (invarianza métrica y NCT), solo si
-            # se pide.
-            # -----------------------------------------------------------------
-            # -----------------------------------------------------------------
-            # Centrality and network stability, only when requested.
-            # ES: Centralidad y estabilidad de la red, solo si se piden.
-            # -----------------------------------------------------------------
-            cen_warnings <- character(0)
-            if (isTRUE(self$options$runCentrality))
-                cen_warnings <- private$.runCentrality(prep, ega, wc, txt)
-            bn_warnings <- character(0)
-            if (isTRUE(self$options$runBootnet))
-                bn_warnings <- private$.runBootnet(prep, ega, txt)
-
-            group_warnings <- character(0)
-            if (isTRUE(self$options$runInvariance) || isTRUE(self$options$runNCT))
-                group_warnings <- private$.runGroups(prep, ega, txt)
-
-            # -----------------------------------------------------------------
-            # Notes: every EGAnet warning is shown, never suppressed.
-            # ES: Notas: cada advertencia de EGAnet se muestra, nunca se
-            # suprime.
-            # -----------------------------------------------------------------
-            # Each section's warnings carry its name, so a notice about
-            # items without a dimension says which analysis produced it.
-            # ES: Las advertencias de cada sección llevan su nombre, para que
-            # un aviso sobre ítems sin dimensión diga qué análisis lo produjo.
-            tag <- .el_tag_notices
-            warnings <- unique(c(
-                tag(fit$warnings, .("the main EGA")),
-                tag(score_warnings, .("Scores")),
-                tag(compare_warnings, .("Compare structures")),
-                tag(hier_warnings, "hierEGA"),
-                tag(ri_warnings, "riEGA"),
-                tag(boot_warnings, .("the bootstrap samples")),
-                tag(uva_warnings, "UVA"),
-                tag(cfa_warnings, "CFA"),
-                tag(cen_warnings, .("Centrality")),
-                tag(bn_warnings, .("Network stability")),
-                tag(group_warnings, .("the group comparison"))))
             # Purely informative package notices are left out (Archie's
             # request): the report already states what they say.
             # ES: Se omiten los avisos puramente informativos de los
@@ -503,6 +583,16 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # hallazgos clave.
             for (w in rev(warnings))
                 .el_notice(self, "keySummary", w, error = FALSE)
+        },
+
+        # ---------------------------------------------------------------------
+        # Network plot state and title.
+        # ES: Estado y título del gráfico de red.
+        # ---------------------------------------------------------------------
+        .setNetworkPlot = function(ega) {
+
+            wc <- ega$wc
+            items <- names(wc)
 
             # -----------------------------------------------------------------
             # Plot state: only what plot.EGA() needs (network + memberships).
@@ -687,7 +777,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             split <- isTRUE(self$options$splitSample)
             estimator <- self$options$cfaEstimator
             warnings <- character(0)
-            num <- function(x, d = 3) .el_fmt_num(x, d, "—")
+            part <- NULL
             heading <- .("Confirmatory factor analysis")
 
             for (name in c("cfaCompare", "cfaMembership", "cfaLoadings"))
@@ -775,6 +865,40 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             status <- c(status, txt("cfa", "fit_guide"), txt("cfa", "fit_guide_more"))
             self$results$cfaStatus$setContent(.el_html_block(heading, status))
 
+            private$.fillCFACompare(samples, fits, split, txt)
+
+            agreement <- private$.fillCFAMembership(samples, items, wc_total, split, txt)
+
+            # Loadings: from the validation fit when split, else the total.
+            # ES: Cargas: del ajuste de validación con división, si no de la
+            # muestra total.
+            main <- if (split && !is.null(fits$B) && isTRUE(fits$B$ok)) fits$B else fit_total
+            if (isTRUE(main$ok) && !is.null(main$loadings)) {
+                ld <- main$loadings
+                for (i in seq_len(nrow(ld)))
+                    .el_add_row(self$results$cfaLoadings, i, list(
+                        item = ld$item[i], factor = ld$factor[i],
+                        loading = .el_clean_num(ld$loading[i]), se = .el_clean_num(ld$se[i])))
+            }
+            self$results$cfaLoadings$setTitle(if (split)
+                .("CFA standardized loadings (subsample B, confirmation)")
+                else .("CFA standardized loadings (total sample)"))
+
+            private$.interpretCFA(samples, fits, split, part, agreement, txt)
+
+            # Hierarchical models, when the hierarchical EGA was requested.
+            # ES: Modelos jerárquicos, cuando se pidió el EGA jerárquico.
+            if (isTRUE(self$options$runHier))
+                warnings <- c(warnings, private$.runCFAHier(prep, ega, estimator, txt))
+
+            unique(warnings)
+        },
+        # ---------------------------------------------------------------------
+        # CFA fit by sample: the main and the additional fit tables.
+        # ES: Ajuste del CFA por muestra: la tabla principal y la adicional.
+        # ---------------------------------------------------------------------
+        .fillCFACompare = function(samples, fits, split, txt) {
+
             # One row per sample with numeric columns, so jamovi formats the
             # fit indices with the user's decimal and p-value settings.
             # Unavailable cells stay empty and a footnote says why.
@@ -785,10 +909,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             sample_name <- c(total = .("Total sample"), A = .("Subsample A (exploration)"),
                              B = .("Subsample B (confirmation)"))
             value <- function(x) { x <- .el_clean_num(x); if (is.na(x)) "" else x }
-            n_dim_of <- function(p) {
-                e <- samples[[p]]$ega
-                if (is.null(e)) "—" else as.character(.el_clean_num(e$n.dim))
-            }
             cols <- if (split) c("total", "A", "B") else "total"
             compare <- self$results$cfaCompare
             more <- self$results$cfaCompareMore
@@ -828,6 +948,15 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 if (!is.null(note))
                     compare$addFootnote(rowNo = i, col = "sample", note)
             }
+        },
+
+        # ---------------------------------------------------------------------
+        # Item membership in each subsample. Returns the items that changed
+        # and the share that agree.
+        # ES: Pertenencia de los ítems en cada submuestra. Devuelve los ítems que
+        # cambian y la proporción que coincide.
+        # ---------------------------------------------------------------------
+        .fillCFAMembership = function(samples, items, wc_total, split, txt) {
 
             # Membership by sample (split only), labels aligned to the total.
             # ES: Pertenencia por muestra (solo con división), etiquetas
@@ -853,20 +982,21 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 agree_share <- mean(same)
             }
 
-            # Loadings: from the validation fit when split, else the total.
-            # ES: Cargas: del ajuste de validación con división, si no de la
-            # muestra total.
-            main <- if (split && !is.null(fits$B) && isTRUE(fits$B$ok)) fits$B else fit_total
-            if (isTRUE(main$ok) && !is.null(main$loadings)) {
-                ld <- main$loadings
-                for (i in seq_len(nrow(ld)))
-                    .el_add_row(self$results$cfaLoadings, i, list(
-                        item = ld$item[i], factor = ld$factor[i],
-                        loading = .el_clean_num(ld$loading[i]), se = .el_clean_num(ld$se[i])))
+            list(changes = changes, share = agree_share)
+        },
+
+        # ---------------------------------------------------------------------
+        # Interpretation of the CFA and its key finding.
+        # ES: Interpretación del CFA y su hallazgo clave.
+        # ---------------------------------------------------------------------
+        .interpretCFA = function(samples, fits, split, part, agreement, txt) {
+
+            num <- function(x, d = 3) .el_fmt_num(x, d, "—")
+            fit_total <- fits$total
+            n_dim_of <- function(p) {
+                e <- samples[[p]]$ega
+                if (is.null(e)) "—" else as.character(.el_clean_num(e$n.dim))
             }
-            self$results$cfaLoadings$setTitle(if (split)
-                .("CFA standardized loadings (subsample B, confirmation)")
-                else .("CFA standardized loadings (total sample)"))
 
             # Interpretation.
             # ES: Interpretación.
@@ -878,11 +1008,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 paragraphs <- c(paragraphs, sprintf(
                     txt("cfa", if (length(unique(d_all)) == 1) "interp_dims_same" else "interp_dims_diff"),
                     d_all[1], d_all[2], d_all[3]))
-                if (!is.na(agree_share))
+                if (!is.na(agreement$share))
                     paragraphs <- c(paragraphs, sprintf(txt("cfa", "interp_agree"),
-                        paste0(formatC(100 * agree_share, format = "f", digits = 0), "%")))
-                if (length(changes) > 0)
-                    paragraphs <- c(paragraphs, sprintf(txt("cfa", "interp_changes"), paste(changes, collapse = ", ")))
+                        paste0(formatC(100 * agreement$share, format = "f", digits = 0), "%")))
+                if (length(agreement$changes) > 0)
+                    paragraphs <- c(paragraphs, sprintf(txt("cfa", "interp_changes"),
+                                                        paste(agreement$changes, collapse = ", ")))
             }
             fit_line <- function(f, where) {
                 lab <- .el_fit_label(f$fit)
@@ -910,13 +1041,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         sprintf(txt("key", "cfa_fit"), txt("cfa", paste0("fit_", lab)), key_where,
                                 num(key_fit$fit[["cfi"]]), num(key_fit$fit[["rmsea"]])))
             }
-
-            # Hierarchical models, when the hierarchical EGA was requested.
-            # ES: Modelos jerárquicos, cuando se pidió el EGA jerárquico.
-            if (isTRUE(self$options$runHier))
-                warnings <- c(warnings, private$.runCFAHier(prep, ega, estimator, txt))
-
-            unique(warnings)
         },
 
         # ---------------------------------------------------------------------
@@ -1585,7 +1709,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             table$deleteRows()
             members$deleteRows()
             warnings <- character(0)
-            fmt <- function(x) .el_fmt_num(x, 3, "—")
             use_cfa <- isTRUE(self$options$compareCFA)
             algo_names <- c(walktrap = "Walktrap", louvain = "Louvain", leiden = "Leiden")
 
@@ -1686,6 +1809,22 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             tefis <- vapply(structures, function(st) if (st$comparable) st$tefi else NA_real_, numeric(1))
             lowest <- if (any(!is.na(tefis))) min(tefis, na.rm = TRUE) else NA_real_
 
+            private$.fillCompareTable(structures, lowest, use_cfa, txt)
+
+            private$.fillCompareMembership(structures, ref)
+
+            private$.interpretCompare(structures, tefis, lowest, ref, parsed$empty, use_cfa, txt)
+
+            warnings
+        },
+        # ---------------------------------------------------------------------
+        # TEFI comparison table, one row per structure.
+        # ES: Tabla de comparación por TEFI, una fila por estructura.
+        # ---------------------------------------------------------------------
+        .fillCompareTable = function(structures, lowest, use_cfa, txt) {
+
+            table <- self$results$compareTable
+
             # Comparison table.
             # ES: Tabla de comparación.
             for (k in seq_along(structures)) {
@@ -1716,6 +1855,16 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 if (use_cfa && !is.null(st$cfa) && !isTRUE(st$cfa$ok))
                     table$addFootnote(rowNo = k, col = "cfi", sprintf(txt("compare", "cfa_failed"), st$cfa$error))
             }
+        },
+
+        # ---------------------------------------------------------------------
+        # Item membership in each compared structure.
+        # ES: Pertenencia de los ítems en cada estructura comparada.
+        # ---------------------------------------------------------------------
+        .fillCompareMembership = function(structures, ref) {
+
+            members <- self$results$compareMembership
+            items <- names(ref)
 
             # Item membership by structure: algorithm solutions are
             # relabelled to the EGA numbers; the theoretical structure keeps
@@ -1741,6 +1890,17 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 }
                 .el_add_row(members, i, values)
             }
+        },
+
+        # ---------------------------------------------------------------------
+        # Interpretation of the structure comparison and its key finding.
+        # ES: Interpretación de la comparación de estructuras y su hallazgo clave.
+        # ---------------------------------------------------------------------
+        .interpretCompare = function(structures, tefis, lowest, ref, no_theory, use_cfa, txt) {
+
+            fmt <- function(x) .el_fmt_num(x, 3, "—")
+            items <- names(ref)
+            ega_items <- items[!is.na(ref)]
 
             # Interpretation.
             # ES: Interpretación.
@@ -1781,7 +1941,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 }
             }
 
-            if (parsed$empty)
+            if (no_theory)
                 paragraphs <- c(paragraphs, txt("compare", "interp_no_theory"))
             if (use_cfa)
                 paragraphs <- c(paragraphs, txt("compare", "interp_cfa"))
@@ -1795,8 +1955,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             }
 
             self$results$compareInterpretation$setContent(.el_html_block(NULL, paragraphs))
-
-            warnings
         },
 
         # ---------------------------------------------------------------------

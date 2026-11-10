@@ -204,6 +204,43 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (prep$group_varies > 0)
                 notes <- c(notes, sprintf(txt("dyn", "group_varies"), prep$group_varies))
 
+            private$.fillMembership(cache, use_groups, txt)
+
+            private$.interpretPopulation(prep, cache, use_groups, deriv, deriv_label, txt)
+
+            if (isTRUE(o$showNetworkPlot))
+                self$results$networkPlot$setState(list(network = pop$network, wc = pop$wc))
+
+            # Individual structures.
+            # ES: Estructuras individuales.
+            if (isTRUE(o$levelIndividual) && !is.null(cache$individual))
+                private$.fillIndividual(cache, pop, txt)
+
+            # The isolated items are already named in the interpretation.
+            # ES: Los ítems aislados ya se nombran en la interpretación.
+            warnings <- warnings[!grepl("did not belong to a dimension", warnings, fixed = TRUE)]
+            warnings <- .el_translate_notices(self, .el_drop_notices(unique(warnings)))
+            notes <- c(notes, warnings)
+            if (length(warnings) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "notes"), length(warnings)))
+            self$results$keySummary$setTitle(txt("key", "title"))
+            if (isTRUE(o$showKeySummary))
+                self$results$keySummary$setContent(.el_key_summary(self, private$.key))
+            # Each message is a native jamovi warning under the key findings.
+            # ES: Cada mensaje es un aviso nativo de jamovi bajo los
+            # hallazgos clave.
+            for (w in rev(notes))
+                .el_notice(self, "keySummary", w, error = FALSE)
+        },
+        # ---------------------------------------------------------------------
+        # Item membership (population and groups) and the group table.
+        # ES: Pertenencia de los ítems (población y grupos) y la tabla de grupos.
+        # ---------------------------------------------------------------------
+        .fillMembership = function(cache, use_groups, txt) {
+
+            o <- self$options
+            pop <- cache$population
+
             # Item membership: population and each group.
             # ES: Pertenencia de los ítems: población y cada grupo.
             isolated_label <- .("Isolated (no edges)")
@@ -236,6 +273,17 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             } else {
                 self$results$groupTable$setVisible(FALSE)
             }
+        },
+
+        # ---------------------------------------------------------------------
+        # Key findings and interpretation of the population and the groups.
+        # ES: Hallazgos clave e interpretación de la población y los grupos.
+        # ---------------------------------------------------------------------
+        .interpretPopulation = function(prep, cache, use_groups, deriv, deriv_label, txt) {
+
+            o <- self$options
+            pop <- cache$population
+            groups <- cache$groups
 
             # Key findings: population, groups and data notes.
             # ES: Hallazgos clave: población, grupos y notas de los datos.
@@ -283,30 +331,6 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (!isTRUE(o$levelIndividual))
                 paragraphs <- c(paragraphs, txt("dyn", "interp_next"))
             self$results$interpretation$setContent(.el_html_block(NULL, paragraphs))
-
-            if (isTRUE(o$showNetworkPlot))
-                self$results$networkPlot$setState(list(network = pop$network, wc = pop$wc))
-
-            # Individual structures.
-            # ES: Estructuras individuales.
-            if (isTRUE(o$levelIndividual) && !is.null(cache$individual))
-                private$.fillIndividual(cache, pop, txt)
-
-            # The isolated items are already named in the interpretation.
-            # ES: Los ítems aislados ya se nombran en la interpretación.
-            warnings <- warnings[!grepl("did not belong to a dimension", warnings, fixed = TRUE)]
-            warnings <- .el_translate_notices(self, .el_drop_notices(unique(warnings)))
-            notes <- c(notes, warnings)
-            if (length(warnings) > 0)
-                private$.addKey("warnings", sprintf(txt("key", "notes"), length(warnings)))
-            self$results$keySummary$setTitle(txt("key", "title"))
-            if (isTRUE(o$showKeySummary))
-                self$results$keySummary$setContent(.el_key_summary(self, private$.key))
-            # Each message is a native jamovi warning under the key findings.
-            # ES: Cada mensaje es un aviso nativo de jamovi bajo los
-            # hallazgos clave.
-            for (w in rev(notes))
-                .el_notice(self, "keySummary", w, error = FALSE)
         },
 
         .fillIndividual = function(cache, pop, txt) {
