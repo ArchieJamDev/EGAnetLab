@@ -109,19 +109,12 @@ children:
             name: algorithm
           - type: ComboBox
             name: uniMethod
-  - type: CollapseBox
-    label: Negatively Worded Items
-    collapsed: true
-    children:
-      - type: LayoutBox
-        margin: large
-        children:
           - type: ComboBox
             name: negCoding
           - type: Label
             label: >-
-              Mark them in Negatively worded items, at the top. If they are as
-              answered, every analysis reverses them (observed minimum plus
+              For the items in Negatively worded items, at the top. If they are
+              as answered, every analysis reverses them (observed minimum plus
               maximum, minus the score). Random-intercept EGA always uses them
               in their original direction.
   - type: CollapseBox

@@ -62,7 +62,8 @@
   variable** and **Same items, second measurement** moved to the variable
   boxes at the top of the panel, like jmv's own analyses (the variable list
   keeps the items, as in jmv's CFA, so an item can be both in *Items* and in
-  these boxes). The options that use them stay in their sections, and every
+  these boxes). The options that use them stay in their sections (how the
+  negatively worded items are coded is now under *Estimation*), and every
   section's controls have jamovi's standard margins.
 * Section headings use title case, option names sentence case, checkboxes
   no longer start with "Show", and the spelling is American throughout

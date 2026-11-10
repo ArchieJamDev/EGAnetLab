@@ -836,6 +836,9 @@
             "For each person, it first estimates how every item changes from one time point to the next (its derivatives, with generalized local linear approximation; Boker et al., 2010). It then applies EGA to those derivatives, so the dimensions group items that change together over time, not items that are simply high or low together.": [
                 "Para cada persona estima primero cómo cambia cada ítem de un momento al siguiente (sus derivadas, con aproximación lineal local generalizada; Boker et al., 2010). Luego aplica EGA a esas derivadas, así que las dimensiones agrupan ítems que cambian juntos en el tiempo, no ítems que simplemente son altos o bajos a la vez."
             ],
+            "For the items in Negatively worded items, at the top. If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction.": [
+                "Para los ítems de Ítems redactados en negativo, arriba. Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
+            ],
             "Frequency of the number of dimensions": [
                 "Frecuencia del número de dimensiones"
             ],
@@ -1268,9 +1271,6 @@
             "Main findings": [
                 "Hallazgos principales"
             ],
-            "Mark them in Negatively worded items, at the top. If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction.": [
-                "Márquelos en Ítems redactados en negativo, arriba. Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
-            ],
             "Mean": [
                 "Media"
             ],
@@ -1351,9 +1351,6 @@
             ],
             "Negative edges": [
                 "Aristas negativas"
-            ],
-            "Negatively Worded Items": [
-                "Ítems redactados en negativo"
             ],
             "Negatively worded": [
                 "Redactado en negativo"
