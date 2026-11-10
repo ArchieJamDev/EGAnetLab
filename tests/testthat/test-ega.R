@@ -51,6 +51,8 @@ test_that("ega recovers a clean three-dimensional structure", {
     summary <- res$summary$asDF
     expect_equal(summary$element[1:2], c("Items", "Cases used"))
     expect_equal(summary$value[1], "12")
+    expect_equal(summary$value[summary$element == "Network model"], "GLASSO")
+    expect_equal(summary$value[summary$element == "Community detection"], "Walktrap")
 })
 
 test_that("the introduction and the reading guides follow their options", {

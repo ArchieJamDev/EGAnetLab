@@ -135,3 +135,21 @@ test_that("distance-based layouts work with negative edges", {
         expect_s3_class(plot, "ggplot")
     }
 })
+
+test_that("a plot is drawn again when the language changes, and kept when nothing changed", {
+
+    image <- new.env()
+    image$state <- NULL
+    image$path <- "drawn.png"
+    image$.setPath <- function(path) image$path <- path
+    image$setState <- function(state) image$state <- state
+    set <- function() EGAnetLab:::.el_set_image_state(textSelf(), image, list(values = 1:3))
+
+    set()
+    image$path <- "drawn.png"
+    set()
+    expect_equal(image$path, "drawn.png")
+    inSpanish(set())
+    expect_null(image$path)
+    expect_equal(image$state$language, "Dimensión")
+})

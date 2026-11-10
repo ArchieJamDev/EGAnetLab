@@ -112,6 +112,52 @@
 }
 
 # -----------------------------------------------------------------------------
+# .el_choice_label()
+#
+# The name of an estimation choice as the report shows it ("GLASSO",
+# "Walktrap", "pairwise" in the report language), instead of the internal
+# option value ("glasso", "walktrap").
+#
+# ES: El nombre de una opción de estimación como lo muestra el informe
+# ("GLASSO", "Walktrap", "por pares" en el idioma del informe), en lugar del
+# valor interno de la opción ("glasso", "walktrap").
+# -----------------------------------------------------------------------------
+.el_choice_label <- function(self, value) {
+    label <- switch(as.character(value),
+        glasso = "GLASSO", TMFG = "TMFG", BGGM = "BGGM",
+        walktrap = "Walktrap", louvain = "Louvain", leiden = "Leiden",
+        expand = .("Expand"), LE = .("Leading eigenvalue"),
+        pairwise = tolower(.("Pairwise")), listwise = tolower(.("Listwise")),
+        NULL)
+    if (is.null(label)) as.character(value) else label
+}
+
+# -----------------------------------------------------------------------------
+# .el_set_image_state()
+#
+# Sets a plot's state and makes jamovi draw it again when the state changed.
+# jamovi keeps an image already drawn unless an option in its clearWith
+# changes, so after switching jamovi's language the plots kept the axis and
+# legend text of the old language while the tables were translated. The
+# state carries a translated marker, so a new language changes the state and
+# the plot is drawn again; an unchanged state keeps the image already drawn.
+#
+# ES: Fija el estado de un gráfico y hace que jamovi lo vuelva a dibujar
+# cuando el estado cambió. jamovi conserva una imagen ya dibujada salvo que
+# cambie una opción de su clearWith, así que al cambiar el idioma de jamovi
+# los gráficos conservaban los ejes y leyendas del idioma anterior mientras
+# las tablas se traducían. El estado lleva una marca traducida, así que un
+# idioma nuevo cambia el estado y el gráfico se vuelve a dibujar; un estado
+# sin cambios conserva la imagen ya dibujada.
+# -----------------------------------------------------------------------------
+.el_set_image_state <- function(self, image, state) {
+    state$language <- .("Dimension")
+    if (!identical(image$state, state))
+        try(image$.setPath(NULL), silent = TRUE)
+    image$setState(state)
+}
+
+# -----------------------------------------------------------------------------
 # .el_add_row() / .el_clean_num() / .el_fmt_num()
 #
 # Row adding and number cleaning. .el_clean_num() turns NULL, NA, NaN and

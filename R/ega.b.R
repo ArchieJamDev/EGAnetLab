@@ -405,12 +405,12 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             summary_rows <- list(
                 list(.("Items"), as.character(length(items))),
                 list(.("Cases used"), paste0(
-                    n_used, " (", self$options$naData, "; ",
+                    n_used, " (", .el_choice_label(self, self$options$naData), "; ",
                     prep$n_complete, .(" complete cases)"))),
                 list(.("Correlation"), corr_label),
-                list(.("Network model"), self$options$model),
-                list(.("Community detection"), self$options$algorithm),
-                list(.("Unidimensionality check"), self$options$uniMethod)
+                list(.("Network model"), .el_choice_label(self, self$options$model)),
+                list(.("Community detection"), .el_choice_label(self, self$options$algorithm)),
+                list(.("Unidimensionality check"), .el_choice_label(self, self$options$uniMethod))
             )
             if (length(prep$neg) > 0)
                 summary_rows[[length(summary_rows) + 1]] <- list(
@@ -561,7 +561,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             paragraphs <- character(0)
 
             if (!is.na(n_dim) && n_dim == 1) {
-                paragraphs <- c(paragraphs, sprintf(txt("ega", "interp_dims_one"), self$options$uniMethod))
+                paragraphs <- c(paragraphs, sprintf(txt("ega", "interp_dims_one"), .el_choice_label(self, self$options$uniMethod)))
             } else if (!is.na(n_dim)) {
                 paragraphs <- c(paragraphs, sprintf(txt("ega", "interp_dims_many"), n_dim, n_dim, n_dim))
             }
@@ -667,7 +667,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 .("Estimated network (hierarchical: higher · lower order)")
                 else .("Estimated network"))
             if (isTRUE(self$options$showNetworkPlot))
-                self$results$networkPlot$setState(list(network = ega$network, wc = plot_wc))
+                .el_set_image_state(self, self$results$networkPlot, list(network = ega$network, wc = plot_wc))
         },
 
         # ---------------------------------------------------------------------
@@ -1475,7 +1475,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         loading = v, sig = it %in% sig_items, stringsAsFactors = FALSE)
                 }
             if (isTRUE(o$showInvPlot) && length(plot_rows) > 0)
-                self$results$invPlot$setState(list(
+                .el_set_image_state(self, self$results$invPlot, list(
                     data = do.call(rbind, plot_rows),
                     labels = list(x = .("Network loading on its dimension"),
                                   group = .("Group"),
@@ -2116,7 +2116,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Estado del gráfico: ítems abajo, dimensiones de orden
             # inferior en el medio y de orden superior arriba; el grosor de
             # las aristas sigue las cargas de red cuando están disponibles.
-            self$results$hierPlot$setState(.el_hier_plot_state(
+            .el_set_image_state(self, self$results$hierPlot, .el_hier_plot_state(
                 items = items, lower = lower_wc, aligned = aligned, higher = higher_wc,
                 lower_loadings = h$parameters$lower_loadings,
                 higher_loadings = if (hierarchical) tryCatch(
@@ -2583,7 +2583,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             rows <- list(
                 list(.("Items"), as.character(length(cache$items))),
                 list(.("Cases used"), paste0(
-                    cache$n_used, " (", self$options$naData, "; ",
+                    cache$n_used, " (", .el_choice_label(self, self$options$naData), "; ",
                     cache$n_complete, .(" complete cases)"))),
                 list(.("Bootstrap"), paste0(cache$iter, .(" samples, "), type_label)),
                 list(.("Seed"), as.character(seed)),
@@ -2675,14 +2675,14 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # Plot states.
             # ES: Estados de los gráficos.
             if (isTRUE(self$options$showItemPlot))
-                self$results$bootItemPlot$setState(list(
+                .el_set_image_state(self, self$results$bootItemPlot, list(
                     items = it, cut = cut,
                     labels = list(y = txt("bootega", "plot_stability"),
                                   dimension = .("Dimension"),
                                   isolated = txt("bootega", "isolated"))))
 
             if (isTRUE(self$options$showFrequencyPlot))
-                self$results$bootFrequencyPlot$setState(list(
+                .el_set_image_state(self, self$results$bootFrequencyPlot, list(
                     frequency = freq, empirical = cache$empirical_ndim,
                     labels = list(x = txt("bootega", "plot_dims"), y = txt("bootega", "plot_prop"),
                                   original = txt("bootega", "plot_original"),
@@ -2755,7 +2755,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 measure = measure_labels[[m]], value = cen[[m]], stringsAsFactors = FALSE)))
             if (isTRUE(self$options$showCenPlot)) {
                 self$results$cenPlot$setSize(if (cb) 760 else 600, max(300, 22 * nrow(cen) + 90))
-                self$results$cenPlot$setState(list(
+                .el_set_image_state(self, self$results$cenPlot, list(
                     data = long, measures = unname(measure_labels[measures]),
                     labels = list(x = if (z) .("z value") else .("Value"),
                                   dimension = .("Dimension"))))
@@ -2888,7 +2888,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Estados de los gráficos.
             if (isTRUE(self$options$showEdgeCIPlot) && nrow(edges) > 0) {
                 self$results$bnEdgePlot$setSize(600, max(300, 16 * nrow(edges) + 110))
-                self$results$bnEdgePlot$setState(list(
+                .el_set_image_state(self, self$results$bnEdgePlot, list(
                     edges = edges,
                     labels = list(x = .("Edge weight (95% bootstrap interval)"))))
             }
@@ -2896,7 +2896,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 cases <- cache$cases
                 cases$measure <- unname(measure_labels[cases$measure])
                 self$results$bnCasePlot$setSize(600, if (length(unique(cases$measure)) > 2) 560 else 320)
-                self$results$bnCasePlot$setState(list(
+                .el_set_image_state(self, self$results$bnCasePlot, list(
                     cases = cases,
                     labels = list(x = .("Cases dropped"),
                                   y = .("Correlation with the original order"),

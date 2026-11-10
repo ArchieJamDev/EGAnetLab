@@ -751,6 +751,7 @@ msgstr ""
 #: ega/results/cenTable.columns.title
 #: ega/results/invTable.columns.title
 #: R/ega.b.R
+#: R/shared-helpers.R
 msgid "Dimension"
 msgstr ""
 

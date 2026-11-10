@@ -386,7 +386,7 @@ msgstr "Estimador del CFA"
 
 #: R/texts.R
 msgid "CFA fit for each structure: confirmatory factor analysis of each structure with lavaan (automatic estimator: WLSMV for items with fewer than 6 categories, otherwise MLR), with CFI, RMSEA and SRMR. It is estimated on the same data that produced the EGA solution, which favors that solution; for an independent test use the random split in the Confirmatory Factor Analysis box."
-msgstr "Ajuste CFA de cada estructura: análisis factorial confirmatorio de cada estructura con lavaan (estimador automático: WLSMV con ítems de menos de 6 categorías, si no MLR), con CFI, RMSEA y SRMR. Se estima con los mismos datos que produjeron la solución de EGA, lo que favorece a esa solución; para una prueba independiente use la división aleatoria de la caja Confirmatory factor analysis."
+msgstr "Ajuste CFA de cada estructura: análisis factorial confirmatorio de cada estructura con lavaan (estimador automático: WLSMV con ítems de menos de 6 categorías, si no MLR), con CFI, RMSEA y SRMR. Se estima con los mismos datos que produjeron la solución de EGA, lo que favorece a esa solución; para una prueba independiente use la división aleatoria de la caja Análisis factorial confirmatorio."
 
 #: ega/results/cfaInterpretation.title
 msgid "CFA interpretation"
@@ -751,6 +751,7 @@ msgstr "Diferencia: carga en el primer grupo menos carga en el segundo grupo."
 #: ega/results/cenTable.columns.title
 #: ega/results/invTable.columns.title
 #: R/ega.b.R
+#: R/shared-helpers.R
 msgid "Dimension"
 msgstr "Dimensión"
 
@@ -994,7 +995,7 @@ msgstr "Cada dimensión de orden inferior queda sola en el nivel superior, así 
 
 #: R/texts.R
 msgid "Each network is estimated with the graphical lasso (EBIC, gamma .50) on Pearson correlations, the default of the NCT. With ordinal items Pearson slightly underestimates the associations, but both networks are estimated the same way, so the comparison stays fair. Choose Same as EGA in Correlations (NCT) for polychoric correlations; they are recomputed in every permutation, so the test takes several times longer."
-msgstr "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones de Pearson, el valor por defecto del NCT. Con ítems ordinales, Pearson subestima un poco las asociaciones, pero ambas redes se estiman de la misma forma, así que la comparación sigue siendo justa. Elija Same as EGA en Correlations (NCT) para usar correlaciones policóricas; se recalculan en cada permutación, así que la prueba tarda varias veces más."
+msgstr "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones de Pearson, el valor por defecto del NCT. Con ítems ordinales, Pearson subestima un poco las asociaciones, pero ambas redes se estiman de la misma forma, así que la comparación sigue siendo justa. Elija Igual que EGA en Correlaciones (NCT) para usar correlaciones policóricas; se recalculan en cada permutación, así que la prueba tarda varias veces más."
 
 #: R/texts.R
 msgid "Each network is estimated with the graphical lasso (EBIC, gamma .50) on Pearson correlations."
@@ -1002,7 +1003,7 @@ msgstr "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correla
 
 #: R/texts.R
 msgid "Each network is estimated with the graphical lasso (EBIC, gamma .50) on polychoric correlations, because the items have few categories and Same as EGA was chosen in Correlations (NCT). They are recomputed in every permutation, so the test is slow."
-msgstr "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones policóricas, porque los ítems tienen pocas categorías y se eligió Same as EGA en Correlations (NCT). Se recalculan en cada permutación, así que la prueba es lenta."
+msgstr "Cada red se estima con el lasso gráfico (EBIC, gamma .50) sobre correlaciones policóricas, porque los ítems tienen pocas categorías y se eligió Igual que EGA en Correlaciones (NCT). Se recalculan en cada permutación, así que la prueba es lenta."
 
 #: R/texts.R
 msgid "Each person agrees with their own group with a median ARI of %s (Structure of each person)."
@@ -1201,11 +1202,11 @@ msgstr "Factor"
 
 #: R/texts.R
 msgid "Fewer than two complete cases remain after listwise deletion. Switch Missing Values to pairwise, or review the missing-data pattern."
-msgstr "Quedan menos de dos casos completos tras la eliminación por lista. Cambie Valores perdidos a pairwise o revise el patrón de datos faltantes."
+msgstr "Quedan menos de dos casos completos tras la eliminación por lista. Cambie Valores perdidos a Por pares o revise el patrón de datos faltantes."
 
 #: R/texts.R
 msgid "Fewer than two persons have enough time points (at least %d, the embedding dimension plus 2). Dynamic EGA needs many time points per person; lower the embedding dimension or check the Person ID variable."
-msgstr "Menos de dos personas tienen suficientes momentos (al menos %d, la dimensión de inmersión más 2). El EGA dinámico necesita muchos momentos por persona; reduzca la dimensión de inmersión o revise la variable Person ID."
+msgstr "Menos de dos personas tienen suficientes momentos (al menos %d, la dimensión de inmersión más 2). El EGA dinámico necesita muchos momentos por persona; reduzca la dimensión de inmersión o revise la variable ID de la persona."
 
 #: ega/results/nctGlobal.columns.title
 msgid "First"
@@ -1633,7 +1634,7 @@ msgstr "Ítems con cargas de red que difieren entre grupos, sin corregir: %d (Co
 
 #: R/texts.R
 msgid "Items with a dominant network loading below 0.15, small (%d): %s. Their assignment is weakly supported; the Stability (bootstrap) section will show whether they replicate."
-msgstr "Ítems con una carga de red dominante menor que 0.15, pequeña (%d): %s. Su asignación tiene poco respaldo; la sección Stability (bootstrap) mostrará si se replica."
+msgstr "Ítems con una carga de red dominante menor que 0.15, pequeña (%d): %s. Su asignación tiene poco respaldo; la sección Estabilidad (bootstrap) mostrará si se replica."
 
 #: R/texts.R
 msgid "Items with a general loading below .20: %s. They do not share the general factor; check their wording (for example, negatively worded items not reversed) or whether they belong to the scale."
@@ -2114,7 +2115,7 @@ msgstr "Siguiente paso: si un factor específico colapsa o tiene muy pocos ítem
 
 #: R/texts.R
 msgid "Next step: if some items are unstable, check them for redundancy (the Redundancy (UVA) box) and for content before deciding to remove or rewrite them, then run the analysis again, with the bootstrap, on the revised item set. Report the number of samples, the bootstrap type and the seed."
-msgstr "Siguiente paso: si hay ítems inestables, revise su redundancia (caja Redundancy (UVA)) y su contenido antes de decidir eliminarlos o reescribirlos; luego vuelva a ejecutar el análisis, con el bootstrap, sobre el conjunto revisado. Informe el número de muestras, el tipo de bootstrap y la semilla."
+msgstr "Siguiente paso: si hay ítems inestables, revise su redundancia (caja Redundancia (UVA)) y su contenido antes de decidir eliminarlos o reescribirlos; luego vuelva a ejecutar el análisis, con el bootstrap, sobre el conjunto revisado. Informe el número de muestras, el tipo de bootstrap y la semilla."
 
 #: R/texts.R
 msgid "Next step: if you remove or combine items, run the analysis again on the revised item set and compare the number of dimensions and the stability with the original solution. Do not compare TEFI values between the original and the revised item sets: TEFI is only comparable between structures of the same items. Report the cutoff and the items you changed."
@@ -2142,15 +2143,15 @@ msgstr "Siguiente paso: revise el contenido de los ítems no invariantes (redacc
 
 #: R/texts.R
 msgid "Next step: tick Run bootstrap in the Stability (Bootstrap) box to check whether the number of dimensions and each item's membership are stable across resamples before interpreting the structure. It uses exactly the estimation options above."
-msgstr "Siguiente paso: marque Run bootstrap en la caja Stability (bootstrap) para verificar si el número de dimensiones y la pertenencia de cada ítem son estables entre remuestreos antes de interpretar la estructura. Usa exactamente las opciones de estimación de arriba."
+msgstr "Siguiente paso: marque Ejecutar bootstrap en la caja Estabilidad (bootstrap) para verificar si el número de dimensiones y la pertenencia de cada ítem son estables entre remuestreos antes de interpretar la estructura. Usa exactamente las opciones de estimación de arriba."
 
 #: R/texts.R
 msgid "Next step: tick Stability of edges and centrality (bootnet) to check whether the order of the items by centrality holds before interpreting differences between items."
-msgstr "Siguiente paso: marque Stability of edges and centrality (bootnet) para comprobar si el orden de los ítems por centralidad se mantiene antes de interpretar diferencias entre ítems."
+msgstr "Siguiente paso: marque Estabilidad de aristas y centralidad (bootnet) para comprobar si el orden de los ítems por centralidad se mantiene antes de interpretar diferencias entre ítems."
 
 #: R/texts.R
 msgid "Next step: tick Structure of each person to see whether the population structure describes individuals. Population structures of intensive longitudinal data often do not hold for every person."
-msgstr "Siguiente paso: marque Structure of each person para ver si la estructura de la población describe a los individuos. En datos longitudinales intensivos, la estructura de la población a menudo no se cumple en cada persona."
+msgstr "Siguiente paso: marque Estructura de cada persona para ver si la estructura de la población describe a los individuos. En datos longitudinales intensivos, la estructura de la población a menudo no se cumple en cada persona."
 
 #: R/dynega.b.R
 #: R/texts.R
@@ -2183,7 +2184,7 @@ msgstr "Ningún ítem difiere en centralidad entre las redes tras la corrección
 
 #: R/texts.R
 msgid "No item is marked in Negatively worded items, so nothing in this analysis supports reading the random intercept as a wording effect. Mark the negatively worded items, or read riEGA only as a sensitivity check."
-msgstr "Ningún ítem está marcado en Negatively worded items, así que nada en este análisis respalda leer el intercepto aleatorio como un efecto de redacción. Marque los ítems redactados en negativo, o lea riEGA solo como una prueba de sensibilidad."
+msgstr "Ningún ítem está marcado en Ítems redactados en negativo, así que nada en este análisis respalda leer el intercepto aleatorio como un efecto de redacción. Marque los ítems redactados en negativo, o lea riEGA solo como una prueba de sensibilidad."
 
 #: R/texts.R
 msgid "No item is marked in Negatively worded items, so the items are used exactly as they are in the data. Mark the negative items there so that riEGA can use them in their original direction even if they are already reversed in the data."
@@ -2720,7 +2721,7 @@ msgstr "Guardar puntuaciones de red"
 
 #: R/texts.R
 msgid "Save network scores (in the Network Scores box) adds one column per dimension to the dataset, so the scores can be used in other analyses. People with a missing response on any item of a dimension get no score for it."
-msgstr "Guardar puntuaciones de red (en la caja Network scores) añade una columna por dimensión al conjunto de datos, para usar las puntuaciones en otros análisis. Quien tenga una respuesta perdida en algún ítem de una dimensión queda sin puntuación en ella."
+msgstr "Guardar puntuaciones de red (en la caja Puntuaciones de red) añade una columna por dimensión al conjunto de datos, para usar las puntuaciones en otros análisis. Quien tenga una respuesta perdida en algún ítem de una dimensión queda sin puntuación en ella."
 
 #: ega/options/splitOV.title
 msgid "Save subsample"
@@ -3045,7 +3046,7 @@ msgstr "El CFA no pudo ajustarse en esta muestra (vea el texto de arriba)."
 
 #: R/texts.R
 msgid "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory Factor Analysis box."
-msgstr "Los índices del CFA salen de los mismos datos que produjeron la solución de EGA, así que la favorecen. Úselos como una segunda mirada y confirme con la división aleatoria de la caja Confirmatory factor analysis."
+msgstr "Los índices del CFA salen de los mismos datos que produjeron la solución de EGA, así que la favorecen. Úselos como una segunda mirada y confirme con la división aleatoria de la caja Análisis factorial confirmatorio."
 
 #: R/texts.R
 msgid "The CFA uses the same sample as EGA, so its fit is optimistic. Tick Split the sample at random for a check in an independent subsample."
@@ -3321,7 +3322,7 @@ msgstr "La estructura teórica no tiene ningún ítem del análisis en sus facto
 
 #: R/texts.R
 msgid "The theoretical structure includes variables that are not among the Items of the analysis: %s. Add them to Items or remove them from the factors."
-msgstr "La estructura teórica incluye variables que no están entre los Items del análisis: %s. Agréguelas a Items o quítelas de los factores."
+msgstr "La estructura teórica incluye variables que no están entre los Ítems del análisis: %s. Agréguelas a Items o quítelas de los factores."
 
 #: R/texts.R
 msgid "The theoretical structure places %d of %d items as EGA. The items EGA places elsewhere (%s) are the ones to examine: read their content and check whether they are also unstable in the bootstrap or redundant in UVA."
@@ -3741,7 +3742,7 @@ msgstr "Las dimensiones de riEGA llevan el número de la dimensión de EGA con l
 
 #: R/texts.R
 msgid "riEGA does not work with the BGGM network model; choose GLASSO or TMFG in Estimation"
-msgstr "riEGA no funciona con el modelo de red BGGM; elija GLASSO o TMFG en Estimation"
+msgstr "riEGA no funciona con el modelo de red BGGM; elija GLASSO o TMFG en Estimación"
 
 #: R/texts.R
 msgid "riEGA first fits a random-intercept factor with the same loading for every item, which captures that wording effect, removes it, and then runs EGA on what is left."

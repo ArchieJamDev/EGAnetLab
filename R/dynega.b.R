@@ -206,8 +206,8 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 list(.("Correlation"), switch(o$corr,
                     auto = .("Automatic (Pearson, because the derivatives are continuous)"),
                     pearson = "Pearson", spearman = "Spearman")),
-                list(.("Network model"), o$model),
-                list(.("Community detection"), o$algorithm),
+                list(.("Network model"), .el_choice_label(self, o$model)),
+                list(.("Community detection"), .el_choice_label(self, o$algorithm)),
                 list(txt("dyn", "summary_ndim"), if (is.na(pop$n_dim)) txt("common", "not_computable")
                                                  else as.character(pop$n_dim))
             )
@@ -228,7 +228,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             private$.interpretPopulation(prep, cache, use_groups, deriv, deriv_label, txt)
 
             if (isTRUE(o$showNetworkPlot))
-                self$results$networkPlot$setState(list(network = pop$network, wc = pop$wc))
+                .el_set_image_state(self, self$results$networkPlot, list(network = pop$network, wc = pop$wc))
 
             # Individual structures.
             # ES: Estructuras individuales.
@@ -425,7 +425,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         ariGroup = if (!has_group) NULL else if (is.na(ind$ari_group[i])) "" else ind$ari_group[i]))
 
             if (isTRUE(self$options$showIndPlot))
-                self$results$indPlot$setState(list(
+                .el_set_image_state(self, self$results$indPlot, list(
                     frequency = freq, empirical = pop$n_dim,
                     labels = list(x = txt("dyn", "plot_x"), y = txt("dyn", "plot_y"),
                                   original = sprintf(txt("dyn", "plot_population"), as.character(pop$n_dim)), other = txt("dyn", "plot_other"))))

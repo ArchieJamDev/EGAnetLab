@@ -86,6 +86,15 @@
   comparison says so again; it was showing the random-intercept sentence
   ("After removing it, EGA still finds ..."). The Spanish of that
   random-intercept sentence is restored as well.
+* After switching jamovi's language, the plots are drawn again, so their
+  axes, legends and panel names follow the new language like the tables.
+  jamovi kept the image already drawn because no option had changed.
+* The setup table shows the estimation choices by name ("GLASSO",
+  "Walktrap", "Louvain", and "pairwise" in the report language) instead of
+  the internal option values.
+* The Spanish report names the panel boxes and options in Spanish (for
+  example "caja Análisis factorial confirmatorio", "Igual que EGA en
+  Correlaciones (NCT)"), as they appear in the translated panel.
 
 ## Preparation for jamovi's library review
 
