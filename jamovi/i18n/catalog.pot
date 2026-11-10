@@ -1215,10 +1215,6 @@ msgstr ""
 msgid "For each person, it first estimates how every item changes from one time point to the next (its derivatives, with generalized local linear approximation; Boker et al., 2010). It then applies EGA to those derivatives, so the dimensions group items that change together over time, not items that are simply high or low together."
 msgstr ""
 
-#: ega/ui[1][0][6].label
-msgid "For the items in Negatively worded items, at the top. If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction."
-msgstr ""
-
 #: ega/results/bootFrequency.title
 #: ega/results/bootFrequencyPlot.title
 msgid "Frequency of the number of dimensions"
@@ -1444,7 +1440,7 @@ msgstr ""
 msgid "Introduction"
 msgstr ""
 
-#: ega/ui[6][0][1].label
+#: ega/ui[6][0][0].label
 msgid "Invariance (independent groups)"
 msgstr ""
 
@@ -2000,7 +1996,7 @@ msgstr ""
 msgid "Negatively worded items: %s. They are as answered in the data, so riEGA uses them as they are (the other analyses use them reversed)."
 msgstr ""
 
-#: ega/ui[6][0][2].label
+#: ega/ui[6][0][1].label
 #: ega/results/nctStatus.title
 #: R/ega.b.R
 msgid "Network Comparison Test"
@@ -2305,10 +2301,6 @@ msgstr ""
 
 #: R/texts.R
 msgid "One factor"
-msgstr ""
-
-#: ega/ui[4][0][2].label
-msgid "Only for scales that mix positively and negatively worded items. Mark the negative items in Negatively worded items, at the top; this analysis uses them in their original direction (not recoded)."
 msgstr ""
 
 #: R/texts.R
@@ -2760,10 +2752,6 @@ msgstr ""
 
 #: ega/results/uvaSets.columns.title
 msgid "Set"
-msgstr ""
-
-#: ega/ui[6][0][0].label
-msgid "Set the groups in the variable boxes at the top: Grouping variable for independent groups (e.g. sex), or Same items, second measurement when the same people answered the items twice (NCT only, items in the same order)."
 msgstr ""
 
 #: R/texts.R

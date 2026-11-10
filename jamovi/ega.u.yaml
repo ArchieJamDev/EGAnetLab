@@ -98,6 +98,7 @@ children:
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
           - type: ComboBox
             name: corr
@@ -111,18 +112,13 @@ children:
             name: uniMethod
           - type: ComboBox
             name: negCoding
-          - type: Label
-            label: >-
-              For the items in Negatively worded items, at the top. If they are
-              as answered, every analysis reverses them (observed minimum plus
-              maximum, minus the score). Random-intercept EGA always uses them
-              in their original direction.
   - type: CollapseBox
     label: Network Scores
     collapsed: true
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
           - type: CheckBox
             name: netScores
@@ -136,6 +132,7 @@ children:
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
           - type: CheckBox
             name: runCompare
@@ -151,23 +148,19 @@ children:
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
           - type: CheckBox
             name: runHier
           - type: CheckBox
             name: runRI
-          - type: Label
-            label: >-
-              Only for scales that mix positively and negatively worded items.
-              Mark the negative items in Negatively worded items, at the top;
-              this analysis uses them in their original direction (not
-              recoded).
   - type: CollapseBox
     label: Centrality and Network Stability
     collapsed: true
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
           - type: Label
             label: Centrality
@@ -212,13 +205,8 @@ children:
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
-          - type: Label
-            label: >-
-              Set the groups in the variable boxes at the top: Grouping variable
-              for independent groups (e.g. sex), or Same items, second measurement
-              when the same people answered the items twice (NCT only, items in
-              the same order).
           - type: Label
             label: Invariance (independent groups)
             children:
@@ -269,6 +257,7 @@ children:
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
           - type: CheckBox
             name: runUVA
@@ -282,6 +271,7 @@ children:
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
           - type: CheckBox
             name: runBoot
@@ -312,6 +302,7 @@ children:
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
           - type: CheckBox
             name: runCFA
@@ -338,6 +329,7 @@ children:
     children:
       - type: LayoutBox
         margin: large
+        stretchFactor: 1
         children:
           - type: CheckBox
             name: showKeySummary

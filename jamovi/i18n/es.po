@@ -1215,10 +1215,6 @@ msgstr "Ajustar el CFA con los mismos datos que produjeron la estructura da un a
 msgid "For each person, it first estimates how every item changes from one time point to the next (its derivatives, with generalized local linear approximation; Boker et al., 2010). It then applies EGA to those derivatives, so the dimensions group items that change together over time, not items that are simply high or low together."
 msgstr "Para cada persona estima primero cómo cambia cada ítem de un momento al siguiente (sus derivadas, con aproximación lineal local generalizada; Boker et al., 2010). Luego aplica EGA a esas derivadas, así que las dimensiones agrupan ítems que cambian juntos en el tiempo, no ítems que simplemente son altos o bajos a la vez."
 
-#: ega/ui[1][0][6].label
-msgid "For the items in Negatively worded items, at the top. If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction."
-msgstr "Para los ítems de Ítems redactados en negativo, arriba. Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
-
 #: ega/results/bootFrequency.title
 #: ega/results/bootFrequencyPlot.title
 msgid "Frequency of the number of dimensions"
@@ -1444,7 +1440,7 @@ msgstr "Interpretar con cautela (.25 a .50)"
 msgid "Introduction"
 msgstr "Introducción"
 
-#: ega/ui[6][0][1].label
+#: ega/ui[6][0][0].label
 msgid "Invariance (independent groups)"
 msgstr "Invarianza (grupos independientes)"
 
@@ -2000,7 +1996,7 @@ msgstr "Ítems redactados en negativo: %s. Ya están invertidos en los datos, as
 msgid "Negatively worded items: %s. They are as answered in the data, so riEGA uses them as they are (the other analyses use them reversed)."
 msgstr "Ítems redactados en negativo: %s. Están tal como se respondieron en los datos, así que riEGA los usa así (los demás análisis los usan invertidos)."
 
-#: ega/ui[6][0][2].label
+#: ega/ui[6][0][1].label
 #: ega/results/nctStatus.title
 #: R/ega.b.R
 msgid "Network Comparison Test"
@@ -2306,10 +2302,6 @@ msgstr "Una dimensión: el TEFI vale siempre 0, así que no se compara."
 #: R/texts.R
 msgid "One factor"
 msgstr "Un factor"
-
-#: ega/ui[4][0][2].label
-msgid "Only for scales that mix positively and negatively worded items. Mark the negative items in Negatively worded items, at the top; this analysis uses them in their original direction (not recoded)."
-msgstr "Solo para escalas que mezclan ítems redactados en positivo y en negativo. Marque los ítems negativos en Ítems redactados en negativo, arriba; este análisis los usa en su dirección original (sin recodificar)."
 
 #: R/texts.R
 msgid "Only the edges of the estimated network are listed, strongest first. The intervals are percentile intervals from resampling cases. In regularized networks the weights are pulled toward zero, so the intervals describe precision and are not significance tests (Epskamp et al., 2018)."
@@ -2761,10 +2753,6 @@ msgstr "Seleccione los ítems y la variable que identifica a cada persona para e
 #: ega/results/uvaSets.columns.title
 msgid "Set"
 msgstr "Conjunto"
-
-#: ega/ui[6][0][0].label
-msgid "Set the groups in the variable boxes at the top: Grouping variable for independent groups (e.g. sex), or Same items, second measurement when the same people answered the items twice (NCT only, items in the same order)."
-msgstr "Indique los grupos en las casillas de variables de arriba: Variable de agrupación para grupos independientes (p. ej., sexo), o Mismos ítems, segunda medición cuando las mismas personas respondieron los ítems dos veces (solo NCT, ítems en el mismo orden)."
 
 #: R/texts.R
 msgid "Small to moderate"
