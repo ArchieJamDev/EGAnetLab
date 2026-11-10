@@ -21,7 +21,7 @@ identifiers:
 repository-code: "https://github.com/ArchieJamDev/EGAnetLab"
 license: "GPL-3.0-only"
 version: "1.0.0"
-date-released: "2026-11-02"
+date-released: "2026-11-10"
 abstract: >
   EGAnetLab is an open-source jamovi module that brings the network
   psychometrics methods of the EGAnet R package to jamovi, pairing every

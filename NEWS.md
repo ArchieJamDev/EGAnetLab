@@ -1,4 +1,4 @@
-# EGAnetLab 1.0.0 (in development)
+# EGAnetLab 1.0.0 (released 2026-11-10)
 
 * Version raised to 1.0.0 in `DESCRIPTION`, `jamovi/0000.yaml` and both
   analyses, as the jamovi library expects for a release-ready module
