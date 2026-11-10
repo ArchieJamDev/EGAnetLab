@@ -48,7 +48,7 @@ test_that("CFA tests the EGA structure in the total sample", {
     expect_true(compare$rmseaLower <= compare$rmsea && compare$rmsea <= compare$rmseaUpper)
     expect_true(is.numeric(more$gfi))
     expect_equal(nrow(res$cfaLoadings$asDF), 12)
-    expect_equal(res$cfaMembership$rowCount, 0)
+    expect_false(res$cfaMembership$visible)
     expect_match(res$cfaStatus$content, "optimistic", fixed = TRUE)
 })
 
