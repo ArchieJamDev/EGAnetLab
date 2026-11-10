@@ -140,6 +140,18 @@ inSpanish <- function(expr) withr::with_envvar(c(LANGUAGE = "es"), expr)
 textSelf <- function() list(options = EGAnetLab:::egaOptions$new())
 
 # -----------------------------------------------------------------------------
+# noticeText(): the text of every jamovi notice in an analysis' results, in
+# order, joined by spaces ("" when there is none).
+# ES: noticeText(): el texto de todos los avisos de jamovi en los resultados
+# de un análisis, en orden, unidos por espacios ("" si no hay ninguno).
+# -----------------------------------------------------------------------------
+noticeText <- function(res) {
+    notices <- Filter(function(item) inherits(item, "Notice"), res$items)
+    paste(vapply(notices, function(n) paste(n$content, collapse = " "), character(1)),
+          collapse = " ")
+}
+
+# -----------------------------------------------------------------------------
 # expectGraceful(): the analysis either finishes or stops with one of
 # EGAnetLab's own messages (Category A/B), never with a raw R error.
 # ES: expectGraceful(): el análisis termina o se detiene con uno de los

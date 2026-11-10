@@ -60,8 +60,11 @@ test_that("invariance without a grouping variable explains what to add", {
     res <- EGAnetLab::ega(data = data, vars = paste0("item", 1:12), runInvariance = TRUE)
 
     expect_match(res$groupStatus$content, "grouping variable", fixed = TRUE)
-    expect_match(res$invStatus$content, "grouping variable", fixed = TRUE)
+    expect_match(noticeText(res), "grouping variable", fixed = TRUE)
     expect_equal(res$invTable$rowCount, 0)
+    # The section keeps its table in place and explains why it is empty.
+    # ES: La sección mantiene su tabla en su sitio y explica por qué está vacía.
+    expect_true(res$invTable$visible)
 })
 
 test_that("metric invariance tests every item between two groups", {

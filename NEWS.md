@@ -22,6 +22,28 @@
 * The "Isolated" label in the network plot legend is translated when the
   plot is drawn, so it always matches the current language.
 
+## Results follow jamovi's conventions
+
+* An optional section that fails or does not apply (UVA, bootstrap,
+  hierarchical and random-intercept EGA, centrality, network stability,
+  invariance, NCT, hierarchical CFA) keeps its tables and plots in place and
+  explains why with a native jamovi notice, instead of hiding them, so the
+  results do not jump while options change.
+* The messages from EGAnet and lavaan are native jamovi warnings shown under
+  the key findings, instead of a block at the end of the report.
+* The CFA tables use numeric columns that follow jamovi's decimal and
+  p-value settings and paste into spreadsheets as numbers. *Total sample and
+  random subsamples* has one row per sample, with χ², df, p, CFI, TLI,
+  RMSEA and its 90% interval, SRMR, AIC and BIC; GFI, AGFI, NFI, IFI and
+  χ²/df moved to the new *Additional fit indices* table. Non-converged,
+  failed or inadmissible solutions are explained in footnotes. *Models with
+  and without hierarchy* has separate χ², df and p columns.
+* Item membership (EGA and Dynamic EGA) and centrality tables have one row
+  per selected item from the start, so jamovi lays them out before the
+  analysis finishes.
+* bootEGA, invariance, UVA and hierEGA start with a checkpoint, so jamovi can
+  stop a long run that the user has already changed.
+
 # EGAnetLab 0.1.0 (released 2026-11-02)
 
 * First public release, archived in Zenodo with DOI

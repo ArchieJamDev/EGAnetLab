@@ -927,6 +927,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         bootFrequencyPlot = function() private$.items[["bootFrequencyPlot"]],
         cfaStatus = function() private$.items[["cfaStatus"]],
         cfaCompare = function() private$.items[["cfaCompare"]],
+        cfaCompareMore = function() private$.items[["cfaCompareMore"]],
         cfaMembership = function() private$.items[["cfaMembership"]],
         cfaLoadings = function() private$.items[["cfaLoadings"]],
         cfaInterpretation = function() private$.items[["cfaInterpretation"]],
@@ -956,8 +957,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         nctEdgeTable = function() private$.items[["nctEdgeTable"]],
         nctCentralityTable = function() private$.items[["nctCentralityTable"]],
         nctInterpretation = function() private$.items[["nctInterpretation"]],
-        splitOV = function() private$.items[["splitOV"]],
-        notes = function() private$.items[["notes"]]),
+        splitOV = function() private$.items[["splitOV"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -1015,7 +1015,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="membership",
                 title="Item membership",
-                rows=0,
+                rows="(vars)",
                 refs=list(
                     "golino_2017"),
                 clearWith=list(
@@ -1031,7 +1031,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="item", 
                         `title`="Item", 
-                        `type`="text"),
+                        `type`="text", 
+                        `content`="($key)"),
                     list(
                         `name`="dimension", 
                         `title`="Dimension", 
@@ -1804,23 +1805,128 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "splitSeed"),
                 columns=list(
                     list(
-                        `name`="element", 
-                        `title`="Element", 
+                        `name`="sample", 
+                        `title`="Sample", 
                         `type`="text"),
                     list(
-                        `name`="total", 
-                        `title`="Total sample", 
+                        `name`="n", 
+                        `title`="Cases", 
+                        `type`="integer"),
+                    list(
+                        `name`="dims", 
+                        `title`="Dimensions found by EGA", 
+                        `type`="integer"),
+                    list(
+                        `name`="tefi", 
+                        `title`="TEFI", 
+                        `type`="number"),
+                    list(
+                        `name`="structure", 
+                        `title`="Structure tested by the CFA", 
                         `type`="text"),
                     list(
-                        `name`="partA", 
-                        `title`="Subsample A (exploration)", 
-                        `type`="text", 
-                        `visible`="(splitSample)"),
+                        `name`="chisq", 
+                        `title`="\u03C7\u00B2", 
+                        `type`="number"),
                     list(
-                        `name`="partB", 
-                        `title`="Subsample B (confirmation)", 
-                        `type`="text", 
-                        `visible`="(splitSample)"))))
+                        `name`="df", 
+                        `title`="df", 
+                        `type`="integer"),
+                    list(
+                        `name`="p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"),
+                    list(
+                        `name`="cfi", 
+                        `title`="CFI", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="tli", 
+                        `title`="TLI", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="rmsea", 
+                        `title`="RMSEA", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="rmseaLower", 
+                        `title`="Lower", 
+                        `type`="number", 
+                        `format`="zto", 
+                        `superTitle`="RMSEA 90% CI"),
+                    list(
+                        `name`="rmseaUpper", 
+                        `title`="Upper", 
+                        `type`="number", 
+                        `format`="zto", 
+                        `superTitle`="RMSEA 90% CI"),
+                    list(
+                        `name`="srmr", 
+                        `title`="SRMR", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="aic", 
+                        `title`="AIC", 
+                        `type`="number"),
+                    list(
+                        `name`="bic", 
+                        `title`="BIC", 
+                        `type`="number"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="cfaCompareMore",
+                title="Additional fit indices",
+                rows=0,
+                visible="(runCFA)",
+                refs=list(
+                    "schermelleh_engel_2003"),
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "cfaEstimator",
+                    "splitSample",
+                    "splitProp",
+                    "splitSeed"),
+                columns=list(
+                    list(
+                        `name`="sample", 
+                        `title`="Sample", 
+                        `type`="text"),
+                    list(
+                        `name`="chisqDf", 
+                        `title`="\u03C7\u00B2/df", 
+                        `type`="number"),
+                    list(
+                        `name`="gfi", 
+                        `title`="GFI", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="agfi", 
+                        `title`="AGFI", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="nfi", 
+                        `title`="NFI", 
+                        `type`="number", 
+                        `format`="zto"),
+                    list(
+                        `name`="ifi", 
+                        `title`="IFI", 
+                        `type`="number", 
+                        `format`="zto"))))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="cfaMembership",
@@ -1934,32 +2040,45 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="integer"),
                     list(
                         `name`="chisq", 
-                        `title`="\u03C7\u00B2 (df)", 
-                        `type`="text"),
+                        `title`="\u03C7\u00B2", 
+                        `type`="number"),
+                    list(
+                        `name`="df", 
+                        `title`="df", 
+                        `type`="integer"),
+                    list(
+                        `name`="p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"),
                     list(
                         `name`="cfi", 
                         `title`="CFI", 
-                        `type`="text"),
+                        `type`="number", 
+                        `format`="zto"),
                     list(
                         `name`="tli", 
                         `title`="TLI", 
-                        `type`="text"),
+                        `type`="number", 
+                        `format`="zto"),
                     list(
                         `name`="rmsea", 
                         `title`="RMSEA", 
-                        `type`="text"),
+                        `type`="number", 
+                        `format`="zto"),
                     list(
                         `name`="srmr", 
                         `title`="SRMR", 
-                        `type`="text"),
+                        `type`="number", 
+                        `format`="zto"),
                     list(
                         `name`="aic", 
                         `title`="AIC", 
-                        `type`="text"),
+                        `type`="number"),
                     list(
                         `name`="bic", 
                         `title`="BIC", 
-                        `type`="text"))))
+                        `type`="number"))))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="cfaBifactorGuide",
@@ -2031,7 +2150,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="cenTable",
                 title="Centrality of each item",
-                rows=0,
+                rows="(vars)",
                 visible="(runCentrality)",
                 refs=list(
                     "opsahl_2010",
@@ -2052,7 +2171,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="item", 
                         `title`="Item", 
-                        `type`="text"),
+                        `type`="text", 
+                        `content`="($key)"),
                     list(
                         `name`="dimension", 
                         `title`="Dimension", 
@@ -2588,11 +2708,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "algorithm",
                     "uniMethod",
                     "splitProp",
-                    "splitSeed")))
-            self$add(jmvcore::Html$new(
-                options=options,
-                name="notes",
-                title="Notes"))}))
+                    "splitSeed")))}))
 
 egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "egaBase",
@@ -2754,6 +2870,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$bootFrequencyPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$cfaStatus} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$cfaCompare} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$cfaCompareMore} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$cfaMembership} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$cfaLoadings} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$cfaInterpretation} \tab \tab \tab \tab \tab a html \cr
@@ -2784,7 +2901,6 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$nctCentralityTable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$nctInterpretation} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$splitOV} \tab \tab \tab \tab \tab an output \cr
-#'   \code{results$notes} \tab \tab \tab \tab \tab a html \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:

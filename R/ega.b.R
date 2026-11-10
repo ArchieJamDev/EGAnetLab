@@ -246,9 +246,15 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # Item membership.
             # ES: Pertenencia de los ítems.
             # -----------------------------------------------------------------
+            # The rows are bound to the selected items in the .r.yaml, so
+            # jamovi lays them out before the analysis runs.
+            # ES: Las filas están ligadas a los ítems seleccionados en el
+            # .r.yaml, así que jamovi las dispone antes de que corra el
+            # análisis.
+            isolated_label <- .("Isolated (no edges)")
             for (i in seq_along(items)) {
-                dim_value <- if (is.na(wc[[i]])) .("Isolated (no edges)") else as.character(wc[[i]])
-                .el_add_row(self$results$membership, i, list(item = items[i], dimension = dim_value))
+                dim_value <- if (is.na(wc[[i]])) isolated_label else as.character(wc[[i]])
+                self$results$membership$setRow(rowNo = i, values = list(item = items[i], dimension = dim_value))
             }
 
             # -----------------------------------------------------------------
@@ -492,15 +498,11 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             self$results$keySummary$setTitle(txt("key", "title"))
             if (isTRUE(self$options$showKeySummary))
                 self$results$keySummary$setContent(.el_key_summary(self, private$.key))
-            if (length(warnings) > 0) {
-                self$results$notes$setContent(.el_html_block(
-                    txt("common", "warnings_title"),
-                    .el_html_list(warnings),
-                    raw = TRUE
-                ))
-            } else {
-                self$results$notes$setVisible(FALSE)
-            }
+            # Each message is a native jamovi warning under the key findings.
+            # ES: Cada mensaje es un aviso nativo de jamovi bajo los
+            # hallazgos clave.
+            for (w in rev(warnings))
+                .el_notice(self, "keySummary", w, error = FALSE)
 
             # -----------------------------------------------------------------
             # Plot state: only what plot.EGA() needs (network + memberships).
@@ -773,59 +775,55 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             status <- c(status, txt("cfa", "fit_guide"), txt("cfa", "fit_guide_more"))
             self$results$cfaStatus$setContent(.el_html_block(heading, status))
 
-            # Side-by-side table.
-            # ES: Tabla lado a lado.
-            cell <- function(p, f) {
-                if (is.null(fits[[p]]) || !isTRUE(fits[[p]]$ok)) return("—")
-                f(fits[[p]]$fit)
-            }
-            ega_of <- function(p) samples[[p]]$ega
-            n_dim_of <- function(p) { e <- ega_of(p); if (is.null(e)) "—" else as.character(.el_clean_num(e$n.dim)) }
-            tefi_of <- function(p) { e <- ega_of(p); if (is.null(e)) "—" else num(.el_clean_num(e$TEFI)) }
-            n_of <- function(p) as.character(nrow(samples[[p]]$data))
+            # One row per sample with numeric columns, so jamovi formats the
+            # fit indices with the user's decimal and p-value settings.
+            # Unavailable cells stay empty and a footnote says why.
+            # ES: Una fila por muestra con columnas numéricas, para que
+            # jamovi dé formato a los índices de ajuste con los ajustes de
+            # decimales y valores p del usuario. Las celdas no disponibles
+            # quedan vacías y una nota al pie explica por qué.
+            sample_name <- c(total = .("Total sample"), A = .("Subsample A (exploration)"),
+                             B = .("Subsample B (confirmation)"))
+            value <- function(x) { x <- .el_clean_num(x); if (is.na(x)) "" else x }
             cols <- if (split) c("total", "A", "B") else "total"
-            key <- c(total = "total", A = "partA", B = "partB")
-            rows <- list(
-                list(txt("cfa", "row_n"), n_of),
-                list(txt("cfa", "row_dims"), n_dim_of),
-                list(txt("cfa", "row_tefi"), tefi_of),
-                list(txt("cfa", "row_structure"), function(p)
-                    if (p == "total") txt("cfa", "row_structure_total") else txt("cfa", "row_structure_A")),
-                list(txt("cfa", "row_chisq"), function(p) cell(p, function(f)
-                    paste0(num(f[["chisq"]], 2), " (", num(f[["df"]], 0), "), ", .el_fmt_p(f[["pvalue"]])))),
-                list(txt("cfa", "row_cfi"), function(p) cell(p, function(f) num(f[["cfi"]]))),
-                list(txt("cfa", "row_tli"), function(p) cell(p, function(f) num(f[["tli"]]))),
-                list(txt("cfa", "row_rmsea"), function(p) cell(p, function(f)
-                    paste0(num(f[["rmsea"]]), " [", num(f[["rmsea_low"]]), ", ", num(f[["rmsea_high"]]), "]"))),
-                list(txt("cfa", "row_srmr"), function(p) cell(p, function(f) num(f[["srmr"]]))),
-                list(txt("cfa", "row_chisq_df"), function(p) cell(p, function(f)
-                    if (is.na(f[["df"]]) || f[["df"]] <= 0) "—" else num(f[["chisq"]] / f[["df"]], 2))),
-                list("GFI", function(p) cell(p, function(f) num(f[["gfi"]]))),
-                list("AGFI", function(p) cell(p, function(f) num(f[["agfi"]]))),
-                list("NFI", function(p) cell(p, function(f) num(f[["nfi"]]))),
-                list("IFI", function(p) cell(p, function(f) num(f[["ifi"]]))),
-                list("AIC", function(p) cell(p, function(f) num(f[["aic"]], 1))),
-                list("BIC", function(p) cell(p, function(f) num(f[["bic"]], 1))),
-                list(txt("cfa", "row_converged"), function(p) cell(p, function(f)
-                    if (isTRUE(f[["converged"]] == 1)) txt("cfa", "yes") else txt("cfa", "no"))),
-                list(txt("cfa", "row_admissible"), function(p) {
-                    if (is.null(fits[[p]]) || !isTRUE(fits[[p]]$ok)) return("—")
-                    if (length(fits[[p]]$problems) == 0) txt("cfa", "yes") else txt("cfa", "no")
-                })
-            )
-            for (i in seq_along(rows)) {
-                values <- list(element = rows[[i]][[1]])
-                for (p in cols) values[[key[[p]]]] <- rows[[i]][[2]](p)
-                .el_add_row(self$results$cfaCompare, i, values)
+            compare <- self$results$cfaCompare
+            more <- self$results$cfaCompareMore
+            more$deleteRows()
+            for (col in c("rmseaLower", "rmseaUpper"))
+                compare$getColumn(col)$setSuperTitle(.("RMSEA 90% CI"))
+            for (i in seq_along(cols)) {
+                p <- cols[i]
+                e <- samples[[p]]$ega
+                ok <- !is.null(fits[[p]]) && isTRUE(fits[[p]]$ok)
+                f <- if (ok) fits[[p]]$fit else NULL
+                fv <- function(name) if (ok) value(f[[name]]) else ""
+                df <- if (ok) .el_clean_num(f[["df"]]) else NA_real_
+                .el_add_row(compare, p, list(
+                    sample = sample_name[[p]],
+                    n = nrow(samples[[p]]$data),
+                    dims = if (is.null(e)) "" else value(e$n.dim),
+                    tefi = if (is.null(e)) "" else value(e$TEFI),
+                    structure = if (p == "total") txt("cfa", "row_structure_total") else txt("cfa", "row_structure_A"),
+                    chisq = fv("chisq"), df = fv("df"), p = fv("pvalue"),
+                    cfi = fv("cfi"), tli = fv("tli"), rmsea = fv("rmsea"),
+                    rmseaLower = fv("rmsea_low"), rmseaUpper = fv("rmsea_high"),
+                    srmr = fv("srmr"), aic = fv("aic"), bic = fv("bic")))
+                .el_add_row(more, p, list(
+                    sample = sample_name[[p]],
+                    chisqDf = if (!is.na(df) && df > 0) value(f[["chisq"]] / df) else "",
+                    gfi = fv("gfi"), agfi = fv("agfi"), nfi = fv("nfi"), ifi = fv("ifi")))
+                # Name the exact problem of each failed, non-converged or
+                # inadmissible solution.
+                # ES: Nombrar el problema exacto de cada solución fallida, no
+                # convergente o inadmisible.
+                note <- if (!ok) .("The CFA could not be fitted in this sample (see the text above).")
+                    else if (!isTRUE(f[["converged"]] == 1)) txt("cfa_hier", "not_converged")
+                    else if (length(fits[[p]]$problems) > 0)
+                        sprintf(txt("cfa_hier", "inadmissible_note"), .el_describe_problems(self, fits[[p]]$problems))
+                    else NULL
+                if (!is.null(note))
+                    compare$addFootnote(rowNo = i, col = "sample", note)
             }
-            # Name the exact problem of each inadmissible solution.
-            # ES: Nombrar el problema exacto de cada solución inadmisible.
-            sample_name <- c(total = .("Total sample"), A = "SubMuestra A", B = "SubMuestra B")
-            for (p in cols)
-                if (!is.null(fits[[p]]) && isTRUE(fits[[p]]$ok) && length(fits[[p]]$problems) > 0)
-                    self$results$cfaCompare$setNote(paste0("adm_", p), paste0(sample_name[[p]], ": ",
-                        sprintf(txt("cfa_hier", "inadmissible_note"),
-                                .el_describe_problems(self, fits[[p]]$problems))))
 
             # Membership by sample (split only), labels aligned to the total.
             # ES: Pertenencia por muestra (solo con división), etiquetas
@@ -939,11 +937,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             num <- function(x, d = 3) .el_fmt_num(x, d, "—")
             hs <- private$.hierStructure
             if (is.null(hs)) {
-                table$setVisible(FALSE)
-                self$results$cfaHierInterpretation$setContent(
-                    .el_html_block(NULL, txt("cfa_hier", "unavailable")))
-                for (name in c("cfaBifactorGuide", "cfaBifactorLoadings", "cfaBifactorInterpretation"))
-                    self$results[[name]]$setVisible(FALSE)
+                .el_notice(self, "cfaHierModels", txt("cfa_hier", "unavailable"), error = FALSE, before = TRUE)
                 return(character(0))
             }
 
@@ -976,16 +970,16 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 f <- models[[i]]$fit
                 ok <- isTRUE(f$ok)
                 v <- if (ok) f$fit else NULL
+                value <- function(name) {
+                    x <- if (ok) .el_clean_num(v[[name]]) else NA_real_
+                    if (is.na(x)) "" else x
+                }
                 .el_add_row(table, i, list(
                     model = models[[i]]$label,
                     items = as.integer(f$n_items),
-                    chisq = if (ok) paste0(num(v[["chisq"]], 2), " (", num(v[["df"]], 0), ")") else "—",
-                    cfi = if (ok) num(v[["cfi"]]) else "—",
-                    tli = if (ok) num(v[["tli"]]) else "—",
-                    rmsea = if (ok) num(v[["rmsea"]]) else "—",
-                    srmr = if (ok) num(v[["srmr"]]) else "—",
-                    aic = if (ok) num(v[["aic"]], 1) else "—",
-                    bic = if (ok) num(v[["bic"]], 1) else "—"))
+                    chisq = value("chisq"), df = value("df"), p = value("pvalue"),
+                    cfi = value("cfi"), tli = value("tli"), rmsea = value("rmsea"),
+                    srmr = value("srmr"), aic = value("aic"), bic = value("bic")))
                 if (!ok)
                     table$addFootnote(rowNo = i, col = "model",
                                       sprintf(txt("cfa_hier", "failed"), if (is.null(f$error)) "—" else f$error))
@@ -1174,12 +1168,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             heading <- .("Metric invariance")
             table <- self$results$invTable
             table$deleteRows()
-            hide <- function() for (name in c("invTable", "invPlot", "invInterpretation"))
-                self$results[[name]]$setVisible(FALSE)
-
             if (is.null(g)) {
-                self$results$invStatus$setContent(.el_html_block(heading, c(txt("inv", "intro"), txt("inv", "no_groups"))))
-                hide()
+                self$results$invStatus$setContent(.el_html_block(heading, txt("inv", "intro")))
+                .el_notice(self, "invStatus", txt("inv", "no_groups"), error = FALSE)
                 return(character(0))
             }
 
@@ -1200,6 +1191,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # gráfico).
             fit <- self$results$invStatus$state
             if (is.null(fit)) {
+                private$.checkpoint()
                 fit <- .el_capture(suppressMessages(EGAnet::invariance(
                     data = d, groups = groups,
                     structure = if (configural) NULL else as.numeric(wc[keep]),
@@ -1226,17 +1218,16 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 status <- c(status, sprintf(txt("inv", "isolated"), paste(setdiff(names(wc), keep), collapse = ", ")))
 
             if (is.null(fit$value)) {
-                self$results$invStatus$setContent(.el_html_block(heading, c(status,
-                    sprintf(txt("inv", "failed"), if (is.null(fit$error)) "—" else fit$error))))
-                hide()
+                self$results$invStatus$setContent(.el_html_block(heading, status))
+                .el_notice(self, "invStatus",
+                           sprintf(txt("inv", "failed"), if (is.null(fit$error)) "—" else fit$error))
                 return(fit$warnings)
             }
             r <- fit$value
             if (is.null(r$results)) {
                 stable <- if (!is.null(r$data)) colnames(r$data) else character(0)
-                self$results$invStatus$setContent(.el_html_block(heading, c(status,
-                    sprintf(txt("inv", "configural_failed"), as.numeric(o$invConfigCut)))))
-                hide()
+                self$results$invStatus$setContent(.el_html_block(heading, status))
+                .el_notice(self, "invStatus", sprintf(txt("inv", "configural_failed"), as.numeric(o$invConfigCut)))
                 return(fit$warnings)
             }
 
@@ -1336,8 +1327,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             edge_table <- self$results$nctEdgeTable
             cen_table <- self$results$nctCentralityTable
             for (t in list(global, edge_table, cen_table)) t$deleteRows()
-            hide <- function() for (name in c("nctGlobal", "nctEdgeTable", "nctCentralityTable", "nctInterpretation"))
-                self$results[[name]]$setVisible(FALSE)
             items <- names(ega$wc)
             ordinal <- identical(o$nctCorr, "ega") && identical(o$corr, "auto") && isTRUE(prep$ordinal_like)
 
@@ -1371,8 +1360,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     d1 = d1[both, , drop = FALSE], d2 = d2[both, , drop = FALSE], paired = TRUE)
             }
             if (length(comps) == 0) {
-                self$results$nctStatus$setContent(.el_html_block(heading, c(status, txt("nct", "nothing"))))
-                hide()
+                self$results$nctStatus$setContent(.el_html_block(heading, status))
+                .el_notice(self, "nctStatus", txt("nct", "nothing"), error = FALSE)
                 return(character(0))
             }
             if (any(vapply(comps, function(cmp) nrow(cmp$d1) < nrow(prep$data[, items, drop = FALSE]) && !cmp$paired && anyNA(prep$data), logical(1))))
@@ -1502,12 +1491,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
             table <- self$results$cfaBifactorLoadings
             table$deleteRows()
-            hide <- function() for (name in c("cfaBifactorGuide", "cfaBifactorLoadings", "cfaBifactorInterpretation"))
-                self$results[[name]]$setVisible(FALSE)
             keys <- vapply(models, function(m) m$key, character(1))
-            if (!"bifactor" %in% keys) return(hide())
+            if (!"bifactor" %in% keys) return(invisible(NULL))
             f <- models[[match("bifactor", keys)]]$fit
-            if (!isTRUE(f$ok) || is.null(f$loadings) || nrow(f$loadings) == 0) return(hide())
+            if (!isTRUE(f$ok) || is.null(f$loadings) || nrow(f$loadings) == 0) return(invisible(NULL))
 
             L <- f$loadings
             items <- unique(L$item)
@@ -1835,6 +1822,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             intro <- c(txt("hier", "intro"))
 
             corr <- if (identical(self$options$corr, "cosine")) "auto" else self$options$corr
+            private$.checkpoint()
             fit <- .el_capture(suppressMessages(.el_with_seed(2026, EGAnet::hierEGA(
                 data = prep$data,
                 corr = corr,
@@ -1845,10 +1833,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 verbose = FALSE))))
 
             if (is.null(fit$value) || is.null(fit$value$lower_order)) {
-                self$results$hierStatus$setContent(.el_html_block(
-                    heading, c(intro, sprintf(txt("hier", "failed"), if (is.null(fit$error)) "—" else fit$error))))
-                for (name in c("hierSummary", "hierMembership", "hierPlot", "hierInterpretation"))
-                    self$results[[name]]$setVisible(FALSE)
+                self$results$hierStatus$setContent(.el_html_block(heading, intro))
+                .el_notice(self, "hierStatus",
+                           sprintf(txt("hier", "failed"), if (is.null(fit$error)) "—" else fit$error))
                 return(fit$warnings)
             }
 
@@ -2026,9 +2013,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (is.null(fit$value) || is.null(fit$value$EGA)) {
                 self$results$riStatus$setContent(paste0(
                     .el_html_block(heading, warning_html, raw = TRUE),
-                    .el_html_block(NULL, c(intro, neg_note, sprintf(txt("ri", "failed"), if (is.null(fit$error)) "—" else fit$error)))))
-                for (name in c("riSummary", "riMembership", "riInterpretation"))
-                    self$results[[name]]$setVisible(FALSE)
+                    .el_html_block(NULL, c(intro, neg_note))))
+                .el_notice(self, "riStatus",
+                           sprintf(txt("ri", "failed"), if (is.null(fit$error)) "—" else fit$error))
                 return(fit$warnings)
             }
 
@@ -2152,6 +2139,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             for (name in c("uvaPairs", "uvaSets"))
                 self$results[[name]]$deleteRows()
 
+            private$.checkpoint()
             fit <- .el_capture(EGAnet::UVA(
                 data = prep$data,
                 cut.off = cut,
@@ -2166,10 +2154,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             ))
 
             if (is.null(fit$value)) {
-                self$results$uvaStatus$setContent(.el_html_block(
-                    heading, c(intro, sprintf(txt("uva", "failed"), fit$error))))
-                for (name in c("uvaPairs", "uvaSets", "uvaInterpretation"))
-                    self$results[[name]]$setVisible(FALSE)
+                self$results$uvaStatus$setContent(.el_html_block(heading, intro))
+                .el_notice(self, "uvaStatus", sprintf(txt("uva", "failed"), fit$error))
                 return(fit$warnings)
             }
 
@@ -2310,6 +2296,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             cache <- self$results$bootStatus$state
 
             if (is.null(cache)) {
+                private$.checkpoint()
                 fit <- .el_capture(EGAnet::bootEGA(
                     data = prep$data,
                     corr = self$options$corr,
@@ -2331,9 +2318,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 ))
 
                 if (is.null(fit$value)) {
-                    self$results$bootStatus$setContent(.el_html_block(
-                        heading, c(intro, sprintf(txt("bootega", "failed"), fit$error))))
-                    private$.hideBoot()
+                    self$results$bootStatus$setContent(.el_html_block(heading, intro))
+                    .el_notice(self, "bootStatus", sprintf(txt("bootega", "failed"), fit$error))
                     return(fit$warnings)
                 }
 
@@ -2485,12 +2471,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                                   other = txt("bootega", "plot_other"))))
         },
 
-        .hideBoot = function() {
-            for (name in c("bootSummaryGuide", "bootSummary", "bootFrequency", "bootDimStability",
-                           "bootItemStability", "bootInterpretation", "bootItemPlot", "bootFrequencyPlot"))
-                self$results[[name]]$setVisible(FALSE)
-        },
-
         # ---------------------------------------------------------------------
         # Centrality of each item on the EGA network (qgraph). Fills the
         # table, the plot state and the interpretation.
@@ -2503,10 +2483,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             intro <- txt("cen", "intro")
             network <- as.matrix(ega$network)
             if (sum(network[upper.tri(network)] != 0) == 0) {
-                self$results$cenStatus$setContent(.el_html_block(heading, c(intro, txt("cen", "empty"))))
-                self$results$cenTable$setVisible(FALSE)
-                self$results$cenPlot$setVisible(FALSE)
-                self$results$cenInterpretation$setVisible(FALSE)
+                self$results$cenStatus$setContent(.el_html_block(heading, intro))
+                .el_notice(self, "cenStatus", txt("cen", "empty"), error = FALSE)
                 return(character(0))
             }
 
@@ -2514,11 +2492,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             cb <- isTRUE(self$options$cenClosBetw)
             fit <- .el_capture(.el_centrality(network, closbetw = cb, standardize = z))
             if (is.null(fit$value)) {
-                self$results$cenStatus$setContent(.el_html_block(
-                    heading, c(intro, sprintf(txt("cen", "failed"), fit$error))))
-                self$results$cenTable$setVisible(FALSE)
-                self$results$cenPlot$setVisible(FALSE)
-                self$results$cenInterpretation$setVisible(FALSE)
+                self$results$cenStatus$setContent(.el_html_block(heading, intro))
+                .el_notice(self, "cenStatus", sprintf(txt("cen", "failed"), fit$error))
                 return(fit$warnings)
             }
             cen <- fit$value
@@ -2544,7 +2519,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     values$closeness <- .el_clean_num(cen$closeness[i])
                     values$betweenness <- .el_clean_num(cen$betweenness[i])
                 }
-                .el_add_row(table, i, values)
+                table$setRow(rowNo = i, values = values)
             }
             table$setNote("values", if (z)
                 .("Values standardized across items (z): mean 0, SD 1.")
@@ -2608,15 +2583,11 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             iter <- as.integer(self$options$bnIter)
             case_iter <- as.integer(self$options$bnCaseIter)
             seed <- as.integer(self$options$bnSeed)
-            hide <- function() {
-                for (r in c("bnCS", "bnEdges", "bnEdgePlot", "bnCasePlot", "bnInterpretation"))
-                    self$results[[r]]$setVisible(FALSE)
-            }
 
             network <- as.matrix(ega$network)
             if (sum(network[upper.tri(network)] != 0) == 0) {
-                self$results$bnStatus$setContent(.el_html_block(heading, c(intro, txt("bn", "empty"))))
-                hide()
+                self$results$bnStatus$setContent(.el_html_block(heading, intro))
+                .el_notice(self, "bnStatus", txt("bn", "empty"), error = FALSE)
                 return(character(0))
             }
 
@@ -2628,9 +2599,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     model = self$options$model, iter = iter, case_iter = case_iter,
                     seed = seed, closbetw = isTRUE(self$options$cenClosBetw)))
                 if (is.null(fit$value)) {
-                    self$results$bnStatus$setContent(.el_html_block(
-                        heading, c(intro, sprintf(txt("bn", "failed"), fit$error))))
-                    hide()
+                    self$results$bnStatus$setContent(.el_html_block(heading, intro))
+                    .el_notice(self, "bnStatus", sprintf(txt("bn", "failed"), fit$error))
                     return(fit$warnings)
                 }
                 cache <- fit$value

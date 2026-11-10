@@ -74,7 +74,7 @@ items:
   - name: membership
     title: Item membership
     type: Table
-    rows: 0
+    rows: (vars)
     refs:
       - golino_2017
     clearWith:
@@ -90,6 +90,7 @@ items:
       - name: item
         title: Item
         type: text
+        content: ($key)
       - name: dimension
         title: Dimension
         type: text
@@ -843,20 +844,107 @@ items:
       - splitProp
       - splitSeed
     columns:
-      - name: element
-        title: Element
+      - name: sample
+        title: Sample
         type: text
-      - name: total
-        title: Total sample
+      - name: n
+        title: Cases
+        type: integer
+      - name: dims
+        title: Dimensions found by EGA
+        type: integer
+      - name: tefi
+        title: TEFI
+        type: number
+      - name: structure
+        title: Structure tested by the CFA
         type: text
-      - name: partA
-        title: Subsample A (exploration)
+      - name: chisq
+        title: χ²
+        type: number
+      - name: df
+        title: df
+        type: integer
+      - name: p
+        title: p
+        type: number
+        format: zto,pvalue
+      - name: cfi
+        title: CFI
+        type: number
+        format: zto
+      - name: tli
+        title: TLI
+        type: number
+        format: zto
+      - name: rmsea
+        title: RMSEA
+        type: number
+        format: zto
+      - name: rmseaLower
+        title: Lower
+        type: number
+        format: zto
+        superTitle: RMSEA 90% CI
+      - name: rmseaUpper
+        title: Upper
+        type: number
+        format: zto
+        superTitle: RMSEA 90% CI
+      - name: srmr
+        title: SRMR
+        type: number
+        format: zto
+      - name: aic
+        title: AIC
+        type: number
+      - name: bic
+        title: BIC
+        type: number
+
+  - name: cfaCompareMore
+    title: Additional fit indices
+    type: Table
+    rows: 0
+    visible: (runCFA)
+    refs:
+      - schermelleh_engel_2003
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - cfaEstimator
+      - splitSample
+      - splitProp
+      - splitSeed
+    columns:
+      - name: sample
+        title: Sample
         type: text
-        visible: (splitSample)
-      - name: partB
-        title: Subsample B (confirmation)
-        type: text
-        visible: (splitSample)
+      - name: chisqDf
+        title: χ²/df
+        type: number
+      - name: gfi
+        title: GFI
+        type: number
+        format: zto
+      - name: agfi
+        title: AGFI
+        type: number
+        format: zto
+      - name: nfi
+        title: NFI
+        type: number
+        format: zto
+      - name: ifi
+        title: IFI
+        type: number
+        format: zto
 
   - name: cfaMembership
     title: Item membership by sample
@@ -958,26 +1046,37 @@ items:
         title: Items
         type: integer
       - name: chisq
-        title: χ² (df)
-        type: text
+        title: χ²
+        type: number
+      - name: df
+        title: df
+        type: integer
+      - name: p
+        title: p
+        type: number
+        format: zto,pvalue
       - name: cfi
         title: CFI
-        type: text
+        type: number
+        format: zto
       - name: tli
         title: TLI
-        type: text
+        type: number
+        format: zto
       - name: rmsea
         title: RMSEA
-        type: text
+        type: number
+        format: zto
       - name: srmr
         title: SRMR
-        type: text
+        type: number
+        format: zto
       - name: aic
         title: AIC
-        type: text
+        type: number
       - name: bic
         title: BIC
-        type: text
+        type: number
 
   - name: cfaBifactorGuide
     title: Bifactor loadings
@@ -1052,7 +1151,7 @@ items:
   - name: cenTable
     title: Centrality of each item
     type: Table
-    rows: 0
+    rows: (vars)
     visible: (runCentrality)
     refs:
       - opsahl_2010
@@ -1073,6 +1172,7 @@ items:
       - name: item
         title: Item
         type: text
+        content: ($key)
       - name: dimension
         title: Dimension
         type: text
@@ -1568,8 +1668,4 @@ items:
       - uniMethod
       - splitProp
       - splitSeed
-
-  - name: notes
-    title: Notes
-    type: Html
 ...

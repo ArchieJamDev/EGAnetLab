@@ -439,7 +439,7 @@ Item preparation (.el_prepare_items: numeric items, missing values, constant ite
 
 ↓
 
-EGAnet call wrapped in .el_capture() (errors -> reject, warnings -> Notes)
+EGAnet call wrapped in .el_capture() (errors -> reject, warnings -> jamovi notices)
 
 ↓
 

@@ -101,7 +101,7 @@ test_that("persons with too few time points are left out with a note", {
     d <- d[!(d$ID == "P1" & d$Time > 4), ]
     res <- EGAnetLab::dynega(data = d, vars = paste0("V", 1:24), id = "ID", time = "Time")
 
-    expect_match(res$notes$content, "P1", fixed = TRUE)
+    expect_match(noticeText(res), "P1", fixed = TRUE)
     expect_match(res$summary$asDF$value[1], "29", fixed = TRUE)
 })
 
@@ -158,8 +158,8 @@ test_that("schedule variables entered as items are flagged", {
     d$Beep <- (d$Time - 1) %% 4 + 1
     d$Day <- (d$Time - 1) %/% 4 + 1
     res <- EGAnetLab::dynega(data = d, vars = c("V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8", "Beep", "Day"), id = "ID", time = "Time")
-    expect_match(res$notes$content, "Beep, Day", fixed = TRUE)
-    expect_false(grepl("V1", res$notes$content, fixed = TRUE))
+    expect_match(noticeText(res), "Beep, Day", fixed = TRUE)
+    expect_false(grepl("V1", noticeText(res), fixed = TRUE))
 })
 
 test_that("the population network plot takes the plot options", {

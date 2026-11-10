@@ -58,7 +58,6 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
             if (length(o$vars) == 0 || is.null(o$id) || length(o$id) == 0) {
                 self$results$status$setContent(.el_html_block(NULL, txt("dyn", "choose_id")))
-                self$results$notes$setVisible(FALSE)
                 return()
             }
             if (length(o$vars) < 3)
@@ -214,7 +213,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 if (use_groups)
                     for (g in names(groups))
                         values[[paste0("g_", g)]] <- dim_label(groups[[g]]$wc[[item]])
-                .el_add_row(table, i, values)
+                table$setRow(rowNo = i, values = values)
             }
 
             if (use_groups) {
@@ -296,11 +295,11 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             self$results$keySummary$setTitle(txt("key", "title"))
             if (isTRUE(o$showKeySummary))
                 self$results$keySummary$setContent(.el_key_summary(self, private$.key))
-            if (length(notes) > 0)
-                self$results$notes$setContent(.el_html_block(
-                    txt("common", "warnings_title"), .el_html_list(notes), raw = TRUE))
-            else
-                self$results$notes$setVisible(FALSE)
+            # Each message is a native jamovi warning under the key findings.
+            # ES: Cada mensaje es un aviso nativo de jamovi bajo los
+            # hallazgos clave.
+            for (w in rev(notes))
+                .el_notice(self, "keySummary", w, error = FALSE)
         },
 
         .fillIndividual = function(cache, pop, txt) {
@@ -322,11 +321,13 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (length(cache$failed) > 0)
                 private$.addKey("warnings", sprintf(txt("key", "ind_failed"), length(cache$failed)))
 
-            if (nrow(est) == 0) {
-                for (r in c("indFreq", "indAgree", "indTable", "indPlot", "indInterpretation"))
-                    self$results[[r]]$setVisible(FALSE)
+            # No person could be estimated: the tables stay in place, empty,
+            # and the status above names the persons that failed.
+            # ES: No se pudo estimar a ninguna persona: las tablas quedan en
+            # su sitio, vacías, y el estado de arriba nombra a las personas
+            # que fallaron.
+            if (nrow(est) == 0)
                 return(invisible(NULL))
-            }
 
             counts <- table(est$dims)
             freq <- data.frame(dims = as.numeric(names(counts)), count = as.integer(counts))

@@ -111,7 +111,7 @@ test_that("the bifactor loadings table opens up the bifactor model", {
 
     data <- edgeStructureData()
     res <- EGAnetLab::ega(data = data, vars = names(data), runHier = TRUE, runCFA = TRUE)
-    if (res$cfaBifactorLoadings$visible) {
+    if (res$cfaBifactorLoadings$rowCount > 0) {
         loads <- res$cfaBifactorLoadings$asDF
         expect_equal(nrow(loads), 12)
         expect_true(all(c("general", "spec", "resid") %in% names(loads)))

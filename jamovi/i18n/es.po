@@ -102,6 +102,11 @@ msgstr "; ítems con 7 o menos categorías tratados como ordinales"
 msgid "A random-intercept component was estimated (standardized loadings %s). Reading it as acquiescence or a wording effect requires justifying the direction and the content of the items: the component captures whatever all items share to the same degree, and that can include content."
 msgstr "Se estimó un componente de intercepto aleatorio (cargas estandarizadas %s). Su interpretación como aquiescencia o efecto de redacción requiere justificar la dirección y el contenido de los ítems: el componente recoge lo que todos los ítems comparten en el mismo grado, y eso puede incluir contenido."
 
+#: ega/results/cfaCompareMore.columns.title
+msgid "AGFI"
+msgstr "AGFI"
+
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
 msgid "AIC"
 msgstr "AIC"
@@ -114,8 +119,8 @@ msgstr "AIC y BIC no están disponibles con este estimador (WLSMV para ítems or
 msgid "ARI = adjusted Rand index between each person's item membership and the population's (Hubert & Arabie, 1985): 1 = identical, about 0 = no more agreement than chance. Items without a dimension count as their own group."
 msgstr "ARI = índice de Rand ajustado entre la pertenencia de los ítems de cada persona y la de la población (Hubert y Arabie, 1985): 1 = idéntica, cerca de 0 = no más acuerdo que el azar. Los ítems sin dimensión cuentan como un grupo propio."
 
-#: ega/results/choicesGuide.title
 #: dynega/options/showChoicesGuide.title
+#: ega/results/choicesGuide.title
 #: dynega/results/choicesGuide.title
 msgid "About your choices"
 msgstr "Acerca de sus elecciones"
@@ -140,9 +145,9 @@ msgstr "En %d muestras, la solución más frecuente tiene %d dimensiones (%s de 
 msgid "Add CFA fit for each structure"
 msgstr "Añadir el ajuste CFA de cada estructura"
 
-#: R/texts.R
-msgid "Admissible solution"
-msgstr "Solución admisible"
+#: ega/results/cfaCompareMore.title
+msgid "Additional fit indices"
+msgstr "Índices de ajuste adicionales"
 
 #: R/texts.R
 msgid "After removing it, EGA finds %s dimensions instead of %s. The random-intercept component may have been masking some distinctions in content, or the control may be splitting dimensions; read the new dimensions with care and check them against the item content."
@@ -241,6 +246,7 @@ msgstr "BGGM"
 msgid "BGGM estimates the network with a Bayesian Gaussian graphical model and keeps the edges whose posterior distribution supports a non-zero partial correlation. It expresses uncertainty about each edge directly and is a principled alternative to GLASSO, but it is slower. Use it to confirm a GLASSO solution from a different estimation framework."
 msgstr "BGGM estima la red con un modelo gráfico gaussiano bayesiano y conserva las aristas cuya distribución posterior respalda una correlación parcial distinta de cero. Expresa directamente la incertidumbre de cada arista y es una alternativa fundamentada a GLASSO, aunque más lenta. Úsela para confirmar una solución GLASSO desde otro marco de estimación."
 
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
 msgid "BIC"
 msgstr "BIC"
@@ -395,8 +401,8 @@ msgid "CFA standardized loadings (total sample)"
 msgstr "Cargas estandarizadas del CFA (muestra total)"
 
 #: ega/results/compareTable.columns.title
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
-#: R/texts.R
 msgid "CFI"
 msgstr "CFI"
 
@@ -416,7 +422,7 @@ msgstr "Coeficiente CS: la mayor proporción de casos que puede eliminarse mante
 msgid "Case-dropping plot"
 msgstr "Gráfico de eliminación de casos"
 
-#: R/texts.R
+#: ega/results/cfaCompare.columns.title
 msgid "Cases"
 msgstr "Casos"
 
@@ -432,8 +438,8 @@ msgstr "Casos usados"
 msgid "Cases with no value in the grouping variable (%d) were left out of the comparison between groups."
 msgstr "Casos sin valor en la variable de agrupación (%d), que se dejaron fuera de la comparación entre grupos."
 
-#: ega/results/cenStatus.title
 #: ega/ui[6][0].label
+#: ega/results/cenStatus.title
 #: R/ega.b.R
 msgid "Centrality"
 msgstr "Centralidad"
@@ -466,9 +472,9 @@ msgstr "Interpretación de la centralidad"
 msgid "Centrality is computed over the whole network, across dimensions. An item can be central because it connects dimensions, not only because it is central within its own."
 msgstr "La centralidad se calcula sobre toda la red, a través de las dimensiones. Un ítem puede ser central porque conecta dimensiones, no solo porque sea central dentro de la suya."
 
-#: ega/results/cenPlot.title
 #: ega/options/runCentrality.title
 #: ega/results/cenTable.title
+#: ega/results/cenPlot.title
 msgid "Centrality of each item"
 msgstr "Centralidad de cada ítem"
 
@@ -538,9 +544,9 @@ msgstr "Apta para daltonismo (Okabe-Ito)"
 msgid "Community Detection"
 msgstr "Detección de comunidades"
 
-#: R/texts.R
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
+#: R/texts.R
 msgid "Community detection"
 msgstr "Detección de comunidades"
 
@@ -548,8 +554,8 @@ msgstr "Detección de comunidades"
 msgid "Compare structures"
 msgstr "Comparar estructuras"
 
-#: ega/results/compareStatus.title
 #: ega/ui[4].label
+#: ega/results/compareStatus.title
 #: R/ega.b.R
 msgid "Compare structures (TEFI)"
 msgstr "Comparar estructuras (TEFI)"
@@ -589,8 +595,8 @@ msgstr "Punto de corte de estabilidad configural"
 msgid "Confirm with CFA"
 msgstr "Confirmar con CFA"
 
-#: ega/results/cfaStatus.title
 #: ega/ui[10].label
+#: ega/results/cfaStatus.title
 #: R/ega.b.R
 msgid "Confirmatory factor analysis"
 msgstr "Análisis factorial confirmatorio"
@@ -641,9 +647,9 @@ msgstr "Dimensiones de orden inferior correlacionadas"
 
 #: ega/options/corr.title
 #: dynega/options/corr.title
-#: R/texts.R
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
+#: R/texts.R
 msgid "Correlation"
 msgstr "Correlación"
 
@@ -796,7 +802,7 @@ msgstr "Gráfico de dimensiones entre personas"
 msgid "Dimensions after wording control (riEGA)"
 msgstr "Dimensiones tras controlar la redacción (riEGA)"
 
-#: R/texts.R
+#: ega/results/cfaCompare.columns.title
 msgid "Dimensions found by EGA"
 msgstr "Dimensiones halladas por EGA"
 
@@ -1076,7 +1082,6 @@ msgstr "Dieciocho ítems dicotómicos del Wiener Matrizen-Test 2 más variables 
 #: ega/results/hierSummary.columns.title
 #: ega/results/riSummary.columns.title
 #: ega/results/bootSummary.columns.title
-#: ega/results/cfaCompare.columns.title
 #: dynega/results/summary.columns.title
 #: dynega/results/indAgree.columns.title
 msgid "Element"
@@ -1114,8 +1119,8 @@ msgid "Estimates the number of dimensions underlying a set of items, and which i
 msgstr "Estima el número de dimensiones subyacentes a un conjunto de ítems, y qué ítems pertenecen a cada dimensión, con el Análisis Exploratorio de Grafos (EGA), junto con cargas de red, ajuste por entropía, estabilidad bootstrap opcional de dimensiones e ítems, análisis opcional de redundancia (UVA), e interpretación en lenguaje claro."
 
 #: ega/ui[1].label
-#: dynega/results/status.title
 #: dynega/ui[2].label
+#: dynega/results/status.title
 msgid "Estimation"
 msgstr "Estimación"
 
@@ -1225,6 +1230,10 @@ msgstr "Frecuencia del número de dimensiones"
 msgid "Frequency: how often each number of dimensions appeared. A dominant value that matches the original sample supports the structure."
 msgstr "Frecuencia: cuántas veces apareció cada número de dimensiones. Un valor dominante que coincide con la muestra original respalda la estructura."
 
+#: ega/results/cfaCompareMore.columns.title
+msgid "GFI"
+msgstr "GFI"
+
 #: ega/options/model/glasso.title
 #: dynega/options/model/glasso.title
 msgid "GLASSO (EBIC)"
@@ -1276,13 +1285,13 @@ msgstr "Gris"
 
 #: ega/results/groupSizes.columns.title
 #: dynega/results/groupTable.columns.title
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
 msgid "Group"
 msgstr "Grupo"
 
-#: ega/results/groupStatus.title
 #: ega/ui[7].label
+#: ega/results/groupStatus.title
 #: R/ega.b.R
 msgid "Group comparison"
 msgstr "Comparación entre grupos"
@@ -1348,8 +1357,8 @@ msgstr "Interpretación de los modelos jerárquicos"
 msgid "Hierarchical structure"
 msgstr "Estructura jerárquica"
 
-#: ega/results/hierPlot.title
 #: ega/ui[13].label
+#: ega/results/hierPlot.title
 msgid "Hierarchical structure plot"
 msgstr "Gráfico de la estructura jerárquica"
 
@@ -1373,6 +1382,10 @@ msgstr "Dimensiones de orden superior"
 #: ega/options/nctAdjust/holm.title
 msgid "Holm"
 msgstr "Holm"
+
+#: ega/results/cfaCompareMore.columns.title
+msgid "IFI"
+msgstr "IFI"
 
 #: ega/ui[2][2].label
 msgid "If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction."
@@ -1439,14 +1452,14 @@ msgstr "Introducción"
 msgid "Invariance (independent groups)"
 msgstr "Invarianza (grupos independientes)"
 
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
 msgid "Isolated"
 msgstr "Aislado"
 
-#: R/texts.R
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
+#: R/texts.R
 msgid "Isolated (no edges)"
 msgstr "Aislado (sin aristas)"
 
@@ -1555,13 +1568,13 @@ msgid "Item stability: the proportion of samples in which an item is placed in i
 msgstr "Estabilidad del ítem: la proporción de muestras en que un ítem queda en su dimensión original."
 
 #: ega/options/vars.title
+#: ega/ui[0][0].label
+#: dynega/options/vars.title
+#: dynega/ui[0][0].label
 #: ega/results/scores.columns.title
 #: ega/results/uvaSets.columns.title
 #: ega/results/bootDimStability.columns.title
 #: ega/results/cfaHierModels.columns.title
-#: ega/ui[0][0].label
-#: dynega/options/vars.title
-#: dynega/ui[0][0].label
 #: R/ega.b.R
 msgid "Items"
 msgstr "Ítems"
@@ -1804,6 +1817,7 @@ msgstr "Louvain"
 msgid "Louvain finds communities by maximizing modularity, merging items into groups level by level. It is fast and performs well in recent simulations, but it is stochastic: results can vary slightly between runs. Use it to check whether the Walktrap solution holds under a different algorithm."
 msgstr "Louvain encuentra comunidades maximizando la modularidad, uniendo ítems en grupos nivel por nivel. Es rápido y rinde bien en simulaciones recientes, pero es estocástico: los resultados pueden variar ligeramente entre ejecuciones. Úselo para comprobar si la solución de Walktrap se mantiene con otro algoritmo."
 
+#: ega/results/cfaCompare.columns.title
 #: ega/results/bnEdges.columns.title
 msgid "Lower"
 msgstr "Inferior"
@@ -1888,12 +1902,8 @@ msgid "Median number of dimensions"
 msgstr "Mediana del número de dimensiones"
 
 #: R/texts.R
-msgid "Messages from EGAnetLab"
-msgstr "Mensajes de EGAnetLab"
-
-#: R/texts.R
-msgid "Messages from EGAnetLab at the end of the report: %d."
-msgstr "Mensajes de EGAnetLab al final del informe: %d."
+msgid "Messages from EGAnetLab under these key findings: %d."
+msgstr "Mensajes de EGAnetLab debajo de estos hallazgos clave: %d."
 
 #: ega/results/invStatus.title
 #: R/ega.b.R
@@ -1946,6 +1956,10 @@ msgstr "Escalamiento multidimensional"
 msgid "N"
 msgstr "N"
 
+#: ega/results/cfaCompareMore.columns.title
+msgid "NFI"
+msgstr "NFI"
+
 #: ega/options/labelColor/navy.title
 #: dynega/options/labelColor/navy.title
 msgid "Navy"
@@ -1980,8 +1994,8 @@ msgstr "Ítems redactados en negativo: %s. Ya están invertidos en los datos, as
 msgid "Negatively worded items: %s. They are as answered in the data, so riEGA uses them as they are (the other analyses use them reversed)."
 msgstr "Ítems redactados en negativo: %s. Están tal como se respondieron en los datos, así que riEGA los usa así (los demás análisis los usan invertidos)."
 
-#: ega/results/nctStatus.title
 #: ega/ui[7][5].label
+#: ega/results/nctStatus.title
 #: R/ega.b.R
 msgid "Network Comparison Test"
 msgstr "Network Comparison Test"
@@ -2029,9 +2043,9 @@ msgstr "No se pudieron calcular las cargas de red para esta estructura: %s."
 msgid "Network loadings summarize how strongly each item is connected to each dimension, on a scale comparable to factor loadings (Christensen & Golino, 2021; see references)."
 msgstr "Las cargas de red resumen con qué fuerza se conecta cada ítem con cada dimensión, en una escala comparable a la de las cargas factoriales (Christensen & Golino, 2021; ver referencias)."
 
-#: R/texts.R
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
+#: R/texts.R
 msgid "Network model"
 msgstr "Modelo de red"
 
@@ -2049,10 +2063,10 @@ msgstr "Puntuación de red %s"
 msgid "Network score for dimension %s (EGAnetLab)"
 msgstr "Puntuación de red de la dimensión %s (EGAnetLab)"
 
+#: ega/ui[3].label
 #: ega/results/scoresGuide.title
 #: ega/results/scores.title
 #: ega/results/netScoresOV.title
-#: ega/ui[3].label
 msgid "Network scores"
 msgstr "Puntuaciones de red"
 
@@ -2129,8 +2143,8 @@ msgstr "Siguiente paso: marque Stability of edges and centrality (bootnet) para 
 msgid "Next step: tick Structure of each person to see whether the population structure describes individuals. Population structures of intensive longitudinal data often do not hold for every person."
 msgstr "Siguiente paso: marque Structure of each person para ver si la estructura de la población describe a los individuos. En datos longitudinales intensivos, la estructura de la población a menudo no se cumple en cada persona."
 
-#: R/texts.R
 #: R/dynega.b.R
+#: R/texts.R
 msgid "No"
 msgstr "No"
 
@@ -2246,13 +2260,8 @@ msgstr "Sin dimensión: %s. Quedan fuera del TEFI, así que este valor no se com
 msgid "Not interpretable (below .25)"
 msgstr "No interpretable (menos de .25)"
 
-#: ega/results/notes.title
-#: dynega/results/notes.title
-msgid "Notes"
-msgstr "Notas"
-
-#: R/texts.R
 #: R/ega.b.R
+#: R/texts.R
 msgid "Number of dimensions"
 msgstr "Número de dimensiones"
 
@@ -2475,13 +2484,14 @@ msgid "Proposed effect-size guidelines for the dominant loading: about 0.15 smal
 msgstr "Guías propuestas de tamaño del efecto para la carga dominante: alrededor de 0.15 pequeña, 0.25 moderada, 0.35 grande."
 
 #: ega/results/compareTable.columns.title
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
 msgid "RMSEA"
 msgstr "RMSEA"
 
-#: R/texts.R
-msgid "RMSEA [90% CI]"
-msgstr "RMSEA [IC 90%]"
+#: R/ega.b.R
+msgid "RMSEA 90% CI"
+msgstr "IC 90% del RMSEA"
 
 #: R/ega.b.R
 msgid "Random subsample (A = exploration, B = confirmation; seed %d)"
@@ -2544,8 +2554,8 @@ msgstr "Rojo"
 msgid "Redundancy"
 msgstr "Redundancia"
 
-#: ega/results/uvaStatus.title
 #: ega/ui[8].label
+#: ega/results/uvaStatus.title
 #: R/ega.b.R
 msgid "Redundancy (UVA)"
 msgstr "Redundancia (UVA)"
@@ -2617,8 +2627,8 @@ msgid "SE"
 msgstr "EE"
 
 #: ega/results/compareTable.columns.title
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
-#: R/texts.R
 msgid "SRMR"
 msgstr "SRMR"
 
@@ -2670,6 +2680,11 @@ msgstr "Mismas personas medidas dos veces (solo NCT): la segunda medición"
 #: R/ega.b.R
 msgid "Same people, both measurements"
 msgstr "Mismas personas, ambas mediciones"
+
+#: ega/results/cfaCompare.columns.title
+#: ega/results/cfaCompareMore.columns.title
+msgid "Sample"
+msgstr "Muestra"
 
 #: ega/results/bootFrequency.columns.title
 msgid "Samples"
@@ -2817,8 +2832,8 @@ msgstr "Estabilidad"
 msgid "Stability (bootnet)"
 msgstr "Estabilidad (bootnet)"
 
-#: ega/results/bootStatus.title
 #: ega/ui[9].label
+#: ega/results/bootStatus.title
 #: R/ega.b.R
 msgid "Stability (bootstrap)"
 msgstr "Estabilidad (bootstrap)"
@@ -2890,7 +2905,7 @@ msgstr "Estructura de cada grupo"
 msgid "Structure of each person"
 msgstr "Estructura de cada persona"
 
-#: R/texts.R
+#: ega/results/cfaCompare.columns.title
 msgid "Structure tested by the CFA"
 msgstr "Estructura probada por el CFA"
 
@@ -2923,7 +2938,7 @@ msgstr "SubMuestra"
 msgid "Subsample A"
 msgstr "SubMuestra A"
 
-#: ega/results/cfaCompare.columns.title
+#: R/ega.b.R
 msgid "Subsample A (exploration)"
 msgstr "SubMuestra A (exploración)"
 
@@ -2931,7 +2946,7 @@ msgstr "SubMuestra A (exploración)"
 msgid "Subsample B"
 msgstr "SubMuestra B"
 
-#: ega/results/cfaCompare.columns.title
+#: R/ega.b.R
 msgid "Subsample B (confirmation)"
 msgstr "SubMuestra B (confirmación)"
 
@@ -2944,7 +2959,7 @@ msgid "Suggested to remove"
 msgstr "Se sugiere eliminar"
 
 #: ega/results/compareTable.columns.title
-#: R/texts.R
+#: ega/results/cfaCompare.columns.title
 msgid "TEFI"
 msgstr "TEFI"
 
@@ -2980,8 +2995,8 @@ msgstr "TEFI, orden superior"
 msgid "TEFI, lower order"
 msgstr "TEFI, orden inferior"
 
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
-#: R/texts.R
 msgid "TLI"
 msgstr "TLI"
 
@@ -3025,6 +3040,10 @@ msgstr "Texto"
 #: R/texts.R
 msgid "The CFA could not be estimated: %s."
 msgstr "No se pudo estimar el CFA: %s."
+
+#: R/ega.b.R
+msgid "The CFA could not be fitted in this sample (see the text above)."
+msgstr "El CFA no pudo ajustarse en esta muestra (vea el texto de arriba)."
 
 #: R/texts.R
 msgid "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory factor analysis box."
@@ -3420,7 +3439,6 @@ msgstr "Para probar la jerarquía como modelo factorial, marque Confirmar con CF
 msgid "Top"
 msgstr "Arriba"
 
-#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaMembership.columns.title
 #: R/ega.b.R
 msgid "Total sample"
@@ -3460,8 +3478,8 @@ msgstr "Incertidumbres"
 msgid "Unidimensionality Check"
 msgstr "Verificación de unidimensionalidad"
 
-#: R/texts.R
 #: R/ega.b.R
+#: R/texts.R
 msgid "Unidimensionality check"
 msgstr "Verificación de unidimensionalidad"
 
@@ -3469,6 +3487,7 @@ msgstr "Verificación de unidimensionalidad"
 msgid "Unique Variable Analysis (UVA) looks for redundant items: pairs that share so many of their connections in the network that they behave almost like the same item (Christensen, Garrido & Golino, 2023; see references)."
 msgstr "El Análisis de Variables Únicas (UVA) busca ítems redundantes: pares que comparten tantas de sus conexiones en la red que se comportan casi como el mismo ítem (Christensen, Garrido y Golino, 2023; ver referencias)."
 
+#: ega/results/cfaCompare.columns.title
 #: ega/results/bnEdges.columns.title
 msgid "Upper"
 msgstr "Superior"
@@ -3576,8 +3595,8 @@ msgstr "Efectos de redacción (EGA con intercepto aleatorio)"
 msgid "Wording effects interpretation"
 msgstr "Interpretación de los efectos de redacción"
 
-#: R/texts.R
 #: R/dynega.b.R
+#: R/texts.R
 msgid "Yes"
 msgstr "Sí"
 
@@ -3588,6 +3607,11 @@ msgstr "aceleración"
 #: R/texts.R
 msgid "acceptable"
 msgstr "aceptable"
+
+#: ega/results/cfaCompare.columns.title
+#: ega/results/cfaHierModels.columns.title
+msgid "df"
+msgstr "gl"
 
 #: R/texts.R
 msgid "dimension %s with %d items"
@@ -3677,6 +3701,8 @@ msgstr "nueva"
 msgid "of the same items, in the same order as the items."
 msgstr "de los mismos ítems, en el mismo orden de los ítems."
 
+#: ega/results/cfaCompare.columns.title
+#: ega/results/cfaHierModels.columns.title
 #: ega/results/invTable.columns.title
 #: ega/results/nctGlobal.columns.title
 msgid "p"
@@ -3799,14 +3825,11 @@ msgstr "wTO"
 msgid "z value"
 msgstr "Valor z"
 
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
-msgid "χ² (df)"
-msgstr "χ² (gl)"
+msgid "χ²"
+msgstr "χ²"
 
-#: R/texts.R
-msgid "χ² (df), p"
-msgstr "χ² (gl), p"
-
-#: R/texts.R
+#: ega/results/cfaCompareMore.columns.title
 msgid "χ²/df"
 msgstr "χ²/gl"

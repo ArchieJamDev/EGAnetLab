@@ -536,3 +536,43 @@
         section(txt("h_warnings"), key$warnings, txt("none_warnings")))
     .el_html_block(txt("title"), parts, raw = TRUE)
 }
+
+# -----------------------------------------------------------------------------
+# .el_notice()
+#
+# Input: self - the analysis; near - name of the result the notice belongs
+#   to; content - plain text, already translated; error - TRUE when the
+#   section produced nothing (jamovi's ERROR style), FALSE for a warning;
+#   before - TRUE to place the notice above `near` instead of below it.
+# Output: the jmvcore::Notice, inserted in the results next to `near`.
+#
+# A section that fails or does not apply keeps its tables and plots in
+# place and says why with a native jamovi notice, instead of hiding them,
+# so the layout does not jump while options change (jamovi's review,
+# 2026). Each notice gets a unique name within the analysis.
+# ES: Una sección que falla o no aplica mantiene sus tablas y gráficos en su
+# sitio y explica el motivo con un aviso nativo de jamovi, en vez de
+# ocultarlos, para que el diseño no salte mientras cambian las opciones
+# (revisión de jamovi, 2026). Cada aviso tiene un nombre único en el
+# análisis.
+# -----------------------------------------------------------------------------
+.el_notice <- function(self, near, content, error = TRUE, before = FALSE) {
+    items <- self$results$items
+    names_now <- vapply(items, function(item) item$name, character(1))
+    base <- paste0(near, "Notice")
+    name <- base
+    k <- 1
+    while (name %in% names_now) {
+        k <- k + 1
+        name <- paste0(base, k)
+    }
+    notice <- jmvcore::Notice$new(
+        self$options,
+        name = name,
+        type = if (isTRUE(error)) jmvcore::NoticeType$ERROR else jmvcore::NoticeType$WARNING,
+        content = paste(content, collapse = " "))
+    pos <- match(near, names_now)
+    index <- if (is.na(pos)) 1 else if (isTRUE(before)) pos else pos + 1
+    self$results$insert(index, notice)
+    invisible(notice)
+}

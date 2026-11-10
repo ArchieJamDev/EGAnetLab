@@ -100,7 +100,7 @@ items:
   - name: membership
     title: Item membership
     type: Table
-    rows: 0
+    rows: (vars)
     refs:
       - golino_2022
     clearWith:
@@ -123,6 +123,7 @@ items:
       - name: item
         title: Item
         type: text
+        content: ($key)
       - name: population
         title: Population
         type: text
@@ -345,8 +346,4 @@ items:
     title: Individual structures interpretation
     type: Html
     visible: (levelIndividual)
-
-  - name: notes
-    title: Notes
-    type: Html
 ...

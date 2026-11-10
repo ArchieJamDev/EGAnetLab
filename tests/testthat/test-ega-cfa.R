@@ -36,14 +36,17 @@ test_that("CFA tests the EGA structure in the total sample", {
 
     res <- runCFA()
     compare <- res$cfaCompare$asDF
+    more <- res$cfaCompareMore$asDF
 
-    expect_equal(nrow(compare), 18)
-    expect_equal(compare$total[compare$element == "Admissible solution"], "Yes")
-    expect_false(compare$total[compare$element == "GFI"] == "\u2014")
-    expect_equal(compare$total[compare$element == "Cases"], "300")
-    expect_equal(compare$total[compare$element == "Dimensions found by EGA"], "3")
-    cfi <- as.numeric(compare$total[compare$element == "CFI"])
-    expect_true(cfi > 0.9 && cfi <= 1)
+    # One row per sample, with numeric fit indices.
+    # ES: Una fila por muestra, con índices de ajuste numéricos.
+    expect_equal(nrow(compare), 1)
+    expect_equal(compare$n, 300)
+    expect_equal(compare$dims, 3)
+    expect_true(is.numeric(compare$cfi))
+    expect_true(compare$cfi > 0.9 && compare$cfi <= 1)
+    expect_true(compare$rmseaLower <= compare$rmsea && compare$rmsea <= compare$rmseaUpper)
+    expect_true(is.numeric(more$gfi))
     expect_equal(nrow(res$cfaLoadings$asDF), 12)
     expect_equal(res$cfaMembership$rowCount, 0)
     expect_match(res$cfaStatus$content, "optimistic", fixed = TRUE)
@@ -53,10 +56,9 @@ test_that("the random split reports total, part A and part B side by side", {
 
     res <- runCFA(splitSample = TRUE, splitSeed = 5)
     compare <- res$cfaCompare$asDF
-    n <- as.numeric(compare[compare$element == "Cases", c("total", "partA", "partB")])
 
-    expect_equal(n, c(300, 150, 150))
-    expect_false(compare$partB[compare$element == "CFI"] == "\u2014")
+    expect_equal(compare$n, c(300, 150, 150))
+    expect_true(is.numeric(compare$cfi[3]) && !is.na(compare$cfi[3]))
 
     membership <- res$cfaMembership$asDF
     expect_equal(nrow(membership), 12)
@@ -71,12 +73,12 @@ test_that("the random split is reproducible and follows the proportion", {
     second <- runCFA(splitSample = TRUE, splitSeed = 9, splitProp = 0.6)$cfaCompare$asDF
 
     expect_equal(first, second)
-    expect_equal(first$partA[first$element == "Cases"], "180")
+    expect_equal(first$n[2], 180)
 })
 
 test_that("CFA renders in Spanish", {
 
     res <- inSpanish(runCFA(splitSample = TRUE))
-    expect_true("Casos" %in% res$cfaCompare$asDF$element)
+    expect_true("Muestra total" %in% res$cfaCompare$asDF$sample)
     expect_match(res$cfaInterpretation$content, "semilla", fixed = TRUE)
 })

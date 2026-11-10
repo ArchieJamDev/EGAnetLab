@@ -443,8 +443,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         indAgree = function() private$.items[["indAgree"]],
         indTable = function() private$.items[["indTable"]],
         indPlot = function() private$.items[["indPlot"]],
-        indInterpretation = function() private$.items[["indInterpretation"]],
-        notes = function() private$.items[["notes"]]),
+        indInterpretation = function() private$.items[["indInterpretation"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -524,7 +523,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="membership",
                 title="Item membership",
-                rows=0,
+                rows="(vars)",
                 refs=list(
                     "golino_2022"),
                 clearWith=list(
@@ -547,7 +546,8 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="item", 
                         `title`="Item", 
-                        `type`="text"),
+                        `type`="text", 
+                        `content`="($key)"),
                     list(
                         `name`="population", 
                         `title`="Population", 
@@ -783,11 +783,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="indInterpretation",
                 title="Individual structures interpretation",
-                visible="(levelIndividual)"))
-            self$add(jmvcore::Html$new(
-                options=options,
-                name="notes",
-                title="Notes"))}))
+                visible="(levelIndividual)"))}))
 
 dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "dynegaBase",
@@ -875,7 +871,6 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$indTable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$indPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$indInterpretation} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$notes} \tab \tab \tab \tab \tab a html \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:

@@ -102,6 +102,11 @@ msgstr ""
 msgid "A random-intercept component was estimated (standardized loadings %s). Reading it as acquiescence or a wording effect requires justifying the direction and the content of the items: the component captures whatever all items share to the same degree, and that can include content."
 msgstr ""
 
+#: ega/results/cfaCompareMore.columns.title
+msgid "AGFI"
+msgstr ""
+
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
 msgid "AIC"
 msgstr ""
@@ -114,8 +119,8 @@ msgstr ""
 msgid "ARI = adjusted Rand index between each person's item membership and the population's (Hubert & Arabie, 1985): 1 = identical, about 0 = no more agreement than chance. Items without a dimension count as their own group."
 msgstr ""
 
-#: ega/results/choicesGuide.title
 #: dynega/options/showChoicesGuide.title
+#: ega/results/choicesGuide.title
 #: dynega/results/choicesGuide.title
 msgid "About your choices"
 msgstr ""
@@ -140,8 +145,8 @@ msgstr ""
 msgid "Add CFA fit for each structure"
 msgstr ""
 
-#: R/texts.R
-msgid "Admissible solution"
+#: ega/results/cfaCompareMore.title
+msgid "Additional fit indices"
 msgstr ""
 
 #: R/texts.R
@@ -241,6 +246,7 @@ msgstr ""
 msgid "BGGM estimates the network with a Bayesian Gaussian graphical model and keeps the edges whose posterior distribution supports a non-zero partial correlation. It expresses uncertainty about each edge directly and is a principled alternative to GLASSO, but it is slower. Use it to confirm a GLASSO solution from a different estimation framework."
 msgstr ""
 
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
 msgid "BIC"
 msgstr ""
@@ -395,8 +401,8 @@ msgid "CFA standardized loadings (total sample)"
 msgstr ""
 
 #: ega/results/compareTable.columns.title
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
-#: R/texts.R
 msgid "CFI"
 msgstr ""
 
@@ -416,7 +422,7 @@ msgstr ""
 msgid "Case-dropping plot"
 msgstr ""
 
-#: R/texts.R
+#: ega/results/cfaCompare.columns.title
 msgid "Cases"
 msgstr ""
 
@@ -432,8 +438,8 @@ msgstr ""
 msgid "Cases with no value in the grouping variable (%d) were left out of the comparison between groups."
 msgstr ""
 
-#: ega/results/cenStatus.title
 #: ega/ui[6][0].label
+#: ega/results/cenStatus.title
 #: R/ega.b.R
 msgid "Centrality"
 msgstr ""
@@ -466,9 +472,9 @@ msgstr ""
 msgid "Centrality is computed over the whole network, across dimensions. An item can be central because it connects dimensions, not only because it is central within its own."
 msgstr ""
 
-#: ega/results/cenPlot.title
 #: ega/options/runCentrality.title
 #: ega/results/cenTable.title
+#: ega/results/cenPlot.title
 msgid "Centrality of each item"
 msgstr ""
 
@@ -538,9 +544,9 @@ msgstr ""
 msgid "Community Detection"
 msgstr ""
 
-#: R/texts.R
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
+#: R/texts.R
 msgid "Community detection"
 msgstr ""
 
@@ -548,8 +554,8 @@ msgstr ""
 msgid "Compare structures"
 msgstr ""
 
-#: ega/results/compareStatus.title
 #: ega/ui[4].label
+#: ega/results/compareStatus.title
 #: R/ega.b.R
 msgid "Compare structures (TEFI)"
 msgstr ""
@@ -589,8 +595,8 @@ msgstr ""
 msgid "Confirm with CFA"
 msgstr ""
 
-#: ega/results/cfaStatus.title
 #: ega/ui[10].label
+#: ega/results/cfaStatus.title
 #: R/ega.b.R
 msgid "Confirmatory factor analysis"
 msgstr ""
@@ -641,9 +647,9 @@ msgstr ""
 
 #: ega/options/corr.title
 #: dynega/options/corr.title
-#: R/texts.R
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
+#: R/texts.R
 msgid "Correlation"
 msgstr ""
 
@@ -796,7 +802,7 @@ msgstr ""
 msgid "Dimensions after wording control (riEGA)"
 msgstr ""
 
-#: R/texts.R
+#: ega/results/cfaCompare.columns.title
 msgid "Dimensions found by EGA"
 msgstr ""
 
@@ -1076,7 +1082,6 @@ msgstr ""
 #: ega/results/hierSummary.columns.title
 #: ega/results/riSummary.columns.title
 #: ega/results/bootSummary.columns.title
-#: ega/results/cfaCompare.columns.title
 #: dynega/results/summary.columns.title
 #: dynega/results/indAgree.columns.title
 msgid "Element"
@@ -1114,8 +1119,8 @@ msgid "Estimates the number of dimensions underlying a set of items, and which i
 msgstr ""
 
 #: ega/ui[1].label
-#: dynega/results/status.title
 #: dynega/ui[2].label
+#: dynega/results/status.title
 msgid "Estimation"
 msgstr ""
 
@@ -1225,6 +1230,10 @@ msgstr ""
 msgid "Frequency: how often each number of dimensions appeared. A dominant value that matches the original sample supports the structure."
 msgstr ""
 
+#: ega/results/cfaCompareMore.columns.title
+msgid "GFI"
+msgstr ""
+
 #: ega/options/model/glasso.title
 #: dynega/options/model/glasso.title
 msgid "GLASSO (EBIC)"
@@ -1276,13 +1285,13 @@ msgstr ""
 
 #: ega/results/groupSizes.columns.title
 #: dynega/results/groupTable.columns.title
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
 msgid "Group"
 msgstr ""
 
-#: ega/results/groupStatus.title
 #: ega/ui[7].label
+#: ega/results/groupStatus.title
 #: R/ega.b.R
 msgid "Group comparison"
 msgstr ""
@@ -1348,8 +1357,8 @@ msgstr ""
 msgid "Hierarchical structure"
 msgstr ""
 
-#: ega/results/hierPlot.title
 #: ega/ui[13].label
+#: ega/results/hierPlot.title
 msgid "Hierarchical structure plot"
 msgstr ""
 
@@ -1372,6 +1381,10 @@ msgstr ""
 
 #: ega/options/nctAdjust/holm.title
 msgid "Holm"
+msgstr ""
+
+#: ega/results/cfaCompareMore.columns.title
+msgid "IFI"
 msgstr ""
 
 #: ega/ui[2][2].label
@@ -1439,14 +1452,14 @@ msgstr ""
 msgid "Invariance (independent groups)"
 msgstr ""
 
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
 msgid "Isolated"
 msgstr ""
 
-#: R/texts.R
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
+#: R/texts.R
 msgid "Isolated (no edges)"
 msgstr ""
 
@@ -1555,13 +1568,13 @@ msgid "Item stability: the proportion of samples in which an item is placed in i
 msgstr ""
 
 #: ega/options/vars.title
+#: ega/ui[0][0].label
+#: dynega/options/vars.title
+#: dynega/ui[0][0].label
 #: ega/results/scores.columns.title
 #: ega/results/uvaSets.columns.title
 #: ega/results/bootDimStability.columns.title
 #: ega/results/cfaHierModels.columns.title
-#: ega/ui[0][0].label
-#: dynega/options/vars.title
-#: dynega/ui[0][0].label
 #: R/ega.b.R
 msgid "Items"
 msgstr ""
@@ -1804,6 +1817,7 @@ msgstr ""
 msgid "Louvain finds communities by maximizing modularity, merging items into groups level by level. It is fast and performs well in recent simulations, but it is stochastic: results can vary slightly between runs. Use it to check whether the Walktrap solution holds under a different algorithm."
 msgstr ""
 
+#: ega/results/cfaCompare.columns.title
 #: ega/results/bnEdges.columns.title
 msgid "Lower"
 msgstr ""
@@ -1888,11 +1902,7 @@ msgid "Median number of dimensions"
 msgstr ""
 
 #: R/texts.R
-msgid "Messages from EGAnetLab"
-msgstr ""
-
-#: R/texts.R
-msgid "Messages from EGAnetLab at the end of the report: %d."
+msgid "Messages from EGAnetLab under these key findings: %d."
 msgstr ""
 
 #: ega/results/invStatus.title
@@ -1946,6 +1956,10 @@ msgstr ""
 msgid "N"
 msgstr ""
 
+#: ega/results/cfaCompareMore.columns.title
+msgid "NFI"
+msgstr ""
+
 #: ega/options/labelColor/navy.title
 #: dynega/options/labelColor/navy.title
 msgid "Navy"
@@ -1980,8 +1994,8 @@ msgstr ""
 msgid "Negatively worded items: %s. They are as answered in the data, so riEGA uses them as they are (the other analyses use them reversed)."
 msgstr ""
 
-#: ega/results/nctStatus.title
 #: ega/ui[7][5].label
+#: ega/results/nctStatus.title
 #: R/ega.b.R
 msgid "Network Comparison Test"
 msgstr ""
@@ -2029,9 +2043,9 @@ msgstr ""
 msgid "Network loadings summarize how strongly each item is connected to each dimension, on a scale comparable to factor loadings (Christensen & Golino, 2021; see references)."
 msgstr ""
 
-#: R/texts.R
-#: R/ega.b.R
 #: R/dynega.b.R
+#: R/ega.b.R
+#: R/texts.R
 msgid "Network model"
 msgstr ""
 
@@ -2049,10 +2063,10 @@ msgstr ""
 msgid "Network score for dimension %s (EGAnetLab)"
 msgstr ""
 
+#: ega/ui[3].label
 #: ega/results/scoresGuide.title
 #: ega/results/scores.title
 #: ega/results/netScoresOV.title
-#: ega/ui[3].label
 msgid "Network scores"
 msgstr ""
 
@@ -2129,8 +2143,8 @@ msgstr ""
 msgid "Next step: tick Structure of each person to see whether the population structure describes individuals. Population structures of intensive longitudinal data often do not hold for every person."
 msgstr ""
 
-#: R/texts.R
 #: R/dynega.b.R
+#: R/texts.R
 msgid "No"
 msgstr ""
 
@@ -2246,13 +2260,8 @@ msgstr ""
 msgid "Not interpretable (below .25)"
 msgstr ""
 
-#: ega/results/notes.title
-#: dynega/results/notes.title
-msgid "Notes"
-msgstr ""
-
-#: R/texts.R
 #: R/ega.b.R
+#: R/texts.R
 msgid "Number of dimensions"
 msgstr ""
 
@@ -2475,12 +2484,13 @@ msgid "Proposed effect-size guidelines for the dominant loading: about 0.15 smal
 msgstr ""
 
 #: ega/results/compareTable.columns.title
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
 msgid "RMSEA"
 msgstr ""
 
-#: R/texts.R
-msgid "RMSEA [90% CI]"
+#: R/ega.b.R
+msgid "RMSEA 90% CI"
 msgstr ""
 
 #: R/ega.b.R
@@ -2544,8 +2554,8 @@ msgstr ""
 msgid "Redundancy"
 msgstr ""
 
-#: ega/results/uvaStatus.title
 #: ega/ui[8].label
+#: ega/results/uvaStatus.title
 #: R/ega.b.R
 msgid "Redundancy (UVA)"
 msgstr ""
@@ -2617,8 +2627,8 @@ msgid "SE"
 msgstr ""
 
 #: ega/results/compareTable.columns.title
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
-#: R/texts.R
 msgid "SRMR"
 msgstr ""
 
@@ -2669,6 +2679,11 @@ msgstr ""
 
 #: R/ega.b.R
 msgid "Same people, both measurements"
+msgstr ""
+
+#: ega/results/cfaCompare.columns.title
+#: ega/results/cfaCompareMore.columns.title
+msgid "Sample"
 msgstr ""
 
 #: ega/results/bootFrequency.columns.title
@@ -2817,8 +2832,8 @@ msgstr ""
 msgid "Stability (bootnet)"
 msgstr ""
 
-#: ega/results/bootStatus.title
 #: ega/ui[9].label
+#: ega/results/bootStatus.title
 #: R/ega.b.R
 msgid "Stability (bootstrap)"
 msgstr ""
@@ -2890,7 +2905,7 @@ msgstr ""
 msgid "Structure of each person"
 msgstr ""
 
-#: R/texts.R
+#: ega/results/cfaCompare.columns.title
 msgid "Structure tested by the CFA"
 msgstr ""
 
@@ -2923,7 +2938,7 @@ msgstr ""
 msgid "Subsample A"
 msgstr ""
 
-#: ega/results/cfaCompare.columns.title
+#: R/ega.b.R
 msgid "Subsample A (exploration)"
 msgstr ""
 
@@ -2931,7 +2946,7 @@ msgstr ""
 msgid "Subsample B"
 msgstr ""
 
-#: ega/results/cfaCompare.columns.title
+#: R/ega.b.R
 msgid "Subsample B (confirmation)"
 msgstr ""
 
@@ -2944,7 +2959,7 @@ msgid "Suggested to remove"
 msgstr ""
 
 #: ega/results/compareTable.columns.title
-#: R/texts.R
+#: ega/results/cfaCompare.columns.title
 msgid "TEFI"
 msgstr ""
 
@@ -2980,8 +2995,8 @@ msgstr ""
 msgid "TEFI, lower order"
 msgstr ""
 
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
-#: R/texts.R
 msgid "TLI"
 msgstr ""
 
@@ -3024,6 +3039,10 @@ msgstr ""
 
 #: R/texts.R
 msgid "The CFA could not be estimated: %s."
+msgstr ""
+
+#: R/ega.b.R
+msgid "The CFA could not be fitted in this sample (see the text above)."
 msgstr ""
 
 #: R/texts.R
@@ -3420,7 +3439,6 @@ msgstr ""
 msgid "Top"
 msgstr ""
 
-#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaMembership.columns.title
 #: R/ega.b.R
 msgid "Total sample"
@@ -3460,8 +3478,8 @@ msgstr ""
 msgid "Unidimensionality Check"
 msgstr ""
 
-#: R/texts.R
 #: R/ega.b.R
+#: R/texts.R
 msgid "Unidimensionality check"
 msgstr ""
 
@@ -3469,6 +3487,7 @@ msgstr ""
 msgid "Unique Variable Analysis (UVA) looks for redundant items: pairs that share so many of their connections in the network that they behave almost like the same item (Christensen, Garrido & Golino, 2023; see references)."
 msgstr ""
 
+#: ega/results/cfaCompare.columns.title
 #: ega/results/bnEdges.columns.title
 msgid "Upper"
 msgstr ""
@@ -3576,8 +3595,8 @@ msgstr ""
 msgid "Wording effects interpretation"
 msgstr ""
 
-#: R/texts.R
 #: R/dynega.b.R
+#: R/texts.R
 msgid "Yes"
 msgstr ""
 
@@ -3587,6 +3606,11 @@ msgstr ""
 
 #: R/texts.R
 msgid "acceptable"
+msgstr ""
+
+#: ega/results/cfaCompare.columns.title
+#: ega/results/cfaHierModels.columns.title
+msgid "df"
 msgstr ""
 
 #: R/texts.R
@@ -3677,6 +3701,8 @@ msgstr ""
 msgid "of the same items, in the same order as the items."
 msgstr ""
 
+#: ega/results/cfaCompare.columns.title
+#: ega/results/cfaHierModels.columns.title
 #: ega/results/invTable.columns.title
 #: ega/results/nctGlobal.columns.title
 msgid "p"
@@ -3799,14 +3825,11 @@ msgstr ""
 msgid "z value"
 msgstr ""
 
+#: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
-msgid "χ² (df)"
+msgid "χ²"
 msgstr ""
 
-#: R/texts.R
-msgid "χ² (df), p"
-msgstr ""
-
-#: R/texts.R
+#: ega/results/cfaCompareMore.columns.title
 msgid "χ²/df"
 msgstr ""

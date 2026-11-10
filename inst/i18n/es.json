@@ -77,6 +77,9 @@
             "A random-intercept component was estimated (standardized loadings %s). Reading it as acquiescence or a wording effect requires justifying the direction and the content of the items: the component captures whatever all items share to the same degree, and that can include content.": [
                 "Se estimó un componente de intercepto aleatorio (cargas estandarizadas %s). Su interpretación como aquiescencia o efecto de redacción requiere justificar la dirección y el contenido de los ítems: el componente recoge lo que todos los ítems comparten en el mismo grado, y eso puede incluir contenido."
             ],
+            "AGFI": [
+                "AGFI"
+            ],
             "AIC": [
                 "AIC"
             ],
@@ -104,8 +107,8 @@
             "Add CFA fit for each structure": [
                 "Añadir el ajuste CFA de cada estructura"
             ],
-            "Admissible solution": [
-                "Solución admisible"
+            "Additional fit indices": [
+                "Índices de ajuste adicionales"
             ],
             "After removing it, EGA finds %s dimensions instead of %s. The random-intercept component may have been masking some distinctions in content, or the control may be splitting dimensions; read the new dimensions with care and check them against the item content.": [
                 "Tras quitarlo, EGA encuentra %s dimensiones en lugar de %s. Puede que el componente de intercepto aleatorio ocultara algunas distinciones de contenido, o que el control esté dividiendo dimensiones; lea las nuevas dimensiones con cuidado y contrástelas con el contenido de los ítems."
@@ -842,6 +845,9 @@
             "Frequency: how often each number of dimensions appeared. A dominant value that matches the original sample supports the structure.": [
                 "Frecuencia: cuántas veces apareció cada número de dimensiones. Un valor dominante que coincide con la muestra original respalda la estructura."
             ],
+            "GFI": [
+                "GFI"
+            ],
             "GLASSO (EBIC)": [
                 "GLASSO (EBIC)"
             ],
@@ -940,6 +946,9 @@
             ],
             "Holm": [
                 "Holm"
+            ],
+            "IFI": [
+                "IFI"
             ],
             "If they are as answered, every analysis reverses them (observed minimum plus maximum, minus the score). Random-intercept EGA always uses them in their original direction.": [
                 "Si están tal como se respondieron, todos los análisis los invierten (mínimo más máximo observados, menos el puntaje). El EGA con intercepto aleatorio siempre los usa en su dirección original."
@@ -1286,11 +1295,8 @@
             "Median number of dimensions": [
                 "Mediana del número de dimensiones"
             ],
-            "Messages from EGAnetLab": [
-                "Mensajes de EGAnetLab"
-            ],
-            "Messages from EGAnetLab at the end of the report: %d.": [
-                "Mensajes de EGAnetLab al final del informe: %d."
+            "Messages from EGAnetLab under these key findings: %d.": [
+                "Mensajes de EGAnetLab debajo de estos hallazgos clave: %d."
             ],
             "Metric invariance": [
                 "Invarianza métrica"
@@ -1327,6 +1333,9 @@
             ],
             "N": [
                 "N"
+            ],
+            "NFI": [
+                "NFI"
             ],
             "Navy": [
                 "Azul marino"
@@ -1535,9 +1544,6 @@
             "Not interpretable (below .25)": [
                 "No interpretable (menos de .25)"
             ],
-            "Notes": [
-                "Notas"
-            ],
             "Number of dimensions": [
                 "Número de dimensiones"
             ],
@@ -1697,8 +1703,8 @@
             "RMSEA": [
                 "RMSEA"
             ],
-            "RMSEA [90% CI]": [
-                "RMSEA [IC 90%]"
+            "RMSEA 90% CI": [
+                "IC 90% del RMSEA"
             ],
             "Random subsample (A = exploration, B = confirmation; seed %d)": [
                 "Submuestra aleatoria (A = exploración, B = confirmación; semilla %d)"
@@ -1834,6 +1840,9 @@
             ],
             "Same people, both measurements": [
                 "Mismas personas, ambas mediciones"
+            ],
+            "Sample": [
+                "Muestra"
             ],
             "Samples": [
                 "Muestras"
@@ -2086,6 +2095,9 @@
             ],
             "The CFA could not be estimated: %s.": [
                 "No se pudo estimar el CFA: %s."
+            ],
+            "The CFA could not be fitted in this sample (see the text above).": [
+                "El CFA no pudo ajustarse en esta muestra (vea el texto de arriba)."
             ],
             "The CFA indices come from the same data that produced the EGA solution, so they favor it. Use them as a second view, and confirm with the random split in the Confirmatory factor analysis box.": [
                 "Los índices del CFA salen de los mismos datos que produjeron la solución de EGA, así que la favorecen. Úselos como una segunda mirada y confirme con la división aleatoria de la caja Confirmatory factor analysis."
@@ -2495,6 +2507,9 @@
             "acceptable": [
                 "aceptable"
             ],
+            "df": [
+                "gl"
+            ],
             "dimension %s with %d items": [
                 "dimensión %s con %d ítems"
             ],
@@ -2651,11 +2666,8 @@
             "z value": [
                 "Valor z"
             ],
-            "χ² (df)": [
-                "χ² (gl)"
-            ],
-            "χ² (df), p": [
-                "χ² (gl), p"
+            "χ²": [
+                "χ²"
             ],
             "χ²/df": [
                 "χ²/gl"
