@@ -785,6 +785,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             sample_name <- c(total = .("Total sample"), A = .("Subsample A (exploration)"),
                              B = .("Subsample B (confirmation)"))
             value <- function(x) { x <- .el_clean_num(x); if (is.na(x)) "" else x }
+            n_dim_of <- function(p) {
+                e <- samples[[p]]$ega
+                if (is.null(e)) "—" else as.character(.el_clean_num(e$n.dim))
+            }
             cols <- if (split) c("total", "A", "B") else "total"
             compare <- self$results$cfaCompare
             more <- self$results$cfaCompareMore
