@@ -11,5 +11,5 @@
   "keywords": ["jamovi", "Exploratory Graph Analysis", "Network Psychometrics", "Dimensionality", "EGAnet", "Open Science"],
   "license": "gpl-3.0",
   "upload_type": "software",
-  "version": "0.1.0"
+  "version": "1.0.0"
 }

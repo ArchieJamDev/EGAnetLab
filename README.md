@@ -332,7 +332,7 @@ versions and always resolves to the latest one; each version also has its own
 DOI, listed on the Zenodo page.
 
 > Chacón Chacón, A. D. L. (2026). *EGAnetLab: A jamovi module for Exploratory
-> Graph Analysis* (Version 0.1.0) [Computer software]. Zenodo.
+> Graph Analysis* (Version 1.0.0) [Computer software]. Zenodo.
 > https://doi.org/10.5281/zenodo.23886111
 
 > Golino, H., & Christensen, A. P. (2026). *EGAnet: Exploratory graph

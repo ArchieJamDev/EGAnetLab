@@ -1,6 +1,6 @@
 Package: EGAnetLab
 Title: Exploratory Graph Analysis Lab for Dimensional Structure
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: person("Arquímedes De León", "Chacón Chacón", email = "arquimedeschacon@gmail.com", role = c("aut", "cre"), comment = c(affiliation = "Universidad Católica Andrés Bello (UCAB), Caracas, Venezuela"))
 Description: A jamovi module that exposes the network psychometrics methods
     of the EGAnet package (Exploratory Graph Analysis, bootstrap stability,
