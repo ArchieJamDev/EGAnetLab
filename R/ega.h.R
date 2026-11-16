@@ -916,6 +916,7 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         bootStatus = function() private$.items[["bootStatus"]],
         bootSummaryGuide = function() private$.items[["bootSummaryGuide"]],
         bootSummary = function() private$.items[["bootSummary"]],
+        bootDims = function() private$.items[["bootDims"]],
         bootFrequency = function() private$.items[["bootFrequency"]],
         bootDimStability = function() private$.items[["bootDimStability"]],
         bootItemStability = function() private$.items[["bootItemStability"]],
@@ -1364,13 +1365,17 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod"),
                 columns=list(
                     list(
-                        `name`="element", 
-                        `title`="Element", 
+                        `name`="level", 
+                        `title`="Level", 
                         `type`="text"),
                     list(
-                        `name`="value", 
-                        `title`="Value", 
-                        `type`="text"))))
+                        `name`="dims", 
+                        `title`="Dimensions", 
+                        `type`="integer"),
+                    list(
+                        `name`="tefi", 
+                        `title`="TEFI", 
+                        `type`="number"))))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="hierMembership",
@@ -1457,13 +1462,27 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniMethod"),
                 columns=list(
                     list(
-                        `name`="element", 
-                        `title`="Element", 
+                        `name`="structure", 
+                        `title`="Structure", 
                         `type`="text"),
                     list(
-                        `name`="value", 
-                        `title`="Value", 
-                        `type`="text"))))
+                        `name`="dims", 
+                        `title`="Dimensions", 
+                        `type`="integer"),
+                    list(
+                        `name`="tefi", 
+                        `title`="TEFI", 
+                        `type`="number"),
+                    list(
+                        `name`="loadMin", 
+                        `title`="Min", 
+                        `type`="number", 
+                        `superTitle`="Random-intercept loadings"),
+                    list(
+                        `name`="loadMax", 
+                        `title`="Max", 
+                        `type`="number", 
+                        `superTitle`="Random-intercept loadings"))))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="riMembership",
@@ -1645,6 +1664,49 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `name`="value", 
                         `title`="Value", 
                         `type`="text"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="bootDims",
+                title="Number of dimensions",
+                rows=1,
+                visible="(runBoot)",
+                refs=list(
+                    "christensen_2021_boot"),
+                clearWith=list(
+                    "vars",
+                    "negItems",
+                    "negCoding",
+                    "corr",
+                    "naData",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "bootType",
+                    "iter",
+                    "seed"),
+                columns=list(
+                    list(
+                        `name`="original", 
+                        `title`="Original sample", 
+                        `type`="integer"),
+                    list(
+                        `name`="median", 
+                        `title`="Median", 
+                        `type`="number"),
+                    list(
+                        `name`="low", 
+                        `title`="Lower", 
+                        `type`="number", 
+                        `superTitle`="95% interval"),
+                    list(
+                        `name`="high", 
+                        `title`="Upper", 
+                        `type`="number", 
+                        `superTitle`="95% interval"),
+                    list(
+                        `name`="se", 
+                        `title`="SE", 
+                        `type`="number"))))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="bootFrequency",
@@ -2889,6 +2951,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$bootStatus} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$bootSummaryGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$bootSummary} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$bootDims} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$bootFrequency} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$bootDimStability} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$bootItemStability} \tab \tab \tab \tab \tab a table \cr

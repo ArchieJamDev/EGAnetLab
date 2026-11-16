@@ -91,7 +91,10 @@ test_that("groups and individuals are summarized", {
     ind <- res$indTable$asDF
     expect_true(all(c("group", "ariGroup") %in% names(ind)))
     expect_true(all(ind$ariGroup >= -1 & ind$ariGroup <= 1, na.rm = TRUE))
-    expect_equal(nrow(res$indAgree$asDF), 6)
+    agree <- res$indAgree$asDF
+    expect_equal(nrow(agree), 2)
+    expect_true(all(agree$identical >= 0 & agree$identical <= 1))
+    expect_true(is.numeric(agree$median))
     expect_match(res$indInterpretation$content, "own group", fixed = TRUE)
 })
 
@@ -102,7 +105,8 @@ test_that("persons with too few time points are left out with a note", {
     res <- EGAnetLab::dynega(data = d, vars = paste0("V", 1:24), id = "ID", time = "Time")
 
     expect_match(noticeText(res), "P1", fixed = TRUE)
-    expect_match(res$summary$asDF$value[1], "29", fixed = TRUE)
+    expect_equal(res$dataSummary$asDF$persons, 29)
+    expect_true(is.numeric(res$dataSummary$asDF$ptMedian))
 })
 
 test_that("the adjusted Rand index matches its definition", {

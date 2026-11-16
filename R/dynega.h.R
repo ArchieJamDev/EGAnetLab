@@ -422,6 +422,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         choicesGuide = function() private$.items[["choicesGuide"]],
         status = function() private$.items[["status"]],
         summary = function() private$.items[["summary"]],
+        dataSummary = function() private$.items[["dataSummary"]],
         membership = function() private$.items[["membership"]],
         groupTable = function() private$.items[["groupTable"]],
         interpretation = function() private$.items[["interpretation"]],
@@ -507,6 +508,51 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `name`="value", 
                         `title`="Value", 
                         `type`="text"))))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="dataSummary",
+                title="Data",
+                rows=1,
+                clearWith=list(
+                    "vars",
+                    "id",
+                    "time",
+                    "group",
+                    "nEmbed",
+                    "tau",
+                    "delta",
+                    "derivative",
+                    "corr",
+                    "model",
+                    "algorithm",
+                    "uniMethod",
+                    "seed",
+                    "levelGroup",
+                    "levelIndividual"),
+                columns=list(
+                    list(
+                        `name`="persons", 
+                        `title`="Persons", 
+                        `type`="integer"),
+                    list(
+                        `name`="rows", 
+                        `title`="Rows", 
+                        `type`="integer"),
+                    list(
+                        `name`="ptMin", 
+                        `title`="Min", 
+                        `type`="integer", 
+                        `superTitle`="Time points per person"),
+                    list(
+                        `name`="ptMedian", 
+                        `title`="Median", 
+                        `type`="number", 
+                        `superTitle`="Time points per person"),
+                    list(
+                        `name`="ptMax", 
+                        `title`="Max", 
+                        `type`="integer", 
+                        `superTitle`="Time points per person"))))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="membership",
@@ -694,13 +740,28 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "levelIndividual"),
                 columns=list(
                     list(
-                        `name`="element", 
-                        `title`="Element", 
+                        `name`="comparison", 
+                        `title`="Compared with", 
                         `type`="text"),
                     list(
-                        `name`="value", 
-                        `title`="Value", 
-                        `type`="text"))))
+                        `name`="persons", 
+                        `title`="Persons estimated", 
+                        `type`="integer"),
+                    list(
+                        `name`="sameN", 
+                        `title`="Same number of dimensions", 
+                        `type`="number", 
+                        `format`="pc"),
+                    list(
+                        `name`="identical", 
+                        `title`="Identical structure", 
+                        `type`="number", 
+                        `format`="pc"),
+                    list(
+                        `name`="median", 
+                        `title`="Median ARI", 
+                        `type`="number", 
+                        `format`="zto"))))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="indTable",
@@ -846,6 +907,7 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$choicesGuide} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$status} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$summary} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$dataSummary} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$membership} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$groupTable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$interpretation} \tab \tab \tab \tab \tab a html \cr

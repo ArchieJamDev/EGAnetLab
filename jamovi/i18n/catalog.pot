@@ -6,18 +6,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "Language: c\n"
 
-#: R/ega.b.R
-msgid " complete cases)"
-msgstr ""
-
-#: R/ega.b.R
-msgid " samples, "
-msgstr ""
-
-#: R/ega.b.R
-msgid " to "
-msgstr ""
-
 #: R/texts.R
 msgid "%d of %d (%s%%)"
 msgstr ""
@@ -66,44 +54,29 @@ msgstr ""
 msgid "%s places %d of %d items as EGA (TEFI %s; %s from the lowest). Items that change dimension: %s."
 msgstr ""
 
-#: R/texts.R
-msgid "%s: %s (n = %d) and %s (n = %d)%s."
-msgstr ""
-
 #: R/ega.b.R
 msgid "* p ≤ .05 (uncorrected)"
-msgstr ""
-
-#: R/texts.R
-msgid ", each person"
-msgstr ""
-
-#: R/texts.R
-msgid ", groups"
-msgstr ""
-
-#: R/texts.R
-msgid ", the same people measured twice"
 msgstr ""
 
 #: R/texts.R
 msgid "1 dimension"
 msgstr ""
 
+#: ega/results/bnEdges.columns.superTitle
 #: R/ega.b.R
 msgid "95% bootstrap interval"
 msgstr ""
 
-#: R/ega.b.R
-msgid "95% interval (2.5th to 97.5th percentile)"
+#: ega/results/bootDims.columns.superTitle
+msgid "95% interval"
 msgstr ""
 
 #: R/ega.b.R
-msgid "; items with 7 or fewer categories treated as ordinal"
+msgid "95% interval: 2.5th and 97.5th percentiles of the number of dimensions across samples."
 msgstr ""
 
 #: R/texts.R
-msgid "A random-intercept component was estimated (standardized loadings %s). Reading it as acquiescence or a wording effect requires justifying the direction and the content of the items: the component captures whatever all items share to the same degree, and that can include content."
+msgid "A random-intercept component was estimated (standardized loadings {min} to {max}). Reading it as acquiescence or a wording effect requires justifying the direction and the content of the items: the component captures whatever all items share to the same degree, and that can include content."
 msgstr ""
 
 #: ega/results/cfaCompareMore.columns.title
@@ -123,6 +96,7 @@ msgstr ""
 msgid "ARI = adjusted Rand index between each person's item membership and the population's (Hubert & Arabie, 1985): 1 = identical, about 0 = no more agreement than chance. Items without a dimension count as their own group."
 msgstr ""
 
+#: ega/options/showChoicesGuide.title
 #: dynega/options/showChoicesGuide.title
 #: ega/results/choicesGuide.title
 #: dynega/results/choicesGuide.title
@@ -229,6 +203,10 @@ msgstr ""
 msgid "Automatic (Pearson / polychoric)"
 msgstr ""
 
+#: R/ega.b.R
+msgid "Automatic (Pearson / polychoric); items with 7 or fewer categories treated as ordinal"
+msgstr ""
+
 #: R/dynega.b.R
 msgid "Automatic (Pearson, because the derivatives are continuous)"
 msgstr ""
@@ -288,7 +266,7 @@ msgid "Benjamini-Hochberg (FDR)"
 msgstr ""
 
 #: R/texts.R
-msgid "Better fit by TEFI"
+msgid "Better fit by TEFI: {structure}."
 msgstr ""
 
 #: R/ega.b.R
@@ -563,6 +541,10 @@ msgstr ""
 msgid "Compare structures with TEFI"
 msgstr ""
 
+#: dynega/results/indAgree.columns.title
+msgid "Compared with"
+msgstr ""
+
 #: R/texts.R
 msgid "Compared with their own group, %s of the persons show exactly their group's item membership (median ARI = %s). The differences between persons are explained by the group they belong to, not by idiosyncratic structures: describe each group's structure."
 msgstr ""
@@ -625,10 +607,6 @@ msgstr ""
 
 #: R/texts.R
 msgid "Conventional guidelines (Hu & Bentler, 1999; see references): CFI and TLI of .95 or more, RMSEA of .06 or less and SRMR of .08 or less suggest good fit; CFI/TLI of .90 and RMSEA of .08 are often taken as acceptable. With WLSMV these cutoffs are only approximate."
-msgstr ""
-
-#: R/texts.R
-msgid "Converged"
 msgstr ""
 
 #: R/texts.R
@@ -698,6 +676,10 @@ msgstr ""
 msgid "Dashed"
 msgstr ""
 
+#: dynega/results/dataSummary.title
+msgid "Data"
+msgstr ""
+
 #: dynega/results/summary.title
 msgid "Data and estimation"
 msgstr ""
@@ -720,10 +702,6 @@ msgstr ""
 #: ega/options/nodeShape/diamond.title
 #: dynega/options/nodeShape/diamond.title
 msgid "Diamond"
-msgstr ""
-
-#: R/texts.R
-msgid "Did not converge"
 msgstr ""
 
 #: ega/results/invTable.columns.title
@@ -782,6 +760,8 @@ msgstr ""
 #: ega/results/solution.columns.title
 #: ega/results/edgeTable.columns.title
 #: ega/results/compareTable.columns.title
+#: ega/results/hierSummary.columns.title
+#: ega/results/riSummary.columns.title
 #: ega/results/bootFrequency.columns.title
 #: dynega/results/groupTable.columns.title
 #: dynega/results/indFreq.columns.title
@@ -797,16 +777,8 @@ msgstr ""
 msgid "Dimensions across persons plot"
 msgstr ""
 
-#: R/texts.R
-msgid "Dimensions after wording control (riEGA)"
-msgstr ""
-
 #: ega/results/cfaCompare.columns.title
 msgid "Dimensions found by EGA"
-msgstr ""
-
-#: R/ega.b.R
-msgid "Dimensions in the original sample"
 msgstr ""
 
 #: R/texts.R
@@ -823,10 +795,6 @@ msgstr ""
 
 #: R/texts.R
 msgid "Dimensions with structural consistency below %s: %s. These dimensions are often not reproduced with exactly the same items; usually one or more of their items move to another dimension in some samples (see item stability)."
-msgstr ""
-
-#: R/texts.R
-msgid "Dimensions without wording control (EGA)"
 msgstr ""
 
 #: ega/results/invTable.columns.title
@@ -867,6 +835,10 @@ msgstr ""
 #: ega/results/hierMembership.columns.title
 #: ega/results/riMembership.columns.title
 msgid "EGA"
+msgstr ""
+
+#: R/texts.R
+msgid "EGA (without wording control)"
 msgstr ""
 
 #: R/texts.R
@@ -1078,11 +1050,8 @@ msgid "Eighteen dichotomous items of the Wiener Matrizen-Test 2 plus demographic
 msgstr ""
 
 #: ega/results/summary.columns.title
-#: ega/results/hierSummary.columns.title
-#: ega/results/riSummary.columns.title
 #: ega/results/bootSummary.columns.title
 #: dynega/results/summary.columns.title
-#: dynega/results/indAgree.columns.title
 msgid "Element"
 msgstr ""
 
@@ -1094,6 +1063,10 @@ msgstr ""
 msgid "Embedding dimension (time points per window)"
 msgstr ""
 
+#: R/texts.R
+msgid "Estimated levels: {levels}. Derivative {derivative}, embedding dimension {embed}, seed {seed}. The results are kept while the estimation options do not change."
+msgstr ""
+
 #: ega/results/networkPlot.title
 #: R/ega.b.R
 msgid "Estimated network"
@@ -1101,10 +1074,6 @@ msgstr ""
 
 #: R/ega.b.R
 msgid "Estimated network (hierarchical: higher · lower order)"
-msgstr ""
-
-#: R/texts.R
-msgid "Estimated: population%s%s, derivative %s, embedding dimension %d, seed %d. The results are kept while the estimation options do not change."
 msgstr ""
 
 #: package/analyses/dynega.description
@@ -1182,10 +1151,6 @@ msgstr ""
 msgid "Expected influence: like strength, but negative connections count against. It differs from strength only when the item has negative connections."
 msgstr ""
 
-#: ega/options/showChoicesGuide.title
-msgid "Explain my choices"
-msgstr ""
-
 #: package/analyses/ega.title
 #: package/analyses/ega.menuTitle
 #: ega/options.title
@@ -1250,10 +1215,6 @@ msgstr ""
 msgid "General and Specific: standardized loadings. In a sound bifactor model, items load clearly on the general factor and still keep visible loadings (.20 or more) on their specific factor."
 msgstr ""
 
-#: R/texts.R
-msgid "Generalized TEFI"
-msgstr ""
-
 #: ega/results/nctGlobal.title
 msgid "Global network comparison"
 msgstr ""
@@ -1298,14 +1259,17 @@ msgstr ""
 msgid "Group comparison"
 msgstr ""
 
-#: ega/options/group.title
 #: ega/ui[0][3].label
-#: dynega/options/group.title
-msgid "Grouping variable"
+msgid "Grouping Variable"
 msgstr ""
 
 #: dynega/ui[0][3].label
-msgid "Grouping variable (optional)"
+msgid "Grouping Variable (Optional)"
+msgstr ""
+
+#: ega/options/group.title
+#: dynega/options/group.title
+msgid "Grouping variable"
 msgstr ""
 
 #: R/dynega.b.R
@@ -1380,16 +1344,16 @@ msgstr ""
 msgid "Higher order (higher-order factors: %s)"
 msgstr ""
 
-#: R/texts.R
-msgid "Higher-order dimensions"
-msgstr ""
-
 #: ega/options/nctAdjust/holm.title
 msgid "Holm"
 msgstr ""
 
 #: ega/results/cfaCompareMore.columns.title
 msgid "IFI"
+msgstr ""
+
+#: dynega/results/indAgree.columns.title
+msgid "Identical structure"
 msgstr ""
 
 #: R/texts.R
@@ -1446,7 +1410,7 @@ msgid "Introduction"
 msgstr ""
 
 #: ega/ui[6][0][0].label
-msgid "Invariance (independent groups)"
+msgid "Invariance (Independent Groups)"
 msgstr ""
 
 #: R/dynega.b.R
@@ -1758,6 +1722,10 @@ msgstr ""
 msgid "Leiden refines Louvain and guarantees that every community it returns is internally connected, which Louvain does not. It is stochastic as well. Choose it as a modern alternative to Louvain, and compare its solution with Walktrap's."
 msgstr ""
 
+#: ega/results/hierSummary.columns.title
+msgid "Level"
+msgstr ""
+
 #: R/dynega.b.R
 msgid "Level (0)"
 msgstr ""
@@ -1828,6 +1796,7 @@ msgstr ""
 msgid "Louvain finds communities by maximizing modularity, merging items into groups level by level. It is fast and performs well in recent simulations, but it is stochastic: results can vary slightly between runs. Use it to check whether the Walktrap solution holds under a different algorithm."
 msgstr ""
 
+#: ega/results/bootDims.columns.title
 #: ega/results/cfaCompare.columns.title
 #: ega/results/bnEdges.columns.title
 msgid "Lower"
@@ -1847,10 +1816,6 @@ msgid "Lower order"
 msgstr ""
 
 #: R/texts.R
-msgid "Lower-order dimensions"
-msgstr ""
-
-#: R/texts.R
 msgid "M = largest difference in a single edge; S = difference in global strength (sum of absolute edge weights). p values come from the permutations."
 msgstr ""
 
@@ -1864,6 +1829,11 @@ msgstr ""
 
 #: R/texts.R
 msgid "Main findings"
+msgstr ""
+
+#: ega/results/riSummary.columns.title
+#: dynega/results/dataSummary.columns.title
+msgid "Max"
 msgstr ""
 
 #: ega/results/scores.columns.title
@@ -1896,20 +1866,17 @@ msgstr ""
 msgid "Measurement 2"
 msgstr ""
 
-#: R/texts.R
-msgid "Median agreement with the population (ARI)"
+#: ega/results/bootDims.columns.title
+#: dynega/results/dataSummary.columns.title
+msgid "Median"
 msgstr ""
 
-#: R/texts.R
-msgid "Median agreement with their own group (ARI)"
+#: dynega/results/indAgree.columns.title
+msgid "Median ARI"
 msgstr ""
 
 #: R/texts.R
 msgid "Median and interval: the typical number of dimensions across samples, and the range that contains the middle 95% of samples."
-msgstr ""
-
-#: R/ega.b.R
-msgid "Median number of dimensions"
 msgstr ""
 
 #: R/texts.R
@@ -1931,6 +1898,11 @@ msgstr ""
 
 #: ega/options/runInvariance.title
 msgid "Metric invariance of network loadings"
+msgstr ""
+
+#: ega/results/riSummary.columns.title
+#: dynega/results/dataSummary.columns.title
+msgid "Min"
 msgstr ""
 
 #: ega/options/naData.title
@@ -1983,12 +1955,15 @@ msgstr ""
 msgid "Negative edges"
 msgstr ""
 
+#: ega/ui[0][1].label
+msgid "Negatively Worded Items"
+msgstr ""
+
 #: ega/results/riMembership.columns.title
 msgid "Negatively worded"
 msgstr ""
 
 #: ega/options/negItems.title
-#: ega/ui[0][1].label
 #: R/ega.b.R
 msgid "Negatively worded items"
 msgstr ""
@@ -2175,6 +2150,10 @@ msgid "No group reproduces the population structure. The population's %s dimensi
 msgstr ""
 
 #: R/texts.R
+msgid "No higher-order level: the lower order has a single dimension, or its dimensions do not group."
+msgstr ""
+
+#: R/texts.R
 msgid "No individual connection differs after the correction for multiple tests."
 msgstr ""
 
@@ -2183,11 +2162,11 @@ msgid "No item differs in centrality between the networks after the correction f
 msgstr ""
 
 #: R/texts.R
-msgid "No item is marked in Negatively worded items, so nothing in this analysis supports reading the random intercept as a wording effect. Mark the negatively worded items, or read riEGA only as a sensitivity check."
+msgid "No item is marked in Negatively Worded Items, so nothing in this analysis supports reading the random intercept as a wording effect. Mark the negatively worded items, or read riEGA only as a sensitivity check."
 msgstr ""
 
 #: R/texts.R
-msgid "No item is marked in Negatively worded items, so the items are used exactly as they are in the data. Mark the negative items there so that riEGA can use them in their original direction even if they are already reversed in the data."
+msgid "No item is marked in Negatively Worded Items, so the items are used exactly as they are in the data. Mark the negative items there so that riEGA can use them in their original direction even if they are already reversed in the data."
 msgstr ""
 
 #: R/texts.R
@@ -2230,12 +2209,12 @@ msgid "Node strength and expected influence"
 msgstr ""
 
 #: ega/ui[12][2][0].label
-msgid "Nodes and edges"
+msgid "Nodes and Edges"
 msgstr ""
 
 #: ega/ui[11][1][0].label
 #: dynega/ui[5][1][0].label
-msgid "Nodes and labels"
+msgid "Nodes and Labels"
 msgstr ""
 
 #: ega/options/nctAdjust/none.title
@@ -2259,6 +2238,10 @@ msgid "Not computable"
 msgstr ""
 
 #: R/texts.R
+msgid "Not computed for groups: the comparison by number of dimensions is made with the population."
+msgstr ""
+
+#: R/texts.R
 msgid "Not every group shows the population's number of dimensions (see Structure of each group). The structure of change may differ between groups; check the group sizes before interpreting it."
 msgstr ""
 
@@ -2274,6 +2257,7 @@ msgstr ""
 msgid "Not interpretable (below .25)"
 msgstr ""
 
+#: ega/results/bootDims.title
 #: R/texts.R
 msgid "Number of dimensions"
 msgstr ""
@@ -2317,6 +2301,7 @@ msgstr ""
 msgid "Orange"
 msgstr ""
 
+#: ega/results/bootDims.columns.title
 #: R/texts.R
 msgid "Original sample"
 msgstr ""
@@ -2398,10 +2383,14 @@ msgstr ""
 msgid "Person ID"
 msgstr ""
 
+#: dynega/results/dataSummary.columns.title
 #: dynega/results/groupTable.columns.title
 #: dynega/results/indFreq.columns.title
-#: R/texts.R
 msgid "Persons"
+msgstr ""
+
+#: dynega/results/indAgree.columns.title
+msgid "Persons estimated"
 msgstr ""
 
 #: R/texts.R
@@ -2421,7 +2410,7 @@ msgid "Persons whose own structure could not be estimated: %d (Structure of each
 msgstr ""
 
 #: R/texts.R
-msgid "Persons with an estimated structure"
+msgid "Persons with an estimated structure: {n} of {total}. Identical structure: same item membership (ARI = 1)."
 msgstr ""
 
 #: R/texts.R
@@ -2498,6 +2487,7 @@ msgstr ""
 msgid "RMSEA"
 msgstr ""
 
+#: ega/results/cfaCompare.columns.superTitle
 #: R/ega.b.R
 msgid "RMSEA 90% CI"
 msgstr ""
@@ -2518,8 +2508,8 @@ msgstr ""
 msgid "Random-intercept loading"
 msgstr ""
 
-#: R/texts.R
-msgid "Random-intercept model"
+#: ega/results/riSummary.columns.superTitle
+msgid "Random-intercept loadings"
 msgstr ""
 
 #: R/texts.R
@@ -2623,8 +2613,8 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: R/texts.R
-msgid "Rows used"
+#: dynega/results/dataSummary.columns.title
+msgid "Rows"
 msgstr ""
 
 #: ega/options/runBoot.title
@@ -2635,6 +2625,7 @@ msgstr ""
 msgid "SD"
 msgstr ""
 
+#: ega/results/bootDims.columns.title
 #: ega/results/cfaLoadings.columns.title
 msgid "SE"
 msgstr ""
@@ -2643,6 +2634,10 @@ msgstr ""
 #: ega/results/cfaCompare.columns.title
 #: ega/results/cfaHierModels.columns.title
 msgid "SRMR"
+msgstr ""
+
+#: ega/ui[0][4].label
+msgid "Same Items, Second Measurement"
 msgstr ""
 
 #: ega/options/nctCorr/ega.title
@@ -2669,21 +2664,12 @@ msgstr ""
 msgid "Same in A and B"
 msgstr ""
 
-#: R/texts.R
-msgid "Same item membership as the population (ARI = 1)"
-msgstr ""
-
-#: R/texts.R
-msgid "Same item membership as their own group (ARI = 1)"
-msgstr ""
-
 #: ega/options/pairedVars.title
-#: ega/ui[0][4].label
 msgid "Same items, second measurement"
 msgstr ""
 
-#: R/texts.R
-msgid "Same number of dimensions as the population"
+#: dynega/results/indAgree.columns.title
+msgid "Same number of dimensions"
 msgstr ""
 
 #: R/ega.b.R
@@ -2852,14 +2838,6 @@ msgstr ""
 msgid "Stable (.50 or more)"
 msgstr ""
 
-#: R/ega.b.R
-msgid "Standard error"
-msgstr ""
-
-#: R/texts.R
-msgid "Standardized random-intercept loadings"
-msgstr ""
-
 #: ega/options/cenStandardize.title
 msgid "Standardized values (z)"
 msgstr ""
@@ -2886,6 +2864,7 @@ msgid "Structural consistency: the proportion of samples in which a dimension re
 msgstr ""
 
 #: ega/results/compareTable.columns.title
+#: ega/results/riSummary.columns.title
 msgid "Structure"
 msgstr ""
 
@@ -2923,10 +2902,6 @@ msgstr ""
 msgid "Structures compared"
 msgstr ""
 
-#: R/ega.b.R
-msgid "SubSample "
-msgstr ""
-
 #: ega/results/splitOV.title
 #: R/ega.b.R
 msgid "Subsample"
@@ -2948,6 +2923,10 @@ msgstr ""
 msgid "Subsample B (confirmation)"
 msgstr ""
 
+#: R/ega.b.R
+msgid "Subsample {p}"
+msgstr ""
+
 #: ega/results/uvaSets.columns.title
 msgid "Suggested to keep"
 msgstr ""
@@ -2958,16 +2937,14 @@ msgstr ""
 
 #: ega/results/solution.columns.title
 #: ega/results/compareTable.columns.title
+#: ega/results/hierSummary.columns.title
+#: ega/results/riSummary.columns.title
 #: ega/results/cfaCompare.columns.title
 msgid "TEFI"
 msgstr ""
 
 #: R/texts.R
 msgid "TEFI (Total Entropy Fit Index): lower values indicate a better-fitting structure. It is meaningful when comparing alternative structures for the same data, not as an absolute cut-off (Golino et al., 2021; see references)."
-msgstr ""
-
-#: R/texts.R
-msgid "TEFI (residual correlations)"
 msgstr ""
 
 #: R/texts.R
@@ -2987,11 +2964,7 @@ msgid "TEFI is lower at the lower-order level (%s) than at the higher-order leve
 msgstr ""
 
 #: R/texts.R
-msgid "TEFI, higher order"
-msgstr ""
-
-#: R/texts.R
-msgid "TEFI, lower order"
+msgid "TEFI of riEGA, computed on the residual correlations; it is not comparable with the TEFI of the EGA solution."
 msgstr ""
 
 #: ega/results/cfaCompare.columns.title
@@ -3281,11 +3254,23 @@ msgid "The order of the items by %s is stable (CS = %s): it holds when up to %s 
 msgstr ""
 
 #: R/texts.R
+msgid "The population"
+msgstr ""
+
+#: R/texts.R
 msgid "The random-intercept EGA did not converge and cannot be interpreted (Random-intercept EGA)."
 msgstr ""
 
 #: R/texts.R
 msgid "The random-intercept EGA ran without items marked as negatively worded, so it does not show a wording effect; read it only as a sensitivity check (Random-intercept EGA)."
+msgstr ""
+
+#: R/texts.R
+msgid "The random-intercept model converged. Loadings are standardized."
+msgstr ""
+
+#: R/texts.R
+msgid "The random-intercept model did not converge, so there are no random-intercept loadings."
 msgstr ""
 
 #: R/texts.R
@@ -3329,11 +3314,18 @@ msgid "The theoretical structure places %d of %d items as EGA. The items EGA pla
 msgstr ""
 
 #: R/texts.R
+msgid "Their own group"
+msgstr ""
+
+#: R/texts.R
 msgid "Theoretical"
 msgstr ""
 
-#: ega/options/theoryFactors.title
 #: ega/ui[0][2].label
+msgid "Theoretical Structure"
+msgstr ""
+
+#: ega/options/theoryFactors.title
 msgid "Theoretical structure"
 msgstr ""
 
@@ -3394,7 +3386,7 @@ msgid "This table opens up the bifactor model of the comparison above: for each 
 msgstr ""
 
 #: dynega/ui[0][2].label
-msgid "Time (optional)"
+msgid "Time (Optional)"
 msgstr ""
 
 #: dynega/options/time.title
@@ -3409,8 +3401,8 @@ msgstr ""
 msgid "Time points"
 msgstr ""
 
-#: R/texts.R
-msgid "Time points per person (min / median / max)"
+#: dynega/results/dataSummary.columns.superTitle
+msgid "Time points per person"
 msgstr ""
 
 #: R/texts.R
@@ -3418,7 +3410,7 @@ msgid "To compare groups, add a grouping variable (independent groups) or the it
 msgstr ""
 
 #: R/texts.R
-msgid "To compare the theoretical structure as well, drag its items into the factors of Theoretical structure, at the top of the panel."
+msgid "To compare the theoretical structure as well, drag its items into the factors of Theoretical Structure, at the top of the panel."
 msgstr ""
 
 #: R/texts.R
@@ -3479,17 +3471,15 @@ msgstr ""
 msgid "Unique Variable Analysis (UVA) looks for redundant items: pairs that share so many of their connections in the network that they behave almost like the same item (Christensen, Garrido & Golino, 2023; see references)."
 msgstr ""
 
+#: ega/results/bootDims.columns.title
 #: ega/results/cfaCompare.columns.title
 #: ega/results/bnEdges.columns.title
 msgid "Upper"
 msgstr ""
 
 #: ega/results/summary.columns.title
-#: ega/results/hierSummary.columns.title
-#: ega/results/riSummary.columns.title
 #: ega/results/bootSummary.columns.title
 #: dynega/results/summary.columns.title
-#: dynega/results/indAgree.columns.title
 #: R/ega.b.R
 msgid "Value"
 msgstr ""
@@ -3562,6 +3552,10 @@ msgid "White"
 msgstr ""
 
 #: R/texts.R
+msgid "Whole structure (generalized TEFI)"
+msgstr ""
+
+#: R/texts.R
 msgid "Why the ordinal rule differs from EGA: EGA's automatic correlations treat items with 7 or fewer categories as ordinal (polychoric), while the CFA uses WLSMV only below 6 categories, as EGAnetLab's CFA() does. With 6 or 7 categories the network therefore uses polychoric correlations and the CFA uses robust maximum likelihood, which performs well with that many categories (Rhemtulla, Brosseau-Liard & Savalei, 2012; see references). To use the same treatment in both, choose the CFA estimator in the options."
 msgstr ""
 
@@ -3605,6 +3599,10 @@ msgid "dimension %s with %d items"
 msgstr ""
 
 #: R/texts.R
+msgid "each person"
+msgstr ""
+
+#: R/texts.R
 msgid "embedding %d, tau %d, delta %s; derivative analyzed: %s"
 msgstr ""
 
@@ -3629,6 +3627,10 @@ msgid "group %s has %s"
 msgstr ""
 
 #: R/texts.R
+msgid "groups"
+msgstr ""
+
+#: R/texts.R
 msgid "hierEGA does not accept the cosine similarity, so it uses the automatic correlation here."
 msgstr ""
 
@@ -3649,7 +3651,11 @@ msgid "higher-order factor"
 msgstr ""
 
 #: R/texts.R
-msgid "lavaan could not fit the CFA%s: %s."
+msgid "lavaan could not fit the CFA (subsample {p}): {error}."
+msgstr ""
+
+#: R/texts.R
+msgid "lavaan could not fit the CFA: {error}."
 msgstr ""
 
 #: R/texts.R
@@ -3716,6 +3722,10 @@ msgstr ""
 msgid "poor"
 msgstr ""
 
+#: R/texts.R
+msgid "population"
+msgstr ""
+
 #: ega/results/scores.columns.title
 msgid "r with mean score"
 msgstr ""
@@ -3734,6 +3744,10 @@ msgstr ""
 
 #: ega/results/riMembership.columns.title
 msgid "riEGA"
+msgstr ""
+
+#: R/texts.R
+msgid "riEGA (after wording control)"
 msgstr ""
 
 #: R/texts.R
@@ -3758,10 +3772,6 @@ msgstr ""
 
 #: R/texts.R
 msgid "structure and global strength"
-msgstr ""
-
-#: R/ega.b.R
-msgid "subsample "
 msgstr ""
 
 #: R/texts.R
@@ -3806,6 +3816,26 @@ msgstr ""
 
 #: R/ega.b.R
 msgid "z value"
+msgstr ""
+
+#: R/ega.b.R
+msgid "{a} vs. {b}"
+msgstr ""
+
+#: R/ega.b.R
+msgid "{n} samples, {type}"
+msgstr ""
+
+#: R/texts.R
+msgid "{pair}: {a} (n = {na}) and {b} (n = {nb}), the same people measured twice."
+msgstr ""
+
+#: R/texts.R
+msgid "{pair}: {a} (n = {na}) and {b} (n = {nb})."
+msgstr ""
+
+#: R/ega.b.R
+msgid "{used} ({method}; {complete} complete cases)"
 msgstr ""
 
 #: ega/results/cfaCompare.columns.title

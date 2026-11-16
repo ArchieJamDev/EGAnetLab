@@ -1,3 +1,35 @@
+# EGAnetLab 1.0.1 (in development)
+
+Second round of jamovi's module audit (2026-11-13).
+
+* **Numbers in numeric columns.** The bootstrap summary keeps its
+  descriptive rows (items, cases used, bootstrap, seed), and a new
+  *Number of dimensions* table gives the original number, the median, the
+  95% interval (lower, upper) and the SE as numbers. The hierarchical
+  summary has one row per level (lower order, higher order, whole
+  structure) with dimensions and TEFI; the random-intercept summary has one
+  row for EGA and one for riEGA, with dimensions, TEFI and the range of the
+  random-intercept loadings (min, max). In Dynamic EGA, the agreement of
+  each person with the population and with their own group uses
+  percentage and ARI columns, and a new *Data* table gives persons, rows
+  and time points per person (min, median, max). Empty cells are explained
+  in footnotes.
+* **Whole sentences for translators.** Text that was glued together from
+  pieces ("541 (pairwise; 532 complete cases)", "100 samples, parametric",
+  "Subsample A", the NCT sample sizes, the Dynamic EGA status) is now one
+  translatable sentence with named placeholders filled by
+  `jmvcore::format()`.
+* **Panel.** Variable boxes and subheadings use title case ("Grouping
+  Variable", "Same Items, Second Measurement", "Nodes and Labels"), and the
+  option that explains the estimation choices is called *About your
+  choices* in both analyses, like the result it controls.
+* **Code.** The NCT, the random-intercept EGA and the Dynamic EGA run are
+  split into smaller methods (comparisons, table filling, interpretation;
+  estimation, summary, warnings).
+* The plot redraw after a language change stays in its single helper, now
+  marked as a temporary workaround until jamovi supports it (a feature
+  request is being filed).
+
 # EGAnetLab 1.0.0 (released 2026-11-10)
 
 * Archived in Zenodo: version DOI

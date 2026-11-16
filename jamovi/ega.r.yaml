@@ -420,12 +420,15 @@ items:
       - algorithm
       - uniMethod
     columns:
-      - name: element
-        title: Element
+      - name: level
+        title: Level
         type: text
-      - name: value
-        title: Value
-        type: text
+      - name: dims
+        title: Dimensions
+        type: integer
+      - name: tefi
+        title: TEFI
+        type: number
 
   - name: hierMembership
     title: Item membership by level
@@ -507,12 +510,23 @@ items:
       - algorithm
       - uniMethod
     columns:
-      - name: element
-        title: Element
+      - name: structure
+        title: Structure
         type: text
-      - name: value
-        title: Value
-        type: text
+      - name: dims
+        title: Dimensions
+        type: integer
+      - name: tefi
+        title: TEFI
+        type: number
+      - name: loadMin
+        title: Min
+        type: number
+        superTitle: Random-intercept loadings
+      - name: loadMax
+        title: Max
+        type: number
+        superTitle: Random-intercept loadings
 
   - name: riMembership
     title: Item membership with and without wording control
@@ -693,6 +707,44 @@ items:
       - name: value
         title: Value
         type: text
+
+  - name: bootDims
+    title: Number of dimensions
+    type: Table
+    rows: 1
+    visible: (runBoot)
+    refs:
+      - christensen_2021_boot
+    clearWith:
+      - vars
+      - negItems
+      - negCoding
+      - corr
+      - naData
+      - model
+      - algorithm
+      - uniMethod
+      - bootType
+      - iter
+      - seed
+    columns:
+      - name: original
+        title: Original sample
+        type: integer
+      - name: median
+        title: Median
+        type: number
+      - name: low
+        title: Lower
+        type: number
+        superTitle: 95% interval
+      - name: high
+        title: Upper
+        type: number
+        superTitle: 95% interval
+      - name: se
+        title: SE
+        type: number
 
   - name: bootFrequency
     title: Frequency of the number of dimensions

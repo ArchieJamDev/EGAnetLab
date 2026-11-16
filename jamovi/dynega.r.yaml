@@ -97,6 +97,46 @@ items:
         title: Value
         type: text
 
+  - name: dataSummary
+    title: Data
+    type: Table
+    rows: 1
+    clearWith:
+      - vars
+      - id
+      - time
+      - group
+      - nEmbed
+      - tau
+      - delta
+      - derivative
+      - corr
+      - model
+      - algorithm
+      - uniMethod
+      - seed
+      - levelGroup
+      - levelIndividual
+    columns:
+      - name: persons
+        title: Persons
+        type: integer
+      - name: rows
+        title: Rows
+        type: integer
+      - name: ptMin
+        title: Min
+        type: integer
+        superTitle: Time points per person
+      - name: ptMedian
+        title: Median
+        type: number
+        superTitle: Time points per person
+      - name: ptMax
+        title: Max
+        type: integer
+        superTitle: Time points per person
+
   - name: membership
     title: Item membership
     type: Table
@@ -273,12 +313,24 @@ items:
       - levelGroup
       - levelIndividual
     columns:
-      - name: element
-        title: Element
+      - name: comparison
+        title: Compared with
         type: text
-      - name: value
-        title: Value
-        type: text
+      - name: persons
+        title: Persons estimated
+        type: integer
+      - name: sameN
+        title: Same number of dimensions
+        type: number
+        format: pc
+      - name: identical
+        title: Identical structure
+        type: number
+        format: pc
+      - name: median
+        title: Median ARI
+        type: number
+        format: zto
 
   - name: indTable
     title: Every person

@@ -58,8 +58,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             if (length(o$vars) == 0 || is.null(o$id) || length(o$id) == 0)
                 return()
             txt <- function(section, key) .el_text(self, section, key)
-            labels <- c(txt("dyn", "summary_persons"), txt("dyn", "summary_points"),
-                        txt("dyn", "summary_rows"), txt("dyn", "summary_glla"),
+            labels <- c(txt("dyn", "summary_glla"),
                         .("Correlation"), .("Network model"), .("Community detection"),
                         txt("dyn", "summary_ndim"))
             for (i in seq_along(labels))
@@ -130,8 +129,81 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
             # Estimation, cached in the status state.
             # ES: Estimación, en caché en el estado de status.
-            cache <- self$results$status$state
+            cache <- private$.estimate(prep, levels, use_groups, n_embed, deriv, txt)
             warnings <- character(0)
+            warnings <- c(warnings, cache$warnings)
+
+            done_levels <- c(txt("dyn", "level_population"),
+                             if (use_groups) txt("dyn", "level_groups"),
+                             if (isTRUE(o$levelIndividual)) txt("dyn", "level_individual"))
+            self$results$status$setContent(.el_html_block(NULL, jmvcore::format(
+                txt("dyn", "done"), levels = paste(done_levels, collapse = ", "),
+                derivative = deriv_label, embed = as.character(n_embed), seed = as.character(as.integer(o$seed)))))
+
+            # Data and estimation summary.
+            # ES: Resumen de datos y estimación.
+            pop <- cache$population
+            private$.fillSummary(prep, pop, n_embed, fmt_delta, deriv_label, txt)
+
+            notes <- character(0)
+            if (length(prep$dropped) > 0)
+                notes <- c(notes, sprintf(txt("dyn", "dropped"), length(prep$dropped), min_points,
+                                          paste(utils::head(prep$dropped, 20), collapse = ", ")))
+            if (length(prep$schedule) > 0)
+                notes <- c(notes, sprintf(txt("dyn", "schedule_items"), paste(prep$schedule, collapse = ", ")))
+            if (prep$group_varies > 0)
+                notes <- c(notes, sprintf(txt("dyn", "group_varies"), prep$group_varies))
+
+            private$.fillMembership(cache, use_groups, txt)
+
+            private$.interpretPopulation(prep, cache, use_groups, deriv, deriv_label, txt)
+
+            if (isTRUE(o$showNetworkPlot))
+                .el_set_image_state(self, self$results$networkPlot, list(network = pop$network, wc = pop$wc))
+
+            # Individual structures.
+            # ES: Estructuras individuales.
+            if (isTRUE(o$levelIndividual) && !is.null(cache$individual))
+                private$.fillIndividual(cache, pop, txt)
+
+            private$.reportWarnings(notes, warnings, txt)
+        },
+        # ---------------------------------------------------------------------
+        # Data notes and EGAnet messages as native jamovi warnings under the
+        # key findings, which are written here as well.
+        # ES: Notas de los datos y mensajes de EGAnet como avisos nativos de
+        # jamovi bajo los hallazgos clave, que también se escriben aquí.
+        # ---------------------------------------------------------------------
+        .reportWarnings = function(notes, warnings, txt) {
+            o <- self$options
+            # The isolated items are already named in the interpretation.
+            # ES: Los ítems aislados ya se nombran en la interpretación.
+            warnings <- warnings[!grepl("did not belong to a dimension", warnings, fixed = TRUE)]
+            warnings <- .el_translate_notices(self, .el_drop_notices(unique(warnings)))
+            notes <- c(notes, warnings)
+            if (length(warnings) > 0)
+                private$.addKey("warnings", sprintf(txt("key", "notes"), length(warnings)))
+            self$results$keySummary$setTitle(txt("key", "title"))
+            if (isTRUE(o$showKeySummary))
+                self$results$keySummary$setContent(.el_key_summary(self, private$.key))
+            # Each message is a native jamovi warning under the key findings.
+            # ES: Cada mensaje es un aviso nativo de jamovi bajo los
+            # hallazgos clave.
+            for (w in rev(notes))
+                .el_notice(self, "keySummary", w, error = FALSE)
+        },
+
+        # ---------------------------------------------------------------------
+        # Estimation with EGAnet::dynEGA(), cached in the state of status so
+        # that options outside the estimation do not repeat it. Returns the
+        # summary of the population, groups and persons.
+        # ES: Estimación con EGAnet::dynEGA(), en caché en el estado de
+        # status para que las opciones ajenas a la estimación no la repitan.
+        # Devuelve el resumen de la población, los grupos y las personas.
+        # ---------------------------------------------------------------------
+        .estimate = function(prep, levels, use_groups, n_embed, deriv, txt) {
+            o <- self$options
+            cache <- self$results$status$state
             if (is.null(cache)) {
                 private$.checkpoint()
                 run_dyn <- function(data, lv) .el_capture(EGAnet::dynEGA(
@@ -184,23 +256,22 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 cache$warnings <- fit$warnings
                 self$results$status$setState(cache)
             }
-            warnings <- c(warnings, cache$warnings)
+            cache
+        },
 
-            self$results$status$setContent(.el_html_block(NULL, sprintf(
-                txt("dyn", "done"),
-                if (use_groups) txt("dyn", "done_groups") else "",
-                if (isTRUE(o$levelIndividual)) txt("dyn", "done_individual") else "",
-                deriv_label, n_embed, as.integer(o$seed))))
-
-            # Data and estimation summary.
-            # ES: Resumen de datos y estimación.
-            pop <- cache$population
+        # ---------------------------------------------------------------------
+        # Data table (persons, rows and time points as numbers) and the
+        # estimation summary.
+        # ES: Tabla de datos (personas, filas y momentos como números) y el
+        # resumen de la estimación.
+        # ---------------------------------------------------------------------
+        .fillSummary = function(prep, pop, n_embed, fmt_delta, deriv_label, txt) {
+            o <- self$options
             pts <- prep$points
+            self$results$dataSummary$setRow(rowNo = 1, values = list(
+                persons = length(pts), rows = nrow(prep$data),
+                ptMin = as.integer(min(pts)), ptMedian = stats::median(pts), ptMax = as.integer(max(pts))))
             rows <- list(
-                list(txt("dyn", "summary_persons"), as.character(length(pts))),
-                list(txt("dyn", "summary_points"), sprintf("%d / %s / %d", min(pts),
-                                                           .el_fmt_num(stats::median(pts), 1), max(pts))),
-                list(txt("dyn", "summary_rows"), as.character(nrow(prep$data))),
                 list(txt("dyn", "summary_glla"), sprintf(txt("dyn", "summary_glla_value"), n_embed,
                                                          as.integer(o$tau), fmt_delta, deriv_label)),
                 list(.("Correlation"), switch(o$corr,
@@ -213,44 +284,8 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             )
             for (i in seq_along(rows))
                 .el_add_row(self$results$summary, i, list(element = rows[[i]][[1]], value = rows[[i]][[2]]))
-
-            notes <- character(0)
-            if (length(prep$dropped) > 0)
-                notes <- c(notes, sprintf(txt("dyn", "dropped"), length(prep$dropped), min_points,
-                                          paste(utils::head(prep$dropped, 20), collapse = ", ")))
-            if (length(prep$schedule) > 0)
-                notes <- c(notes, sprintf(txt("dyn", "schedule_items"), paste(prep$schedule, collapse = ", ")))
-            if (prep$group_varies > 0)
-                notes <- c(notes, sprintf(txt("dyn", "group_varies"), prep$group_varies))
-
-            private$.fillMembership(cache, use_groups, txt)
-
-            private$.interpretPopulation(prep, cache, use_groups, deriv, deriv_label, txt)
-
-            if (isTRUE(o$showNetworkPlot))
-                .el_set_image_state(self, self$results$networkPlot, list(network = pop$network, wc = pop$wc))
-
-            # Individual structures.
-            # ES: Estructuras individuales.
-            if (isTRUE(o$levelIndividual) && !is.null(cache$individual))
-                private$.fillIndividual(cache, pop, txt)
-
-            # The isolated items are already named in the interpretation.
-            # ES: Los ítems aislados ya se nombran en la interpretación.
-            warnings <- warnings[!grepl("did not belong to a dimension", warnings, fixed = TRUE)]
-            warnings <- .el_translate_notices(self, .el_drop_notices(unique(warnings)))
-            notes <- c(notes, warnings)
-            if (length(warnings) > 0)
-                private$.addKey("warnings", sprintf(txt("key", "notes"), length(warnings)))
-            self$results$keySummary$setTitle(txt("key", "title"))
-            if (isTRUE(o$showKeySummary))
-                self$results$keySummary$setContent(.el_key_summary(self, private$.key))
-            # Each message is a native jamovi warning under the key findings.
-            # ES: Cada mensaje es un aviso nativo de jamovi bajo los
-            # hallazgos clave.
-            for (w in rev(notes))
-                .el_notice(self, "keySummary", w, error = FALSE)
         },
+
         # ---------------------------------------------------------------------
         # Item membership (population and groups) and the group table.
         # ES: Pertenencia de los ítems (población y grupos) y la tabla de grupos.
@@ -391,21 +426,20 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             identical_wc <- mean(est$ari >= 1 - 1e-12, na.rm = TRUE)
             median_ari <- stats::median(est$ari, na.rm = TRUE)
             agree <- self$results$indAgree
-            rows <- list(
-                list(txt("dyn", "agree_persons"), sprintf("%d / %d", nrow(est), nrow(ind))),
-                list(txt("dyn", "agree_same_n"), pct(same_n)),
-                list(txt("dyn", "agree_identical"), pct(identical_wc)),
-                list(txt("dyn", "agree_median"), .el_fmt_num(median_ari, 2)))
+            .el_add_row(agree, 1, list(comparison = txt("dyn", "agree_population"), persons = nrow(est),
+                                       sameN = same_n, identical = identical_wc,
+                                       median = .el_clean_num(median_ari)))
             has_group <- "ari_group" %in% names(est) && any(!is.na(est$ari_group))
             if (has_group) {
                 group_identical <- mean(est$ari_group >= 1 - 1e-12, na.rm = TRUE)
                 group_median <- stats::median(est$ari_group, na.rm = TRUE)
-                rows <- c(rows, list(
-                    list(txt("dyn", "agree_group_identical"), pct(group_identical)),
-                    list(txt("dyn", "agree_group_median"), .el_fmt_num(group_median, 2))))
+                .el_add_row(agree, 2, list(comparison = txt("dyn", "agree_group"),
+                                           persons = sum(!is.na(est$ari_group)), sameN = "",
+                                           identical = group_identical, median = .el_clean_num(group_median)))
+                agree$addFootnote(rowNo = 2, col = "sameN", txt("dyn", "agree_no_same_n"))
             }
-            for (i in seq_along(rows))
-                .el_add_row(agree, i, list(element = rows[[i]][[1]], value = rows[[i]][[2]]))
+            agree$setNote("persons", jmvcore::format(txt("dyn", "agree_persons_note"),
+                                                     n = as.character(nrow(est)), total = as.character(nrow(ind))))
             agree$setNote("ari", txt("dyn", "agree_note"))
 
             if (isTRUE(self$options$showIndTable) && has_group) {

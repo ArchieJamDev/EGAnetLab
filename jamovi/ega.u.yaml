@@ -39,14 +39,14 @@ children:
             name: vars
             isTarget: true
       - type: TargetLayoutBox
-        label: Negatively worded items
+        label: Negatively Worded Items
         children:
           - type: VariablesListBox
             name: negItems
             isTarget: true
             height: small
       - type: TargetLayoutBox
-        label: Theoretical structure
+        label: Theoretical Structure
         children:
           - type: ListBox
             name: theoryFactors
@@ -79,14 +79,14 @@ children:
                   height: auto
                   ghostText: drag variables here
       - type: TargetLayoutBox
-        label: Grouping variable
+        label: Grouping Variable
         children:
           - type: VariablesListBox
             name: group
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
-        label: Same items, second measurement
+        label: Same Items, Second Measurement
         children:
           - type: VariablesListBox
             name: pairedVars
@@ -208,7 +208,7 @@ children:
         stretchFactor: 1
         children:
           - type: Label
-            label: Invariance (independent groups)
+            label: Invariance (Independent Groups)
             children:
               - type: CheckBox
                 name: runInvariance
@@ -370,7 +370,7 @@ children:
           row: 0
         children:
           - type: Label
-            label: Nodes and labels
+            label: Nodes and Labels
             children:
               - type: TextBox
                 name: nodeSize
@@ -480,7 +480,7 @@ children:
           row: 1
         children:
           - type: Label
-            label: Nodes and edges
+            label: Nodes and Edges
             children:
               - type: TextBox
                 name: hierItemSize

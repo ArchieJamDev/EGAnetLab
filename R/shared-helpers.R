@@ -136,19 +136,34 @@
 # .el_set_image_state()
 #
 # Sets a plot's state and makes jamovi draw it again when the state changed.
-# jamovi keeps an image already drawn unless an option in its clearWith
-# changes, so after switching jamovi's language the plots kept the axis and
-# legend text of the old language while the tables were translated. The
+# When results are restored, jamovi keeps an image already drawn unless an
+# option in its clearWith changes, the plot is resized, or the theme or
+# palette changes. A language change is not in that list, so the plots kept
+# the axis and legend text of the old language while the tables were
+# translated. The
 # state carries a translated marker, so a new language changes the state and
 # the plot is drawn again; an unchanged state keeps the image already drawn.
 #
 # ES: Fija el estado de un gráfico y hace que jamovi lo vuelva a dibujar
-# cuando el estado cambió. jamovi conserva una imagen ya dibujada salvo que
-# cambie una opción de su clearWith, así que al cambiar el idioma de jamovi
-# los gráficos conservaban los ejes y leyendas del idioma anterior mientras
-# las tablas se traducían. El estado lleva una marca traducida, así que un
+# cuando el estado cambió. Al restaurar los resultados, jamovi conserva una
+# imagen ya dibujada salvo que cambie una opción de su clearWith, se
+# redimensione el gráfico o cambie el tema o la paleta. El cambio de idioma
+# no está en esa lista, así que los gráficos conservaban los ejes y
+# leyendas del idioma anterior mientras las tablas se traducían. El estado lleva una marca traducida, así que un
 # idioma nuevo cambia el estado y el gráfico se vuelve a dibujar; un estado
 # sin cambios conserva la imagen ya dibujada.
+#
+# TEMPORARY WORKAROUND. image$.setPath() is jmvcore internal, not public
+# API. It stays in this one helper until jamovi itself redraws images when
+# the results language changes, as it already does for a theme or palette
+# change. Feature request: <link to the jamovi issue>. When jamovi ships
+# it, delete the .setPath() call (keep setState()).
+# ES: SOLUCIÓN PROVISIONAL. image$.setPath() es interno de jmvcore, no API
+# pública. Queda solo en este helper hasta que jamovi vuelva a dibujar las
+# imágenes cuando cambia el idioma de los resultados, como ya hace al
+# cambiar el tema o la paleta. Solicitud: <enlace a la issue de jamovi>.
+# Cuando jamovi lo incorpore, borrar la llamada a .setPath() (dejar
+# setState()).
 # -----------------------------------------------------------------------------
 .el_set_image_state <- function(self, image, state) {
     state$language <- .("Dimension")

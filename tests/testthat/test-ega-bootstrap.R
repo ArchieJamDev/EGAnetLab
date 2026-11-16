@@ -53,10 +53,11 @@ test_that("the bootstrap resamples the same EGA shown above", {
     res <- runBoot(data)
 
     ega_dims <- res$solution$asDF$dims
-    boot <- res$bootSummary$asDF
-    original <- boot$value[boot$element == "Dimensions in the original sample"]
-    expect_equal(original, as.character(ega_dims))
-    expect_equal(original, "3")
+    dims <- res$bootDims$asDF
+    expect_equal(dims$original, ega_dims)
+    expect_equal(dims$original, 3)
+    expect_true(is.numeric(dims$median) && dims$low <= dims$high)
+    expect_equal(res$bootSummary$asDF$element, c("Items", "Cases used", "Bootstrap", "Seed"))
 
     freq <- res$bootFrequency$asDF
     expect_equal(sum(freq$count), 20)
@@ -96,7 +97,8 @@ test_that("the bootstrap renders in Spanish", {
     data <- edgeStructureData()
     res <- inSpanish(runBoot(data, bootType = "resampling"))
 
-    expect_true("Dimensiones en la muestra original" %in% res$bootSummary$asDF$element)
+    expect_true("Casos usados" %in% res$bootSummary$asDF$element)
+    expect_match(res$bootSummary$asDF$value[3], "muestras", fixed = TRUE)
     expect_match(res$choicesGuide$content, "Tipo de bootstrap: Remuestreo (casos)", fixed = TRUE)
 })
 

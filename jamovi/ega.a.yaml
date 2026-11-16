@@ -27,7 +27,7 @@ title: Exploratory Graph Analysis
 menuGroup: EGAnet Lab
 menuSubgroup: Dimensionality
 menuTitle: Exploratory Graph Analysis
-version: '1.0.0'
+version: '1.0.1'
 jas: '1.2'
 
 description:
@@ -565,7 +565,7 @@ options:
     default: true
 
   - name: showChoicesGuide
-    title: Explain my choices
+    title: About your choices
     type: Bool
     default: true
 

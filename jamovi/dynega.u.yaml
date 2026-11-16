@@ -45,14 +45,14 @@ children:
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
-        label: Time (optional)
+        label: Time (Optional)
         children:
           - type: VariablesListBox
             name: time
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
-        label: Grouping variable (optional)
+        label: Grouping Variable (Optional)
         children:
           - type: VariablesListBox
             name: group
@@ -155,7 +155,7 @@ children:
           row: 0
         children:
           - type: Label
-            label: Nodes and labels
+            label: Nodes and Labels
             children:
               - type: TextBox
                 name: nodeSize

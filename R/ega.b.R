@@ -106,11 +106,22 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 self$results$summary$addRow(rowKey = i, values = list(element = summary_labels[i]))
 
             if (isTRUE(self$options$runBoot)) {
-                boot_labels <- c(.("Items"), .("Cases used"), .("Bootstrap"), .("Seed"),
-                                 .("Dimensions in the original sample"), .("Median number of dimensions"),
-                                 .("95% interval (2.5th to 97.5th percentile)"), .("Standard error"))
+                boot_labels <- c(.("Items"), .("Cases used"), .("Bootstrap"), .("Seed"))
                 for (i in seq_along(boot_labels))
                     self$results$bootSummary$addRow(rowKey = i, values = list(element = boot_labels[i]))
+            }
+
+            if (isTRUE(self$options$runHier)) {
+                levels <- c(.el_text(self, "hier", "row_lower"), .el_text(self, "hier", "row_higher"),
+                            .el_text(self, "hier", "row_general"))
+                for (i in seq_along(levels))
+                    self$results$hierSummary$addRow(rowKey = i, values = list(level = levels[i]))
+            }
+
+            if (isTRUE(self$options$runRI)) {
+                structures <- c(.el_text(self, "ri", "row_ega"), .el_text(self, "ri", "row_riega"))
+                for (i in seq_along(structures))
+                    self$results$riSummary$addRow(rowKey = i, values = list(structure = structures[i]))
             }
 
             if (isTRUE(self$options$runBootnet)) {
@@ -120,6 +131,18 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 for (i in seq_along(cs_labels))
                     self$results$bnCS$addRow(rowKey = i, values = list(measure = cs_labels[i]))
             }
+        },
+
+        # ---------------------------------------------------------------------
+        # "541 (pairwise; 532 complete cases)" as one translatable sentence.
+        # ES: "541 (por pares; 532 casos completos)" como una sola frase
+        # traducible.
+        # ---------------------------------------------------------------------
+        .casesUsedText = function(used, complete) {
+            jmvcore::format(.("{used} ({method}; {complete} complete cases)"),
+                            used = as.character(used),
+                            method = .el_choice_label(self, self$options$naData),
+                            complete = as.character(complete))
         },
 
         .run = function() {
@@ -398,15 +421,13 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 auto = .("Automatic (Pearson / polychoric)"),
                 pearson = "Pearson", spearman = "Spearman", cosine = .("Cosine"))
             if (identical(self$options$corr, "auto") && isTRUE(prep$ordinal_like))
-                corr_label <- paste0(corr_label, .("; items with 7 or fewer categories treated as ordinal"))
+                corr_label <- .("Automatic (Pearson / polychoric); items with 7 or fewer categories treated as ordinal")
 
             n_used <- if (identical(self$options$naData, "listwise")) prep$n_complete else prep$n_total
 
             summary_rows <- list(
                 list(.("Items"), as.character(length(items))),
-                list(.("Cases used"), paste0(
-                    n_used, " (", .el_choice_label(self, self$options$naData), "; ",
-                    prep$n_complete, .(" complete cases)"))),
+                list(.("Cases used"), private$.casesUsedText(n_used, prep$n_complete)),
                 list(.("Correlation"), corr_label),
                 list(.("Network model"), .el_choice_label(self, self$options$model)),
                 list(.("Community detection"), .el_choice_label(self, self$options$algorithm)),
@@ -852,7 +873,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         data = d, corr = self$options$corr, na.data = self$options$naData,
                         model = self$options$model, algorithm = self$options$algorithm,
                         uni.method = self$options$uniMethod, plot.EGA = FALSE, verbose = FALSE))
-                    warnings <- c(warnings, .el_tag_notices(ega_p$warnings, paste0(.("SubSample "), p)))
+                    warnings <- c(warnings, .el_tag_notices(ega_p$warnings, jmvcore::format(.("Subsample {p}"), p = p)))
                     samples[[p]] <- list(
                         data = d, ega = ega_p$value, error = ega_p$error,
                         wc = if (!is.null(ega_p$value)) .el_align_wc(ega_p$value$wc, wc_total) else NULL)
@@ -903,9 +924,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 status <- c(status, sprintf(txt("cfa", "dropped_factor"), paste(fit_total$dropped, collapse = ", ")))
             for (p in names(fits))
                 if (!isTRUE(fits[[p]]$ok))
-                    status <- c(status, sprintf(txt("cfa", "failed"),
-                        if (p == "total") "" else paste0(" (", .("subsample "), p, ")"),
-                        fits[[p]]$error))
+                    status <- c(status, if (p == "total")
+                        jmvcore::format(txt("cfa", "failed"), error = fits[[p]]$error)
+                        else jmvcore::format(txt("cfa", "failed_sub"), p = p, error = fits[[p]]$error))
             if (split) for (p in c("A", "B"))
                 if (is.null(samples[[p]]$ega))
                     status <- c(status, sprintf(txt("common", "estimation_failed"), samples[[p]]$error))
@@ -1504,6 +1525,116 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             fit$warnings
         },
 
+        # ---------------------------------------------------------------------
+        # The comparisons of the NCT: every pair of independent groups, and
+        # the paired comparison when a second measurement is given.
+        # ES: Las comparaciones del NCT: cada par de grupos independientes, y
+        # la comparación pareada cuando hay una segunda medición.
+        # ---------------------------------------------------------------------
+        .nctComparisons = function(prep, items, g, d2) {
+            # Comparisons: every pair of independent groups, and the paired
+            # comparison when a second measurement is given.
+            # ES: Comparaciones: cada par de grupos independientes, y la
+            # comparación pareada cuando hay una segunda medición.
+            comps <- list()
+            if (!is.null(g)) {
+                levels <- unique(g[!is.na(g)])
+                for (pr in utils::combn(levels, 2, simplify = FALSE)) {
+                    d1 <- prep$data[!is.na(g) & g == pr[1], items, drop = FALSE]
+                    dd <- prep$data[!is.na(g) & g == pr[2], items, drop = FALSE]
+                    comps[[length(comps) + 1]] <- list(label = jmvcore::format(.("{a} vs. {b}"), a = pr[1], b = pr[2]), names = pr,
+                        d1 = d1[stats::complete.cases(d1), , drop = FALSE],
+                        d2 = dd[stats::complete.cases(dd), , drop = FALSE], paired = FALSE)
+                }
+            }
+            if (!is.null(d2)) {
+                d1 <- prep$data[, items, drop = FALSE]
+                both <- stats::complete.cases(d1) & stats::complete.cases(d2)
+                comps[[length(comps) + 1]] <- list(label = .("Measurement 1 vs. 2"),
+                    names = c(.("Measurement 1"), .("Measurement 2")),
+                    d1 = d1[both, , drop = FALSE], d2 = d2[both, , drop = FALSE], paired = TRUE)
+            }
+            comps
+        },
+
+        # ---------------------------------------------------------------------
+        # Rows of one NCT comparison in the global, edge and centrality
+        # tables. Returns the row counters and the number of edges and items
+        # that differ.
+        # ES: Filas de una comparación del NCT en las tablas global, de
+        # aristas y de centralidad. Devuelve los contadores de filas y el
+        # número de aristas e ítems que difieren.
+        # ---------------------------------------------------------------------
+        .fillNCTComparison = function(cmp, v, global, edge_table, cen_table, k, ke, kc, txt) {
+            k <- k + 1
+            .el_add_row(global, k, list(pair = cmp$label, test = txt("nct", "row_M"),
+                value1 = "", value2 = "", stat = .el_clean_num(v$M), p = .el_clean_num(v$M_p)))
+            k <- k + 1
+            .el_add_row(global, k, list(pair = cmp$label, test = txt("nct", "row_S"),
+                value1 = .el_clean_num(v$strength[1]), value2 = .el_clean_num(v$strength[2]),
+                stat = .el_clean_num(v$S), p = .el_clean_num(v$S_p)))
+
+            n_edges <- 0
+            if (!is.null(v$edges)) {
+                e <- v$edges[!is.na(v$edges$p) & v$edges$p <= 0.05, , drop = FALSE]
+                n_edges <- nrow(e)
+                for (i in seq_len(nrow(e))) {
+                    ke <- ke + 1
+                    .el_add_row(edge_table, ke, list(pair = cmp$label, edge = paste(e$a[i], "—", e$b[i]),
+                        w1 = .el_clean_num(e$w1[i]), w2 = .el_clean_num(e$w2[i]),
+                        diff = .el_clean_num(e$w1[i] - e$w2[i]), p = .el_clean_num(e$p[i])))
+                }
+            }
+            n_cen <- 0
+            if (!is.null(v$centrality)) {
+                cen <- v$centrality
+                n_cen <- sum(!is.na(cen$p) & cen$p <= 0.05)
+                for (i in seq_len(nrow(cen))) {
+                    kc <- kc + 1
+                    .el_add_row(cen_table, kc, list(pair = cmp$label, item = cen$item[i],
+                        measure = if (cen$measure[i] == "strength") .("Strength") else
+                            .("Expected influence"),
+                        diff = .el_clean_num(cen$diff[i]), p = .el_clean_num(cen$p[i])))
+                }
+            }
+
+            list(k = k, ke = ke, kc = kc, n_edges = n_edges, n_cen = n_cen)
+        },
+
+        # ---------------------------------------------------------------------
+        # Interpretation and key finding of one NCT comparison.
+        # ES: Interpretación y hallazgo clave de una comparación del NCT.
+        # ---------------------------------------------------------------------
+        .interpretNCTComparison = function(cmp, v, n_edges, n_cen, txt) {
+            o <- self$options
+            paragraphs <- character(0)
+            # Interpretation of this comparison.
+            # ES: Interpretación de esta comparación.
+            paragraphs <- c(paragraphs, jmvcore::format(txt("nct", if (cmp$paired) "interp_n_paired" else "interp_n"),
+                pair = cmp$label, a = cmp$names[1], na = as.character(nrow(cmp$d1)),
+                b = cmp$names[2], nb = as.character(nrow(cmp$d2))))
+            paragraphs <- c(paragraphs, sprintf(
+                txt("nct", if (isTRUE(v$M_p <= 0.05)) "interp_M_sig" else "interp_M_ns"),
+                .el_fmt_num(v$M, 3), .el_fmt_p(v$M_p)))
+            paragraphs <- c(paragraphs, sprintf(
+                txt("nct", if (isTRUE(v$S_p <= 0.05)) "interp_S_sig" else "interp_S_ns"),
+                .el_fmt_num(v$strength[1], 2), cmp$names[1], .el_fmt_num(v$strength[2], 2), cmp$names[2],
+                .el_fmt_p(v$S_p)))
+            m_sig <- isTRUE(v$M_p <= 0.05)
+            s_sig <- isTRUE(v$S_p <= 0.05)
+            pair_label <- paste(cmp$names, collapse = " / ")
+            private$.addKey("findings", if (!m_sig && !s_sig) sprintf(txt("key", "nct_same"), pair_label)
+                else sprintf(txt("key", "nct_diff"), pair_label,
+                             txt("key", if (m_sig && s_sig) "nct_both" else if (m_sig) "nct_structure" else "nct_strength")))
+            if (isTRUE(o$nctEdges))
+                paragraphs <- c(paragraphs, if (n_edges == 0) txt("nct", "interp_edges_none") else
+                    sprintf(txt("nct", "interp_edges_some"), n_edges))
+            if (isTRUE(o$nctCentrality))
+                paragraphs <- c(paragraphs, if (n_cen == 0) txt("nct", "interp_cen_none") else
+                    sprintf(txt("nct", "interp_cen_some"), n_cen))
+            paragraphs
+        },
+
         .runNCT = function(prep, ega, g, d2, seed, txt) {
 
             o <- self$options
@@ -1520,30 +1651,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                             "estimator_pearson_ordinal" else "estimator_pearson"),
                         sprintf(txt("nct", "iter_seed"), as.integer(o$nctIter), seed))
             if (!identical(o$model, "glasso"))
-                status <- c(status, sprintf(txt("nct", "model_note"), o$model))
+                status <- c(status, sprintf(txt("nct", "model_note"), .el_choice_label(self, o$model)))
 
-            # Comparisons: every pair of independent groups, and the paired
-            # comparison when a second measurement is given.
-            # ES: Comparaciones: cada par de grupos independientes, y la
-            # comparación pareada cuando hay una segunda medición.
-            comps <- list()
-            if (!is.null(g)) {
-                levels <- unique(g[!is.na(g)])
-                for (pr in utils::combn(levels, 2, simplify = FALSE)) {
-                    d1 <- prep$data[!is.na(g) & g == pr[1], items, drop = FALSE]
-                    dd <- prep$data[!is.na(g) & g == pr[2], items, drop = FALSE]
-                    comps[[length(comps) + 1]] <- list(label = paste(pr[1], "vs.", pr[2]), names = pr,
-                        d1 = d1[stats::complete.cases(d1), , drop = FALSE],
-                        d2 = dd[stats::complete.cases(dd), , drop = FALSE], paired = FALSE)
-                }
-            }
-            if (!is.null(d2)) {
-                d1 <- prep$data[, items, drop = FALSE]
-                both <- stats::complete.cases(d1) & stats::complete.cases(d2)
-                comps[[length(comps) + 1]] <- list(label = .("Measurement 1 vs. 2"),
-                    names = c(.("Measurement 1"), .("Measurement 2")),
-                    d1 = d1[both, , drop = FALSE], d2 = d2[both, , drop = FALSE], paired = TRUE)
-            }
+            comps <- private$.nctComparisons(prep, items, g, d2)
             if (length(comps) == 0) {
                 self$results$nctStatus$setContent(.el_html_block(heading, status))
                 .el_notice(self, "nctStatus", txt("nct", "nothing"), error = FALSE)
@@ -1585,62 +1695,9 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     next
                 }
                 v <- fit$value
-                k <- k + 1
-                .el_add_row(global, k, list(pair = cmp$label, test = txt("nct", "row_M"),
-                    value1 = "", value2 = "", stat = .el_clean_num(v$M), p = .el_clean_num(v$M_p)))
-                k <- k + 1
-                .el_add_row(global, k, list(pair = cmp$label, test = txt("nct", "row_S"),
-                    value1 = .el_clean_num(v$strength[1]), value2 = .el_clean_num(v$strength[2]),
-                    stat = .el_clean_num(v$S), p = .el_clean_num(v$S_p)))
-
-                n_edges <- 0
-                if (!is.null(v$edges)) {
-                    e <- v$edges[!is.na(v$edges$p) & v$edges$p <= 0.05, , drop = FALSE]
-                    n_edges <- nrow(e)
-                    for (i in seq_len(nrow(e))) {
-                        ke <- ke + 1
-                        .el_add_row(edge_table, ke, list(pair = cmp$label, edge = paste(e$a[i], "—", e$b[i]),
-                            w1 = .el_clean_num(e$w1[i]), w2 = .el_clean_num(e$w2[i]),
-                            diff = .el_clean_num(e$w1[i] - e$w2[i]), p = .el_clean_num(e$p[i])))
-                    }
-                }
-                n_cen <- 0
-                if (!is.null(v$centrality)) {
-                    cen <- v$centrality
-                    n_cen <- sum(!is.na(cen$p) & cen$p <= 0.05)
-                    for (i in seq_len(nrow(cen))) {
-                        kc <- kc + 1
-                        .el_add_row(cen_table, kc, list(pair = cmp$label, item = cen$item[i],
-                            measure = if (cen$measure[i] == "strength") .("Strength") else
-                                .("Expected influence"),
-                            diff = .el_clean_num(cen$diff[i]), p = .el_clean_num(cen$p[i])))
-                    }
-                }
-
-                # Interpretation of this comparison.
-                # ES: Interpretación de esta comparación.
-                paragraphs <- c(paragraphs, sprintf(txt("nct", "interp_n"), cmp$label,
-                    cmp$names[1], nrow(cmp$d1), cmp$names[2], nrow(cmp$d2),
-                    if (cmp$paired) txt("nct", "paired_word") else ""))
-                paragraphs <- c(paragraphs, sprintf(
-                    txt("nct", if (isTRUE(v$M_p <= 0.05)) "interp_M_sig" else "interp_M_ns"),
-                    .el_fmt_num(v$M, 3), .el_fmt_p(v$M_p)))
-                paragraphs <- c(paragraphs, sprintf(
-                    txt("nct", if (isTRUE(v$S_p <= 0.05)) "interp_S_sig" else "interp_S_ns"),
-                    .el_fmt_num(v$strength[1], 2), cmp$names[1], .el_fmt_num(v$strength[2], 2), cmp$names[2],
-                    .el_fmt_p(v$S_p)))
-                m_sig <- isTRUE(v$M_p <= 0.05)
-                s_sig <- isTRUE(v$S_p <= 0.05)
-                pair_label <- paste(cmp$names, collapse = " / ")
-                private$.addKey("findings", if (!m_sig && !s_sig) sprintf(txt("key", "nct_same"), pair_label)
-                    else sprintf(txt("key", "nct_diff"), pair_label,
-                                 txt("key", if (m_sig && s_sig) "nct_both" else if (m_sig) "nct_structure" else "nct_strength")))
-                if (isTRUE(o$nctEdges))
-                    paragraphs <- c(paragraphs, if (n_edges == 0) txt("nct", "interp_edges_none") else
-                        sprintf(txt("nct", "interp_edges_some"), n_edges))
-                if (isTRUE(o$nctCentrality))
-                    paragraphs <- c(paragraphs, if (n_cen == 0) txt("nct", "interp_cen_none") else
-                        sprintf(txt("nct", "interp_cen_some"), n_cen))
+                counts <- private$.fillNCTComparison(cmp, v, global, edge_table, cen_table, k, ke, kc, txt)
+                k <- counts$k; ke <- counts$ke; kc <- counts$kc
+                paragraphs <- c(paragraphs, private$.interpretNCTComparison(cmp, v, counts$n_edges, counts$n_cen, txt))
             }
             if (isTRUE(o$nctEdges) && ke == 0)
                 .el_add_row(edge_table, 1, list(edge = txt("nct", "no_edges_note"),
@@ -2034,7 +2091,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             heading <- .("Hierarchical EGA")
             summary <- self$results$hierSummary
             members <- self$results$hierMembership
-            summary$deleteRows()
             fmt <- function(x) .el_fmt_num(x, 3, "—")
             intro <- c(txt("hier", "intro"))
 
@@ -2083,20 +2139,23 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             tefi_higher <- if (has_higher) .el_clean_num(h$higher_order$TEFI) else NA_real_
             tefi_general <- .el_clean_num(h$TEFI)
             hierarchical <- has_higher && !is.na(n_higher) && n_higher < n_lower
-            better <- if (hierarchical && !is.na(tefi_lower) && !is.na(tefi_higher)) {
-                if (tefi_lower < tefi_higher) txt("hier", "better_lower") else txt("hier", "better_higher")
-            } else "—"
-
-            rows <- list(
-                list(.("Items"), as.character(length(items))),
-                list(txt("hier", "row_lower"), if (is.na(n_lower)) "—" else as.character(n_lower)),
-                list(txt("hier", "row_higher"), if (is.na(n_higher)) "—" else as.character(n_higher)),
-                list(txt("hier", "row_tefi_lower"), fmt(tefi_lower)),
-                list(txt("hier", "row_tefi_higher"), fmt(tefi_higher)),
-                list(txt("hier", "row_tefi_general"), fmt(tefi_general)),
-                list(txt("hier", "row_better"), better))
-            for (i in seq_along(rows))
-                .el_add_row(summary, i, list(element = rows[[i]][[1]], value = rows[[i]][[2]]))
+            # One row per level, with the statistics as numbers; an empty
+            # cell is explained in a footnote.
+            # ES: Una fila por nivel, con los estadísticos como números; una
+            # celda vacía se explica en una nota al pie.
+            levels <- list(
+                list(txt("hier", "row_lower"), n_lower, tefi_lower),
+                list(txt("hier", "row_higher"), n_higher, tefi_higher),
+                list(txt("hier", "row_general"), NA_real_, tefi_general))
+            for (i in seq_along(levels))
+                .el_add_row(summary, i, list(level = levels[[i]][[1]],
+                                             dims = if (is.na(levels[[i]][[2]])) "" else as.integer(levels[[i]][[2]]),
+                                             tefi = if (is.na(levels[[i]][[3]])) "" else levels[[i]][[3]]))
+            if (!has_higher)
+                summary$addFootnote(rowNo = 2, col = "dims", txt("hier", "note_no_higher"))
+            if (hierarchical && !is.na(tefi_lower) && !is.na(tefi_higher))
+                summary$setNote("better", jmvcore::format(txt("hier", "note_better"),
+                    structure = if (tefi_lower < tefi_higher) txt("hier", "better_lower") else txt("hier", "better_higher")))
 
             dash <- function(x) if (is.na(x)) "—" else x
             labels <- sort(unique(stats::na.omit(as.character(aligned))))
@@ -2166,6 +2225,83 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
         },
 
         # ---------------------------------------------------------------------
+        # Random-intercept summary: one row for EGA and one for riEGA, with
+        # the number of dimensions, the TEFI of riEGA and the range of the
+        # random-intercept loadings as numbers.
+        # ES: Resumen del intercepto aleatorio: una fila para EGA y otra
+        # para riEGA, con el número de dimensiones, el TEFI de riEGA y el
+        # rango de las cargas del intercepto aleatorio como números.
+        # ---------------------------------------------------------------------
+        .fillRISummary = function(summary, n_ega, n_ri, tefi, load_min, load_max, converged, txt) {
+            blank <- function(x) if (is.na(x)) "" else x
+            .el_add_row(summary, 1, list(structure = txt("ri", "row_ega"), dims = as.integer(n_ega),
+                                         tefi = "", loadMin = "", loadMax = ""))
+            .el_add_row(summary, 2, list(structure = txt("ri", "row_riega"),
+                                         dims = if (is.na(n_ri)) "" else as.integer(n_ri),
+                                         tefi = blank(tefi), loadMin = blank(load_min), loadMax = blank(load_max)))
+            if (!is.na(tefi))
+                summary$addFootnote(rowNo = 2, col = "tefi", txt("ri", "note_tefi"))
+            summary$setNote("model", txt("ri", if (converged) "note_converged" else "note_not_converged"))
+        },
+
+        # ---------------------------------------------------------------------
+        # Key findings and interpretation of the random-intercept EGA.
+        # ES: Hallazgos clave e interpretación del EGA con intercepto
+        # aleatorio.
+        # ---------------------------------------------------------------------
+        .interpretRI = function(items, ref, neg, agree, converged, n_ri, n_ega, load_min, load_max, txt) {
+            fmt <- function(x) .el_fmt_num(x, 3, "—")
+            # Interpretation.
+            # ES: Interpretación.
+            paragraphs <- character(0)
+            if (!converged)
+                private$.addKey("warnings", txt("key", "ri_not_converged"))
+            else if (!is.na(n_ri) && n_ri == 0)
+                private$.addKey("findings", txt("key", "ri_empty"))
+            else if (!is.na(n_ri) && n_ri != n_ega)
+                private$.addKey("findings", sprintf(txt("key", "ri_changed"), as.integer(n_ri), as.integer(n_ega)))
+            else if (!is.na(n_ri))
+                private$.addKey("findings", txt("key", "ri_same"))
+            if (converged && length(neg) == 0)
+                private$.addKey("uncertain", txt("key", "ri_no_neg"))
+            if (!converged) {
+                paragraphs <- c(paragraphs, txt("ri", "interp_not_converged"))
+            } else {
+                paragraphs <- c(paragraphs, jmvcore::format(txt("ri", "interp_converged"),
+                                                            min = fmt(load_min), max = fmt(load_max)))
+                if (length(neg) == 0)
+                    paragraphs <- c(paragraphs, txt("ri", "interp_no_neg"))
+                if (!is.na(n_ri) && n_ri == n_ega && length(agree$moved) == 0)
+                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_same"), n_ega))
+                else if (!is.na(n_ri) && n_ri == 0)
+                    paragraphs <- c(paragraphs, txt("ri", "interp_empty"))
+                else if (!is.na(n_ri) && n_ri < n_ega)
+                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_fewer"), n_ri, n_ega))
+                else if (!is.na(n_ri) && n_ri > n_ega)
+                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_more"), n_ri, n_ega))
+                if (length(agree$moved) > 0)
+                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_moved"), paste(agree$moved, collapse = ", ")))
+            }
+            # A dimension of EGA made only of negatively worded items is the
+            # classic sign of a wording factor.
+            # ES: Una dimensión de EGA formada solo por ítems redactados en
+            # negativo es la señal clásica de un factor de redacción.
+            if (length(neg) > 0) {
+                for (g in unique(stats::na.omit(ref))) {
+                    own <- items[!is.na(ref) & ref == g]
+                    if (length(own) >= 2 && all(own %in% neg))
+                        paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_neg_dim"), g, paste(own, collapse = ", ")))
+                }
+                moved_neg <- intersect(agree$moved, neg)
+                if (length(moved_neg) > 0)
+                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_neg_moved"),
+                                                        length(moved_neg), length(agree$moved)))
+            }
+            paragraphs <- c(paragraphs, txt("ri", "interp_validity"), txt("ri", "interp_tefi"))
+            self$results$riInterpretation$setContent(.el_html_block(NULL, paragraphs))
+        },
+
+        # ---------------------------------------------------------------------
         # Random-intercept EGA with EGAnet::riEGA(): a random-intercept factor
         # with equal loadings for every item (the wording or acquiescence
         # factor) is removed, and EGA is estimated on the residual
@@ -2185,8 +2321,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             heading <- .("Wording effects (random-intercept EGA)")
             summary <- self$results$riSummary
             members <- self$results$riMembership
-            summary$deleteRows()
-            fmt <- function(x) .el_fmt_num(x, 3, "—")
             # The validity warning goes first and in bold, before anything
             # else in the section (Archie's request).
             # ES: La advertencia de validez va primero y en negrita, antes
@@ -2261,18 +2395,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             }
             n_ega <- length(unique(stats::na.omit(ref)))
             n_ri <- .el_clean_num(r$EGA$n.dim)
-            range_text <- if (converged && any(!is.na(loads)))
-                paste0(fmt(min(loads, na.rm = TRUE)), .(" to "), fmt(max(loads, na.rm = TRUE)))
-            else "—"
-
-            rows <- list(
-                list(txt("ri", "row_model"), if (converged) txt("ri", "converged") else txt("ri", "not_converged")),
-                list(txt("ri", "row_dims_ega"), as.character(n_ega)),
-                list(txt("ri", "row_dims_ri"), if (is.na(n_ri)) "—" else as.character(n_ri)),
-                list(txt("ri", "row_loadings"), range_text),
-                list(txt("ri", "row_tefi"), fmt(r$TEFI)))
-            for (i in seq_along(rows))
-                .el_add_row(summary, i, list(element = rows[[i]][[1]], value = rows[[i]][[2]]))
+            has_loads <- converged && any(!is.na(loads))
+            load_min <- if (has_loads) min(loads, na.rm = TRUE) else NA_real_
+            load_max <- if (has_loads) max(loads, na.rm = TRUE) else NA_real_
+            private$.fillRISummary(summary, n_ega, n_ri, .el_clean_num(r$TEFI), load_min, load_max, converged, txt)
 
             dash <- function(x) if (is.na(x)) "—" else x
             labels <- sort(unique(stats::na.omit(as.character(aligned))))
@@ -2284,53 +2410,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     loading = .el_clean_num(loads[[items[i]]]),
                     negative = if (items[i] %in% neg) txt("cfa", "yes") else ""))
 
-            # Interpretation.
-            # ES: Interpretación.
-            paragraphs <- character(0)
-            if (!converged)
-                private$.addKey("warnings", txt("key", "ri_not_converged"))
-            else if (!is.na(n_ri) && n_ri == 0)
-                private$.addKey("findings", txt("key", "ri_empty"))
-            else if (!is.na(n_ri) && n_ri != n_ega)
-                private$.addKey("findings", sprintf(txt("key", "ri_changed"), as.integer(n_ri), as.integer(n_ega)))
-            else if (!is.na(n_ri))
-                private$.addKey("findings", txt("key", "ri_same"))
-            if (converged && length(neg) == 0)
-                private$.addKey("uncertain", txt("key", "ri_no_neg"))
-            if (!converged) {
-                paragraphs <- c(paragraphs, txt("ri", "interp_not_converged"))
-            } else {
-                paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_converged"), range_text))
-                if (length(neg) == 0)
-                    paragraphs <- c(paragraphs, txt("ri", "interp_no_neg"))
-                if (!is.na(n_ri) && n_ri == n_ega && length(agree$moved) == 0)
-                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_same"), n_ega))
-                else if (!is.na(n_ri) && n_ri == 0)
-                    paragraphs <- c(paragraphs, txt("ri", "interp_empty"))
-                else if (!is.na(n_ri) && n_ri < n_ega)
-                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_fewer"), n_ri, n_ega))
-                else if (!is.na(n_ri) && n_ri > n_ega)
-                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_more"), n_ri, n_ega))
-                if (length(agree$moved) > 0)
-                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_moved"), paste(agree$moved, collapse = ", ")))
-            }
-            # A dimension of EGA made only of negatively worded items is the
-            # classic sign of a wording factor.
-            # ES: Una dimensión de EGA formada solo por ítems redactados en
-            # negativo es la señal clásica de un factor de redacción.
-            if (length(neg) > 0) {
-                for (g in unique(stats::na.omit(ref))) {
-                    own <- items[!is.na(ref) & ref == g]
-                    if (length(own) >= 2 && all(own %in% neg))
-                        paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_neg_dim"), g, paste(own, collapse = ", ")))
-                }
-                moved_neg <- intersect(agree$moved, neg)
-                if (length(moved_neg) > 0)
-                    paragraphs <- c(paragraphs, sprintf(txt("ri", "interp_neg_moved"),
-                                                        length(moved_neg), length(agree$moved)))
-            }
-            paragraphs <- c(paragraphs, txt("ri", "interp_validity"), txt("ri", "interp_tefi"))
-            self$results$riInterpretation$setContent(.el_html_block(NULL, paragraphs))
+            private$.interpretRI(items, ref, neg, agree, converged, n_ri, n_ega, load_min, load_max, txt)
 
             fit$warnings
         },
@@ -2579,23 +2659,32 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             for (name in c("bootFrequency", "bootDimStability"))
                 self$results[[name]]$deleteRows()
 
-            # Summary.
+            # Summary: descriptive rows, then the statistics as numbers.
+            # ES: Resumen: filas descriptivas y luego los estadísticos como
+            # números.
             rows <- list(
                 list(.("Items"), as.character(length(cache$items))),
-                list(.("Cases used"), paste0(
-                    cache$n_used, " (", .el_choice_label(self, self$options$naData), "; ",
-                    cache$n_complete, .(" complete cases)"))),
-                list(.("Bootstrap"), paste0(cache$iter, .(" samples, "), type_label)),
-                list(.("Seed"), as.character(seed)),
-                list(.("Dimensions in the original sample"),
-                     if (is.na(cache$empirical_ndim)) txt("common", "not_computable") else as.character(cache$empirical_ndim)),
-                list(.("Median number of dimensions"), num(cache$median)),
-                list(.("95% interval (2.5th to 97.5th percentile)"),
-                     paste0(num(cache$q_low), .(" to "), num(cache$q_high))),
-                list(.("Standard error"), .el_fmt_num(cache$se, 3, txt("common", "not_computable")))
+                list(.("Cases used"), private$.casesUsedText(cache$n_used, cache$n_complete)),
+                list(.("Bootstrap"), jmvcore::format(.("{n} samples, {type}"), n = as.character(cache$iter),
+                                                     type = type_label)),
+                list(.("Seed"), as.character(seed))
             )
             for (i in seq_along(rows))
                 .el_add_row(self$results$bootSummary, i, list(element = rows[[i]][[1]], value = rows[[i]][[2]]))
+
+            dims <- self$results$bootDims
+            value <- function(x) { x <- .el_clean_num(x); if (is.na(x)) "" else x }
+            dims$setRow(rowNo = 1, values = list(
+                original = if (is.na(cache$empirical_ndim)) "" else as.integer(cache$empirical_ndim),
+                median = value(cache$median), low = value(cache$q_low), high = value(cache$q_high),
+                se = value(cache$se)))
+            for (col in c("original", "median", "low", "high", "se")) {
+                v <- switch(col, original = cache$empirical_ndim, median = cache$median,
+                            low = cache$q_low, high = cache$q_high, se = cache$se)
+                if (is.na(.el_clean_num(v)))
+                    dims$addFootnote(rowNo = 1, col = col, txt("common", "not_computable"))
+            }
+            dims$setNote("interval", .("95% interval: 2.5th and 97.5th percentiles of the number of dimensions across samples."))
 
             # Frequency.
             freq <- cache$frequency
