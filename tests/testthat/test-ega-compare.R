@@ -32,8 +32,8 @@ runCompare <- function(...) {
     EGAnetLab::ega(data = data, vars = names(data), runCompare = TRUE, ...)
 }
 
-# Factors as jamovi's Theoretical structure list builds them.
-# ES: Factores como los arma la lista Theoretical structure de jamovi.
+# Factors as jamovi's Theoretical Structure list builds them.
+# ES: Factores como los arma la lista Theoretical Structure de jamovi.
 factors <- function(...) {
     groups <- list(...)
     lapply(names(groups), function(label) list(label = label, vars = groups[[label]]))
@@ -61,7 +61,7 @@ test_that("the EGA solution is compared with the other algorithms", {
     expect_true(all(table$delta >= 0, na.rm = TRUE))
     expect_true(any(table$delta == 0))
     expect_equal(nrow(res$compareMembership$asDF), 12)
-    expect_match(res$compareInterpretation$content, "Theoretical structure", fixed = TRUE)
+    expect_match(res$compareInterpretation$content, "Theoretical Structure", fixed = TRUE)
     expect_false(grepl("After removing it", res$compareInterpretation$content, fixed = TRUE))
 })
 

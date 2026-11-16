@@ -188,8 +188,13 @@
     # row is added.
     # ES: Las filas preparadas en .init() (etiquetas fijas) se llenan en su
     # lugar; cualquier otra fila se agrega.
-    if (key %in% table$rowKeys)
-        table$setRow(rowKey = key, values = values)
+    # jmvcore finds a row key with identical(), so 1 and 1L differ; the row
+    # is set by its position instead.
+    # ES: jmvcore busca la clave con identical(), así que 1 y 1L difieren;
+    # la fila se fija por su posición.
+    row_no <- match(as.character(key), vapply(table$rowKeys, as.character, character(1)))
+    if ( ! is.na(row_no))
+        table$setRow(rowNo = row_no, values = values)
     else
         table$addRow(rowKey = key, values = values)
 }
