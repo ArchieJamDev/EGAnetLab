@@ -1782,8 +1782,8 @@ egaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="bootItemStability",
                 title="Item stability",
-                rows="(vars)",
                 visible="(runBoot)",
+                rows="(vars)",
                 refs=list(
                     "christensen_2021_boot"),
                 clearWith=list(
@@ -2806,7 +2806,7 @@ egaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "EGAnetLab",
                 name = "ega",
-                version = c(1,0,0),
+                version = c(1,0,1),
                 options = options,
                 results = egaResults$new(options=options),
                 data = data,
