@@ -156,12 +156,12 @@
 # TEMPORARY WORKAROUND. image$.setPath() is jmvcore internal, not public
 # API. It stays in this one helper until jamovi itself redraws images when
 # the results language changes, as it already does for a theme or palette
-# change. Feature request: <link to the jamovi issue>. When jamovi ships
+# change. Feature request: https://github.com/jamovi/jamovi/issues/1913. When jamovi ships
 # it, delete the .setPath() call (keep setState()).
 # ES: SOLUCIÓN PROVISIONAL. image$.setPath() es interno de jmvcore, no API
 # pública. Queda solo en este helper hasta que jamovi vuelva a dibujar las
 # imágenes cuando cambia el idioma de los resultados, como ya hace al
-# cambiar el tema o la paleta. Solicitud: <enlace a la issue de jamovi>.
+# cambiar el tema o la paleta. Solicitud: https://github.com/jamovi/jamovi/issues/1913.
 # Cuando jamovi lo incorpore, borrar la llamada a .setPath() (dejar
 # setState()).
 # -----------------------------------------------------------------------------

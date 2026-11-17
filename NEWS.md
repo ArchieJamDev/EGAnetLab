@@ -27,8 +27,8 @@ Second round of jamovi's module audit (2026-11-13).
   split into smaller methods (comparisons, table filling, interpretation;
   estimation, summary, warnings).
 * The plot redraw after a language change stays in its single helper, now
-  marked as a temporary workaround until jamovi supports it (a feature
-  request is being filed).
+  marked as a temporary workaround until jamovi supports it (feature
+  request: https://github.com/jamovi/jamovi/issues/1913).
 
 # EGAnetLab 1.0.0 (released 2026-11-10)
 
