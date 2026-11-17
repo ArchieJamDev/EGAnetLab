@@ -2,6 +2,10 @@
 
 Second round of jamovi's module audit (2026-11-13).
 
+* Archived in Zenodo: version DOI
+  [10.5281/zenodo.24307007](https://doi.org/10.5281/zenodo.24307007);
+  all versions: [10.5281/zenodo.23886111](https://doi.org/10.5281/zenodo.23886111).
+
 * **Numbers in numeric columns.** The bootstrap summary keeps its
   descriptive rows (items, cases used, bootstrap, seed), and a new
   *Number of dimensions* table gives the original number, the median, the
