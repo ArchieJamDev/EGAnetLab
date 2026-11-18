@@ -729,7 +729,6 @@ msgstr ""
 #: ega/results/cenTable.columns.title
 #: ega/results/invTable.columns.title
 #: R/ega.b.R
-#: R/shared-helpers.R
 msgid "Dimension"
 msgstr ""
 
@@ -1163,6 +1162,10 @@ msgstr ""
 
 #: ega/results/cfaLoadings.columns.title
 msgid "Factor"
+msgstr ""
+
+#: jamovi/js/ega.events.js
+msgid "Factor {0}"
 msgstr ""
 
 #: R/texts.R
@@ -2189,6 +2192,10 @@ msgstr ""
 msgid "No pair reaches wTO .20"
 msgstr ""
 
+#: R/texts.R
+msgid "No redundant set found"
+msgstr ""
+
 #: ega/options/nodeAlpha.title
 #: dynega/options/nodeAlpha.title
 msgid "Node fill opacity"
@@ -3115,6 +3122,10 @@ msgstr ""
 
 #: R/texts.R
 msgid "The grouping variable has %d groups, so every pair of groups is compared separately. With many pairs, some differences will appear by chance: focus on differences that repeat across pairs or that survive the correction for multiple tests."
+msgstr ""
+
+#: R/dynega.b.R
+msgid "The grouping variable has only one group in the data, so the groups cannot be compared."
 msgstr ""
 
 #: R/texts.R

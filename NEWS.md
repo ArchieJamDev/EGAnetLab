@@ -1,3 +1,24 @@
+# EGAnetLab 1.0.2 (in development)
+
+Third round of jamovi's module audit (2026-11-17).
+
+* **Plots.** EGAnetLab no longer forces a plot to be redrawn when the
+  results language changes: plots set their state with `setState()` only,
+  and jamovi decides when to draw them again, as for every other analysis.
+* **Empty results explained.** In Dynamic EGA, *Structure of each group*
+  can be ticked only with a grouping variable, and when that variable has
+  a single group in the data the table stays in place with a notice. In
+  EGA, *Redundant sets* stays in place with a row that says no set was
+  found, like *Redundant pairs*.
+* **Numbers in numeric columns.** The *Dimensions* columns of Dynamic EGA
+  (each group, across persons, each person) are integers; a dimension count
+  that cannot be computed leaves an empty cell explained in a footnote.
+  Both *Proportion* columns use the same 0-1 format.
+* **Translations.** The default factor name in Theoretical Structure
+  ("Factor {0}") goes through the translation catalog.
+* **Code.** The metric invariance test is split into estimation, table and
+  plot filling, and interpretation.
+
 # EGAnetLab 1.0.1 (released 2026-11-17)
 
 Second round of jamovi's module audit (2026-11-13).
@@ -30,9 +51,6 @@ Second round of jamovi's module audit (2026-11-13).
 * **Code.** The NCT, the random-intercept EGA and the Dynamic EGA run are
   split into smaller methods (comparisons, table filling, interpretation;
   estimation, summary, warnings).
-* The plot redraw after a language change stays in its single helper, now
-  marked as a temporary workaround until jamovi supports it (feature
-  request: https://github.com/jamovi/jamovi/issues/1913).
 
 # EGAnetLab 1.0.0 (released 2026-11-10)
 

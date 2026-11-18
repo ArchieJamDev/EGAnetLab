@@ -20,7 +20,7 @@ const events = {
         ui.theoryFactors.applyToItems(0, (item, index) => {
             let value = item.controls[0].value();
             if ( ! value || value.trim() === '')
-                item.controls[0].setValue('Factor ' + (index + 1));
+                item.controls[0].setValue(_('Factor {0}').replace('{0}', index + 1));
         });
     }
 };

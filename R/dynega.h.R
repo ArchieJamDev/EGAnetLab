@@ -620,7 +620,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="dims", 
                         `title`="Dimensions", 
-                        `type`="text"),
+                        `type`="integer"),
                     list(
                         `name`="same", 
                         `title`="Same as population", 
@@ -704,7 +704,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="dims", 
                         `title`="Dimensions", 
-                        `type`="text"),
+                        `type`="integer"),
                     list(
                         `name`="count", 
                         `title`="Persons", 
@@ -713,7 +713,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `name`="proportion", 
                         `title`="Proportion", 
                         `type`="number", 
-                        `format`="pc"))))
+                        `format`="zto"))))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="indAgree",
@@ -796,7 +796,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     list(
                         `name`="dims", 
                         `title`="Dimensions", 
-                        `type`="text"),
+                        `type`="integer"),
                     list(
                         `name`="ari", 
                         `title`="Agreement (ARI)", 
@@ -840,7 +840,7 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "EGAnetLab",
                 name = "dynega",
-                version = c(1,0,1),
+                version = c(1,0,2),
                 options = options,
                 results = dynegaResults$new(options=options),
                 data = data,

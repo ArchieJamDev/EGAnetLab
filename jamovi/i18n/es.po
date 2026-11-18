@@ -729,7 +729,6 @@ msgstr "Diferencia: carga en el primer grupo menos carga en el segundo grupo."
 #: ega/results/cenTable.columns.title
 #: ega/results/invTable.columns.title
 #: R/ega.b.R
-#: R/shared-helpers.R
 msgid "Dimension"
 msgstr "Dimensión"
 
@@ -1164,6 +1163,10 @@ msgstr "El Análisis Exploratorio de Grafos (EGA) estima cuántas dimensiones su
 #: ega/results/cfaLoadings.columns.title
 msgid "Factor"
 msgstr "Factor"
+
+#: jamovi/js/ega.events.js
+msgid "Factor {0}"
+msgstr "Factor {0}"
 
 #: R/texts.R
 msgid "Fewer than two complete cases remain after listwise deletion. Switch Missing Values to pairwise, or review the missing-data pattern."
@@ -2189,6 +2192,10 @@ msgstr "Ningún par de ítems alcanza un wTO de %s, así que no hay evidencia de
 msgid "No pair reaches wTO .20"
 msgstr "Ningún par alcanza wTO .20"
 
+#: R/texts.R
+msgid "No redundant set found"
+msgstr "No se encontró ningún conjunto redundante"
+
 #: ega/options/nodeAlpha.title
 #: dynega/options/nodeAlpha.title
 msgid "Node fill opacity"
@@ -3116,6 +3123,10 @@ msgstr "El factor general explica el %s de la varianza común (varianza común e
 #: R/texts.R
 msgid "The grouping variable has %d groups, so every pair of groups is compared separately. With many pairs, some differences will appear by chance: focus on differences that repeat across pairs or that survive the correction for multiple tests."
 msgstr "La variable de agrupación tiene %d grupos, así que cada par de grupos se compara por separado. Con muchos pares, algunas diferencias aparecerán por azar: céntrese en las diferencias que se repiten entre pares o que se mantienen tras la corrección por pruebas múltiples."
+
+#: R/dynega.b.R
+msgid "The grouping variable has only one group in the data, so the groups cannot be compared."
+msgstr "La variable de agrupación solo tiene un grupo en los datos, así que no se pueden comparar los grupos."
 
 #: R/texts.R
 msgid "The groups differ from the population structure: %s (Structure of each group)."

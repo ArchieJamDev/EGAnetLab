@@ -83,7 +83,9 @@ test_that("UVA reports no redundancy below the cutoff", {
     res <- runUVA(edgeStructureData(), uvaCut = 0.40)
     sets <- res$uvaSets$asDF
 
-    expect_equal(nrow(sets), 0)
+    expect_equal(nrow(sets), 1)
+    expect_equal(sets$items, "No redundant set found")
+    expect_true(res$uvaSets$visible)
     expect_match(res$uvaInterpretation$content, "no evidence of redundancy", fixed = TRUE)
 })
 

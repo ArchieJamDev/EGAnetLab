@@ -106,6 +106,7 @@ children:
         children:
           - type: CheckBox
             name: levelGroup
+            enable: (group)
           - type: CheckBox
             name: levelIndividual
           - type: CheckBox

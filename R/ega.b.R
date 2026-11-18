@@ -688,7 +688,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 .("Estimated network (hierarchical: higher · lower order)")
                 else .("Estimated network"))
             if (isTRUE(self$options$showNetworkPlot))
-                .el_set_image_state(self, self$results$networkPlot, list(network = ega$network, wc = plot_wc))
+                self$results$networkPlot$setState(list(network = ega$network, wc = plot_wc))
         },
 
         # ---------------------------------------------------------------------
@@ -1447,6 +1447,25 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 .el_html_block(heading, status),
                 .el_html_block(NULL, .el_html_list(txt("inv", "guide")), raw = TRUE)))
 
+            # Results by pair of groups, the plot state and the interpretation.
+            # ES: Resultados por par de grupos, estado del gráfico e interpretación.
+            found <- private$.fillInvariance(table, r)
+            private$.interpretInvariance(found, configural, removed, txt)
+
+            fit$warnings
+        },
+
+        # ---------------------------------------------------------------------
+        # Invariance table (one row per item and pair of groups, with column
+        # titles named after the groups) and the plot state. Returns the items
+        # that differ, for the interpretation.
+        # ES: Tabla de invarianza (una fila por ítem y par de grupos, con
+        # títulos de columna con el nombre de los grupos) y estado del gráfico.
+        # Devuelve los ítems que difieren, para la interpretación.
+        # ---------------------------------------------------------------------
+        .fillInvariance = function(table, r) {
+
+            o <- self$options
             # Results by pair of groups.
             # ES: Resultados por par de grupos.
             group_names <- as.character(r$groups$unique_groups)
@@ -1496,22 +1515,32 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         loading = v, sig = it %in% sig_items, stringsAsFactors = FALSE)
                 }
             if (isTRUE(o$showInvPlot) && length(plot_rows) > 0)
-                .el_set_image_state(self, self$results$invPlot, list(
+                self$results$invPlot$setState(list(
                     data = do.call(rbind, plot_rows),
                     labels = list(x = .("Network loading on its dimension"),
                                   group = .("Group"),
                                   dimension = .("Dimension"),
                                   note = .("* p ≤ .05 (uncorrected)"))))
 
+            list(sig_items = unique(sig_items), sig_fdr = unique(sig_fdr),
+                 directions = directions, n_items = length(names(memb)))
+        },
+
+        # ---------------------------------------------------------------------
+        # Interpretation and key finding of the invariance test.
+        # ES: Interpretación y hallazgo clave de la prueba de invarianza.
+        # ---------------------------------------------------------------------
+        .interpretInvariance = function(found, configural, removed, txt) {
+
+            sig_items <- found$sig_items; sig_fdr <- found$sig_fdr
             # Interpretation.
             # ES: Interpretación.
-            sig_items <- unique(sig_items); sig_fdr <- unique(sig_fdr)
             paragraphs <- character(0)
             if (length(sig_items) == 0) {
                 paragraphs <- c(paragraphs, txt("inv", "interp_invariant"))
             } else {
                 paragraphs <- c(paragraphs, sprintf(txt("inv", "interp_noninvariant"),
-                    length(sig_items), length(names(memb)), paste(unique(directions), collapse = "; ")))
+                    length(sig_items), found$n_items, paste(unique(found$directions), collapse = "; ")))
                 paragraphs <- c(paragraphs, if (length(sig_fdr) == 0) txt("inv", "interp_fdr_none") else
                     sprintf(txt("inv", "interp_fdr_some"), paste(sig_fdr, collapse = ", ")))
             }
@@ -1521,8 +1550,6 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             private$.addKey("findings", if (length(sig_items) == 0) txt("key", "inv_ok")
                             else sprintf(txt("key", "inv_diff"), length(sig_items)))
             self$results$invInterpretation$setContent(.el_html_block(NULL, paragraphs))
-
-            fit$warnings
         },
 
         # ---------------------------------------------------------------------
@@ -2175,7 +2202,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Estado del gráfico: ítems abajo, dimensiones de orden
             # inferior en el medio y de orden superior arriba; el grosor de
             # las aristas sigue las cargas de red cuando están disponibles.
-            .el_set_image_state(self, self$results$hierPlot, .el_hier_plot_state(
+            self$results$hierPlot$setState(.el_hier_plot_state(
                 items = items, lower = lower_wc, aligned = aligned, higher = higher_wc,
                 lower_loadings = h$parameters$lower_loadings,
                 higher_loadings = if (hierarchical) tryCatch(
@@ -2496,7 +2523,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     keep = paste(sets[[i]]$keep, collapse = ", "),
                     remove = paste(sets[[i]]$remove, collapse = ", ")))
             if (length(sets) == 0)
-                self$results$uvaSets$setVisible(FALSE)
+                .el_add_row(self$results$uvaSets, 1, list(set = "", items = txt("uva", "no_sets")))
 
             # Interpretation.
             # ES: Interpretación.
@@ -2764,14 +2791,14 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # Plot states.
             # ES: Estados de los gráficos.
             if (isTRUE(self$options$showItemPlot))
-                .el_set_image_state(self, self$results$bootItemPlot, list(
+                self$results$bootItemPlot$setState(list(
                     items = it, cut = cut,
                     labels = list(y = txt("bootega", "plot_stability"),
                                   dimension = .("Dimension"),
                                   isolated = txt("bootega", "isolated"))))
 
             if (isTRUE(self$options$showFrequencyPlot))
-                .el_set_image_state(self, self$results$bootFrequencyPlot, list(
+                self$results$bootFrequencyPlot$setState(list(
                     frequency = freq, empirical = cache$empirical_ndim,
                     labels = list(x = txt("bootega", "plot_dims"), y = txt("bootega", "plot_prop"),
                                   original = txt("bootega", "plot_original"),
@@ -2844,7 +2871,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 measure = measure_labels[[m]], value = cen[[m]], stringsAsFactors = FALSE)))
             if (isTRUE(self$options$showCenPlot)) {
                 self$results$cenPlot$setSize(if (cb) 760 else 600, max(300, 22 * nrow(cen) + 90))
-                .el_set_image_state(self, self$results$cenPlot, list(
+                self$results$cenPlot$setState(list(
                     data = long, measures = unname(measure_labels[measures]),
                     labels = list(x = if (z) .("z value") else .("Value"),
                                   dimension = .("Dimension"))))
@@ -2977,7 +3004,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             # ES: Estados de los gráficos.
             if (isTRUE(self$options$showEdgeCIPlot) && nrow(edges) > 0) {
                 self$results$bnEdgePlot$setSize(600, max(300, 16 * nrow(edges) + 110))
-                .el_set_image_state(self, self$results$bnEdgePlot, list(
+                self$results$bnEdgePlot$setState(list(
                     edges = edges,
                     labels = list(x = .("Edge weight (95% bootstrap interval)"))))
             }
@@ -2985,7 +3012,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 cases <- cache$cases
                 cases$measure <- unname(measure_labels[cases$measure])
                 self$results$bnCasePlot$setSize(600, if (length(unique(cases$measure)) > 2) 560 else 320)
-                .el_set_image_state(self, self$results$bnCasePlot, list(
+                self$results$bnCasePlot$setState(list(
                     cases = cases,
                     labels = list(x = .("Cases dropped"),
                                   y = .("Correlation with the original order"),

@@ -204,3 +204,22 @@ test_that("isolated items are labelled in the network legend", {
     expect_true("Isolated" %in% labels_of("Isolated"))
     expect_false(anyNA(labels_of("Aislado")))
 })
+
+test_that("a grouping variable with a single group is explained with a notice", {
+
+    d <- dynData()
+    d$One <- factor("A")
+    res <- EGAnetLab::dynega(data = d, vars = paste0("V", 1:24), id = "ID", time = "Time",
+                             group = "One", levelGroup = TRUE)
+    expect_true(res$groupTable$visible)
+    expect_match(noticeText(res), "only one group", fixed = TRUE)
+})
+
+test_that("dimension counts in Dynamic EGA are numbers", {
+
+    res <- EGAnetLab::dynega(data = dynData(), vars = paste0("V", 1:24), id = "ID", time = "Time",
+                             group = "Group", levelIndividual = TRUE, showIndTable = TRUE)
+    expect_true(is.numeric(res$groupTable$asDF$dims))
+    expect_true(is.numeric(res$indFreq$asDF$dims))
+    expect_true(is.numeric(res$indTable$asDF$dims))
+})

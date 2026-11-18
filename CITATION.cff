@@ -26,7 +26,7 @@ identifiers:
     description: "Version 1.0.1"
 repository-code: "https://github.com/ArchieJamDev/EGAnetLab"
 license: "GPL-3.0-only"
-version: "1.0.1"
+version: "1.0.2"
 date-released: "2026-11-17"
 abstract: >
   EGAnetLab is an open-source jamovi module that brings the network

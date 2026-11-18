@@ -797,6 +797,9 @@
             "Factor": [
                 "Factor"
             ],
+            "Factor {0}": [
+                "Factor {0}"
+            ],
             "Fewer than two complete cases remain after listwise deletion. Switch Missing Values to pairwise, or review the missing-data pattern.": [
                 "Quedan menos de dos casos completos tras la eliminación por lista. Cambie Valores perdidos a Por pares o revise el patrón de datos faltantes."
             ],
@@ -1493,6 +1496,9 @@
             "No pair reaches wTO .20": [
                 "Ningún par alcanza wTO .20"
             ],
+            "No redundant set found": [
+                "No se encontró ningún conjunto redundante"
+            ],
             "Node fill opacity": [
                 "Opacidad del relleno"
             ],
@@ -2149,6 +2155,9 @@
             ],
             "The grouping variable has %d groups, so every pair of groups is compared separately. With many pairs, some differences will appear by chance: focus on differences that repeat across pairs or that survive the correction for multiple tests.": [
                 "La variable de agrupación tiene %d grupos, así que cada par de grupos se compara por separado. Con muchos pares, algunas diferencias aparecerán por azar: céntrese en las diferencias que se repiten entre pares o que se mantienen tras la corrección por pruebas múltiples."
+            ],
+            "The grouping variable has only one group in the data, so the groups cannot be compared.": [
+                "La variable de agrupación solo tiene un grupo en los datos, así que no se pueden comparar los grupos."
             ],
             "The groups differ from the population structure: %s (Structure of each group).": [
                 "Los grupos difieren de la estructura de la población: %s (Estructura de cada grupo)."

@@ -159,7 +159,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             private$.interpretPopulation(prep, cache, use_groups, deriv, deriv_label, txt)
 
             if (isTRUE(o$showNetworkPlot))
-                .el_set_image_state(self, self$results$networkPlot, list(network = pop$network, wc = pop$wc))
+                self$results$networkPlot$setState(list(network = pop$network, wc = pop$wc))
 
             # Individual structures.
             # ES: Estructuras individuales.
@@ -320,12 +320,24 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     g <- groups[[i]]
                     same <- !is.na(g$n_dim) && !is.na(pop$n_dim) && .el_ari(g$wc, pop$wc) == 1
                     .el_add_row(gt, i, list(group = names(groups)[i], persons = g$persons,
-                                            dims = if (is.na(g$n_dim)) txt("common", "not_computable") else as.character(g$n_dim),
+                                            dims = if (is.na(g$n_dim)) "" else as.integer(g$n_dim),
                                             same = if (same) .("Yes") else .("No")))
+                    if (is.na(g$n_dim))
+                        gt$addFootnote(rowNo = i, col = "dims", txt("common", "not_computable"))
                 }
                 gt$setNote("same", .("Same as population: identical item membership."))
-            } else {
+            } else if (is.null(o$group) || length(o$group) == 0) {
+                # Without a grouping variable the option is disabled in the
+                # panel, so the table is not shown.
+                # ES: Sin variable de agrupación la opción está desactivada en
+                # el panel, así que la tabla no se muestra.
                 self$results$groupTable$setVisible(FALSE)
+            } else if (isTRUE(o$levelGroup)) {
+                # A single group: the table stays in place with a notice.
+                # ES: Un solo grupo: la tabla queda en su sitio con un aviso.
+                .el_notice(self, "groupTable",
+                           .("The grouping variable has only one group in the data, so the groups cannot be compared."),
+                           error = FALSE)
             }
         },
 
@@ -418,7 +430,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             freq <- data.frame(dims = as.numeric(names(counts)), count = as.integer(counts))
             freq$proportion <- freq$count / sum(freq$count)
             for (i in seq_len(nrow(freq)))
-                .el_add_row(self$results$indFreq, i, list(dims = as.character(freq$dims[i]),
+                .el_add_row(self$results$indFreq, i, list(dims = as.integer(freq$dims[i]),
                                                           count = freq$count[i],
                                                           proportion = freq$proportion[i]))
 
@@ -450,16 +462,19 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                                                 type = "number", format = "zto")
             }
             if (isTRUE(self$options$showIndTable))
-                for (i in seq_len(nrow(ind)))
+                for (i in seq_len(nrow(ind))) {
                     .el_add_row(self$results$indTable, i, list(
                         id = ind$id[i], points = ind$points[i],
-                        dims = if (is.na(ind$dims[i])) txt("common", "not_computable") else as.character(ind$dims[i]),
+                        dims = if (is.na(ind$dims[i])) "" else as.integer(ind$dims[i]),
                         ari = if (is.na(ind$ari[i])) "" else ind$ari[i],
                         group = if (has_group) ind$group[i] else NULL,
                         ariGroup = if (!has_group) NULL else if (is.na(ind$ari_group[i])) "" else ind$ari_group[i]))
+                    if (is.na(ind$dims[i]))
+                        self$results$indTable$addFootnote(rowNo = i, col = "dims", txt("common", "not_computable"))
+                }
 
             if (isTRUE(self$options$showIndPlot))
-                .el_set_image_state(self, self$results$indPlot, list(
+                self$results$indPlot$setState(list(
                     frequency = freq, empirical = pop$n_dim,
                     labels = list(x = txt("dyn", "plot_x"), y = txt("dyn", "plot_y"),
                                   original = sprintf(txt("dyn", "plot_population"), as.character(pop$n_dim)), other = txt("dyn", "plot_other"))))

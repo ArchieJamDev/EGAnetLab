@@ -198,7 +198,7 @@ items:
         type: integer
       - name: dims
         title: Dimensions
-        type: text
+        type: integer
       - name: same
         title: Same as population
         type: text
@@ -280,14 +280,14 @@ items:
     columns:
       - name: dims
         title: Dimensions
-        type: text
+        type: integer
       - name: count
         title: Persons
         type: integer
       - name: proportion
         title: Proportion
         type: number
-        format: pc
+        format: zto
 
   - name: indAgree
     title: Agreement with the population structure
@@ -362,7 +362,7 @@ items:
         type: integer
       - name: dims
         title: Dimensions
-        type: text
+        type: integer
       - name: ari
         title: Agreement (ARI)
         type: number
