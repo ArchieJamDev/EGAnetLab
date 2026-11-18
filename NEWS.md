@@ -1,5 +1,9 @@
 # EGAnetLab 1.0.2 (released 2026-11-18)
 
+* Archived in Zenodo: version DOI
+  [10.5281/zenodo.24338257](https://doi.org/10.5281/zenodo.24338257);
+  all versions: [10.5281/zenodo.23886111](https://doi.org/10.5281/zenodo.23886111).
+
 Third round of jamovi's module audit (2026-11-17).
 
 * **Plots.** EGAnetLab no longer forces a plot to be redrawn when the
