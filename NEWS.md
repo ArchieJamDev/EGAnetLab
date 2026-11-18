@@ -1,4 +1,4 @@
-# EGAnetLab 1.0.2 (in development)
+# EGAnetLab 1.0.2 (released 2026-11-18)
 
 Third round of jamovi's module audit (2026-11-17).
 

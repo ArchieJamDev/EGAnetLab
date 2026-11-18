@@ -2,14 +2,23 @@ name: Build the jamovi module (.jmo)
 
 # Builds EGAnetLab_<version>.jmo for Windows on a GitHub machine, so a release
 # does not depend on a local computer. Run it by hand from the Actions tab
-# (Run workflow); the .jmo is attached to the run as an artifact.
+# (Run workflow); the .jmo is attached to the run as an artifact. With
+# "Publish the release" ticked, it also creates the release v<version> on
+# main with the .jmo and the version's section of NEWS.md as notes.
 # ES: Compila EGAnetLab_<versión>.jmo para Windows en una máquina de GitHub,
 # para que una release no dependa de un equipo local. Se ejecuta a mano desde
 # la pestaña Actions (Run workflow); el .jmo queda adjunto a la ejecución
-# como artefacto.
+# como artefacto. Si se marca "Publish the release", también crea la release
+# v<versión> sobre main con el .jmo y la sección de la versión en NEWS.md
+# como notas.
 
 on:
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the release
+        type: boolean
+        default: false
   pull_request:
     paths:
       - .github/workflows/build-jmo.yml
@@ -18,6 +27,8 @@ jobs:
   build-windows:
     runs-on: windows-2025
     timeout-minutes: 90
+    permissions:
+      contents: write
 
     steps:
       - name: Check out the repository
@@ -57,3 +68,22 @@ jobs:
           name: EGAnetLab-jmo-windows
           path: EGAnetLab_*.jmo
           if-no-files-found: error
+
+      # Only from main, by hand, with the box ticked.
+      # ES: Solo desde main, a mano y con la casilla marcada.
+      - name: Publish the release
+        if: github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/main'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $version = (Select-String -Path DESCRIPTION -Pattern '^Version:\s*(.+)$').Matches[0].Groups[1].Value.Trim()
+          $news = Get-Content NEWS.md -Encoding utf8
+          $start = ($news | Select-String -Pattern "^# EGAnetLab $([regex]::Escape($version))\b").LineNumber
+          if (-not $start) { throw "NEWS.md has no section for $version" }
+          $rest = $news[$start..($news.Length - 1)]
+          $next = ($rest | Select-String -Pattern '^# EGAnetLab ' | Select-Object -First 1).LineNumber
+          $body = if ($next) { $rest[0..($next - 2)] } else { $rest }
+          $intro = "Install: download EGAnetLab_$version.jmo below (Windows), then in jamovi open ⋮ › Modules › Install from file.", ""
+          ($intro + $body) | Out-File notes.md -Encoding utf8
+          gh release create "v$version" "EGAnetLab_$version.jmo" --target main --title "EGAnetLab $version" --notes-file notes.md
