@@ -9,6 +9,6 @@
   <circle cx="91.9" cy="86.0" r="18.9" fill="#FFFFFF" stroke="#6B9DE8" stroke-width="13.1"/>
   <circle cx="144.1" cy="144.0" r="18.9" fill="#FFFFFF" stroke="#E6AC40" stroke-width="13.1"/>
   <circle cx="190.6" cy="91.8" r="18.9" fill="#FFFFFF" stroke="#E6AC40" stroke-width="13.1"/>
-  <text x="250" y="128" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="94" font-weight="700" textLength="520" lengthAdjust="spacing" fill="#1F2A44" letter-spacing="-1">EGA<tspan fill="#4A86E0">net</tspan>Lab</text>
+  <text x="250" y="128" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="94" font-weight="700" textLength="520" lengthAdjust="spacing" fill="#1F2A44" letter-spacing="-1"><tspan fill="#4A86E0">EGAnet</tspan>Lab</text>
   <text x="254" y="172" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="27" fill="#5B6B85" textLength="514" lengthAdjust="spacing">Exploratory Graph Analysis for jamovi</text>
 </svg>
