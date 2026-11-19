@@ -1,5 +1,9 @@
 # EGAnetLab 1.0.3 (released 2026-11-19)
 
+* Archived in Zenodo: version DOI
+  [10.5281/zenodo.24378817](https://doi.org/10.5281/zenodo.24378817);
+  all versions: [10.5281/zenodo.23886111](https://doi.org/10.5281/zenodo.23886111).
+
 Follow-up to jamovi's audit of version 1.0.2 (2026-11-18).
 
 * **Structure of each group.** In Dynamic EGA, whether the table is shown
