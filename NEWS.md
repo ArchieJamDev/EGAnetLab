@@ -1,4 +1,4 @@
-# EGAnetLab 1.0.3 (in development)
+# EGAnetLab 1.0.3 (released 2026-11-19)
 
 Follow-up to jamovi's audit of version 1.0.2 (2026-11-18).
 
