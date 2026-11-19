@@ -591,7 +591,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="groupTable",
                 title="Structure of each group",
                 rows=0,
-                visible="(levelGroup)",
+                visible="(levelGroup && length(group) > 0)",
                 clearWith=list(
                     "vars",
                     "id",
@@ -840,7 +840,7 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "EGAnetLab",
                 name = "dynega",
-                version = c(1,0,2),
+                version = c(1,0,3),
                 options = options,
                 results = dynegaResults$new(options=options),
                 data = data,

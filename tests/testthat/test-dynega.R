@@ -223,3 +223,11 @@ test_that("dimension counts in Dynamic EGA are numbers", {
     expect_true(is.numeric(res$indFreq$asDF$dims))
     expect_true(is.numeric(res$indTable$asDF$dims))
 })
+
+test_that("Structure of each group is hidden by its schema without a grouping variable", {
+
+    res <- EGAnetLab::dynega(data = dynData(), vars = paste0("V", 1:24), id = "ID", time = "Time",
+                             levelGroup = TRUE)
+    expect_false(res$groupTable$visible)
+    expect_false(grepl("only one group", noticeText(res), fixed = TRUE))
+})

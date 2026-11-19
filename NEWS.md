@@ -1,3 +1,13 @@
+# EGAnetLab 1.0.3 (in development)
+
+Follow-up to jamovi's audit of version 1.0.2 (2026-11-18).
+
+* **Structure of each group.** In Dynamic EGA, whether the table is shown
+  is now decided by the analysis definition alone
+  (`visible: (levelGroup && length(group) > 0)`): with the option ticked and no grouping
+  variable, the table no longer appears and disappears on each run. A
+  grouping variable with a single group keeps the table with its notice.
+
 # EGAnetLab 1.0.2 (released 2026-11-18)
 
 * Archived in Zenodo: version DOI

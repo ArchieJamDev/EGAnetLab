@@ -27,7 +27,7 @@ title: Dynamic EGA
 menuGroup: EGAnet Lab
 menuSubgroup: Dimensionality
 menuTitle: Dynamic EGA (intensive longitudinal data)
-version: '1.0.2'
+version: '1.0.3'
 jas: '1.2'
 
 description:
