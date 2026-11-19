@@ -227,13 +227,14 @@ author preparing a figure gets full control:
 
 ## Installation
 
-EGAnetLab is not yet in the official jamovi Library: version 1.0.2 has been
-submitted and is under review. Until then, install it from a release file.
+jamovi has accepted EGAnetLab for its official Library (version 1.0.2), where
+it will appear soon. Until then, or for the latest version, install it from a
+release file.
 
 ### From a release (recommended)
 
 1. Download the latest `EGAnetLab_x.y.z.jmo` (currently
-   [v1.0.2](https://github.com/ArchieJamDev/EGAnetLab/releases/tag/v1.0.2)) from
+   [v1.0.3](https://github.com/ArchieJamDev/EGAnetLab/releases/tag/v1.0.3)) from
    [Releases](https://github.com/ArchieJamDev/EGAnetLab/releases).
 2. In jamovi, open the **⋮** menu (top right) → **Modules** →
    **Install from file**, and choose the `.jmo` file.
@@ -333,7 +334,7 @@ versions and always resolves to the latest one; each version also has its own
 DOI, listed on the Zenodo page.
 
 > Chacón Chacón, A. D. L. (2026). *EGAnetLab: A jamovi module for Exploratory
-> Graph Analysis* (Version 1.0.2) [Computer software]. Zenodo.
+> Graph Analysis* (Version 1.0.3) [Computer software]. Zenodo.
 > https://doi.org/10.5281/zenodo.23886111
 
 > Golino, H., & Christensen, A. P. (2026). *EGAnet: Exploratory graph
@@ -380,9 +381,9 @@ resultados se acompañan de guías e interpretaciones en español o inglés. Los
 gráficos de red son altamente configurables (disposición, nodos, etiquetas,
 aristas y leyenda) y usan paletas aptas para daltonismo.
 
-Aún no está en la Biblioteca oficial de jamovi (la versión 1.0.2 está enviada y
-en revisión). Para instalarlo, descargue el archivo `.jmo` (actualmente la
-v1.0.2) desde
+jamovi lo aceptó para su Biblioteca oficial (versión 1.0.2), donde aparecerá
+pronto. Mientras tanto, o para tener la última versión, descargue el archivo
+`.jmo` (actualmente la v1.0.3) desde
 [Releases](https://github.com/ArchieJamDev/EGAnetLab/releases) y, en jamovi,
 use **⋮** → **Modules** → **Install from file**.
 
