@@ -172,7 +172,7 @@ items:
     title: Structure of each group
     type: Table
     rows: 0
-    visible: (levelGroup && group)
+    visible: (levelGroup && length(group) > 0)
     clearWith:
       - vars
       - id

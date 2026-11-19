@@ -591,7 +591,7 @@ dynegaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="groupTable",
                 title="Structure of each group",
                 rows=0,
-                visible="(levelGroup && group)",
+                visible="(levelGroup && length(group) > 0)",
                 clearWith=list(
                     "vars",
                     "id",
