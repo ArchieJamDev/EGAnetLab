@@ -326,13 +326,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                         gt$addFootnote(rowNo = i, col = "dims", txt("common", "not_computable"))
                 }
                 gt$setNote("same", .("Same as population: identical item membership."))
-            } else if (is.null(o$group) || length(o$group) == 0) {
-                # Without a grouping variable the option is disabled in the
-                # panel, so the table is not shown.
-                # ES: Sin variable de agrupación la opción está desactivada en
-                # el panel, así que la tabla no se muestra.
-                self$results$groupTable$setVisible(FALSE)
-            } else if (isTRUE(o$levelGroup)) {
+            } else if (isTRUE(o$levelGroup) && length(o$group) > 0) {
                 # A single group: the table stays in place with a notice.
                 # ES: Un solo grupo: la tabla queda en su sitio con un aviso.
                 .el_notice(self, "groupTable",
