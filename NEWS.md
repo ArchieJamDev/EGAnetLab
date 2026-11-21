@@ -3,6 +3,8 @@
 * Same code as 1.0.4. The 1.0.4 release was built before its version
   number was updated, so jamovi showed it as 1.0.3; 1.0.5 carries the
   correct version in every file.
+* Archived in Zenodo: version DOI
+  [10.5281/zenodo.24422987](https://doi.org/10.5281/zenodo.24422987).
 
 # EGAnetLab 1.0.4 (released 2026-11-21)
 
