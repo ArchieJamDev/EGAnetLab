@@ -1,3 +1,9 @@
+# EGAnetLab 1.0.5 (released 2026-11-21)
+
+* Same code as 1.0.4. The 1.0.4 release was built before its version
+  number was updated, so jamovi showed it as 1.0.3; 1.0.5 carries the
+  correct version in every file.
+
 # EGAnetLab 1.0.4 (released 2026-11-21)
 
 * **Reproducible bootstrap.** The seed of *Stability (bootstrap)*, of
@@ -8,6 +14,8 @@
   could give slightly different frequencies from one run to the next (for
   example 64.0% or 63.2% for two dimensions in the WMT-2 items). The same
   seed now always gives the same result.
+* Archived in Zenodo: version DOI
+  [10.5281/zenodo.24422790](https://doi.org/10.5281/zenodo.24422790).
 
 # EGAnetLab 1.0.3 (released 2026-11-19)
 
