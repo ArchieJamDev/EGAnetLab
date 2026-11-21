@@ -840,7 +840,7 @@ dynegaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "EGAnetLab",
                 name = "dynega",
-                version = c(1,0,3),
+                version = c(1,0,4),
                 options = options,
                 results = dynegaResults$new(options=options),
                 data = data,

@@ -1,4 +1,4 @@
-# EGAnetLab 1.0.4 (in development)
+# EGAnetLab 1.0.4 (released 2026-11-21)
 
 * **Reproducible bootstrap.** The seed of *Stability (bootstrap)*, of
   *Metric invariance* and of *Dynamic EGA* now also fixes R's own random
