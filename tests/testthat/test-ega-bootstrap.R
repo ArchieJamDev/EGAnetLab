@@ -111,3 +111,21 @@ test_that("the bootstrap warns when the most frequent solution is weak", {
 
     expect_equal(grepl("not firmly established", res$bootInterpretation$content, fixed = TRUE), weak)
 })
+
+test_that("the same seed gives the same bootstrap whatever R's random state", {
+
+    # The Louvain steps inside each replicate draw from R's generator, so a
+    # different random state before the analysis must not change the result.
+    # ES: Los pasos de Louvain de cada réplica usan el generador de R, así
+    # que otro estado aleatorio antes del análisis no debe cambiar el
+    # resultado.
+    data <- bundledData("eganetlab_wmt2.csv")
+    skip_if(is.null(data))
+    run <- function(state) {
+        set.seed(state)
+        EGAnetLab::ega(data = data, vars = paste0("wmt", 1:18), runBoot = TRUE,
+                       iter = 100)$bootFrequency$asDF
+    }
+
+    expect_equal(run(1), run(2))
+})

@@ -1,3 +1,14 @@
+# EGAnetLab 1.0.4 (in development)
+
+* **Reproducible bootstrap.** The seed of *Stability (bootstrap)*, of
+  *Metric invariance* and of *Dynamic EGA* now also fixes R's own random
+  number generator. EGAnet's seed fixes the bootstrap samples, but the
+  Louvain steps inside each replicate (the unidimensionality check and the
+  Louvain and Leiden algorithms) draw from R's generator, so the same seed
+  could give slightly different frequencies from one run to the next (for
+  example 64.0% or 63.2% for two dimensions in the WMT-2 items). The same
+  seed now always gives the same result.
+
 # EGAnetLab 1.0.3 (released 2026-11-19)
 
 * Archived in Zenodo: version DOI

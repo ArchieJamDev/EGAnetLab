@@ -1398,7 +1398,10 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             fit <- self$results$invStatus$state
             if (is.null(fit)) {
                 private$.checkpoint()
-                fit <- .el_capture(suppressMessages(EGAnet::invariance(
+                # R's seed is fixed as well as EGAnet's (see the bootstrap).
+                # ES: Se fija la semilla de R además de la de EGAnet (ver el
+                # bootstrap).
+                fit <- .el_capture(suppressMessages(.el_with_seed(seed, EGAnet::invariance(
                     data = d, groups = groups,
                     structure = if (configural) NULL else as.numeric(wc[keep]),
                     iter = as.integer(o$invIter),
@@ -1406,7 +1409,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     configural.type = "parametric",
                     corr = if (identical(o$corr, "cosine")) "auto" else o$corr,
                     na.data = o$naData, model = o$model, algorithm = o$algorithm,
-                    uni.method = o$uniMethod, ncores = 1, seed = as.numeric(seed), verbose = FALSE)))
+                    uni.method = o$uniMethod, ncores = 1, seed = as.numeric(seed), verbose = FALSE))))
                 if (!is.null(fit$value))
                     fit$value <- list(
                         results = fit$value$results, data = fit$value$data,
@@ -2622,7 +2625,18 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
 
             if (is.null(cache)) {
                 private$.checkpoint()
-                fit <- .el_capture(EGAnet::bootEGA(
+                # EGAnet's seed fixes the bootstrap samples, but the Louvain
+                # steps inside each replicate (the unidimensionality check
+                # and the Louvain and Leiden algorithms) draw from R's own
+                # generator, so R's seed is fixed too: the same seed then
+                # always gives the same result.
+                # ES: La semilla de EGAnet fija las muestras bootstrap, pero
+                # los pasos de Louvain dentro de cada réplica (la comprobación
+                # de unidimensionalidad y los algoritmos Louvain y Leiden)
+                # usan el generador propio de R, así que también se fija la
+                # semilla de R: la misma semilla da siempre el mismo
+                # resultado.
+                fit <- .el_capture(.el_with_seed(seed, EGAnet::bootEGA(
                     data = prep$data,
                     corr = self$options$corr,
                     na.data = self$options$naData,
@@ -2640,7 +2654,7 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     seed = as.numeric(seed),
                     plot.itemStability = FALSE,
                     verbose = FALSE
-                ))
+                )))
 
                 if (is.null(fit$value)) {
                     self$results$bootStatus$setContent(.el_html_block(heading, intro))

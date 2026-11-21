@@ -206,7 +206,11 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             cache <- self$results$status$state
             if (is.null(cache)) {
                 private$.checkpoint()
-                run_dyn <- function(data, lv) .el_capture(EGAnet::dynEGA(
+                # R's seed is fixed as well as EGAnet's, because the Louvain
+                # steps draw from R's own generator.
+                # ES: Se fija la semilla de R además de la de EGAnet, porque
+                # los pasos de Louvain usan el generador propio de R.
+                run_dyn <- function(data, lv) .el_capture(.el_with_seed(o$seed, EGAnet::dynEGA(
                     data = data,
                     id = "ID",
                     group = if (use_groups) "Group" else NULL,
@@ -222,7 +226,7 @@ dynegaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                     ncores = 1,
                     seed = as.numeric(o$seed),
                     verbose = FALSE
-                ))
+                )))
 
                 # Each person's own structure is estimated separately: a
                 # person whose network cannot be estimated (an item that never
