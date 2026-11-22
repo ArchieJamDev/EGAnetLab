@@ -3211,20 +3211,31 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
             levels_df <- data.frame(
                 y = 0:top,
                 label = c(state$labels$items, state$labels$lower, state$labels$higher)[seq_len(top + 1)])
+            # The level names sit just left of the first item and may extend
+            # into the left margin, which is sized in points from the longest
+            # name. A limit in data units clipped them when there were many
+            # items, because a data unit then becomes narrow.
+            # ES: Los nombres de los niveles se colocan justo a la izquierda
+            # del primer ítem y pueden extenderse al margen izquierdo, cuyo
+            # ancho se calcula en puntos a partir del nombre más largo. Un
+            # límite en unidades de los datos los recortaba con muchos ítems,
+            # porque cada unidad se vuelve estrecha.
+            first_x <- min(nodes$x, na.rm = TRUE)
             if (show_levels)
                 plot <- plot +
-                    ggplot2::geom_text(data = levels_df, ggplot2::aes(x = 0, y = y, label = label),
+                    ggplot2::geom_text(data = levels_df, ggplot2::aes(x = first_x - 0.6, y = y, label = label),
                                        hjust = 1, size = 3.6, colour = "grey30")
             bottom <- if (show_items) -(0.2 + 0.045 * (label_size / 3.3) * max(nchar(item_nodes$label), 4)) else -0.2
-            left <- if (show_levels) -0.25 * max(nchar(levels_df$label)) / 2 else 0.5
+            left_margin <- if (show_levels) 6 * max(nchar(levels_df$label)) + 10 else 5.5
             plot <- plot +
                 ggplot2::scale_y_continuous(limits = c(bottom, top + 0.25)) +
-                ggplot2::scale_x_continuous(limits = c(left, NA),
-                                            expand = ggplot2::expansion(add = c(0.4, 0.8))) +
+                ggplot2::scale_x_continuous(expand = ggplot2::expansion(add = c(0.4, 0.8))) +
+                ggplot2::coord_cartesian(clip = "off") +
                 ggplot2::labs(x = NULL, y = NULL) +
                 ggtheme +
                 ggplot2::theme_void() +
-                ggplot2::theme(legend.position = "none")
+                ggplot2::theme(legend.position = "none",
+                               plot.margin = ggplot2::margin(5.5, 5.5, 5.5, left_margin, unit = "pt"))
 
             title <- trimws(as.character(if (is.null(o$hierPlotTitle)) "" else o$hierPlotTitle))
             if (nzchar(title))
