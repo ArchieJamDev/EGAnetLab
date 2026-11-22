@@ -73,9 +73,11 @@ results <- lapply(seq_len(nrow(grid)), function(i) {
                    list(data = data, vars = items, model = model,
                         algorithm = algorithm, showNetworkPlot = FALSE))
 
-    summary <- lab$summary$asDF
-    lab_dims <- summary$value[summary$element == "Number of dimensions"]
-    lab_tefi <- summary$value[summary$element == "TEFI"]
+    # The number of dimensions and TEFI are in the Solution table.
+    # ES: El número de dimensiones y el TEFI están en la tabla Solución.
+    solution <- lab$solution$asDF
+    lab_dims <- as.character(solution$dims[1])
+    lab_tefi <- formatC(as.numeric(solution$tefi[1]), format = "f", digits = 3)
     lab_wc <- lab$membership$asDF$dimension
     direct_wc <- ifelse(is.na(direct$wc), "Isolated (no edges)", as.character(direct$wc))
 
