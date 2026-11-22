@@ -1,3 +1,17 @@
+# EGAnetLab (development version)
+
+* **EGAnet 2.3.0 or later.** The minimum EGAnet version goes down from
+  2.4.0 to 2.3.0, the version that jamovi 2.7 installs with the module.
+  Every procedure gives the same values as direct EGAnet calls with it
+  (`validation/procedure_equivalence.R`).
+* **Validation in CI.** `validation/procedure_equivalence.R` compares
+  the bootstrap, UVA, network loadings, riEGA, hierEGA, metric
+  invariance, the NCT, the bootnet CS coefficient and dynamic EGA with
+  direct calls, and runs with `validation/ega_equivalence.R` on every
+  change.
+* **Hierarchical structure plot.** The level names on the left are no
+  longer clipped when there are many items.
+
 # EGAnetLab 1.0.5 (released 2026-11-21)
 
 * Same code as 1.0.4. The 1.0.4 release was built before its version
