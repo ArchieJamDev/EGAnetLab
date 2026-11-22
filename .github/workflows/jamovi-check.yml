@@ -61,3 +61,17 @@ jobs:
             exit 1
           fi
           Rscript .github/scripts/run-tests.R
+
+      # Numerical equivalence with EGAnet: the main EGA (ega_equivalence.R)
+      # and every optional procedure reported in the tutorial
+      # (procedure_equivalence.R). Each script stops with an error if any
+      # value differs from a direct call with the same options and seed.
+      # ES: Equivalencia numérica con EGAnet: el EGA principal
+      # (ega_equivalence.R) y cada procedimiento opcional del tutorial
+      # (procedure_equivalence.R). Cada script se detiene con un error si
+      # algún valor difiere de una llamada directa con las mismas opciones y
+      # semilla.
+      - name: Check numerical equivalence with EGAnet
+        run: |
+          Rscript validation/ega_equivalence.R
+          Rscript validation/procedure_equivalence.R
