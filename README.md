@@ -9,7 +9,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a>
   <a href="https://github.com/ArchieJamDev/EGAnetLab/releases"><img src="https://img.shields.io/github/v/release/ArchieJamDev/EGAnetLab?include_prereleases&label=release" alt="Release"></a>
   <a href="https://github.com/ArchieJamDev/EGAnetLab/actions/workflows/jamovi-check.yml"><img src="https://github.com/ArchieJamDev/EGAnetLab/actions/workflows/jamovi-check.yml/badge.svg" alt="CI"></a>
-  <img src="https://img.shields.io/badge/EGAnet-%E2%89%A5%202.4-009E73" alt="EGAnet ≥ 2.4">
+  <img src="https://img.shields.io/badge/EGAnet-%E2%89%A5%202.3-009E73" alt="EGAnet ≥ 2.3">
   <a href="https://doi.org/10.5281/zenodo.23886111"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23886111.svg" alt="DOI"></a>
   <img src="https://komarev.com/ghpvc/?username=ArchieJamDev-EGAnetLab&label=views&color=lightgrey&style=flat" alt="Views">
 </p>
@@ -20,8 +20,11 @@
 
 EGAnetLab brings the network psychometrics of the
 [EGAnet](https://r-ega.net) R package to [jamovi](https://www.jamovi.org/),
-without writing a line of R. Like its sibling module
-[AssumptionsLab](https://github.com/ArchieJamDev/AssumptionsLab), it does not
+without writing a line of R. Like its sibling modules
+[AssumptionsLab](https://github.com/ArchieJamDev/AssumptionsLab),
+[FiabilityLab](https://github.com/ArchieJamDev/FiabilityLab),
+[MokkenLab](https://github.com/ArchieJamDev/MokkenLab) and
+[PLSsemLab](https://github.com/ArchieJamDev/PLSsemLab), it does not
 stop at the numbers: every option in the menu explains what it does and when
 to choose it, and every result comes with a plain-language interpretation,
 the evidence behind it and the next step to take.
@@ -310,7 +313,8 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 | 6 | Centrality and network stability (edge accuracy, CS-coefficient) | ✅ Done |
 | 7 | Dynamic EGA for longitudinal and intensive data | ✅ Done |
 | 8 | Key findings summary at the top of each report (findings, uncertainties, warnings) | ✅ Done |
-| 9 | Review for the jamovi Library: references, icon, example datasets, stress tests, README | 🔄 In progress |
+| 9 | Review for the jamovi Library: references, icon, example datasets, stress tests, README; in the Library since 1.0.2 | ✅ Done |
+| 10 | Version 1.0.6 (reproducible bootstrap, EGAnet ≥ 2.3.0, ribbon icon) to update the jamovi Library, which carries 1.0.3 | 🔄 In progress |
 | Next | Side-by-side network comparison (`compare.EGA.plots`) | 🗓 Planned |
 
 See [NEWS.md](NEWS.md) for what changed in each version.
