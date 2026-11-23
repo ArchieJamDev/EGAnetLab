@@ -3,6 +3,9 @@
 The results are the same as in 1.0.5. This version brings to jamovi's
 Library the reproducible bootstrap of 1.0.4 (the Library carries 1.0.3).
 
+* Archived in Zenodo: version DOI
+  [10.5281/zenodo.24457873](https://doi.org/10.5281/zenodo.24457873).
+
 * **Ribbon icon.** The *EGAnet Lab* menu group declares its icon
   (`jamovi/icons/eganetlab.svg`); jamovi shows it once it supports menu
   icons.
