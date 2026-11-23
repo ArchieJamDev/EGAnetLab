@@ -227,14 +227,15 @@ author preparing a figure gets full control:
 
 ## Installation
 
-jamovi has accepted EGAnetLab for its official Library (version 1.0.2), where
-it will appear soon. Until then, or for the latest version, install it from a
-release file.
+EGAnetLab is in jamovi's official Library: install it from **⋮** →
+**Modules** → **jamovi library**. The Library may carry an earlier version
+than the latest release; for the latest version, install it from a release
+file.
 
 ### From a release (recommended)
 
 1. Download the latest `EGAnetLab_x.y.z.jmo` (currently
-   [v1.0.5](https://github.com/ArchieJamDev/EGAnetLab/releases/tag/v1.0.5)) from
+   [v1.0.6](https://github.com/ArchieJamDev/EGAnetLab/releases/tag/v1.0.6)) from
    [Releases](https://github.com/ArchieJamDev/EGAnetLab/releases).
 2. In jamovi, open the **⋮** menu (top right) → **Modules** →
    **Install from file**, and choose the `.jmo` file.
@@ -334,7 +335,7 @@ versions and always resolves to the latest one; each version also has its own
 DOI, listed on the Zenodo page.
 
 > Chacón Chacón, A. D. L. (2026). *EGAnetLab: A jamovi module for Exploratory
-> Graph Analysis* (Version 1.0.5) [Computer software]. Zenodo.
+> Graph Analysis* (Version 1.0.6) [Computer software]. Zenodo.
 > https://doi.org/10.5281/zenodo.23886111
 
 > Golino, H., & Christensen, A. P. (2026). *EGAnet: Exploratory graph
@@ -381,9 +382,10 @@ resultados se acompañan de guías e interpretaciones en español o inglés. Los
 gráficos de red son altamente configurables (disposición, nodos, etiquetas,
 aristas y leyenda) y usan paletas aptas para daltonismo.
 
-jamovi lo aceptó para su Biblioteca oficial (versión 1.0.2), donde aparecerá
-pronto. Mientras tanto, o para tener la última versión, descargue el archivo
-`.jmo` (actualmente la v1.0.5) desde
+EGAnetLab está en la Biblioteca oficial de jamovi (**⋮** → **Modules** →
+**jamovi library**). La Biblioteca puede tener una versión anterior a la
+última publicada; para tener la última versión, descargue el archivo
+`.jmo` (actualmente la v1.0.6) desde
 [Releases](https://github.com/ArchieJamDev/EGAnetLab/releases) y, en jamovi,
 use **⋮** → **Modules** → **Install from file**.
 

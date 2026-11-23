@@ -1,4 +1,11 @@
-# EGAnetLab (development version)
+# EGAnetLab 1.0.6 (released 2026-11-23)
+
+The results are the same as in 1.0.5. This version brings to jamovi's
+Library the reproducible bootstrap of 1.0.4 (the Library carries 1.0.3).
+
+* **Ribbon icon.** The *EGAnet Lab* menu group declares its icon
+  (`jamovi/icons/eganetlab.svg`); jamovi shows it once it supports menu
+  icons.
 
 * **EGAnet 2.3.0 or later.** The minimum EGAnet version goes down from
   2.4.0 to 2.3.0, the version that jamovi 2.7 installs with the module.
