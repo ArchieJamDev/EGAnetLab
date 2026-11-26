@@ -4,6 +4,9 @@ The results are the same as in 1.0.6. This version answers the two points
 of jamovi's audit of 1.0.6, both in the centrality stability bootstrap
 (bootnet).
 
+* Archived in Zenodo: version DOI
+  [10.5281/zenodo.24571092](https://doi.org/10.5281/zenodo.24571092).
+
 * **Random stream restored.** The network estimate, the edge bootstrap
   and the case-dropping bootstrap are each still seeded on their own, but
   through `.el_with_seed()`, like every other seeded step in the module.

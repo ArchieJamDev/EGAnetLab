@@ -39,6 +39,9 @@ identifiers:
   - type: doi
     value: "10.5281/zenodo.24457873"
     description: "Version 1.0.6"
+  - type: doi
+    value: "10.5281/zenodo.24571092"
+    description: "Version 1.0.7"
 repository-code: "https://github.com/ArchieJamDev/EGAnetLab"
 license: "GPL-3.0-only"
 version: "1.0.7"
