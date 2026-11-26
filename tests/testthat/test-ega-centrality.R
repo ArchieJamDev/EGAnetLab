@@ -127,3 +127,48 @@ test_that("bootnet is reproducible with the same seed", {
     expect_equal(a$bnCS$asDF, b$bnCS$asDF)
     expect_equal(a$bnEdges$asDF, b$bnEdges$asDF)
 })
+
+test_that("bootnet leaves the session's random stream as it was", {
+
+    skip_if_not_installed("bootnet")
+    data <- edgeStructureData()
+    set.seed(2024)
+    before <- get(".Random.seed", envir = globalenv())
+    EGAnetLab:::.el_bootnet(data, corr = "auto", na_data = "pairwise", model = "glasso",
+                            iter = 50, case_iter = 50, seed = 1)
+    expect_identical(get(".Random.seed", envir = globalenv()), before)
+})
+
+test_that("bootnet calls the checkpoint between its three steps", {
+
+    skip_if_not_installed("bootnet")
+    data <- edgeStructureData()
+    calls <- 0
+    EGAnetLab:::.el_bootnet(data, corr = "auto", na_data = "pairwise", model = "glasso",
+                            iter = 50, case_iter = 50, seed = 1,
+                            checkpoint = function() calls <<- calls + 1)
+    expect_equal(calls, 2)
+})
+
+test_that("a restart request from the checkpoint stops bootnet", {
+
+    skip_if_not_installed("bootnet")
+    data <- edgeStructureData()
+    restart <- function() stop(jmvcore::createError("restarting", "restart"))
+    expect_error(
+        EGAnetLab:::.el_capture(EGAnetLab:::.el_bootnet(
+            data, corr = "auto", na_data = "pairwise", model = "glasso",
+            iter = 50, case_iter = 50, seed = 1, checkpoint = restart)),
+        "restarting")
+})
+
+test_that("the centrality bootstrap passes jamovi's checkpoint", {
+
+    # The call site must hand private$.checkpoint() to .el_bootnet(), or the
+    # yields inside it do nothing.
+    # ES: la llamada debe pasar private$.checkpoint() a .el_bootnet(); si no,
+    # los puntos de control internos no hacen nada.
+    body <- paste(deparse(EGAnetLab:::egaClass$private_methods$.runBootnet), collapse = "\n")
+    skip_if(!nzchar(body) || !grepl(".el_bootnet", body, fixed = TRUE))
+    expect_match(body, "checkpoint = function() private$.checkpoint()", fixed = TRUE)
+})

@@ -235,7 +235,7 @@ file.
 ### From a release (recommended)
 
 1. Download the latest `EGAnetLab_x.y.z.jmo` (currently
-   [v1.0.6](https://github.com/ArchieJamDev/EGAnetLab/releases/tag/v1.0.6)) from
+   [v1.0.7](https://github.com/ArchieJamDev/EGAnetLab/releases/tag/v1.0.7)) from
    [Releases](https://github.com/ArchieJamDev/EGAnetLab/releases).
 2. In jamovi, open the **⋮** menu (top right) → **Modules** →
    **Install from file**, and choose the `.jmo` file.
@@ -335,7 +335,7 @@ versions and always resolves to the latest one; each version also has its own
 DOI, listed on the Zenodo page.
 
 > Chacón Chacón, A. D. L. (2026). *EGAnetLab: A jamovi module for Exploratory
-> Graph Analysis* (Version 1.0.6) [Computer software]. Zenodo.
+> Graph Analysis* (Version 1.0.7) [Computer software]. Zenodo.
 > https://doi.org/10.5281/zenodo.23886111
 
 > Golino, H., & Christensen, A. P. (2026). *EGAnet: Exploratory graph
@@ -385,7 +385,7 @@ aristas y leyenda) y usan paletas aptas para daltonismo.
 EGAnetLab está en la Biblioteca oficial de jamovi (**⋮** → **Modules** →
 **jamovi library**). La Biblioteca puede tener una versión anterior a la
 última publicada; para tener la última versión, descargue el archivo
-`.jmo` (actualmente la v1.0.6) desde
+`.jmo` (actualmente la v1.0.7) desde
 [Releases](https://github.com/ArchieJamDev/EGAnetLab/releases) y, en jamovi,
 use **⋮** → **Modules** → **Install from file**.
 

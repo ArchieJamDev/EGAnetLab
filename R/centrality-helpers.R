@@ -115,24 +115,28 @@
         net
     }
 
-    set.seed(seed)
-    net <- bootnet::estimateNetwork(data, default = "none", fun = estimator,
-                                    labels = colnames(data), verbose = FALSE)
+    # Each step is seeded on its own, so each is reproducible by itself;
+    # .el_with_seed() restores the global random stream afterwards, so the
+    # session's generator is left as it was found.
+    # ES: Cada paso se siembra por separado, así que cada uno es
+    # reproducible por sí solo; .el_with_seed() restaura después el flujo
+    # aleatorio global, así que el generador de la sesión queda como estaba.
+    net <- .el_with_seed(seed, bootnet::estimateNetwork(
+        data, default = "none", fun = estimator,
+        labels = colnames(data), verbose = FALSE))
 
     checkpoint()
-    set.seed(seed)
-    b_edges <- bootnet::bootnet(net, nBoots = iter, type = "nonparametric",
-                                statistics = c("edge"), nCores = 1,
-                                verbose = FALSE)
+    b_edges <- .el_with_seed(seed, bootnet::bootnet(
+        net, nBoots = iter, type = "nonparametric",
+        statistics = c("edge"), nCores = 1, verbose = FALSE))
 
     checkpoint()
     measures <- c("strength", "expectedInfluence")
     if (closbetw)
         measures <- c(measures, "closeness", "betweenness")
-    set.seed(seed)
-    b_case <- bootnet::bootnet(net, nBoots = case_iter, type = "case",
-                               statistics = measures, nCores = 1,
-                               verbose = FALSE)
+    b_case <- .el_with_seed(seed, bootnet::bootnet(
+        net, nBoots = case_iter, type = "case",
+        statistics = measures, nCores = 1, verbose = FALSE))
 
     # Edges: the non-zero edges of the estimated network, with percentile
     # intervals and the share of samples in which the edge was not zero.

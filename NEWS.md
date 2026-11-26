@@ -1,3 +1,22 @@
+# EGAnetLab 1.0.7 (released 2026-11-26)
+
+The results are the same as in 1.0.6. This version answers the two points
+of jamovi's audit of 1.0.6, both in the centrality stability bootstrap
+(bootnet).
+
+* **Random stream restored.** The network estimate, the edge bootstrap
+  and the case-dropping bootstrap are each still seeded on their own, but
+  through `.el_with_seed()`, like every other seeded step in the module.
+  The R session's random generator is left as it was found, so later
+  random draws in the session, in EGAnetLab or in another module, do not
+  start from a fixed state.
+* **The bootstrap yields to jamovi.** The analysis passes jamovi's
+  checkpoint to the bootstrap, so a change in the options panel stops a
+  long run (above all the case-dropping bootstrap with closeness and
+  betweenness) instead of letting it finish for a result that is thrown
+  away. The helper that turns errors into report notices lets jamovi's
+  stop request through, so the run really stops.
+
 # EGAnetLab 1.0.6 (released 2026-11-23)
 
 The results are the same as in 1.0.5. This version brings to jamovi's

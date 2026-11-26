@@ -314,18 +314,29 @@
 # Output: list(value =, error =, warnings =). `value` is NULL on error;
 #   `warnings` keeps every warning message so the report can surface it
 #   instead of suppressing it (CODE_STYLE §21: never suppress warnings
-#   without justification).
+#   without justification). jamovi's restart request from .checkpoint() is
+#   not captured: it is raised again so the out-of-date run stops.
 #
 # ES: Entrada: expr - una expresión (normalmente una llamada a EGAnet).
 # Salida: list(value =, error =, warnings =). `value` es NULL si hubo error;
 # `warnings` conserva cada advertencia para que el informe la muestre en vez
 # de suprimirla (CODE_STYLE §21: nunca suprimir advertencias sin
-# justificación).
+# justificación). La petición de reinicio de jamovi desde .checkpoint() no
+# se captura: se vuelve a lanzar para que el cálculo desactualizado se
+# detenga.
 # -----------------------------------------------------------------------------
 .el_capture <- function(expr) {
     warnings <- character(0)
     value <- withCallingHandlers(
-        tryCatch(expr, error = function(e) structure(list(message = conditionMessage(e)), class = "el_error")),
+        tryCatch(expr, error = function(e) {
+            # jamovi's checkpoint stops an out-of-date run with an error whose
+            # code is "restart"; it is passed on so the run really stops.
+            # ES: el checkpoint de jamovi detiene un cálculo desactualizado con
+            # un error de código "restart"; se deja pasar para que se detenga.
+            if (identical(e$code, "restart"))
+                stop(e)
+            structure(list(message = conditionMessage(e)), class = "el_error")
+        }),
         warning = function(w) {
             # EGAnet styles some messages with terminal color codes; they
             # are removed so the report shows plain text.
