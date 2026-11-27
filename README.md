@@ -10,7 +10,7 @@
   <a href="https://github.com/ArchieJamDev/EGAnetLab/releases"><img src="https://img.shields.io/github/v/release/ArchieJamDev/EGAnetLab?label=release&color=4A86E0" alt="Release"></a>
   <a href="https://doi.org/10.5281/zenodo.23886111"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23886111.svg" alt="DOI (all versions, resolves to the latest)"></a>
   <img src="https://img.shields.io/badge/EGAnet-%E2%89%A5%202.3.0-E6AC40" alt="EGAnet ≥ 2.3.0">
-  <img src="https://img.shields.io/badge/jamovi-%E2%89%A5%201.0.8-4A86E0" alt="jamovi ≥ 1.0.8">
+  <img src="https://img.shields.io/badge/jamovi-%E2%89%A5%202.7.41-4A86E0" alt="jamovi ≥ 2.7.41">
   <img src="https://img.shields.io/badge/jamovi%20Library-available-6B9DE8" alt="Available in the jamovi Library">
   <a href="https://github.com/ArchieJamDev/EGAnetLab/actions/workflows/jamovi-check.yml"><img src="https://github.com/ArchieJamDev/EGAnetLab/actions/workflows/jamovi-check.yml/badge.svg" alt="CI"></a>
   <img src="https://komarev.com/ghpvc/?username=ArchieJamDev-EGAnetLab&label=views&color=lightgrey&style=flat" alt="Views">
