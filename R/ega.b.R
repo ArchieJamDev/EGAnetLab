@@ -2945,7 +2945,8 @@ egaClass <- if (requireNamespace("jmvcore", quietly = TRUE)) R6::R6Class(
                 fit <- .el_capture(.el_bootnet(
                     prep$data, corr = self$options$corr, na_data = self$options$naData,
                     model = self$options$model, iter = iter, case_iter = case_iter,
-                    seed = seed, closbetw = isTRUE(self$options$cenClosBetw)))
+                    seed = seed, closbetw = isTRUE(self$options$cenClosBetw),
+                    checkpoint = function() private$.checkpoint()))
                 if (is.null(fit$value)) {
                     self$results$bnStatus$setContent(.el_html_block(heading, intro))
                     .el_notice(self, "bnStatus", sprintf(txt("bn", "failed"), fit$error))

@@ -128,7 +128,7 @@ explanation.
 
 ### 1. Dimensional estimation (EGA core)
 
-| Analysis | Question it answers | Status |
+| Analysis | Question it answers | Available since |
 |---|---|---|
 | **EGA** | How many dimensions are there, and which items belong to each? | ✅ 0.1.0 |
 | **Bootstrap EGA** (`bootEGA`) | Would the same dimensions appear in hundreds of resamples, or are they sample noise? | ✅ 0.1.0 (in EGA, Stability section) |
@@ -138,7 +138,7 @@ explanation.
 
 ### 2. Diagnosis and psychometric quality
 
-| Analysis | Question it answers | Status |
+| Analysis | Question it answers | Available since |
 |---|---|---|
 | **Network loadings** (`net.loads`) | How strongly does each item load on its dimension, and on the others? | ✅ 0.1.0 (in EGA) |
 | **Item & dimension stability** | What percentage of resamples place each item in the same dimension? | ✅ 0.1.0 (in EGA, Stability section) |
@@ -149,13 +149,13 @@ explanation.
 
 ### 3. Information theory and fit
 
-| Analysis | Question it answers | Status |
+| Analysis | Question it answers | Available since |
 |---|---|---|
 | **TEFI** | Which of several competing structures fits the data best? | ✅ 0.1.0 (in EGA, Compare structures section: EGA vs. other algorithms and your theoretical structure) |
 
 ### 4. Network topology and graphics
 
-| Analysis | Question it answers | Status |
+| Analysis | Question it answers | Available since |
 |---|---|---|
 | **Compare networks** (`compare.EGA.plots`) | How do two structures look side by side? | 🗓 Planned after 0.1.0 |
 | **Centrality** (qgraph + bootnet) | Which items are central, and are those indices stable (CS-coefficient)? | ✅ 0.1.0 (in EGA, Centrality and network stability section) |
@@ -163,7 +163,7 @@ explanation.
 
 ### 5. Reporting
 
-| Feature | What it gives you | Status |
+| Feature | What it gives you | Available since |
 |---|---|---|
 | **Key findings summary** | The report of EGA and Dynamic EGA opens with the main findings, the uncertainties and the warnings, one sentence each, naming the section that explains it | ✅ 0.1.0 |
 | **Explained choices** | A section that restates every estimation choice you made and what it means | ✅ 0.1.0 |
@@ -199,17 +199,20 @@ Mixed networks with nominal or count variables are deliberately out of scope.
 ## Network Graphics
 
 Network plots are drawn with EGAnet's own engine (GGally `ggnet2` on top of
-ggplot2), and centrality plots with qgraph. Both are heavily parameterised,
-with defaults equal to EGAnet's, so a beginner gets a clean plot and an
-author preparing a figure gets full control:
+ggplot2); centrality indices come from qgraph and their plots, like the
+stability and hierarchical plots, are drawn with ggplot2. The network plot
+is heavily parameterised, with defaults equal to EGAnet's, so a beginner
+gets a clean plot and an author preparing a figure gets full control:
 
 | Group | Options |
 |---|---|
-| **Layout** | Fruchterman-Reingold, Kamada-Kawai, circle and other `sna` layouts |
-| **Nodes** | Size, shape, transparency, border; dimension colors follow the palette chosen in jamovi's settings |
-| **Labels** | Size, color, item names or abbreviations |
-| **Edges** | Width, positive/negative colors, transparency, line type, edge-weight labels, minimum weight shown |
-| **Legend** | Show/hide, position, size |
+| **Layout** | Spring (Fruchterman-Reingold), Kamada-Kawai, circle, multidimensional scaling, eigenvector |
+| **Nodes** | Size, shape (circle, square, triangle), transparency; dimension colors follow the palette chosen in jamovi's settings |
+| **Labels** | Size, color |
+| **Edges** | Width, positive/negative colors, line type of negative edges, edge-weight labels (size and decimals), minimum weight shown |
+| **Legend** | Show/hide, position, title |
+| **Title** | Plot title |
+| **Hierarchical plot** | Title, level names, item names and their size, item and dimension node sizes, edge width and color |
 
 ---
 
@@ -238,7 +241,7 @@ file.
 ### From a release (recommended)
 
 1. Download the latest `EGAnetLab_x.y.z.jmo` (currently
-   [v1.0.6](https://github.com/ArchieJamDev/EGAnetLab/releases/tag/v1.0.6)) from
+   [v1.0.7](https://github.com/ArchieJamDev/EGAnetLab/releases/tag/v1.0.7)) from
    [Releases](https://github.com/ArchieJamDev/EGAnetLab/releases).
 2. In jamovi, open the **⋮** menu (top right) → **Modules** →
    **Install from file**, and choose the `.jmo` file.
@@ -279,8 +282,10 @@ items, accented and symbol item names, a single-row data set, grouping
 variables with missing values, missing values in Dynamic EGA, and the three
 bundled datasets end to end. Each case must either finish or stop with an
 EGAnetLab message that explains what to change, never with a raw R error.
-[`validation/`](validation/) compares EGAnetLab's results with direct EGAnet
-calls.
+The same workflow runs [`validation/`](validation/), which compares
+EGAnetLab's results with direct EGAnet calls: the EGA estimate and every
+procedure (bootstrap, UVA, network loadings, riEGA, hierEGA, metric
+invariance, NCT, bootnet CS coefficient and dynamic EGA).
 
 ---
 
@@ -295,7 +300,8 @@ calls.
 ```r
 jmvtools::prepare()                 # regenerate .h.R files from the YAML
 testthat::test_dir("tests/testthat") # run the edge-case suite
-source("validation/ega_equivalence.R") # compare with EGAnet::EGA
+source("validation/ega_equivalence.R")         # compare with EGAnet::EGA
+source("validation/procedure_equivalence.R")   # compare every procedure
 ```
 
 ---
@@ -313,8 +319,7 @@ source("validation/ega_equivalence.R") # compare with EGAnet::EGA
 | 6 | Centrality and network stability (edge accuracy, CS-coefficient) | ✅ Done |
 | 7 | Dynamic EGA for longitudinal and intensive data | ✅ Done |
 | 8 | Key findings summary at the top of each report (findings, uncertainties, warnings) | ✅ Done |
-| 9 | Review for the jamovi Library: references, icon, example datasets, stress tests, README; in the Library since 1.0.2 | ✅ Done |
-| 10 | Version 1.0.6 (reproducible bootstrap, EGAnet ≥ 2.3.0, ribbon icon) to update the jamovi Library, which carries 1.0.3 | 🔄 In progress |
+| 9 | Review for the jamovi Library: references, icon, example datasets, stress tests, README | ✅ Done (in the Library since 1.0.2) |
 | Next | Side-by-side network comparison (`compare.EGA.plots`) | 🗓 Planned |
 
 See [NEWS.md](NEWS.md) for what changed in each version.
@@ -339,7 +344,7 @@ versions and always resolves to the latest one; each version also has its own
 DOI, listed on the Zenodo page.
 
 > Chacón Chacón, A. D. L. (2026). *EGAnetLab: A jamovi module for Exploratory
-> Graph Analysis* (Version 1.0.6) [Computer software]. Zenodo.
+> Graph Analysis* (Version 1.0.7) [Computer software]. Zenodo.
 > https://doi.org/10.5281/zenodo.23886111
 
 > Golino, H., & Christensen, A. P. (2026). *EGAnet: Exploratory graph
@@ -389,7 +394,7 @@ aristas y leyenda) y usan paletas aptas para daltonismo.
 EGAnetLab está en la Biblioteca oficial de jamovi (**⋮** → **Modules** →
 **jamovi library**). La Biblioteca puede tener una versión anterior a la
 última publicada; para tener la última versión, descargue el archivo
-`.jmo` (actualmente la v1.0.6) desde
+`.jmo` (actualmente la v1.0.7) desde
 [Releases](https://github.com/ArchieJamDev/EGAnetLab/releases) y, en jamovi,
 use **⋮** → **Modules** → **Install from file**.
 
