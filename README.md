@@ -20,8 +20,11 @@
 
 EGAnetLab brings the network psychometrics of the
 [EGAnet](https://r-ega.net) R package to [jamovi](https://www.jamovi.org/),
-without writing a line of R. Like its sibling module
-[AssumptionsLab](https://github.com/ArchieJamDev/AssumptionsLab), it does not
+without writing a line of R. Like its sibling modules
+[AssumptionsLab](https://github.com/ArchieJamDev/AssumptionsLab),
+[FiabilityLab](https://github.com/ArchieJamDev/FiabilityLab),
+[MokkenLab](https://github.com/ArchieJamDev/MokkenLab) and
+[PLSsemLab](https://github.com/ArchieJamDev/PLSsemLab), it does not
 stop at the numbers: every option in the menu explains what it does and when
 to choose it, and every result comes with a plain-language interpretation,
 the evidence behind it and the next step to take.
